@@ -14,7 +14,8 @@
 *.vrb
 *.dvi
 *.mtc*
+*.maf
 
 
 # 如果不想上传PDF，取消下一行的注释
-# *.pdfgit status
+# *.pdf
