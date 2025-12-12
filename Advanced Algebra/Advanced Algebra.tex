@@ -1,0 +1,1370 @@
+\documentclass[12pt, a4paper, oneside]{book}
+
+
+\input{config/packages.tex}
+\usepackage{CTEX}
+
+
+\begin{document}
+\frontmatter
+\title{{ \Huge{\textbf{Advanced Algebra} }}}
+\maketitle     
+\pagenumbering{Roman}
+\tableofcontents %% 生成内容目录 %
+
+
+
+
+\mainmatter
+\chapter{行列式}
+
+
+\section{矩阵乘法与行列式}
+
+\begin{question}
+    计算下列循环矩阵 ${A}$ 的行列式的值：
+    \[
+    {A}
+    =
+    \left(\begin{array}{ccccc}
+    a_1 & a_2 & a_3 & \cdots & a_n \\
+    a_n & a_1 & a_2 & \cdots & a_{n-1} \\
+    a_{n-1} & a_n & a_1 & \cdots & a_{n-2} \\
+    \vdots & \vdots & \vdots & & \vdots \\
+    a_2 & a_3 & a_4 & \cdots & a_1
+    \end{array}\right) 
+    \]
+    
+    解 作多项式 $f(x)=a_1+a_2 x+a_3 x^2+\cdots+a_n x^{n-1}$ ，令 $\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n$ 是 $1$ 的所有 $n$ 次方根．又令
+    \[
+    {V}
+    =
+    \left(\begin{array}{ccccc}
+    1 & 1 & 1 & \cdots & 1 \\
+    \varepsilon_1 & \varepsilon_2 & \varepsilon_3 & \cdots & \varepsilon_n \\
+    \varepsilon_1^2 & \varepsilon_2^2 & \varepsilon_3^2 & \cdots & \varepsilon_n^2 \\
+    \vdots & \vdots & \vdots & & \vdots \\
+    \varepsilon_1^{n-1} & \varepsilon_2^{n-1} & \varepsilon_3^{n-1} & \cdots & \varepsilon_n^{n-1}
+    \end{array}
+    \right)
+    \]
+    则
+    \[
+    {A} {V}
+    =
+    \left(\begin{array}{ccccc}
+    f\left(\varepsilon_1\right) & f\left(\varepsilon_2\right) & f\left(\varepsilon_3\right) & \cdots & f\left(\varepsilon_n\right) \\
+    \varepsilon_1 f\left(\varepsilon_1\right) & \varepsilon_2 f\left(\varepsilon_2\right) & \varepsilon_3 f\left(\varepsilon_3\right) & \cdots & \varepsilon_n f\left(\varepsilon_n\right) \\
+    \varepsilon_1^2 f\left(\varepsilon_1\right) & \varepsilon_2^2 f\left(\varepsilon_2\right) & \varepsilon_3^2 f\left(\varepsilon_3\right) & \cdots & \varepsilon_n^2 f\left(\varepsilon_n\right) \\
+    \vdots & \vdots & \vdots & & \vdots \\
+    \varepsilon_1^{n-1} f\left(\varepsilon_1\right) & \varepsilon_2^{n-1} f\left(\varepsilon_2\right) & \varepsilon_3^{n-1} f\left(\varepsilon_3\right) & \cdots & \varepsilon_n^{n-1} f\left(\varepsilon_n\right)
+    \end{array}\right)
+    \]
+    因此
+    \[
+    |{A}||{V}|=|{A} {V}|
+    =f(\varepsilon_1)f(\varepsilon_2)\cdots f(\varepsilon_n)|{V}|
+    \]
+    因为 $\varepsilon_i$ 互不相同，所以 $|{V}| \neq 0$ ，从而
+    \[
+    |{A}|
+    =
+    f\left(\varepsilon_1\right) f\left(\varepsilon_2\right) \cdots f\left(\varepsilon_n\right)  
+    \]
+\end{question}
+\begin{question}
+    计算下列矩阵 ${A}$ 的行列式的值：
+    \[
+    {A}
+    =
+    \left(
+    \begin{array}{cccc}
+    x & -y & -z & -w \\
+    y & x & -w & z \\
+    z & w & x & -y \\
+    w & -z & y & x
+    \end{array}
+    \right)
+    \]
+    
+    解 注意到
+    \[
+    {A} {A}^{\prime}=\left(\begin{array}{cccc}
+    x & -y & -z & -w \\
+    y & x & -w & z \\
+    z & w & x & -y \\
+    w & -z & y & x
+    \end{array}\right)\left(\begin{array}{cccc}
+    x & y & z & w \\
+    -y & x & w & -z \\
+    -z & -w & x & y \\
+    -w & z & -y & x
+    \end{array}\right)=\left(\begin{array}{cccc}
+    u & 0 & 0 & 0 \\
+    0 & u & 0 & 0 \\
+    0 & 0 & u & 0 \\
+    0 & 0 & 0 & u
+    \end{array}\right),
+    \]
+    其中 $u=x^2+y^2+z^2+w^2$ ，因此
+    \[
+    |{A}|^2=\left(x^2+y^2+z^2+w^2\right)^4 .
+    \]
+    在矩阵 ${A}$ 中令 $x=1, y=z=w=0$ ，显然 $|{A}|=1$ ，故
+    \[
+    |{A}|=\left(x^2+y^2+z^2+w^2\right)^2 .
+    \]
+
+    解法 2 令
+    \[
+    {B}=\left(\begin{array}{cc}
+    x & -y \\
+    y & x
+    \end{array}\right), \quad {C}=\left(\begin{array}{cc}
+    z & w \\
+    w & -z
+    \end{array}\right)
+    \]
+    则 $|{A}|=\left|\begin{array}{cc}{B} & -{C} \\ {C} & {B}\end{array}\right|$ 
+    \[
+    \begin{aligned}
+    |{A}| & =|{B}+\mathrm{i} {C}||{B}-\mathrm{i} {C}|\\
+    & =\left|\begin{array}{cc}
+    x+\mathrm{i} z & -y+\mathrm{i} w \\
+    y+\mathrm{i} w & x-\mathrm{i} z
+    \end{array}\right|\left|\begin{array}{cc}
+    x-\mathrm{i} z & -y-\mathrm{i} w \\
+    y-\mathrm{i} w & x+\mathrm{i} z
+    \end{array}\right| \\
+    & =\left(x^2+y^2+z^2+w^2\right)^2 
+    \end{aligned}
+    \]
+\end{question}
+
+
+
+
+\section{Cauchy-Binet公式}
+\begin{theorem}
+    设 ${A}=\left(a_{i j}\right)$ 是 $m \times n$ 矩阵， ${B}=\left(b_{i j}\right)$ 是 $n \times m$ 矩阵，$r$ 是一个正整数且 $r \leq m$. 则 ${A B}$ 的 $r$ 阶子式
+    \[
+    {A} {B}
+    \left(
+        \begin{matrix}
+            i_1 & i_2 & \cdots & i_r \\
+            j_1 & j_2 & \cdots & j_r
+        \end{matrix}
+    \right)
+    =
+    \sum_{1 \leq k_1<\cdots<k_r \leq n} {A}
+    \left(
+        \begin{matrix}
+            i_1 & i_2 & \cdots & i_r \\
+            k_1 & k_2 & \cdots & k_r
+        \end{matrix}
+    \right) 
+    {B}
+    \left(
+        \begin{matrix}
+            k_1 & k_2 & \cdots & k_r \\
+            j_1 & j_2 & \cdots & j_r
+        \end{matrix}
+    \right) 
+    \]
+\end{theorem}
+
+
+\begin{theorem}
+    设 ${A}, {B}$ 分别是 $m \times n, n \times m$ 矩阵，求证： ${A} {B}$ 和 ${B} {A}$ 的 $r$ 阶主子式之和（两个$\sigma_r$）相等，其中 $1 \leq r \leq \min \{m, n\}$ 
+
+    证明:
+    由 Cauchy-Binet 公式可得
+    \[
+    \begin{aligned}
+    & \sum_{1 \leq i_1<i_2<\cdots<i_r \leq m} {A B}\left(\begin{array}{llll}
+    i_1 & i_2 & \cdots & i_r \\
+    i_1 & i_2 & \cdots & i_r
+    \end{array}\right) \\
+    = & \sum_{1 \leq i_1<i_2<\cdots<i_r \leq m} \sum_{1 \leq j_1<j_2<\cdots<j_r \leq n} {A}\left(\begin{array}{llll}
+    i_1 & i_2 & \cdots & i_r \\
+    j_1 & j_2 & \cdots & j_r
+    \end{array}\right) {B}\left(\begin{array}{llll}
+    j_1 & j_2 & \cdots & j_r \\
+    i_1 & i_2 & \cdots & i_r
+    \end{array}\right) \\
+    = & \sum_{1 \leq j_1<j_2<\cdots<j_r \leq n} \sum_{1 \leq i_1<i_2<\cdots<i_r \leq m} {B}\left(\begin{array}{lllll}
+    j_1 & j_2 & \cdots & j_r \\
+    i_1 & i_2 & \cdots & i_r
+    \end{array}\right) {A}\left(\begin{array}{llll}
+    i_1 & i_2 & \cdots & i_r \\
+    j_1 & j_2 & \cdots & j_r
+    \end{array}\right) \\
+    = & \sum_{1 \leq j_1<j_2<\cdots<j_r \leq n} {B A}\left(\begin{array}{llll}
+    j_1 & j_2 & \cdots & j_r \\
+    j_1 & j_2 & \cdots & j_r
+    \end{array}\right) 
+    \end{aligned}
+    \]
+
+    \textbf{Remark} $AB$与$BA$的非零特征值情况相同.
+\end{theorem}
+
+\begin{question}
+    设 ${A}, {B}$ 都是 $m \times n$ 实矩阵，求证：
+    \[
+    \left|A A^{\prime} \| B B^{\prime}\right| \geq\left|A B^{\prime}\right|^2
+    \]
+    
+    证明： 若 $m>n$ ，则 $\left|{A} {A}^{\prime}\right|=\left|{B} {B}^{\prime}\right|=\left|{A} {B}^{\prime}\right|=0$ ，结论显然成立．
+    若 $m \leq n$ ，则由 Cauchy－Binet 公式可得
+    \[
+    \begin{aligned}
+    &\left|{A} {A}^{\prime}\right|=\sum_{1 \leq j_1<j_2<\cdots<j_m \leq n} {A}\left(\begin{array}{cccc}
+    1 & 2 & \cdots & m \\
+    j_1 & j_2 & \cdots & j_m
+    \end{array}\right)^2 ; \\
+    &\left|{B} {B}^{\prime}\right|=\sum_{1 \leq j_1<j_2<\cdots<j_m \leq n} {B}\left(\begin{array}{cccc}
+    1 & 2 & \cdots & m \\
+    j_1 & j_2 & \cdots & j_m
+    \end{array}\right)^2 ; \\
+    &\left|{A} {B}^{\prime}\right|=\sum_{1 \leq j_1<j_2<\cdots<j_m \leq n} {A}\left(\begin{array}{cccc}
+    1 & 2 & \cdots & m \\
+    j_1 & j_2 & \cdots & j_m
+    \end{array}\right) {B}\left(\begin{array}{cccc}
+    1 & 2 & \cdots & m \\
+    j_1 & j_2 & \cdots & j_m
+    \end{array}\right),
+    \end{aligned}
+    \]
+\end{question}
+
+\section{分块初等变换和降阶公式}
+\begin{theorem}[行列式的降阶公式]
+    设 ${A}$ 是 $m$ 阶矩阵， ${D}$ 是 $n$ 阶矩阵， ${B}$ 是 $m \times n$矩阵， ${C}$ 是 $n \times m$ 矩阵，证明：
+
+    (1)若 ${A}$ 可逆，则
+    \[
+    \left|
+    \begin{matrix}
+    A & B \\
+    C & D
+    \end{matrix}
+    \right|
+    =
+    \left|A\right|\left|D-C A^{-1} B\right| 
+    \]
+   
+    (2) 若 $D$ 可逆，则
+    \[
+    \left|
+        \begin{matrix}
+            A & B \\
+            C & D
+        \end{matrix}
+    \right|
+    =
+    \left|D \| A-B D^{-1} C\right| ;
+    \]
+
+    (3) 若 ${A}, {D}$ 都可逆，则
+    \[
+    \left|D \| A-B D^{-1} C\right|=|A|\left|D-C A^{-1} B\right|
+    \]
+\end{theorem}
+\begin{corollary}
+    设$A$是$n\times m$阶矩阵，$B$是$m\times n$阶矩阵
+    \[
+    \left|\lambda I_n -AB\right|
+    =
+    \lambda^{n-m}\left|\lambda I_m -BA\right|
+    \]
+\end{corollary}
+
+\begin{theorem}
+    设 $A, B$ 是 $n$ 阶矩阵，求证：
+    \[
+    \left|
+        \begin{matrix}
+            A & B \\
+            B & A
+         \end{matrix}
+    \right|
+    =
+    |{A}+{B}||{A}-{B}| 
+    \]
+    \[
+    \left|
+    \begin{matrix}
+        A & -B \\
+        B & A
+    \end{matrix}
+    \right|
+    =
+    |{A}+\mathrm{i} {B} \| {A}-\mathrm{i} {B}| 
+    \]
+\end{theorem}
+\begin{corollary}
+    设 $A,B$ 是实矩阵，则
+    \[
+    \left|
+    \begin{matrix}
+        A & -B \\
+        B & A
+    \end{matrix}
+    \right|
+    =
+    |{A}+\mathrm{i} {B} \| {A}-\mathrm{i} {B}| 
+    =
+    \left|\mathrm{det}({A}+\mathrm{i} {B})\right|^2 \geq 0
+    \]
+\end{corollary}
+
+\chapter{矩阵}
+\section{特殊矩阵}
+
+
+\begin{theorem}[基础矩阵和标准单位向量]
+    标准单位向量
+    $n$ 维标准单位列向量是指下列 $n$ 个 $n$ 维列向量：
+    \[
+    {e}_1=\left(\begin{array}{c}
+    1 \\
+    0 \\
+    \vdots \\
+    0
+    \end{array}\right), \quad {e}_2=\left(\begin{array}{c}
+    0 \\
+    1 \\
+    \vdots \\
+    0
+    \end{array}\right), \cdots, \quad {e}_n=\left(\begin{array}{c}
+    0 \\
+    0 \\
+    \vdots \\
+    1
+    \end{array}\right)
+    \]
+    向量组 ${e}_1^{\prime}, {e}_2^{\prime}, \cdots, {e}_n^{\prime}$ 则被称为 $n$ 维标准单位行向量．设 $f_1, f_2, \cdots, f_m$ 是 $m$ 维标准单位列向量，
+
+    (1)
+    \[
+    {e}_i^{\prime} {e}_j
+    =
+    \delta_{ij}
+    \]
+
+    \[
+    {e}_i{e}_j^{\prime} 
+    =
+    {E}_{i j}
+    \]
+   
+
+    (2) 若 ${A}=\left(a_{i j}\right)$ 是 $m \times n$ 矩阵，则 ${A} {e}_i$ 是 ${A}$ 的第 $i$ 个列向量； 
+    \[
+    \left({\alpha_1},{\alpha_2},\ldots,{\alpha_n}\right) {e}_i
+    =
+    {\alpha}_i
+    \]
+    ${f}_i^{\prime} {A}$ 是 ${A}$ 的第 $i$ 个行向量；
+    \[
+    {f}_i^\prime 
+    \left(
+        \begin{matrix}
+        {\beta}_1 \\
+        {\beta}_2 \\
+        \vdots \\
+        {\beta}_m
+    \end{matrix}
+    \right)
+    =
+    {\beta}_i
+    \]
+
+    (3)若 ${A}=\left(a_{i j}\right)$ 是 $m \times n$ 矩阵，则 ${f}_i^{\prime} {A} {e}_j=a_{i j}$ 
+
+    (4)
+    
+
+    
+    \[
+    {E}_{i j} {E}_{k l}
+    =
+    \begin{cases}
+        {E}_{i l} & ,j=k \\
+         0 & ,j\neq k
+    \end{cases}
+    \]
+    
+    (5) 若 ${A}$ 是 $n$ 阶矩阵且 ${A}=\left(a_{i j}\right)$ ，则 ${E}_{i j} {A}$ 的第 $i$ 行是 ${A}$ 的第 $j$ 行， ${E}_{i j} {A}$ 的其他行全为零；
+
+    若 ${A}$ 是 $n$ 阶矩阵且 ${A}=\left(a_{i j}\right)$ ，则 ${A} {E}_{i j}$ 的第 $j$ 列是 ${A}$ 的第 $i$ 列， ${A} {E}_{i j}$ 的其他列全为零；
+
+    (6) 若 ${A}$ 是 $n$ 阶矩阵且 ${A}=\left(a_{i j}\right)$ ，则 ${E}_{i j} {A} {E}_{k l}=a_{j k} {E}_{i l}$ ．
+
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+\begin{theorem}[基础循环矩阵]
+    设 $n$ 阶基础循环矩阵
+    \[
+    {C}
+    =
+    \left(
+    \begin{matrix}
+    0 & 1 & 0 & \cdots & 0 \\
+    0 & 0 & 1 & \cdots & 0 \\
+    \vdots & \vdots & \vdots & & \vdots \\
+    0 & 0 & 0 & \cdots & 1 \\
+    1 & 0 & 0 & \cdots & 0  
+    \end{matrix}
+    \right)
+    \]
+
+    (1)循环矩阵对多项式，转置，逆
+
+    (2) 循环矩阵的充要条件是可表示为 $f(C)$, $f \in \mathbb{F}[x]$
+
+    (3) $AC=CA$ 的充要条件是$A$为循环矩阵
+\end{theorem}
+
+
+
+
+
+\begin{theorem}
+    上（下）三角阵的加减，数乘，乘积（幂），多项式，伴随和求逆仍然是上（下）三角阵，并且所得上（下）三角阵的主对角元是原上（下）三角阵对应主对角元的加减，数乘，乘积（幂），多项式，伴随和求逆．
+\end{theorem}
+
+
+
+
+\section{可逆矩阵}
+\begin{theorem}
+    设 ${A}$ 为 $m \times n$ 矩阵， ${B}$ 为 $n \times m$ 矩阵，使得 ${I}_m+{A B}$ 可逆，则 $I_n+B A$ 也可逆．
+    \[
+    \left(I_n+B A\right)^{-1}=I_n-B\left(I_m+A B\right)^{-1} A
+    \]
+
+    证明:
+    注意到 $A\left(I_n+B A\right)=\left(I_m+A B\right) A$ ，故 $\left(I_m+A B\right)^{-1} A\left(I_n+B A\right)=A$ ，于是 $B\left(I_m+A B\right)^{-1} A\left(I_n+B A\right)=B A$ ，从而
+
+    \[
+    \begin{aligned}
+    {I}_n & ={I}_n+{B A}-{B} {A}=\left({I}_n+{B A}\right)-{B}\left({I}_m+{A B}\right)^{-1} {A}\left({I}_n+{B A}\right) \\
+    & =\left({I}_n-{B}\left({I}_m+{A B}\right)^{-1} {A}\right)\left({I}_n+{B A}\right) .
+    \end{aligned}
+    \]
+    于是 $\left(I_n+B A\right)^{-1}=I_n-B\left(I_m+A B\right)^{-1} A$ 
+\end{theorem}
+
+\begin{corollary}
+    设 ${A}, {B}$ 均为 $n$ 阶可逆阵，使得 ${A}^{-1}+{B}^{-1}$ 可逆，证明： ${A}+{B}$ 也可逆，并且
+    \[
+    (A+B)^{-1}=A^{-1}-A^{-1}\left(A^{-1}+B^{-1}\right)^{-1} A^{-1}
+    \]
+\end{corollary}
+
+
+\begin{corollary}[Sherman-Morrison 公式] 
+    设 ${A}$ 是 $n$ 阶可逆阵， ${\alpha}, {\beta}$ 是 $n$ 维列向量，且 $1+{\beta}^{\prime} {A}^{-1} {\alpha} \neq 0$ ．求证：
+    \[
+    \left({A}+{\alpha} {\beta}^{\prime}\right)^{-1}={A}^{-1}-\frac{1}{1+{\beta}^{\prime} {A}^{-1} {\alpha}} {A}^{-1} {\alpha} {\beta}^{\prime} {A}^{-1}
+    \]
+\end{corollary}
+
+\section{伴随矩阵}
+
+\begin{theorem}
+    设 ${A}=\left(a_{i j}\right)$ 为 $n(n \geq 2)$ 阶方阵， ${A}^*$ 为 ${A}$ 的伴随阵，试证明以下结论。
+    
+    (1) 若 $\mathrm{r}({A})=n$ ，则 $\mathrm{r}\left({A}^*\right)=n$ 
+
+    (2) 若 $\mathrm{r}({A})=n-1$ ，则 $\mathrm{r}\left({A}^*\right)=1$，即${A}^*={\alpha} {\beta}$ 
+
+    (3) 若 $\mathrm{r}({A}) \leq n-2$ ，则 $\mathrm{r}\left({A}^*\right)=0$ ，即 ${A}^*={O}$ 
+\end{theorem}
+
+\begin{theorem}
+    设方阵 $A_i$,分块对角阵
+    \[
+    C=
+    \left(\begin{matrix}
+    A_1&    & &  \\
+       & A_2&  & \\
+       &    & \ddots & \\
+       &    &  & A_n
+    \end{matrix}\right)
+    \] 
+    的伴随为
+    \[
+    C^*=
+    \left(\begin{matrix}
+    A_1^*\prod\limits_{i\neq 1}
+    \left|A_i\right|&    & &  \\
+       & \prod\limits_{i\neq 2}
+       \left|A_i\right|A_2^*&  & \\
+       &    & \ddots & \\
+       &    &  & \prod\limits_{i\neq 1}
+       \left|A_n\right|A_n^*
+    \end{matrix}\right)
+    \] 
+\end{theorem}
+
+\begin{theorem}
+    Jordan 块
+    \[
+    J_n(\lambda)
+    = 
+    \left(
+    \begin{matrix}
+        \lambda & 1 & & & \\ 
+        & \lambda & 1 & & \\
+         & & \ddots & \ddots & \\
+          & & & \lambda & 1 \\ 
+          & & & & \lambda
+    \end{matrix}
+    \right)
+    \]
+    的伴随为
+    \[
+    \begin{aligned}
+        J_n(\lambda)^* &=   \left|J_n(\lambda)\right|J_n(\lambda)^{-1} \\
+            & =\lambda^n \left(\lambda I_n + J_n\right)^{-1}    \\
+            & = \lambda^{n-1}  \left(I_n- \left(-\lambda^{-1}J_n\right)\right)^{-1}\\
+            & = \lambda^{n-1}\sum_{k=0}^{n-1} \left(-\lambda^{-1}J_n\right)^k\\
+            & = \sum_{k=0}^{n-1} (-1)^k \lambda^{n-1-k}J_n^k
+    \end{aligned}
+    \]
+    即为
+    \renewcommand{\arraystretch}{2}
+    \[
+    \left(
+    \begin{matrix}
+            \lambda^{n-1} & -\lambda^{n-2} & & (-1)^{n-2} \lambda& (-1)^{n-1}\\ 
+            & \lambda^{n-1} & -\lambda^{n-2} & & (-1)^{n-2} \lambda\\
+             & & \ddots & \ddots & \\
+              & & & \lambda^{n-1} & -\lambda^{n-2} \\ 
+              & & & & \lambda^{n-1}
+    \end{matrix}
+    \right)
+    \]
+    \renewcommand{\arraystretch}{1}
+\end{theorem}
+
+\section{迹}
+\begin{theorem}
+    设 ${A}, {B}$ 是 $n$ 阶矩阵， $k\in \mathbb{F}$，则
+
+    (1) $\operatorname{tr}({A}+{B})=\operatorname{tr}({A})+\operatorname{tr}({B})$
+
+    (2) $\operatorname{tr}(k {A})=k \operatorname{tr}({A})$ 
+
+    (3) $\operatorname{tr}\left({A}^{\prime}\right)=\operatorname{tr}({A})$
+
+    (4) 若$A$是 $m\times n$矩阵,$B$是 $n\times m$矩阵,则$\operatorname{tr}({A B})=\operatorname{tr}({B} {A})$
+
+    (5) $\mathrm{tr}\left(P^{-1}AP\right) = \mathrm{tr}\left(A\right)$
+\end{theorem}
+
+
+\begin{question}
+    设 ${A}=\left(a_{i j}\right)$ 为 $n$ 阶方阵，定义函数 $f({A})=\sum_{i, j=1}^n a_{i j}^2$ ．设 ${P}$ 为 $n$ 阶可逆矩阵，使得对任意的 $n$ 阶方阵 ${A}$ 成立：$f\left({P} {A} {P}^{-1}\right)=f({A})$ ．证明：存在非零常数 $c$ ，使得 ${P}^{\prime} {P}=c {I}_n$ 
+
+    证明: 
+    We compute that
+    \[
+    \begin{aligned}
+    f(PAP^{-1})&=
+    \mathrm{tr}(PAP^{-1})\\
+    &= \mathrm{tr}\left(PAP^{-1}\left(PAP^{-1}\right)'\right)\\
+    &= \mathrm{tr}\left(U A U^{-1}A'\right)\\
+    \end{aligned}
+    \]
+    where $U=P'P$. We set 
+    \[
+    A=\sum_{i,j}a_{ij} E_{ij}
+    \]
+    Then 
+    \[
+    \begin{aligned}
+    \mathrm{tr}\left(U A U^{-1}A'\right)&=\mathrm{tr}\left(U \left(\sum_{i,j}a_{ij} E_{ij}\right) U^{-1} \left(\sum_{k,l}a_{kl} E_{kl}\right)\right) \\
+    & =\mathrm{tr}\left(\sum_{i,j,k,l} a_{ij}a_{kl} U e_ie_j' U^{-1} e_ke_l'\right)\\
+    & =\mathrm{tr}\left(\sum_{i,j,k,l} a_{ij}a_{kl} e_j' U^{-1} e_ke_l'U e_i\right)\\
+    & =\sum_{i,j,k,l} a_{ij}a_{kl}\left( e_j' U^{-1} e_k\right) \left(e_l'U e_i\right)
+    \end{aligned} 
+    \]
+    and 
+    \[
+    \mathrm{tr}(A'A)=\sum_{m,n} a_{mn}^2
+    \]
+    Therefore, we have
+    \[
+    \sum_{i,j,k,l} a_{ij}a_{kl}\left( e_j' U^{-1} e_k\right) \left(e_l'U e_i\right)
+    =
+    \sum_{m,n} a_{mn}^2
+    \]
+    for all $\left(a_{ij}\right)_{n\times n}$. We conclude that $U=cI_n$. 
+\end{question}
+
+\section{秩}
+\begin{theorem}
+    矩阵秩的基本公式：
+
+    (1) 若 $k \neq 0, \mathrm{r}(k {A})=\mathrm{r}({A})$ 
+
+    (1) $\mathrm{r}({A} {B}) \leq \min \{\mathrm{r}({A}), \mathrm{r}({B})\}$ 
+
+    (2) $\mathrm{r}
+    \left(
+        \begin{matrix}
+            {A} & {O} \\ {O} & {B}
+        \end{matrix}
+    \right)
+    =
+    \mathrm{r}({A})+\mathrm{r}({B})$ 
+
+    (3) $\mathrm{r}\left(
+        \begin{matrix}
+            {A} & {O} \\ {O} & {B}
+        \end{matrix}
+    \right)
+    \geq \mathrm{r}({A})+\mathrm{r}({B})
+    ,
+    \mathrm{r}
+    \left(
+    \begin{matrix}{A} & {O} \\ {D} & {B}
+    \end{matrix}
+    \right) 
+    \geq
+    \mathrm{r}({A})+\mathrm{r}({B})$ 
+
+    (4) $\mathrm{r}({A} ; {B}) \leq \mathrm{r}({A})+\mathrm{r}({B}), \mathrm{r}\binom{{A}}{{B}} \leq \mathrm{r}({A})+\mathrm{r}({B})$ 
+
+    (5) $\mathrm{r}({A}+{B}) \leq \mathrm{r}({A})+\mathrm{r}({B}), \mathrm{r}({A}-{B}) \leq \mathrm{r}({A})+\mathrm{r}({B})$ 
+
+    (6) $\mathrm{r}({A}-{B}) \geq|\mathrm{r}({A})-\mathrm{r}({B})|$ 
+\end{theorem}
+
+
+\begin{theorem}[Frobenius 不等式]
+    证明： $\mathrm{r}({A} {B} {C}) \geq \mathrm{r}({A B})+\mathrm{r}({B} {C})-\mathrm{r}({B})$ 
+    
+    证明: 考虑下列分块初等变换：
+    \[
+    \left(\begin{array}{cc}
+    A B C & O \\
+    O & B
+    \end{array}\right) \rightarrow\left(\begin{array}{cc}
+    A B C & A B \\
+    O & B
+    \end{array}\right) \rightarrow\left(\begin{array}{cc}
+    O & A B \\
+    -B C & B
+    \end{array}\right) \rightarrow\left(\begin{array}{cc}
+    A B & O \\
+    B & B C
+    \end{array}\right)
+    \]
+    可得
+    \[
+    \mathrm{r}({A} {B} {C})+\mathrm{r}({B})=\mathrm{r}\left(\begin{array}{cc}
+    {A} B {C} & {O} \\
+    {O} & {B}
+    \end{array}\right)=\mathrm{r}\left(\begin{array}{cc}
+    {A} {B} & {O} \\
+    {B} & {B} {C}
+    \end{array}\right) \geq \mathrm{r}({A} {B})+\mathrm{r}({B C})
+    \]
+    由此即得结论．
+\end{theorem}
+\begin{corollary}[Sylvester 不等式]
+    设 ${A}$ 是 $m \times n$ 矩阵， ${B}$ 是 $n \times t$ 矩阵，求证：
+    \[
+    \mathrm{r}({A} {B}) \geq \mathrm{r}({A})+\mathrm{r}({B})-n
+    \]
+    
+    证明: 考虑下列矩阵的分块初等变换：
+    \[
+    \left(\begin{array}{cc}
+    I_n & O \\
+    O & A B
+    \end{array}\right) \rightarrow\left(\begin{array}{cc}
+    I_n & O \\
+    A & A B
+    \end{array}\right) \rightarrow\left(\begin{array}{cc}
+    I_n & -B \\
+    A & O
+    \end{array}\right) \rightarrow\left(\begin{array}{cc}
+    B & I_n \\
+    O & A
+    \end{array}\right)
+    \]
+    可得
+    \[
+    \mathrm{r}({A} {B})+n=\mathrm{r}\left(\begin{array}{cc}
+    {I}_n & {O} \\
+    {O} & {A} {B}
+    \end{array}\right)=\mathrm{r}\left(\begin{array}{cc}
+    {B} & {I}_n \\
+    {O} & {A}
+    \end{array}\right) \geq \mathrm{r}({A})+\mathrm{r}({B})
+    \]
+    即 $\mathrm{r}({A} {B}) \geq \mathrm{r}({A})+\mathrm{r}({B})-n$ 
+\end{corollary}
+
+\begin{corollary}
+    若 ${A}$ 是 $m \times n$ 矩阵， ${B}$ 是 $n \times t$ 矩阵且 ${A B}={O}$ ，则 $\mathrm{r}({A})+\mathrm{r}({B}) \leq n$ 
+\end{corollary}
+
+\begin{corollary}
+    设$n$阶方阵 $A$ 
+    \[
+    0 \geq r(A^{n+2})- r(A^{n+1})
+    \geq r(A^{n+1}) -r(A^n)
+    \geq \cdots \geq r(A)-n
+    \]
+\end{corollary}
+
+
+\begin{theorem}[秩的降阶公式]
+    设有分块矩阵 $M=\left(\begin{matrix}A & B \\ C & D\end{matrix}\right)$ ，证明：
+
+    (1) 若 ${A}$ 可逆，则 $\mathrm{r}({M})=\mathrm{r}({A})+\mathrm{r}\left({D}-{C A}^{-1} {B}\right)$ 
+
+    (2) 若 ${D}$ 可逆，则 $\mathrm{r}({M})=\mathrm{r}({D})+\mathrm{r}\left({A}-{B} {D}^{-1} {C}\right)$ 
+
+    (3) 若 ${A}, {D}$ 都可逆，则 $\mathrm{r}({A})+\mathrm{r}\left({D}-{C} {A}^{-1} {B}\right)=\mathrm{r}({D})+\mathrm{r}\left({A}-{B} {D}^{-1} {C}\right)$ 
+\end{theorem}
+
+\subsection{}
+\begin{theorem}
+    设$f_1,f_2,\ldots,f_k$为$\mathbb{F}[x]$上的互素多项式 $\gcd(f_1,f_2,\ldots,f_k)=1$, $A$是$n$阶方阵.
+    则
+    \[
+    \sum_{i=1}^k n-r\left(f_i(A)\right) 
+    = 
+    n -r(f(A))
+    \]
+    其中$f(x) = \prod\limits_{i=1}^k f_i(x)$.
+
+    证法一
+    $k=2$时,作初等变换
+    \[
+    \begin{aligned}
+        \left(\begin{matrix}
+            f_1(A) & O \\
+            O      & f_2(A) \\
+        \end{matrix}\right)
+        \rightarrow
+        \left(\begin{matrix}
+            f_1(A) & u_1f_1(A)+u_2f_2(A) \\
+            O      & f_2(A) \\
+        \end{matrix}\right)
+        \rightarrow
+        \left(\begin{matrix}
+            f_1(A) & I_n   \\
+            O      & f_2(A) \\
+        \end{matrix}\right) \\
+        \rightarrow
+        \left(\begin{matrix}
+            f_1(A) & I_n   \\
+            -f_1(A)f_2(A)      & O\\
+        \end{matrix}\right)
+        \rightarrow
+        \left(\begin{matrix}
+            O & I_n   \\
+            f_1(A)f_2(A)      & O\\
+        \end{matrix}\right)
+    \end{aligned}
+    \] 
+    $k=2$ 的情况得证.反复利用$k=2$的结论，命题得证.
+
+    证法二 线性方程核求解理论(核空间)
+    证明
+    \[
+    \ker f(A) = \oplus \ker f_i(A)\]  
+\end{theorem}
+
+
+
+\begin{question}
+    设 $A, B$ 都是数域 $\mathbb{K}$ 上的 $n$ 阶矩阵且 $A B=B A$ ，证明：
+    \[
+    \mathrm{r}({A}+{B}) \leq \mathrm{r}({A})+\mathrm{r}({B})-\mathrm{r}({A} {B})
+    \]
+    
+    法一  矩阵的初等变换. 
+    考虑如下分块矩阵的乘法：
+    \[
+    \left(\begin{matrix}
+    I & I \\
+    O & I
+    \end{matrix}\right)\left(\begin{matrix}
+    A & O \\
+    O & B
+    \end{matrix}\right)\left(\begin{matrix}
+    I & -B \\
+    I & A
+    \end{matrix}\right)=\left(\begin{matrix}
+    A+B & -A B+B A \\
+    B & B A
+    \end{matrix}\right)=\left(\begin{matrix}
+    A+B & O \\
+    B & A B
+    \end{matrix}\right)
+    \]
+    可得
+    \[
+    \mathrm{r}({A})+\mathrm{r}({B})
+    =
+    \mathrm{r}\left(\begin{matrix}
+    {A} & {O} \\
+    {O} & {B}
+    \end{matrix}\right) 
+    \geq 
+    \mathrm{r}\left(\begin{matrix}
+    {A}+{B} & {O} \\
+    {B} & {B} {A}
+    \end{matrix}\right) 
+    \geq 
+    \mathrm{r}({A}+{B})+\mathrm{r}({A} {B}),
+    \]
+    由此即得结论．
+
+    证法 2线性方程组的求解理论(从核空间入手). 
+    设 $V_A$ 是方程组 ${A x}=0$ 的解空间，$V_B, V_{A B}, V_{A+B}$ 的意义同理．我们有$V_A \cap V_B \subseteq V_{A+B}$, $V_A \subseteq V_{B A}, V_B \subseteq V_{A B}$ ．因为 ${A B}={B} {A}$ ，所以 $V_{B A}=V_{A B}$ ，从而 $V_A+V_B \subseteq V_{A B}$ ．因此，我们有
+    \[
+    \operatorname{dim}\left(V_{{A}} \cap V_{{B}}\right) \leq \operatorname{dim} V_{{A}+{B}}=n-\mathrm{r}({A}+{B})
+    \]
+    和
+    \[
+    \operatorname{dim}\left(V_{{A}}+V_{{B}}\right) \leq \operatorname{dim} V_{{A} {B}}=n-\mathrm{r}({A} {B})
+    \]
+    将上面两个不等式相加，再由交和空间维数公式可得
+    \[
+    \begin{aligned}
+    n-\mathrm{r}({A}+{B})+n-\mathrm{r}({A} {B}) & \geq \operatorname{dim}\left(V_{{A}} \cap V_{{B}}\right)+\operatorname{dim}\left(V_{{A}}+V_{{B}}\right) \\
+    & =\operatorname{dim} V_{{A}}+\operatorname{dim} V_{{B}}\\
+    & =n-\mathrm{r}({A})+n-\mathrm{r}({B})
+    \end{aligned}
+    \]
+    因此 $\mathrm{r}({A}+{B})+\mathrm{r}({A} {B}) \leq \mathrm{r}({A})+\mathrm{r}({B})$ ，结论得证．
+
+    \[
+    \mathrm{r}({A}+{B}) \leq \mathrm{r}({A})+\mathrm{r}({B})-\mathrm{r}({A} {B})
+    \]
+    
+    证法3 线性空间理论(从像空间入手)
+    设 ${A}=\left({\alpha}_1, {\alpha}_2, \cdots, {\alpha}_n\right)$ 为 ${A}$ 的列分块， ${B}=\left({\beta}_1, {\beta}_2, \cdots, {\beta}_n\right)$为 ${B}$ 的列分块．记 $U_{{A}}=L\left({\alpha}_1, {\alpha}_2, \cdots, {\alpha}_n\right)$ 为 ${A}$ 的列向量生成的 $\mathbb{K}^n$ 的子空间，$U_{{B}}, U_{{A B}}, U_{{A}+{B}}$ 的意义同理．
+    
+    显然，我们有 $U_{{A}+{B}} \subseteq U_{{A}}+U_{{B}}$ ．注意到 ${A B}=\left({A} {\beta}_1, {A} {\beta}_2, \cdots, {A} {\beta}_n\right)$, 从而 $U_{A B} \subseteq U_{{A}}$ ．又因为 ${A B}={B} {A}$ ，故 $U_{A B} \subseteq U_{{A}} \cap U_{{B}}$ ．最后，由上述包含关系以及交和空间维数公式可得
+    \[
+    \begin{aligned}
+    \mathrm{r}({A}+{B})+\mathrm{r}({A} {B}) & =\operatorname{dim} U_{{A}+{B}}+\operatorname{dim} U_{{A} {B}} \leq \operatorname{dim}\left(U_{{A}}+U_{{B}}\right)+\operatorname{dim}\left(U_{{A}} \cap U_{{B}}\right) \\
+    & =\operatorname{dim} U_{{A}}+\operatorname{dim} U_{{B}}=\mathrm{r}({A})+\mathrm{r}({B}) .
+    \end{aligned}
+    \]
+\end{question}
+
+
+\subsection{}
+\begin{theorem}
+    矩阵 ${A}$ 的秩等于 $r$ 的充要条件是 ${A}$ 存在一个 $r$ 阶子式 $|{D}|$ 不等于零，而 $|{D}|$ 的所有 $r+1$ 阶加边子式全等于零．
+
+    证明: 
+    只需证明充分性．不失一般性，我们可设 $|{D}|$ 是由 ${A}$ 的前 $r$ 行和前 $r$ 列构成的 $r$ 阶子式．设
+    \begin{equation*}
+        {A}
+        =
+        \left(
+            \begin{matrix}
+                {\alpha}_1 \\
+                {\alpha}_2 \\
+                \vdots \\
+                {\alpha}_m
+            \end{matrix}
+            \right)
+            =
+            \left({\beta}_1, {\beta}_2, \cdots, {\beta}_n\right)
+    \end{equation*}
+    为矩阵 ${A}$ 的行分块和列分块，
+    记 $\tau_{\leq r} {\alpha}_i$ 为行向量 ${\alpha}_i$ 关于前 $r$ 列的缩短向量，
+    $\tau_{\leq r} {\beta}_j$ 为列向量 ${\beta}_j$ 关于前 $r$ 行的缩短向量．由 $|{D}| \neq 0$ 可得 $\tau_{\leq r} {\alpha}_1, \cdots, \tau_{\leq r} {\alpha}_r$ 线性无关，可知 ${\alpha}_1, \cdots, {\alpha}_r$ 线性无关．我们只要证明 ${\alpha}_1, \cdots, {\alpha}_r$ 是 ${A}$ 的行向量的极大无关组即可得到 $\mathrm{r}({A})=r$ ．
+    
+    用反证法证明，若它们不是极大无关组，则可以添加一个行向量，不妨设为 ${\alpha}_{r+1}$ ，使得 ${\alpha}_1, \cdots, {\alpha}_r, {\alpha}_{r+1}$ 线性无关．设 ${A}_1$ 是 ${A}$ 的前 $r+1$ 行构成的矩阵，则 ${A}_1=$ $\left(\tau_{\leq r+1} {\beta}_1, \tau_{\leq r+1} {\beta}_2, \cdots, \tau_{\leq r+1} {\beta}_n\right)$ 且 $\mathrm{r}\left({A}_1\right)=r+1$ ．由 $|{D}| \neq 0$ 可得 $\tau_{\leq r} {\beta}_1, \cdots, \tau_{\leq r} {\beta}_r$线性无关，$\tau_{\leq r+1} {\beta}_1, \cdots, \tau_{\leq r+1} {\beta}_r$ 线性无关．因为 $\mathrm{r}\left({A}_1\right)=r+1$ ，故存在 ${A}_1$ 的一个列向量，不妨设为 $\tau_{\leq r+1} {\beta}_{r+1}$ ，使得 $\tau_{\leq r+1} {\beta}_1, \cdots, \tau_{\leq r+1} {\beta}_r, \tau_{\leq r+1} {\beta}_{r+1}$线性无关．
+    设 ${A}_2=\left(\tau_{\leq r+1} {\beta}_1, \cdots, \tau_{\leq r+1} {\beta}_r, \tau_{\leq r+1} {\beta}_{r+1}\right)$ ，即 ${A}_2$ 是 ${A}$ 的前 $r+1$ 行和前 $r+1$ 列构成的方阵，则 $\mathrm{r}\left({A}_2\right)=r+1$ ．因此，$\left|{A}_2\right| \neq 0$ 是包含 $|{D}|$ 的 $r+1$ 阶加边子式，这与假设矛盾．
+\end{theorem}
+
+\begin{theorem}
+    设 $m \times n$ 矩阵 ${A}$ 的 $m$ 个行向量为 ${\alpha}_1, {\alpha}_2, \cdots, {\alpha}_m$ ，且 ${\alpha}_{i_1}, {\alpha}_{i_2}, \cdots$ ， ${\alpha}_{i_r}$ 是其极大无关组，又设 ${A}$ 的 $n$ 个列向量为 ${\beta}_1, {\beta}_2, \cdots, {\beta}_n$ ，且 ${\beta}_{j_1}, {\beta}_{j_2}, \cdots, {\beta}_{j_r}$是其极大无关组．证明： ${\alpha}_{i_1}, {\alpha}_{i_2}, \cdots, {\alpha}_{i_r}$ 和 ${\beta}_{j_1}, {\beta}_{j_2}, \cdots, {\beta}_{j_r}$ 交叉点上的元素组成的子矩阵 ${D}$ 的行列式 $|{D}| \neq 0$ ．
+
+    证明: 
+    因为 ${\alpha}_{i_1}, {\alpha}_{i_2}, \cdots, {\alpha}_{i_r}$ 是极大无关组，故 ${A}$ 的任一行向量 ${\alpha}_s$ 均可表示为 ${\alpha}_{i_1}, {\alpha}_{i_2}, \cdots, {\alpha}_{i_r}$ 的线性组合．记 $\widetilde{{\alpha}}_{i_1}, \widetilde{{\alpha}}_{i_2}, \cdots, \widetilde{{\alpha}}_{i_r}, \widetilde{{\alpha}}_s$ 分别是 ${\alpha}_{i_1}, {\alpha}_{i_2}, \cdots, {\alpha}_{i_r}, {\alpha}_s$在 $j_1, j_2, \cdots, j_r$ 列处的缩短向量,则$\widetilde{{\alpha}}_s$ 均可表示为 $\widetilde{{\alpha}}_{i_1}, \widetilde{{\alpha}}_{i_2}, \cdots, \widetilde{{\alpha}}_{i_r}$ 的线性组合．考虑由列向量 ${\beta}_{j_1}, {\beta}_{j_2}, \cdots, {\beta}_{j_r}$ 组成的矩阵 ${B}=\left({\beta}_{j_1}, {\beta}_{j_2}, \cdots, {\beta}_{j_r}\right)$ ，这是一个 $m \times r$ 矩阵且秩等于 $r$ ．
+    由于矩阵 ${B}$ 的任一行向量 $\widetilde{{\alpha}}_s$ 均可用 $\widetilde{{\alpha}}_{i_1}, \widetilde{{\alpha}}_{i_2}, \cdots, \widetilde{{\alpha}}_{i_r}$线性表示，并且 ${B}$ 的行秩等于 $r$ ，故$\widetilde{{\alpha}}_{i_1}, \widetilde{{\alpha}}_{i_2}, \cdots, \widetilde{{\alpha}}_{i_r}$ 是 ${B}$ 的行向量的极大无关组，从而它们线性无关．因此 $D$ 是满秩阵，从而 $|D| \neq 0$ ．
+\end{theorem}
+
+\section{}
+
+\begin{theorem}
+    设 ${A}$ 是 $m \times n$ 矩阵，求证：
+
+    若 $\mathrm{r}({A})=n$ ，即 ${A}$ 是列满秩阵，则必存在秩等于 $n$ 的 $n \times m$ 矩阵 ${B}$ ，使得 ${B A}={I}_n$（这样的矩阵 ${B}$ 称为 ${A}$ 的左逆）；
+
+    若 $\mathrm{r}({A})=m$ ，即 ${A}$ 是行满秩阵，则必存在秩等于 $m$ 的 $n \times m$ 矩阵 ${C}$ ，使得 ${A C}={I}_m$（这样的矩阵 ${C}$ 称为 ${A}$ 的右逆）．
+    
+    证明（1）设 ${P}$ 为 $m$ 阶非异阵， ${Q}$ 为 $n$ 阶非异阵，使得
+    \begin{equation*}
+    P A Q=\binom{I_n}{O}
+    \end{equation*}
+    
+    因此 $\left(I_n, O\right) P A Q=I_n$ ，即 $\left(I_n, O\right) P A=Q^{-1}$ ，于是 $Q\left(I_n, O\right) P A=I_n$ ．令 $B=$ $Q\left(I_n, O\right) P$ 即可．
+    （2）同理可证，或者考虑 ${A}^{\prime}$ 并利用（1）的结论．
+    推论 列满秩矩阵适合左消去律，即若 ${A}$ 列满秩且 ${A D}={A E}$ ，则 ${D}={E}$ ．同理，行满秩矩阵适合右消去律，即若 ${A}$ 行满秩且 ${D A}={E A}$ ，则 ${D}={E}$ ．
+    
+    
+\end{theorem}
+
+\begin{theorem}
+    例 3.92 （满秩分解）设 $m \times n$ 矩阵 ${A}$ 的秩为 $r$ ，证明：
+    （1） ${A}={B} {C}$ ，其中 ${B}$ 是 $m \times r$ 矩阵且 $\mathrm{r}({B})=r, {C}$ 是 $r \times n$ 矩阵且 $\mathrm{r}({C})=r$ ，这种分解称为 ${A}$ 的满秩分解；
+    （2）若 ${A}$ 有两个满秩分解 ${A}={B}_1 {C}_1={B}_2 C_2$ ，则存在 $r$ 阶非异阵 ${P}$ ，使得 $B_2=B_1 P, C_2=P^{-1} C_1$.
+\end{theorem}
+
+
+
+
+\chapter{Linear Maps}
+\section{特征值和特征向量}
+\begin{theorem}
+    设 $n$ 阶矩阵 ${A}$ 的全体特征值为 $\lambda_1, \lambda_2, \cdots, \lambda_n, f(x)$ 是一个多项式，求证：$f({A})$ 的全体特征值为 $f\left(\lambda_1\right), f\left(\lambda_2\right), \cdots, f\left(\lambda_n\right)$.
+\end{theorem}
+\begin{theorem}
+    设 $n$ 阶可逆矩阵 ${A}$ 的全体特征值为 $\lambda_1, \lambda_2, \cdots, \lambda_n$ ，求证： ${A}^{-1}$ 的全体特征值为 $\lambda_1^{-1}, \lambda_2^{-1}, \cdots, \lambda_n^{-1}$.
+\end{theorem}
+
+\begin{theorem}
+    设 $n$ 阶矩阵 ${A}$ 的全体特征值为 $\lambda_1, \lambda_2, \cdots, \lambda_n$ ，求证： ${A}^*$ 的全体特征值为 $\prod_{i \neq 1} \lambda_i, \prod_{i \neq 2} \lambda_i, \cdots, \prod_{i \neq n} \lambda_i$.
+\end{theorem}
+
+\subsection{降阶公式}
+\begin{theorem}[特征值的降阶公式]
+    设 ${A}$ 是 $m \times n$ 矩阵， ${B}$ 是 $n \times m$ 矩阵，且 $m \geq n$ ．求证：
+    \[
+    \left|\lambda {I}_m-{A B}\right|=\lambda^{m-n}\left|\lambda {I}_n-{B} {A}\right|
+    \]
+\end{theorem}
+
+
+\subsection{特征值和特征多项式的系数}
+
+\begin{theorem}
+    设 $n$ 阶矩阵 ${A}$ 的特征多项式为
+    \[
+    f(\lambda)=\lambda^n+a_1 \lambda^{n-1}+\cdots+a_{n-1} \lambda+a_n .
+    \]
+    求证：
+    \[
+    (-1)^r a_r 
+    =
+    \sum_{1 \leq i_1<i_2<\cdots<i_r \leq n} \lambda_{i_1} \lambda_{i_2} \cdots \lambda_{i_r}
+    =
+    \sum_{1 \leq i_1<i_2<\cdots<i_r \leq n} {A}
+    \left(
+        \begin{array}{llll}
+        i_1 & i_2 & \cdots & i_r \\
+        i_1 & i_2 & \cdots & i_r
+        \end{array}
+    \right)
+    \]
+\end{theorem}
+\begin{corollary}
+    设${A}$是$n$阶矩阵. 下面三个命题等价
+
+    (1) ${A}$是幂零矩阵
+
+    (2) ${A}$的特征值均为$0$
+
+    (2) $\operatorname{tr}\left({A}^k\right)=0 \quad (1 \leq k \leq n)$.
+
+
+\end{corollary}
+
+
+
+
+
+
+
+\section{\texorpdfstring{$\mathcal{L}\left(M_{m \times n}\left(\mathbb{K}\right)\right)$}{}}
+\subsection{Kronecker Product}
+\begin{definition}
+    
+\end{definition}
+\begin{proposition}
+    假设下列运算均有意义
+
+    (1) $({A}+{B}) \otimes {C}={A} \otimes {C}+{B} \otimes {C}$,
+    ${A} \otimes({B}+{C})={A} \otimes {B}+{A} \otimes {C}$
+
+    (2) $(k {A}) \otimes {B}=k({A} \otimes {B})={A} \otimes(k {B})$ 
+
+    (3) $({A} \otimes {C})({B} \otimes {D})=({A B}) \otimes({C D})$ 
+
+    (4) $({A} \otimes {B}) \otimes {C}={A} \otimes({B} \otimes {C})$ 
+
+    (5) ${I}_m \otimes {I}_n={I}_{m n}$ 
+
+    (6) $({A} \otimes {B})^{\prime}={A}^{\prime} \otimes {B}^{\prime}$ 
+
+    (7) 若 ${A}, {B}$ 都是可逆矩阵，则 ${A} \otimes {B}$ 也是可逆矩阵，并且
+    \[
+    (A \otimes B)^{-1}=A^{-1} \otimes B^{-1}
+    \]
+
+    (8) 若 ${A}$ 是 $m$ 阶矩阵， ${B}$ 是 $n$ 阶矩阵，则 $|{A} \otimes {B}|=|{A}|^n|{B}|^m$ 
+
+    (9) 若 ${A}$ 是 $m$ 阶矩阵， ${B}$ 是 $n$ 阶矩阵，则 $\operatorname{tr}({A} \otimes {B})=\operatorname{tr}({A}) \cdot \operatorname{tr}({B})$ 
+\end{proposition}
+\begin{proposition}
+    设 ${A}, {B}$ 分别是 $m, n$ 阶矩阵， ${A}$ 的特征值为 $\lambda_i, {B}$ 的特征值为 $\mu_j$ ，求证： ${A} \otimes {B}$ 的特征值为 $\lambda_i \mu_j  $.
+\end{proposition}
+\begin{proposition}
+    设 ${A}, {B}$ 分别为 $m \times n, k \times l$ 矩阵，则 $\mathrm{r}({A} \otimes {B})=\mathrm{r}({A}) \cdot \mathrm{r}({B})$ 
+\end{proposition}
+
+
+\begin{theorem}
+    $\mathcal{L}\left(M_{m \times n}\left(\mathbb{K}\right)\right)$ 上的线性变换
+    \[
+    \varphi(X)=AXB
+    \]
+    在基$\left\{E_{1,1}\ldots,E_{1,n},E_{2,1}\ldots,E_{2,n},\ldots \ldots ,E_{m,1}\ldots,E_{m,n}\right\} $的表示矩阵是
+    \[
+    A \otimes B'
+    \]
+\end{theorem}
+
+
+\subsection{Matrix Equation}
+\begin{theorem}
+    设 ${A}, {B}$ 分别为 $m, n$ 阶矩阵，$V$ 为 $m \times n$ 矩阵全体构成的线性空间， $V$ 上的线性变换 ${\varphi}$ 定义为： ${\varphi}({X})={A} {X}-{X} {B}$. 
+    $\varphi$ 的表示矩阵为
+    \[
+    A\otimes I_n - I_m\otimes B'
+    \]
+    相似于上三角阵
+    \[
+    \left(\begin{matrix}
+        \lambda_1 & * & * & * \\ & \lambda_2 & * & * \\ & & \ddots & \vdots \\ & & & \lambda_m
+    \end{matrix}\right) \otimes I_n
+    -
+    I_m\otimes \left(\begin{matrix}
+        \mu_1 & * & * & * \\ 
+        & \mu_2 & * & * \\ 
+        & & \ddots & \vdots \\ 
+        & & & \mu_n
+    \end{matrix}\right)
+    \]
+    具有特征值 $\lambda_i-\mu_j$. 同时，下列命题等价
+
+    (1) $\varphi$ 是单的（满的）
+
+    (2) ${A} {X}-{X} {B}=0$ 只有零解
+
+    (3)对任意（存在） ${C}\in \left(M_{m \times n}\left(\mathbb{K}\right)\right)$, ${A} {X}-{X} {B}={C}$ 有唯一解.
+\end{theorem}
+\begin{theorem}
+    设 ${A}, {B}, {C}$ 分别是 $m \times m, n \times n, m \times n$ 矩阵，满足： ${A} {C}={C B}$, $\mathrm{r}({C})=r$. 则 ${A}$ 和 ${B}$ 至少有 $r$ 个相同的特征值（计重数）．
+
+    证明：
+    设 $P$ 为 $m$ 阶非异阵，$Q$ 为 $n$ 阶非异阵，使得 
+    \[P C Q=\left(\begin{array}{ll}I_r & O \\ O & O\end{array}\right)
+    \]
+    注意到问题的条件和结论在相抵变换：$C \mapsto P C Q, A \mapsto P A P^{-1}, B \mapsto Q^{-1} B Q$ 下保持不变，故不妨从一开始就假设 $C=\left(\begin{array}{ll}{I}_r & {O} \\ {O} & {O}\end{array}\right)$ 是相抵标准型．
+    
+    设 ${A}=\left(\begin{array}{ll}{A}_{11} & {A}_{12} \\ {A}_{21} & {A}_{22}\end{array}\right)$ ， ${B}=\left(\begin{array}{ll}{B}_{11} & {B}_{12} \\ {B}_{21} & {B}_{22}\end{array}\right)$ 为对应的分块，则
+    \[
+    A C=\left(\begin{array}{ll}
+    A_{11} & O \\
+    A_{21} & O
+    \end{array}\right), \quad C B=\left(\begin{array}{cc}
+    B_{11} & B_{12} \\
+    O & O
+    \end{array}\right)
+    \]
+    由 $A C=C B$ 可得 ${A}_{11}={B}_{11}, {A}_{21}={O}, {B}_{12}={O}$ ．于是
+    \[
+    \left|\lambda {I}_n-{A}\right|=\left|\lambda {I}_r-{A}_{11}\right| \cdot\left|\lambda {I}_{n-r}-{A}_{22}\right|, \quad\left|\lambda {I}_n-{B}\right|=\left|\lambda {I}_r-{B}_{11}\right| \cdot\left|\lambda {I}_{n-r}-{B}_{22}\right|,
+    \]
+    从而 ${A}, {B}$ 至少有 $r$ 个相同的特征值（即 ${A}_{11}={B}_{11}$ 的特征值）．
+\end{theorem}
+
+
+\section{有理标准型}
+\subsection{循环子空间}
+\begin{theorem}
+    设 $U$ 是 $V$ 的 $\varphi$-不变子空间，则$U$ 为循环子空间的充要条件是 $\left.\varphi\right|_U$ 在 $U$ 的某组基下的表示矩阵为某个首一多项式的友阵．
+
+    证明：
+    先证充分性．设 $\left.\varphi\right|_U$ 在 $U$ 的一组基 $\left\{e_1, e_2, \cdots, e_r\right\}$ 下的表示矩阵是友阵 ${C}(d(\lambda))$ ，其中 $d(\lambda)=\lambda^r+a_1 \lambda^{r-1}+\cdots+a_{r-1} \lambda+a_r$ ，则
+    ${\varphi}\left({e}_i\right)={e}_{i+1}(1 \leq i \leq r-1), {\varphi}\left({e}_r\right)=-\sum_{i=1}^r a_{r-i+1} {e}_i$ ．因此 ${e}_i={\varphi}^{i-1}\left({e}_1\right)(2 \leq i \leq r)$ ， $U=L\left({e}_1, {e}_2, \cdots, {e}_r\right)=C\left({\varphi}, {e}_1\right)$ 为循环子空间．
+    
+    再证必要性．设 $U=C({\varphi}, {\alpha})$ 是 $r$ 维循环子空间，则
+    $\{{\alpha}, {\varphi}({\alpha}) \cdots, {\varphi}^{r-1}({\alpha})\}$ 是 $U$ 的一组基．设
+    \[
+    {\varphi}^r({\alpha})=-a_r {\alpha}-a_{r-1} {\varphi}({\alpha})-\cdots-a_1 {\varphi}^{r-1}({\alpha})
+    \]
+    令 $d(\lambda)=\lambda^r+a_1 \lambda^{r-1}+\cdots+a_{r-1} \lambda+a_r$ ，容易验证：$\left.{\varphi}\right|_U$ 在基 $\left\{{\alpha}, {\varphi}({\alpha}), \cdots, {\varphi}^{r-1}({\alpha})\right\}$下的表示矩阵就是友阵 ${C}(d(\lambda))$.
+\end{theorem}
+
+\begin{theorem}[循环子空间直和分解]
+    一般地，设$\mathbb{K}$上的线性变换 $\varphi$ 的$\lambda$-矩阵相抵于$\mathrm{diag}\{1, \cdots, 1, d_1(\lambda), \cdots, d_k(\lambda)\}$，其中 $d_i(\lambda)$ 是非常数首一多项式。（特别地是不变因子组或初等（准素）因子组时）。
+    则由有理标准型理论可知，存在 $V$ 的一组基，使得 $\varphi$ 在这组基下的表示矩阵为
+    \[
+    {C}=\operatorname{diag}\left\{{C}\left(d_1(\lambda)\right), {C}\left(d_2(\lambda)\right), \cdots, {C}\left(d_k(\lambda)\right)\right\}
+    \]
+    此时 $V$ 有一个循环子空间的直和分解：
+    \[
+    V=C\left({\varphi}, {\alpha}_1\right) \oplus C\left({\varphi}, {\alpha}_2\right) \oplus \cdots \oplus C\left({\varphi}, {\alpha}_k\right),
+    \]
+    使得 $\left.{\varphi}\right|_{C\left({\varphi}, {\alpha}_i\right)}$ 在基 $\left\{{\alpha}_i, {\varphi}\left({\alpha}_i\right), \cdots, {\varphi}^{r_i-1}\left({\alpha}_i\right)\right\}$ 下的表示矩阵就是友阵 ${C}\left(d_i(\lambda)\right)$ ，其中 $r_i=\operatorname{dim} C\left({\varphi}, {\alpha}_i\right)$.
+\end{theorem}
+
+\begin{corollary}
+    设 $\varphi$ 是数域 $\mathbb{K}$ 上 $n$ 维线性空间 $V$ 上的线性变换，$\varphi$ 的特征多项式和极小多项式分别为 $f(\lambda)$ 和 $m(\lambda)$，下 4 个结论等价：
+
+    (1) $V$ 是关于线性变换 $\varphi$ 的循环空间．（并一定是唯一的）
+
+    (2) $\varphi$ 的行列式因子组或不变因子组为 $1, \cdots, 1, f(\lambda)$ 
+
+    (2') ${\varphi}$ 的初等（准素）因子组为 $P_1(\lambda)^{r_1}, P_2(\lambda)^{r_2}, \cdots, P_k(\lambda)^{r_k}$ ，其中 $P_i(\lambda)$ 是 $\mathbb{K}$ 上互异的首一不可约多项式.
+    
+    (2'') ${\varphi}$ 的极小多项式 $m(\lambda)$ 等于特征多项式 $f(\lambda)$ 
+
+    
+\end{corollary}
+
+\begin{corollary}
+    设 $\varphi$ 是数域 $\mathbb{K}$ 上 $n$ 维线性空间 $V$ 上的线性变换，$\varphi$ 的特征多项式为 $f(\lambda)$， 3 个结论等价：
+
+    (1) $V$ 只有平凡的 $\varphi$－不变（循环）子空间
+
+    (1') $V$ 中任一非零向量都是循环向量，使 $V$ 成为循环空间；
+
+    (2) $f(\lambda)$ 是 $\mathbb{K}$ 上的不可约多项式．
+\end{corollary}
+
+\begin{question}
+    存在 $n$ 阶实方阵 ${A}$ ，满足 ${A}^2+2 {A}+5 {I}_n={O}$ 的充要条件是 $n$为偶数．当 $n \geq 4$ 时，验证满足上述条件的矩阵 ${A}$ 有无限个不变子空间．
+
+    证明: 必要性：注意到极小多项式 $m(\lambda) \mid g(\lambda)$，特征多项式 $f(\lambda)=g(\lambda)^k$ ，于是 $n=\operatorname{deg} f(\lambda)=2 k$ 为偶数．
+    
+    充分性：设 $n=2 k$ 为偶数，则由必要性的证明可知， ${A}$ 的不变因子组为 $1, \cdots, 1$ ， $g(\lambda), \cdots, g(\lambda)(k$ 个 $g(\lambda))$ ．可用有理标准型构造满足条件的矩阵：
+    \[
+    {A}=\operatorname{diag}\left\{\left(\begin{array}{ll}
+    0 & -5 \\
+    1 & -2
+    \end{array}\right), \cdots,\left(\begin{array}{ll}
+    0 & -5 \\
+    1 & -2
+    \end{array}\right)\right\}(k \text { 个二阶方阵 }) .
+    \]
+    
+    当 $n \geq 4$ 时，设 $\left\{{e}_1, {e}_2, {e}_3, {e}_4\right\}$ 是前 4 个标准单位列向量，则容易验证循环子空间 $\left\{C_l:=C\left(A, e_1+l e_3\right)=L\left(e_1+l e_3, e_2+l e_4\right), l \in \mathbb{R}\right\}$ 是两两互异的 $A$－不变子空间，故 ${A}$ 有无限个不变子空间．
+\end{question}
+
+
+\begin{question}
+    设 ${A}$ 是数域 $\mathbb{K}$ 上的 $n$ 阶矩阵，求证：若 $\operatorname{tr}({A})=0$ ，则 ${A}$ 相似于一个 $\mathbb{K}$ 上主对角元全为零的矩阵。
+
+    证明: 对阶数进行归纳．当 $n=1$ 时， ${A}={O}$ ，结论显然成立．
+    
+    设阶数小于 $n$ 时结论成立，现证 $n$ 阶的情形．我们期望通过相似变换在让对角线上出现$0$，便可直接利用归纳假设，这里借助有利标准型。由于题目的条件和结论在相似关系下不改变，故不妨从一开始就假设 ${A}$ 是有理标准型
+    \[
+    {F}=\operatorname{diag}\left\{{F}\left(d_1(\lambda)\right), \cdots, {F}\left(d_k(\lambda)\right)\right\}
+    \]
+    其中 $d_i(\lambda)$ 是 ${A}$ 的非常数不变因子，
+    $\operatorname{deg} d_i(\lambda)=r_i$
+    若 $r_i$ 都为$1$. 则${A}={O}$，结论成立．
+    以下假设存在某个 $r_i>1$ ，将第 $(1,1)$ 分块与第 $(i, i)$分块对换，这是一个相似变换，此时矩阵的第 $(1,1)$ 元为零，故不妨设 ${A}$ 的第 $(1,1)$元为零．注意到矩阵 ${A}=\left(\begin{array}{cc}0 & {\alpha}^{\prime} \\ {\beta} & {B}\end{array}\right)$ ，其中 ${\alpha}, {\beta} \in \mathbb{K}^{n-1}, {B} \in M_{n-1}(\mathbb{K}), \operatorname{tr}({B})=0$ ．由归纳假设，结论得证．
+\end{question}
+
+\begin{corollary}
+    设 ${C}$ 是数域 $\mathbb{K}$ 上的 $n$ 阶矩阵，求证：存在 $\mathbb{K}$ 上的 $n$ 阶矩阵 ${A}, {B}$ ，使得 ${A B}-{B} {A}={C}$ 的充要条件是 $\operatorname{tr}({C})=0$ ．
+\end{corollary}
+\subsection{乘法交换性诱导多项式表示}
+
+\begin{theorem}
+    设 $\varphi$ 是数域 $\mathbb{F}$ 上 $n$ 维线性空间 $V$ 上的线性变换，则
+    \[
+    C(\varphi)
+    =
+    \mathbb{F}[\varphi]
+    \]
+    成立的充要条件是 $\varphi$ 的极小多项式等于其特征多项式．
+
+    证明:
+    先证充分性．设 $\varphi$ 的极小多项式等于其特征多项式 $f(\lambda)=\lambda^n+a_1 \lambda^{n-1}+$ $\cdots+a_{n-1} \lambda+a_n$ ，则 $\varphi$ 只有一个非常数不变因子．由有理标准型理论，存在 $V$ 的一组基 $\left\{e_1, e_2, \cdots, e_n\right\}$ ，使得 $\varphi$ 在这组基下的表示矩阵为友阵
+    \[
+    {C}(f(\lambda))=\left(\begin{array}{ccccc}
+    0 & 0 & \cdots & 0 & -a_n \\
+    1 & 0 & \cdots & 0 & -a_{n-1} \\
+    0 & 1 & \cdots & 0 & -a_{n-2} \\
+    \vdots & \vdots & & \vdots & \vdots \\
+    0 & 0 & \cdots & 1 & -a_1
+    \end{array}\right),
+    \]
+    即有
+    \[
+    \varphi\left(e_1\right)=e_2, \varphi\left(e_2\right)=e_3, \cdots, \varphi\left(e_{n-1}\right)=e_n, \varphi\left(e_n\right)=-a_n e_1-a_{n-1} e_2-\cdots-a_1 e_n
+    \]
+    任取 $V$ 上满足 $\varphi \psi=\psi \varphi$ 的线性变换 $\psi$ ，设
+    \[
+    {\psi}\left({e}_1\right)=b_n {e}_1+b_{n-1} {e}_2+\cdots+b_1 {e}_n
+    \]
+    令 $g(x)=b_1 x^{n-1}+\cdots+b_{n-1} x+b_n$ ，我们来证明： ${\psi}=g(\varphi)$ ．对任意的 ${e}_k$ 有
+    \[
+    \begin{aligned}
+    \psi\left(e_k\right) & =\psi\left({\varphi}^{k-1}\left(e_1\right)\right)={\varphi}^{k-1}\left(\psi\left(e_1\right)\right)={\varphi}^{k-1}\left(g(\varphi)\left(e_1\right)\right) \\
+    & =g({\varphi})\left({\varphi}^{k-1}\left(e_1\right)\right)=g({\varphi})\left(e_k\right)
+    \end{aligned}
+    \]
+    最后，注意到 $\psi$ 与 $g(\varphi)$ 在基向量 $\left\{e_1, e_2, \cdots, e_n\right\}$ 上的取值都相等，故由线性扩张定理可知 $\psi=g({\varphi})$ 成立．
+    
+    再证必要性。设 $\varphi$ 的不变因子组为 $1, \cdots, 1, d_1(\lambda), \cdots, d_k(\lambda)$ ，其中 $d_i(\lambda)$ 为非常数首一多项式，$d_i(\lambda) \mid d_{i+1}(\lambda)(1 \leq i \leq k-1)$ ，则 ${\varphi}$ 的有理标准型 ${F}=$ $\operatorname{diag}\left\{{F}_1, {F}_2, \cdots, {F}_k\right\}$ ，其中 ${F}_i={F}\left(d_i(\lambda)\right)$ 为 $n_i$ 阶矩阵．若 ${\varphi}$ 的极小多项式不等于其特征多项式，则 $k \geq 2$ ．构造分块对角矩阵
+    \[
+    {B}=\operatorname{diag}\left\{{I}_{n_1}, {O}_{n_2}, \cdots, {O}_{n_k}\right\}
+    \]
+    显然 ${B F}={F} {B}$ ．用反证法，若存在多项式 $g(x)$ ，使得 ${B}=g({F})$ ，即
+    \[
+    {B}=\operatorname{diag}\left\{g\left({F}_1\right), g\left({F}_2\right), \cdots, g\left({F}_k\right)\right\}
+    \]
+      则 $g\left({F}_1\right)={I}_{n_1}, g\left({F}_i\right)={O}(i \geq 2)$ ．由于 $d_k(\lambda)$ 是 ${F}_k$ 的极小多项式（也是特征多项式），故 $d_k(\lambda) \mid g(\lambda)$ ，从而 $d_1(\lambda) \mid g(\lambda)$ ，于是 $g\left({F}_1\right)={O}$ ，矛盾！因此 ${B}$ 不能表示为 ${F}$ 的多项式，从而由 $B$ 定义的线性变换 $\psi$ 符合题目要求．
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+\section{乘法交换性诱导的同时性质}
+
+
+\begin{theorem}
+    设 $\varphi, \psi$ 是$\mathbb{F}$上的线性空间 $V$ 上乘法可交换的线性变换，即 $\varphi \psi=\psi \varphi$，则
+    
+    (1) $\varphi$ 的特征子空间（如果存在的话）是 $\psi$ 的不变子空间，$\psi$ 的特征子空间是 $\varphi$ 的不变子空间．
+
+    (2) $R(\psi)$ 是$\varphi$不变子空间，$R(\varphi)$ 是$\psi$不变子空间.
+\end{theorem}
+
+\begin{corollary}
+    设 $\varphi, \psi$ 是数域 $\mathbb{F}$ 上线性空间 $V$ 上的乘法可交换的线性变换，且 $\varphi, \psi$的特征值都在 $\mathbb{F}$中，则$\varphi, \psi$ 至少有一个公共的特征向量．
+
+    证明： 
+    任取线性变换 $\varphi$ 的一个特征值 $\lambda_0 \in \mathbb{F}$ ，设 $V_0$ 是特征值 $\lambda_0$ 的特征子空间，$V_0$ 是 ${\psi}$－不变子空间．
+    
+    取 $V_0$ 的一组基并扩张为 $V$ 的一组基，则 $\psi$ 在这组基下的表示矩阵为分块对角矩阵 $\left(\begin{array}{ll}A & C \\ O & B\end{array}\right)$ ，其中 ${A}$ 是 $\left.\psi\right|_{V_0}$ 在给定基下的表示矩阵，于是 $\left|\lambda I_V-\psi\right|=|\lambda {I}-{A}||\lambda {I}-{B}|$ ．因为 ${\psi}$ 的特征值都在 $\mathbb{F}$ 中，故 ${A}$ 的特征值都在 $\mathbb{F}$ 中，于是 $\left.{\psi}\right|_{V_0}$ 的特征值都在 $\mathbb{F}$ 中．任取 $\left.{\psi}\right|_{V_0}$ 的一个特征值 $\mu_0 \in \mathbb{F}$ 及其特征向量 ${\alpha} \in V_0$ ，则 ${\varphi}({\alpha})=\lambda_0 {\alpha}, {\psi}({\alpha})=\mu_0 {\alpha}$ ，于是 ${\alpha}$ 就是 ${\varphi}, {\psi}$ 的公共特征向量．
+\end{corollary}
+\begin{corollary}
+    设数域 $\mathbb{F}$ 上的 $n$ 阶矩阵 ${A}_1, {A}_2, \cdots, {A}_m$ 两两乘法可交换，且它们的特征值都在 $\mathbb{F}$ 中，求证：它们在 $\mathbb{F}^n$ 中至少有一个公共的特征向量．
+
+    证明：
+    对 $m$ 进行归纳，设矩阵个数小于 $m$ 时结论成立，现证 $m$ 个矩阵的情形．将所有的 ${A}_i$ 都看成是列向量空间 $\mathbb{F}^n$ 上的线性变换，任取 ${A}_1$ 的一个特征值 $\lambda_1 \in \mathbb{F}$ 及其特征子空间 $V_1 \subseteq \mathbb{F}^n$，$V_1$ 是 ${A}_2, \cdots, {A}_m$ 的不变子空间．将 ${A}_2, \cdots, {A}_m$ 限制在 $V_1$ 上，它们仍然两两乘法可交换且特征值都在 $\mathbb{F}$ 中，故由归纳假设可得 $\left.{A}_2\right|_{V_1}, \cdots,\left.{A}_m\right|_{V_1}$ 有公共的特征向量 $\alpha \in V_1$ ．注意到 ${\alpha}$ 也是 ${A}_1$ 的特征向量，于是 ${\alpha}$ 是 ${A}_1, {A}_2, \cdots, {A}_m$的公共特征向量．
+\end{corollary}
+
+\begin{theorem}
+    设数域 $\mathbb{F}$ 上的 $n$ 阶矩阵 ${A}$ 的特征值都在 $\mathbb{F}$ 中，求证： ${A}$ 在 $\mathbb{F}$ 上可上三角化，即存在 $\mathbb{F}$ 上的可逆矩阵 ${P}$ ，使得 $P^{-1} {A} {P}$ 是上三角矩阵．
+
+    证明： 
+    对阶数进行归纳．当 $n=1$ 时结论显然成立，设对 $n-1$ 阶矩阵结论成立，现对 $n$ 阶矩阵 ${A}$ 进行证明．设 $\lambda_1 \in \mathbb{F}$ 是 ${A}$ 的一个特征值，存在特征向量 $e_1 \in \mathbb{F}^n$ ，使得 ${A} e_1=\lambda_1 e_1$ ．由基扩张定理，可将 $e_1$ 扩张为 
+    $\mathbb{F}^n$ 的一组基 $\left\{{e}_1, {e}_2, \cdots, {e}_n\right\}$ ，于是
+    \[
+    \left({A} e_1, {A} e_2, \cdots, {A} e_n\right)=\left(e_1, e_2, \cdots, e_n\right)\left(\begin{array}{cc}
+    \lambda_1 & * \\
+    {O} & {A}_1
+    \end{array}\right)
+    \]
+    其中 ${A}_1$ 是 $\mathbb{F}$ 上的 $n-1$ 阶矩阵．令 ${P}=\left({e}_1, {e}_2, \cdots, {e}_n\right)$ ，则 ${P}$ 是 $\mathbb{F}$ 上的 $n$ 阶可逆矩阵，且由上式可得 ${A P}={P}\left(\begin{array}{cc}\lambda_1 & * \\ {O} & {A}_1\end{array}\right)$ ，即 ${P}^{-1} {A P}=\left(\begin{array}{cc}\lambda_1 & * \\ {O} & {A}_1\end{array}\right)$ ．由此可得 $\left|\lambda I_n-{A}\right|=\left(\lambda-\lambda_1\right)\left|\lambda {I}_{n-1}-{A}_1\right|$ ，从而 ${A}_1$ 的特征值也全在 $\mathbb{F}$ 中，故由归纳假设，存在 $\mathbb{F}$ 上的 $n-1$ 阶可逆矩阵 $Q$ ，使得 $Q^{-1} {A}_1 {Q}$ 是上三角矩阵．令
+    \[
+    R=P\left(\begin{array}{ll}
+    1 & O \\
+    O & Q
+    \end{array}\right)
+    \]
+    则 ${R}$ 是 $\mathbb{F}$ 上的 $n$ 阶可逆矩阵，且
+    \[
+    R^{-1} A R=\left(\begin{array}{cc}
+    1 & O \\
+    O & Q
+    \end{array}\right)^{-1}\left(\begin{array}{cc}
+    \lambda_1 & * \\
+    O & A_1
+    \end{array}\right)\left(\begin{array}{cc}
+    1 & O \\
+    O & Q
+    \end{array}\right)=\left(\begin{array}{cc}
+    \lambda_1 & * \\
+    O & Q^{-1} A_1 Q
+    \end{array}\right)
+    \]
+    是上三角矩阵．
+\end{theorem}
+\begin{theorem}
+    设数域 $\mathbb{F}$ 上的 $n$ 阶矩阵 ${A}_1, {A}_2, \cdots, {A}_m$ 两两乘法可交换，且它们的特征值都在 $\mathbb{F}$ 中，求证：它们在 $\mathbb{F}$ 上可同时上三角化，即存在 $\mathbb{F}$ 上的可逆矩阵 ${P}$ ，使得 ${P}^{-1} {A}_i {P}(1 \leq i \leq m)$ 都是上三角矩阵．
+\end{theorem}
+
+\begin{theorem}
+    设 $\varphi, \psi$ 是数域 $\mathbb{F}$ 上 $n$ 维线性空间 $V$ 上的线性变换，满足：$\varphi \psi=\psi \varphi$且 $\varphi, \psi$ 都可对角化，求证：$\varphi, \psi$ 可同时对角化
+    
+    证明： 
+    对空间维数进行归纳．当 $n=1$ 时结论显然成立，设对维数小于 $n$ 的线性空间结论成立，现对 $n$ 维线性空间进行证明．设 $\varphi$ 的全体不同特征值为 $\lambda_1, \cdots, \lambda_s \in$ $\mathbb{F}$ ，对应的特征子空间分别为 $V_1, \cdots, V_s$ ，则由 $\varphi$ 可对角化可知
+    \[
+    V=V_1 \oplus \cdots \oplus V_s .
+    \]
+    若 $s=1$ ，则 ${\varphi}=\lambda_1 {I}_V$ 为纯量变换，此时只要取 $V$ 的一组基，使得 ${\psi}$ 在这组基下的表示矩阵为对角矩阵，则 ${\varphi}$ 在这组基下的表示矩阵为 $\lambda_1 {I}_n$ ，结论成立．若 $s>1$ ，则 $\operatorname{dim} V_i<n$， $V_i$ 都是 $\psi$－不变子空间．考虑线性变换的限制 $\left.\varphi\right|_{V_i},\left.\psi\right|_{V_i}$ ：它们乘法可交换，且由可对角化线性变换的性质可知它们都可对角化，故由归纳假设可知，$\left.\varphi\right|_{V_i},\left.{\psi}\right|_{V_i}$ 可同时对角化，即存在 $V_i$ 的一组基，使得 $\left.\varphi\right|_{V_i},\left.{\psi}\right|_{V_i}$ 在这组基下的表示矩阵都是对角矩阵．将 $V_i$ 的基拼成 $V$ 的一组基，则 $\varphi, \psi$ 在这组基下的表示矩阵都是对角矩阵，即 $\varphi, \psi$ 可同时对角化．
+\end{theorem}
+\begin{theorem}
+    设数域 $\mathbb{F}$ 上的 $n$ 阶矩阵 ${A}_1, {A}_2, \cdots, {A}_m$ 两两乘法可交换，且它们都在 $\mathbb{F}$ 上可对角化，求证：它们在 $\mathbb{F}$ 上可同时对角化．
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

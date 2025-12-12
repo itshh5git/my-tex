@@ -1,0 +1,1582 @@
+\documentclass[12pt, oneside]{book}
+
+\usepackage{../mypackages}
+
+
+
+
+
+\begin{document}
+\frontmatter
+\title{{\Huge{\textbf{Category Theory}}}}
+\maketitle
+
+\dominitoc % 初始化minitoc
+\pagenumbering{Roman}
+\tableofcontents % 主目录
+
+
+\mainmatter
+\pagenumbering{arabic} % 正文编页码字体 
+
+
+
+\chapter{Category} % Category
+\minitoc
+\section{Basic Theory} % Basics  Theory
+\begin{definition}
+    A \textbf{category} $\mathcal{C}$ consists of the following data:
+    \begin{itemize}
+        \item
+              a collection $\mathrm{Ob}(\mathcal{C})$ of objects;
+        \item
+              For each $A, B \in \operatorname{Ob}(\mathcal{C})$, a collection of \textbf{maps} or \textbf{arrows} or \textbf{morphisms} from $A$ to $B$, denoted by $\mathcal{C}(A, B)$ or $\Hom\left(A,B\right)$.
+              We call $A$ the \textbf{domain} and $B$ the \textbf{codomain} of $f$.
+
+
+              Each object $c$ has a designated \textbf{identity} morphism $1_c \in \mathcal{C}(c, c)$.
+        \item
+              for each $A, B, C \in \mathrm{Ob}(\mathcal{C})$, a map
+              \begin{equation*}
+                  \begin{array}{ccc}
+                      \mathcal{C}(B, C) \times \mathcal{C}(A, B) & \rightarrow & \mathcal{C}(A, C) \\
+                      (g, f)                                     & \mapsto     & g \circ f
+                  \end{array}
+              \end{equation*}
+              called \textbf{composition}
+    \end{itemize}
+    These data are required to satisfy the following axioms:
+    \begin{itemize}
+        \item
+              Associativity law: for each $f \in \mathcal{C}(A, B), g \in \mathcal{C}(B, C)$ and $h \in \mathcal{C}(C, D)$, we have $(h \circ g) \circ f=h \circ(g \circ f)$;
+        \item
+              Identity law: For any $f : X \rightarrow Y$, the composites $1_Y f$ and $f 1_X$ are both equal to $f$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    A category is \textbf{discrete} if every morphism is an identity.
+
+    A category is \textbf{small} if it has only a set's worth of arrows.
+    (thus has only a set's worth of objects)
+
+    A category $\mathcal{C}$ is \textbf{locally small} if between any pair of objects there is only a set's worth of morphisms.
+\end{definition}
+\begin{definition}
+    A \textbf{groupoid} is a category in which every morphism is an isomorphism.
+
+    A \textbf{group} is a locally small groupoid who has only one object.
+\end{definition}
+
+\begin{definition}
+    A map $f: A \rightarrow B$ in a category $\mathcal{C}$ is an \textbf{isomorphism} if there exists a map $g: B \rightarrow A$ in $\mathcal{C}$ such that $g f=1_A$ and $f g=1_B$.
+    We call $g$ the \textbf{inverse} of $f$ and write $g=f^{-1}$.
+
+    If there exists an isomorphism from $A$ to $B$, we say that $A$ and $B$ are \textbf{isomorphic} and write $A \cong B$.
+
+    An \textbf{endomorphism}, i.e., a morphism whose domain equals its codomain, that is an isomorphism is called an \textbf{automorphism}.
+\end{definition}
+
+\begin{definition}
+    A \textbf{subcategory} $\mathcal{D}$ of a category $\mathcal{C}$ is defined by
+    \begin{itemize}
+        \item  restricting to a subcollection of objects and
+        \item  restricting to a subcollection of morphisms subject to the requirements
+              that the subcategory $\mathcal{D}$ contains the domain and codomain of any morphism in $\mathcal{D}$
+        \item  the composite of any composable pair of morphisms in $\mathcal{D}$.
+        \item the identity morphism of any object in $\mathcal{D}$ , and
+    \end{itemize}
+
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{proposition}
+    Any category $\mathcal  {A}$ contains a maximal groupoid, the subcategory containing
+    all of the objects and only those morphisms that are isomorphisms.
+\end{proposition}
+
+
+
+\begin{definition}
+    Given categories $\mathcal{C}$ and $\mathcal{D}$, there is a \textbf{product category} $\mathcal{C} \times \mathcal{D}$, in which
+    \begin{equation*}
+        \begin{aligned}
+            \mathrm{Ob}(\mathcal{C} \times \mathcal{D})                                             & =\mathrm{Ob}(\mathcal{C}) \times \mathrm{Ob}(\mathcal{D}),                            \\
+            (\mathcal{C} \times \mathcal{D})\left((A, B),\left(A^{\prime}, B^{\prime}\right)\right) & =\mathcal{C}\left(A, A^{\prime}\right) \times \mathcal{D}\left(B, B^{\prime}\right) .
+        \end{aligned}
+    \end{equation*}
+    Put another way, an object of the product category $\mathcal{C} \times \mathcal{D}$ is a pair $\left(A, B\right)$ where $A \in \mathcal{C}$ and $B \in \mathcal{D}$. A map $(A, B) \rightarrow\left(A^{\prime}, B^{\prime}\right)$ in $\mathcal{C} \times \mathcal{D}$ is a pair $(f, g)$ where $f: A \rightarrow A^{\prime}$ in $\mathcal{C}$ and $g: B \rightarrow B^{\prime}$ in $\mathcal{D}$.
+\end{definition}
+
+
+\begin{definition}
+    For any category $\mathcal{C}$ and any object $A \in \mathcal{C}$,
+    \begin{enumerate}
+        \item
+              There is a category $A / \mathcal{C}$ whose objects are morphisms $f: A \rightarrow X$ and in which a morphism from $f: A\rightarrow X$ to $g: A \rightarrow Y$ is a map $h: X \rightarrow Y$ between the codomains so that the triangle
+              \begin{equation*}
+                  \begin{tikzcd}
+                      & \arrow[ld,"f"'] A\arrow[rd," g"]& \\
+                      X\arrow[rr,"h"]& & Y
+                  \end{tikzcd}
+              \end{equation*}
+              commutes.
+              The categorie $A / \mathcal{C}$ called \textbf{slice categories} of $\mathcal{C}$ under $A$,
+
+        \item
+              There is a category $\mathcal{C} / A$ whose objects are morphisms $f: x \rightarrow A$ with codomain $A$ and in which a morphism from $f: x \rightarrow A$ to $g: y \rightarrow A$ is a map $h: x \rightarrow y$ between the domains so that the triangle
+              \begin{equation*}
+                  \begin{tikzcd}
+                      X\arrow[rd,"f"'] \arrow[rr,"h"]& & \arrow[ld,"g"] Y\\
+                      & A &
+                  \end{tikzcd}
+              \end{equation*}
+              commutes.
+              The categories $\mathcal{C} / A$ is called \textbf{slice categories} of $\mathcal{C}$ over $A$.
+    \end{enumerate}
+\end{definition}
+
+
+
+
+
+
+
+\section{Duality} % Duality
+\begin{definition}
+    Let $\mathcal{C}$ be a category.
+    The \textbf{opposite category} $\mathcal{C}^{\mathrm{op}}$ of $\mathcal{C}$ has
+    \begin{itemize}
+        \item
+              the same objects as in $\mathcal{C}$
+
+        \item
+              A morphism $f^{\mathrm{op}}:B \rightarrow A$ in $\mathcal{C}^{\mathrm{op}}$ for each morphism $f$ in $\mathcal{C}\left(A,B\right)$, i.e.
+              \begin{equation*}
+                  f^{\mathrm{op}}: A \rightarrow B \text{ in } \mathcal{C}^{\mathrm{op}} \quad \leftrightsquigarrow
+                  \quad f: B \rightarrow A \text{ in } \mathcal{C}
+              \end{equation*}
+    \end{itemize}
+    The remaining structure of the category $\mathcal{C}^{\mathrm{op}}$ is given as
+    follows:
+    \begin{itemize}
+        \item
+              A pair of morphisms $f^{\mathrm{op}}, g^{\mathrm{op}}$ in $\mathcal{C}^{\mathrm{op}}$ is composable precisely when the pair $g, f$ is composable in $\mathcal{C}$.
+              We then define $g^{\mathrm{op}} \cdot f^{\mathrm{op}}$ to be $(f \cdot g)^{\mathrm{op}}$
+        \item
+              For each object $A$, the arrow $1_A^{\mathrm{op}}$ serves as its identity in $\mathcal{C}^{\mathrm{op}}$.
+    \end{itemize}
+\end{definition}
+
+
+
+
+
+
+
+\begin{lemma}
+    The following are equivalent:
+    \begin{enumerate}
+        \item
+              $f: x \rightarrow y$ is an isomorphism in $\mathcal{C}$.
+        \item
+              For all objects $c \in \mathcal{C}$, post-composition with $f$ defines a bijection
+              \begin{equation*}
+                  f_*: \mathcal{C}(c, x) \rightarrow \mathcal{C}(c, y) .
+              \end{equation*}
+        \item
+              For all objects $c \in \mathcal{C}$, pre-composition with $f$ defines a bijection
+              \begin{equation*}
+                  f^*: \mathcal{C}(y, c) \rightarrow \mathcal{C}(x, c) .
+              \end{equation*}
+    \end{enumerate}
+\end{lemma}
+
+\begin{definition}
+    Let $\mathcal{C}$ be a category and morphism $f: x \rightarrow y$ in $\mathcal{C}$.
+    \begin{enumerate}
+        \item
+              $f$ is a \textbf{monomorphism} if for any parallel morphisms $h, k: w \rightrightarrows x, f h=f k$ implies that $h=k$.
+
+
+        \item
+              $f$ is an \textbf{epimorphism} if for any parallel morphisms $h, k: y \rightrightarrows z, h f=k f$ implies that $h=k$.
+
+
+    \end{enumerate}
+    \begin{remark}
+        Note that the inclusion $i:\mathbb{Z} \hookrightarrow \mathbb{Q}$ is both a monomorphism and an epimorphism in $\mathbf{Ring}$, but not an isomorphism.
+    \end{remark}
+\end{definition}
+
+\begin{proposition}
+    Let $\mathcal{C}$ be a category.
+    \begin{enumerate}
+        \item
+              If $f: x \rightarrowtail  y$ and $g: y \rightarrowtail z$ are monomorphisms, then so is $g f: x\rightarrowtail z$.
+        \item
+              If $f: x \rightarrow y$ and $g: y \rightarrow z$ are morphisms so that $g f$ is monic, then $f$ is monic.
+    \end{enumerate}
+
+    Dually:
+    \begin{enumerate}
+        \item
+              If $f: x \twoheadrightarrow y$ and $g: y \twoheadrightarrow z$ are epimorphisms, then so is $g f: x \twoheadrightarrow  z$.
+        \item
+              If $f: x \rightarrow y$ and $g: y \rightarrow z$ are morphisms so that $g f$ is epic, then $g$ is epic.
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{definition}
+    Let $\mathcal{C}$ be a category and $x \xrightarrow{f} y \xrightarrow{g} x$ are morphisms so that $g f=1_x$.
+
+    \begin{enumerate}
+        \item
+              The map $f$ is a \textbf{right inverse} to $g$ and
+              is said to be a \textbf{split monomorphism}.
+
+
+
+        \item
+              The map $g$ defines a \textbf{left inverse} to $f$ and is
+              said to be a \textbf{split epimorphism}
+
+
+    \end{enumerate}
+    The maps $s$ and $r$ express the object $x$ as a \textbf{retract} of the object $y$.
+\end{definition}
+
+
+
+\begin{proposition}
+    Let $\mathcal{C}$ be a category and $f: x \rightarrow y$ be a morphism in $\mathcal{C}$.
+    \begin{equation*}
+        \begin{array}{ccc}
+            \text{monomorphism}       & \Longleftrightarrow & f_* \text{ injective }  \\
+            \text{split epimorphism}  & \Longleftrightarrow & f_* \text{ surjective } \\
+            \text{epimorphism}        & \Longleftrightarrow & f^* \text{ injective }  \\
+            \text{split monomorphism} & \Longleftrightarrow & f^* \text{ surjective } \\
+        \end{array}
+    \end{equation*}
+    $f_*$ injective means that for all objects $c \in \mathcal{C}$, post-composition $f_*:\mathcal{C}(c,x) \rightarrow \mathcal{C}(c,y)$ is injective. Others are similar.
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Functors} % Functors
+\begin{definition}
+    Let $\mathcal{C}$ and $\mathcal{D}$ be categories. A \textbf{functor} $F: \mathcal{C} \rightarrow \mathcal{D}$ consists of:
+    \begin{itemize}
+        \item
+              a map
+              \begin{equation*}
+                  \mathrm{Ob}(\mathcal{C}) \rightarrow \mathrm{Ob}(\mathcal{D}),
+              \end{equation*}
+              written as $c \mapsto Fc$;
+        \item
+              for each $c, c^{\prime} \in \mathcal{C}$, a map
+              \begin{equation*}
+                  \mathcal{C}\left(c, c^{\prime}\right) \rightarrow \mathcal{D}\left(Fc, Fc^{\prime}\right),
+              \end{equation*}
+              written as $f \mapsto Ff  $,
+    \end{itemize}
+    satisfying the following \textbf{functoriality axioms}:
+    \begin{itemize}
+        \item
+              For any composable pair $f, g$ in $\mathcal{C}$, $F\left(g \circ f\right)=Fg \circ Ff$
+        \item
+              For any object $c\in \mathcal{C}$, $F\left(1_c\right)=1_{Fc}$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Let $\mathcal{C}$ and $\mathcal{D}$ be categories. A \textbf{contravariant functor} from $\mathcal{C}$ to $\mathcal{D}$ is a functor $\mathcal{C}^{\mathrm{op}} \rightarrow \mathcal{D}$.
+    Explicitly, this consists of the following data:
+    \begin{itemize}
+        \item
+              An object $F \left(A\right)\in \mathcal{D}$, for each object $A \in \mathcal{C}$.
+
+        \item
+              A morphism $F f: F A^{\prime} \rightarrow F A \in \mathcal{D}$, for each morphism $f: A \rightarrow A^{\prime} \in \mathcal{C}$.
+    \end{itemize}
+    The assignments are required to satisfy the following two functoriality axioms:
+    \begin{itemize}
+        \item
+              For any composable pair $f, g$ in $\mathcal{C}, F f \cdot F g=F(g \cdot f)$.
+
+        \item
+              For each object $A$ in $\mathcal{C}, F\left(1_A\right)=1_{F(A)}$.
+    \end{itemize}
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathcal{C}^{\op} \arrow[rr, "F"]  & &\mathcal{D} \\
+            A \arrow[dd, "f"'] \arrow[dddd,"g \cdot f"',bend right]   & \mapsto & F(A)  \\
+            & \mapsto & \\
+            B \arrow[dd, "g"']           &  \mapsto & F\left(B\right)\arrow[uu, "F(g)"']\\
+            & \mapsto & \\
+            C         &  \mapsto & F\left(C\right)\arrow[uu, "F(g)"'] \arrow[uuuu, "F(f)\cdot F(g)"',bend right]
+        \end{tikzcd}
+    \end{equation*}
+\end{definition}
+
+
+\begin{lemma}
+    Functors preserve isomorphisms.
+\end{lemma}
+
+\begin{definition}
+    Let $G$ be a group, regarded as a one-object category $\mathrm{B} G$.
+    A functor $X: \mathrm{B} G \rightarrow \mathcal{C}$ specifies an object $X \in \mathcal{C}$ together with an isomorphism $g_*:=Fg: X \rightarrow X$ for each $g \in G$. This assignment must satisfy two conditions:
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $h_* g_*=(h g)_*$ for all $g, h \in G$.
+        \item
+              $e_*=1_X$, where $e \in G$ is the identity element.
+    \end{enumerate}
+    In summary, the functor $\mathrm{B} G \rightarrow \mathcal{C}$ defines an \textbf{left action} of the group $G$ on the object $X \in \mathcal{C}$.
+    When $\mathcal{C}=$ Set, the object $X$ endowed with such an action is called a \textbf{$G$-set}. When $\mathcal{C}=\operatorname{Vect}_{\mathrm{k}}$, the object $X$ is called a \textbf{$G$-representation}.
+    When $\mathcal{C}=\Top$, the object $X$ is called a \textbf{$G$-space}.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Natural transformations and  Naturality} % Natural Transformations
+
+\begin{definition}
+    Let $\mathcal{C}$ and $\mathcal{D}$ be categories and let $\mathcal{C} \underset{G}{\stackrel{F}{\rightrightarrows}} \mathcal{D}$ be functors. A \textbf{natural transformation} $\alpha: F \Rightarrow G$  consists of:
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              An arrow $\alpha_c : Fc \rightarrow Gc$ in $\mathcal{D}$ for each object $c\in \mathcal{C}$, the collection of which define the
+              \textbf{components} of $\alpha$;
+        \item
+              for every map $f:c \rightarrow c^{\prime}$ in $\mathcal{C}$, the following square of morphisms in $\mathcal{D}$
+              \begin{equation*}
+                  \begin{tikzcd}
+                      c\arrow[d,"f"]\\
+                      c^\prime
+                  \end{tikzcd}
+                  \quad
+                  \begin{tikzcd}
+                      Fc \arrow[r, "\alpha_c"] \arrow[d, "Ff"'] & Gc \arrow[d, "Gf"] \\
+                      Fc^{\prime} \arrow[r, "\alpha_{c^{\prime}}"'] & Gc^{\prime}
+                  \end{tikzcd}
+              \end{equation*}
+              commutes.
+    \end{enumerate}
+    denoted by
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathcal{C} \arrow[rr, "G"', bend right] \arrow[rr, "F", bend left] & \Downarrow \alpha & \mathcal{D}
+        \end{tikzcd}
+    \end{equation*}
+    A \textbf{natural isomorphism} is a natural transformation $\alpha: F \Rightarrow G$ in which every component $\alpha_c$ is an isomorphism. In this case, the natural isomorphism may be depicted as $\alpha: F \cong G$.
+    \begin{remark}
+        The inverses of the component morphisms define the components of a natural isomorphism $\alpha^{-1}: G \Rightarrow F$. And $F \cong G$ in functor category $[\mathcal{C},\mathcal{D}]$.
+    \end{remark}
+\end{definition}
+
+
+\section{Equivalence of categories} % Equivalence of categories
+\begin{definition}
+    An \textbf{equivalence of categories} consists of
+    \begin{itemize}
+        \item
+              functors $F: \mathcal{C} \leftrightarrows \mathcal{D}: G$
+        \item
+              together with natural isomorphisms $\eta: 1_{\mathcal{C}} \cong G F$, $ \epsilon: F G \cong 1_{\mathcal{D}}$.
+    \end{itemize}
+    The $F$ is called an \textbf{equivalence} with \textbf{quasi-inverse} $G$ and categories $\mathcal{C}$ and $\mathcal{D}$ are called \textbf{equivalent}, written $\mathcal{C} \simeq \mathcal{D}$.
+    \begin{remark}
+        The notion of equivalence of categories defines an equivalence relation.
+    \end{remark}
+\end{definition}
+\begin{definition}
+    A functor $F: \mathcal{C} \rightarrow \mathcal{D}$ is
+    \begin{enumerate}
+        \item
+              \textbf{full} if for each $x, y \in \mathcal{C}$, the map $\mathcal{C}(x, y) \rightarrow \mathcal{D}(F x, F y)$ is surjective;
+        \item
+              \textbf{faithful} if for each $x, y \in \mathcal{C}$, the map $\mathcal{C}(x, y) \rightarrow \mathcal{D}(F x, F y)$ is injective;
+        \item
+              \textbf{essentially surjective on objects} if for every object $d \in \mathcal{D}$ there is some $c \in \mathcal{C}$ such that $d$ is isomorphic to $F c$.
+    \end{enumerate}
+\end{definition}
+
+
+
+\begin{theorem}[characterizing equivalences of categories]
+    A functor $F: \mathcal{C} \rightarrow \mathcal{D}$ defining an equivalence of categories iff $F$ is full, faithful, and essentially surjective on objects.
+    \begin{proof}
+        $(\Rightarrow)$
+        Suppose $F: \mathcal{C} \rightarrow \mathcal{D}$ is part of an equivalence of categories with quasi-inverse $G: \mathcal{D} \rightarrow \mathcal{C}$ and natural isomorphisms $\eta: 1_{\mathcal{C}} \cong G F, \epsilon: F G \cong 1_{\mathcal{D}}$.
+
+        To see that $F$ is essentially surjective on objects, let $d \in \mathcal{D}$ be any object.
+        Then $d \cong F(G d)$ via the component $\epsilon_d: F(G d) \rightarrow d$ of the natural isomorphism $\epsilon$.
+
+        To see that $F$ is full and faithful, let $x, y \in \mathcal{C}$ be any pair of objects.
+        We must show that the map
+        \begin{equation*}
+            F_{x, y}: \mathcal{C}(x, y) \rightarrow \mathcal{D}(F x, F y)
+        \end{equation*}
+        is a bijection.
+        For any morphism $g: F x \rightarrow F y$ in $\mathcal{D}$, define
+        \begin{equation*}
+            f:=\eta_y^{-1} \cdot G(g) \cdot \eta_x: x \rightarrow y .
+        \end{equation*}
+        Then
+        \begin{equation*}
+            F(f)=F\left(\eta_y^{-1}\right) \cdot F(G(g)) \cdot F\left(\eta_x\right)=\epsilon_{F y}^{-1} \cdot \epsilon_{F y} \cdot g \cdot \epsilon_{F x}^{-1} \cdot \epsilon_{F x}=g,
+        \end{equation*}
+        showing that $F_{x, y}$ is surjective.
+        To see that $F_{x, y}$ is injective, suppose that $f_1, f_2: x \rightarrow y$ are morphisms in $\mathcal{C}$ so that $F\left(f_1\right)=F\left(f_2\right)$. Then
+        \begin{equation*}
+            f_1=\eta_y^{-1} \cdot G\left(F\left(f_1\right)\right) \cdot \eta_x=\eta_y^{-1} \cdot G\left(F\left(f_2\right)\right) \cdot \eta_x=f_2,
+        \end{equation*}
+    \end{proof}
+\end{theorem}
+
+
+
+
+\begin{definition}
+    A category $\mathcal{C}$ is \textbf{skeletal} if it contains just one object in each isomorphism class.
+    The \textbf{skeleton} of a category $\mathcal{C}$ is the unique (up to isomorphism) skeletal category that is equivalent to $\mathcal{C}$, denoted by $\operatorname{sk}\mathcal{C}$.
+\end{definition}
+
+
+\begin{proposition}
+    The following constructions and definitions are equivalence invariant:
+    \begin{enumerate}
+        \item
+              If a category is \textbf{locally small}, any category equivalent to it is again locally small.
+        \item     If a category is a groupoid, any category equivalent to it is again a groupoid.
+        \item   If $\mathcal{C} \simeq \mathcal{D}$, then $\mathcal{C}^{\mathrm{op}} \simeq \mathcal{D}^{\mathrm{op}}$.
+        \item   The product of a pair of categories is equivalent to the product of any pair of equivalent categories.
+        \item   An arrow in C is an isomorphism if and only if its image under an equivalence $\mathcal{C} \xrightarrow{\simeq} \mathcal{D}$ is an isomorphism.
+    \end{enumerate}
+\end{proposition}
+
+
+A guiding principle in category theory is that categorically-defined concepts should be equivalence invariant. Some category theorists go so far as to call a definition "evil" if it is not invariant under equivalence of categories. The only evil definitions that have been introduced thus far are smallness and discreteness, as the following definition makes precise.
+
+\begin{definition}
+    Let $\mathcal{C}$ be a category.
+    \begin{enumerate}
+        \item  A category is \textbf{essentially small} if it is equivalent to a small category or, equivalently, if its skeleton is a small category.
+        \item A category is \textbf{essentially discrete} if it is equivalent to a discrete category.
+    \end{enumerate}
+\end{definition}
+
+
+\section{Diagram}
+\begin{definition}
+    A \textbf{diagram} in a category $\mathcal{C}$ is a functor $F: \mathcal{J} \rightarrow \mathcal{C}$ whose domain, the indexing category, is a small category.
+
+    A \textbf{commutative diagram} is a diagram $F: \mathcal{J} \rightarrow \mathcal{C}$ such that for every pair of objects $X, Y \in \mathcal{J}$ and every pair of morphisms $f, g: X \rightarrow Y$ in $\mathcal{J}$, we have $F f=F g$ in $\mathcal{C}$. It also means that for any two objects in the image of $F$, all morphisms between them obtained by composing the images of morphisms in $\mathcal{J}$ are equal.
+\end{definition}
+
+\begin{lemma}
+    If $U: \mathcal{C} \rightarrow \mathcal{D}$ is faithful, then any diagram in $\mathcal{C}$ whose image commutes in $\mathcal{D}$ also commutes in $\mathcal{C}$.
+\end{lemma}
+
+\begin{definition}
+    A \textbf{concrete category} is a category $\mathcal{C}$ equipped with a faithful functor $U: \mathrm{C} \rightarrow \mathrm{Set}$.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{The 2-category of categories}
+
+
+
+\begin{lemma}[vertical composition]
+    \label{lem: vertical composition}
+    Suppose $\alpha: F \Rightarrow G$ and $\beta: G \Rightarrow H$ are natural transformations between parallel functors $F, G, H: \mathcal{C} \rightarrow \mathcal{D}$.
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathcal{C}
+            \arrow[rr, bend left=50, "F"]
+            \arrow[rr,, "G"{yshift=-1ex},"\Downarrow \alpha"{yshift=1.5ex},"\Downarrow \beta"{yshift=-3.5ex}]
+            \arrow[rr, bend right=45, "H"']
+            &  &
+            \mathcal{D}
+        \end{tikzcd}
+    \end{equation*}
+    Then there is a natural transformation $\beta \cdot \alpha: F \Rightarrow H$ whose components
+    \begin{equation*}
+        (\beta \cdot \alpha)_c:=\beta_c \cdot \alpha_c
+    \end{equation*}
+    are defined to be the composites of the components of $\alpha$ and $\beta$.
+    \begin{proof}
+        For any morphism $f: c \rightarrow c^{\prime}$ in $\mathcal{C}$, we have the following commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                c\arrow[d,"f"']\\
+                c^\prime
+            \end{tikzcd}
+            \quad
+            \begin{tikzcd}
+                Fc \arrow[r, "\alpha_c"] \arrow[d, "Ff"'] & Gc \arrow[r, "\beta_c"] \arrow[d, "Gf"] & Hc \arrow[d, "Hf"] \\
+                Fc^{\prime} \arrow[r, "\alpha_{c^{\prime}}"'] & Gc^{\prime} \arrow[r, "\beta_{c^{\prime}}"'] & Hc^{\prime}
+            \end{tikzcd}
+        \end{equation*}
+        The outer rectangle commutes, showing that $\beta \cdot \alpha$ is a natural transformation.
+    \end{proof}
+\end{lemma}
+
+\begin{definition}
+    For any fixed pair of categories $\mathcal{C}$ and $\mathcal{D}$, there is a \textbf{functor category} $[\mathcal{C},\mathcal{D}]$(also denoted by $\mathcal{D}^{\mathcal{C}}$)
+    \begin{itemize}
+        \item
+              whose objects are functors $F:\mathcal{C} \rightarrow \mathcal{D}$
+
+        \item
+              and whose morphisms are natural transformations.
+
+              Given a functor $F: \mathcal{C} \rightarrow \mathcal{D}$, its identity natural transformation $1_F: F \Rightarrow F$ is the natural transformation whose components $\left(1_F\right)_c:=1_{F c}$ are identities.
+    \end{itemize}
+
+    \begin{remark}
+        The vertical composition of natural transformations defined in serves as the composition operation in the functor category $[\mathcal{C},\mathcal{D}]$.
+    \end{remark}
+\end{definition}
+
+
+\begin{lemma}[horizontal composition]
+    \label{lem: horizontal composition}
+    Given a pair of natural transformations
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathcal{C} \arrow[rr, "G"', bend right] \arrow[rr, "F", bend left] & \Downarrow \alpha & \mathcal{D} \arrow[rr, "K"', bend right] \arrow[rr, "H", bend left] & \Downarrow \beta & \mathcal{E}
+        \end{tikzcd}
+    \end{equation*}
+    there is a natural transformation $\beta * \alpha: H F \Rightarrow K G$ whose component at $c \in \mathcal{C}$ is defined as the composite of the following commutative square
+    \begin{equation*}
+        \begin{tikzcd}
+            H F c \arrow[r, "\beta_{Fc}"] \arrow[d, "H\alpha_c"'] \arrow[rd,dashed,description,"\left(\beta*\alpha\right)_c"] & K F c \arrow[d, "K\alpha_c"] \\
+            H G c \arrow[r, "\beta_{Gc}"']                          & K G c
+        \end{tikzcd}
+    \end{equation*}
+\end{lemma}
+
+
+\begin{lemma}[middle four interchange]
+    \label{lem: middle four interchange}
+    Given functors and natural transformations
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathcal{C}
+            \arrow[rr, bend left=50, "F"]
+            \arrow[rr,, "G"{yshift=-1ex},"\Downarrow \alpha"{yshift=1.5ex},"\Downarrow \beta"{yshift=-3.5ex}]
+            \arrow[rr, bend right=45, "H"']
+            &  &
+            \mathcal{D}
+            \arrow[rr, bend left=45, "J"]
+            \arrow[rr, "K"{yshift=-1ex},,"\Downarrow \gamma"{yshift=1.5ex},"\Downarrow \delta"{yshift=-3.5ex}]
+            \arrow[rr, bend right=45, "L"']&&
+            \mathcal{E}
+        \end{tikzcd}
+    \end{equation*}
+    the natural transformation $J F \Rightarrow L H$ defined by first composing vertically and then composing horizontally equals the natural transformation defined by first composing horizontally and then composing vertically:
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathcal{C} \arrow[rr,bend left ,"F"] \arrow[rr,bend right,"H"']&\Downarrow \beta \cdot \alpha &
+            \mathcal{D}\arrow[rr,bend left ,"J"] \arrow[rr,bend right,"L"']&\Downarrow \delta \cdot \gamma &
+            \mathcal{E}
+        \end{tikzcd}=
+        \begin{tikzcd}
+            \mathcal{C} \arrow[rr, bend left=50, "JF"]
+            \arrow[rr,, "KG"{yshift=-1ex},"\Downarrow \gamma*\alpha"{yshift=1.5ex},"\Downarrow \delta*\beta"{yshift=-3.5ex}]
+            \arrow[rr, bend right=45, "LH"'] &&\mathcal{E}
+        \end{tikzcd}
+    \end{equation*}
+\end{lemma}
+
+
+\begin{definition}
+    A \textbf{2-category} is comprised of:
+
+    \begin{itemize}
+        \item
+              objects $\mathcal{C},\mathcal{D},\ldots$
+        \item
+              1-morphisms between pairs of objects $F:\mathcal{C}\to \mathcal{D}$
+        \item
+              2 -morphisms between parallel pairs of 1 -morphisms $\begin{tikzcd}
+                      \mathcal{C} \arrow[rr, "G"', bend right] \arrow[rr, "F", bend left] & \Downarrow \alpha & \mathcal{D}
+                  \end{tikzcd}$
+    \end{itemize}
+    so that:
+    \begin{itemize}
+        \item
+              The objects and 1-morphisms form a category, with identities.
+        \item
+              For each fixed pair of objects $\mathcal{C}$ and $\mathcal{D}$, the 1-morphisms $F: \mathcal{C} \rightarrow \mathcal{D}$ and 2 -morphisms between such form a category under an operation called \textbf{vertical composition}, with identities $\begin{tikzcd}
+                      \mathcal{C} \arrow[rr, "F"', bend right] \arrow[rr, "F", bend left] & \Downarrow 1_F & \mathcal{D}
+                  \end{tikzcd}$
+        \item
+              There is also a category whose objects are the objects in which a morphism from $\mathcal{C}$ to $\mathcal{D}$ is a 2-cell $\begin{tikzcd}
+                      \mathcal{C} \arrow[rr, "G"', bend right] \arrow[rr, "F", bend left] & \Downarrow \alpha & \mathcal{D}
+                  \end{tikzcd}$ under an operation called \textbf{horizontal composition}, with identities $\begin{tikzcd}
+                      \mathcal{C} \arrow[rr, "1_C"', bend right] \arrow[rr, "1_C", bend left] & \Downarrow 1_{1_C} & \mathcal{C}
+                  \end{tikzcd}$.
+              The source and target 1-morphisms of a horizontal composition must have the form described in \cref{lem: horizontal composition}.
+        \item
+              The law of middle four interchange described in \cref{lem: middle four interchange} holds.
+    \end{itemize}
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Universal Properties} % Universal Properties
+\section{Representable functors}
+\begin{definition}
+    Let $\mathcal{C}$ be a locally small category. For each object $c \in \mathcal{C}$, there are two associated functors, called the \textbf{represented functors} or \textbf{hom-functors}:
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathcal{C} \arrow[rr, "{\mathcal{C}(c,-)}"] & & \mathbf{Set} \\
+            X \arrow[dd, "f"']    & \mapsto & \mathcal{C}(c, X)\arrow[dd, "f_*"'] \\
+            & \mapsto & \\
+            Y          &  \mapsto & \mathcal{C}(c, Y)
+        \end{tikzcd}
+        \quad \text{ and  } \quad
+        \begin{tikzcd}
+            \mathcal{C}^{\mathrm{op}} \arrow[rr, "{\mathcal{C}(-,c)}"] & & \mathbf{Set} \\
+            A \arrow[dd, "f"']    & \mapsto & \mathcal{C}(A, c) \\
+            & \mapsto & \\
+            B          &  \mapsto & \mathcal{C}(B, c)\arrow[uu, "f^*"']
+        \end{tikzcd}
+    \end{equation*}
+    denoted by $h^c:=\mathcal{C}(c,-)$ and $h_c:=\mathcal{C}(-,c)$ respectively. \begin{remark}
+        In this definition, $f_*=h^c(f)$ and $f^*=h_c(f)$.
+
+        Furthermore, if $f:A\rightarrow B$ in $\mathcal{C}$, then $f_*:h^A\Rightarrow h^B$ be the natural transformation defined by post-composition with $f$
+    \end{remark}
+\end{definition}
+\begin{definition}
+    Let $\mathcal{C}$ be a locally small category and a covariant or contravariant functor $F$.
+    \begin{enumerate}
+        \item
+              The functor $F$ is said to be \textbf{representable} if $F$ is natural isomorphric to  $\mathcal{C}\left( c,- \right)$ or $\mathcal{C}\left( -,c \right)$ for some $c\in \mathcal{C}$, in which case one says that the functor $F$ is \textbf{represented by $c$}.
+
+        \item
+              A \textbf{representation} for a functor $F$ is a choice of object $c \in \mathcal{C}$ together with a specified natural isomorphism $\mathcal{C}(c,-) \cong F$, if $F$ is covariant, or $\mathcal{C}(-, c) \cong F$, if $F$ is contravariant.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    Let $\mathcal{C}$ be a locally small category and $F: \mathcal{C}^{\mathrm{op}} \rightarrow \Set$ a functor.
+    The $\Nat\left(h_\square, F\right)$ is a contravariant functor $\mathcal{C}^{\mathrm{op}} \rightarrow \Set$ defined as follows:
+    \begin{itemize}
+        \item
+              An object $A \in \mathcal{C}$ is sent to the set $\Nat\left(h_A, F\right)$.
+        \item
+              As a morphism $f: A \rightarrow B$ in $\mathcal{C}$, the function $\Nat\left(h_\square, F\right)\left(f\right): \Nat\left(h_{B}, F\right)\rightarrow \Nat\left(h_A, F\right)$ is defined as follows:
+
+              \begin{equation*}
+                  \begin{tikzcd}
+                      X\arrow[d,"\varphi"']&\mathcal{C}(X,A)\arrow[r,"f_*"]&\mathcal{C}(X,B)\arrow[r,"\eta_X"]&F\left(X\right)\\
+                      Y&\mathcal{C}(Y,A)\arrow[u,"\varphi^*"]\arrow[r,"f_*"]&\mathcal{C}(Y,B)\arrow[u,"\varphi^*"]\arrow[r,"\eta_Y"]&F\left(Y\right)\arrow[u,""]
+                  \end{tikzcd}
+              \end{equation*}
+              for every natural transformation $\eta: h_B \Rightarrow F$, the $\Nat\left(h_\square, F\right)\left(f\right)(\eta):=\eta\circ f_* $
+    \end{itemize}
+\end{proposition}
+
+
+\begin{definition}
+    For any categories $\mathcal{C}$ and $\mathcal{D}$, there is a category $\mathcal{C} \times \mathcal{D}$, their product,
+    whose
+    \begin{itemize}
+        \item
+              objects are ordered pairs $\left(c, d\right)$, where $c$ is an object of $\mathcal{C}$ and $d$ is an object of $\mathcal{D}$,
+        \item
+              morphisms are ordered pairs $(f, g):(c, d) \rightarrow\left(c^{\prime}, d^{\prime}\right)$, where $f: c \rightarrow c^{\prime} \in \mathcal{C}$ and $g: d \rightarrow d^{\prime} \in \mathcal{D}$, and
+        \item
+              in which composition and identities are defined componentwise.
+    \end{itemize}
+\end{definition}
+
+
+
+\begin{definition}
+    If $\mathcal{C}$ is locally small, then there is a \textbf{two-sided represented functor}
+    \begin{equation*}
+        \mathcal{C}(-,-): \mathcal{C}^{\mathrm{op}} \times \mathcal{C} \rightarrow \mathbf{Set}
+    \end{equation*}
+    defined in the evident manner.
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              An object pair $(x, y) \in \mathcal{C}^{\mathrm{op}} \times \mathcal{C}$ is sent to the set $\mathcal{C}(x, y)$.
+        \item
+              A pair of morphisms $f: w \rightarrow x$ and $h: y \rightarrow z$ is sent to the function
+              \begin{equation*}
+                  \begin{tikzcd}
+                      \mathcal{C}(x, y) \arrow[rr, "{\left(f^* ,h_*\right)}"] & & \mathcal{C}(w, z) \\
+                      g     & \mapsto  & h g f
+                  \end{tikzcd}
+              \end{equation*}
+    \end{enumerate}
+\end{definition}
+
+
+
+
+\section{Yoneda lemma} % Yoneda lemma
+
+\begin{theorem}[Yoneda lemma (contravariant version)]
+    Let $\mathcal{C}$ be a locally small category and functor $F: \mathcal{C}^{\mathrm{op}} \rightarrow \Set$, there exists a natural isomorphism $\Phi$
+    \begin{equation*}
+        \Phi:\operatorname{Nat}(h_{\square}, F)\cong F\left(\square\right) \text{ in } \Set^{\mathcal{C}^{\mathrm{op}}}
+    \end{equation*}
+    \begin{remark}
+        Thus, for any $A\in \mathcal{C}$ there is a bijection
+        \begin{equation*}
+            \operatorname{Nat}(\mathcal{C}(-,A), F) \cong F \left(A\right)
+        \end{equation*}
+        with bijective $\Phi_A$, such that each natural transformation $\eta: \mathcal{C}(-,A) \Rightarrow F$ corresponds to an element $x \in F \left(A\right)$ via the rule
+        \begin{equation*}
+            \begin{array}{ccccc}
+                \begin{array}{cc}
+                    \begin{tikzcd}
+                        X \arrow[d,"\phi"']&\mathcal{C}(X,A) \arrow[r, "\eta_X"]& F \left(X\right)  \\
+                        Y&\mathcal{C}(Y,A) \arrow[u,"\phi^*"] \arrow[r, "\eta_Y"] & F \left(Y\right)\arrow[u,"F\phi"]
+                    \end{tikzcd}
+                    \\
+                    \text{s.t. } \eta_X\left(\varphi\right) = F\phi(x) \text{ where } X \in \Obj(\mathcal{C}), \varphi \in \mathcal{C}(X,A)
+                \end{array}
+                \quad & \leftrightsquigarrow & \quad & \quad & x\in F \left(A\right)
+            \end{array}
+        \end{equation*}
+    \end{remark}
+\end{theorem}
+
+
+\begin{corollary}[Yoneda embedding]
+    The functors define full and faithful embeddings.
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathcal{C} \arrow[rr,hook, ""] & & \mathbf{Set}^{\mathcal{C}^{\mathrm{op}}} \\
+            c \arrow[dd, "f"']    & \mapsto & \mathcal{C}(-, c) \arrow[dd, "f_*"']\\
+            & \mapsto & \\
+            d          &  \mapsto & \mathcal{C}(-, d)
+        \end{tikzcd}
+        \quad \quad
+        \begin{tikzcd}
+            \mathcal{C}^{\mathrm{op}} \arrow[rr,hook, ""] & & \mathbf{Set}^{\mathcal{C}} \\
+            c \arrow[dd, "f"']    & \mapsto & \mathcal{C}(c, -) \\
+            & \mapsto & \\
+            d          &  \mapsto & \mathcal{C}(d, -)\arrow[uu, "f^*"']
+        \end{tikzcd}
+    \end{equation*}
+\end{corollary}
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Universal properties and universal elements}
+
+
+\begin{definition}
+    In a locally small category $\mathcal{C}$, any pair of isomorphic objects $x \cong y$ are \textbf{representably isomorphic}, meaning that $\mathcal{C}(-, x) \cong \mathcal{C}(-, y)$ and $\mathcal{C}(x,-) \cong \mathcal{C}(y,-)$.
+\end{definition}
+
+
+
+\begin{proposition}
+    Consider a pair of objects $x$ and $y$ in a locally small category $\mathcal{C}$.
+    \begin{enumerate}
+        \item
+              If either the co- or contravariant functors represented by $x$ and $y$ are naturally isomorphic, then $x$ and $y$ are isomorphic.
+        \item
+              In particular, if $x$ and $y$ represent the same functor, then $x$ and $y$ are isomorphic.
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{definition}
+    Let $\mathcal{C}$ be a locally small category.
+    \begin{enumerate}
+        \item
+              If functor $F:\mathcal{C}\to\Set$ is representable by some object $U$, then the Yoneda lemma guarantees that
+              $\operatorname{Nat}(\mathcal{C}(U,-), F) \cong F \left(U\right)$
+              and a \textbf{universal element} $ u\in F\left(U\right)$ corresponds to a natural isomorphism
+              \begin{equation*}
+                  \mathcal{C}(U,-)\cong^{\eta^u} F
+              \end{equation*}
+
+
+              Such a pair $(U, u)$ is called a \textbf{universal element} of the functor $F$.
+        \item
+
+    \end{enumerate}
+\end{definition}
+
+
+\section{}
+
+\begin{definition}
+    The \textbf{category of elements} $\int F$ of a covariant functor $F: \mathcal{C} \rightarrow \Set$ has
+    \begin{itemize}
+        \item
+              as objects, pairs $\left(c, x\right)$ where $c \in \mathcal{C}$ and $x \in F c$, and
+        \item
+              a morphism $\left(c, x\right) \rightarrow\left(c^{\prime}, x^{\prime}\right)$ is a morphism $f: c \rightarrow c^{\prime}$ in $\mathcal{C}$ so that $F f(x)=x^{\prime}$.
+    \end{itemize}
+    The category of elements has an evident forgetful functor $\Pi: \int F \rightarrow \mathcal{C}$.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Limits}
+\minitoc
+
+\section{Limits}
+\begin{definition}
+    Recall that a \textbf{diagram} of shape $\mathcal{J}$ in a category $\mathcal{C}$ is a functor $F: \mathcal{J}\to\mathcal{C}$.
+\end{definition}
+
+
+\begin{definition}
+    Let $\mathcal{C}$ be a category and $\mathcal{J}$ be a category.
+    \begin{enumerate}
+        \item
+              For any object $c\in\mathcal{C}$, the \textbf{constant functor} $\Delta c:\mathcal{J}\to\mathcal{C}$ sends every object of $\mathcal{J}$ to $c$ and every morphism in $\mathcal{J}$ to $1_c$
+        \item
+              The constant functors define an embedding \textbf{diagonal functor} $\Delta:\mathcal{C}\to\mathcal{C}^{\mathcal{J}}$ that sends an object $c$ to the constant functor $\Delta c$ and a morphism $f:c\to c^\prime$ to the constant natural transformation, in which each component is defined to be the morphism $f.$
+    \end{enumerate}
+
+\end{definition}
+
+
+
+
+
+\subsection{Cone and limit} % Cone and limit
+\begin{definition}
+    A \textbf{cone over a diagram} $F:\mathcal{J} \to \mathcal{C}$ with \textbf{summit} (or \textbf{apex} ) $c\in\mathcal{C}$ is a natural transformation $\lambda:\Delta c\Rightarrow F$.
+    The components $(\lambda_j:c\to Fj)_{j\in\mathcal{J}}$ are called the \textbf{leg}s of the cone.
+    \begin{remark}
+        Explicitly: the data of a cone over $F: \mathcal{J} \rightarrow \mathcal{C}$ with summit $c$ consists of
+        \begin{itemize}
+            \item
+                  a collection of morphisms $\lambda_j: c \rightarrow F j$, indexed by the objects $j \in \mathcal{J}$.
+            \item
+                  for each morphism $f: j \rightarrow k$ in $\mathcal{J}$ , the following triangle commutes in $\mathcal{C}$ :
+                  \begin{equation*}
+                      \begin{tikzcd}
+                          &c\arrow[ld,"\lambda_j"']\arrow[rd,"\lambda_k"]&\\
+                          Fj\arrow[rr,"Ff"]&&Fk
+                      \end{tikzcd}
+                  \end{equation*}
+        \end{itemize}
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    All cone over a diagram $F$ form a category $\mathbf{Cone}\left(F\right)$ \begin{itemize}
+        \item
+              whose objects are cones over $F$
+        \item
+              whose morphisms are morphisms between the summits that commute with the legs of the cones, i.e., a  morphism $\left(c,\lambda\right)\to \left(c^\prime,\lambda^\prime\right)$ is a morphism $f:c\to c^\prime$ in $\mathcal{C}$ such that the following diagram
+              \begin{equation*}
+                  \begin{tikzcd}
+                      &c\arrow[d,"f"]\arrow[ldd,"\lambda_j"']&\\
+                      & c^\prime\arrow[ld,"\lambda^\prime_j"] &\\
+                      Fj &&
+                  \end{tikzcd}
+              \end{equation*}
+              commutes for every object $j\in\mathcal{J}$.
+    \end{itemize}
+\end{definition}
+
+
+\begin{definition}
+    The \textbf{cone functor} $\operatorname{Cone}(-, F): \mathcal{C}^{\mathrm{op}} \rightarrow  \Set$
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathcal{C}^{\mathrm{op}} \arrow[rr, "{\operatorname{Cone}(-, F)}"] & & \mathbf{Set} \\
+            c \arrow[dd,"f"'] & \mapsto & \operatorname{Cone}(c, F) \\
+            &\mapsto & \\
+            c^\prime& \mapsto & \operatorname{Cone}(c^\prime, F) \arrow[uu,"f^*"']
+        \end{tikzcd}
+    \end{equation*}
+    where $\operatorname{Cone}(c, F)$ is the set of cones over $F$ with summit $c$,
+    and for any morphism $f:  c\rightarrow c^{\prime}$, the morphism $\operatorname{Cone}\left(f,F\right)=f^*$ defined by precomposition with $f$ by the rule
+    \begin{equation*}
+        f^*\left(\cdots
+        \begin{tikzcd}
+            &c^\prime\arrow[ld,"\lambda_i"']\arrow[rd,"\lambda_j"]&\\
+            Fi\arrow[rr,""]&&Fj
+        \end{tikzcd}
+        \cdots\right)
+        =\cdots
+        \begin{tikzcd}
+            &c\arrow[ld,"\lambda_if"']\arrow[rd,"\lambda_jf"]&\\
+            Fi\arrow[rr,""]&&Fj
+        \end{tikzcd}
+        \cdots
+    \end{equation*}
+\end{definition}
+
+
+\begin{definition}
+    For any diagram $F: \mathcal{J} \rightarrow \mathcal{C}$,
+    the \textbf{limit} of $F$ is a representation for $\operatorname{Cone}(-, F)$, denoted by $\mathcal{C}\left(-, \lim F\right)$.
+
+
+
+
+
+
+
+
+
+
+
+    \begin{remark}
+        By the Yoneda lemma,
+        $\operatorname{Nat}\left(\mathcal{C}\left(-,\lim F\right),\operatorname{Cone}\left(-,F\right)\right)
+            \cong
+            \operatorname{Cone}\left(\lim F,F\right)$
+        and a natural isomorphism $\eta^\lambda $ where $\lambda \in \operatorname{Cone}\left(\lim F,F\right)$
+        \begin{equation*}
+            \mathcal{C}\left(-,\lim F\right)
+            \cong^{\eta^{\lambda}}
+            \operatorname{Cone}\left(-,F\right)
+        \end{equation*}
+        The $\lim F$ is called the \textbf{universal element} of functor $\operatorname{Cone}(-, F)$
+        and \textbf{universal cone} $\lambda: \Delta\lim F \Rightarrow F$, called the \textbf{limit cone}, that is, the following equivalent conditions hold:
+        \begin{enumerate}
+            \item  for any other cone $\mu:\Delta c\Rightarrow F$, there exists a unique morphism $f:c\to \lim F$ such that the following diagram commutes:
+                  \begin{equation*}
+                      \cdots
+                      \begin{tikzcd}
+                          &\arrow[ldd,bend right=25,"\mu_j"']c\arrow[d,dashed,"\exists!\, f"]\arrow[rdd,bend left=25,"\mu_k"]&\\
+                          &\arrow[ld,"\lambda_j"]  \lim F\arrow[rd,"\lambda_k"'] &\\
+                          Fj &&Fk
+                      \end{tikzcd}
+                      \cdots
+                  \end{equation*}
+            \item
+                  $\lambda: \Delta\lim F \Rightarrow F $ is the terminal object in the category $\mathbf{Cone}\left(F\right)$.
+        \end{enumerate}
+
+    \end{remark}
+\end{definition}
+
+
+
+
+
+
+
+\subsection{Terminal objects}
+\begin{definition}
+    Let $\mathcal{C}$ be a category and $c\in \cal C$.
+    The object $c$ is \textbf{terminal} if $ c $ is universal element of the empty diagram $\varnothing \to \mathcal{C}$.
+\end{definition}
+\begin{proposition}
+    The following conditions on an object $c$ in a category $\mathcal{C}$ are equivalent:
+    \begin{enumerate}
+        \item
+              $c$ is terminal.
+        \item
+              $\#\mathcal{C}\left(A,c\right)=1 $ for all objects $A\in \mathcal{C}$, that is, there is exactly one morphism from $A$ to $c$.
+    \end{enumerate}
+\end{proposition}
+
+
+\subsection{Products}
+
+\begin{definition}
+    Let $\mathcal{C}$ be a category and $\left\{A_j\right\}_{j \in \mathcal{J}}$ be a family of objects in $\mathcal{C}$ indexed by a discrete category $\mathcal{J}$ (thus a diagram).
+    The \textbf{product} of $\left\{A_j\right\}$ is a limit of the diagram.
+    The limit is typically denoted by $\prod_{j \in \mathcal{J}} A_j$ and the legs of the limit cone are maps
+    \begin{equation*}
+        \left(\pi_k: \prod_{j \in \mathcal{J}} A_j \rightarrow A_k\right)_{k \in \mathcal{J}}
+    \end{equation*}
+    called \textbf{projections}.
+\end{definition}
+
+
+
+\subsection{Pullbacks}
+\begin{definition}
+    Let $\mathcal{C}$ be a category and given a diagram
+    \begin{equation*}
+        \begin{tikzcd}
+            A_1 \arrow[r,"f_1"]& B&\arrow[l,"f_2"'] A_2
+        \end{tikzcd}
+    \end{equation*}
+    indexed by $\bullet \rightarrow \bullet \leftarrow \bullet$.
+    A \textbf{pullback} is a limit of the diagram.
+
+    \begin{remark}
+        The universal property asserts that for any object $X$ with morphisms $q_1: X\to A_1$ and $q_2: X\to A_2$ such that $f_1q_1=f_2q_2$, there exists a unique morphism $u: X\to P$ such that the following diagram commutes:
+        \begin{equation*}
+            \begin{tikzcd}
+                X \arrow[ddr,bend right=20,"q_1"']\arrow[drr,bend left=20,"q_2"]\arrow[rd,dashed,"\exists! u"]& &\\
+                &P \arrow[d,"p_1"]\arrow[r,"p_2"]&  A_2\arrow[d,"f_2"]\\
+                &A_1\arrow[r,"f_1"]&  B\\
+            \end{tikzcd}
+        \end{equation*}
+        The leg $P\to B$ is determined by either of the other two legs via $f_1p_1=f_2p_2$.
+    \end{remark}
+\end{definition}
+
+\subsection{Equalizer}
+\begin{definition}
+    Let $\mathcal{C}$ be a category and $f,g: A \to B$.
+    An \textbf{equalizer} (or \textbf{difference kernel}) of $f$ and $g$ is the limit (pullback) of the diagram
+    \begin{equation*}
+        \begin{tikzcd}
+            A \arrow[r, shift left, "f"] \arrow[r, shift right, swap, "g"] & B
+        \end{tikzcd}
+    \end{equation*}
+    \begin{remark}
+        We usually usually identify the equalizer with the leg of the limit cone. That is, an equalizer of $f$ and $g$ is an object $E$ together with a morphism
+        \begin{equation*}
+            h : E \to A
+        \end{equation*}
+        such that:
+        \begin{enumerate}[label=(\roman*)]
+            \item
+                  $f \circ h = g \circ h$;
+            \item
+                  For every object $X$ with a morphism $\phi : X \to A$ satisfying $f \circ \phi = g \circ \phi$,
+                  there exists a unique morphism $k : X \to E$ such that $h \circ \bar{\phi} = \phi$.
+        \end{enumerate}
+        We depict this situation by the diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                X \arrow[dashed, d, "\exists!\,\bar{\phi}"'] \arrow[rd, "\phi"] \arrow[rrd, bend left, "f\circ -\, = \, g\circ-"] & & \\
+                E \arrow[r, "h"] & A \arrow[r, shift left, "f"] \arrow[r, shift right, swap, "g"] & B
+            \end{tikzcd}
+        \end{equation*}
+        and call it an \textbf{equalizer diagram}.
+        The diagram is commutative except that, in general, $f \neq g$.
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    The \textbf{kernel} of $f:A \to B$ is an equalizer of $f$ and $0_{A,B}$.
+\end{definition}
+
+\subsection{Inverse limit}
+\begin{definition}
+    A \textbf{directed set} is a nonempty partially ordered set $\left(\mathcal{I},\leq\right)$ such that for every pair $i,j\in \mathcal{I}$, there exists $k\in \mathcal{I}$ such that $i\leq k$ and $j\leq k$.
+    \begin{remark}
+        Thus $\mathcal{I}$ becomes a category in which there is a unique morphism $i\to j$ if and only if $i\leq j$.
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    Let $\mathcal{C}$ be a category and $\left(\mathcal{I},\leq\right)$ be a directed set.
+    \begin{enumerate}
+        \item
+              A \textbf{inverse system} in $\mathcal{C}$ indexed by $\mathcal{I}$ is a diagram $F:\mathcal{I}^{\op}\to\mathcal{C}$.
+        \item
+              An \textbf{inverse limit} (or \textbf{projective limit}) is a limit of such a diagram.
+    \end{enumerate}
+\end{definition}
+
+
+\section{Colimit}
+\begin{definition}
+    A \textbf{cocone under a diagram} $F:\mathcal{J} \to \mathcal{C}$ with \textbf{base} (or \textbf{apex}) $c\in\mathcal{C}$ is a natural transformation $\lambda:F\Rightarrow \Delta c$.
+    The components $(\lambda_j:Fj\to c)_{j\in\mathcal{J}}$ are called the \textbf{legs} of the cocone.
+    \begin{remark}
+        Explicitly: the data of a cocone under $F: \mathcal{J} \rightarrow \mathcal{C}$ with base $c$ consists of
+        \begin{itemize}
+            \item
+                  a collection of morphisms $\lambda_j: F j \rightarrow c$, indexed by the objects $j \in \mathcal{J}$.
+            \item
+                  for each morphism $f: j \rightarrow k$ in $\mathcal{J}$, the following triangle commutes in $\mathcal{C}$:
+                  \begin{equation*}
+                      \begin{tikzcd}
+                          Fj\arrow[rr,"Ff"]\arrow[rd,"\lambda_j"']&&Fk\arrow[ld,"\lambda_k"]\\
+                          &c&
+                      \end{tikzcd}
+                  \end{equation*}
+        \end{itemize}
+    \end{remark}
+\end{definition}
+
+
+\begin{definition}
+    All cocones under a diagram $F$ form a category $\mathbf{Cocone}(F)$:
+    \begin{itemize}
+        \item
+              whose objects are cocones under $F$,
+        \item
+              whose morphisms are morphisms between the apices that commute with the legs of the cocones, i.e.\ a morphism
+              $f_*:\left(c,\lambda\right)\to \left(c^\prime,\lambda^\prime\right)$
+              is a morphism $f:c\to c^\prime$ in $\mathcal{C}$ such that the following diagram
+              \begin{equation*}
+                  \begin{tikzcd}
+                      Fj\arrow[rd,"\lambda_j"']\arrow[rrd,bend left=10,"\lambda_j'"]& &\\
+                      &c\arrow[r,"f"']&c^\prime
+                  \end{tikzcd}
+              \end{equation*}
+              commutes for every object $j\in\mathcal{J}$.
+    \end{itemize}
+\end{definition}
+
+
+
+\begin{definition}
+    The \textbf{cocone functor}
+    \[
+        \operatorname{Cocone}(F,-): \mathcal{C} \to \mathbf{Set}
+    \]
+    is defined by
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathcal{C} \arrow[rr, "{\operatorname{Cocone}(F,-)}"] & & \mathbf{Set} \\
+            c \arrow[dd,"f"'] & \mapsto & \operatorname{Cocone}(F,c) \arrow[dd,"f_*"']\\
+            &\mapsto & \\
+            c^\prime& \mapsto & \operatorname{Cocone}(F,c^\prime)
+        \end{tikzcd}
+    \end{equation*}
+    where $\operatorname{Cocone}(F,c)$ is the set of cocones under $F$ with base $c$,
+    and for any morphism $f:  c\rightarrow c^{\prime}$, the map $\operatorname{Cocone}(F,f)=f_*$ is defined by postcomposition with $f$ according to
+    \begin{equation*}
+        f_*\left(\cdots
+        \begin{tikzcd}
+            Fi\arrow[rr,""]\arrow[rd,"\lambda_i"']&&Fj\arrow[ld,"\lambda_j"]\\
+            &c&
+        \end{tikzcd}
+        \cdots\right)
+        =\cdots
+        \begin{tikzcd}
+            Fi\arrow[rr,""]\arrow[rd,"f\lambda_i"']&&Fj\arrow[ld,"f\lambda_j"]\\
+            &c^\prime&
+        \end{tikzcd}
+        \cdots
+    \end{equation*}
+\end{definition}
+
+
+\subsection{Colimit}
+\begin{definition}
+    For any diagram $F: \mathcal{J} \rightarrow \mathcal{C}$,
+    a \textbf{colimit} of $F$ is a representation for the functor $\operatorname{Cocone}(F,-)$.
+    \begin{remark}
+        By the Yoneda lemma,
+        $\operatorname{Nat}\!\left(\mathcal{C}(\operatorname{colim} F,-),\,\operatorname{Cocone}(F,-)\right)
+            \;\cong\;
+            \operatorname{Cocone}(F,\operatorname{colim} F).$
+        and a natural isomorphism $\eta^\lambda $ where $\lambda \in \operatorname{Cocone}(F,\operatorname{colim} F)$
+        \begin{equation*}
+            \mathcal{C}(\operatorname{colim} F,-)
+            \cong^{\eta^{\lambda}}
+            \operatorname{Cocone}(F,-)
+        \end{equation*}
+        Thus $\left(\operatorname{colim} F,\lambda: F\Rightarrow \Delta(\operatorname{colim} F)\right)$ is the universal element of the functor $\operatorname{Cocone}(F,-)$,
+        that is, the \textbf{colimit cocone}.
+        Equivalently, the following conditions hold:
+        \begin{enumerate}
+            \item For any other cocone $\mu:F\Rightarrow \Delta c$, there exists a unique morphism $f:\operatorname{colim} F\to c$ such that the following diagram commutes for every object $j\in\mathcal{J}$:
+                  \begin{equation*}
+                      \begin{tikzcd}
+                          Fj\arrow[rd,"\lambda_j"']\arrow[rdd,bend right=15,"\mu_j"']&\\
+                          &\operatorname{colim} F\arrow[d,dashed,"\exists!\,f"]\\
+                          &c
+                      \end{tikzcd}
+                  \end{equation*}
+            \item
+                  $\lambda: F \Rightarrow \Delta(\operatorname{colim} F)$ is the initial object in the category $\mathbf{Cocone}(F)$.
+        \end{enumerate}
+    \end{remark}
+\end{definition}
+
+\subsection{Initial objects}
+\subsection{Coproduct}
+\subsection{Pushout}
+\begin{definition}
+    Let $\mathcal{C}$ be a category and given a diagram
+    \begin{equation*}
+        \begin{tikzcd}
+            B_1 & \arrow[l,"f_1"']A\arrow[r,"f_2"] &  B_2
+        \end{tikzcd}
+    \end{equation*}
+    indexed by $\bullet \leftarrow \bullet \rightarrow \bullet$.
+    A \textbf{pushout} is a colimit of the diagram.
+    \begin{remark}
+        \begin{equation*}
+            \begin{tikzcd}
+                A \arrow[r,"f_2"] \arrow[d,"f_1"'] & B_2\arrow[ddr,bend left=20,""] \arrow[d,"\iota_2"]& \\
+                B_1 \arrow[rrd,bend right=20,""]\arrow[r,"\iota_1"'] & P \arrow[rd,dashed,""]&\\
+                && Y
+            \end{tikzcd}
+        \end{equation*}
+    \end{remark}
+\end{definition}
+\subsection{Coequalizer}
+
+\begin{definition}
+    Let $\mathcal{C}$ be a category and $f,g: A \to B$.
+    A \textbf{coequalizer} of $f$ and $g$ is the colimit (pushout) of the diagram
+    \begin{equation*}
+        A\xrightarrow{f} B \xleftarrow{g} A
+    \end{equation*}
+    \begin{remark}
+        We usually identify the coequalizer with the leg of the colimit cocone. That is, a coequalizer of $f$ and $g$ is an object $C$ together with a morphism
+        \begin{equation*}
+            p : B \to C
+        \end{equation*}
+        such that:
+        \begin{enumerate}[label=(\roman*)]
+            \item
+                  $p \circ f = p \circ g$;
+            \item
+                  For every object $Y$ with a morphism $\phi : B \to Y$ satisfying $\phi \circ f = \phi \circ g$,
+                  there exists a unique morphism $k : C \to Y$ such that $k \circ p = \phi$.
+        \end{enumerate}
+        We depict this situation by the diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                A \arrow[rrd,bend right=25,""]\arrow[r, shift left, "f"] \arrow[r, shift right, swap, "g"] & B \arrow[r, "p"] \arrow[rd, "\phi"'] & C \arrow[d, dashed, "\exists!\, \bar{\phi}"] \\
+                & & Y
+            \end{tikzcd}
+        \end{equation*}
+        and call it a \textbf{coequalizer diagram}.
+        The diagram is commutative except that, in general, $f \neq g$.
+    \end{remark}
+\end{definition}
+
+
+\begin{definition}
+    The \textbf{cokernel} of $f:A\to B$ is a coequalizer of $f$ and $0_{A,B}$.
+    \begin{remark}
+        That is, an object $\Coker\left( f \right)$ together with a morphism $\pi : B \rightarrow \Coker\left( f \right)$ such that:
+        \begin{enumerate}[label=(\roman*)]
+            \item
+                  $\pi \circ f=0$
+            \item
+                  for every $g: B \rightarrow Y$ with $g \circ f=0$, there exists a unique $\bar{g}: C \rightarrow Y$ with $\bar{g} \circ \pi=g$.
+        \end{enumerate}
+        \begin{equation*}
+            \begin{tikzcd}
+                A \arrow[rr,"f"] \arrow[rrrrdd,"0"']&&B\arrow[rr,"\pi"] \arrow[ddrr,"g"]&& \Coker\left( f \right)\arrow[dd,dashed,"\exists!\bar{g}"]\\
+                &&&&\\
+                &&&&Y
+            \end{tikzcd}
+        \end{equation*}
+    \end{remark}
+\end{definition}
+
+
+\subsection{Direct limit}
+\begin{definition}
+    Let $\mathcal{C}$ be a category and $\left(\mathcal{I},\leq\right)$ be a directed set.
+    \begin{enumerate}
+        \item
+              A \textbf{direct system} in $\mathcal{C}$ indexed by $\mathcal{I}$ is a diagram $F:\mathcal{I}\to\mathcal{C}$.
+        \item
+              A \textbf{direct limit} (or \textbf{inductive limit}) is a colimit of such a diagram.
+    \end{enumerate}
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Adjoint}
+
+
+\begin{definition}
+    Let $\mathcal{C} \underset{G}{\stackrel{F}{\rightleftarrows}} \mathcal{D}$ be categories and functors. We say that $F$ is \textbf{left adjoint} to $G$, and $G$ is \textbf{right adjoint} to $F$, and write $F \dashv G$, if
+    \begin{equation*}
+        \mathcal{D}(Fc, d) \cong \mathcal{C}(c, Gd)
+    \end{equation*}
+    naturally in both $c \in \mathcal{C}$ and $d \in \mathcal{D}$.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

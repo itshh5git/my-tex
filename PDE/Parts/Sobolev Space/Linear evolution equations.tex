@@ -1,0 +1,210 @@
+\chapter{Linear Evolution Equations}
+\minitoc
+
+For this chapter we assume domain $U$ to be an open, bounded subset of $\mathbb{R}^n$ and set $U_T=U \times(0, T]$ for some fixed time $T>0$.
+
+\section{Second-order parabolic equations}
+% Second-order parabolic equations
+
+\subsection{Weak solution} % Weak solution
+
+\begin{definition}
+    We will first study the initial/boundary-value problem
+    \begin{equation*}
+        \left\{\begin{aligned}
+            u_t+L u=f & \text { in } U_T                     \\
+            u=0       & \text { on } \partial U \times[0, T] \\
+            u=g       & \text { on } U \times\{t=0\}
+        \end{aligned}\right.
+    \end{equation*}
+    where $f: U_T \rightarrow \mathbb{R}$ and $g: U \rightarrow \mathbb{R}$ are given and $u: \bar{U}_T \rightarrow \mathbb{R}$ is the unknown, $u=u(x, t)$.
+    The letter $L$ denotes for each time $t$ a second-order partial differential operator, having either the divergence form
+    \begin{equation*}
+        L u=-\sum_{i, j=1}^n\left(a^{i j}(x, t) u_{x_i}\right) x_j+\sum_{i=1}^n b^i(x, t) u_{x_i}+c(x, t) u
+    \end{equation*}
+    or else the nondivergence form
+    \begin{equation*}
+        L u=-\sum_{i, j=1}^n a^{i j}(x, t) u_{x_i x_j}+\sum_{i=1}^n b^i(x, t) u_{x_i}+c(x, t) u
+    \end{equation*}
+    for given coefficients $a^{i j}, b^i, c(i, j=1, \ldots, n)$.
+\end{definition}
+
+\begin{definition}
+    We say that the partial differential operator $\frac{\partial}{\partial t}+L$ is \textbf{(uniformly) parabolic} if there exists a constant $\theta>0$ such that
+    \begin{equation*}
+        \sum_{i, j=1}^n a^{i j}(x, t) \xi_i \xi_j \geq \theta|\xi|^2
+    \end{equation*}
+    for all $(x, t) \in U_T, \xi \in \mathbb{R}^n$.
+\end{definition}
+
+\begin{definition}
+    We consider first the case that $L$ has the divergence form and try to find an appropriate notion of weak solution for the initial/boundaryvalue problem.
+    We assume for now that
+    \begin{equation*}
+        a^{i j}, b^i, c \in L^{\infty}\left(U_T\right)
+    \end{equation*}
+    \begin{equation*}
+        f \in L^2\left(U_T\right)
+    \end{equation*}
+    \begin{equation*}
+        g \in L^2(U)
+    \end{equation*}
+    We will also always suppose $a^{i j}=a^{j i}(i, j=1, \ldots, n)$.
+    Let us now define the time-dependent bilinear form
+    \begin{equation*}
+        B[u, v ; t]
+        :=
+        \int_U \sum_{i, j=1}^n a^{i j}(\cdot, t) u_{x_i} v_{x_j}+\sum_{i=1}^n b^i(\cdot, t) u_{x_i} v+c(\cdot, t) u v \d x
+    \end{equation*}
+    for $u\left(\cdot,t\right), v\left(\cdot,t\right) \in H_0^1(U)$ and a.e. $0 \leq t \leq T$.
+
+    We say a function
+    \begin{equation*}
+        \mathbf{u} \in L^2\left(0, T ; H_0^1(U)\right), \text { with } \mathbf{u}^{\prime} \in L^2\left(0, T ; H^{-1}(U)\right),
+    \end{equation*}
+    is a \textbf{weak solution} of the parabolic initial/boundary-value problem (1) provided
+
+    \begin{enumerate}
+        \item
+              $\left\langle\mathbf{u}^{\prime}, v\right\rangle+B[\mathbf{u}, v ; t]=(\mathbf{f}, v)$
+              for each $v \in H_0^1(U)$ and a.e.$0 \leq t \leq T$.
+
+        \item
+              $\mathbf{u}(0)=g$.
+    \end{enumerate}
+\end{definition}
+
+
+\subsection{Existence of weak solution}
+
+\subsubsection{Galerkin approximations}
+% Galerkin approximations
+
+\begin{definition}
+    We intend to build a weak solution of the parabolic problem
+    \begin{equation}
+        \left\{\begin{aligned}
+            u_t+L u=f & \text { in } U_T                     \\
+            u=0       & \text { on } \partial U \times[0, T] \\
+            u=g       & \text { on } U \times\{t=0\}
+        \end{aligned}\right.
+    \end{equation}
+    by first constructing solutions of certain finite-dimensional approximations to (1) and then passing to limits. This is called \textbf{Galerkin's method}.
+
+    Assume the functions $w_k=w_k(x)(k=1, \ldots)$ are smooth, and
+    \begin{enumerate}[label=(\roman*)]
+        \item
+
+              $\left\{w_k\right\}_{k=1}^{\infty} $ is an orthogonal basis of  $H_0^1(U)$,
+        \item
+
+              $\left\{w_k\right\}_{k=1}^{\infty}$  is an orthonormal basis of $L^2(U)$
+    \end{enumerate}
+    Fix now a positive integer $m$. We will look for a function $\mathbf{u}_m:[0, T] \rightarrow H_0^1(U)$ of the form
+    \begin{equation}
+        \mathbf{u}_m(t):=\sum_{k=1}^m d_m^k(t) w_k
+    \end{equation}
+    where we hope to select the coefficients $d_m^k(t)(0 \leq t \leq T, k=1, \ldots, m)$ so that
+    \begin{equation}
+        \begin{cases}
+            d_m^k(0)=\left(g, w_k\right)                                                                             & (k=1, \ldots, m)                  \\
+            \left(\mathbf{u}_m^{\prime}, w_k\right)+B\left[\mathbf{u}_m, w_k ; t\right]=\left(\mathbf{f}, w_k\right) & (0 \leq t \leq T, k=1, \ldots, m)
+        \end{cases}
+    \end{equation}
+    Thus we seek a function $\mathbf{u}_m$ of the form (2) that satisfies the "projection" (3) of problem (1) onto the finite-dimensional subspace spanned by $\left\{w_k\right\}_{k=1}^m$.
+\end{definition}
+
+
+\begin{theorem}
+    [Construction of approximate solutions]
+    For each integer $m=1,2, \ldots$ there exists a unique function $\mathbf{u}_m$ of the form (2) satisfying (3).
+
+    \begin{proof}
+        Assuming $\mathbf{u}_m$ has the structure (2), we first note that
+        \begin{equation*}
+            \left(\mathbf{u}_m^{\prime}(t), w_k\right)=d_m^{k^{\prime}}(t)
+        \end{equation*}
+        Furthermore
+        \begin{equation*}
+            B\left[\mathbf{u}_m, w_k ; t\right]=\sum_{l=1}^m e^{k l}(t) d_m^l(t)
+        \end{equation*}
+        for $e^{k l}(t):=B\left[w_l, w_k ; t\right](k, l=1, \ldots, m)$. Let us further write $f^k(t):= \left(\mathbf{f}(t), w_k\right)(k=1, \ldots, m)$. Then (3) becomes the linear system of ODE
+        \begin{equation}
+            \left\{\begin{aligned}
+                d_m^{k^{\prime}}(t)+\sum_{l=1}^m e^{k l}(t) d_m^l(t)=f^k(t) & (k=1, \ldots, m) \\
+                d_m^k(0)=\left(g, w_k\right)                                & (k=1, \ldots, m) 
+            \end{aligned}\right.
+        \end{equation}
+        According to standard existence theory for ordinary differential equations, there exists a unique absolutely continuous function $\mathbf{d}_m(t)=\left(d_m^1(t), \ldots, d_m^m(t)\right)$ satisfying (4) for a.e. $0 \leq t \leq T$. And then $\mathbf{u}_m$ defined by (2) solves (3) for a.e. $0 \leq t \leq T$.
+    \end{proof}
+\end{theorem}
+
+\subsubsection{Energey estimates}
+% Energey estimates
+
+\begin{theorem}[Energy estimates]
+    There exists a constant $C$, depending only on $U, T$ and the coefficients of $L$, such that
+    \begin{equation*}
+        \begin{array}{r}
+            \max\limits_{0 \leq l \leq T}\left\|\mathbf{u}_m(t)\right\|_{L^2(U)}+\left\|\mathbf{u}_m\right\|_{L^2\left(0, T ; H_0^{1}(U)\right)}+\left\|\mathbf{u}_m^{\prime}\right\|_{L^2\left(0, T ; H^{-1}(U)\right)} \\
+            \leq C\left(\|\mathbf{f}\|_{L^2\left(0, T ; L^2(U)\right)}+\|g\|_{L^2(U)}\right)
+        \end{array}
+    \end{equation*}
+    for $m=1,2, \ldots$.
+\end{theorem}
+
+\subsubsection{Existence and uniqueness}
+
+\begin{theorem}[Existence of weak solution]  
+    There exists a weak solution of (11).
+\end{theorem}
+
+
+\begin{theorem}[Uniqueness of weak solutions]
+    A weak solution of (11) is unique.
+\end{theorem}
+
+\subsection{Regularity}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

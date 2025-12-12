@@ -1,0 +1,228 @@
+% ========== 数学相关宏包 ==========
+\usepackage{amsmath}    % 增强的数学公式
+\usepackage{amsthm}     % 定理环境
+\usepackage{amssymb}    % 数学符号
+\usepackage{bm}         % 粗体数学符号
+\usepackage{mathrsfs}   % 花体字母
+\usepackage{esint}      % 积分符号扩展
+\usepackage{mathtools}  % 数学工具（amsmath的增强）
+\usepackage{tensor}     % 张量符号
+
+
+% ========== 图形与图表 ==========
+\usepackage{graphicx}   % 图形插入
+\usepackage{tikz-cd}    % 交换图
+
+
+
+
+
+% ========== 列表与枚举环境 ==========
+\usepackage{enumitem} % 增强列表环境（包括 enumerate、itemize 和 description）的功能
+
+
+% ========== 章节标题与目录样式 ==========
+\usepackage{titlesec}       % 自定义章节标题
+
+\usepackage{titletoc}       % 自定义目录样式
+\setcounter{tocdepth}{3}    % 目录显示到 subsection
+\setcounter{secnumdepth}{2} % 编号深度subsection
+
+\usepackage{minitoc}        % 每章的迷你目录
+\setcounter{minitocdepth}{3}
+
+
+
+
+
+% ========== 颜色与文本装饰 ==========
+\usepackage{xcolor}         % 颜色支持
+\usepackage{ulem}           % 标记线
+
+% ========== 注释与调试 ==========
+\usepackage{comment}        % 块注释
+
+% ========== 编程工具与高级命令定义 ==========
+\usepackage{environ}        % 环境重定义
+\usepackage{etoolbox}       % 提供强大的钩子功能
+\usepackage{xparse}         % 提供强大的命令定义功能
+\usepackage{import}         % 路径感知的\import命令
+\usepackage{standalone}     % 支持子文件独立编译
+
+
+
+
+% ========== 基础设置与字体 ==========
+\usepackage{fontspec}       % 字体设置
+\setmainfont{Times New Roman}
+
+% ========== 自定义计数器格式 ======
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\S \arabic{section}}
+
+% ========== 自定义命令 ==========
+\newtheorem{theorem}{Theorem}[section]  % 定理环境，按section计数
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{remark}{Remark}
+\renewcommand{\thetheorem}{\arabic{section}.\arabic{theorem}} % 定理编号格式为 节号.定理序号
+
+
+
+% 设置公式编号格式为 章号.节号.公式序号
+\numberwithin{equation}{section} % 让公式编号在每节重置
+\renewcommand{\theequation}{\arabic{equation}} % 将默认”公式编号“\theequation 替换为 “公式计数器” \arabic{equation}
+
+
+% ========== 页面布局与几何设置 ==========
+\usepackage{geometry}   % 页面边距设置
+\geometry{
+    a4paper,
+    inner=25mm,   % 内侧边距（装订边）
+    outer=20mm,   % 外侧边距
+    top=25mm,     % 顶部边距
+    bottom=20mm,  % 底部边距
+    headheight=15pt,
+    headsep=8mm,  % 页眉与正文间距
+    footskip=10mm, % 正文基线到页脚基线的距离
+    marginparsep=5mm,
+    marginparwidth=15mm % 旁注宽度
+}
+
+\usepackage{setspace}       % 行间距设置
+\onehalfspacing             % 1.5倍行距
+
+\usepackage{fancyhdr}       % 自定义页眉页脚
+\pagestyle{fancy}           % 启用 fancy 页面样式
+\fancyhf{}                  % 清空页眉和页脚的默认设置
+\fancyhead[L]{\thechapter,\ \thesection}
+\fancyhead[R]{\thepage}
+
+
+
+
+
+% ========== 超链接与参考文献 ==========
+\usepackage{xstring}
+\newcommand{\CharAt}[2]{%
+  \StrChar{#1}{#2}[\Result]%
+  \Result%
+} % 获取字符串中指定位置的字符
+
+
+\newcommand{\CurrentEnvName}{} % 用于存储当前环境名称的命令
+\newcommand{\RecordEnvName}[1]{\renewcommand{\CurrentEnvName}{#1}} % 记录环境名称的命令
+\makeatletter
+\newcommand{\DeclareTrackedEnvironment}[1]{
+    \AtBeginEnvironment{#1}{\RecordEnvName{#1}}
+} % 在环境开始时记录环境名称
+\DeclareTrackedEnvironment{theorem} % 声明需要跟踪的环境
+\DeclareTrackedEnvironment{corollary}
+\DeclareTrackedEnvironment{lemma}
+\DeclareTrackedEnvironment{proof}
+\DeclareTrackedEnvironment{definition}
+\DeclareTrackedEnvironment{example}
+\DeclareTrackedEnvironment{proposition}
+
+
+
+\usepackage[user,titleref,abspage]{zref}
+\zref@newprop{envname}{\CurrentEnvName}                            % 定义envname属性，其值为当前环境名称
+\zref@newprop{thetheorem}{\textrm{\thetheorem}}
+\zref@newprop{thechapter}{\textrm{\thechapter}} % 定义chapter属性，其值为当前章号
+\zref@addprops{main}{thechapter,envname,thetheorem}                              % 加入主属性集
+
+\usepackage[colorlinks,linkcolor=blue]{hyperref}       % 超链接支持
+
+\usepackage{letltxmacro}
+\LetLtxMacro\originalLabel\label % 保存原始的 \label 命令
+
+
+
+\renewcommand{\label}[1]{
+    \zlabel{#1}
+    \originalLabel{#1}
+}
+\newcommand{\cref}[1]{
+    \hyperref[#1]{\zref[envname]{#1} \zref[thetheorem]{#1}} 
+}
+\newcommand{\dref}[1]{
+    \hyperref[#1]{Cha \zref[thechapter]{#1} \zref[envname]{#1} \zref[thetheorem]{#1}}
+}
+
+
+
+
+% ========== 自定义数学命令 ==========
+\newcommand{\Int}{\operatorname{Int}}
+\newcommand{\loc}{\mathrm{loc}}
+\renewcommand{\d}{\, \mathrm{d}}
+\newcommand{\supp}{\operatorname{supp}}
+
+\newcommand{\rank}{\operatorname{rank}}
+\renewcommand{\char}{\operatorname{char}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\Coim}{\operatorname{Coim}}
+\newcommand{\Codim}{\operatorname{Codim}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\ord}{\operatorname{ord}}
+
+\newcommand{\Obj}{\operatorname{Obj}}
+\newcommand{\Mor}{\operatorname{Mor}}
+
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Nil}{\operatorname{Nil}}
+\newcommand{\lcm}{\operatorname{lcm}}
+
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\renewcommand{\det}{\operatorname{det}}
+
+\renewcommand{\span}{\operatorname{span}}
+\newcommand{\ind}{\operatorname{ind}}
+
+
+
+
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\Top}{\mathbf{Top}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\Grp}{\mathbf{Grp}}
+\newcommand{\Ab}{\mathbf{Ab}}
+\newcommand{\Rng}{\mathbf{Rng}}
+\newcommand{\CRing}{\mathbf{CRing}}
+\newcommand{\Mod}{\mathbf{Mod}}
+
+\newcommand{\Ext}{\operatorname{Ext}}
+
+\newcommand{\res}{\operatorname{res}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\disc}{\operatorname{disc}}
+\newcommand{\Nat}{\operatorname{Nat}}
+
+\newcommand{\Frac}{\operatorname{Frac}}
+
+% ========== 封面信息 ==========
+\author{HHH}
+\date{\today}
+
+
+
+% 绝对值用\left| \right|，范数（||-||）用\left\| \right\| 括号用\left( \right) 或者 \left[ \right] \left\{ \right\} \left\langle \right\rangle
+% 行间公式用\begin{equation*} \end*{equation*}
+% 撇号用 ^{\prime}
+% 单面打印oneside
+% 不允许添加新的宏包和定义新的命令
+% 公式中的上下标内容用{}括起来

@@ -1,0 +1,396 @@
+\chapter{Factorization in Commutative Rings}
+\minitoc
+
+\section{Divisor Decomposition} % Divisor Decomposition
+\subsection{Basic definition} % Basic definition
+\begin{definition}
+    Let $R$ be a commutative ring and let $a, b \in R$ with $b \neq 0$.
+
+    \begin{enumerate}
+        \item
+              $a$ is said to be a multiple of $b$ if there exists an element $x \in R$ with $a=b x$. In this case $b$ is said to divide $a$ or be a \textbf{divisor} of $a$, written $b \mid a$.
+
+        \item
+              If $a\mid b$ and $b\mid a$, then $a$ and $b$ are said to be \textbf{associates}
+
+        \item
+              If $b \mid a$ and $a\nmid b$ then $b$ called \textbf{proper divisor} of $a$. Every element $a$ has two \textbf{trivial divisor}: units and associate elements of $a$.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{theorem}
+    Let $R$ be a commutative ring with $1_R$, and $a, b,u$ be elements of $R$.
+
+    \begin{enumerate}
+        \item ${a} \mid {b}$ if and only if $({b}) \subset({a})$.
+
+        \item a and b are associates if and only if $({a})=({b})$.
+
+        \item $u\in R^\times \Leftrightarrow u\mid r \text{ for all } r \in R \Leftrightarrow \left(u\right) =R$.
+
+        \item The relation " $a$ is an associate of $b$ " is an equivalence relation on $R$ .
+
+        \item If ${a}={br}$ with ${r} \in {R}$ a unit, then a and b are associates. If R is an integral domain, the converse is true, that is,
+              \begin{center}
+                  $a,b$ are associates if and only if $a=bu$ for some unit $u$
+              \end{center}
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{definition}
+    Let $R$ be an commutative ring with $1_R\neq 0$.
+
+    \begin{enumerate}
+        \item  Suppose $r \in R$, then $r$ is called \textbf{irreducible} in $R$ if
+              \begin{enumerate}[label=(\roman*)]
+                  \item $r \neq 0$ and $r \notin R^\times$
+                  \item $r=ab \Rightarrow$ $a$ or $b$ is a unit.
+              \end{enumerate}
+
+        \item  The element $p \in R$ is called \textbf{prime} in $R$ if
+              \begin{enumerate}[label=(\roman*)]
+                  \item $p\neq 0$ and $p \not\in R^\times$
+                  \item if $p \mid a b$ for any $a, b \in R$, then $p \mid a$ or $p \mid b$.
+              \end{enumerate}
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    Let $p$ and $c$ be nonzero elements in an integral domain $R$.
+    \begin{enumerate}
+        \item $p$ is prime if and only if $(p)$ is nonzero prime ideal
+
+        \item  $c$ is irreducible if and only if
+              $(c)$ is maximal in the set $S$ of all proper principal ideals of $R$.
+
+        \item
+              Every prime element of $R$ is irreducible.
+
+        \item
+              If $R$ is a principal ideal domain, then p is prime if and only if p is irreducible.
+        \item  Every associate of an irreducible [resp. prime] element of R is irreducible [resp. prime].
+        \item
+              The only divisors of an irreducible element of R are its associates and the units of R .
+    \end{enumerate}
+\end{theorem}
+\begin{definition}
+    Let $X$ be a nonempty subset of a commutative ring $R$
+    \begin{enumerate}
+        \item
+              An element $d \in R$ is a \textbf{greatest common divisor} of $X$ provided
+              \begin{enumerate}[label=(\roman*)]
+                  \item $d \mid x$ for all $x \in X$
+                  \item if $d^\prime \mid x$ for all $x \in X$ then $d^{\prime} \mid d$.
+              \end{enumerate}
+              A greatest common divisor of $a$ and $b$ will be denoted by $\gcd\left(a, b\right)$, or $(a, b)$.
+        \item
+              An element $l\in R$ is a \textbf{least common multiple} of $X$ such that
+              \begin{enumerate}[label=(\roman*)]
+                  \item $x\mid l$ for all $x \in X$
+                  \item if $x\mid l^\prime$ for all $x \in X$, then $l\mid l^\prime$
+              \end{enumerate}
+              A least common multiple of $a$ and $b$ will be denoted by $ \lcm \left(a, b\right)$, or $[a, b]$.
+        \item
+              Let $R$ be a commutative ring with identity, and $a_1, a_2, \ldots, a_n$ have $1_R$ as a greatest common divisor, then $a_1, a_2, \ldots a_n$ are said to be \textbf{relatively prime}.
+    \end{enumerate}
+\end{definition}
+\begin{theorem}
+    Let $a_1, \ldots, a_{n}$ be elements of a commutative ring R with identity. Then
+    $d \in R$ is a greatest common divisor of $\left\{a_1, \ldots, a_{n}\right\}$ and $d\in \left(a_1\right)+\left(a_2\right)+\cdots+\left(a_{n}\right)$ if and only if $(d)=\left(a_1\right)+\left(a_2\right)+\cdots+\left(a_{n}\right)$;
+
+
+    If $F$ is a field, then $x$ and $y$ are relatively prime in the polynomial domain $F[x, y]$, but $F[x, y]=\left(1_F\right) \supsetneq (x)+(y)$ 
+\end{theorem}
+
+
+\section{}
+
+\subsection{Principal rings and principal domains} % Principal rings and principal domains
+\begin{definition}
+    A \textbf{principal ideal ring}
+    is a ring in which every ideal is principal.
+
+    A principal ideal ring which is an integral
+    domain is called a \textbf{principal ideal domain}.
+\end{definition}
+
+\begin{theorem}
+    If $R$ is a principal ideal ring,
+    then
+    \begin{enumerate}
+        \item
+              $R$ is Noetherian.
+        \item
+              the greatest common divisor of $a_1, \ldots, a_{n}$ exists and every one is of the form $r_1 a_1+\cdots+r_{n} a_{n}\left(r_{i} \in R\right)$;
+    \end{enumerate}
+    if $R$ is principal ideal domain
+    \begin{enumerate}[resume]
+        \item
+              $R$ is a unique factorization domain.
+        \item
+              thus irreducible and prime elements coincide.
+        \item maximal ideals and prime ideals coincide.
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    Every nonempty set of elements in a commutative principal ideal ring with identity has a greatest common divisor.
+\end{corollary}
+
+
+\begin{definition}
+    Define $N$ to be a \textbf{Dedekind-Hasse norm} in commutative ring $R$ if $N$ is a positive norm and for every nonzero $a, b \in R$ either $a$ is an element of the ideal  $\left(b\right)$ or there is a nonzero element in the ideal $(a, b)=\left(a\right)+\left(b\right)$ of norm strictly smaller than the norm of $b$. (i.e., either $b$ divides $a$ in $R$ or there exist $s, t \in R$ with $0<N(s a-t b)<N(b))$.
+\end{definition}
+
+\begin{theorem}
+    The integral domain $R$ is a P.I.D. if and only if $R$ has a Dedekind-Hasse norm.
+
+    Proof: Let $I$ be any nonzero ideal in $R$ and let $b$ be a nonzero element of $I$ with $N(b)$ minimal. Suppose $a$ is any nonzero element in $I$, so that the ideal $(a, b)$ is contained in $I$. Then the Dedekind-Hasse condition on $N$ and the minimality of $b$ implies that $a \in(b)$, so $I=(b)$ is principal. The converse will be proved in the next section (Corollary 16).
+\end{theorem}
+
+\subsection{Unique Factorization Domain}
+\begin{definition}
+    A \textbf{unique factorization domain} is an integral domain $R$ in which every nonzero element $r \in R$ which is not a unit has the following two properties:
+
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              every nonzero nonunit element a of $R$ can be written $a=c_1 c_2 \cdots c_{n}$, with $c_1, \ldots, c_{n}$ irreducible.
+        \item
+              If $a=c_1 c_2 \cdots c_{n}$ and $a=d_1 d_2 \cdots d_{n}$ ($c_{i}, d_{i}$ irreducible), then $n=m$ and for some permutation $\sigma\in \mathfrak{S}_n$,
+              $c_{i}$ and $d_{\sigma(i)}$ are associates for every $i$.
+    \end{enumerate}
+\end{definition}
+\begin{proposition}
+    \label{pro: unique factorization domain}
+    If $R$ is a unique factorization domain then
+
+    \begin{enumerate}
+        \item
+              Irreducible and prime elements coincide.
+        \item
+              for any $a_1,a_2,\ldots,a_n$, there exists an unique greatest common divisor of $a_1, \ldots, a_{n}$ in the sense of associationa and $\left(d\right)=\left(a_1\right)+\left(a_2\right)+\cdots+\left(a_n\right)$,
+    \end{enumerate}
+\end{proposition}
+
+
+
+\subsection{Euclidean Ring and Euclidean domain} % Euclidean Domain
+
+\begin{definition}
+    Let $R$ a commutative ring. $R$ is a \textbf{Euclidean ring} if there is a function $\varphi: R-\{0\} \rightarrow \mathbb{N}$ such that:
+    \begin{enumerate}[label=(\roman*)]
+        \item  if $a, b \in R$ and $ab \neq 0$, then $\varphi(a) \leq \varphi(ab)$;
+        \item if $a, b \in R$ and $b \neq 0$, then there exist $q, r \in R$ such that $a=qb+r$ with $r=0$, or $r \neq 0$ and $\varphi(r)<\varphi(b)$.
+    \end{enumerate}
+    A Euclidean ring which is an integral domain is called a \textbf{Euclidean domain}.
+\end{definition}
+
+\begin{theorem}
+    If $R$ is a Euclidean ring, then
+    \begin{enumerate}
+        \item
+              $R$ is a principal ideal ring with identity.
+        \item
+              if $\mathfrak{a}$ is any nonzero ideal in the Euclidean ring $R$ with $\varphi$ and $\mathfrak{a}=(a)$, then $a$ is a nonzero element of $\mathfrak{a}$ of minimum norm.
+    \end{enumerate}
+    \begin{proof}
+        If $I$ is a nonzero ideal in $R$, choose $a \in I$ such that $\varphi(a)$ is the least integer in the set of nonnegative integers $\{\varphi(x) \mid x \neq 0 ; x \in I\}$. If $b \in I$, then $b=q a$.
+        Consequently, $I \subset R a \subset(a) \subset I$. Therefore $I=R a=(a)$ and $R$ is a principal ideal ring.
+
+        Conversely, if $\mathfrak{a}=\left(a\right)$ and $b$ is a
+        nonzero element of $\mathfrak{a}$ of minimum norm, then $a=xy$ and $b=ya$ for some $x,y\in R$, whence $\varphi\left(a\right)=\varphi\left(xb\right)\geq \varphi(b)$ and $\varphi\left(b\right)=\varphi\left(ya\right)\geq \varphi(a)$. Thus $a$ is also a nonzero element of $\mathfrak{a}$ of minimum norm.
+
+        Since $R$ itself is an ideal, $R=R a$ for some $a \in R$. Consequently, $a=e a=a e$ for some $e \in R$. If $b \in R=R a$, then $b=x a$ for some $x \in R$. Therefore, $b e=(x a) e =x(a e)=x a=b$, whence $e$ is a multiplicative identity element for $R$.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    Let $R$ be a Euclidean ring with identity and $a \in R$.
+    Then $\varphi(1_R)$ is minimum and element $a$ is a unit in $R$ if and only if $\varphi(a)=\varphi\left(1_R\right)$.
+\end{corollary}
+
+
+
+
+
+
+
+
+
+\section{Factorization in Polynomial Rings} % In Polynomial Rings
+
+\begin{theorem}
+    Let $R$ be a ring and $f, g \in R\left[x_1, \ldots, x_{n}\right]$.
+    \begin{enumerate}
+        \item
+              $\operatorname{deg}\left(f+g\right) \leq \max \left\{\operatorname{deg} f, \operatorname{deg} g\right\}$.
+        \item
+              $\operatorname{deg}(fg) \leq \operatorname{deg} f+\operatorname{deg} g$.
+        \item
+              If R has no zero divisors, $\operatorname{deg}(fg)=\operatorname{deg} f+\operatorname{deg} g$.
+        \item
+              If $n=1$ and the leading coefficient of $f$ or $g$ is not a zero divisor, then $\operatorname{deg}(fg)=\operatorname{deg} f+\operatorname{deg} g$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[The division algorithm]
+    Let $R$ be a ring with identity and $f, g \in R[x]$ nonzero polynomials such that the leading coefficient of $g$ is a unit in $R$.
+    Then there exist unique polynomials $q, r \in R[x]$ such that
+    \begin{equation*}
+        f=qg+r \text { and } \operatorname{deg} r<\operatorname{deg} g
+    \end{equation*}
+\end{theorem}
+
+\begin{corollary}[Remainder Theorem]
+    Let $R$ be a ring with identity and
+    \begin{equation*}
+        f(x)=\sum_{i=0}^n a_{i} x^{i} \in R[x] .
+    \end{equation*}
+    For any $c \in R$ there exists a unique $q(x) \in R[x]$ such that $f(x)=q(x)(x-c)+f(c)$.
+\end{corollary}
+\begin{corollary}
+    If $F$ is a field, then the polynomial ring $F[x]$ is a Euclidean domain, whence $F[x]$ is a principal ideal domain and a unique factorization domain.
+\end{corollary}
+
+\begin{definition}
+    Let $R$ be a subring of a commutative ring $S, c_1, c_2, \ldots, c_{n} \in S$ and $f=\sum_{i=0}^m a_i x_1^{k_{i 1}} \cdots x_n^{k_{i n}} \in R\left[x_1, \ldots, x_{n}\right]$ a polynomial such that $f\left(c_1, c_2, \ldots c_{n}\right)=0$. Then $\left(c_1, c_2, \ldots, c_{n}\right)$ is said to be a root or zero of f (or a solution of the polynomial equation $\left.f\left(x_1, \ldots, x_{n}\right)=0\right) .^4$
+
+
+\end{definition}
+
+\begin{theorem}
+    Let R be a commutative ring with identity and $f \in R[x]$. Then $c \in R$ is a root of f if and only if $x-c$ divides $f$ .
+\end{theorem}
+
+
+\begin{theorem}
+    If $D$ is an integral domain contained in an integral domain $E$ and $f \in D[x]$ has degree $n$ , then $f$ has at most $n$ distinct roots in $E$ .
+\end{theorem}
+
+
+\begin{theorem}
+    Let $D$ be a unique factorization domain with quotient field F and let $f=\sum_{i=0}^n a_{i} x^{i} \in D[x]$. If $u=c / d \in F$ with c and d relatively prime, and u is a root of f , then c divides $a_0$ and d divides $a_{n}$.
+\end{theorem}
+
+\begin{definition}
+    Let $D$ be an integral domain and $f \in D[x]$.
+    If $c \in D$ and $c$ is a root of $f$, then there is a greatest integer $m(0 \leq m \leq \operatorname{deg} f)$ such that
+    \begin{equation*}
+        f(x)=(x-c)^m g(x)
+    \end{equation*}
+    where $g(x) \in R[x]$ and $x-c \nmid g(x)$.
+    The integer $m$ is called the \textbf{multiplicity} of the root $c$ of $f$.
+    If $c$ has multiplicity $1$, $c$ is said to be a \textbf{simple root}.
+    If $c$ has multiplicity $m>1, c$ is called a multiple root.
+\end{definition}
+
+\begin{theorem}
+    Let $D$ be an integral domain which is a subring of an integral domain $E$ . Let $f \in D[x]$ and $c \in E$.
+    \begin{enumerate}
+        \item
+              $c$ is a multiple root of f if and only if $f(c)=0$ and $f^{\prime}(c)=0$.
+        \item
+              If $D$ is a field and f is relatively prime to $f^{\prime}$, then $f$ has no multiple roots in $E$.
+        \item
+              If $D$ is a field, f is irreducible in $D[x]$ and $E$ contains a root of $f$ , then $f$ has no multiple roots in $E$ if and only if $f^{\prime} \neq 0$.
+    \end{enumerate}
+\end{theorem}
+
+\subsection{Over U.F.D}  % Over U.F.D
+\begin{definition}
+    Let $D$ be a unique factorization domain and
+    \begin{equation*}
+        f
+        =
+        \sum_{i=0}^n a_i x^i
+    \end{equation*}
+    a nonzero polynomial in $D[x]$. A greatest common divisor of the coefficients $a_0, a_1, \ldots, a_n$ is called a \textbf{content} of $f$ and is denoted $C(f)$.
+
+    If $f \in D[x]$ and $C(f)$ is a unit in $D$, then $f$ is said to be \textbf{primitive}. Clearly for any polynomial $g \in D[x], g=C(g) g_1$ with $g_1$ primitive.
+\end{definition}
+
+
+\begin{theorem}[Gauss]
+    \label{lem: Gauss's lemma}
+    If $D$ is a unique factorization domain and $ {f},  {g} \in  D[ {x}]$, then $ C( fg) \approx  C( {f})  C( {g})$.
+    In particular, the product of primitive polynomials is primitive.
+
+    \begin{proof}
+        $f=C(f) f_1$ and $g=C(g) g_1$ with $f_1, g_1$ primitive. Consequently, $C(f g)=C\left(C(f) f_1 C(g) g_1\right) \approx C(f) C(g) C\left(f_1 g_1\right)$. Hence it suffices to prove that $f_1 g_1$ is primitive (that is, $C\left(f_1 g_1\right)$ is a unit).
+
+        If $f_1=\sum_{i=0}^n a_i x^i$ and $g_1=\sum_{j=0}^m b_j x^j$, then $f_1 g_1=\sum_{k=0}^{m+n} c_k x^k$ with $c_k=\sum_{i+j=k} a_i b_j$. If $f_1 g_1$ is not primitive, then there exists an irreducible element $p$ in $R$ such that $p \mid c_k$ for all $k$. Since $C\left(f_1\right)$ is a unit $p \nmid C\left(f_1\right)$, whence there is a least integer $s$ such that
+        \begin{equation*}
+            p \mid a_i \text { for } i<s \text { and } p \nmid a_s .
+        \end{equation*}
+
+        Similarly there is a least integer $t$ such that
+        \begin{equation*}
+            p \mid b_j \text { for } j<t \text { and } p \nmid b_t \text {. }
+        \end{equation*}
+
+        Since $p$ divides $c_{s+t}=a_0 b_{s+t}+\cdots+a_{s-1} b_{t+1}+a_s b_t+a_{s+1} b_{t-1}+\cdots+a_{s+t} b_0, p$ must divide $a_s b_t$. Since every irreducible element in $D$ is prime, $p \mid a_s$ or $p \mid b_t$. This is a contradiction. Therefore $f_1 g_1$ is primitive.
+    \end{proof}
+\end{theorem}
+
+
+\begin{corollary}
+    Let $D$ be a unique factorization domain with quotient field $F$
+
+    \begin{enumerate}
+        \item
+              If $f$ is a primitive polynomial of positive degree in $D[x]$,
+              then $f$ is irreducible in $ D[ {x}]$ if and only if $f$ is irreducible in $ {F}[x]$.
+
+        \item
+              If $f$ and $g$ are primitive polynomials in $D[x]$. Then $f$ and $g$ are associates in $D[x]$ if and only if they are associates in $F[x]$.
+    \end{enumerate}
+\end{corollary}
+
+\begin{theorem}
+    If $D$ is a Unique Factorization Domain, then so $D[x]$.
+
+    \begin{proof}
+        We have indicated above that $R[x]$ a Unique Factorization Domain forces $R$ to be a Unique Factorization Domain. Suppose conversely that $R$ is a Unique Factorization Domain, $F$ is its field of fractions and $p(x)$ is a nonzero element of $R[x]$. Let $d$ be
+
+        the greatest common divisor of the coefficients of $p(x)$, so that $p(x)=d p^{\prime}(x)$, where the g.c.d. of the coefficients of $p^{\prime}(x)$ is 1 . Such a factorization of $p(x)$ is unique up to a change in $d$ (so up to a unit in $R$ ), and since $d$ can be factored uniquely into irreducibles in $R$ (and these are also irreducibles in the larger ring $R[x]$ ), it suffices to prove that $p^{\prime}(x)$ can be factored uniquely into irreducibles in $R[x]$. Thus we may assume that the greatest common divisor of the coefficients of $p(x)$ is 1 . We may further assume $p(x)$ is not a unit in $R[x]$, i.e., degree $p(x)>0$.
+
+        Since $F[x]$ is a Unique Factorization Domain, $p(x)$ can be factored uniquely into irreducibles in $F[x]$. By Gauss' Lemma, such a factorization implies there is a factorization of $p(x)$ in $R[x]$ whose factors are $F$-multiples of the factors in $F[x]$. Since the greatest common divisor of the coefficients of $p(x)$ is 1 , the g.c.d. of the coefficients in each of these factors in $R[x]$ must be 1 . By Corollary 6 , each of these factors is an irreducible in $R[x]$. This shows that $p(x)$ can be written as a finite product of irreducibles in $R[x]$.
+
+        The uniqueness of the factorization of $p(x)$ follows from the uniqueness in $F[x]$. Suppose
+        \begin{equation*}
+            p(x)=q_1(x) \cdots q_r(x)=q_1^{\prime}(x) \cdots q_s^{\prime}(x)
+        \end{equation*}
+        are two factorizations of $p(x)$ into irreducibles in $R[x]$. Since the g.c.d. of the coefficients of $p(x)$ is 1 , the same is true for each of the irreducible factors above in particular, each has positive degree. By Corollary 6, each $q_i(x)$ and $q_j^{\prime}(x)$ is an irreducible in $F[x]$. By unique factorization in $F[x], r=s$ and, possibly after rearrangement, $q_i(x)$ and $q_i^{\prime}(x)$ are associates in $F[x]$ for all $i \in\{1, \ldots, r\}$. It remains to show they are associates in $R[x]$. Since the units of $F[x]$ are precisely the elements of $F^{\times}$we need to consider when $q(x)=\frac{a}{b} q^{\prime}(x)$ for some $q(x), q^{\prime}(x) \in R[x]$ and nonzero elements $a, b$ of $R$, where the greatest common divisor of the coefficients of each of $q(x)$ and $q^{\prime}(x)$ is 1 . In this case $b q(x)=a q^{\prime}(x)$; the g.c.d. of the coefficients on the left hand side is $b$ and on the right hand side is $a$. Since in a Unique Factorization Domain the g.c.d. of the coefficients of a nonzero polynomial is unique up to units, $a=u b$ for some unit $u$ in $R$. Thus $q(x)=u q^{\prime}(x)$ and so $q(x)$ and $q^{\prime}(x)$ are associates in $R$ as well. This completes the proof.
+    \end{proof}
+\end{theorem}
+
+
+\begin{corollary}
+    If $R$ is a Unique Factorization Domain, then a polynomial ring in an arbitrary number of variables with coefficients in $R$ is also a Unique Factorization Domain.
+\end{corollary}
+
+\begin{theorem}
+    [Eisenstein's Criterion]
+    Let D be a unique factorization domain with quotient field F . If $f=\sum_{i=0}^n a_{i} x^{i} \in D[x]$, $\operatorname{deg} f \geq 1$ and p is an irreducible element of $D$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item $p \nmid a_{n}$
+        \item $p \mid a_{i}$ for $i=0,1,\ldots,n-1$
+        \item $p^2 \nmid a_0$
+    \end{enumerate}
+    then $f$ is irreducible in $F[x]$.
+    If $f$ is primitive, then f is irreducible in $D[x]$.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1405 @@
+\chapter{Field Theory} % Field Theory
+\minitoc
+
+\section{Field Extension} % Field Extension
+\subsection{Basic Definition} % Basic Definition
+
+
+\begin{definition}
+    Let $K$ be a fixed field. We define the category of field   extensions $\mathbf{Field}/K$ as follows:
+    \begin{itemize}
+        \item
+              An object, called \textbf{extension}, is field $L$ together with a fixed embedding $i_L:K\hookrightarrow L$.
+              We typically suppress $i_L$ and simply write $L/K$.
+
+        \item
+              A morphism from $F/K$ to $L/K$ is a field homomorphism $\phi:F\rightarrow L$ such that the following diagram commutes:
+              \begin{equation*}
+                  \begin{tikzcd}
+                      K \arrow[r, "i_{F}"] \arrow[rd, "i_L"'] & F \arrow[d, "\phi"] \\
+                      & L
+                  \end{tikzcd}
+              \end{equation*}
+              simply denoted as $\left.\phi\right|_K=\id_K$.
+              The morphism $\phi$ is called a \textbf{$K$-homomorphism} (\textbf{embedding}) and field $F$ is called an \textbf{intermediate field} of $L/K$.
+              The all morphisms from $L_1/K$ to $L_2/K$ is denoted as $\Hom_K(L_1,L_2)$.
+    \end{itemize}
+    \begin{remark}
+        Let $L_1=\mathbb{Q}\times\left\{1\right\}$ and $L_2=\mathbb{Q}\times\left\{2\right\}$, then $L_1/\mathbb{Q}$ and $L_2/\mathbb{Q}$ are both field extensions but $L_1\cap L_2=\varnothing$.
+    \end{remark}
+\end{definition}
+
+
+
+
+\subsection{Composition fields} % Composition fields
+
+\begin{definition}
+    Let $\mathbf{Field}/K$ be the category of field extensions of $K$ and $L_1/K$, $L_2/K$ be two extension. The \textbf{composition} of $L_1/K$ and $L_2/K$ is an extension $\Omega/K$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $L_i$ is an intermediate field of $\Omega/K$ ($\Omega$ is a \textbf{overfield} of both $L_1$ and $L_2$).
+        \item
+              If extension $\Omega^\prime/K$ satisfies the above condition, then $\Omega$ is an intermediate field of $\Omega^\prime/K$.
+    \end{enumerate}
+\end{definition}
+
+
+
+
+
+\begin{theorem}
+    \label{thm:Existence of composition fields}
+    The composition of two field extensions $L_1/K$ and $L_2/K$ in $\mathbf{Field}/K$ exists and uniquely up to $K$-isomorphism (is isomorphic in $\mathbf{Field}/K$).
+    \begin{proof}
+        Let $A=L_1\otimes_K L_2$ be the pushout
+        (tensor product of $K$-algebra $L_i$) of $L_1\leftarrow K \rightarrow L_2$ in the category $\CRing$ and there is a prime ideal $\mathfrak{p}$ of $A$ such that $A/\mathfrak{p}$ is an integral domain with fractions field $\Omega=\Frac\left(\left(L_1\otimes_K L_2\right)/\mathfrak{p}\right)$. The following diagram commutes:
+        \begin{equation*}
+            \begin{tikzcd}
+                K \arrow[r,""] \arrow[d,""'] & L_2\arrow[ddr,bend left=20,""] \arrow[d,""]& \\
+                L_1 \arrow[rrd,bend right=20,""]\arrow[r,""'] & A \arrow[rd,""]&\\
+                && \Omega
+            \end{tikzcd}
+        \end{equation*}
+        thus $L_i$ can be imbedded into $\Omega$  by
+        \begin{equation*}
+            L_i\rightarrow A\rightarrow A/\mathfrak{p}\rightarrow \Omega
+        \end{equation*}
+        respectively, $\Omega$ is an overfield of both $L_1$ and $L_2$.
+
+        If there is another overfield $\Omega^\prime$ of both $L_1$ and $L_2$, then by the universal property of pushout, $\Omega$ can be imbedded into $\Omega^\prime$.
+    \end{proof}
+\end{theorem}
+
+By \cref{thm:Existence of composition fields}, when studying a collection of extensions $L_i/K$, we can have an overfield $\Omega$ and a common embedding $\iota$ such that $\iota(K) \subset \iota(L_i) \subset \Omega$ for each $i$.
+
+
+
+
+\section{Extension tower}
+\begin{definition}
+    In the category of field extensions $\mathbf{Field}/K$,
+    \begin{enumerate}
+        \item
+              The \textbf{degree} of a field extension $L / K$, denoted $[L:K]$, is the dimension of $L$ as a vector space over $K$.
+
+        \item
+              $L$ is said to be a \textbf{finite dimensional extension} or \textbf{infinite dimensional extension} of $K$ according as $[L: K]$ is finite or infinite.
+    \end{enumerate}
+    It follows that $[L:K ]=[L:F][F:K]$.
+    Furthermore $[L: K]$ is finite if and only if $[L: F]$ and $[F: K]$ are finite.
+\end{definition}
+\begin{theorem}
+    Let field extension $K\subset L, M$.
+    The following statements hold:
+    \begin{enumerate}
+
+
+        \item
+              If $[L M: K]$ is finite, then $[L: K]$ and $[M: K]$ divide $[L M: K]$ and
+              \begin{equation*}
+                  \begin{aligned}
+                      [L M: K]
+                       & = \left[LM:L\right]
+                      \left[L:K\right]        \\
+                       & =
+                      \left[M:L\cap M\right]
+                      \left[L:K\right]        \\
+                       & \leq[M: K]\leq[L: K]
+                  \end{aligned}
+              \end{equation*}
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    Let $L$ and $M$ be intermediate fields in the extension $F/K$.
+    \begin{enumerate}
+        \item
+              $[L M: K]$ is finite if and only if $[L: K]$ and $[M: K]$ are finite.
+
+        \item
+              If $[L: K]$ and $[M: K]$ are finite and relatively prime, then
+              \begin{equation*}
+                  [L M: K]=[L: K][M: K]
+              \end{equation*}
+
+        \item
+              If $L$ and $M$ are algebraic over $K$, then so is $L M$.
+
+        \item
+              Assume that $[L M: K]=[L: K][M: K]$, then $L \cap M=K$.
+    \end{enumerate}
+\end{corollary}
+
+
+
+
+
+\section{Generation} % Generation
+\begin{definition}
+    Let $L/K$ be a field extension and a subset $X \subset L$
+    \begin{enumerate}
+        \item
+              the \textbf{subfield  generated by ${X}$ over $K$} is the intersection of all subfields of $L$ that contain $X\cup K$, denoted by $K(X)$.
+        \item
+              If $X=\left\{u_1, \ldots, u_n\right\}$, then the subfield $F(X)$ of $K$ is denoted $K\left(u_1, \ldots, u_n\right)$.
+              The field $K\left(u_1, \ldots, u_n\right)$ is said to be a \textbf{finitely generated extension of $K$}.
+              If $X=\{u\}$, then $F(u)$ is said to be a \textbf{simple extension of $F$} and $u$ is said \textbf{primitive element}.
+        \item
+              If $F$ is a field and $X \subset F$, then the  subring generated by $X$ is the intersection of all subrings of $F$ that contain $X$.
+              If $F$ is an extension field of $K$ and $X \subset F$, then the subring generated by $K \cup X$ is called the subring generated by $ X$ over $ K$ and is denoted $K[X]$.
+        \item
+              If $X=\left\{u_1, \ldots, u_n\right\}$, then the subring $K[X]$ of $F$ is denoted $K\left[u_1, \ldots, u_n\right]$.
+    \end{enumerate}
+\end{definition}
+
+
+
+
+\begin{theorem}
+    \label{thm: subfield(subring) generated by sets}
+    Let $L/K$ be a field extension, $ u ,  u _{{i}} \in {L}$, and ${X} \subset {L}$, then
+    \begin{enumerate}
+        \item
+              The subring $ K [{X}]$ consists of all elements of the form ${h}\left( u _1, \ldots,  u _{{n}}\right)$, where each $ u _{{i}} \in {X}, {n}$ is a positive integer, and $ {h} \in  K \left[ x _1, \ldots,  x _{{n}}\right]$.
+        \item
+              The subfield $ K ({X})$ consists of all elements of the form
+              \[
+                  f\left(u_1, \ldots, u_n\right) / g\left(u_1, \ldots, u_n\right)=f\left(u_1, \ldots, u_n\right) g\left(u_1, \ldots, u_n\right)^{-1}
+              \]
+              where ${n} \in \mathbb{Z}_{>0},  f ,  g  \in  K \left[ x _1, \ldots,  x _n\right],  u _1, \ldots,  u _n \in {X}$ and $ g \left( u _1, \ldots,  u _n\right) \neq 0$.
+
+        \item
+              For each $v \in {~K}({X})$ (resp. $ K [{X}])$ there is a finite subset ${X}^\prime$ of X such that ${v} \in  K \left({X}^\prime\right)\left(\right.$ resp. $\left. K \left[{X}^\prime\right]\right)$.
+              Furthermore, we have that
+              \begin{equation*}
+                  K(X) = \bigcup_{\# X' < \infty} K(X') , \quad K[X] = \bigcup_{\# X' < \infty} K[X']
+              \end{equation*}
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    For any $u_1, \ldots, u_n \in F$ and any permutation $\sigma \in S_n$.
+    \begin{enumerate}
+        \item
+              $ K\left(u_1, \ldots, u_n\right)
+                  =
+                  K\left(u_{\sigma(1)}, \ldots, u_{\sigma(n)}\right)$.
+
+        \item
+              $K\left(u_1, \ldots, u_{n-1}\right)\left(u_n\right)=K\left(u_1, \ldots, u_n\right)$.
+
+        \item
+              $K\left[u_1, \ldots, u_n\right]
+                  =
+                  K\left[u_{\sigma(1)}, \ldots, u_{\sigma(n)}\right]$.
+
+        \item
+              $K\left[u_1, \ldots, u_{n-1}\right]\left[u_n\right]
+                  =
+                  K\left[u_1, \ldots, u_n\right]$.
+    \end{enumerate}
+\end{corollary}
+
+
+
+
+
+\subsection{Finitely Generated Extensions}
+\begin{definition}
+    Let $F$ be an extension field of $K$.
+    \begin{enumerate}
+        \item
+              An element $u$ of $F$ is said to be \textbf{algebraic over $K$} provided that $u$ is a root of some nonzero polynomial $ f  \in  K [ x ]$.
+              $F$ is called an \textbf{algebraic extension} of $K$ if every element of $F$ is algebraic over $K$.
+        \item
+
+              If $u$ is not a root of any nonzero $ f  \in K[ x ],  u $ is said to be \textbf{transcendental over $K$}.
+              $F$ is called a \textbf{transcendental extension} if at least one element of $F$ is transcendental over $K$ .
+
+        \item
+              Let $u_1,\ldots u_n$ be element of $F$, then $u_i$ are \textbf{algebraically independent} provided that there is no nonzero polynomial $f\in K\left[x_1,\ldots,x_n\right]$ such that $f\left(u_1,\ldots,u_n\right)=0$.
+              \begin{remark}
+                  It follows that each $u_i$ is transcendental.
+              \end{remark}
+    \end{enumerate}
+\end{definition}
+
+
+\subsection{Simple Extension} % Simple Extension
+\begin{definition}
+    Let $L/K$ be an extension field and $u \in L$ algebraic over $K$.
+    The monic minimal polynomial $m_u(X)$ is called the \textbf{irreducible (or minimal or minimum) polynomial} of $u$.
+\end{definition}
+
+\begin{theorem}
+    \label{thm: Structure of simple extension}
+    If $L$ is an extension field of $K$ and $ u  \in {L}$ is algebraic over $K$, then
+    \begin{enumerate}
+        \item
+              $K(u)= K [u]$
+
+        \item
+              $K(u) \cong K [x]/( m_u )$
+        \item
+              $\left\{1,u ,u^2, \ldots,u^{{n}-1}\right\}$ is a $K$-basis of $K(u)$, where $n = \deg m_u$
+    \end{enumerate}
+\end{theorem}
+\begin{corollary}
+    [Adjoining a root]
+    \label{cor:adjoin a root}
+    Let $K$ be a field and $ f \in K[x]$ be a irreducible polynomial.
+    Then there exists a simple extension field $L= K(u)$ such that:
+    \begin{enumerate}
+        \item
+              $ u \in L$ is a root of $f$
+        \item
+              $[L:K] = n$, where ${n}=\deg f$.;
+
+        \item
+              $L$ is unique up to an $K$-isomorphism
+    \end{enumerate}
+\end{corollary}
+
+\begin{theorem}
+    If $ u  \in {F}$ is transcendental over $K$, then
+    \begin{enumerate}
+        \item
+              $K$-isomorphism of fields $K(u) \cong  K(x)$.
+
+        \item
+              $K$-algebra isomorphism $ K \left[u\right]  \cong  K \left[x\right]$.
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{theorem}[Uniqueness of simple extension]
+    Let $\sigma:  K_1 \rightarrow K_2$ be an isomorphism of fields, $u$ an element of some extension field of $K_1$ and $v$ an element of some extension field of $K_2$. Assume either
+    \begin{itemize}[]
+        \item
+              $u$ is transcendental over $K_1$ and $v$ is transcendental over $K_2$ ; or
+
+        \item
+              $u$ is a root of an minimal polynomial $ f  \in  K_1 [ x ]$ and $v$ is a root of $\sigma  f  \in K_2[ x ]$.
+    \end{itemize}
+    Then $\sigma$ extends to an isomorphism of fields $ K_1 ( u ) \cong K_2(v)$ which maps $u$ onto $v$ .
+\end{theorem}
+
+
+
+\subsection{$n$-extension}
+\begin{theorem}
+    If $u_1, \ldots, u_n \in F$ then the field $K\left(u_1, \ldots, u_n\right)$ is isomorphic to the quotient field of the ring $K\left[u_1, \ldots, u_n\right]$.
+    \begin{proof}
+        By first homomorphism theorem, we have
+        \begin{equation*}
+            K\left[X_1, \ldots, X_n\right]/I
+            \cong
+            K\left(u_1, \ldots, u_n\right)
+        \end{equation*}
+        where $I$ denotes the ideal $\left\{f\left(u_1, \ldots, u_n\right)=0: f \in K\left[X_1, \ldots, X_n\right]\right\}$
+    \end{proof}
+\end{theorem}
+\begin{theorem}
+    Let $F$ be a extension of $K$.
+    \begin{enumerate}
+        \item
+              If each $u_i$ is algebraic over $K$, then $K\left(u_1, \ldots, u_n\right)=K\left[u_1, \ldots, u_n\right]$.
+        \item
+              If $v_i$ are algebraically independent then $K\left(v_1, \ldots, v_n\right)\cong K\left(x_1, \ldots, x_n\right)$.
+    \end{enumerate}
+\end{theorem}
+
+
+\section{Algebraic Extension} % Algebraic Extension 
+
+In this section, we always assume that all extension $L_i/K$ encountered in a problem are contained in a fixed overfield $\Omega$ and $K\subset L_i \subset \Omega$ as before.
+
+\begin{theorem}
+    Let $F$ be an extension of $K$ if and only if for every intermediate field $E$ every monomorphism $\sigma: E \rightarrow E$ which is the identity on $K$ is in fact an automorphism of $E$.
+    \begin{proof}
+        Suppose $F/K$ is an algebraic extension and $E$ be a intermediate field, thus $E/K$ is also an algebraic extension. For every monomorphism $\sigma: E \rightarrow E$ which is the identity on $K$, if $\sigma(E) \neq E$, there is a element $\alpha \in E- \sigma(E)$.
+
+        Let $f$ be the minimal polynomial of $\alpha$ in $K[x]$, and $\alpha_1,\alpha_2,\ldots,\alpha_s$ be all roots of $f$ in $E$. We have
+        \begin{equation*}
+            0=
+            \sigma f(\alpha_k)
+            =
+            \sigma (f)(\sigma\alpha_k)
+            =
+            f(\sigma\alpha_k)
+        \end{equation*}
+        It follows from that $f$ is injective, that $\sigma\alpha_k$ is a permutation of $\left\{\alpha_k\right\}$. It contradicts the assumption.
+    \end{proof}
+\end{theorem}
+
+
+
+\begin{theorem}
+    \label{thm:thm of algebraic extension}
+    Let $K$ be a field.
+    \begin{enumerate}
+        \item
+              If $L/K$ is finite, then $L$ is algebraic over $K$.
+        \item
+              If $\left\{L_i/K\right\}_{i \in I}$ be algebraic extensions, then the composition field $L$ is also algebraic over $K$.
+        \item
+              If $L/F$ and $F/K$ are algebraic extensions, then so is $L/K$.
+    \end{enumerate}
+\end{theorem}
+
+
+
+
+
+
+
+\begin{theorem}
+    Let $L/K$ be a field extension and $E$ the set of all elements of $L$ which are algebraic over $K$. Then $E$ is a subfield of $L$ called \textbf{maximal algebraic extension of $K/L$}.
+    \begin{proof}
+        If $u, v \in E$, then $K(u, v)$ is an algebraic extension field of $K$.
+        Therefore, since $u-v$ and $u v^{-1}(v \neq 0)$ are in $K(u, v)$, $u-v$ and $u v^{-1} \in E$. This implies that $E$ is a field.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    The following conditions on a field $K$ are equivalent.
+    \begin{enumerate}
+        \item
+              Every nonconstant polynomial $f\in K[x]$ has a root in $K$.
+
+        \item
+              every nonconstant polynomial $f\in K[x]$ splits over $K$.
+
+        \item
+              every minimal polynomial in $K[x]$ has degree one.
+
+        \item
+              there is no algebraic extension field of $K$ except $K$ itself.
+
+        \item
+              there exists a subfield $K$ of $F$ such that F is algebraic over $K$ and every polynomial in $ K [ x ]$ splits in ${F}[ x ]$.
+    \end{enumerate}
+    A field $K$ that satisfies the equivalent conditions is said to be \textbf{algebraically closed}.
+\end{theorem}
+
+\begin{definition}
+    Let $L/K$ be a field extension, then the following conditions are equivalent.
+    \begin{enumerate}
+        \item
+              $L$ is algebraic over $K$ and $L$ is algebraically closed.
+
+        \item
+              $L$ is a splitting field of $ K[x]$ over $K$.
+    \end{enumerate}
+    The field $L$ that satisfies the equivalent conditions is called an \textbf{algebraic closure of $K$}.
+\end{definition}
+
+\begin{theorem}
+    Let $K$ be a field.
+    Then the algebraic closure of $K$ exists and is unique up to an isomorphism in $\mathbf{Field}/K$.
+    \begin{proof}
+        Let $\mathcal{F}:=\left\{L: L/K \text{ is finite }\right\}$ be a collection of extensions (assume that all $L$ is contained in a fixed overfield by \cref{thm:Existence of composition fields}) with partial order defined by $L_1\leq L_2 \Leftrightarrow L_1\subset L_2$.
+        Then $\mathcal{F}$ is a directed system in $\mathbf{Field}/K$. Thus the direct limit
+        \begin{equation*}
+            \varinjlim L
+            =
+            \bigcup_{L\in \mathcal{F}} L
+        \end{equation*}
+        exists (be a field containing all $L$ and $K$) and is algebraic over $K$ by \cref{thm:thm of algebraic extension} and algebraically closed by \cref{cor:adjoin a root}.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    If $L_i/K$ is algebraic extensions for each $i$, then there is a algebraic closure $\overline{K}$ of $K$ containing all $L_i$.
+\end{corollary}
+
+
+
+\subsection{Splitting Fields} % Splitting Fields
+\begin{definition}
+    Let $K$ be a field and $f\in K[x]$ a polynomial of polynomials of positive.
+    An extension field $L\supset K$ is said to be a \textbf{splitting field} over $K$ of the polynomial $f$ if
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $f$ splits in $L[x]$
+        \item
+              $L= K \left( u _1, \ldots,  u _{{n}}\right)$ where $ u _1, \ldots,  u _{{n}}$ are the roots of $f$ in $L$.
+    \end{enumerate}
+    Let $\mathcal{S}$ be a set of polynomials of positive degree in $ K [ x ]$.
+    An extension field $L$ of $K$ is said to be a \textbf{splitting field over $K$ of the set $\mathcal{S}$} if
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              every polynomial in $\mathcal{S}$ splits in $L[x]$.
+        \item
+              $L$ is generated over $K$ by the roots of all the polynomials in $\mathcal{S}$.
+    \end{enumerate}
+    \begin{remark}
+        $L$ is a splitting field over $K$ of a finite set $\left\{f_1, \ldots, f_n\right\}\subset K[x]$ if and only if $L$ is a splitting field over $K$ of the single polynomial $f=f_1 f_2 \cdots f_n$.
+
+        If $F$ is a splitting field of $\mathcal{S}$ over $K$, then $F$ is also a splitting field over $K$ of the set $\mathcal{T}$ of all irreducible factors of polynomials in $\mathcal{S}$.
+    \end{remark}
+\end{definition}
+
+
+\begin{theorem}[Existence of splitting field]
+    If $K$ is a field and $ f  \in  K [ x ]$ has degree ${n} \geq 1$, then there exists a splitting field $L$ of $f$ with $[L: K] \leq {n}!$
+\end{theorem}
+\begin{theorem}
+    Let $\sigma:  K  \rightarrow {K'}$ be an isomorphism of fields, $\mathcal{S}=\left\{ f _{{i}}\right\}\subset  K [ x ]$, and $\mathcal{S}^\prime=\left\{f'=\sigma  f _{{i}}\right\}$.
+    If $L$ is a splitting field of $\mathcal{S}$ over $K$ and $L'$ is a splitting field of ${\mathcal{S}}^\prime$ over $K'$, then $\sigma$ is extendible to an isomorphism ${L} \cong  {L'}$.
+    \begin{proof}
+        Step 1. Suppose first that $\mathcal{S}$ consists of a single polynomial $f \in K[x]$ and proceed by induction on $n=[L: K]$.
+        If $n=1$, then $L=K$ and $f$ splits over $K$. This implies that $\sigma f$ splits over $K'$ and hence that $L'=K'$. Thus $\sigma$ itself is the desired isomorphism $L=K \xrightarrow{\sigma} K'=L'$.
+
+        If $\left[L:K\right]=>1$, then $f$ must have an irreducible factor $g$ of degree greater than $1$.
+        Let $u$ be a root of $g$ in $L$. Then verify that $\sigma g$ is irreducible in $K'[x]$. If $v=$ is a root of $\sigma g$ in $L'$, then $\sigma$ extends to an isomorphism $\tau: K(u) \cong K'(v)$ with $\tau(u)=v$.
+        Since $[K(u): K]=\deg g>1$, we must have $[L: K(u)]<n$. Since $L$ is a splitting field of $f$ over $K(u)$ and $L'$ is a splitting field of $\sigma f$ over $K'(v)$, the induction hypothesis implies that $\tau$ extends to an isomorphism $L \cong L'$.
+
+        Step 2. If $\mathcal{S}$ is arbitrary, let $S$ consist of all triples  $\left(E, E', \tau\right)$, where $E$ is an intermediate field of $F$ and $K$, $E'$ is an intermediate field of $F'$ and $K'$, and $\tau: E \rightarrow E'$ is an isomorphism that extends $\sigma$.
+
+        Define $\left(E_1, E_1', \tau_1\right) \leq\left(E_2, E_2', \tau_2\right)$ if $E_1 \subset E_2, E_1' \subset E_2'$ and $\tau_2 \mid E_1=\tau_1$. Verify that $S$ is a nonempty partially ordered set in which every chain has an upper bound in $\mathcal{S}$. By Zorn's Lemma there is a maximal element $\left(E_0, E_0', \tau_0\right)$  of $\mathcal{S}$. We claim that $E_0=F$ and $E_0'=F'$, so that $\tau_0: F \cong F'$ is the desired extension of $\sigma$ by the maximality and Step 1.
+    \end{proof}
+\end{theorem}
+\begin{corollary}[Uniqueness of splitting field]
+    Let $K$ be a field and $\mathcal{S}\subset  K[x]$.
+    Then any two splitting fields of $\mathcal{S}$ are $K$-isomorphic. In particular, any two algebraic closures of $K$ are $K$-isomorphic.
+\end{corollary}
+
+
+
+\subsection{Normal Extension }
+\begin{definition}
+    An algebraic extension field $L/K$ is said \textbf{normal}
+    if every irreducible polynomial in $K[x]$ that has a root in $L$ actually splits in $L[x]$.
+\end{definition}
+\begin{theorem}
+    Let $L/K$ be an algebraic extension and $\overline{K}$ be a algebraic closure of $K$ containing $L$, then the following statements are equivalent.
+    \begin{enumerate}
+        \item
+              $L$ is normal over $K$.
+
+        \item
+              $L$ is a splitting field over $K$ of some set $\mathcal{S} \subset K[x]$.
+
+        \item
+              $\sigma(L)=L$ for all $\sigma\in \Hom_{K}\left( L,\overline{K} \right)$, that is $\Hom_{K}\left( L,\overline{K}\right)=\Aut_K L$
+    \end{enumerate}
+    \begin{proof}
+        (1) $\Rightarrow$ (2).
+        Let $\left\{u_i \mid i \in I\right\}$ be a basis of vector space $L$ over $K$ and for each $i \in I$ let $f_i \in K[x]$ be the minimal polynomial of $u_i$. Since $L/K$ is normal, each $f_i$ splits in $L[x]$. Therefore $L$ is a splitting field over $K$ of $S=\left\{f_i \mid i \in I\right\}$.
+
+        (2) $\Rightarrow$ (3).
+        Let $u$ be a root of some polynomial in $\mathcal{S}$.
+        Since $L$ is a splitting field of $\mathcal{S}$ over $K$, we have $u \in L$.
+        For any $\sigma \in \Hom_{K}\left(L, \overline{K}\right)$, $\sigma(u)$ is also a root of the same polynomial.
+        Thus $\sigma(u) \in L$.
+        Since $L$ is generated over $K$ by the roots of all polynomials in $\mathcal{S}$, we have $\sigma$ maps each generator of $L$ into $L$.
+        It follows that $\sigma(L) \subset L$.
+        Since $\sigma$ is injective, we have $\sigma(L)=L$.
+
+        (3) $\Rightarrow$ (1).
+        Let $f \in K[x]$ be an irreducible polynomial with a root $u \in L$.
+        If $v$ is any root of $f$ in $\overline{K}$, then there is a $\sigma \in \Hom_{K}\left(K(u), \overline{K}\right)$ such that $\sigma(u)=v$.
+        Since $L/K$ is algebraic, by extending $\sigma$, we have $\sigma \in \Hom_{K}\left(L, \overline{K}\right)$.
+        By assumption, we have $\sigma(L)=L$, thus $v=\sigma(u) \in L$.
+        Therefore, $\left\{\sigma(u)\right\}$ runs over all roots of $f$ and $f$ splits in $L[x]$.
+    \end{proof}
+\end{theorem}
+
+\begin{proposition}
+    Let $k$ be a field.
+    The following statements hold:
+    \begin{enumerate}
+        \item
+              If $F \supset L \supset k$ and $F$ is normal over $k$, then $F$ is normal over $L$.
+        \item
+              If $L_1, L_2$ are normal over $k$, then $L_1 L_2$ is normal over $k$, and so is $L_1 \cap L_2$.
+
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{definition}
+    Let $L/K$ be a algebraic extension, the \textbf{normal closure} of $L$ over $K$ is the smallest normal extension of $K$ containing $L$, that is, an extension field $\tilde{L}$ of $L$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item  $\tilde{L}$ is normal over $K$.
+        \item no proper subfield of $\tilde{L}$ containing $L$ is normal over $K$.
+    \end{enumerate}
+    \begin{remark}
+        The normal closure of $L$ over $K$ exists ($\overline{K}$ is normal over $K$ and contains $L$) and is unique up to a $K$-isomorphism.
+        \begin{equation*}
+            \bigcap_{\substack{ L \subset F \subset \overline{K} \\ F \text { normal over } K}} F
+        \end{equation*}
+    \end{remark}
+\end{definition}
+
+
+
+
+\subsection{Separable Extension} % Separable Extension
+\begin{definition}
+    Let $L/K$ be a algebraic extension.
+    \begin{enumerate}
+        \item
+              The polynomial $f\in K[x]$ is said to be \textbf{separable} if every root of $f$ is a simple root in some splitting field of $f$ over $K$.
+
+        \item
+              Let $u \in L$ be algebraic over $K$, then $u$ is said to be \textbf{separable} over $K$ provided its minimal polynomial is separable.
+              It is equivalent  that $\gcd\left(m_u,m_u'\right)=1$.
+
+        \item
+              If every element of $F$ is separable over $K$, then $F$ is said to be a \textbf{separable extension} of $K$. (thus algebraic extension)
+    \end{enumerate}
+    \begin{remark}
+        Thus separable polynomial has distinct roots in its splitting field.
+        If $\char K =0$, every irreducible polynomial in $K[x]$ is separable and every algebraic extension $L/K$ is separable.
+    \end{remark}
+\end{definition}
+
+
+
+
+
+\begin{proposition}
+    Let $L/K$ be an algebraic extension.
+    If $L$ is generated by a set of separable elements over $K$, then $L$ is a separable extension of $K$.
+\end{proposition}
+
+\begin{definition}
+    Let $L/K$ be an algebraic extension, the \textbf{separable closure} of $L$ over $K$ is the largest separable extension of $K$ contained in $L$, that is, an extension field $L_{sep}$ of $K$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $L_{sep}$ is separable over $K$.
+        \item
+              any proper extension field of $L_{sep}$ contained in $L$ is not separable over $K$.
+    \end{enumerate}
+    The separable degree of $L$ over $K$ is defined as $[L_{sep}: K]$, denoted by $[L: K]_s$.
+    \begin{remark}
+        That is,
+        \begin{equation*}
+            L_{sep}
+            =
+            \left\{u \in L: u \text { is separable over } K\right\}
+        \end{equation*}
+    \end{remark}
+\end{definition}
+
+
+
+\subsection{Purely Inseparable Extension (char $p$)} % Purely Inseparable Extension
+\begin{definition}
+    Let $L/K$ be an algebraic extension(of characteristic $p$) and a element $\alpha \in L$ with minimal polynomial $m_\alpha \in K[x]$.
+    \begin{enumerate}
+        \item
+              The \textbf{separable degree} of a polynomial $f \in K[x]$ is defined as the number of distinct roots of $f$ in its splitting field over $K$, denoted by $\deg_s \left(f\right)$.
+              And the \textbf{separable part} of $f$ is defined as  $f_{sep}(x):=\prod (x-\alpha_i)$
+        \item
+              the \textbf{inseparable degree} of $f$ is defined as $\deg_i (f):=\deg f/\deg_s (f)$.
+
+        \item
+              The \textbf{separable degree of $\alpha$ over $K$} is
+              \begin{equation*}
+                  \deg_s \alpha
+                  :=
+                  \text{number of distinct roots of } m_\alpha \text{ in its splitting field over } K
+              \end{equation*}
+        \item
+              A element $u \in L$ is \textbf{purely inseparable} over $K$ if its minimal polynomial $f$ in $K[x]$ factors in $L[x]$ as $f=(x-u)^{m}$ (or equivalently $X^{p^n}-a$ for some $a\in K$ and $n\in \mathbb{Z}_{\geq 1}$).
+        \item
+              $L$ is a \textbf{purely inseparable extension} of $K$ if every element of $L$ is purely inseparable over $K$.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{theorem}
+    Let $L/K$ be an algebraic extension(of characteristic $p$), then the following statements are equivalent:
+    \begin{enumerate}
+        \item
+              $L$ is purely inseparable over $K$ ;
+
+        \item
+              the minimal polynomial of any $u \in L$ is of the form $x^{p^n}-a \in K[x]$;
+
+        \item
+              if $ u\in L$, then $u^{p^{n}} \in K$ for some $n \geq 0$;
+
+        \item
+              the only elements of $L$ which are separable over $K$ are the elements of $K$ itself;
+
+        \item
+              $L$ is generated over $K$ by a set of purely inseparable elements.
+    \end{enumerate}
+\end{theorem}
+
+$\Hom_{K}\left( L,L \right)$
+
+
+\begin{theorem}[Decomposition of algebraic extension]
+    \label{thm:decompositon of algebraic extension}
+    Let $L/K$ be an algebraic extension, then there exists a unique intermediate field $M$ ( actually $L_{sep}$ ) such that $L_{sep}/K$ is separable and $L/L_{sep}$ is purely inseparable.
+    \begin{proof}
+        If $\char K = 0$, then let $M=L$.
+        In the case $\char K = p \neq 0$, let $u \in L$ and $m_u$ be the minimal polynomial of $u$ over $K$.
+        We can write $m_u(x)=f\left(x^{p^n}\right)$ for some  irreducible separable polynomial $f \in K[x]$ and integer $n \geq 0$. Thus $f$ is the minimal polynomial of $u^{p^n}$ over $K$ and $u^{p^n}\in L_{sep}$ is separable over $K$.
+        Then $u$ is purely inseparable over $L_{sep}$ since its minimal polynomial in $L_{sep}[x]$ divides $X^{p^n}-u^{p^n}=(X-u)^{p^n}$.
+    \end{proof}
+\end{theorem}
+
+\subsection{Separable degree}
+
+
+\begin{theorem}
+    [Primitive element theorem]
+    Let $L/K$ be a finite extension, then the following statements are equivalent.
+    \begin{enumerate}
+        \item
+              there exists an element $u \in L$ such that $L=K(u)$.
+        \item
+              there exists only a finite number of intermediate field such that $K\subset F \subset L$
+    \end{enumerate}
+    Especially, if $L/K$ is finite separable, then $L=K(u)$ for some $u \in L$.
+\end{theorem}
+
+\begin{corollary}
+    Let $L/K$ be an algebraic extension and $\overline{K}$ be an algebraic closure of $K$ containing $L$, then the \textbf{separable degree}
+    \begin{equation*}
+        \left[L:K\right]_s
+        :=
+        \left[L_{sep}:K\right]
+        =
+        \#\Hom_{K}\left(L, \overline{K}\right)
+    \end{equation*}
+    (if finite)
+\end{corollary}
+
+\begin{definition}
+    Let $L/K$ be an algebraic extension
+\end{definition}
+
+
+
+\subsection{}
+
+
+
+
+\begin{theorem}
+    Let $L/K$ be an algebraic extension, then the following statements are equivalent.
+    \begin{enumerate}
+        \item
+              $L/K$ is Galois.
+
+        \item
+              $L$ is a splitting field over $K$ of and $L/K$ is separable.
+
+        \item
+              $L$ is a splitting field over $K$ of a set $\mathcal{S}$ of separable polynomials in $ K [ x ]$.
+    \end{enumerate}
+    \begin{proof}
+        (1) $\Rightarrow$ (2).
+        Suppose $u \in F$ has minimal polynomial $f \in K[x]$, then $f$ splits in $F[x]$ into a product of distinct linear factors. Hence $u$ is separable over $K$.
+        Let $\left\{v_i \mid i \in I\right\}$ be a basis of vector space $F$ over $K$ and for each $i \in I$ let $f_i \in K[x]$ be the minimal polynomial of $v_i$. The preceding remarks show that each $f_i$ is separable and splits in $F[x]$. Therefore $F$ is a splitting field over $K$ of $S=\left\{f_i \mid i \in I\right\}$.
+
+        (2) $\Rightarrow$ (3)
+        Let set $T$ consists of all irreducible monic factor of polynomial in $S$.
+        Let $f \in T$, $f$ must be the minimal polynomial of some $u \in F$.
+        Since $F$ is separable over $K$, $f$ is necessarily separable.
+        It follows that $F$ is a splitting field over $K$ of the set $T$ of separable polynomials consisting of all monic irreducible factors in $K[x]$.
+
+        (3) $\Rightarrow$ (1) $F$ is algebraic over $K$ since any splitting field over $K$ is an algebraic extension.
+        If $u \in F-K$, then $u \in K\left(v_1, \ldots, v_n\right)$ with each $v_i$ a root of some $f_i \in T$.
+    \end{proof}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Galois Theory} % Galois Theory
+\minitoc
+
+\section{Basic Definition} % Basic Definition
+
+\begin{definition} % $K$-homomorphism
+    Let $E$ and $F$ be extension fields of a field $K$.  \label{1232}
+    \begin{enumerate}
+        \item
+              A nonzero map $\sigma: E \rightarrow {F}$ which is both a field homomorphism and a $K$-module homomorphism is called a \textbf{$K$-homomorphism}.
+
+        \item
+              Similarly if a field automorphism $\sigma \in \Aut F$ is a $K$-homomorphism, then $\sigma$ is called a \textbf{$K$-automorphism} of $F$.
+
+        \item
+              The group of all $K$-automorphisms of $F$ is called the \textbf{Galois group of $F$ over $K$} and is denoted $\Aut_K F$ or $\Gal(F/K)$.
+    \end{enumerate}
+
+\end{definition}
+
+
+\begin{definition}
+    Let $L/K$ be an extension.
+    \begin{enumerate}
+        \item
+              If $H< \Aut_{ K } {F}$, then
+              \begin{equation*}
+                  H^\prime
+                  =
+                  L^H
+                  :=
+                  \{
+                  {v} \in {F} :\sigma({v})={v} \text{ for all }\sigma \in H
+                  \}
+              \end{equation*}
+              is an intermediate field of the extension called the \textbf{fixed field of $H$ in $F$}.
+
+        \item
+              If $E$ an intermediate field, then
+              \begin{equation*}
+                  E^\prime
+                  =
+                  \Aut_{E} {F}
+                  =
+                  \left\{\sigma \in \Aut_{ K } {F} : \sigma( u )= u \right. \text{ for all } \left. u  \in E\right\}
+              \end{equation*}
+              is a subgroup of $\Aut_{ K } {F}$.
+    \end{enumerate}
+\end{definition}
+\begin{definition}
+    Let $L/K$ be a algebraic extension such that
+    $K=L^{\Aut_K(L)}$.
+    Then $L$ is said to be a \textbf{Galois extension of $K$} or to be Galois over $K$.
+
+    Let $X$ be an intermediate field or subgroup of the Galois group. $X$ will be called \textbf{closed} provided $X=X^{\prime \prime}$.
+\end{definition}
+
+\section{}
+\begin{proposition}
+    Let $L/K$ be an algebraic extension and $\overline{K}$ be an algebraic closure of $K$ containing $L$, then
+    \begin{equation*}
+        \left[L:K\right]_{sep}
+        =
+        \#\Hom_{K}\left(L, \overline{K}\right)
+    \end{equation*}
+    if finite. Thus we have
+    \begin{equation*}
+        \left|\Aut_{K} L\right| \cdot t
+        =
+        \left[L: K\right]_s
+    \end{equation*}
+    where $t=\#\left\{\sigma(L) : \sigma\in \Hom_{K}\left(L, \overline{K}\right) \right\}$ is the number of distinct $K$-embeddings image of $L$, is also the number of distinct conjugates of $L$ in $\overline{K}$.
+\end{proposition}
+
+\begin{corollary}
+    Let $L/K$ be an algebraic extension and intermediate field $E\subset F$, then
+    \begin{equation*}
+        \left[\Aut_E L:\Aut_F L\right]\cdot \frac{t_E}{t_F}
+        =
+        \left[F:E\right]_
+        {sep}
+    \end{equation*}
+
+\end{corollary}
+
+\begin{corollary}
+    If $L/K$ is a finite extension, then
+    \begin{equation*}
+        \left|\Aut_{K} L\right| \leq \left[L: K\right]
+    \end{equation*}
+    The equality holds if and only if $L/K$ is finite separable and normal.
+\end{corollary}
+
+\begin{proposition}
+    Let $L$ be a field, $H< \Aut(L)$ and if $L/L^H$ is algebraic, then $L/L^H$ is Galois.
+    \begin{proof}
+        In any case $H$ is a subgroup of ${\Aut}_{L^H}L$.
+        If $u \in L-L^H$, then there must be a $\sigma \in H$ such that $\sigma(u) \neq u$. Therefore, the fixed field of $\Aut_{L^H} L$ is $L^H$, whence $L$ is Galois over $L^H$.
+    \end{proof}
+\end{proposition}
+
+
+
+\section{Fundamental Theorem} % Fundamental Theorem
+
+\begin{proposition}
+    Let $L/K$ be an extension field.
+    \begin{enumerate}
+        \item
+              Suppose that $E\subset F$ are intermediate fields, then $\sigma_1$ and $\sigma_2 \in \Aut_E L$ are in the same left coset of $F^\prime$ if and only if
+              \begin{equation*}
+                  \left.\sigma_1\right|_{F}
+                  =
+                  \left.\sigma_2\right|_{F}
+              \end{equation*}
+              thus $\left[\Aut_E F: \Aut_{F} F\right]=\# \left\{\left.\sigma\right|_F: \sigma \in \Aut_E L\right\}$.
+
+        \item
+              Suppose that $H,J $ are subgroups of $\Aut_K L$ with $H<J$ and $\tau_1,\tau_2\in J$ are in the same left coset of $H$, then
+              \begin{equation*}
+                  \left.\tau_1\right|_{L^H}
+                  =
+                  \left.\tau_2\right|_{L^H}
+              \end{equation*}
+              thus $\left[J: H\right]\geq \# \left\{\left.\tau\right|_{L^H}: \tau \in J\right\}$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{lemma}
+    Let $L/K$ be an extension field and $E\subset F$ are intermediate fields, then $\sigma_1$ and $\sigma_2 \in \Aut_E L$ are in the same left coset of $F^\prime$ if and only if
+    \begin{equation*}
+        \left.\sigma_1\right|_{F}
+        =
+        \left.\sigma_2\right|_{F}
+    \end{equation*}
+    thus $\left[\Aut_E F: \Aut_{F} F\right]=\# \left\{\left.\sigma\right|_F: \sigma \in \Aut_E L\right\}$.
+\end{lemma}
+
+
+\begin{theorem}
+    Let $L/K$ be an algebraic extension and $E\subset F$ intermediate fields with $\left[F:E\right]<\infty$.
+    \begin{equation*}
+        \left[\Aut_E L:\Aut_F L\right]\leq
+        \left[F:E\right]
+    \end{equation*}
+\end{theorem}
+
+\begin{lemma}
+    Suppose that $H,J $ are subgroups of $\Aut_K L$ with $H<J$ and $\tau_1,\tau_2\in J$ are in the same left coset of $H$, then
+    \begin{equation*}
+        \left.\tau_1\right|_{L^H}
+        =
+        \left.\tau_2\right|_{L^H}
+    \end{equation*}
+    thus $\left[J: H\right]\geq \# \left\{\left.\tau\right|_{L^H}: \tau \in J\right\}$.
+\end{lemma}
+
+\begin{theorem}
+    Let $\chi_i$ be distinct characters of a group $G$ with degree $n_i$, then
+\end{theorem}
+
+
+\begin{theorem}
+    Let $L$ be a field, $G$ be a finite subgroup of $\Aut(L)$ and $K=L^G$, then
+    \begin{equation*}
+        [L: K]=|G|
+    \end{equation*}
+    \begin{proof}
+        
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    Let $L/K$ be an algebraic extension and $H, J$ be subgroups of $\Aut_K L$ with $[J: H]<\infty$, then
+    \begin{equation*}
+        \left[L^H: L^J\right] \leq[J: H]
+    \end{equation*}
+\end{corollary}
+
+
+
+
+
+
+\begin{lemma}
+    Let $F/K$ and $X,Y$ be two intermediate fields or two subgroups of the Galois group $\Aut_K F$. Then:
+    \begin{enumerate}
+        \item
+              $X\subset Y \Rightarrow Y^\prime \subset X^\prime$
+        \item
+              $X^\prime=X^{\prime \prime \prime}$
+    \end{enumerate}
+\end{lemma}
+\begin{lemma}
+    Let $L/K$, then there is a one-to-one correspondence between the closed intermediate fields and the closed subgroups, given by
+    \begin{equation*}
+        \begin{aligned}
+            E \mapsto E^\prime \\
+            H \mapsto H^\prime
+        \end{aligned}
+    \end{equation*}
+\end{lemma}
+\begin{corollary}
+    Let $F$ be an extension field of $ K , L$ and $M$ intermediate fields with $L \subset M$, and $H, {J}$ subgroups of $\Aut_{ K } {F}$ with $H<{J}$.
+    \begin{enumerate}
+        \item
+              If $L$ is closed and $[M: L]$ finite, then $M$ is closed and $\left[L^\prime: M^\prime\right]=[M: L]$
+
+        \item
+              If $H$ is closed and $[J: H]$ finite, then $J$ is closed and $\left[H^\prime: J^\prime\right]=[{J}: H]$
+        \item
+              If $F$ is a finite dimensional Galois extension of $K$, then all intermediate fields and all subgroups of the Galois group are closed.
+    \end{enumerate}
+    \begin{proof}
+        (2) Applying successively the facts that $J \subset J^{\prime \prime}$ and $H=H^{\prime \prime}$ and Lemmas 2.8 and 2.9 yields
+        \begin{equation*}
+            [J: H] \leq\left[J^{\prime \prime}: H\right]=\left[J^{\prime \prime}: H^{\prime \prime}\right] \leq\left[H^{\prime}: J^{\prime}\right] \leq[J: H] ;
+        \end{equation*}
+        this implies that $J=J^{\prime \prime}$ and $\left[H^{\prime}: J^{\prime}\right]=[J: H]$. (1) is proved similarly.
+    \end{proof}
+\end{corollary}
+
+\subsection{Stable Intermediate Fields} % Stable Intermediate Fields
+\begin{definition}
+    Let $E$ be an intermediate field of the extension $L/K$
+    \begin{enumerate}
+        \item
+              The intermediate field $E$ is said to be \textbf{stable relative to $K$ and $L$} if every $K$-automorphism $\sigma \in \Aut_K F$ maps $E$ into itself.
+              \begin{remark}
+                  If $E$ is stable and $\sigma^{-1} \in {\Aut}_K F$ is the inverse automorphism, thus $\sigma^{-1}$ also maps $E$ into itself.
+                  This implies that $\sigma \mid_E$ is in fact a $K$-automorphism of $E$ (that is, $\left.\sigma\right|_E \in \Aut_K E$ ) with inverse $\left.\sigma^{-1}\right|_E$.
+              \end{remark}
+
+        \item
+              A $K$-automorphism $\tau \in \Aut_K E$ is said to be \textbf{extendible} to $F$ if there exists $\sigma \in \Aut_K F$ such that $\left.\sigma\right|_E=\tau$.
+
+              It is easy to see that the extendible $K$-automorphisms form a subgroup of $\Aut_K E$.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    \label{thm: The stable intermediate field and normal subgroup of Galois group}
+    Let $L/K$ be an extension and $E$ be an intermediate field.
+    \begin{enumerate}
+        \item
+              If $E$ is a stable intermediate field, then
+              \begin{equation*}
+                  E^\prime=\Aut_{E} {L} \lhd \Aut_{ K } {L}
+              \end{equation*}
+              and the quotient group
+              \begin{equation*}
+                  G / E' \cong \left\{\sigma \in \Aut_K E : \sigma \text{ is extendible to } F \right\}
+              \end{equation*}
+        \item
+              If $H\lhd \Aut_{ K } {F}$, then $H^\prime$ is a stable intermediate field.
+    \end{enumerate}
+
+    \begin{proof}
+        (1)
+        If $u \in E$ and $\sigma\in  \Aut_K F$, then $\sigma(u)\in  E$ by stability and hence $\tau \sigma(u)=\sigma(u)$ for any $\tau\in  E^\prime=\Aut_E F$. Therefore, for any $\sigma\in  \Aut_K F, \tau\in  E^\prime$ and $u\in  E$, $\sigma^{-1} \tau \sigma(u)=\sigma^{-1} \sigma(u)=u$. Consequently, $\sigma^{-1} \tau \sigma\in  E^\prime$ and hence $E^\prime$ is normal in  $\Aut_K F$.
+
+        Since $E$ is stable, the assignment
+        \begin{equation*}
+            \sigma \mapsto \left.\sigma \right|_E
+        \end{equation*}
+        defines a group homomorphism ${\Aut}_K F \rightarrow \Aut_K E$ whose image is clearly the subgroup of all $K$-automorphisms of $E$ that are extendible to $F$. Observe that the kernel is $E^\prime=\Aut_E F$ and apply the first homomorphism theorem.
+
+        (2) If $\sigma\in  \Aut_K F$ and $\tau\in  H$, then $\sigma^{-1} \tau \sigma\in  H^\prime$ by normality. Therefore, for any $u\in  H^\prime, \sigma^{-1} \tau \sigma(u)=u$, which implies that $\tau \sigma(u)=\sigma(u)$ for all $\tau\in  H$. Thus $\sigma(u) \in H^\prime$ for any $u\in  H^\prime$, which means that $H^\prime$ is stable.
+    \end{proof}
+\end{theorem}
+
+
+
+\begin{proposition}
+    If $E$ is an intermediate field of the extension $F/K$ such that $F/E$ and $E/K$ are both Galois.
+    Then $F$ is Galois over $K$ if and only if every $\sigma \in  \Aut_K E$ is extendible to $F$
+    \begin{proof}
+        Sufficiency.
+        We have
+        \begin{equation*}
+            \Aut_K F / \Aut_E F
+            \cong
+            \left\{\sigma \in \Aut_K E : \sigma \text{ is extendible to } F \right\}
+            =
+            \Aut_K E
+        \end{equation*}
+        then
+        \begin{equation*}
+            \left|\Aut_K F\right|
+            =
+            \left|\Aut_E F\right| \left|\Aut_K E \right|
+            =
+            \left[F:E\right] \left[E:K\right]
+            =
+            \left[F:K\right]
+        \end{equation*}
+        It follows from
+        $E^\prime$ is closed and $\left[K:E^\prime\right]< \infty$ that $K$ is closed, whence $F/K$ is Galois.
+
+        Necessity. Conversely, we have
+        \begin{equation*}
+            \# \left\{\sigma \in \Aut_K E : \sigma \text{ is extendible to } F \right\}
+            =
+            \left[F:K\right]/\left[F:E\right]
+            =
+            \left[E:K\right]
+            =
+            \left|\Aut_K E\right|
+        \end{equation*}
+        thus $\left\{\sigma \in \Aut_K E : \sigma \text{ is extendible to } F \right\}=\Aut_K E$, that is, every $\sigma \in  \Aut_K E$ is extendible to $F$.
+    \end{proof}
+\end{proposition}
+
+\subsection{Finite Galois correspondence}
+
+\begin{theorem}
+    Let $L/K$ be a finite extension.
+    The following statements are equivalent:
+    \begin{enumerate}
+        \item
+              $L/K$ is Galois.
+        \item
+              $\left|\Aut_K L\right| = [L:K]$.
+        \item
+              $L/K$ is normal and separable.
+    \end{enumerate}
+\end{theorem}
+
+
+
+
+\begin{theorem}
+    Let $L/K$ be a finite Galois extension, then there is a one-to-one correspondence between the set of all intermediate fields and the set of all subgroups of $\Aut_{ K } {L}$ given by
+    \begin{equation*}
+        X \leftrightarrow X^\prime
+    \end{equation*}
+    such that:
+    \begin{enumerate}
+        \item
+              the relative dimension of two intermediate fields is equal to the relative index of the corresponding subgroups
+              \begin{equation*}
+                  \begin{matrix}
+                      K & \subset & E_1         & \subset & E_2          & \subset & L \\
+                      G & \supset & \Aut_{E_1}L & \supset & \Aut_{E_2} L & \supset & 1
+                  \end{matrix}\end{equation*}
+              then
+              \begin{equation*}
+                  [E_2:E_1] = [\Aut_{E_1} L : \Aut_{E_2}L]
+              \end{equation*}
+        \item
+              $L$ is Galois over every intermediate field $E$, $E''=E$
+
+        \item
+              $E$ is Galois over $K \Leftrightarrow E^\prime \lhd \Aut_K F \Leftrightarrow \left\{\sigma \in \Aut_K E : \sigma \text{ is extendible to } F \right\}=\Aut_K E$
+              ; in this case
+              \begin{equation*}
+                  K' / E^\prime
+                  \cong
+                  \left\{\sigma \in \Aut_K E : \sigma \text{ is extendible to } F \right\}
+                  =
+                  \Aut_{ K } E
+              \end{equation*}
+    \end{enumerate}
+\end{theorem}
+\begin{theorem}[Artin]
+    Let $F$ be a field, $G$ a group of automorphisms of $F$ and $K$ the fixed field of $G$ in $F$. Then $F$ is Galois over $K$.
+    If $G$ is finite, then F is a finite dimensional Galois extension of K with Galois group $G$.
+    \begin{proof}
+        In any case $G$ is a subgroup of ${\Aut}_K F$. If $u \in F-K$, then there must be a $\sigma \in G$ such that $\sigma(u) \neq u$. Therefore, the fixed field of $\Aut_K F$ is $K$, whence $F$ is Galois over $K$.
+
+        If $G$ is finite, $[F: K]=\left[1^\prime: G^\prime\right] \leq[G: 1]=|G|$. Consequently, $F$ is finite dimensional over $K$, whence $G=G^{\prime \prime}$ by Lemma 2.10(iii). Since $G^\prime=K$ (and hence $G^{\prime \prime}=K^\prime$ ) by hypothesis, we have $\Aut_K F=K^\prime=G^{\prime \prime}=G$.
+    \end{proof}
+\end{theorem}
+
+\subsection{}
+
+
+
+
+
+
+
+
+
+\subsection{Question}
+\begin{lemma}
+    Let $K$ be a field and a element $f/g$ in $K\left(x\right)$ with $f / g \notin K$ and $f, g$ relatively prime in $K[x]$
+\end{lemma}
+\begin{proposition}[$K\left(x\right)/K$]
+    Let $f / g \in K(x)$ with $f / g \notin K$ and $f, g$ relatively prime in $K[x]$ and consider the extension of $K$ by $K(x)$.
+    \begin{enumerate}
+        \item
+              $x$ is algebraic over $K(f / g)$ and $[K(x): K(f / g)]=\max (\deg f, \deg g)$.
+        \item
+
+              If $E \neq K$ is an intermediate field, then $[K(x): E]$ is finite.
+        \item
+
+              The assignment $x \mapsto f / g$ induces a $K$-homomorphism $\sigma: K(x) \rightarrow K(x)$ such that $\varphi(x) / \psi(x) \mapsto \varphi(f / g) / \psi(f / g)$. $\sigma$ is a $K$ automorphism of $K(x)$ if and only if $\max (\deg f, \deg g)=1$.
+        \item
+
+              Thus $\Aut_K K(x)$ consists of all those automorphisms induced by the assignment
+              \begin{equation*}
+                  x \mapsto(a x+b) /(c x+d)
+              \end{equation*}
+              where $a, b, c, d \in K$ and $a d-b c \neq 0$.
+        \item
+
+              If $K$ is an infinite field, then $K(x)$ is Galois over $K$.
+              If $K$ is finite, then $K(x)$ is not Galois over $K$.
+    \end{enumerate}
+    \begin{proof}
+        (1) $x$ is a root of the nonzero polynomial $\varphi(y)=(f / g) g(y)-f(y) \in K(f / g)[y]$; show that $\deg \varphi=\max \left\{\deg f, \deg g\right\}$ and $\varphi$ is irreducible in $K(f / g)[y]$
+
+        Since $f / g$ is transcendental over $K$, we may for convenience replace $K(f / g)$ by $K(z)$ ( $z$ an indeterminate) and consider $\varphi=z g(y)-f(y) \in K(z)[y]$.
+
+        Indeed, $\varphi$ is irreducible in $K(z)[y]$ provided it is irreducible in $K[z][y]$ by Gauss lemma.
+        The truth of this latter condition follows from the fact that $\varphi$ is linear in $z$ and $f, g$ are relatively prime.
+
+        (3)
+        Assume that $\deg g =\max \left\{\deg f, \deg g\right\} >1$. For any $\varphi/\psi \in K\left(x\right)$ such that $\varphi, \psi \in K\left[x\right]$,$\gcd\left(\varphi,\psi\right)=1$ and $\deg \varphi =m, \deg \psi =n$ ($m>n$), there exist $u,v\in K[x]$ such that
+        \begin{equation*}
+            u(x)\varphi(x)+v(x)\psi(x)
+            =
+            1_K
+        \end{equation*}
+        and $u$
+        Then the image of $\varphi/\psi$
+        \begin{equation*}
+            \varphi(f / g) / \psi(f / g)
+            =
+            \frac{g^k\varphi(f / g)}{g^k\psi(f / g)}
+        \end{equation*}
+        where $k$ is sufficiently large that $k>\max\left\{\deg u + \deg \varphi,\deg v + \deg \psi\right\} $.
+        Then we have
+        \begin{equation*}
+            g^ku(f/g)\varphi(f/g)+g^kv(f/g)\psi(f/g)
+            =
+            g^k
+        \end{equation*}
+        thus $\gcd\left(g^m\varphi(f / g),g^m\psi(f / g)\right)
+            =
+            \gcd\left(g^m\varphi(f / g),g^{m-n} g^n\psi(f / g)\right)$ is a power of $g$
+        Therefore, we have
+        \begin{equation*}
+            \gcd\left(g^m\varphi(f / g),g^m\psi(f / g)\right) =1
+        \end{equation*}
+
+        If we rewrite
+        \begin{equation*}
+            \varphi(f / g) / \psi(f / g)
+            =
+            F/G
+        \end{equation*}
+        where $F,G\in K\left[x\right]$, then $\deg F/G = \max\left\{\deg F,\deg G\right\}>1$, the homomorphism is not surjective.
+
+        (5)
+        If $K$ is infinite and $K(x)$ is not Galois over $K$, then $K(x)$ is finite dimensional over the fixed field $E$ of $\Aut_K K(x)$ by (2).
+        But $\Aut_E K(x)=\Aut_K K(x)$ is infinite (4), which contradicts $\left[E':1\right]\leq \left[K\left(x\right),E\right]$.
+
+        If $K$ is finite and $K(x)$ is Galois over $K$, then $\Aut_K K(x)$ would be infinite by Lemma 2.9. But $\Aut_K K(x)$ is finite by (4)
+    \end{proof}
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Galois Groups}%% Galois Groups
+\subsection{}
+\begin{definition}
+    Let $K$ be a field. The \textbf{Galois group} of $ f  \in K[ x ]$ is the group $\Aut_K F$, where $F$ is a splitting field of $f$ over $K$.
+\end{definition}
+
+\begin{theorem}
+    Let $K$ be a field and $f\in K[x]$ an irreducible polynomial of degree $n$ with Galois group $\Aut_K F$. Then
+    \begin{enumerate}
+        \item
+              $n$ divides $\left|\Aut_K F\right|$
+        \item
+              $\Aut_K F$ is isomorphic to a transitive subgroup of $S_n$.
+    \end{enumerate}
+    \begin{proof}
+        (1) If $u_1, \ldots, u_n$ are the distinct roots of $f$ in some splitting field $F(1 \leq n \leq \deg f)$, then every $\sigma \in \Aut_K F$ induces a unique permutation of $\left\{u_1, \ldots, u_n\right\}$.
+        Consider $S_n$ as the group of all permutations of $\left\{u_1, \ldots, u_n\right\}$ and verify that the assignment of $\sigma \in {\Aut}_K F$ to the permutation it induces defines a monomorphism $\Aut_K F \rightarrow S_n$ by
+        \begin{equation*}
+            \sigma \mapsto \left(\begin{matrix}
+                u_1           & u_2           & \cdots & u_n            \\
+                u_{\sigma(1)} & u_{\sigma(2)} & \cdots & u_{\sigma(n)}\
+            \end{matrix}\right)
+        \end{equation*}
+
+        As for (2), $F$ is Galois over $K$ and $\left[K\left(u_1\right): K\right]=n=\deg f$.
+        Therefore, $G$ has a subgroup $K(u_1)'=\Aut_{K(u_1)} F$ of index $n$ by the Fundamental Theorem ($\left[\Aut_K F:K(u_1)'\right]=\left[K(u_1):K\right]$), whence $n$ divide $\left|G\right|$.
+        For any $i \neq j$ there is a $K$-isomorphism $\sigma: K\left(u_i\right) \cong K\left(u_j\right)$ such that $\sigma\left(u_i\right)=u_j$.
+        Then $\sigma$ extends to a $K$-automorphism of $F$ by Theorem 3.8, whence $G$ is isomorphic to a transitive subgroup of $S_n$.
+    \end{proof}
+\end{theorem}
+
+
+\begin{definition}
+    Let $K$ be a field with $\char  K  \neq 2$ and $ f  \in  K [ x ]$ a polynomial of degree n with n distinct roots $ u _1, \ldots, u_n $ in some splitting field $F$ of $f$ over $K$.
+    Let
+    \begin{equation*}
+        \Delta=\prod_{i<j}\left( u _{{i}}- u _{{j}}\right)=\left( u _1- u _2\right)\left( u _1- u _3\right) \cdots\left( u _{{n}-1}- u _{{n}}\right) \in F
+    \end{equation*}
+    the \textbf{discriminant} of $f$ is the element ${D}=\Delta^2$.
+\end{definition}
+
+
+\begin{proposition}
+    Let $ K ,  f , {F}$ and $\Delta$ be as in Definition .
+
+    (1) The discriminant $\Delta^2$ of f actually lies in $K$.
+
+    (2) For each $\sigma \in \Aut_{ K } F < S_{{n}}$, $\sigma$ is an even [resp. odd] permutation if and only if $\sigma(\Delta)=\Delta[\operatorname{resp} . \sigma(\Delta)=-\Delta]$.
+\end{proposition}
+\section{Finite Fields}%% Finite Fields
+\begin{theorem}
+    Let $F$ be a field and
+
+    (1)
+    let $P$ be the intersection of all subfields of $F$.
+    Then $P$ is a field with no proper subfields. If  $\char F=p$ (prime), then $\mathrm{P} \cong \mathbb{Z}_{p}$. If char $F=0$, then $P\cong \mathbb{Q}$, the field of rational numbers.
+    The field $P$ is called the \textbf{prime subfield} of $F$.
+
+    (2)
+    If $F$ is a finite field, then  $\char F=p \neq 0$ for some prime p and $|F|=p^{n}$ with $n=\left[F:P\right] \geq 1$, we have $\mathbb{Z}_p$-module isomorphism
+    \begin{equation*}
+        F\cong  \left(\mathbb{Z}_p\right)^n
+    \end{equation*}
+\end{theorem}
+
+
+\begin{theorem}
+    If $F$ is a field and $G$ is a finite subgroup of $F^\times$, then $G$ is a cyclic group.
+    In particular, the multiplicative group of all nonzero elements of a finite field is cyclic.
+    \begin{proof}
+        If $G(\neq 1)$ is a finite abelian group, $G \cong Z_{m_1} \oplus Z_{m_2} \oplus \cdots \oplus Z_{m_k}$ where $m_1>1$ and $m_1\left|m_2\right| \cdots \mid m_k\mid p^n -1$.
+
+        Since $m_k\left(\sum Z_{m_i}\right)=0$, it follows that every $u \in G$ is a root of the polynomial
+        $x^{m_k}-1_{F^{\prime}} \in F[x]$
+        ( $G$ is a multiplicative group).
+        Since this polynomial has at most $m_k$ distinct roots in $F$, we must have $k=1$ and $G \cong Z_{m_k}$.
+    \end{proof}
+
+
+\end{theorem}
+
+\begin{corollary}
+    If $F$ is a finite field with $\char F =p$. Then
+
+    (1) $F = \mathbb{Z}_p\left(u\right)$ where $u$ is a generator of $F^\times$
+
+    (2)
+\end{corollary}
+
+\begin{lemma}
+    If $F$ is a field of characteristic $p$ and $r \geq 1$ is an integer, then the map $\varphi: F \rightarrow F$ given by
+    \begin{equation*}
+        u \mapsto u^{p^r}
+    \end{equation*}
+    is a $\mathbb{Z}_{p}$-monomorphism of fields.
+    If $F$ is finite, then $\varphi$ is a $\mathbb{Z}_p$-automorphism of $F$.
+\end{lemma}
+
+\begin{theorem}
+    Let $p$ be a prime and $n \geq 1$ an integer.
+    Then $F$ is a finite field with $p^{n}$ elements if and only if $F$ is a splitting field of $x^{p^{n}}-x$ over $\mathbb{Z}_{p}$.
+    \begin{proof}
+        It is clear that
+        \begin{equation*}
+            u^{p^n}-u=0
+        \end{equation*}
+        for all $u\in F$ and all distinct roots of $x^{p^n}-x$ are $F$, thus $F$ is a splitting field of $x^{p^{n}}-x$.
+
+        If $F$ is a splitting field of $f=x^{p^n}-x$ over $\mathbb{Z}_p$, then since char $F=$ char $\mathbb{Z}_p=p$, $f^{\prime}=-1$ and $f$ is relatively prime to $f^{\prime}$. Therefore $f$ has $p^n$ distinct roots in $F$.
+        Let $\varphi: u \mapsto u^{p^n}$ be the monomorphism, it is easy to see that $u \in F$ is a root of $f$ if and only if $\varphi(u)=u$. Use this fact to verify that the set $E$
+        \begin{equation*}
+            E
+            =
+            \left\{t\in F: f(t)=0\right\}
+            =
+            \langle \varphi\rangle^\prime
+        \end{equation*}
+        is a subfield (fixed field of $\langle\varphi\rangle$) of $F$ of order $p^n$ ($f$ splits and has distinct $p^n$ roots), which necessarily contains the prime subfield $\mathbb{Z}_p$.
+        Since $F$ is a splitting field, it is generated over $\mathbb{Z}_p$ by the roots of $f$ (that is, the elements of $E$ ). Therefore, $F=\mathbb{Z}_p(E)=E$.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}[Existence and uniqueness of finite fields]
+    If $p$ is a prime and $n \geq 1$ an integer, then there exists a field with $p^{n}$ elements. Any two finite fields with the same number of elements are isomorphic.
+
+    Given $p$ and $n$, a splitting field $F$ of $x^{p^n}-x$ over $\mathbb{Z}_p$ exists by Theorem 3.2 and has order $p^n$ by Proposition 5.6. Since every finite field of order $p^n$ is a splitting field of $x^{p^n}-x$ over $\mathbb{Z}_p$ by Proposition 5.6, any two such are isomorphic by Corollary 3.9.
+
+\end{corollary}
+
+\subsection{Extension over finite fields}
+\begin{theorem}
+    If $K$ is a finite field, then
+
+    (1) For any $n \in \mathbb{Z}_{>1}$ there exists a simple extension field $F=K(u)$ such that $[F: K]=n$.
+
+    (2)
+    Any two $n$-dimensional extension fields of $K$ are $K$-isomorphic.
+
+    (3)
+    For any $n \geq 1$ an integer, there exists an minimal polynomial of degree $n$ in $K[x]$.
+    \begin{proof}
+        (1)
+        Given $K$ of order $p^r$ let $F$ be a splitting field of
+        \begin{equation*}
+            f=x^{p^{r n}}-x
+        \end{equation*}
+        over $K$.
+        By Proposition 5.6 every $u \in K$ satisfies $u^{p^r}=u$ and it follows inductively that $u^{p^{r n}}=u$ for all $u \in K$. Therefore, $F$ is actually a splitting field of $f$ over $\mathbb{Z}_p$.
+        Since $F$ consists of precisely the $p^{n r}$ distinct roots of $f$, we have
+        \begin{equation*}
+            p^{n r}=|F|=|K|^{[F: K]}=\left(p^r\right)^{[F: K]}
+        \end{equation*}
+        whence $[F: K]=n$.
+        Corollary 5.4 implies that $F$ is a simple extension of $\mathbb{Z}_p$, hence of $K$.
+
+        (2)
+        Uniqueness.
+        If $F_1$ is another extension field of $K$ with $\left[F_1: K\right]=n$, then $\left[F_1: \mathbb{Z}_p\right]=n\left[K: \mathbb{Z}_p\right]=n r$, whence $\left|F_1\right|=p^{n r}$. By Proposition 5.6 $F_1$ is a splitting field of $x^{p^{n r}}-x$ over $\mathbb{Z}_p$ and hence over $K$.
+        Consequently, $F$ and $F_1$ are $K$-isomorphic, hence are isomorphic.
+    \end{proof}
+\end{theorem}
+\begin{theorem}
+    If $F$ is a finite dimensional extension field of a finite field $K$ (It equivalent that $\mathbb{Z}_p\subset K \subset F$ are finite extension with $\left[F:\mathbb{Z}_p\right]=n,\left[K:\mathbb{Z}_p\right]=r$), then
+
+    (1) $r \mid n$
+
+    (2) $F$ is Galois over $K$.
+
+    (3) The Galois group $\Aut_K F= \langle \varphi^r \rangle$ is cyclic.
+    \begin{proof}
+        (1)
+        Consider
+        \begin{equation*}
+            \left[F:K\right]\left[K:\mathbb{Z}_p\right]
+            =
+            \left[F:\mathbb{Z}_p\right]
+        \end{equation*}
+        that is, $\left[F:K\right]r=n$
+
+        (2)
+        $F$ is a splitting field of $x^{p^n}-x$ over $\mathbb{Z}_p$.
+        It follows from all roots of $x^{p^n}-x$ are distinct that $F$ is Galois over $\mathbb{Z}_p$, hence over $K$.
+
+        (3)
+        The map $\varphi: F \rightarrow F$ given by $u \mapsto u^p$ is a $\mathbb{Z}_p$-automorphism of $F$ with order $n$.
+        Since $\left|\Aut_{\mathbb{Z}_p} F\right|=\left[F:\mathbb{Z}_p\right]=n$ by the Fundamental Theorem, $\Aut_{\mathbb{Z}_p} F$ must be the cyclic group generated by $\varphi$.
+
+        Since $\Aut_K F$ is a subgroup of $\Aut_{\mathbb{Z}_p} F$, $\Aut_K F$ is also cyclic of order $\left[F:K\right] = n/r$.
+        On the other hand, $\varphi^r: u \mapsto u^{p^r}$, automorphism of $F$, fix $K$ and $\varphi^r$ is of order $n/r$.
+        Therefore, we have
+        \begin{equation*}
+            \Aut_K F =\langle \varphi^r \rangle
+        \end{equation*}
+    \end{proof}
+\end{theorem}
+
+
+
+
+
+
+

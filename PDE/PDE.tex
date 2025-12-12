@@ -1,0 +1,36 @@
+\documentclass[12pt, oneside]{book}
+\usepackage{../mypackages}
+
+
+\includeonly{Parts/Sobolev Space/Sobolev Space}
+
+
+\begin{document}
+\frontmatter
+\title{{\Huge{\textbf{Partial Differential Equatons}}}}
+\maketitle
+
+\dominitoc % 初始化minitoc
+\pagenumbering{Roman}
+\tableofcontents % 主目录
+
+
+
+
+\mainmatter
+\part{Four Important Linear PDE}
+\include{Parts/Four Important Linear PDE/Transport Equation}
+\include{Parts/Four Important Linear PDE/Laplace Equation}
+\include{Parts/Four Important Linear PDE/Heat Equation}
+\include{Parts/Four Important Linear PDE/Wave Equation}
+
+\part{}
+\include{Parts/Nolinear First-Order PDE}
+\part{Sobolev Space}
+\include{Parts/Sobolev Space/Sobolev Space}
+\part{Second Order Elliptic Equatons}
+\include{Parts/Second Order Elliptic Equatons}
+\include{Parts/Sobolev Space/Linear evolution equations}
+
+
+\end{document}

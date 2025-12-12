@@ -1,0 +1,963 @@
+\documentclass[12pt, oneside]{book}
+
+\usepackage{../mypackages}
+
+
+
+
+
+\begin{document}
+\frontmatter
+\title{{\Huge{\textbf{Algebraic Number Theory}}}}
+\maketitle
+
+\dominitoc % 初始化minitoc
+\pagenumbering{Roman}
+\tableofcontents % 主目录
+
+
+\mainmatter
+\pagenumbering{arabic} % 正文编页码字体 
+
+
+
+\chapter{Ring Extensions} % Extensions
+\section{Integral Extensions} % Integral Extensions
+\begin{definition}
+    Let $S$ be a commutative ring with identity and $R$ a subring of $S$ containing $1_S$. Then $S$ is said to be an \textbf{extension ring} of $R$.
+    \begin{enumerate}
+        \item
+              An element $s\in S$ is said to be \textbf{integral} over $R$ if
+              $s$ is a root of  a monic polynomial in $R[x]$.
+        \item
+              If every element of $S$ is integral over $R$, $S$ is said to be an \textbf{integral extension} of $R$.
+        \item
+              The \textbf{integral closure} of $R$ in $S$ is the set of elements of $S$ that are integral over $R$.
+        \item
+              The ring $R$ is said to be \textbf{integrally closed} in $S$ if $R$ is equal to its integral closure in $S$.
+
+              The integral closure of an integral domain $R$ in its field of fractions is called the \textbf{normalization} of $R$. An integral domain is called integrally closed or normal if it is integrally closed in its field of fractions.
+    \end{enumerate}
+    \begin{remark}
+        If follows from \cref{cor: integral extensions} that the integral closure of $R$ in $S$ is a subring of $S$ containing $R$.
+    \end{remark}
+\end{definition}
+
+
+
+\begin{theorem}
+    \label{thm: integral}
+    Let $S$ be an extension ring of $R$ and $s \in S$. Then the following conditions are equivalent.
+    \begin{enumerate}
+        \item
+              $s$ is integral over $R$
+        \item
+              Subring $R[s]$ is a finitely generated $R$-module
+        \item
+              There is a subring $T$ that $R[s]\subset T\subset S$, which is finitely generated as an $R$-module;
+        \item
+              There is a faithful $R[s]$-submodule $M$ which is finitely generated as an $R$-module.
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{corollary}
+    \label{cor: integral extensions}
+    Let $S$ be an extension ring of $R$. Then
+    \begin{enumerate}
+        \item
+              If $S$ is finitely generated as an $R$-module, then $S$ is an integral extension of $R$.
+        \item
+              If $s_1, \ldots, s_{t} \in S$ are integral over $R$, then $R\left[s_1, \ldots, s_{t}\right]$ is a finitely generated $R$-module and an integral extension ring of $R$.
+        \item
+              If $T$ is an integral extension ring of $S$ and $S$ is an integral extension ring of $R$, then $T$ is an integral extension ring of $R$ .
+    \end{enumerate}
+\end{corollary}
+
+
+
+
+\begin{proposition}
+    \begin{enumerate}
+        \item
+              Every unique factorization domain is integrally closed.
+        \item
+              In particular, the polynomial ring $F\left[x_1, \ldots, x_n\right]$ ( $F$ a field) is integrally closed in its quotient field $F\left(x_1, \ldots, x_n\right)$.
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{theorem}
+    Let $S$ be a multiplicative subset of an integral domain $R$ such that $0 \notin S$.
+    If $R$ is integrally closed, then $S^{-1} R$ is an integrally closed integral domain.
+    \begin{proof}
+        $S^{-1} R$ is an integral domain and $R$ may be identified with a subring of $S^{-1} R$ by \ref{thm: ring of quotients }.
+        Extending this identification, the quotient field $Q(R)$ of $R$ may be considered as a subfield of the quotient field $Q\left(S^{-1} R\right)$ of $S^{-1} R$. Verify that $Q(R)=Q\left(S^{-1} R\right)$.
+
+        Let $u \in Q\left(S^{-1} R\right)$ be integral over $S^{-1} R$; then for some $r_i \in R$ and $s_i \in S$,
+        \begin{equation*}
+            u^n+\left(r_{n-1} / s_{n-1}\right) u^{n-1}+\cdots+\left(r_1 / s_1\right) u+\left(r_0 / s_0\right)=0 .
+        \end{equation*}
+        Multiply through this equation by $s^n$, where $s=s_0 s_1 \cdots s_{n-1} \in S$, and conclude that $su$ is integral over $R$. Since $s u \in Q\left(S^{-1} R\right)=Q(R)$ and $R$ is integrally closed, $s u \in R$. Therefore, $u=s u / s \in S^{-1} R$, whence $S^{-1} R$ is integrally closed.
+    \end{proof}
+\end{theorem}
+
+
+
+\begin{theorem}
+    Let $S$ be an integral extension ring of $R$. Then the following statements hold.
+    \begin{enumerate}
+        \item
+              Assume that $S$ is an integral domain. Then $R$ is a field if and only if $S$ is a field.
+        \item
+              Let $\mathfrak{p}$ be a prime ideal in $R$. Then there is a prime ideal $\mathfrak{q}$ in $S$ with $\mathfrak{p}=\mathfrak{q} \cap R$.
+
+              Moreover, $\mathfrak{p}$ is maximal if and only if $\mathfrak{q}$ is maximal.
+        \item
+              (The Going-up Theorem)
+              Let $\mathfrak{p}_1 \subseteq \mathfrak{p}_2 \subseteq \cdots \subseteq \mathfrak{p}_n$ be a chain of prime ideals in $R$ and suppose there are prime ideals $\mathfrak{q}_1 \subseteq \mathfrak{q}_2 \subseteq \cdots \subseteq \mathfrak{q}_m$ of $S$ with $\mathfrak{p}_i=\mathfrak{q}_i \cap R, 1 \leq i \leq m$ and $m<n$. Then the ascending chain of ideals can be completed: there are prime ideals $\mathfrak{q}_{m+1} \subseteq \cdots \subseteq \mathfrak{q}_n$ in $S$ such that $\mathfrak{p}_i=\mathfrak{q}_i \cap R$ for all $i$.
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{theorem} [The Going-down Theorem]
+    Assume that $S$ is an integral domain and $R$ is integrally closed in $S$. Let $\mathfrak{p}_1 \supseteq \mathfrak{p}_2 \supseteq \cdots \supseteq \mathfrak{p}_n$ be a chain of prime ideals in $R$ and suppose there are prime ideals $\mathfrak{q}_1 \supseteq \mathfrak{q}_2 \supseteq \cdots \supseteq \mathfrak{q}_m$ of $S$ with $\mathfrak{p}_i=\mathfrak{q}_i \cap R, 1 \leq i \leq m$ and $m<n$. Then the descending chain of ideals can be completed: there are prime ideals $\mathfrak{q}_{m+1} \supseteq \cdots \supseteq \mathfrak{q}_n$ in $S$ such that $\mathfrak{p}_i=\mathfrak{q}_i \cap R$ for all $i$.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{theorem}
+    \label{thm: Let S be an integral extension ring of R and let q be a prime ideal in S which
+        lies over a prime ideal p in R . Then q is maximal in S if and only if p is maximal in R .}
+    Let $S$ be an integral extension ring of $R$ and let $\mathfrak{q}$ be a prime ideal in $S$ which lies over a prime ideal $\mathfrak{p}$ in $R$.
+    Then $\mathfrak{q}$ is maximal in $S$ if and only if $\mathfrak{p}$ is maximal in $R$.
+
+    \begin{proof}
+        Suppose $\mathfrak{q}$ is maximal in $S$, there is a maximal ideal $\mathfrak{m}$ of $R$ that contains $\mathfrak{p}$ and $\mathfrak{m}$ is prime by \ref{thm: maximal ideal is prime}.
+        By \ref{cor: going-up Theorem} there is a prime ideal $\mathfrak{q}^{\prime}$ in $S$ such that $\mathfrak{q} \subset \mathfrak{q}^{\prime}$ and $\mathfrak{q}^{\prime}$ lies over $\mathfrak{m}$. Since $\mathfrak{q}^{\prime}$ is prime, $\mathfrak{q}^{\prime} \neq S$.
+        The maximality of $\mathfrak{q}$ implies that $\mathfrak{q}=\mathfrak{q}^{\prime}$, whence $\mathfrak{p}=\mathfrak{q} \cap R=\mathfrak{q}^{\prime} \cap R=\mathfrak{m}$. Therefore, $\mathfrak{p}$ is maximal in $R$.
+
+        Conversely suppose $\mathfrak{p}$ is maximal in $R$. Since $\mathfrak{q}$ is prime in $S, \mathfrak{q} \neq S$ and there is a maximal ideal $N$ of $S$ containing $\mathfrak{q}$ and $N$ is prime, whence $1_R=1_S \notin N$. Since $\mathfrak{p}=R \cap \mathfrak{q} \subset R \cap N \subset R$, we must have $\mathfrak{p}=R \cap N$ by maximality. Thus $\mathfrak{q}$ and $N$ both lie over $\mathfrak{p}$ and $\mathfrak{q} \subset N$. Therefore, $\mathfrak{q}=N$ by \ref{thm: Let S be an integral extension ring of R and let q be a prime ideal in S which lies over a prime ideal p in R . Then q is maximal in S if and only if p is maximal in R .} .
+    \end{proof}
+\end{theorem}
+
+
+
+\section{Discrete Valuation and Discrete Valuation Ring}
+
+\begin{definition}
+    Let $K$ be a field.
+    A \textbf{discrete valuation} on $K$ is a nonzero group homomorphism $v: K^{\times} \rightarrow \mathbb{Z}$ such that $v(a+b) \geq \min (v(a), v(b))$.
+
+    As $v$ is not the zero homomorphism, its image is a nonzero subgroup of $\mathbb{Z}$, and is therefore of the form $m \mathbb{Z}$ for some $m \in \mathbb{Z}$. If $m=1$, then $v: K^{\times} \rightarrow \mathbb{Z}$ is surjective, and $v$ is said to be \textbf{normalized}; otherwise, $x \mapsto m^{-1} \cdot v(x)$ will be a normalized discrete valuation.
+
+    We extend $v$ to a map $K \rightarrow \mathbb{Z} \cup\{\infty\}$ by setting $v(0)=+\infty$, where $\infty$ is a symbol $\geq n$ for all $n \in \mathbb{Z}$.
+    \begin{remark}
+        We have
+        \begin{enumerate}
+            \item $v(\zeta)=0$ for some $\zeta \in K^{\times}$
+            \item $v(-a)=v(a)$ for all $a \in K$;
+            \item $v(a+b) = \max \left\{v(a),v(b)\right\}$ if $v(a) \neq v(b)$.
+        \end{enumerate}
+        We often use "ord" rather than " $v$ " to denote a discrete valuation.
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    The following conditions on a principal ideal domain are equivalent:
+    \begin{enumerate}
+        \item  $A$ has exactly one nonzero prime ideal;
+        \item up to associates, $A$ has exactly one prime element;
+        \item  $A$ is local and is not a field.
+    \end{enumerate}
+    A ring satisfying these conditions is called a \textbf{discrete valuation ring}.
+\end{definition}
+
+\begin{theorem}
+    \label{thm:discrete valuation ring}
+    Let $A$ be a domain ring. The following conditions are equivalent:
+    \begin{enumerate}
+        \item
+              $A$ is a discrete valuation ring
+        \item
+              There is a discrete valuation $v$ on $K=\Frac(A)$ such that
+              \begin{equation*}
+                  A
+                  =
+                  \mathcal{O}_v
+                  :=
+                  \{a \in K \mid v(a) \geq 0\}
+              \end{equation*}
+              with unique maximal ideal $\mathfrak{m} = \{a \in K \mid v(a) > 0\}$.
+        \item
+              there exists a element $\pi \in A$ such that every nonzero ideal of $A$ is of the form $\left(\pi^n\right)$ for some $n \geq 0$.
+        \item
+              $A$ is a noetherian, integrally closed and has exactly one nonzero prime ideal.
+    \end{enumerate}
+\end{theorem}
+
+
+We can associate discrete valuations to prime ideals in Dedekind domains.
+
+\begin{definition}
+    Let $A$ be a Dedekind domain and let $\mathfrak{p}$ be a prime ideal in $A$. For any $c \in K^{\times}$, let $v(c)$ be the exponent of $\mathfrak{p}$ in the factorization of
+    $(c)$.
+    Then $v$ is a normalized discrete valuation on $K$, called the \textbf{discrete valuation associated to} $\mathfrak{p}$, denoted by $\operatorname{ord}_{\mathfrak{p}}$.
+\end{definition}
+
+\begin{proposition}
+    Let $x_1, \ldots, x_m$ be elements of a Dedekind domain $A$, and let $\mathfrak{p}_1, \ldots, \mathfrak{p}_m$ be distinct prime ideals of $A$. For every integer $n$, there is an $x \in A$ such that
+    \begin{equation*}
+        \operatorname{ord}_{\mathfrak{p}_i}\left(x-x_i\right)>n, \quad i=1,2, \ldots, m .
+    \end{equation*}
+\end{proposition}
+
+
+
+
+
+\section{Dedekind Domain}
+\begin{definition}
+    A \textbf{Dedekind domain} is an integral domain $A$ satisfying
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $A$ is noetherian;
+        \item
+              $A$ is integrally closed;
+        \item
+              $A$ has Krull dimension one, i.e., every nonzero prime ideal is maximal.
+    \end{enumerate}
+
+\end{definition}
+
+
+\begin{proposition}
+    Let $A$ be an integral domain, and let $S$ be a multiplicative subset of $A$.
+    \begin{enumerate}
+        \item
+              If $A$ is noetherian, then so also is $S^{-1} A$.
+        \item
+              If $A$ is integrally closed, then so also is $S^{-1} A$.
+        \item
+              If $A$ has Krull dimension one, then so also does $A_\mathfrak{p}$ for any prime ideal $\mathfrak{p}$.
+    \end{enumerate}
+    \begin{remark}
+        It follows that the localization $A_{\mathfrak{p}}$ of a Dedekind domain $A$ is local thus DVR.
+    \end{remark}
+\end{proposition}
+
+
+
+
+\subsection{Fractional Ideals}
+\begin{definition}
+    Let $A$ be an integral domain with quotient field $K=\Frac(A)$.
+    \begin{enumerate}
+        \item
+              A \textbf{fractional ideal} of $A$ is
+              \begin{enumerate}[label=(\roman*)]
+                  \item a nonzero $A$-submodule $I$ of $K$
+                  \item there exists a nonzero $d \in A$ such that $d I \subset A$ i,e, $\left(A:I\right)\cap A \neq \varnothing$
+              \end{enumerate}
+        \item
+              A fractional ideal $I$ of $A$ is said to be \textbf{integral} if $I \subset A$.
+        \item
+              A fractional ideal $I$ of $A$ is said to be \textbf{principal} if $I=Ax$ for some nonzero $x \in K$.
+        \item
+              the \textbf{ideal quotient} of two fractional ideals $I$ and $J$ is defined as
+              \begin{equation*}
+                  (I: J)
+                  :=
+                  \{x \in K \mid x J \subset I\} .
+              \end{equation*}
+        \item
+              the \textbf{inverse} of a fractional ideal $I$ is defined as
+              \begin{equation*}
+                  I^{-1}
+                  :=
+                  (A: I) .
+              \end{equation*}
+              thus $II^{-1} \subset A$.
+        \item
+              A fractional ideal $I$ is called \textbf{invertible} if there is a fractional ideal $J$ such that $I J=A$.
+    \end{enumerate}
+    \begin{remark}
+        Let $I$ be a fractional ideal of $A$, $\mathfrak{p}$ a prime ideal of $A$ and $S=A-\mathfrak{p}$.
+        Then the localization $I_{\mathfrak{p}}:=IA_{\mathfrak{p}}=S^{-1} I=\left\{x/s:x\in I,s\in S\right\}$ is a fractional ideal of $A_{\mathfrak{p}}$.
+
+        We may assume that all rings and ideals are contained in $K=\operatorname{Frac}(A)$.
+    \end{remark}
+\end{definition}
+
+\begin{lemma}
+    Let $A$ be a integral domain and fractional ideal $I,J$, then
+    \begin{itemize}
+        \item $I+J$
+        \item $IJ$
+        \item $I\cap J$
+        \item $\left(I:J\right)$
+    \end{itemize}
+    are both ideal fractional ideal. And
+    \begin{enumerate}
+        \item $IJ\subset I\cap J$
+        \item $H+(I+J)=I+(H+J):=H+I+J$
+        \item $IJ=JI$
+        \item $H(IJ)=(HI)J:=HIJ$
+        \item $H(I+J)=HI+HJ$
+    \end{enumerate}
+\end{lemma}
+
+
+\begin{proposition}
+    Let $A$ be an integral domain, $K=\operatorname{Frac}(A)$ and $I$ a fractional ideal. Then the following statements hold:
+    \begin{enumerate}
+        \item
+              $I I^{-1} \subseteq A$.
+        \item
+              $I$ is invertible $\Leftrightarrow I I^{-1}=A$.
+        \item
+              Let $J$ be an invertible ideal. Then $(I: J)=I J^{-1}$.
+        \item  If $0 \neq i \in I$ such that $i^{-1} \in I^{-1}$, then $I=(i)$.
+    \end{enumerate}
+\end{proposition}
+\begin{corollary}
+    Let $A$ be an integral domain. The set $\mathcal{I}(A)$ of invertible fractional ideals forms an abelian group with respect to multiplication, with $A$ being the identity element, and the inverse of $I \in \mathcal{I}(A)$ being $I^{-1}$.
+\end{corollary}
+
+\begin{definition}
+    Let $A$ be an integral domain.
+    One calls $\mathcal{I}(A)$ the group of invertible fractional ideal and $\mathcal{P}(R)$ the subgroup of principal invertible fractional ideal.
+    The quotient group $\operatorname{Pic}(R):=\mathcal{I}(R) / \mathcal{P}(R)$ is called the \textbf{Picard group} of $A$.
+
+    If $K$ is a number field and $\mathbb{Z}_K$ its ring of
+    integers, one also writes $\operatorname{CL}(K):=\operatorname{Pic}\left(\mathbb{Z}_K\right)$, and calls it the \textbf{ideal class group} of $K$.
+    \begin{remark}
+        Then we have the exact sequence of abelian groups
+        \begin{equation*}
+            1 \rightarrow A^{\times} \rightarrow K^{\times} \xrightarrow{\mathrm{prin}} \mathcal{I}(A) \xrightarrow{\mathrm{proj}} \operatorname{Pic}(A) \rightarrow 1,
+        \end{equation*}
+        where $f(x)$ is the principal fractional $R$-ideal $x R$.
+    \end{remark}
+\end{definition}
+
+Invertibility is a local property:
+\begin{proposition}
+    For a fractional ideal $I$ in integral domain $A$, the following are equivalent:
+    \begin{enumerate}
+        \item
+              $I$ is invertible;
+        \item
+              $I$ is finitely generated and, for each prime ideal $\mathfrak{p}, I_{\mathfrak{p}}$ is invertible:
+        \item
+              $I$ is finitely generated and, for each maximal ideal $\mathfrak{m}, I_{\mathfrak{m}}$ is invertible.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+\subsection{Unique factorization of fractional ideals} % Unique factorization of fractional ideal
+\begin{theorem}
+    Let $A$ be a Dedekind domain.
+    Every fractional ideal $I$ of $A$ can be written uniquely in the form
+    \begin{equation*}
+        I=\prod_{\mathfrak{p} \text{ prime }} \mathfrak{p}^{v_\mathfrak{p}(I)}
+    \end{equation*}
+    where discrete valuation $v_\mathfrak{p}(I)$.
+
+    The set $\mathcal{I}(A)$ of fractional ideals is a group; in fact, it is the free abelian group on the set of nonzero prime ideals.
+    \begin{proof}
+        In order to show that $\mathcal{I}(A)$ is a group, it remains to show that inverses exist.
+        Let $\mathfrak{a}$ be a nonzero integral ideal, there is an ideal $\mathfrak{a}^*$ and an $a \in A$ such that $\mathfrak{a} \mathfrak{a}^*=(a)$. Clearly $\mathfrak{a} \cdot\left(a^{-1} \mathfrak{a}^*\right)=A$, and so $a^{-1} \mathfrak{a}^*$ is an inverse of $\mathfrak{a}$. If $\mathfrak{a}$ is a fractional ideal, then $d \mathfrak{a}$ is an integral ideal for some $d$, and $d \cdot(d \mathfrak{a})^{-1}$ will be an inverse for $\mathfrak{a}$.
+
+        It remains to show that the group $\operatorname{Id}(A)$ is freely generated by the prime ideals, i.e., that each fractional ideal can be expressed in a unique way as a product of powers of prime ideals. Let $\mathfrak{a}$ be a fractional ideal. Then $d \mathfrak{a}$ is an integral ideal for some $d \in A$, and we can write
+        \begin{equation*}
+            d \mathfrak{a}=\mathfrak{p}_1^{r_1} \cdots \mathfrak{p}_m^{r_m}, \quad(d)=\mathfrak{p}_1^{s_1} \cdots \mathfrak{p}_m^{s_m} .
+        \end{equation*}
+        Thus $\mathfrak{a}=\mathfrak{p}_1^{r_1-s_1} \cdots \mathfrak{p}_m^{r_m-s_m}$. The uniqueness follows from the uniqueness of the factorization for integral ideals.
+    \end{proof}
+\end{theorem}
+
+
+\subsection{Proof of factorization} % Proof of factorization
+We prove the theorem in several steps. Assume that $A$ is a commutative ring throughout.
+\begin{lemma}
+    \label{lem:1}
+    Let $A$ be a noetherian ring; then every ideal $\mathfrak{a}$ in $A$ contains a product of nonzero prime ideals.
+    \begin{proof}
+        Suppose that the statement is false for $A$, and choose a maximal counterexample $\mathfrak{a}$ by Noetherian property.
+        Then $\mathfrak{a}$ itself cannot be prime, and so there exist elements $x$ and $y$ of $A$ such that $x y \in \mathfrak{a}$ but neither $x$ nor $y \in \mathfrak{a}$.
+
+        The ideals $\mathfrak{a}+(x)$ and $\mathfrak{a}+(y)$ strictly contain $\mathfrak{a}$ and contain a product of prime ideals respectively, but their product is contained in $\mathfrak{a}$.
+        It follows that $\mathfrak{a}$ contains a product of prime ideals.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}
+    \label{lem:2}
+    Let $A$ be a ring, and let $\mathfrak{a}$ and $\mathfrak{b}$ be relatively prime ideals in $A$;
+    \begin{enumerate}
+        \item
+              for all $m, n \in \mathbb{N}$, $\mathfrak{a}^m$ and $\mathfrak{b}^n$ are relatively prime.
+        \item $I\cap J=IJ$
+        \item $A/(IJ)\cong A/(I)\times A/(J)$
+        \item if $IJ=H^n$ for some ideal $H$ and some $n \in \mathbb{N}$, then there exist ideals $I_1:=I+H$ and $J_1:=J+H$ such that $I=I_1^n$, $J=J_1^n$ and $I_1J_1=H$
+    \end{enumerate}
+    \begin{proof}
+        If $\mathfrak{a}^m$ and $\mathfrak{b}^n$ are not relatively prime, then they are both contained in some prime (even maximal) ideal $\mathfrak{p}$.
+        Thus $\mathfrak{a}$ and $\mathfrak{b}$ are both contained in $\mathfrak{p}$, which contradicts the hypothesis.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}
+    Let $\mathfrak{p}$ be a maximal ideal of an integral domain $A$, and let $\mathfrak{q}=\mathfrak{p}^e=\mathfrak{p} A_{\mathfrak{p}}$ be the ideal in $A_{\mathfrak{p}}$. The map
+    \begin{equation*}
+        a+\mathfrak{p}^m \mapsto a+\mathfrak{q}^m: A / \mathfrak{p}^m \rightarrow A_{\mathfrak{p}} / \mathfrak{q}^m
+    \end{equation*}
+    is an isomorphism for all $m \in \mathbb{N}$.
+    \begin{proof}
+        Let $S$ be the $A-\mathfrak{p}$. The map is clearly a homomorphism of rings, so we have to prove that it is bijective.
+
+
+        We first show that the map is injective. For this we have to show that $\mathfrak{q}^m \cap A=\mathfrak{p}^m$.
+        But $\mathfrak{q}^m=S^{-1} \mathfrak{p}^m$, and so we have to show that $\mathfrak{p}^m=\left(S^{-1} \mathfrak{p}^m\right) \cap A$. An element of $\left(S^{-1} \mathfrak{p}^m\right) \cap A$ can be written $a=b / s$ with $b \in \mathfrak{p}^m, s \in S$, and $a \in A$. Then $s a \in \mathfrak{p}^m$, and so $s a=0$ in $A / \mathfrak{p}^m$. The only maximal ideal containing $\mathfrak{p}^m$ is $\mathfrak{p}$ (because $\mathfrak{m} \supset \mathfrak{p}^m \Rightarrow \mathfrak{m} \supset \mathfrak{p}$ ),
+        and so the only maximal ideal in $A / \mathfrak{p}^m$ is $\mathfrak{p} / \mathfrak{p}^m$; in particular, $A / \mathfrak{p}^m$ is a local ring. As $s+\mathfrak{p}^m$ is not in $\mathfrak{p} / \mathfrak{p}^m$, it is a unit in $A / \mathfrak{p}^m$, and so $s a=0$ in $A / \mathfrak{p}^m \Rightarrow a=0$ in $A / \mathfrak{p}^m$, i.e., $a \in \mathfrak{p}^m$.
+
+        We now prove that the map is surjective. Let $\frac{a}{s} \in A_{\mathfrak{p}}$. Because $s \notin \mathfrak{p}$ and $\mathfrak{p}$ is maximal, we have that $(s)+\mathfrak{p}=A$, i.e., $\left(s\right)$ and $\mathfrak{p}$ are relatively prime.
+        Therefore $\left(s\right)$ and $\mathfrak{p}^m$ are relatively prime by \cref{lem:2}, and so there exist $b \in A$ and $q \in \mathfrak{p}^m$ such that $b s+q=1$. Then $b$ maps to $s^{-1}$ in $A_{\mathfrak{p}} / \mathfrak{q}^m$ and so $b a$ maps to $\frac{a}{s}$. Thus the map is surjective.
+    \end{proof}
+\end{lemma}
+
+
+
+
+
+\begin{proof}
+    [Proof of factorization]
+    We now prove that a nonzero ideal $\mathfrak{a}$ of Dedekind domain $A$ can be factored into a product of prime ideals. According to \ref{lem:1} applied to $A$, the ideal $\mathfrak{a}$ contains a product of nonzero prime ideals,
+
+    \begin{equation*}
+        \mathfrak{b}=\mathfrak{p}_1^{r_1} \cdots \mathfrak{p}_m^{r_m}
+    \end{equation*}
+    We may suppose that the $\mathfrak{p}_i$ are distinct. Then
+    \begin{equation*}
+        A / \mathfrak{b} \simeq A / \mathfrak{p}_1^{r_1} \times \cdots \times A / \mathfrak{p}_m^{r_m} \simeq A_{\mathfrak{p}_1} / \mathfrak{q}_1^{r_1} \times \cdots \times A_{\mathfrak{p}_m} / \mathfrak{q}_m^{r_m},
+    \end{equation*}
+    where $\mathfrak{q}_i=\mathfrak{p}_i A_{\mathfrak{p}_i}$ is the maximal ideal of $A_{\mathfrak{p}_i}$.
+    Under this isomorphism,
+    \begin{equation*}
+        A\rightarrow A / \mathfrak{b} \simeq A_{\mathfrak{p}_1} / \mathfrak{q}_1^{r_1} \times \cdots \times A_{\mathfrak{p}_m} / \mathfrak{q}_m^{r_m}
+    \end{equation*}
+
+    $\mathfrak{a} / \mathfrak{b}$ in $A/\mathfrak{b}$ corresponds to $\mathfrak{q}_1^{s_1} / \mathfrak{q}_1^{r_1} \times \cdots \times \mathfrak{q}_m^{s_m} / \mathfrak{q}_m^{r_m}$ for some $s_i \leq r_i$ (recall that the rings $A_{\mathfrak{p}_i}$ are all discrete valuation rings). Since this ideal is also the image of $\mathfrak{p}_1^{s_1} \cdots \mathfrak{p}_m^{s_m}$ under the isomorphism, we see that
+
+    \begin{equation*}
+        \mathfrak{a}=\mathfrak{p}_1^{s_1} \cdots \mathfrak{p}_m^{s_m} \text { in } A / \mathfrak{b} .
+    \end{equation*}
+    Both of these ideals contain $\mathfrak{b}$, and so this implies that
+    \begin{equation*}
+        \mathfrak{a}=\mathfrak{p}_1^{s_1} \cdots \mathfrak{p}_m^{s_m}
+    \end{equation*}
+    in $A$.
+
+    To complete the proof, we have to prove that the above factorization is unique. Suppose that we have two factorizations of the ideal $\mathfrak{a}$. After adding factors with zero exponent, we may suppose that the same primes occur in each factorization, so that
+    \begin{equation*}
+        \mathfrak{p}_1^{s_1} \cdots \mathfrak{p}_m^{s_m}=\mathfrak{a}=\mathfrak{p}_1^{t_1} \cdots \mathfrak{p}_m^{t_m}
+    \end{equation*}
+    In the course of the above proof, we showed that
+    \begin{equation*}
+        \mathfrak{q}_i^{s_i}=\mathfrak{a} A_{\mathfrak{p}_i}=\mathfrak{q}_i^{t_i},
+    \end{equation*}
+    where $\mathfrak{q}_i=\mathfrak{p}_iA_{\mathfrak{p}_i}$ the maximal ideal in $A_{\mathfrak{p}_i}$. Therefore $s_i=t_i$ for all $i$.
+\end{proof}
+
+
+\begin{corollary}
+    Let $\mathfrak{a} \supset \mathfrak{b} \neq 0$ be two ideals in a Dedekind domain; then $\mathfrak{a}=\mathfrak{b}+(a)$ for some $a \in A$.
+    \begin{proof}
+        Let $\mathfrak{b}=\mathfrak{p}_1^{r_1} \cdots \mathfrak{p}_m^{r_m}$ and $\mathfrak{a}=\mathfrak{p}_1^{s_1} \cdots \mathfrak{p}_m^{s_m}$ with $r_i, s_j \geq 0$. Because $\mathfrak{b} \subset \mathfrak{a}, s_i \leq r_i$ for all $i$. For $1 \leq i \leq m$, choose an $x_i \in A$ such that $x_i \in \mathfrak{p}_i^{s_i}, x_i \notin \mathfrak{p}_i^{s_i+1}$. By the Chinese Remainder Theorem, there is an $a \in A$ such that
+
+        \begin{equation*}
+            a \equiv x_i \quad \bmod \mathfrak{p}_i^{r_i}, \text { for all } i .
+        \end{equation*}
+        Now one sees that $\mathfrak{b}+(a)=\mathfrak{a}$ by looking at the ideals they generate in $A_{\mathfrak{p}}$ for all $\mathfrak{p}$.
+    \end{proof}
+\end{corollary}
+
+\begin{corollary}
+    Let $\mathfrak{a}$ be an ideal in a Dedekind domain, and let $a$ be any nonzero element of $\mathfrak{a}$; then there exists $b \in \mathfrak{a}$ such that $\mathfrak{a}=(a, b)$.
+\end{corollary}
+
+\begin{corollary}
+    Let $\mathfrak{a}$ be a nonzero ideal in a Dedekind domain; then there exists a nonzero ideal $\mathfrak{a}^*$ in $A$ such that $\mathfrak{a} \mathfrak{a}^*$ is principal. Moreover, $\mathfrak{a}^*$ can be chosen to be relatively prime to any particular ideal $\mathfrak{c}$, and it can be chosen so that $\mathfrak{a} \mathfrak{a}^*=(a)$ with $a$ any particular element of $\mathfrak{a}$ (but not both).
+    \begin{proof}
+        Let $a \in \mathfrak{a}, a \neq 0$; then $\mathfrak{a} \supset(a)$, and so we have
+        \begin{equation*}
+            (a)=\mathfrak{p}_1^{r_1} \cdots \mathfrak{p}_m^{r_m} \text { and } \mathfrak{a}=\mathfrak{p}_1^{s_1} \cdots \mathfrak{p}_m^{s_m}, \quad s_i \leq r_i .
+        \end{equation*}
+        If $\mathfrak{a}^*=\mathfrak{p}_1^{r_1-s_1} \cdots \mathfrak{p}_m^{r_m-s_m}$, then $\mathfrak{a} \mathfrak{a}^*=(a)$.
+
+        We now show that $\mathfrak{a}^*$ can be chosen to be prime to $\mathfrak{c}$.
+        We have $\mathfrak{a} \supset \mathfrak{a} \mathfrak{c}$, and so (by 3.15) there exists an $a \in \mathfrak{a}$ such that $\mathfrak{a}=\mathfrak{a} \mathfrak{c}+(a)$. As $\mathfrak{a} \supset(a)$, we have $(a)=\mathfrak{a} \cdot \mathfrak{a}^*$ for some ideal $\mathfrak{a}^*$ (by the above argument); now, $\mathfrak{a} \mathfrak{c}+\mathfrak{a} \mathfrak{a}^*=\mathfrak{a}$, and so $\mathfrak{c}+\mathfrak{a}^*=A$. (Otherwise $\mathfrak{c}+\mathfrak{a}^* \subset \mathfrak{p}$ some prime ideal, and $\mathfrak{a c}+\mathfrak{a} \mathfrak{a}^*=\mathfrak{a}\left(\mathfrak{c}+\mathfrak{a}^*\right) \subset \mathfrak{a} \mathfrak{p} \neq \mathfrak{a}$.)
+    \end{proof}
+\end{corollary}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Integral closures of Dedekind domains}
+
+\begin{theorem}
+    Let $A$ be a Dedekind domain with field of fractions $K$ and $L/K$ be a finite separable extension, then the integral closure of $A$ in $L$ is Dedekind domain.
+\end{theorem}
+
+
+\begin{definition}
+    Let $A$ be a Dedekind domain with field of fractions $K$, and let $B$ be the integral closure of $A$ in a finite separable extension $L$ of $K$.
+    A prime ideal $\mathfrak{p}$ of $A$ will factor in $B$,
+    \begin{equation*}
+        \mathfrak{p}B
+        =
+        \mathfrak{P}_1^{e_1} \cdots \mathfrak{P}_g^{e_g}
+    \end{equation*}
+    wher $\mathfrak{P}$ are distinct prime ideals in $B$ and $e_i\geq 1$,
+    \begin{enumerate}
+        \item
+              If any of the numbers is $>1$, then we say that $\mathfrak{p}$ is \textbf{ramified} in $B$ (or $L$ ).
+              The number $e_i$ is called the \textbf{ramification index} .
+
+        \item
+              We say $\mathfrak{P}$ divides $\mathfrak{p}$,written $\mathfrak{P} \mid \mathfrak{p}$, if $\mathfrak{P}$ occurs in the factorization of $\mathfrak{p}$ in $B$.
+    \end{enumerate}
+    We then write $e(\mathfrak{P} / \mathfrak{p})$ for the ramification index and $f(\mathfrak{P} / \mathfrak{p})$ for the degree of the field extension $[B / \mathfrak{P}: A / \mathfrak{p}]$ (called the \textbf{residue class degree}).
+    \begin{enumerate}[resume]
+        \item
+              $\mathfrak{p}$ is said to \textbf{split} (or split completely) in $L$ if $e_i=f_i=1$ for all $i$
+
+        \item
+              $\mathfrak{p}$ is said to be \textbf{inert} in $L$ if $\mathfrak{p}$ is a prime ideal in $B$ (so $g=1=e$ ).
+    \end{enumerate}
+\end{definition}
+
+
+\begin{theorem}
+    Let $m$ be the degree of $L$ over $K$, and let $\mathfrak{P}_1, \ldots, \mathfrak{P}_g$ be the prime ideals dividing $\mathfrak{p}$; then
+    \begin{equation*}
+        \sum_{i=1}^g e_i f_i=m
+    \end{equation*}
+    where $e_i=e\left(\mathfrak{P}_i / \mathfrak{p}\right)$ and $f_i=f\left(\mathfrak{P}_i / \mathfrak{p}\right)$. If $L$ is Galois over $K$, then all the ramification numbers are equal, and all the residue class degrees are equal, and so
+
+    \begin{equation*}
+        e f g=m .
+    \end{equation*}
+\end{theorem}
+
+
+
+
+\chapter{}
+
+\section{Number Fields and Rings of Integers} % Number Fields and Rings of Integers
+\begin{definition}
+    A \textbf{number field} $K$ is a finite extension of the field of rational numbers $\mathbb{Q}$.
+    \begin{remark}
+        As $\char\mathbb{Q}=0$, $K/\mathbb{Q}$ is separable, then $K=\mathbb{Q}\left(\alpha\right)$ for some primitive element $\alpha$.
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    Let $K$ be a number field.
+    The \textbf{ring of integers} of $K$ is the integral closure of $\mathbb{Z}$ in $K$, denoted by $\mathcal{O}_K$ or $\mathbb{Z}_K$; its elements are called the \textbf{algebraic integers} in $K$.
+\end{definition}
+
+
+
+\section{Trace, Norm and Discriminant} % Trace, Norm and Discriminant
+\begin{definition}
+    Let $B/A$ be a ring extension such that $B$ is a free $A$-module of rank $n$. Then every $\beta \in B$ defines an $A$-linear map
+    \begin{equation*}
+        T_\beta x \mapsto \beta x: B \rightarrow B,
+    \end{equation*}
+    and the trace and determinant of this map are well-defined.
+    We call them the \textbf{trace} $\operatorname{Tr}_{B / A} \beta$ and \textbf{norm} $\operatorname{Nm}_{B / A} \beta$ of $\beta$ in the extension $B / A$.
+
+    \begin{remark}
+        Especially, $L / K$ is a finite extension of fields of degree $n$.
+        In this case, let $\chi_a$ be a characteristic polynomial of $T_a$ of degree $n$, and $m_a$ be the minimal polynomial of $a$ over $K$ of degree $d=\left[K(a),K\right]$.
+    \end{remark}
+\end{definition}
+
+
+\begin{proposition}
+    Let $L / K$ be an extension of fields of degree $n$ and $a \in L$. Then
+    \begin{equation*}
+        \chi_a=m_a^e
+    \end{equation*}
+    where $e=[L: K(a)]=n/\deg m_a$.
+\end{proposition}
+
+
+
+\begin{corollary}
+    Let $L / K$ be an separable extension of fields of degree $n$, $\overline{K}$ an algebraic closure of $K$ containing $L$.
+    Let
+    \begin{equation*}
+        \left\{\sigma_1,\ldots,\sigma_n\right\}
+        =
+        \Hom_{K}\left( L, \overline{K}\right)
+    \end{equation*}
+    Then the following statements hold for any $a \in L$:
+    \begin{enumerate}
+        \item
+              $\chi_a=m_a^e$ where $e=[L: K(a)]=n/\deg m_a$.
+        \item
+              $\chi_a(X)=\prod_{\sigma \in \operatorname{Hom}_K(L, \overline{K})}(X-\sigma(a))$,
+        \item
+              $\operatorname{Tr}_{L / K}(a)=\sum_{\sigma} \sigma(a)$, and
+              $\operatorname{Norm}_{L / K}(a)=\prod_{\sigma} \sigma(a)$.
+    \end{enumerate}
+    \begin{proof}
+        Let $F=K(a)$, then $\overline{K}/F$ is Galois thus separable
+        \begin{equation*}
+            m_a(X)
+            :=
+            \prod_{\overline{\sigma}_\alpha \in K^\prime/F^\prime}\left(X-\overline{\sigma}_\alpha(a)\right) .
+        \end{equation*}
+        Then by the preceding proposition and $e=\left[L:F\right]=\left[F^\prime:L^\prime\right]$
+        \begin{equation*}
+            \prod_{\overline{\sigma}_\alpha \in K^\prime/F^\prime}\left(X-\overline{\sigma}_\alpha(a)\right)^e
+            =
+            \prod_{\overline{\sigma}_\alpha \in K^\prime/F^\prime}
+            \prod_{\overline{\sigma}_\beta \in F^\prime/L^\prime}
+            \left(X-\overline{\sigma}_\alpha \circ \overline{\sigma}_\beta(a)\right)=\prod_{\sigma \in \operatorname{Hom}_K(L, \overline{K})}(X-\sigma(a)) .
+        \end{equation*}
+    \end{proof}
+\end{corollary}
+
+\begin{corollary}
+    Let $L / F / K$  be finite separable field extensions. Then
+    \begin{equation*}
+        \operatorname{Tr}_{L / K}=\operatorname{Tr}_{F / K} \circ \operatorname{Tr}_{L / F} \text { and } \operatorname{Norm}_{L / K}=\operatorname{Norm}_{F / K} \circ \operatorname{Norm}_{L / F}
+    \end{equation*}
+
+\end{corollary}
+
+
+
+
+
+\subsection{Discriminant} % Discriminant
+
+
+\begin{definition}
+    Let $B/A$ be a ring extension, and assume that $B$ is free of rank $n$ as an $A$-module.
+    Let $\alpha_1, \ldots, \alpha_m$ be elements of $B$.
+    We define their \textbf{discriminant} to be
+    \begin{equation*}
+        \disc_{B/A}\left(\alpha_1, \ldots, \alpha_m\right)=\operatorname{det}\left(\operatorname{Tr}_{B / A}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq m} .
+    \end{equation*}
+    The \textbf{trace pairing} on $B/A$ is the bilinear pairing
+    \begin{equation*}
+        B \times B \rightarrow A, \quad(x, y) \mapsto \operatorname{Tr}_{B / A}(x y)
+    \end{equation*}
+    with Gram matrix $\left(\operatorname{Tr}_{B / A}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq n}$ with respect to the basis $\left\{\alpha_1, \ldots, \alpha_n\right\}$ of $B$.
+    \begin{remark}
+        Especially, if $L / K$ is a finite separable field extension of degree $n$.
+    \end{remark}
+\end{definition}
+
+
+\begin{definition}
+    Let $B/A$ be a ring extension, and assume that $B$ is free of rank $n$ as an $A$-module.
+    If two basis $\left(\beta_1,\ldots,\beta_n\right)=\left(\alpha_1,\ldots,\alpha_n\right)\left(a_{ij}\right)_{1 \leq i,j \leq n}$ where $\left(a_{ij}\right)\in M_n(A)$, then
+    \begin{equation*}
+        \operatorname{disc}\left(\beta_1, \ldots, \beta_n\right)=\operatorname{det}(a_{ij})^2 \operatorname{disc}\left(\alpha_1, \ldots, \alpha_n\right) .
+    \end{equation*}
+    Thus the discriminant of a basis of $B$ is well-defined up to multiplication by the square of a unit in $A$.
+    The ideal generated by the discriminant, or $\disc\left(\alpha_1, \ldots, \alpha_n\right)$ itself regarded as an element of $A / A^{\times 2}$, is called the \textbf{discriminant} of $B$ over $A$, denoted $\operatorname{disc}(B / A)$.
+\end{definition}
+
+\begin{proposition}
+    Let $A \subset B$ be integral domains and assume that $B$ is a free $A$-module of rank $m$ and that $\disc(B / A) \neq 0$.
+    Then elements $\gamma_1, \ldots, \gamma_m$ form a basis for $B$ as an $A$-module if and only if
+    \begin{equation*}
+        \left(\disc\left(\gamma_1, \ldots, \gamma_m\right)\right)=(\disc(B / A)) \quad(\text { as ideals in } A) .
+    \end{equation*}
+\end{proposition}
+
+\begin{proposition}
+    Let $L / K$ be a finite separable field extension of degree $n$, $\left\{\alpha_i\right\}$ a $K$-basis of $L$ and $\operatorname{Hom}_K(L, \overline{K})=\left\{\sigma_1, \ldots, \sigma_n\right\}$.
+    Then let matrix $D=D\left(\alpha_1,\ldots,\alpha_n\right):=\left(\sigma_i\left(\alpha_j\right)\right)_{1 \leq i, j \leq n}$, the following statements hold:
+    \begin{enumerate}
+        \item
+              Then $D^{\operatorname{tr}} D$ is the Gram matrix of the $\operatorname{Tr}_{L / K}(- \cdot -)$ with respect to $\left\{\alpha_i\right\}$.
+              That is,
+              \begin{equation*}
+                  D^{\operatorname{tr}} D=\left(\operatorname{Tr}_{L / K}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq n}
+              \end{equation*}
+              Consequently, $\operatorname{det}\left(\operatorname{Tr}_{L / K}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq n}=\left(\operatorname{det} D\left(\alpha_1, \ldots, \alpha_n\right)\right)^2$.
+
+        \item
+              Let $L=K(a)$ for some primitive element $a$, then
+              \begin{equation*}
+                  \operatorname{disc}\left(1, a, \ldots, a^{n-1}\right)
+                  =
+                  \det\left(\sigma_i(a)^{k-1}\right)_{1 \leq i, k \leq n}
+                  =
+                  \prod_{1 \leq i<j \leq n}\left(\sigma_j(a)-\sigma_i(a)\right)^2\neq 0 .
+              \end{equation*}
+
+
+        \item
+              Therefore $\operatorname{disc}\left(L/K\right)$ is non-zero and the trace pairing on $L / K$ is non-degenerate.
+    \end{enumerate}
+\end{proposition}
+
+
+
+\begin{corollary}
+    Let $A$ be an integral domain, $K$ its field of fractions, $L / K$ a separable finite field extension of degree $n$ and $B$ the integral closure of $A$ in $L$.
+    If $B$ is free of rank $n$ over $A$, then $\operatorname{disc}(B / A) \neq 0$.
+    \begin{proof}
+        If $\left\{\beta_1, \ldots, \beta_m\right\}$ is a basis for $B$ as an $A$-module, then it follows easily from  that it is also a basis for $L$ as a $K$-vector space. Hence $\operatorname{disc}(B / A)$ represents $\operatorname{disc}(L / K)$.
+    \end{proof}
+\end{corollary}
+
+
+
+
+
+
+
+\section{Rings of Integers}
+We now show that $\mathbb{Z}_K$ ($\mathcal{O}_K$) is finitely generated as a $\mathbb{Z}$-module, thus integral over $\mathbb{Z}$.
+
+\begin{proposition}
+    \label{pro: pro of integral closure}
+    Let $A$ be an integral domain with fraction field $K=\operatorname{Frac}(A)$ and $L/K$ be finite field extension.
+    Let $B:=A_L$ be the integral closure of $A$ in $L$. Then the following statements hold:
+    \begin{enumerate}
+        \item
+              Every $a \in L$ can be written as $a=\frac{s}{r}$ with $s \in B$ and $0 \neq r \in A$.
+        \item
+              $L=\operatorname{Frac}(B)$ and $B$ is integrally closed.
+    \end{enumerate}
+    If $A$ is integrally
+    \begin{enumerate}[resume]
+        \item
+              For any $K$-basis $\alpha_1, \ldots, \alpha_n$ of $L$, there is an element $r \in A \backslash\{0\}$ such that $r \alpha_i \in B$ for all $i=1, \ldots, n$.
+              Clearly, $\left\{r\alpha_i\right\}_{i=1}^n\subset B$ is also a $K$-basis of $L$.
+        \item
+              $B \cap K=A$.
+    \end{enumerate}
+\end{proposition}
+
+
+
+\begin{proposition}
+    Let $A$ be an integrally closed integral domain with field of fractions $K$, and let $B$ the integral closure of $A$ in a separable extension $L$ of $K$ of degree $n$.
+    \begin{enumerate}
+        \item
+              There exists free $A$-submodules $M$ and $M^{\prime}$ of $L$ such that
+              \begin{equation*}
+                  M \subset B \subset M^{\prime} .
+              \end{equation*}
+        \item
+              Therefore $B$ is a finitely generated $A$-module if $A$ is noetherian,
+        \item
+              $B$ is free of rank $n$ over $A$ if $A$ is a principal ideal domain.
+
+    \end{enumerate}
+    \begin{remark}
+        Indeed, $B$ is a finitely generated $A$-module
+    \end{remark}
+    \begin{proof}
+        Let $\left\{\alpha_1, \ldots, \alpha_n\right\}\subset B$ be a basis for $L$ over $K$.
+        Because the trace pairing is nondegenerate, there is a dual basis $\left\{\alpha_1^{\prime}, \ldots, \alpha_n^{\prime}\right\}$ of $L$ over $K$ such that $\operatorname{Tr}\left(\alpha_i \cdot \alpha_j^{\prime}\right)=\delta_{i j}$.
+        We shall show that
+        \begin{equation*}
+            A \alpha_1+A \alpha_2+\cdots+A \alpha_n \subset B \subset A \alpha_1^{\prime}+A \alpha_2^{\prime}+\cdots+A \alpha_n^{\prime} .
+        \end{equation*}
+        The first inclusion is clear because the $\alpha_i$ are in $B$.
+
+        To show the second inclusion, let $b \in B$ and $b$ can be written uniquely as a linear combination $b=\sum k_j \alpha_j^{\prime}$ of the $\alpha_j^{\prime}$ with coefficients $k_j \in K$.
+        As $\alpha_i$ and $b$ are in $B$, so also is $b \cdot \alpha_i$, and so $\operatorname{Tr}\left(b \cdot \alpha_i\right) \in A$.
+        But
+        \begin{equation*}
+            \operatorname{Tr}\left(b \cdot \alpha_i\right)=\operatorname{Tr}\left(\sum_j k_j \alpha_j^{\prime} \cdot \alpha_i\right)=\sum_j k_j \operatorname{Tr}\left(\alpha_j^{\prime} \cdot \alpha_i\right)=\sum_j k_j \cdot \delta_{i j}=k_i .
+        \end{equation*}
+        Hence $k_i \in A\cap K= A$, proving the second inclusion.
+    \end{proof}
+\end{proposition}
+
+
+\begin{definition}
+    When $K$ is a number field ($A=\mathbb{Z}, L=\mathbb{Q}, B=\mathcal{O}_K$), the basis $\alpha_1, \ldots, \alpha_n$ for $\mathcal{O}_K$ as a free $\mathbb{Z}$-module (also a $\mathbb{Q}$-basis of $K$) is called an \textbf{integral basis}.
+    \begin{remark}
+
+        (a)
+        Let $C=\sum A \beta_i \subset B$, with $\beta_i$ a basis for $L$ over $K$. Define
+
+        \begin{equation*}
+            C^*=\{\beta \in L \mid \operatorname{Tr}(\beta \gamma) \in A \text { for all } \gamma \in C\} .
+        \end{equation*}
+
+
+        By linearity,
+
+        \begin{equation*}
+            \beta \in C^* \Longleftrightarrow \operatorname{Tr}\left(\beta \beta_i\right) \in A \text { for } i=1, \ldots, m,
+        \end{equation*}
+
+        and it follows that
+
+        \begin{equation*}
+            C^*=\sum A \beta_i^{\prime} .
+        \end{equation*}
+
+
+        Thus we have:
+
+        \begin{equation*}
+            C=\sum A \beta_i \subset B \subset \sum A \beta_i^{\prime}=C^* .
+        \end{equation*}
+
+        (b) Write $L=\mathbb{Q}[\beta]$ with $\beta \in B$, and let $f(X)$ be the minimal polynomial of $\beta$. Let $C=\mathbb{Z}[\beta]=\mathbb{Z} 1+\mathbb{Z} \beta+\cdots+\mathbb{Z} \beta^{m-1}$. We want to find $C^*$.
+
+        One can show that
+        \begin{equation*}
+            \operatorname{Tr}\left(\beta^i / f^{\prime}(\beta)\right)=\left\{\begin{array}{ccc}
+                0 & \text { if } & 0 \leq i \leq m-2 \\
+                1 & \text { if } & i=m-1
+            \end{array}\right.
+        \end{equation*}
+        It follows from this that
+
+        \begin{equation*}
+            \operatorname{det}\left(\operatorname{Tr}\left(\beta^i \cdot \beta^j / f^{\prime}(\beta)\right)=(-1)^m\right.
+        \end{equation*}
+
+        (the only term contributing to the determinant is the product of the elements on the other diagonal). If $\beta_0^{\prime}, \ldots, \beta_{m-1}^{\prime}$ is the dual basis to $1, \beta, \ldots, \beta^{m-1}$, so that $\operatorname{Tr}\left(\beta^i \cdot \beta_j^{\prime}\right)=\delta_{i j}$, then
+
+        \begin{equation*}
+            \operatorname{det}\left(\operatorname{Tr}\left(\beta^i \cdot \beta_j^{\prime}\right)\right)=1 .
+        \end{equation*}
+
+
+        On comparing these formulas, one sees that the matrix relating the family
+
+        \begin{equation*}
+            \left\{1 / f^{\prime}(\beta), \ldots, \beta^{m-1} / f^{\prime}(\beta)\right\}
+        \end{equation*}
+
+        to the basis
+
+        \begin{equation*}
+            \left\{\beta_0^{\prime}, \ldots, \beta_{m-1}^{\prime}\right\}
+        \end{equation*}
+
+        has determinant $\pm 1$, and so it is invertible in $M_n(A)$. Thus we see that $C^*$ is a free $A$-module with basis $\left\{1 / f^{\prime}(\beta), \ldots, \beta^{m-1} / f^{\prime}(\beta)\right\}$ :
+
+        \begin{equation*}
+            C=A[\beta] \subset B \subset f^{\prime}(\beta)^{-1} A[\beta]=C^* .
+        \end{equation*}
+    \end{remark}
+\end{definition}
+
+
+
+
+
+\section{Rings of integers in Number Fields} % Rings of integers in Number Fields
+
+\begin{definition}
+    Let $K$ be a number field. A subring $\mathcal{O}$ of $\mathbb{Z}_K$ is called an \textbf{order} of $K$ if $\mathcal{O}$ has an integral basis of length $[K: \mathbb{Q}]$.
+\end{definition}
+
+\begin{corollary}
+    Any order in a number field $K$ is a dedekind domain.
+\end{corollary}
+
+
+
+
+\begin{definition}
+    Let $K$ be a number field with ring of integers $\mathbb{Z}_K$ and $0 \neq \mathfrak{a} \subset K$ be a finitely generated $\mathbb{Z}_K$-module.
+    The \textbf{discriminant} of $\mathfrak{a}$ is defined as $\operatorname{disc}\left(\alpha_1, \ldots, \alpha_n\right)$ for any $\mathbb{Z}$-basis of the free $\mathbb{Z}$-module $\mathfrak{a}$ (see Proposition 3.14). (By Proposition 2.8 (c), this definition does not depend on the choice of $\mathbb{Z}$-basis because the basis transformation matrix is invertible with integral entries and thus has determinant $\pm 1$.)
+
+    The discriminant of $K$ is defined as $\operatorname{disc}\left(\mathbb{Z}_K\right)$.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{The Finiteness of the Class Number}
+\section{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

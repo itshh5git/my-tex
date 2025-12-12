@@ -1,0 +1,202 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\title{A Functorial and G-Set Theoretic Formulation of the Fundamental Theorem of Galois Theory}
+\author{}
+\date{}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+This note formulates the classical Fundamental Theorem of Galois Theory in 
+a modern categorical language, and further describes the Galois correspondence 
+via $G$-sets.  
+We assume throughout that $L/K$ is a finite Galois extension with Galois group
+\[
+G = \operatorname{Gal}(L/K).
+\]
+
+The goal is to reinterpret:
+\[
+\{ K \subseteq F \subseteq L \}
+\quad \longleftrightarrow \quad
+\{ H \le G \}
+\]
+as an equivalence between two categories and then as a correspondence 
+between $G$-equivariant quotients of a canonical $G$-set.
+
+\section{Intermediate Fields and Subgroups as Categories}
+
+\subsection{The category of intermediate fields}
+
+\begin{definition}
+Let $\mathbf{Int}(L/K)$ be the category whose objects are intermediate fields
+\[
+K \subseteq F \subseteq L,
+\]
+and where there is a unique morphism $F_1 \to F_2$ iff $F_1 \subseteq F_2$.
+Thus $\mathbf{Int}(L/K)$ is a poset category.
+\end{definition}
+
+\subsection{The category of subgroups}
+
+\begin{definition}
+Let $\mathbf{Sub}(G)$ be the category whose objects are subgroups $H \le G$
+and where there is a unique morphism $H_1 \to H_2$ iff $H_1 \subseteq H_2$.
+This is also a poset category.
+\end{definition}
+
+\section{Two Fundamental Contravariant Functors}
+
+\subsection{The fixed field functor}
+
+\begin{definition}
+Define the functor
+\[
+\operatorname{Fix} : \mathbf{Sub}(G)^{op} \to \mathbf{Int}(L/K)
+\]
+by sending a subgroup $H \le G$ to its fixed field
+\[
+L^{H} = \{ x \in L : \sigma(x)=x \;\text{for all }\sigma\in H \}.
+\]
+If $H_1 \subseteq H_2$, then the morphism in $\mathbf{Sub}(G)$
+is reversed in $\mathbf{Sub}(G)^{op}$, yielding the inclusion
+\[
+L^{H_1} \subseteq L^{H_2}.
+\]
+\end{definition}
+
+\subsection{The Galois group functor}
+
+\begin{definition}
+Define the functor
+\[
+\operatorname{Gal} : \mathbf{Int}(L/K)^{op} \to \mathbf{Sub}(G)
+\]
+by
+\[
+\operatorname{Gal}(F) = \operatorname{Gal}(L/F).
+\]
+If $F_1 \subseteq F_2$, then restriction gives
+\[
+\operatorname{Gal}(L/F_1) \subseteq \operatorname{Gal}(L/F_2).
+\]
+\end{definition}
+
+\section{The Categorical Fundamental Theorem of Galois Theory}
+
+\begin{theorem}[Categorical Galois Correspondence]
+There is a contravariant equivalence of categories
+\[
+\operatorname{Fix} : \mathbf{Sub}(G)^{op}
+   \rightleftarrows 
+\mathbf{Int}(L/K) : \operatorname{Gal}.
+\]
+Moreover,
+\[
+\operatorname{Fix} \circ \operatorname{Gal}
+   \cong \mathrm{id}_{\mathbf{Int}(L/K)}, 
+\qquad
+\operatorname{Gal} \circ \operatorname{Fix}
+   \cong \mathrm{id}_{\mathbf{Sub}(G)}.
+\]
+\end{theorem}
+
+\section{Galois Correspondence via G-Sets}
+
+\subsection{The canonical $G$-set}
+
+Let
+\[
+X = \operatorname{Hom}_{K\text{-alg}}(L, \overline{K})
+\]
+where $\overline{K}$ is a fixed algebraic closure.
+
+\begin{proposition}
+The group $G = \operatorname{Gal}(L/K)$ acts on $X$ by
+\[
+(\sigma \cdot \varphi) = \sigma \circ \varphi.
+\]
+This makes $X$ into a finite transitive $G$-set.
+\end{proposition}
+
+\subsection{Intermediate fields correspond to quotients of this $G$-set}
+
+For every intermediate field $F$, restriction gives a natural $G$-equivariant map:
+\[
+\operatorname{res}_{L/F} : X \to \operatorname{Hom}_K(F,\overline{K}).
+\]
+
+\begin{proposition}
+There is a $G$-equivariant bijection
+\[
+\operatorname{Hom}_K(F,\overline{K}) 
+\;\cong\;
+X / H_F,
+\qquad
+H_F = \operatorname{Gal}(L/F).
+\]
+\end{proposition}
+
+Thus:
+
+\begin{theorem}[G-set formulation of Galois correspondence]
+The category of intermediate fields satisfies
+\[
+\mathbf{Int}(L/K)
+\;\simeq\;
+\mathbf{G\text{-}Set}_X,
+\]
+the category of $G$-equivariant quotient maps $X \to Y$.
+Every such quotient is isomorphic to $X/H$ for a unique subgroup $H \le G$.
+\end{theorem}
+
+\subsection{Conclusion}
+
+Because $X$ is a transitive $G$-set, all its equivariant quotients are of the form 
+$G/H$. Therefore,
+
+\[
+\mathbf{G\text{-}Set}_X
+\;\simeq\;
+\mathbf{Sub}(G)^{op}.
+\]
+
+Combining everything we obtain:
+
+\begin{theorem}[Galois Correspondence via G-sets]
+\[
+\mathbf{Int}(L/K)
+\;\simeq\;
+\mathbf{Sub}(G)^{op}
+\;\simeq\;
+\mathbf{G\text{-}Set}_X.
+\]
+
+Each intermediate field $F$ corresponds to the subgroup
+\[
+H_F = \operatorname{Gal}(L/F)
+\]
+and to the $G$-set quotient
+\[
+\operatorname{Hom}_K(F,\overline{K})
+  \cong X/H_F.
+\]
+\end{theorem}
+
+\end{document}

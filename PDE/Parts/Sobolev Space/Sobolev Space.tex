@@ -1,0 +1,1522 @@
+\chapter{Sobolev Space}
+\minitoc
+
+\section{Hölder spaces $C^{k,\gamma}$}
+% Hölder spaces and spaces C^m
+
+
+\subsection{Preliminaries and notation}
+Throughout the text $X$ denotes a subset of $\mathbb{R}^n$ and $\Omega\subset\mathbb{R}^n$ an open set.
+We use $C(X)$ for the space of real-valued continuous functions on $X$ (when $X$ is equipped with the subspace topology of $\mathbb{R}^n$).
+For a multi-index $\alpha\in\mathbb{N}^n$ we write $\left|\alpha\right|=\alpha_1+\cdots+\alpha_n$ and
+\(\partial^\alpha = \partial^{\alpha_1}_{x_1}\cdots\partial^{\alpha_n}_{x_n}.\)
+
+\subsection{The space $C^m$}
+\begin{lemma}
+    Let $X$ be subset of $\mathbb{R}^n$.
+    \begin{enumerate}
+        \item
+              Then
+              \begin{equation*}
+                  C_b\left(X\right)
+                  =
+                  \left\{f \in C\left(X\right):
+                  \sup_{x \in X} \left|f(x)\right| < \infty \right\}
+              \end{equation*}
+              is a Banach space with the norm $\left\|f\right\|_{C_b(X)} := \sup_{x \in X} \left|f(x)\right|$.
+              \begin{remark}
+                  Noted that if $X$ is compact, then $C_b\left(X\right)=C\left(X\right)$.
+              \end{remark}
+        \item
+              One can view $C\left(\overline{X}\right)$ as the set
+              \begin{equation*}
+                  \left\{f \in C\left(X\right): \exists \text{ continuous } \tilde{f} : \overline{X} \rightarrow \mathbb{R} \text{ s.t. } \left.\tilde{f}\right|_{X} = f
+                  \right\}
+              \end{equation*}
+              \begin{remark}
+                  The extension $\tilde{f}$ is unique if it exists thus we identify $f$ with $\tilde{f}$ if $f$ can be extended to $\overline{X}$.
+              \end{remark}
+    \end{enumerate}
+\end{lemma}
+
+
+\begin{definition}
+    Let $\Omega$ be a open set in $\mathbb{R}^n$, $m\in \mathbb{Z}_{\geq 0}\cup \left\{\infty\right\}$ and $0<\gamma\leq 1$
+    \begin{enumerate}
+        \item
+              The space
+              \begin{equation*}
+                  C^m(\Omega)
+                  :=
+                  \left\{u:\Omega\rightarrow \mathbb{R} \mid \partial^\alpha u \text{ exists and is continuous for all } \left|\alpha \right|\leq m \right\}
+              \end{equation*}
+
+        \item
+              The space
+              \begin{equation*}
+                  C_b^m(\Omega)
+                  :=
+                  \left\{u \in C^m(\Omega) \mid \partial^\alpha u \text{ bounded for all } \left|\alpha \right|\leq m \right\}
+              \end{equation*}
+              is a Banach space with the norm $\left\|u\right\|_{C_b^m(\Omega)} := \sum_{\left|\alpha\right| \leq m} \sup_{x \in \Omega} \left|\partial^\alpha u(x)\right|$
+        \item
+              The space
+              \begin{equation*}
+                  C^m(\bar{\Omega})
+                  :=
+                  \left\{u\in C^m(\Omega)\mid  \partial^\alpha u \text{ admits a continuous extension to } \bar{\Omega} \text{ for all } \left|\alpha\right| \leq m \right\}
+              \end{equation*}
+
+        \item
+              The space
+              \begin{equation*}
+                  C^m_b\left(\bar{\Omega}\right)
+                  :=
+                  C^m(\bar{\Omega})\cap C_b^m(\Omega)
+              \end{equation*}
+    \end{enumerate}
+    \begin{remark}
+        Sometimes, we write $\left(C^m(\Omega),\left\|\cdot\right\|_{C^m(\Omega)}\right)$ to denote $\left(C_b^m(\Omega),\left\|\cdot\right\|_{C_b^m(\Omega)}\right)$, and $\left(C^m(\bar{\Omega}),\left\|\cdot\right\|_{C^m(\bar{\Omega})}\right)$ to denote $\left(C_b^m(\bar{\Omega}),\left\|\cdot\right\|_{C_b^m(\bar{\Omega})}\right)$ for simplicity.
+    \end{remark}
+\end{definition}
+
+
+\subsection{Hölder spaces $C^{k,\gamma}\left(\bar{\Omega}\right)$} % Hölder spaces
+\begin{definition}
+    Let $\Omega$ be a open set in $\mathbb{R}^n$, $m\in \mathbb{Z}_{\geq 0}$ and $0<\gamma\leq 1$.
+    If $u : \Omega \to \mathbb{R}$ , we define
+    \begin{enumerate}
+        \item
+              The $\gamma^{\text {th }}$-\textbf{Hölder seminorm} of $u$ is
+              \begin{equation*}
+                  \left[u\right]_{C^{0, \gamma}\left({\Omega}\right)}
+                  :=
+                  \sup_{\substack{x, y \in \Omega \\ x \neq y}}
+                  \frac{\left|u(x)-u(y)\right|}{\left|x-y\right|^\gamma}
+              \end{equation*}
+        \item
+              The \textbf{Hölder space}
+              \begin{equation*}
+                  C^{k, \gamma}\left(\Omega\right)
+              \end{equation*}
+              consists of all functions $u \in C^k(\bar{\Omega})$ for which the norm
+              \begin{equation*}
+                  \left\|u\right\|_{C^{k, \gamma}(\Omega)}
+                  :=
+                  \sum_{\left|\alpha\right| \leq k}\left\|D^\alpha u\right\|_{C(\Omega)}+\sum_{\left|\alpha\right|=k}\left[D^\alpha u\right]_{C^{0, \gamma}(\Omega)}
+              \end{equation*}
+              is finite.
+    \end{enumerate}
+    \begin{remark}
+        Noted that $C^{k,\gamma}\left(\Omega\right) \subset C^k\left(\bar{\Omega}\right)$ since $u^\beta$ is uniformly continuous for all $\left|\beta\right|=k$.
+        And if $u\in C^{k,\gamma}\left(\Omega\right)$ is extended to $\bar{\Omega}$, then the extension is also in $C^{k,\gamma}\left(\bar{\Omega}\right)$. Thus
+        \begin{equation*}
+            C^{k,\gamma}\left(\Omega\right)
+            =
+            C^{k,\gamma}\left(\bar{\Omega}\right)
+            :=
+            \left\{u\in C^k\left(\bar{\Omega}\right) : \left\|D^\alpha u\right\|_{C(\bar{\Omega})}, \left[u\right]_{C^{0, \gamma}\left({\bar{\Omega}}\right)} < \infty \right\}
+        \end{equation*}
+        and the norms are equal.
+        We use $C^{k,\gamma}\left(\Omega\right)$ and $C^{k,\gamma}\left(\bar{\Omega}\right)$ interchangeably, but always mean the latter.
+    \end{remark}
+\end{definition}
+
+
+\begin{theorem}
+    The space $C^{k,\gamma}(\bar{\Omega})$ is a Banach space
+\end{theorem}
+
+
+
+\section{Positive Sobolev Spaces $W^{m,p}$} % Positive Sobolev Spaces
+\begin{definition}
+    Let $\Omega$ be an open set in $\mathbb{R}^n$, $1\leq p \leq \infty$ and $k\in \mathbb{Z}_{\geq 0}$.
+    \begin{enumerate}
+        \item
+              The \textbf{Sobolev space}
+              \begin{equation*}
+                  W^{m,p}\left(\Omega\right)
+                  =
+                  \left\{f \in \mathscr{D}^\prime\left(\Omega\right): D^\alpha f \in L^p\left(\Omega\right),0\leq  \left|\alpha\right| \leq k\right\}
+              \end{equation*}
+              with the norm
+              \begin{equation*}
+                  \left\| u \right\|_{W^{m,p}\left(\Omega\right)}
+                  :=
+                  \begin{cases}
+                      \left(\sum_{\left|\alpha\right| \leq k} \int_\Omega\left|D^\alpha u\right|^p d x\right)^{1 / p} & (1 \leq p<\infty) \\ \sum_{\left|\alpha\right| \leq k} \operatorname{ess}\sup \limits_\Omega\left|D^\alpha u\right| & (p=\infty)
+                  \end{cases}
+              \end{equation*}
+        \item
+              \( H^{m,p}\left(\Omega\right) \equiv \) the completion of \(\left\{ u \in C^m\left(\Omega\right) : \left\| u \right\|_{m,p} < \infty \right\}\) with respect to the norm \(\left\| \cdot \right\|_{m,p}\)
+
+        \item
+              \( W_0^{m,p}\left(\Omega\right) \equiv \) the closure of \(C_0^{\infty}\left(\Omega\right)\) in the space \(W^{m,p}\left(\Omega\right)\).
+    \end{enumerate}
+\end{definition}
+\begin{theorem}
+    Let $k\in \mathbb{Z}_{\geq 0}$ and $p\in \left[1,\infty\right]$, then
+    \begin{enumerate}
+        \item
+              $W^{m,p}\left(\Omega\right)$ is a Banach space.
+        \item
+              $W^{m,p}\left(\Omega\right)$ is separable if $1\leq p< \infty$.
+        \item  $W^{m,p}\left(\Omega\right)$ is uniformly convex and reflexive if $1 < p <\infty$.
+        \item
+              In particular, \(W^{m,2}\left(\Omega\right)\) is a separable Hilbert space with inner product
+              \begin{equation}
+                  (u, v)_{W^{m,2}\left(\Omega\right)} = \sum_{0 \leq \left| \alpha \right| \leq m} \left( D^{\alpha} u, D^{\alpha} v \right)_{L^2}
+              \end{equation}
+    \end{enumerate}
+    \begin{proof}
+        Step 1.
+        Let $\left\{f_n\right\}$ be a Cauchy sequence in $W^{m,p}\left(\Omega\right)$, then $\left\{D^\alpha f_n\right\}$ are Cauchy sequence in $L^p\left(\Omega\right)$ for all index $\left|\alpha\right| \leq k$.
+        By the completeness of $L^p$, there exist $f_\alpha$ such that
+        \begin{equation*}
+            D^\alpha f_n \rightarrow f_\alpha \quad \text{ in } L^p\left(\Omega\right)
+        \end{equation*}
+        Considering in $\mathscr{D}\left(\Omega\right)^\prime$, $f_n\rightarrow f$ in $\mathscr{D}\left(\Omega\right)^\prime$, thus $D^\alpha f_n\rightarrow D^\alpha f$ in $\mathscr{D}\left(\Omega\right)^\prime$. Then we have $D^\alpha f=f_\alpha$ and
+        \begin{equation*}
+            f_n \rightarrow f \quad \text{ in } W^{m,p}\left(\Omega\right)
+        \end{equation*}
+
+
+        Step 2. Suppose that $p< \infty$.
+        Let $N=\sum_{\left|\alpha\right|<k} 1$ be the number of all distinct index $\left|\alpha\right| \leq k$, define the map
+        \begin{equation*}
+            u\mapsto \left\{D^\alpha u\right\}_{\left|\alpha\right|\leq m}
+        \end{equation*}
+        from $W^{m,p}\left(\Omega\right)$ to $\left(L^p\left(\Omega\right)\right)^N$. Thus $W^{m,p}\left(\Omega\right)$ can be viewed as a closed subspace of $\left(L^p\left(\Omega\right)\right)^N$ which is reflexive, then so $W^{m,p}\left(\Omega\right)$.
+    \end{proof}
+\end{theorem}
+
+
+
+\section{Negative Sobolev Spaces $W^{-m,p^\prime}\left(\Omega\right)$} % Negative Sobolev Spaces
+\begin{definition}
+    Let $\Omega$ be an open region in $\mathbb{R}^n$, $1\leq p <\infty$ and $m \in \mathbb{Z}_{\geq 0}$.
+    We define the dual space of $W_0^{m, p}\left(\Omega\right)$,
+    \begin{equation*}
+        W^{-m, p^\prime}\left(\Omega\right)
+        :=
+        \left(W_0^{m, p}\left(\Omega\right)\right)^*
+    \end{equation*}
+    where $\frac{1}{p^\prime}+\frac{1}{p}=1$. Noted that $p^\prime \in (1,\infty]$
+\end{definition}
+
+
+\begin{theorem}
+    Let $\Omega$ an open set, $k\in \mathbb{Z}_{\geq 0}$, $p^\prime \in (1,\infty]$, we have
+    \begin{equation*}
+        W^{-m,p^\prime}\left(\Omega\right)
+        =
+        \left\{
+        f=\sum_{\left|\alpha\right|\leq k} \left(-1\right) ^{\left|\alpha\right|} D^\alpha f_\alpha :f_\alpha \in L^{p^\prime}\left(\Omega\right)
+        \right\}
+    \end{equation*}
+    where the functional $f$ acts on $\varphi \in \mathscr{D}\left(\Omega\right)$ by
+    \begin{equation*}
+        \left\langle f  ,\varphi \right\rangle
+        =
+        \sum_{\left|\alpha\right|\leq m} \int_\Omega f_\alpha D^\alpha \varphi \, \mathrm{d}x
+    \end{equation*}
+    and extend to $W_0^{m,p^\prime}\left(\Omega\right)$ by density. Moreover, the norm of $f$ in $W^{-m,p^\prime}\left(\Omega\right)$ is equivalent to
+    \begin{equation*}
+        \inf
+        \left\{
+        \left(\sum_{\left|\alpha\right|\leq m} \left\|g_\alpha\right\|_{L^{p^\prime}\left(\Omega\right)}^{p^\prime}\right)^{1/p^\prime}
+        :
+        f=g \text{ in } W^{-m,p^\prime}\left(\Omega\right)
+        \right\}
+    \end{equation*}
+\end{theorem}
+
+
+
+
+\section{Extensions}
+\begin{theorem}[Extension Theorem]
+    \label{thm:extension}
+    Let $\Omega $ be a bounded Lipschitz open set; $1 \leq p \leq \infty$. Select a bounded open set \( V \) such that \( \Omega \subset \subset V \). Then there exists a bounded linear operator
+    \begin{equation*}
+        E : W^{k,p}\left(\Omega\right) \longrightarrow W^{k,p}(\mathbb{R}^n)
+    \end{equation*}
+    such that for each \( u \in W^{k,p}\left(\Omega\right) \):
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              \( Eu|_\Omega = u  \text{ in }  W^{k,p}\left(\Omega\right) \),
+        \item
+              \( Eu \) has support within \( V \),
+        \item
+              $E$ is bounded: \(\left\|Eu\right\|_{W^{k,p}(\mathbb{R}^n)} \leq C\left\|u\right\|_{W^{k,p}\left(\Omega\right)}\)
+              where the constant \( C=C\left(n,p,\Omega,V\right) \) depends only on  $p, \Omega$, and $V$.
+    \end{enumerate}
+    We call \( Eu \) an \textbf{extension} of \( u \) to \( \mathbb{R}^n \).
+    \begin{proof}
+        \textbf{Step 1: Local flattening of the boundary.}
+        Since $\Omega$ is Lipschitz, for each point $x_i^0 \in \partial \Omega$, there exists a radius $r_i>0$ and a Lipschitz function $\gamma_i:\mathbb{R}^{n-1}\to \mathbb{R}$ such that, upon a suitable rotation of coordinates,
+        \[
+            \Omega \cap B(x_i^0,r_i) = \{ x=(x',x_n) \in B(x_i^0,r_i) : x_n > \gamma_i(x') \}.
+        \]
+        By compactness of $\partial \Omega$, finitely many such neighborhoods $B(x_i^0,r_i)$ cover $\partial \Omega$.
+
+        \medskip
+
+        \textbf{Step 2: Local extensions.}
+        On each neighborhood $B(x_i^0,r_i)$, define a local extension $\tilde{u}_i$ of $u$ to the whole $B(x_i^0,r_i)$ (or a slightly larger set) by reflection across the Lipschitz boundary:
+        \[
+            \tilde{u}_i(x',x_n) :=
+            \begin{cases}
+                u(x',x_n),                   & x_n > \gamma_i(x'),   \\
+                u(x', 2 \gamma_i(x') - x_n), & x_n \le \gamma_i(x').
+            \end{cases}
+        \]
+        Standard estimates show that
+        \[
+            \|\tilde{u}_i\|_{W^{k,p}(B(x_i^0,r_i))} \le C \left\|u\right\|_{W^{k,p}(\Omega \cap B(x_i^0,r_i))}.
+        \]
+
+        \medskip
+
+        \textbf{Step 3: Partition of unity.}
+        Take smooth functions $\{\phi_i\}_{i=0}^N \subset C_c^\infty(\mathbb{R}^n)$ forming a partition of unity subordinate to $\{ B(x_i^0,r_i) \}_{i=1}^N$ and an interior set $B_0 \subset \Omega$, such that
+        \[
+            \phi_0 + \sum_{i=1}^N \phi_i = 1 \quad \text{on } \overline{\Omega}.
+        \]
+
+        \medskip
+
+        \textbf{Step 4: Global extension.}
+        Define
+        \[
+            Eu := \phi_0 u + \sum_{i=1}^N \phi_i \tilde{u}_i.
+        \]
+        By construction:
+        \begin{enumerate}[label=(\alph*)]
+            \item $(Eu)|_\Omega = u$, since on $\Omega \cap B(x_i^0,r_i)$ we have $\tilde{u}_i = u$,
+            \item $\operatorname{supp}(Eu) \subset V$, by choosing $B(x_i^0,r_i) \subset V$ and $\operatorname{supp} \phi_i \subset B(x_i^0,r_i)$,
+            \item $\|Eu\|_{W^{k,p}(\mathbb{R}^n)} \le C \left\|u\right\|_{W^{k,p}(\Omega)}$, by Leibniz formula and finite overlap of supports.
+        \end{enumerate}
+
+        \medskip
+
+        \noindent Therefore, $E$ is a bounded linear extension operator satisfying all required properties.
+    \end{proof}
+\end{theorem}
+
+
+
+\section{Density Theorem} % Density Theorem
+\subsection{Approximation by Functions in $C^{\infty}(\Omega)$}
+
+\begin{lemma}[Local approximation by smooth functions]
+    Let $\Omega$ be an open set, $1 \leq p < \infty$.
+    Then for every $u \in W^{k, p}\left(\Omega\right)$ there exist local smooth function $u_n$ such that
+    \begin{equation*}
+        u_m \rightarrow u \quad \text{ in } W_{\loc}^{k, p}\left(\Omega\right)
+    \end{equation*}
+    \begin{proof}
+        Define the
+        \begin{equation*}
+            u^{\varepsilon}=\eta_{\varepsilon} * u \quad \text { in } \Omega_{\varepsilon}
+        \end{equation*}
+        Then we have $u^{\varepsilon} \in C^{\infty}\left(\Omega_{\varepsilon}\right)$
+        and $D^\alpha \left(\eta_{\varepsilon} * u\right)=\eta_{\varepsilon} * D^\alpha u $
+        in $\Omega_{\varepsilon}$ for all $\left|\alpha\right|\leq k$ and $\varepsilon>0$.
+        By the the consequence of mollifier,
+        \begin{equation*}
+            D^\alpha u^{\varepsilon}
+            =
+            (D^\alpha u)^{\varepsilon}
+            \rightarrow
+            D^\alpha u \quad \text{ in }L^p_{\loc}\left(\Omega\right)
+        \end{equation*}
+        if we choose any open set $V \subset \subset \Omega$, then
+        \begin{equation*}
+            \left\|u^{\varepsilon}-u\right\|_{W^{k, p}(V)}^p
+            =
+            \sum_{\left|\alpha\right| \leq k}\left\|D^\alpha (u^{\varepsilon}- u)\right\|_{L^p(V)}^p
+            =\sum_{\left|\alpha\right| \leq k}\left\|(D^\alpha u)^{\varepsilon}-D^\alpha u\right\|_{L^p(V)}^p
+            \rightarrow 0
+        \end{equation*}
+        as $\varepsilon \rightarrow 0$. This proves that $u_m \rightarrow u \quad$ in $W_{\loc}^{k, p}(\Omega$).
+    \end{proof}
+\end{lemma}
+
+\begin{theorem}[$H=W$]
+    \label{thm: H=W}
+    Let $\Omega$ be an open set and $1\leq p < \infty$.
+    Then for every $u \in W^{m, p}\left(\Omega\right)$ there exist $u_m \in H^{m, p}= C^{\infty}\left(\Omega\right) \cap W^{m, p}\left(\Omega\right)$ such that
+    \begin{equation*}
+        u_m \rightarrow u \quad \text { in } W^{m, p}\left(\Omega\right)
+    \end{equation*}
+    \begin{proof}
+        Step 1.
+        Let $\left\{V_i\right\}_{i=1}^\infty$ be an exhaustion by open sets of $\Omega$ and $\left\{\zeta_i\right\}_{i=1}^{\infty}$ be a smooth partition of unity subordinate to $\left\{V_i\right\}_{i=1}^{\infty}$.
+        Next, choose any function $u \in W^{m, p}\left(\Omega\right)$. We have $\supp\left(\zeta_i u\right) \subset \supp \zeta_i \subset V_i$ is compact, $\zeta_i u \in W^{m, p}\left(\Omega\right)$,  and
+        \begin{equation*}
+            u=\sum_{i=1}^\infty u^i
+        \end{equation*}
+        where $u^i:=\zeta_i u$
+
+        Step 2.
+        Fix $\delta>0$. For every $i$, choose $\varepsilon_i>0$ small that $\supp u^i \subset V_i^{\varepsilon_i}$ ($\dist\left(\supp u^i, \partial V_i\right)>0$) and $v^i$ such that
+        \begin{equation*}
+            \left\|v^i-u^i\right\|_{W^{m , p}\left(\Omega\right)}
+            =\left\|v^i-u^i\right\|_{W^{m , p}(V_i)}
+            \leq \frac{\delta}{2^{i+1}}
+        \end{equation*}
+        Write $v:=\sum_{i=1}^{\infty} v^i$. This function is well defined and belongs to $C^{\infty}\left(\Omega\right)$ since $\supp u^i\subset \supp \zeta_i$ and $\left\{\supp u^i\right\}$ is locally finite.
+        Then for any compact set $\Omega^\prime \subset \Omega$, we have $\Omega^\prime \subset \bigcup_{i=1}^N V_i$ for some $N$ depending on $\Omega^\prime$ and
+        \begin{equation*}
+            \begin{aligned}
+                \left\|v-u\right\|_{W^{k, p}(\Omega^\prime)} & = \left\|\sum_{i=1}^N v^i -\sum_{i=1}^N u^i\right\|_{W^{k, p}(\Omega^\prime)} \\
+                                                             & \leq \sum_{i=1}^{\infty}\left\|v^i-u^i\right\|_{W^{k, p}\left(\Omega\right)}  \\
+                                                             & \leq \delta \sum_{i=1}^{\infty} \frac{1}{2^i}                                 \\
+                                                             & =\delta
+            \end{aligned}
+        \end{equation*}
+        Take the supremum over compact sets $\Omega^\prime \subset \Omega$, to conclude $\|v-u\|_{W^{k, p}\left(\Omega\right)} \leq \delta$ by Fatou's lemma.
+    \end{proof}
+\end{theorem}
+
+
+\subsection{Approximation by functions in $C^{\infty}(\bar{\Omega})$}
+
+\begin{theorem}
+    \label{thm: Approximation by functions smooth up to the boundary}
+    Let $\Omega$ be a bounded Lipschitz open set; $1\leq p <\infty$.
+    Then for erery $u \in W^{k, p}\left(\Omega\right)$, then there exist $u_m \in C^{\infty}(\bar{\Omega})$ such that
+    \begin{equation*}
+        u_m \rightarrow u \quad \text { in } W^{k, p}\left(\Omega\right)
+    \end{equation*}
+    \begin{proof}
+        \textbf{Step 1: Extension to the whole space.}
+        Since $\Omega$ is Lipschitz, there exists a bounded linear extension
+        operator
+        \[
+            E:W^{k,p}(\Omega)\to W^{k,p}(\mathbb R^n)
+        \]
+        such that $(Eu)|_\Omega=u$ and
+        $\left\|Eu\right\|_{W^{k,p}(\mathbb R^n)}\le C\left\|u\right\|_{W^{k,p}(\Omega)}$.
+        Set $v:=Eu$.
+
+        \medskip
+
+        \textbf{Step 2: Mollification in $\mathbb R^n$.}
+        By \cref{thm: H=W}, there exist $v_\varepsilon \in C^\infty(\mathbb R^n)$ such that
+        \[
+            \left\|v_\varepsilon-v\right\|_{W^{k,p}(\mathbb R^n)}
+            \longrightarrow 0
+        \]
+
+        \medskip
+
+        \textbf{Step 3: Restriction back to $\Omega$.}
+        Set $u_\varepsilon:=v_\varepsilon|_\Omega$.
+        Since $v_\varepsilon$ is $C^\infty$ on $\mathbb R^n$, we have
+        $u_\varepsilon\in C^\infty(\overline\Omega)$.
+        Moreover,
+        \[
+            \|u_\varepsilon-u\|_{W^{k,p}(\Omega)}
+            =\|v_\varepsilon-v\|_{W^{k,p}(\Omega)}
+            \le \|v_\varepsilon-v\|_{W^{k,p}(\mathbb R^n)}
+            \longrightarrow 0 .
+        \]
+
+        Choosing a sequence $\varepsilon_m\downarrow 0$ and writing
+        $u_m:=u_{\varepsilon_m}$ yields the desired approximating sequence.
+    \end{proof}
+    \begin{proof}
+        1. Fix any point $x^0 \in \partial \Omega$. As $\partial \Omega$ is $C^1$, there exist, a radius $r>0$ and a $C^1$ function $\gamma: \mathbb{R}^{n-1} \rightarrow \mathbb{R}$ such that-upon relabeling the coordinate axes if necessary, we have
+        $$
+            \Omega \cap B\left(x^0, r\right)=\left\{x \in B\left(x^0, r\right) \mid x_n>\gamma\left(x_1, \ldots, x_{n-1}\right)\right\} .
+        $$
+        Set $V:=\Omega \cap B\left(x^0, r / 2\right)$.
+
+        2. Define the shifted point
+        $$
+            x^{\varepsilon} := x + \varepsilon \lambda  e_n \quad(x \in V, \varepsilon>0),
+        $$
+        and observe that for some fixed, sufficiently large number $\lambda>0$ the ball $B\left(x^{\varepsilon}, \varepsilon\right) \subset \Omega \cap B\left(x^0, r\right)$ for all $x \in V$ and all small $\varepsilon>0$.
+
+        Now define $u_{\varepsilon}(x):=u\left(x^{\varepsilon}\right) = u(x + \varepsilon \lambda  e_n) \quad x \in V$. Next write $v^{\varepsilon}=\eta_{\varepsilon} * u_{\varepsilon}$. Clearly $v^{\varepsilon} \in C^{\infty}(\bar{V})$.
+
+        3. We now claim
+        $$
+            v^{\varepsilon} \rightarrow u \quad \text { in } W^{k, p}(V)
+        $$
+        To confirm this, take $\alpha$ to be any multiindex with $\left|\alpha\right| \leq k$. Then
+        $$\begin{aligned}
+                \left\|D^\alpha v^{\varepsilon}-D^\alpha u\right\|_{L^p(V)} & =\left\|\eta_\varepsilon * (D^\alpha u_{\varepsilon}-D^\alpha u)+\eta_{\varepsilon} * D^\alpha u - D^\alpha u \right\|_{L^p(V)}                                    \\
+                                                                            & \leq \left\|\eta_\varepsilon * (D^\alpha u_{\varepsilon}-D^\alpha u) \right\|_{L^p(V)}+
+                \left\|\eta_{\varepsilon} * D^\alpha u - D^\alpha u \right\|_{L^p(V)}                                                                                                                                                            \\
+                                                                            & \leq \left\|\eta_\varepsilon \right\| \cdot \left\|(D^\alpha u)_{\varepsilon}-D ^ \alpha u \right\| + \left\|\eta_{\varepsilon} * D^\alpha u - D^\alpha u \right\|
+            \end{aligned}
+        $$
+
+        4. Select $\delta>0$. Since $\partial \Omega$ is compact, we can find finitely many points $x_i^0 \in \partial \Omega$, radius $r_i>0$, corresponding sets $V_i=\Omega \cap B^0\left(x_i^0, \frac{r_i}{2}\right)$, and functions $v_i \in C^{\infty}\left(\bar{V}_i\right)(i=1, \ldots, N)$ such that $\partial \Omega \subset \bigcup_{i=1}^N B^0\left(x_i^0, \frac{r_i}{2}\right)$ and
+        $$
+            \left\|v_i-u\right\|_{W^{k, p}\left(V_i\right)} \leq \delta
+        $$
+        Take an open set
+        $$
+            V_0 =\Omega_\delta \subset\subset V_0'=\Omega_{\delta'}\subset\subset \Omega
+        $$
+        such that $\Omega \subset \bigcup_{i=0}^N V_i$ ( $0 <\delta'< \delta <\min\{\frac{r_i}{2}\}$) and select, using Theorem 1, a function $v_0 \in C^{\infty}\left(V_0'\right) \subset C^{\infty}\left(\bar{V}_0\right)$ satisfying
+        $$
+            \left\|v_0-u\right\|_{W^{k, p}\left(V_0\right)} \leq \delta
+        $$
+
+        5. Now let $\left\{\zeta_i\right\}_{i=0}^N$ be a smooth partition of unity on $\bar{\Omega}$, subordinate to the open sets $\left\{V_0, B^0\left(x_1^0, \frac{r_1}{2}\right), \cdots, B^0\left(x_N^0, \frac{r_N}{2}\right)\right\}$. Define $v:=\sum_{i=0}^N \zeta_i v_i$.
+        Then clearly $v \in C^{\infty}(\bar{\Omega})$. In addition, since $u=\sum_{i=0}^N \zeta_i u$, we see using Leibniz formula that for each $\left|\alpha\right| \leq k$
+        $$
+            \begin{aligned}
+                \left\|D^\alpha v-D^\alpha u\right\|_{L^p\left(\Omega\right)} & \leq \sum_{i=0}^N\left\|D^\alpha\left(\zeta_i v_i\right)-D^\alpha\left(\zeta_i u\right)\right\|_{L^p\left(V_i\right)} \\
+                                                                              & \leq C_{\zeta,\alpha} \sum_{i=0}^N\left\|v_i-u\right\|_{W^{k, p}\left(V_i\right)}=C(N+1) \delta
+            \end{aligned}
+        $$
+    \end{proof}
+\end{theorem}
+
+
+
+\section{Trace}
+
+\begin{theorem}[Trace Theorem]
+    Let $\Omega $ be a bounded Lipschitz open set; $1 \leq p \leq \infty$.; $1 \leq p <\infty$.
+    Then there exists a bounded linear operator
+    \begin{equation*}
+        T : W^{1,p}\left(\Omega\right) \to L^p(\partial \Omega)
+    \end{equation*}
+    such that
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              \( Tu = u|_{\partial \Omega} \) if \( u \in C(\bar{\Omega})
+              \cap
+              W^{1,p}\left(\Omega\right) \)
+        \item
+              $T$ is bounded : \(\|Tu\|_{L^p(\partial \Omega)} \leq C\left\|u\right\|_{W^{1,p}\left(\Omega\right)}\) with the constant \( C \) depending only on \( p \) and \( \Omega \).
+    \end{enumerate}
+    We call \( Tu \) the \textbf{trace} of \( u \) on \( \partial \Omega \).
+    \begin{remark}
+        By the \cref{thm: Approximation by functions smooth up to the boundary}, the trace operator is uniquely determined by property (i).
+    \end{remark}
+    \begin{proof}
+        \textbf{Step 1: Local flattening of the boundary.}
+        Since $\Omega$ is Lipschitz, for each point $x_i^0 \in \partial \Omega$, there exists a neighborhood $U_i$ and a Lipschitz function $\gamma_i:\mathbb{R}^{n-1} \to \mathbb{R}$ such that, after a suitable rotation of coordinates,
+        \[
+            \Omega \cap U_i = \{ x = (x',x_n) \in U_i : x_n > \gamma_i(x') \}.
+        \]
+        By compactness of $\partial \Omega$, finitely many such neighborhoods $U_i$ cover $\partial \Omega$.
+
+        \medskip
+
+        \textbf{Step 2: Reduction to the upper half-space.}
+        Consider the local change of coordinates
+        \[
+            \Phi_i: U_i \to \tilde{U}_i \subset \mathbb{R}^n, \quad
+            \Phi_i(x',x_n) = (x', x_n - \gamma_i(x')).
+        \]
+        Then locally $\Phi_i(\Omega \cap U_i) \subset \mathbb{R}^n_+ := \{ (x',x_n) : x_n > 0 \}$.
+
+        For $u \in W^{1,p}(\Omega)$, define $v_i = u \circ \Phi_i^{-1}$ in $\mathbb{R}^n_+$.
+        Classical one-dimensional argument (Hardy inequality) shows
+        \[
+            \|v_i(\cdot,0)\|_{L^p(\mathbb{R}^{n-1})} \le C \|v_i\|_{W^{1,p}(\mathbb{R}^n_+)}.
+        \]
+
+        \medskip
+
+        \textbf{Step 3: Partition of unity.}
+        Take a smooth partition of unity $\{\phi_i\}_{i=1}^N$ subordinate to $\{U_i\}$, such that $\sum_i \phi_i = 1$ near $\partial \Omega$.
+
+        Define the local traces:
+        \[
+            T_i u := v_i(\cdot,0) = (u \circ \Phi_i^{-1})(\cdot,0) \in L^p(\mathbb{R}^{n-1}).
+        \]
+
+        Then the global trace is
+        \[
+            Tu := \sum_{i=1}^N (\phi_i T_i u) \circ \Phi_i \in L^p(\partial \Omega).
+        \]
+
+        \medskip
+
+        \textbf{Step 4: Verification.}
+        \begin{enumerate}[label=(\alph*)]
+            \item \emph{Linearity and boundedness:}
+                  \[
+                      \|Tu\|_{L^p(\partial \Omega)} \le C \sum_i \|T_i u\|_{L^p(\mathbb{R}^{n-1})} \le C \sum_i \|v_i\|_{W^{1,p}(\mathbb{R}^n_+)} \le C \left\|u\right\|_{W^{1,p}(\Omega)}.
+                  \]
+            \item \emph{Consistency with smooth functions:}
+                  If $u \in C(\overline{\Omega}) \cap W^{1,p}(\Omega)$, then locally $T_i u = u|_{\partial \Omega \cap U_i}$, so globally
+                  \[
+                      Tu = u|_{\partial \Omega}.
+                  \]
+        \end{enumerate}
+
+        Hence $T$ defines a bounded linear trace operator on $W^{1,p}(\Omega)$.
+    \end{proof}
+\end{theorem}
+
+
+
+\begin{theorem}[Trace-zero functions in \( W^{1,p} \)]
+    \label{thm:trace-zero}
+    Let $\Omega $ be a bounded Lipschitz open set; \(1\leq p <\infty\). Suppose furthermore that \( u \in W^{1,p}\left(\Omega\right) \). Then
+    \[
+        u \in W_0^{1,p}\left(\Omega\right) \quad \text{iff} \quad Tu = 0 \text{ on } \partial \Omega.
+    \]
+\end{theorem}
+
+
+
+\section{The space $W^{k,2}$}
+
+\subsection{\texorpdfstring{$W^{k,2}(\mathbb{R}^n)$}{}}
+\begin{lemma}
+    Suppoes $u\in L_{\loc}\left(\mathbb{R}^n\right)$ has a weak derivative $D^\alpha u \in L^1 (\mathbb{R}^n)$ or $L^2(\mathbb{R}^n)$, then
+    \begin{equation*}
+        \mathcal{F}D^\alpha u
+        =
+        (iy)^\alpha \hat{u}
+    \end{equation*}
+\end{lemma}
+
+\begin{theorem}[Characterization of $W^{k,2}(\mathbb{R}^n)$ by Fourier transform]
+    Let $k$ be a nonnegative integer.
+    A function $u \in L^2\left(\mathbb{R}^n\right)$ belongs to $W^{k,2}\left(\mathbb{R}^n\right)$ if and only if
+    \begin{equation*}
+        \left(1+\left|y\right|^k\right)
+        \hat{u} \in L^2\left(\mathbb{R}^n\right)
+    \end{equation*}
+    \begin{remark}
+        In addition, we have the inequalities
+        \begin{equation*}
+            \left\|\left(1+|y|^k\right) \hat{u}\right\|_{L^2\left(\mathbb{R}^n\right)}
+            \leq
+            \sqrt{2} \left\|u\right\|_{W^{k,2}\left(\mathbb{R}^n\right)}
+        \end{equation*}
+        for each $u \in W^{k,2}\left(\mathbb{R}^n\right)$. Thus the norm $\left\|\cdot\right\|:= \left\|\left(1+|y|^k\right) \mathcal{F}\cdot\right\|_{L^2\left(\mathbb{R}^n\right)}$ is equivalent to $\left\|\cdot\right\|_{W^{k,2}\left(\mathbb{R}^n\right)}$ by the norm equivalent theorem.
+    \end{remark}
+
+    \begin{proof}
+        Assume first $u\in W^{k,2}(\mathbb{R}^n)$. Then for each multiindex $\left|\alpha\right| \leq k$, we have $D^\alpha u \in L^2 (\mathbb{R}^n)$ and
+        \begin{equation*}
+            \mathcal{F}(D^\alpha u)= (iy)^\alpha \hat{u}
+        \end{equation*}
+        belongs to $L^2 (\mathbb{R}^n)$. Also,
+        $$\|D^\alpha u\|_{L^2 (\mathbb{R}^n)}=\|(iy)^\alpha \hat{u}\|_{L^2 (\mathbb{R}^n)}$$
+        Thus
+        \begin{equation*}
+            \begin{aligned}
+                \|\left(1+|y|^k\right) \hat{u} \|_{L^2 (\mathbb{R}^n)} &
+                = \left(\int_{\mathbb{R}^n} \left(1+2|y|^k+|y|^{2k}\right) \hat{u}^2 \d y\right)^{\frac{1}{2}}                                                                                             \\
+                                                                       & \leq \left(\int_{\mathbb{R}^n} 2\left(1+|y|^{2k}\right) \hat{u}^2 \d y\right)^{\frac{1}{2}}                                       \\
+                                                                       & \leq \sqrt{2} \left(\|\hat{u}\|_{L^2(\mathbb{R}^)}+ \sum_{\left|\alpha\right|=k} \|y^\alpha \hat{u}\|_{L^2(\mathbb{R}^)}\right)   \\
+                                                                       & = \sqrt{2} \left(\left\|u\right\|_{L^2(\mathbb{R}^)} + \sum_{\left|\alpha\right|=k}\|D^\alpha \hat{u}\|_{L^2(\mathbb{R}^)}\right) \\
+                                                                       & \leq \sqrt{2}\left\|u\right\|_{H^k\left(\mathbb{R}^n\right)}
+            \end{aligned}
+        \end{equation*}
+        belongs to $L^2 (\mathbb{R}^n)$ and
+
+        2. Suppose conversely
+        $\left(1+|y|^k\right) \hat{u} \in L^2\left(\mathbb{R}^n\right)$
+        and
+        $\left|\alpha\right| \leq k$. Then
+        \[
+            \left\|(i y)^\alpha \hat{u}\right\|_{L^2\left(\mathbb{R}^n\right)}^2
+            \leq
+            \int_{\mathbb{R}^n}|y|^{2\left|\alpha\right|}|\hat{u}|^2 d y
+            \leq
+            C_\alpha \left\|\left(1+|y|^k\right) \hat{u}\right\|_{L^2\left(\mathbb{R}^n\right)}^2
+            <
+            \infty
+        \]
+        thus $(i y)^\alpha \hat{u} \in L^2\left(\mathbb{R}^n\right)$.
+        Set
+        \[
+            u_\alpha
+            :=
+            \mathcal{F}^{-1}\left((i y)^\alpha \hat{u}\right)
+        \]
+        Then for each $\phi \in C_c^{\infty}\left(\mathbb{R}^n\right)$
+        \[
+            \left(D^\alpha \phi,u\right)
+            =
+            \left(\mathcal{F}D^\alpha \phi ,\hat{u}\right)
+            =
+            \left((i y)^\alpha \hat{\phi} ,\hat{u}\right)
+            =
+            (-1)^{\left|\alpha\right|} \left(\hat{\phi} ,(i y)^\alpha \hat{u}\right)
+            =
+            (-1)^{\left|\alpha\right|} \left(\phi ,u_\alpha\right)
+        \]
+        Thus $u_\alpha=D^\alpha u$ in the weak sense and $D^\alpha u \in L^2\left(\mathbb{R}^n\right)$. Hence $u \in H^k\left(\Omega\right)$, as required.
+    \end{proof}
+\end{theorem}
+
+\begin{definition}
+    Let $s>0$ be a noninteger real number.
+    We define the fractional Sobolev space $H^s\left(\mathbb{R}^n\right)$ as follows:
+    \begin{equation*}
+        H^s\left(\mathbb{R}^n\right)
+        :=
+        \left\{u \in L^2\left(\mathbb{R}^n\right) : \left(1+|y|^s\right) \hat{u} \in L^2\left(\mathbb{R}^n\right)\right\}
+    \end{equation*}
+    with the norm
+    \begin{equation*}
+        \left\|u\right\|_{H^s\left(\mathbb{R}^n\right)}:=
+        \left\|\left(1+\left|y\right|^s\right) \hat{u}\right\|_{L^2\left(\mathbb{R}^n\right)}
+    \end{equation*}
+
+\end{definition}
+
+\subsection{Gelfand triple}
+
+\begin{theorem}
+    Let $\Omega\subset \mathbb{R}^n$ be a open set.
+    Then the following \textbf{Gelfand triple} holds:
+    \begin{equation*}
+        H_0^k\left(\Omega\right) \hookrightarrow L^2\left(\Omega\right) \hookrightarrow H^{-k}\left(\Omega\right)
+    \end{equation*}
+    where $H^{-k}\left(\Omega\right)$ denotes the dual space of $H_0^k\left(\Omega\right)$.
+    Moreover, both embeddings are continuous and dense.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+\chapter{Sobolev Inequality; Imbedding Theorem} % Sobolev Inequality; Imbedding Theorem  
+\minitoc
+
+\section{Sobolev inequalities}
+\begin{theorem}
+    Let $\Omega$ be a a bounded Lipschitz domain in $\mathbb{R}^n$.
+    If $u \in W^{k, p}_0\left(\Omega\right)$ and $kp<n$, then there exists a constant $C=C\left(k,p,n,\Omega\right)$ such that
+    \begin{equation*}
+        \left\|u\right\|_{L^{p^*}\left(\Omega\right)}
+        \leq
+        C \left\|u\right\|_{W^{k, p}\left(\Omega\right)}
+    \end{equation*}
+    where $p^*=\frac{n p}{n-k p}$ ( $\frac{1}{p^*}=\frac{1}{p}-\frac{k}{n}$ ) is the Sobolev conjugate of $p$.
+\end{theorem}
+
+
+
+
+
+\subsection{Proof of Sobolev inequalities}
+
+\begin{definition}
+    Let $n$-multiindex $\mathbf{p}_i,\boldsymbol{\theta}_i$ and $\mathbf{p}$ be given such that
+    \begin{equation*}
+        \frac{\boldsymbol{\theta}}{\mathbf{p}}
+        =
+        \sum_{i=1}^k
+        \frac{\boldsymbol{\theta}_i}{\mathbf{p}_i}
+    \end{equation*}
+    meaning that
+    $\frac{\boldsymbol{\theta}^j}{\mathbf{p}^j}
+        =
+        \sum_{i=1}^k \frac{\boldsymbol{\theta}_i^j}{\mathbf{p}_i^j}$
+    for each component $j=1,\ldots,n$.
+    , and let $f_i$
+    \begin{equation*}
+        \left\|\prod f_i\right\|_{L^{\mathbf{p}}}
+        \leq
+        \prod \left\|f_i\right\|_{L^{\mathbf{p}_i}}^{\boldsymbol{\theta}_i}
+    \end{equation*}
+    where
+    \begin{equation*}
+        \left\|u\right\|_{L^{\mathbf{p}}}^{\boldsymbol{\theta}}
+        :=
+        \left\|\cdots\left\|\left\|f\right\|_{L^{\mathbf{p}^1}\left(dx_1\right)}^{\boldsymbol{\theta}^1}\right\|_{L^{\mathbf{p}^2}\left(dx_2\right)}^{\boldsymbol{\theta}^2}\cdots \right\|_{L^{\mathbf{p}^n}\left(dx_n\right)}^{\boldsymbol{\theta}^n}
+    \end{equation*}
+\end{definition}
+
+\begin{definition}[Multi-index Hölder inequality]
+    Let $n$-multiindices $\mathbf{p}_i, \boldsymbol{\theta}_i$ and $\mathbf{p}$ be given such that
+    \begin{equation*}
+        \frac{\boldsymbol{\theta}}{\mathbf{p}}
+        =
+        \sum_{i=1}^k
+        \frac{\boldsymbol{\theta}_i}{\mathbf{p}_i},
+    \end{equation*}
+    meaning that
+    \[
+        \frac{\boldsymbol{\theta}^j}{\mathbf{p}^j}
+        =
+        \sum_{i=1}^k \frac{\boldsymbol{\theta}_i^j}{\mathbf{p}_i^j}, \quad j=1,\ldots,n.
+    \]
+    For functions $f_i$, define the nested $L^{\mathbf{p}}$-norm with weights $\boldsymbol{\theta}$ as
+    \begin{equation*}
+        \| f \|_{L^{\mathbf{p}}}^{\boldsymbol{\theta}}
+        :=
+        \Big\| \cdots \Big\| \big\| f \big\|_{L^{\mathbf{p}^1}(dx_1)}^{\boldsymbol{\theta}^1} \Big\|_{L^{\mathbf{p}^2}(dx_2)}^{\boldsymbol{\theta}^2} \cdots \Big\|_{L^{\mathbf{p}^n}(dx_n)}^{\boldsymbol{\theta}^n}.
+    \end{equation*}
+    Then the multi-index Hölder inequality states that
+    \begin{equation*}
+        \Big\| \prod_{i=1}^k f_i \Big\|_{L^{\mathbf{p}}}
+        \le
+        \prod_{i=1}^k \| f_i \|_{L^{\mathbf{p}_i}}^{\boldsymbol{\theta}_i}.
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}[Estimates for $C_c^1(\mathbb{R}^n)$]
+    Assume $1 \leq p < n$.
+    There exists a constant $C=\frac{p(n-1)}{n-p}$, such that
+    \begin{equation*}
+        \left\|u\right\|_{L^{p^*}\left(\mathbb{R}^n\right)} \leq C\| D u\|_{L^p\left(\mathbb{R}^n\right)}
+    \end{equation*}
+    for all $u \in C_c^1\left(\mathbb{R}^n\right)$.
+    \begin{proof}
+        1. First Assume $p=1$. Since $u$ has compact support, for each $i=1,\ldots,n$ and $x\in \mathbb{R}^n$ we have
+        \begin{equation*}
+            u(x)=\int_{-\infty}^{x_i} u_{x_i}\left(x_1, \ldots, x_{i-1}, y_i, x_{i+1}, \ldots, x_n\right) \d  y_i
+        \end{equation*}
+        and so
+        \begin{equation*}
+            \left|u(x)\right| \leq \int_{-\infty}^{\infty}\left|D u\left(x_1, \ldots, y_i, \ldots, x_n\right)\right| \d  y_i
+        \end{equation*}
+        Consequently
+        \begin{equation}
+            \left|u(x)\right|^{\frac{n}{n-1}} \leq \prod_{i=1}^n\left(\int_{-\infty}^{\infty}\left|D u\left(x_1, \ldots, y_i, \ldots, x_n\right)\right| \d  y_i\right)^{\frac{1}{n-1}}
+        \end{equation}
+        Integrate  with respect to $x_1$ :
+        \begin{equation*}
+            \begin{aligned}
+                \int_{-\infty}^{\infty}|u|^{\frac{n}{n-1}} \d  x_1 & \leq \int_{-\infty}^{\infty} \prod_{i=1}^n\left(\int_{-\infty}^{\infty}|D u| \d  y_i\right)^{\frac{1}{n-1}} \d  x_1                                                                \\
+                                                                   & =\left(\int_{-\infty}^{\infty}|D u| \d  y_1\right)^{\frac{1}{n-1}} \int_{-\infty}^{\infty} \prod_{i=2}^n\left(\int_{-\infty}^{\infty}|D u| \d   y_i\right)^{\frac{1}{n-1}} \d  x_1 \\
+                                                                   & \leq\left(\int_{-\infty}^{\infty}|D u| \d  y_1\right)^{\frac{1}{n-1}}
+                \prod_{i=2}^n \left(\int_{-\infty}^{\infty} \int_{-\infty}^{\infty}|D u| \d  x_1 \d y_i\right)^{\frac{1}{n-1}}
+            \end{aligned}
+        \end{equation*}
+        Then integrate this inequality with respect to $x_2$:
+
+        We continue by integrating with respect to $x_3, \ldots, x_n$, eventually to find
+        \begin{equation*}
+            \begin{aligned}
+                \int_{\mathbb{R}^n}|u|^{\frac{n}{n-1}} \d  x &
+                \leq \prod_{i=1}^n\left(\int_{\mathbb{R}^n}|D u| d x_1 \ldots d y_i \ldots d x_n\right)^{\frac{1}{n-1}}   \\
+                                                             & =\left(\int_{\mathbb{R}^n}|D u| d x\right)^{\frac{n}{n-1}}
+            \end{aligned}
+        \end{equation*}
+        This is estimate  for $p=1$.
+
+        2. Consider now the case that $1<p<n$. We apply previous estimate to $v:=|u|^\gamma$, where $\gamma=\frac{p(n-1)}{n-p}>1$. Then
+        \begin{equation*}
+            \begin{aligned}
+                \left(\int_{\mathbb{R}^n}|u|^{p^*} \d  x\right)^{\frac{n-1}{n}} &
+                =\left(\int_{\mathbb{R}^n}|u|^{\frac{\gamma n}{n-1}} d x\right)^{\frac{n-1}{n}}                                                                                 \\
+                                                                                & \leq \int_{\mathbb{R}^n} \left|D \left|u\right|^\gamma\right| \d x                            \\
+                                                                                & =\gamma \int_{\mathbb{R}^n} |u|^{\gamma-1}|D u| d x                                           \\
+                                                                                & \leq \gamma\left(\int_{\mathbb{R}^n}|u|^{(\gamma-1) \frac{p}{p-1}} d x\right)^{\frac{p-1}{p}}
+                \|Du\|_p                                                                                                                                                        \\
+                                                                                & = \gamma \left(\int_{\mathbb{R}^n}|u|^{p^*} \d  x\right)^{\frac{p-1}{p}} \|Du\|_p
+            \end{aligned}
+        \end{equation*}
+        in which case $\frac{\gamma n}{n-1}=(\gamma-1) \frac{p}{p-1}=\frac{n p}{n-p}=p^*$. So we have
+        \begin{equation*}
+            \left(\int_{\mathbb{R}^n}|u|^{p^*} d x\right)^{\frac{1}{p^*}}
+            \leq \gamma \left(\int_{\mathbb{R}^n}|D u|^p d x\right)^{\frac{1}{p}}
+        \end{equation*}
+
+    \end{proof}
+\end{theorem}
+
+
+\begin{theorem}[Estimates for $W_0^{1, p}$]
+    Assume $\Omega$ is a bounded, open subset of $\mathbb{R} ^n$.
+    Suppose $u \in W_0^{1, p}\left(\Omega\right)$ for some $1 \leq p<n$. Then we have the estimate
+    \begin{equation*}
+        \left\|u\right\|_{L^{p^*}\left(\Omega\right)} \leq C\|D u\|_{L^p\left(\Omega\right)}
+    \end{equation*}
+    Furthermore, $\left\|u\right\|_{L^{q}\left(\Omega\right)} \leq C'\|D u\|_{L^p\left(\Omega\right)}$ for each $q \in\left[1, p^*\right]$, the constant $C'$ depending only on $p, q, n$ and $\Omega$.
+
+    Proof:
+    Since $u \in W_0^{1, p}\left(\Omega\right)$, there exist functions $u_m \in C_c^{\infty}\left(\Omega\right)$ converging to $u$ in $W^{1, p}\left(\Omega\right)$. We extend each function $u_m$ to be 0 on $\mathbb{R}^n-\bar{\Omega}$ (that $C_c^{\infty}\left(\Omega\right)\subset C_c^{\infty}(\mathbb{R}^n)$) and apply the estimate for $C_c^\infty(\mathbb{R}^n)$ to discover
+    $$
+        \|u_m\|_{L^{p^*} \left(\Omega\right)}
+        =
+        \|u_m\|_{L^{p^*} (\mathbb{R}^n)}
+        \leq
+        C\|D u_m\|_{L^p(\mathbb{R}^n)}
+        =
+        C\|D u_m\|_{L^p\left(\Omega\right)}
+    $$
+    Thus
+    \[
+        \|u_m-u_n\|_{L^{p^*} \left(\Omega\right)}
+        \leq
+        C\|D u_m- Du_n\|_{L^p\left(\Omega\right)}
+        \leq
+        C\|u_m-u_n\|_{W^{m,p}\left(\Omega\right)}
+        \to
+        0
+    \]
+    Since $L^{p^*}\left(\Omega\right)$ is complete, we conclude that $u_m \xrightarrow{L^{p^*}\left(\Omega\right)} u$ and
+    \[\left\|u\right\|_{L^{p^*} \left(\Omega\right)} \leq C\|D u\|_{L^p\left(\Omega\right)}\]
+
+    \textbf{Remark} In view of this estimate, on $W_0^{1, p}\left(\Omega\right)$ the norm $\|D u\|_{L^p\left(\Omega\right)}$ is equivalent to $\left\|u\right\|_{W^{1, p}\left(\Omega\right)}$, if $\Omega$ is a bounded, open subset of $\mathbb{R} ^n$.
+    \begin{equation*}
+        \|D u\|_{L^p\left(\Omega\right)} \leq \left\|u\right\|_{W^{1, p}\left(\Omega\right)}
+    \end{equation*}
+    \begin{equation*}
+        \left\|u\right\|_{W^{1, p}\left(\Omega\right)}^p
+        =
+        \left\|u\right\|_{L^p\left(\Omega\right)}^p
+        +
+        \|D u\|_{L^p\left(\Omega\right)}^p
+        \leq
+        C\|D u\|_{L^p\left(\Omega\right)}^p
+    \end{equation*}
+    since $p\in [1, p^*]$.
+
+\end{theorem}
+
+\begin{theorem}[Estimates for $W^{1, p}, 1 \leq p<n$]
+    Let $\Omega$ be a bounded, open subset of $\mathbb{R}^n$, and suppose $\partial \Omega$ is $C^1$.
+    If $1 \leq p<n$. and $u \in W^{1, p}\left(\Omega\right)$.
+    Then $u \in L^{p^*}\left(\Omega\right)$, with the estimate
+    \begin{equation*}
+        \left\|u\right\|_{L^{p^*}\left(\Omega\right)} \leq C\left\|u\right\|_{W^{1, p}\left(\Omega\right)}
+    \end{equation*}
+    the constant $C$ depending only on $p, n$, and $\Omega$.
+
+    Proof:
+    Since $\partial \Omega$ is $C^1$, there exists an extension $E u=\bar{u} \in W^{1, p}\left(\mathbb{R}^n\right)$, such that
+    \begin{equation*}
+        \left\{\begin{array}{l}
+            \bar{u}=u \text { in } \Omega, \bar{u} \text { has compact support within V} \\
+            \|\bar{u}\|_{W^{1, p}\left(\mathbb{R}^n\right)} \leq C\left\|u\right\|_{W^{1, p}\left(\Omega\right)}
+        \end{array}\right.
+    \end{equation*}
+    Because $\bar{u}$ has compact support within $V$ ($V \subset \Omega_\varepsilon$), we know that there exist functions $u_m \in C^\infty(V) \subset C_c^{\infty}\left(\mathbb{R}^n\right)$ such that
+    $$
+        u_m \rightarrow \bar{u} \quad \text { in } W^{1, p}\left(\mathbb{R}^n\right)
+    $$
+    Now according to inequality for $C^\infty_c(\mathbb{R}^n)$,
+    \begin{equation*}
+        \left\|u_m-u_l\right\|_{L^{p^*}\left(\mathbb{R}^n\right)}
+        \leq
+        C\left\|D u_m-D u_l\right\|_{L^p\left(\mathbb{R}^n\right)}
+        \leq
+        C\left\| u_m- u_l\right\|_{W^{1, p}\left(\mathbb{R}^n\right)}
+    \end{equation*}
+    and
+    \begin{equation*}
+        \left\|u_m\right\|_{L^{p^*}\left(\mathbb{R}^n\right)} \leq C\left\|D u_m\right\|_{L^p\left(\mathbb{R}^n\right)}
+    \end{equation*}
+    for all $l, m \geq 1$. Thus
+    \begin{equation*}
+        u_m \xrightarrow{L^{p^*}(\mathbb{R}^n)} \bar{u}
+    \end{equation*}
+    and
+    \begin{equation*}
+        \|\bar{u}\|_{L^{p^*}\left(\mathbb{R}^n\right)} \leq C\|D \bar{u}\|_{L^p\left(\mathbb{R}^n\right)}
+    \end{equation*}
+    Then we conclude that
+    \begin{equation*}
+        \left\|u\right\|_{L^{p^*}\left(\Omega\right)}
+        \leq \|\bar{u}\|_{L^{p^*}\left(\mathbb{R}^n\right)}
+        \leq C\|D \bar{u}\|_{L^p\left(\mathbb{R}^n\right)}
+        \leq C\| \bar{u}\|_{W^{1,p}\left(\mathbb{R}^n\right)}
+        \leq C\| u\|_{W^{1,p}\left(\Omega\right)}
+    \end{equation*}
+\end{theorem}
+
+\section{Morrey's inequality}
+\begin{theorem}
+    Let $\Omega$ be a a bounded Lipschitz domain in $\mathbb{R}^n$.
+    If $u \in W^{k, p}\left(\Omega\right)$ and $kp>n$
+    then there exists a constant $C=C\left(k,p,n,\Omega\right)$ such that
+    \begin{equation*}
+        \left\|u\right\|_{C^{m, \gamma}(\bar{\Omega})} \leq C\left\|u\right\|_{W^{k, p}\left(\Omega\right)}
+    \end{equation*}
+    where $m=k-1-\left[\frac{n}{p}\right]$ and $\gamma=\frac{n}{p}-\left[\frac{n}{p}\right]$.
+\end{theorem}
+
+\subsection{Proof of Morrey's inequality}
+\begin{lemma}
+    For all $u\in C^1$, we claim there exists a constant $C=\frac{1}{n \alpha(n)}$, depending only on $n$, such that
+    \begin{equation*}
+        \fint_{B(x,r)} \left|u(y)-u(x)\right| \d  y
+        \leq
+        C \int_{B(x,r)} \frac{\left|D u(y)\right| }{\left|y-x\right|^{n-1}}\d y
+    \end{equation*}
+
+    \begin{equation*}
+        \begin{aligned}
+            \fint_{B(x,r)} |u(y)-u(x)| \d  y &
+            = \frac{1}{\alpha(n)r^n}\int_0^r \int_{\partial B(0,1)} |u(x + s \omega )-u(x)| s^{n-1} \d S_\omega \d s                                                                \\
+                                             & = \frac{1}{\alpha(n)r^n}\int_0^r s^{n-1}\int_{\partial B(0,1)} \left|\int_0^s \frac{d}{d t} u(x+t w) \d  t\right|   \d S_\omega \d s \\
+                                             & \leq \frac{1}{\alpha(n)r^n} \int_0^r s^{n-1} \int_{\partial B(0,1)} \int_0^s  \left|D u(x+t w)\right|   \d t \d S_\omega \d s        \\
+                                             & = \frac{1}{\alpha(n)r^n}\int_0^r s^{n-1} \int_{B(x,s)} \frac{\left|D u(y)\right| }{\left|y-x\right|^{n-1}}\d y ds                    \\
+                                             & \leq \frac{1}{\alpha(n)r^n}\int_0^r s^{n-1} \int_{B(x,r)} \frac{\left|D u(y)\right| }{\left|y-x\right|^{n-1}}\d y ds                 \\
+                                             & = \frac{1}{n \alpha(n)} \int_{B(x,r)} \frac{\left|D u(y)\right| }{\left|y-x\right|^{n-1}}\d y
+        \end{aligned}
+    \end{equation*}
+\end{lemma}
+
+\begin{theorem}[$C^1\left(\mathbb{R}^n\right)\cap W^{1, p}\left(\mathbb{R}^n\right)$]
+    Assume $n<p \leq \infty$. Then there exists a constant $C$, depending only on $p$ and $n$, such that
+    \begin{equation*}
+        \left\|u\right\|_{C^{0, \gamma}\left(\mathbb{R}^n\right)} \leq C\left\|u\right\|_{W^{1, p}\left(\mathbb{R}^n\right)}
+    \end{equation*}
+    for all $u \in C^1\left(\mathbb{R}^n\right)$, where $
+        \gamma= 1-n / p $
+
+    Proof:
+    1. Now fix $x \in \mathbb{R}^n$. We apply lemma as follows:
+    $$
+        \begin{aligned}
+            \left|u(x)\right| & \leq \fint_{B(x, r)}|u(x)-u(y)| \d  y+ \fint_{B(x, r)}|u(y)| \d  y                                                   \\
+                              & \leq C \int_{B(x, r)} \frac{|D u(y)|}{|x-y|^{n-1}} \d  y+C\left\|u\right\|_{L^p(B(x, r))}                            \\
+                              & \leq C \|Du\|_{L^p(\mathbb{R}^n)}
+            \left(\int_{B(x, r)} \frac{1}{|x-y|^{(n-1)\frac{p}{p-1}}}  \d  y\right)^{\frac{p-1}{p}}+C\left\|u\right\|_{L^p\left(\mathbb{R}^n\right)} \\
+                              & \leq C\left\|u\right\|_{W^{1, p}\left(\mathbb{R}^n\right)}
+        \end{aligned}
+    $$
+    The last estimate holds since $p>n$ implies $(n-1) \frac{p}{p-1}<n$.
+    As $x \in \mathbb{R}^n$ is arbitrary, it follows that
+    $$
+        \left\|u\right\|_{C(\bar{\Omega})}
+        =
+        \sup _{x\in \mathbb{R}^n}|u|
+        \leq
+        C\left\|u\right\|_{W^{1, p}\left(\mathbb{R}^n\right)}
+    $$
+
+    2. Next, choose any two points $x, y \in \mathbb{R}^n$ and write $r:=|x-y|$. Let $W:=B(x, r) \cap B(y, r)$. Then
+    $$
+        |u(x)-u(y)| \leq \fint_W|u(x)-u(z)| \d  z+ \fint_W|u(y)-u(z)| \d z
+    $$
+    But lemma allows us to estimate
+    \begin{equation*}
+        \begin{aligned}
+            \fint_W|u(x)-u(z)| \d  z
+             & \leq \fint_{B(x, r)}|u(x)-u(z)| \d  z                                                  \\
+             & \leq C  \int_{B(x,r)} \frac{\left|D u(z)\right| }{\left|z-x\right|^{n-1}}\d z          \\
+             & \leq C \|Du\|_{L^p(\mathbb{R}^n)}
+            \left(\int_{B(x, r)} \frac{d z}{|x-z|^{(n-1) \frac{p}{p-1}}}\right)^{\frac{p-1}{p}}       \\
+             & = C \frac{n\alpha(n)(p-1)}{pn} r^{1-\frac{n}{p}}\|D u\|_{L^p\left(\mathbb{R}^n\right)}
+        \end{aligned}
+    \end{equation*}
+    Likewise,
+    $$
+        \fint_W|u(y)-u(z)| \d  z \leq C r^{1-\frac{n}{p}}\|D u\|_{L^p\left(\mathbb{R}^n\right)}
+    $$
+    These estimates  yield
+    $$
+        |u(x)-u(y)| \leq C r^{1-\frac{n}{p}}\|D u\|_{L^p\left(\mathbb{R}^n\right)}=C|x-y|^{\gamma}\|D u\|_{L^p\left(\mathbb{R}^n\right)}
+    $$
+    Thus
+    $$
+        [u]_{C^{0,1-n / p}\left(\mathbb{R}^n\right)}=\sup _{x \neq y}\left\{\frac{|u(x)-u(y)|}{|x-y|^{1-n / p}}\right\} \leq C\|D u\|_{L^p\left(\mathbb{R}^n\right)}
+    $$
+    This complete the proof .
+\end{theorem}
+
+\begin{theorem}[Estimates for $W^{1, p}$]
+    Let $\Omega$ be a bounded, open subset of $\mathbb{R}^n$, and suppose $\partial \Omega$ is $C^1$. Assume $n<p \leq \infty$ and $u \in W^{1, p}\left(\Omega\right)$. Then $u$ has a version $u^* \in C^{0, \gamma}(\bar{\Omega})$, for $\gamma=1-\frac{n}{p}$, with the estimate
+    $$
+        \left\|u^*\right\|_{C^{0, \gamma}(\bar{\Omega})} \leq C\left\|u\right\|_{W^{1, p}\left(\Omega\right)}
+    $$
+    The constant $C$ depends only on $p, n$ and $\Omega$.
+    In view of this Theorem, we will henceforth always identify a function $u \in W^{1, p}\left(\Omega\right)$ $(p>n)$ with its continuous version.
+
+    Proof:
+    Since $\partial \Omega$ is $C^1$, there exists an extension $E u=\bar{u} \in W^{1, p}\left(\mathbb{R}^n\right)$ such that
+    \begin{equation*}
+        \left\{\begin{array}{l}
+            \bar{u}=u \text { in } \Omega              \\
+            \bar{u} \text { has compact support, and } \\
+            \|\bar{u}\|_{W^{1, p}\left(\mathbb{R}^n\right)} \leq C\left\|u\right\|_{W^{1, p}\left(\Omega\right)}
+        \end{array}\right.
+    \end{equation*}
+    Assume first $n<p<\infty$. Since $\bar{u}$ has compact support, we obtain functions $u_m \in C_c^{\infty}\left(\mathbb{R}^n\right)$ such that
+    $$
+        u_m \xrightarrow{W^{1, p}\left(\mathbb{R}^n\right)} \bar{u}
+    $$
+    Now according to previous theorem ,
+    $$\left\|u_m-u_l\right\|_{C^{0,\gamma}\left(\mathbb{R}^n\right)}
+        \leq
+        C\left\|u_m-u_l\right\|_{W^{1, p}\left(\mathbb{R}^n\right)}$$
+    and
+    $$\|u_m\|_{C^{0,\gamma}}\leq C\left\|u_m\right\|_{W^{1, p}\left(\mathbb{R}^n\right)}$$
+    for all $l, m \geq 1$,
+    whence there exists a function $u^* \in C^{0,\gamma}\left(\mathbb{R}^n\right)$ such that
+    \begin{equation*}
+        u_m \xrightarrow{C^{0,\gamma}(\mathbb{R}^n)} u^*
+    \end{equation*}
+    We see that $u^*=u$ a.e. on $\Omega$, so that $u^*$ is a version of $u$ and
+    \begin{equation*}
+        \left\|u^*\right\|_{C^{0,1-n / p}\left(\mathbb{R}^n\right)}
+        \leq C\|\bar{u}\|_{W^{1, p}\left(\mathbb{R}^n\right)}
+        \leq C\left\|u\right\|_{W^{1,p}\left(\Omega\right)}
+    \end{equation*}
+
+    2. If $p=\infty$, $\gamma=1$ we can assume that $\bar{u}\leq \|\bar{u}\|_{L^\infty(\mathbb{R}^n)}$ for all $x\in \mathbb{R}^n$. Then
+    $$\sup_{x\in \mathbb{R}^n}\bar{u} \leq \|\bar{u}\|_{L^\infty(\mathbb{R}^n)}$$
+    and
+    $$
+        \begin{aligned}
+            \left|\bar{u}(y)-\bar{u}(x)\right| &
+            =\left|\int_0^{\left|y-x\right|} \frac{d}{dt}\bar{u}(x +t\frac{y-x}{\left|y-x\right|}) \d t\right|                                                     \\
+                                               & \leq \left|\frac{y-x}{\left|y-x\right|} \cdot D\bar{u}(x +t\frac{y-x}{\left|y-x\right|}) \right| \left|y-x\right| \\
+                                               & \leq \|D\bar{u}\|_{L^\infty(\mathbb{R}^n)} \left|y-x\right|
+        \end{aligned}
+    $$
+    for erery $x,y\in \mathbb{R}^n$. Thus $\bar{u}\in C^{0,1}(\mathbb{R}^n)$ and $\bar{u}|_\Omega$ is a version of $u $. Also,
+    $$
+        \left\|u\right\|_{C^{0,1}(\bar{\Omega})}
+        \leq
+        \|\bar{u}\|_{C^{0,1}(\mathbb{R}^n)}
+        \leq
+        \|\bar{u}\|_{W^{1,\infty}(\mathbb{R}^n)}
+        \leq
+        C\left\|u\right\|_{W^{1,\infty}\left(\Omega\right)}$$
+\end{theorem}
+
+
+
+\section{Poincaré's inequality}
+\begin{theorem}[Poincaré's inequality]
+    Let $\Omega$ be a bounded, connected, open subset of $\mathbb{R}^n$, with a $C^1$ boundary $\partial \Omega$. Assume $1 \leq p \leq \infty$. Then there exists a constant $C$, depending only on $n, p$ and $\Omega$, such that
+    \[
+        \left\|u-(u)_\Omega\right\|_{L^p\left(\Omega\right)} \leq C\|D u\|_{L^p\left(\Omega\right)}
+    \]
+    for each function $u \in W^{1, p}\left(\Omega\right)$.
+
+
+    Proof:
+    We argue by contradiction. Were the stated estimate false, there would exist for each integer $k=1, \ldots$ a function $u_k \in W^{1, p}\left(\Omega\right)$ satisfying
+    \[
+        \left\|u_k-\left(u_k\right)_\Omega\right\|_{L^p\left(\Omega\right)}>k\left\|D u_k\right\|_{L^p\left(\Omega\right)}
+    \]
+    We renormalize by defining
+    \[
+        v_k:=\frac{u_k-\left(u_k\right)_\Omega}{\left\|u_k-\left(u_k\right)_\Omega\right\|_{L^p\left(\Omega\right)}} \quad(k=1, \ldots)
+    \]
+    Then
+    \[
+        \left(v_k\right)_\Omega=0,\left\|v_k\right\|_{L^p\left(\Omega\right)}=1
+    \]
+    and (2) implies
+    \[
+        \left\|D v_k\right\|_{L^p\left(\Omega\right)}<\frac{1}{k} \quad(k=1,2, \ldots)
+    \]
+    In particular the functions $\left\{v_k\right\}_{k=1}^{\infty}$ are bounded in $W^{1, p}\left(\Omega\right)$. Then there exist a subsequence $\left\{v_{k_j}\right\}_{j=1}^{\infty} \subset\left\{v_k\right\}_{k=1}^{\infty}$ and a function $v \in$ $L^p\left(\Omega\right)$ such that
+    \[
+        v_{k_j} \rightarrow v \quad \text { in } L^p\left(\Omega\right)
+    \]
+    It follows that
+    \[
+        (v)_\Omega=0,\|v\|_{L^p\left(\Omega\right)}=1
+    \]
+    On the other hand, since $\left\|D v_k\right\|_{L^p\left(\Omega\right)} \to 0$
+    \[
+        \int_\Omega v \phi_{x_i} d x=\lim _{k_j \rightarrow \infty} \int_\Omega v_{k_j} \phi_{x_i} d x=-\lim _{k_j \rightarrow \infty} \int_\Omega v_{k_j, x_i} \phi d x=0
+    \]
+    for each $\phi \in C_c^{\infty}\left(\Omega\right)$.
+    Consequently $v \in W^{1, p}\left(\Omega\right)$, with $D v=0$ a.e.
+
+    Thus $v$ is constant, since $\Omega$ is connected.
+    Since $v$ is constant and $(v)_\Omega=0$, we must have $v \equiv 0$, in which case $\|v\|_{L^p\left(\Omega\right)}=0$. This contradiction establishes estimate.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+\section{Compactness} %% 3.7
+
+\begin{definition}
+    Let \( X \) and \( Y \) be Banach spaces, \( X \subset Y \). We say that \( X \) is \textbf{compactly embedded} in \( Y \), written
+    \[
+        X \subset \subset Y
+    \]
+    provided the imbedding operator is a linear compact operator i.e.
+    \begin{enumerate}
+        \item[(i)] \(\left\|u\right\|_Y \leq C \left\|u\right\|_X\) for all \( u \in X \), where \( C \) is a constant,
+        \item[(ii)] each bounded sequence in \( X \) is precompact in \( Y \).
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Rellich-Kondrachov Compactness Theorem]
+    \label{thm:rellich-kondrachov}
+    Assume \( \Omega \) is a bounded open subset of \( \mathbb{R}^n \) and \( \partial \Omega \) is \( C^1 \). Suppose \( 1 \leq p < n \). Then
+    \[
+        W^{1,p}\left(\Omega\right) \subset \subset L^q\left(\Omega\right)
+    \]
+    for each \( 1 \leq q < p^* \).
+
+    Proof:
+    Step 1. Fix \( 1 \leq q < p^* \) and note that since \( \Omega \) is bounded and $\partial \Omega$ is $C^1$, Gagliardo-Nirenberg-Sobolev inequality for $W^{1,p}\left(\Omega\right)$ implies
+    \[
+        W^{1,p}\left(\Omega\right) \subset L^q\left(\Omega\right), \quad \left\|u\right\|_{L^q\left(\Omega\right)} \leq C \left\|u\right\|_{W^{1,p}\left(\Omega\right)}.
+    \]
+    It remains therefore to show that if \(\{u_m\}_{m=1}^{\infty}\) is a bounded sequence in \( W^{1,p}\left(\Omega\right) \), there exists a subsequence \(\{u_{m_j}\}_{j=1}^{\infty}\) which converges in \( L^q\left(\Omega\right) \).
+
+    Step 2. In view of the Extension Theorem , we may with no loss of generality assume that \( \Omega = \mathbb{R}^n \) and the functions \(\{u_m\}_{m=1}^{\infty}\) all have compact support in some bounded open set \( V \subset \mathbb{R}^n \). We also may assume
+    \[
+        \sup_m \|u_m\|_{W^{1,p}(V)} < \infty.
+    \]
+
+    Step 3. Let us first study the smoothed functions
+    \[
+        u_m^\varepsilon := \eta_\varepsilon * u_m \quad (\varepsilon > 0, \, m = 1, 2, \ldots),
+    \]
+    where \(\eta_\varepsilon\) denotes the usual mollifier. We may suppose the functions \(\{u_m^\varepsilon\}_{m=1}^{\infty}\) all have support in \( V \) as well.
+
+    Step 4. We first claim
+    \[
+        u_m^\varepsilon \xrightarrow{L^q(V)} u_m  \text{ as } \varepsilon \to 0, \, \text{uniformly in } m.
+    \]
+    To prove this, we first note that if \( u_m \) is smooth, then
+    \[
+        \begin{aligned}
+            u_m^\varepsilon(x) - u_m(x)
+             & = \frac{1}{\varepsilon^n} \int_{B(x,\varepsilon)} \eta \left( \frac{x-z}{\varepsilon} \right) (u_m(z) - u_m(x)) \, dz \\
+             & = \int_{B(0,1)} \eta(y)(u_m(x-\varepsilon y) - u_m(x)) \, dy                                                          \\
+             & = \int_{B(0,1)} \eta(y) \int_0^1 \frac{d}{dt} (u_m(x-\varepsilon ty)) \, dt \, dy                                     \\
+             & = -\varepsilon \int_{B(0,1)} \eta(y) \int_0^1 Du_m(x-\varepsilon ty) \cdot y \, dt \, dy
+        \end{aligned}
+    \]
+    Thus
+    \[
+        \int_V |u_m^\varepsilon(x) - u_m(x)| \, dx \leq \varepsilon \int_{B(0,1)} \eta(y) \int_0^1 \int_V |Du_m(x-\varepsilon ty)| \, dx \, dt \, dy
+    \]
+    \[
+        \leq \varepsilon \int_V |Du_m(z)| \, dz.
+    \]
+    By approximation, this estimate holds if \( u_m \in W^{1,p}(V) \). Hence
+    \[
+        \|u_m^\varepsilon - u_m\|_{L^1(V)} \leq \varepsilon \|Du_m\|_{L^1(V)} \leq \varepsilon C \|Du_m\|_{L^p(V)},
+    \]
+    We thereby discover
+    \[
+        u_m^\varepsilon \to u_m \quad \text{in } L^1(V), \text{ uniformly in } m.
+    \]
+    But then since \( 1 \leq q < p^* \), we see using the interpolation inequality for \( L^p \)-norms that
+    \[
+        \|u_m^\varepsilon - u_m\|_{L^q(V)} \leq \|u_m^\varepsilon - u_m\|_{L^1(V)}^\theta \|u_m^\varepsilon - u_m\|_{L^{p^*}(V)}^{1-\theta},
+    \]
+    where \(\frac{1}{q} = \frac{\theta}{1} + \frac{1-\theta}{p^*}, \quad 0 < \theta < 1\). Consequently,the Gagliardo-Nirenberg-Sobolev inequality imply
+    \[
+        \|u_m^\varepsilon - u_m\|_{L^q(V)} \leq C \|u_m^\varepsilon - u_m\|_{L^1(V)}^\theta,
+    \]
+    whence assertion (2) follows from (3).
+
+    Step 5. Next we claim
+    \[
+        \begin{cases}
+            \text{for each fixed } \varepsilon > 0, \text{ the sequence } \{u_m^\varepsilon\}_{m=1}^\infty \\
+            \text{is uniformly bounded and equicontinuous.}
+        \end{cases}
+    \]
+    Indeed, if \( x \in \mathbb{R}^n \), then
+    \[
+        |u_m^\varepsilon(x)| \leq \int_{B(x, \varepsilon)} \eta_\varepsilon(x-y)|u_m(y)| \, dy
+    \]
+    \[
+        \leq \|\eta_\varepsilon\|_{L^\infty(\mathbb{R}^n)} \|u_m\|_{L^1(V)} \leq \frac{C}{\varepsilon^n} < \infty
+    \]
+    for \( m = 1, 2, \ldots \). Similarly,
+    \[
+        |Du_m^\varepsilon(x)| \leq \int_{B(x, \varepsilon)} |D\eta_\varepsilon(x-y)||u_m(y)| \, dy
+    \]
+    \[
+        \leq \|D\eta_\varepsilon\|_{L^\infty(\mathbb{R}^n)} \|u_m\|_{L^1(V)} \leq \frac{C}{\varepsilon^{n+1}} < \infty,
+    \]
+    for \( m = 1, \ldots \). Assertion (4) follows from these two estimates.
+
+    Step 6.
+    We now observe that since the functions $\left\{u_m\right\}_{m=1}^{\infty}$, and thus the functions $\left\{u_m^{\varepsilon}\right\}_{m=1}^{\infty}$, have support in some fixed bounded set $V \subset \mathbb{R}^n$, we may utilize (4) and the Arzela-Ascoli compactness criterion, to obtain a subsequence $\left\{u_{m_j}^{\varepsilon}\right\}_{j=1}^{\infty} \subset\left\{u_m^{\varepsilon}\right\}_{m=1}^{\infty}$ which converges uniformly on $V$. In particular therefore
+    \begin{equation*}
+        \limsup _{j, k \rightarrow \infty}\left\|u_{m_j}^{\varepsilon}-u_{m_k}^{\varepsilon}\right\|_{L^q(V)}=0
+    \end{equation*}
+    Now fix \( \delta > 0 \). We will show there exists a subsequence \(\{u_{m_j}\}_{j=1}^\infty \subset \{u_m\}_{m=1}^\infty\) such that
+    \[
+        \limsup_{j,k\to\infty} \|u_{m_j} - u_{m_k}\|_{L^q(V)} \leq \delta.
+    \]
+    To see this, let us first employ assertion (2) to select $\varepsilon>0$ so small that
+    \begin{equation*}
+        \left\|u_m^{\varepsilon}-u_m\right\|_{L^q(V)} \leq \delta / 2
+    \end{equation*}
+    for $m=1,2, \ldots$.
+
+    But then (6) and (7) imply
+    \begin{equation*}
+        \limsup _{j, k \rightarrow \infty}\left\|u_{m_j}-u_{m_k}\right\|_{L^q(V)} \leq \delta
+    \end{equation*}
+    and so (5) is proved.
+
+    Step 7.
+    We next employ assertion (5) with $\delta=1, \frac{1}{2}, \frac{1}{3}, \ldots$ and use a standard diagonal argument to extract a subsequence $\left\{u_{m_l}\right\}_{l=1}^{\infty} \subset\left\{u_m\right\}_{m=1}^{\infty}$ satisfying
+    \begin{equation*}
+        \limsup _{l, k \rightarrow \infty}\left\|u_{m_l}-u_{m_k}\right\|_{L^q(V)}=0 .
+    \end{equation*}
+\end{theorem}
+
+
+\begin{corollary}
+    Assume \( \Omega \) is a bounded open subset of \( \mathbb{R}^n \) and \( \partial \Omega \) is \( C^1 \).
+    We have in particular
+    \[
+        W^{1, p}\left(\Omega\right) \subset \subset L^p\left(\Omega\right)
+    \]
+    for all $1 \leq p \leq \infty$.
+
+    Proof:
+    1. If $ 1\leq p <n $, it is obvious from Rellich-Kondrachov Compactness Theorem.
+
+    2. If $ n<p \leq \infty$, there is a version $u_n^*\in C^{0,\gamma}(\bar{\Omega})$ of $u_n$ for bounded sequence $\{u_n\}$ in $W^{1,p}\left(\Omega\right)$
+    and also
+    \[
+        \|u_n^*\|_{C^{0,\gamma}(\bar{\Omega})}\leq C \|u_n\|_{W^{1,p}\left(\Omega\right)}
+        \leq
+        M
+    \]
+    which implies $u_n^*$ is uniformly bounded and equicontinuous. By Arzela-Ascoli theorem,
+    $\{u_{n_k}\}$ convergent uniformly to $u \in C\left(\Omega\right)$ and also
+    \[u_{n_k} \to u \quad \text{in } L^p\left(\Omega\right)\]
+    since $\Omega$ is bounded.
+\end{corollary}
+
+
+\begin{theorem}
+    Assume \( \Omega \) is a bounded open subset of \( \mathbb{R}^n \). Suppose \( 1 \leq p < n \). Then
+    \begin{equation*}
+        W^{1,p}\left(\Omega\right) \subset \subset L^q\left(\Omega\right)
+    \end{equation*}
+    for each \( 1 \leq q < p^* \).
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+\section{Difference quotients and \texorpdfstring{$\mathrm{W}^{1, p}$}{}}
+
+
+\begin{definition}
+    Assume $u: \Omega \rightarrow \mathbb{R}$ is a locally summable function and $V \subset \subset \Omega$.
+
+    (1) The $i^{\text {th }}$-difference quotient of size $h$ is
+    \begin{equation*}
+        D_i^h u(x)=\frac{u\left(x+h e_i\right)-u(x)}{h} \quad(i=1, \ldots, n)
+    \end{equation*}
+    for $x \in V$ and $h \in \mathbb{R}, 0<|h|<\operatorname{dist}(V, \partial \Omega)$.
+
+    (2) $D^h u:=\left(D_1^h u, \ldots, D_n^h u\right)$.
+
+\end{definition}
+
+\begin{proposition}
+    Choose $i=1, \ldots, n, \phi \in C_c^{\infty}(V)$, and note for small enough $h$ that
+    \begin{equation*}
+        \int_V u(x)\left[\frac{\phi\left(x+h e_i\right)-\phi(x)}{h}\right] d x=-\int_V\left[\frac{u(x)-u\left(x-h e_i\right)}{h}\right] \phi(x) d x
+    \end{equation*}
+    that is,
+    \begin{equation*}
+        \int_V u\left(D_i^h \phi\right) d x=-\int_V\left(D_i^{-h} u\right) \phi d x
+    \end{equation*}
+\end{proposition}
+
+\begin{theorem}[Difference quotients and weak derivatives]
+    Let $\Omega$ be a open sets of $\mathbb{R}^n$.
+
+    (1) Suppose $1 \leq p<\infty$ and $u \in W^{1, p}\left(\Omega\right)$. Then for each $V \subset \subset \Omega$
+    \begin{equation*}
+        \left\|D^h u\right\|_{L^p(V)}
+        \leq C\|D u\|_{L^p\left(\Omega\right)}
+    \end{equation*}
+    for some constant $C$ depending on $\Omega,V$ and all $0<|h|<\frac{1}{2} \operatorname{dist}(V, \partial \Omega)$.
+
+    (2) Assume $1<p<\infty, u \in L^p(V)$, and there exists a constant $C$ such that
+    \begin{equation*}
+        \left\|D^h u\right\|_{L^p(V)} \leq C
+    \end{equation*}
+    for all $0<|h|<\frac{1}{2} \operatorname{dist}(V, \partial \Omega)$. Then
+    \begin{equation*}
+        u \in W^{1, p}(V), \quad \text { with } \quad\|D u\|_{L^p(V)} \leq C
+    \end{equation*}
+
+    Proof:
+    Step1.
+    Assume $1 \leq p<\infty$, and temporarily suppose $u$ is smooth. Then for each $x \in V, i=1, \ldots, n$, and $0<|h|<\frac{1}{2} \operatorname{dist}(V, \partial \Omega)$, we have
+    \begin{equation*}
+        u\left(x+h e_i\right)-u(x)=h \int_0^1 u_{x_i}\left(x+t h e_i\right) d t
+    \end{equation*}
+    so that
+    \begin{equation*}
+        \left|u\left(x+h e_i\right)-u(x)\right| \leq|h| \int_0^1\left|D u\left(x+t h e_i\right)\right| d t
+    \end{equation*}
+    Consequently
+    \begin{equation*}
+        \begin{aligned}
+            \int_V\left|D^h u\right|^p d x & \leq C \sum_{i=1}^n \int_V \int_0^1\left|D u\left(x+t h e_i\right)\right|^p d t d x \\
+                                           & =C \sum_{i=1}^n \int_0^1 \int_V\left|D u\left(x+t h e_i\right)\right|^p d x d t
+        \end{aligned}
+    \end{equation*}
+    Thus
+    \begin{equation*}
+        \int_V\left|D^h u\right|^p d x \leq C \int_\Omega|D u|^p d x
+    \end{equation*}
+    This estimate holds should $u$ be smooth, and thus is valid by approximation for arbitrary $u \in W^{1, p}\left(\Omega\right)$.
+
+    2. Now suppose estimate holds for all $0<|h|<\frac{1}{2} \operatorname{dist}(V, \partial \Omega)$ and some constant $C$.
+    Estimate (9) implies
+    \begin{equation*}
+        \sup _h\left\|D_i^{-h} u\right\|_{L^p(V)}<\infty
+    \end{equation*}
+    and therefore, since $1<p<\infty$, there exists a function $v_i \in L^p(V)$ and a subsequence $h_k \rightarrow 0$ such that
+    \begin{equation*}
+        D_i^{-h_k} u \rightharpoonup v_i \quad \text { weakly in } L^p(V)
+    \end{equation*}
+    But then
+    \begin{equation*}
+        \begin{aligned}
+            \int_V u \phi_{x_i} d x & =\int_\Omega u \phi_{x_i} d x                               \\
+                                    & =\lim _{h_k \rightarrow 0} \int_\Omega u D_i^{h_k} \phi d x \\
+                                    & =-\lim _{h_k \rightarrow 0} \int_V D_i^{-h_k} u \phi d x    \\
+                                    & =-\int_V v_i \phi d x                                       \\
+                                    & =-\int_\Omega v_i \phi d x
+        \end{aligned}
+    \end{equation*}
+    Thus $v_i=u_{x_i}$ in the weak sense ( $i=1, \ldots, n$ ), and so $D u \in L^p(V)$. As $u \in L^p(V)$, we deduce therefore that $u \in W^{1, p}(V)$.
+\end{theorem}
+
+\subsection{Lipschitz functions and \texorpdfstring{$\mathrm{W}^{1, \infty}$}{}}
+
+\begin{theorem}[Characterization of $W^{1, \infty}$]
+    Let $\Omega$ be open and bounded, with $\partial \Omega$ of class $C^1$. Then $u: \Omega \rightarrow \mathbb{R}$ is Lipschitz continuous if and only if $u \in W^{1, \infty}\left(\Omega\right)$.
+
+    Proof.
+    Step 1. First assume $\Omega=\mathbb{R}^n$ and $u$ has compact support.
+    Suppose $u \in W^{1, \infty}\left(\mathbb{R}^n\right) \subset C^{0,\gamma}$.
+    Then $u^{\varepsilon}:=\eta_{\varepsilon} * u$ is smooth and satisfies
+    \begin{equation*}
+        \left\{\begin{array}{l}
+            u^{\varepsilon} \rightarrow u \text { uniformly as } \varepsilon \rightarrow 0 \\
+            \left\|D u^{\varepsilon}\right\|_{L^{\infty}\left(\mathbb{R}^n\right)} \leq\|D u\|_{L^{\infty}\left(\mathbb{R}^n\right)}
+        \end{array}\right.
+    \end{equation*}
+    Choose any two points $x, y \in \mathbb{R}^n, x \neq y$. We have
+    \begin{equation*}
+        \begin{aligned}
+            u^{\varepsilon}(x)-u^{\varepsilon}(y) & =\int_0^1 \frac{d}{d t} u^{\varepsilon}(t x+(1-t) y) d t \\
+                                                  & =\int_0^1 D u^{\varepsilon}(t x+(1-t) y) d t \cdot(x-y)
+        \end{aligned}
+    \end{equation*}
+    and so
+    \begin{equation*}
+        \left|u^{\varepsilon}(x)-u^{\varepsilon}(y)\right| \leq\left\|D u^{\varepsilon}\right\|_{L^{\infty}\left(\mathbb{R}^n\right)}|x-y| \leq\|D u\|_{L^{\infty}\left(\mathbb{R}^n\right)}|x-y| .
+    \end{equation*}
+    We let $\varepsilon \rightarrow 0$ to discover
+    \begin{equation*}
+        |u(x)-u(y)| \leq\|D u\|_{L^{\infty}\left(\mathbb{R}^n\right)}|x-y| .
+    \end{equation*}
+    Hence $u$ is Lipschitz continuous.
+
+    Step 2.
+    On the other hand assume now $u$ is Lipschitz continuous; we must prove that $u$ has essentially bounded weak first derivatives. Since $u$ is Lipschitz, we see
+    \begin{equation*}
+        \left\|D_i^{-h} u\right\|_{L^{\infty}\left(\mathbb{R}^n\right)} \leq \operatorname{Lip}(u)
+    \end{equation*}
+    and thus there exists a function $v_i \in L^{\infty}\left(\mathbb{R}^n\right)$ and a subsequence $h_k \rightarrow 0$ such that
+    \begin{equation*}
+        D_i^{-h_k} u \rightharpoonup v_i \quad \text { weakly in } L_{\text {loc }}^2\left(\mathbb{R}^n\right)
+    \end{equation*}
+    Consequently
+    \begin{equation*}
+        \begin{aligned}
+            \int_{\mathbb{R}^n} u \phi_{x_i} d x & =\lim _{h_k \rightarrow 0} \int_{\mathbb{R}^n} u D_i^{h_k} \phi d x   \\
+                                                 & =-\lim _{h_k \rightarrow 0} \int_{\mathbb{R}^n} D_i^{-h_k} u \phi d x \\
+                                                 & =-\int_{\mathbb{R}^n} v_i \phi d x
+        \end{aligned}
+    \end{equation*}
+    by (12). The above equality holds for all $\phi \in C_c^{\infty}\left(\mathbb{R}^n\right)$, and so $v_i=u_{x_i}$ in the weak sense $(i=1, \ldots, n)$. Consequently $u \in W^{1, \infty}\left(\mathbb{R}^n\right)$.
+
+    3. In the general case that $\Omega$ is bounded, with $\partial \Omega$ of class $C^1$, we as usual extend $u$ to $E u=\bar{u}$ and apply the above argument.
+\end{theorem}
+
+\begin{corollary}
+    Let $\Omega$ be a open set $u \in W_{\text {loc }}^{1, \infty}\left(\Omega\right)$ if and only if $u$ is locally Lipschitz continuous in $\Omega$.
+\end{corollary}
+
+\begin{theorem}[Differentiability almost everywhere]
+    Assume $u \in W_{\loc}^{1, p}\left(\Omega\right)$ for some $n<p \leq \infty$. Then $u$ is differentiable a.e. in $\Omega$, and its gradient equals its weak gradient a.e.
+
+    Proof:
+    Recall that we always identify $u$ with its continuous version.
+
+    1. Assume first $n<p<\infty$. From the remark after the proof of Theorem 4 in §5.6.2, we recall Morrey's estimate
+    \begin{equation*}
+        |v(y)-v(x)| \leq C r^{1-\frac{n}{p}}\left(\int_{B(x, 2 r)}|D v(z)|^p d z\right)^{1 / p} \quad(y \in B(x, r))
+    \end{equation*}
+    valid for any $C^1$ function $v$ and thus, by approximation, for any $v \in W^{1, p}$.
+
+    2. Choose $u \in W_{\text {loc }}^{1, p}\left(\Omega\right)$. Now for a.e. $x \in \Omega$, a version of Lebesgue's Differentiation Theorem (§E.4) implies
+    \begin{equation*}
+        f_{B(x, r)}|D u(x)-D u(z)|^p d z \rightarrow 0
+    \end{equation*}
+    as $r \rightarrow 0, D u$ denoting as usual the weak derivative of $u$. Fix any such point $x$ and set
+    \begin{equation*}
+        v(y):=u(y)-u(x)-D u(x) \cdot(y-x)
+    \end{equation*}
+    in estimate (14), where
+    \begin{equation*}
+        r=|x-y|
+    \end{equation*}
+
+    We find
+    \begin{equation*}
+        \begin{aligned}
+            \mid u(y) & -u(x)-D u(x) \cdot(y-x) \mid                                                 \\
+                      & \leq C r^{1-n / p}\left(\int_{B(x, 2 r)}|D u(x)-D u(z)|^p d z\right)^{1 / p} \\
+                      & \leq C r\left(f_{B(x, 2 r)}|D u(x)-D u(z)|^p d z\right)^{1 / p}              \\
+                      & =o(r) \quad \text { by (15) }                                                \\
+                      & =o(|x-y|) \quad \text { by (16). }
+        \end{aligned}
+    \end{equation*}
+
+    Thus $u$ is differentiable at $x$, and its gradient equals its weak gradient at $x$.
+    3. In case $p=\infty$, we note $W_{\text {loc }}^{1, \infty}\left(\Omega\right) \subset W_{\text {loc }}^{1, p}\left(\Omega\right)$ for all $1 \leq p<\infty$ and apply the reasoning above.
+\end{theorem}
+
+\begin{theorem}[Rademacher's Theorem]
+    Let $u$ be locally Lipschitz continuous in $\Omega$. Then $u$ is differentiable almost everywhere in $\Omega$.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+

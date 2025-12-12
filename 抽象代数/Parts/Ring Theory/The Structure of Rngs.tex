@@ -1,0 +1,751 @@
+
+\chapter{The Structure of Rings}
+\minitoc
+
+\section{Simple and Primitive Rings} % Simple and Primitive
+\subsection{Simplicity} % Simplicity
+
+\begin{definition}
+    A (left) module $M$ over a ring $R$ is \textbf{simple} (or \textbf{irreducible}) provided
+    \begin{enumerate}[label=(\roman*)]
+        \item $RM\neq 0$ ($M,R$ are nonzero and $R$ acts nontrivially)
+        \item $M$ has no proper submodules.
+    \end{enumerate}
+    A ring $R$ is simple if $R^2 \neq 0$ and $R$ has no proper two-sided ideals.
+\end{definition}
+
+\begin{proposition}
+    \label{pro: Proposition of simple module}
+    Let $R$ be a ring and $M$ be a simple $R$-module. Then
+
+    \begin{enumerate}
+        \item
+              $M$ is a nonzero cyclic module, in fact, $M=Rm$ for every nonzero $m\in M$.
+
+        \item
+              If $R$ has identity and $M$ is simple, $M$ is unitary.
+              A unitary module $M$ over a ring $R$ with identity has $RM\neq 0$, whence $M$ is simple if
+              and only if $A$ has no proper submodules.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    A left ideal $\mathfrak{a}$ of a ring $R$ is said to be a \textbf{minimal left ideal} if $\mathfrak{a} \neq 0$ and for every left ideal $\mathfrak{b}$ such that $0 \subset \mathfrak{b} \subset \mathfrak{a}$, either $\mathfrak{b}=0$ or $\mathfrak{b}=\mathfrak{a}$.
+    A left ideal $\mathfrak{a}$ of $R$ such that $R \mathfrak{a} \neq 0$ is a simple left $R$-module if and only if $\mathfrak{a}$ is a minimal left ideal.
+\end{proposition}
+
+
+
+\begin{lemma}[Schur]
+    \label{lem: Schur's lemma}
+    Let $M$ be a simple module over a ring $R$ and let $N$ be any $R$-module.
+
+    \begin{enumerate}
+        \item Every nonzero $R$-module homomorphism $f: M \rightarrow N_1$ is a monomorphism;
+
+        \item every nonzero $R$-module homomorphism $g: N_2 \rightarrow M$ is an epimorphism;
+
+        \item The endomorphism ring $\operatorname{Hom}_{R}(M,M)$ is a division ring,
+              then $M$ is a vector space over the division $\operatorname{Hom}_R(M,M)$ with $f a=f(a)$
+    \end{enumerate}
+\end{lemma}
+
+\begin{definition}
+    Let $R$ be a ring.
+
+    \begin{enumerate}
+        \item
+              A left ideal $\mathfrak{a}$ in a ring $R$ is (left) \textbf{regular} (or \textbf{modular}) if there exists $e \in R$ such that
+              \begin{equation*}
+                  r-re \in \mathfrak{a}
+              \end{equation*}
+              for every $r \in R$.
+        \item
+              A right ideal $\mathfrak{b}$ in a ring $R$ is (right) \textbf{regular} (or \textbf{modular}) if there exists $e \in R$ such that
+              \begin{equation*}
+                  r-er \in \mathfrak{b}
+              \end{equation*}
+              for every $r \in R$.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{theorem}
+    \label{thm: simple module}
+    A left [resp. right] module $M$ over a ring $R$ is simple if and only if $M$ is isomorphic to $R/\mathfrak{a}$ for some regular maximal left [resp. right] ideal $\mathfrak{a}$.
+
+    Furthermore, an left unitary module $M$ over unitary ring $R$ is simple if and only if $M\cong R/\mathfrak{m}$ for some left maximal ideal $\mathfrak{m}$
+
+    \begin{proof}
+        If $M=Ra$ be a simple $R$-module, the map \begin{equation*}
+            \theta: R \rightarrow M \quad\text{ defined by } r \mapsto r a
+        \end{equation*}
+        is an $R$-module epimorphism whose kernel $I$ is a left ideal (submodule) of $R$ and $R / I$ is isomorphic to $M$.
+        By the \ref{thm: The Fourth or Lattice Isomorphism Theorem of Modules} and simplicity of $M$, $R / I$ (and hence $M$ ) has no proper submodules and $I$ is maximal.
+        Since $M=Ra$, $a=e a\in M$ for some $e \in R$. Consequently, for any $r \in R, r a=r e a$ or $(r-r e) a=0$, whence $r-r e \in \operatorname{Ker} \theta=I$.
+        Therefore $I$ is regular.
+
+        Conversely let $I$ be a regular maximal left ideal of $R$ such that $M \cong R / I$.
+        It suffices to prove that $R(R / I) \neq 0$. If this is not the case, then for all $r \in R$, $r(e+I)=I$, whence $r e \in I$. Since $r-r e \in I$, we have $r \in I$. Thus $R=I$, contradicting the maximality of $I$.
+    \end{proof}
+\end{theorem}
+
+
+\begin{proposition}
+    Let $I$ be a left ideal of $R$.
+    \begin{enumerate}
+        \item
+              If $I$ is (left) regular, then $(I: R)$ is the largest ideal of $R$ that is contained in $I$.
+        \item
+              If $I$ is a regular maximal left ideal and simple left module $M \cong R / I$, then $\Ann(M)=(I: R)$.
+              Therefore $J(R)=\bigcap(I: R)$, where $I$ runs over all the regular maximal left ideals of $R$ by \ref{thm: Jacobson radical}.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+\subsection{Primitivity} % Primitivity
+
+\begin{definition}
+    Let $X$ be a subset of a left module $M$ over a ring $R$.
+    Then
+    \begin{equation*}
+        \Ann\left(X\right)
+        =
+        \left\{r\in R \mid rx=0 \text{ for all } x \in X\right\}
+    \end{equation*}
+    is a left ideal of $R$ called the \textbf{(left) annihilator} of $X$.
+    A (left) module $M$ is \textbf{faithful} if its (left) annihilator $\Ann\left(M\right)$ is $0$.
+\end{definition}
+
+\begin{proposition}
+    If $X=N$ is a submodule of $M$, then $\Ann\left(N\right)$ is an (two-sided) ideal of $R$.
+\end{proposition}
+
+
+\begin{definition}
+    A ring $R$ is \textbf{left [resp. right] primitive} if there exists a simple faithful left [resp. right] $R$-module.
+\end{definition}
+
+Hereafter "primitive" will always mean "left primitive".
+However, all results proved for left primitive rings are true,
+mutatis mutandis, for right primitive rings.
+
+
+\begin{proposition}.
+    \begin{enumerate}
+        \item
+              A simple ring $R$ with identity is primitive.
+
+        \item
+              A commutative ring $R$ is primitive if and only if $R$ is a field.
+    \end{enumerate}
+
+    \begin{proof}
+        1.
+        Since $R$ has an identity, $R$ contains a maximal left ideal $\mathfrak{m}$  by \ref{thm: existence of maximal ideal}, whence $R / \mathfrak{m}$ is a simple $R$-module by \ref{thm: The structure of simple module}.
+        Since $\Ann(R / \mathfrak{m})$ is an ideal of $R$ that does not contain $1_R$, $\Ann(R / \mathfrak{m})=0$ by simplicity of $R$. Therefore $R /  \mathfrak{m}$ is faithful.
+
+        2.
+        Conversely, let $M$ be a faithful simple left $R$-module. Then $M \cong R / I$ for some regular maximal left ideal $I$ of $R$. Since $R$ is commutative, $I$ is in fact an ideal and $I \subset \Ann\left( R / I \right)=\Ann\left(M \right)=0$.
+        Since $I=0$ is regular, there is an $e \in R$ such that $r=r e(=e r)$ for all $r \in R$.
+        Thus $R$ is a commutative ring with identity. Since $I=0$ is maximal, $R$ is a field.
+    \end{proof}
+\end{proposition}
+
+\subsubsection{Noncommutative primitive rings} % Noncommutative primitive rings
+\begin{definition}
+    Let $V$ be a vector space over a division ring $D$.
+    A subring $R$ of $\Hom_{D}(V, V)$ is called a \textbf{dense ring of endomorphisms} of $V$ if for every positive integer $n$, every linearly independent subset $\left\{u_1, \ldots, u_{n}\right\}$ of $V$ and every arbitrary subset $\left\{v_1, \ldots, v_{n}\right\}$ of $V$ , there exists $f \in R$ such that $f\left(u_{i}\right)=v_{i}, (i=1,2, \ldots, n)$.
+\end{definition}
+
+
+\begin{theorem}
+    \label{thm: Dense ring of endomorphisms of a finite dimensional vector space}
+    Let $R$ be a dense ring of endomorphisms of a vector space $V$ over a division ring $D$.
+    Then $R$ is left [resp. right] Artinian if and only if $\operatorname{dim}_{D} V$ is finite, in which case $R=\Hom_{D}(V, V)\cong M_n\left(D\right)$.
+
+    \begin{proof}
+        If $R$ is left Artinian and $\operatorname{dim}_D V$ is infinite, then there exists an infinite linearly independent subset $\left\{u_1, u_2, \ldots\right\}$ of $V$. By  $V$ is a left $\mathrm{Hom}_D(V, V)$-module and hence a left $R$-module. For each $n$ let $I_n=\Ann\left\{u_1, \ldots, u_n\right\}$
+        Then $I_1 \supset I_2 \supset \cdots$ is a descending chain of left ideals of $R$ and hence $I_1\supsetneq I_2\supsetneq\cdots$ is a properly descending chain, which is a contradiction. Hence $\dim_D V$ is finite.
+
+        Conversely if $\operatorname{dim}_D V$ is finite, then $V$ has a finite basis $\left\{v_1, \ldots, v_m\right\}$. Then $R= \operatorname{Hom}_D(V, V)\cong M_n\left(D\right) $ is Artinian.
+    \end{proof}
+\end{theorem}
+
+
+\begin{lemma}
+    \label{lem: Lemma of Jacobson Density Theorem}
+    Let $M$ be a simple module over a ring $R$. Consider $M$ as a vector space over the division ring $D=\operatorname{Hom}_{R}(M, M)$ by \ref{lem: Schur's lemma}.
+    If $V$ is a finite dimensional $D$-subspace of $M$ and $a \in M-V$, then there exists $r \in R$ such that $ra \neq 0$ and $rV=0$.
+    In other words, the element $r\in \Ann_R\left( V \right)$ only annihilate $V$.
+
+    \begin{proof}
+        The proof is by induction on $n=\operatorname{dim}_D V$. If $n=0$, then $V=0$ and $a \neq 0$. Since $M$ is simple, $M=R a$. Consequently, there exists $r \in R$ such that $r a=a \neq 0$ and $r V=r 0=0$.
+
+        Suppose now $\operatorname{dim}_D V=n>0$ and the theorem is true for dimensions less than $n$.
+        Let $\left\{u_1, \ldots, u_{n-1}, u\right\}$ be a $D$-basis of $V$ and let $W=\span\left\{u_1, \ldots, u_{n-1}\right\}$ ( $W=0$ if $n=1$ ).
+        Then $V=W \oplus D u$ (vector space direct sum, $W$ may not be an $R$-submodule of $M$) the left annihilator $I=\Ann_R(W)$ is a left ideal of $R$.
+
+        Consequently, $I u$ is an $R$-submodule of $M$. Since $u \in M-W$, the induction hypothesis implies that there exists $r \in R$ such that $r u \neq 0$ and $r W=0$. Consequently $r\in I$ and $0 \neq r u \in I u$, whence $I u \neq 0$.
+        Therefore $M=I u$ by simplicity.
+
+        We must find $r \in R$ such that $r a \neq 0$ and $r V=0$. If no such $r$ exists, $\Ann\left( a \right)\subset\Ann\left( V\right)$, then we can define a map
+        $\theta: M \rightarrow M$
+        as follows.
+        For $r u \in I u=M$ let $\theta(r u)=r a \in M$.
+        We claim that $\theta$ is well defined.
+        If $r_1 u=r_2 u\left(r_i \in I\right)$, then $\left(r_1-r_2\right) u=0$, whence $\left(r_1-r_2\right) V$ $=\left(r_1-r_2\right)(W \oplus D u)=0$. Consequently by hypothesis $\left(r_1-r_2\right) a=0$.
+        Therefore, $\theta\left(r_1 u\right)=r_1 a=r_2 a=\theta\left(r_2 u\right)$.
+        Verify that $\theta \in \operatorname{Hom}_R(M, M)=D$.
+        Then for every $r \in I$,
+        \begin{equation*}
+            0=\theta(r u)-r a=r \theta(u)-r a=r(\theta(u)-a)
+        \end{equation*}
+        Therefore $\theta(u)-a \in W$ by induction hypothesis.
+        Consequently
+        \begin{equation*}
+            a=\theta u-(\theta u-a) \in D u+W=V,
+        \end{equation*}
+        which contradicts the fact that $a \not \in V$.
+        Therefore, there exists $r \in R$ such that $r a \neq 0$ and $r V=0$.
+    \end{proof}
+\end{lemma}
+
+\begin{theorem}[Jacobson Density Theorem]
+    \label{thm: Jacobson Density Theorem}
+    Let $R$ be a primitive ring and $M$ a faithful simple $R$-module.
+    Consider $M$ as a vector space over the division ring $\operatorname{Hom}_{R}(M, M)=D$.
+    Then $R$ is isomorphic to a dense ring of endomorphisms of the $D$-vector space $M$.
+
+    \begin{proof}
+        For each $r \in R$ the map $\alpha_r: M \rightarrow M$ given by $\alpha_r(a)=r a$ is easily seen to be a $D$-endomorphism of $M$ : that is, $\alpha_r \in \operatorname{Hom}_D(M, M)$.
+        Furthermore for all $r, s \in R$
+        \begin{equation*}
+            \alpha_{(r+s)}=\alpha_r+\alpha_s \quad \text { and } \quad \alpha_{r s}=\alpha_r \alpha_s
+        \end{equation*}
+        Consequently the map
+        $\alpha: R \rightarrow \operatorname{Hom}_D(M, M)$ defined by $\alpha(r)=\alpha_r$
+        is a well-defined homomorphism of rings. Since $M$ is a faithful $R$-module, $\alpha_r=0$ if and only if
+        $r \in \Ann(M)=0$. Therefore $\alpha$ is a monomorphism, whence $R$ is isomorphic to the subring $\operatorname{Im} \alpha$ of $D=\operatorname{Hom}_D(M, M)$.
+
+        To complete the proof we must show that $\operatorname{Im} \alpha$ is a dense subring of $\operatorname{Hom}_D(M, M)$. Given a $D$-linearly independent subset $U=\left\{u_1, \ldots, u_n\right\}$ of $M$ and an arbitrary subset $\left\{v_1, \ldots, v_n\right\}$ of $M$ we must find $\alpha_r \in \operatorname{Im} \alpha$ such that $\alpha_r\left(u_i\right)=v_i$ for $i=1,2, \ldots, n$.
+        For each $i$ let $V_i$ be the $D$-subspace of $A$ spanned by $\left\{u_1, \ldots, u_{i-1}, u_{i+1}, \ldots, u_n\right\}$. Since $U$ is $D$-linearly independent, $u_i \notin V_i$. Consequently, by \ref{lem: Lemma of Jacobson Density Theorem} there exists $r_i \in R$ such that
+        \begin{center}
+            $r_i u_i \neq 0$ and $r_i V_i=0$
+        \end{center}
+        whence $R r_i u_i=M$ by simplicity. Therefore exists $t_i \in R$ such that $t_i r_i u_i=v_i$. Let
+        \begin{equation*}
+            r=t_1 r_1+t_2 r_2+\cdots+t_n r_n \in R .
+        \end{equation*}
+        Consequently for each $i=1,2, \ldots, n$
+        \begin{equation*}
+            \alpha_r\left(u_i\right)=\left(t_1 r_1+\cdots+t_n r_n\right) u_i
+            =
+            v_i
+        \end{equation*}
+        Therefore $\operatorname{Im} \alpha$ is a dense ring of endomorphisms of the $D$-vector space $M$.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    \label{cor: Structure of primitive rings}
+    If $R$ is a primitive ring, then for some division ring $D$ either $R$ is isomorphic to the endomorphism ring of a finite dimensional vector space over $D$
+    or
+    for every positive integer $m$ there is a subring $R_{m}$ of $R$ and an epimorphism of rings $R_{m} \rightarrow \Hom_{D}\left(V_{m}, V_{m}\right)$, where $V_{m}$ is an $m$-dimensional vector space over $D$.
+
+    \begin{proof}
+        In the notation of \ref{thm: Jacobson Density Theorem},
+        \begin{equation*}
+            \alpha: R \rightarrow \operatorname{Hom}_D(M, M)
+        \end{equation*}
+        is a monomorphism such that $R\cong\operatorname{Im} \alpha$ and $\operatorname{Im} \alpha$ is dense in $\operatorname{Hom}_D(M, M)$.
+        If $\operatorname{dim}_D M=n$ is finite, then $R\cong \operatorname{Im} \alpha=\operatorname{Hom}_D(M, M)$ by \ref{thm: Dense ring of endomorphisms of a finite dimensional vector space}.
+        If $\operatorname{dim}_D A$ is infinite and $\left\{u_1, u_2, \ldots\right\}$ is an infinite linearly independent set, let $V_m$ be the $m$-dimensional $D$-subspace of $A$ spanned by $\left\{u_1, \ldots, u_m\right\}$.
+        Verify that $R_m=\left\{r \in R \mid r V_m \subset V_m\right\}$ is a subring of $R$.
+        Use the density of $R \cong \operatorname{Im} \alpha$ in $\operatorname{Hom}_D(M, M)$ to show that the map $R_m \rightarrow \operatorname{Hom}_D\left(V_m, V_m\right)$ given by $r \mapsto \left. \alpha_r \right|_{V_m}$ is a well-defined ring epimorphism.
+    \end{proof}
+\end{corollary}
+
+
+
+\begin{lemma}
+    \label{lem: Lemma of Wedderburn-Artin}
+    Let $R$ be a simple left Artinian ring, then there exist a minimal left ideal $J$ of $R$ and $\Ann\left( J \right)=0$.
+
+    \begin{proof}
+        We first observe that the righ annihilator $I=\left\{r \in R : R r=0\right\}$ is an (two-sided) ideal of $R$, whence $I=R$ or $I=0$. Since $R^2 \neq 0$, we must have $I=0$.
+
+        Since $R$ is left Artinian the set of all nonzero left ideals of $R$ contains a minimal left ideal $J$ by \ref{thm: chain condition and m condition}.
+        We claim that the left annihilator $\Ann(J)$ of $J$ in $R$ is zero. Otherwise $\Ann(J)=R$ by simplicity of $R$ thus $R u=0$ for every nonzero $u \in J$.
+        Consequently, each such nonzero $u$ is contained in righ annihilator $I=0$, which is a contradiction.
+    \end{proof}
+\end{lemma}
+
+
+\begin{theorem}[Wedderburn-Artin]
+    The following conditions on a left Artinian ring $R$ are equivalent.
+
+    (1) $R$ is simple
+
+    (2) $R$ is primitive
+
+    (3) $R$ is isomorphic to the endomorphism ring of a nonzero finite dimensional vector space V over a division ring D
+
+    (4) $R$ is isomorphic to $M_n\left(D\right)$ for some positive integer $n$
+
+    \begin{proof}
+        (1) $\Rightarrow$ (2)
+        By \ref{lem: Lemma of Wedderburn-Artin}
+        there exist a minimal left ideal and $R J \neq 0$.
+        Thus $J$ is a faithful simple $R$-module by \ref{pro: Proposition of simple module}, whence $R$ is primitive.
+
+        (2) $\Rightarrow$ (3) By Theorem \ref{thm: Jacobson Density Theorem} $R$ is isomorphic to a dense ring $T$ of endomorphisms of a vector space $V$ over a division ring $D$. Since $R$ is left Artinian, $R \cong T=$ $\operatorname{Hom}_D(V, V)$ by \ref{thm: Dense ring of endomorphisms of a finite dimensional vector space}.
+
+        (3) $\Leftrightarrow$ (4) Theorem VII.1.4.
+
+        (iv) $\Rightarrow$ (i) Exercise III.2.9.
+    \end{proof}
+\end{theorem}
+
+\begin{lemma}
+    Let V be a finite dimensional vector space over a division ring $D$.
+    If $M$ and $N$ are simple faithful modules over the endomorphism ring $R=\operatorname{Hom}_{D}(V, V)$, then $M$ and $N$ are isomorphic $R$-modules.
+
+    \begin{proof}
+        By Theorems VII.1.4, \ref{lem: Lemma of Wedderburn-Artin}, the ring $R$ contains a (nonzero) minimal left ideal $I$.
+        Since $M$ is faithful, there exists $a \in M$ such that $I a \neq 0$. Thus $I a$ is a nonzero submodule of $M$, whence $I a=M$ by simplicity.
+        The map $\theta: I \rightarrow I a=M$ given by $i \mapsto i a$ is a nonzero $R$-module epimorphism. By \ref{lem: Schur's lemma}  $\theta$ is an isomorphism. Similarly $I \cong B$.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}
+    Let $V$ be a nonzero vector space over a division ring $D$ and let $R$ be the endomorphism ring $\Hom_{D}(V, V)$.
+    If $g: V \rightarrow V$ is a homomorphism of additive groups such that $gf=fg$ for all $f \in R$, then there exists $\lambda \in D$ such that $g(x)=\lambda x$ for all $x\in V$.
+\end{lemma}
+
+\begin{proposition}
+    For $i=1,2$ let $V_{i}$ be a vector space of finite dimension $n_{i}$ over the division ring $D_{i}$.
+    \begin{enumerate}
+        \item
+              If there is an isomorphism of rings $\operatorname{Hom}_{D_1}\left(V_1, V_1\right) \cong \operatorname{Hom}_{D_2}\left(V_2, V_2\right)$, then $\operatorname{dim}_{D_1} V_1=\operatorname{dim}_{D_2} V_2$ and $D_1$ is isomorphic to $D_2$.
+        \item
+              If there is an isomorphism of rings $M_{n_1} \left(D_1\right) \cong M_{n_2} \left(D_2\right)$, then $n_1=n_2$ and $D_1$ is isomorphic to $D_2$.
+    \end{enumerate}
+\end{proposition}
+
+
+\subsection{Questions}
+
+
+
+
+
+\section{The Jacobson Radical} % The Jacobson Radical
+
+
+\begin{definition}
+    An ideal $\mathfrak{a}$ of a ring $R$ is said to be \textbf{left [resp. right] primitive} if the quotient ring $R / \mathfrak{a}$ is a left [resp. right] primitive ring.
+
+\end{definition}
+
+\begin{definition}
+    Let $R$ be a ring.
+    \begin{enumerate}
+        \item
+              An element $a$ in a ring $R$ is said to be  \textbf{left quasi-regular} if there exists $r \in R$ such that $r \circ a=r+a+ra=0$.
+              The element $r$ is called a \textbf{left quasi-inverse} of $a$.
+              An ideal $\mathfrak{a}$ of $R$ is said to be \textbf{left quasi-regular} if every element of $\mathfrak{a}$ is left quasi-regular.
+
+        \item
+              Similarly, $b \in R$ is said to be \textbf{right quasi-regular} if there exists $r \in R$ such that $b\circ r = b+r+br=0$. Right quasi-inverses and right quasi-regular ideals are defined analogously.
+    \end{enumerate}
+\end{definition}
+
+
+
+\begin{lemma}
+    \label{lem: left quasi-regular left ideal is right quasi-regular.}
+    Let $\mathfrak{a}$ be a left ideal of a ring $R$.
+    If $\mathfrak{a}$ is left quasi-regular, then $\mathfrak{a}$ is right quasi-regular.
+    \begin{proof}
+        If $\mathfrak{a}$ is left quasi-regular and $a \in \mathfrak{a}$, then there exists $r \in R$ such that $r \circ a=r+a+r a=0$. Since $r=-a-r a \in \mathfrak{a}$, there exists $s \in R$ such that $s \circ r=s+r+s r=0$, whence $s$ is right quasi-regular. The operation $\circ$ is easily seen to be associative. Consequently
+        \begin{equation*}
+            a=0 \circ a=(s \circ r) \circ a=s \circ(r \circ a)=s \circ 0=s \text {. }
+        \end{equation*}
+        Therefore $a$, and hence $\mathfrak{a}$, is right quasi-regular.
+    \end{proof}
+\end{lemma}
+
+\begin{proposition}
+    Let $R$ be a ring. For each $a, b \in R$ let $a \circ b=a+b+a b$.
+    \begin{enumerate}
+        \item
+              $\circ$ is an associative binary operation with identity element $0 \in R$, thus $\left(R,\circ\right)$ is a monoid.
+        \item
+              The set $G$ of all elements that are both left and right quasi-regular forms a group under $\circ$.
+        \item
+              If $R$ has an identity, then $a \in R$ is left [resp. right] quasi-regular if and only if $1_R+a$ is left [resp. right] invertible.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+\begin{theorem}
+    \label{thm: Jacobson radical}
+    If $R$ is a ring, then there is an ideal $\Jac(R)$ of $R$ such that:
+    \begin{enumerate}
+        \item
+              $\Jac(R)$ is the intersection of all the left annihilators of simple left $R$-modules;
+
+        \item
+              $\Jac(R)$ is the intersection of all the regular maximal left ideals of $R$ ;
+
+        \item
+              $\Jac(R)$ is the intersection of all the left primitive ideals of $R$ ;
+
+        \item
+              $\Jac(R)$ is a left quasi-regular ideal which contains every left quasi-regular left ideal of $R$;
+
+        \item
+              Statements 1-4 are also true if"left" is replaced by "right".
+    \end{enumerate}
+    The ideal $J(R)$ is called the \textbf{Jacobson radical} of the ring $R$.
+\end{theorem}
+
+\begin{corollary}
+    \label{cor: Jacobson radical in commutative unitary ring}
+    If $R$ is a commutative ring with identity, then
+    \begin{equation*}
+        \Jac\left(R\right)
+        =
+        \bigcap \mathfrak{m}
+        =
+        \left\{x\in R :1-xy \text{ is invertible for all } y\in R\right\}
+    \end{equation*}
+\end{corollary}
+
+
+\begin{theorem}
+    If $\left\{R_{i} \mid i \in I\right\}$ is a family of rings, then $J\left(\prod_{i \in I} R_i\right)=\prod_{i \in I} J\left(R_i\right)$.
+
+    \begin{proof}
+        Verify that an element $\left\{a_i\right\} \in \prod R_i$ is left quasi-regular in $\prod R_i$ if and only if $a_i$ is left quasi-regular in $R_i$ for each $i$.
+
+        Consequently $\prod J\left(R_i\right)$ is a left quasi-regular ideal of $\prod R_i$, whence $\prod J\left(R_i\right) \subset J\left(\prod R_i\right)$ by \ref{thm: Jacobson radical}.
+
+        For each $k \in I$, let $\pi_k: \prod R_i \rightarrow R_k$ be the canonical projection. Verify that $I_k=\pi_k\left(J\left(\prod R_i\right)\right)$ is a left quasi-regular ideal of $R_k$, since $J\left(\prod R_i\right)$ is left quasi-regular. It follows that $I_k \subset J\left(R_k\right)$ and therefore that $J\left(\prod R_i\right) \subset \prod J\left(R_i\right)$.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    Let $R$ be a ring.
+    \begin{enumerate}
+        \item
+              If an ideal I of a ring $R$ is itself considered as a ring, then $J(I)=I \cap J(R)$.
+              $\qquad$
+
+        \item
+              If $R$ is semisimple, then so is every ideal of $R$ .
+        \item
+              $J(R)$ is a radical ring i.e. $J\left(J\left(R\right)\right)=J\left(R\right)$.
+    \end{enumerate}
+    \begin{proof}
+        1.
+        $I \cap J(R)$ is clearly an ideal of $I$. If $a \in I \cap J(R)$, then $a$ is left quasiregular in $R$, whence $r+a+r a=0$ for some $r \in R$. But $r=-a-r a \in I$. Thus every element of $I \cap J(R)$ is left quasi-regular in $I$. Therefore $I \cap J(R) \subset J(I)$ by Theorem 2.3 (iv) (applied to $I$ ).
+
+        Suppose $a \in J(I)$. For any $r \in R,-(r a)^2=-(r a r) a \in I J(I) \subset J(I)$, whence $-(r a)^2$ is left quasi-regular in $I$ by Theorem 2.3 (iv). Consequently by Lemma 2.15 (i) $r a$ is left quasi-regular in $I$ and hence in $R$. Thus $R a$ is a left quasi-regular left ideal of $R$, whence $a \in J(R)$ by Lemma 2.15 (ii). Therefore $a \in J(I) \cap J(R) \subset I \cap J(R)$. Consequently $J(I) \subset I \cap J(R)$, which completes the proof that $J(I)=I \cap J(R)$. Statements (ii) and (iii) are now immediate consequences of (i).
+    \end{proof}
+\end{theorem}
+
+
+\subsubsection{Nil and nilpotent ideals} % Nil and nilpotent ideals
+\begin{definition}
+    An element a of a ring $R$ is nilpotent if $a^n=0$ for some positive integer $n$.
+    A (left, right, two-sided) ideal $\mathfrak{a}$ of $R$ is \textbf{nil} if every element of $\mathfrak{a}$ is nilpotent; $\mathfrak{a}$ is \textbf{nilpotent} if $\mathfrak{a}^n=0$ for some integer $n$.
+\end{definition}
+
+
+\begin{theorem}
+    \label{thm: nil ideal}
+    Let $R$ be a ring.
+    \begin{enumerate}
+        \item
+              If $a\in R$ is nilpotent, $a$ is both left and right quasiregula with quasi inverse $r=-a+a^2-a^3+\cdots+(-1)^{n-1} a^{n-1}$
+        \item
+              Every nil left ( or right) ideal is contained in $J(R)$.
+        \item
+              Thus every nil ring is a radical ring.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+    If $R$ is a left (or right) Artinian ring, then the radical $J(R)$ is a nilpotent ideal. Consequently every nil left or right ideal of $R$ is nilpotent and $J(R)$ is the unique maximal nilpotent left (or right) ideal of $R$.
+
+    REMARK. If $R$ is left [resp. right] Noetherian, then every nil left or right ideal is nilpotent (Exercise 16).
+
+    \begin{proof}
+        Let $J=J(R)$ and consider the chain of (left) ideals $J \supset J^2 \supset J^3 \supset \cdots$. By hypothesis there exists $k$ such that $J^i=J^k$ for all $i \geq k$. We claim that $J^k=0$. If $J^k \neq 0$, then the set $S$ of all left ideals $I$ such that $J^k I \neq 0$ is nonempty (since $J^k J^k=J^{2 k}=J^k \neq 0$ ). By Theorem VIII.1.4 $S$ has a minimal element $J_0$. Since $J^k I_0 \neq 0$, there is a nonzero $a \varepsilon I_0$ such that $J^k a \neq 0$. Clearly $J^k a$ is a left ideal of $R$ that is contained in $I_0$. Furthermore $J^k a \varepsilon S$ since $J^k\left(J^k a\right)=J^{2 k} a=J^k a \neq 0$. Con-
+
+        sequently $J^k a=I_0$ by minimality. Thus for some nonzero $r \varepsilon J^k, r a=a$. Since $-r \varepsilon J^k \subset J(R),-r$ is left quasi-regular, whence $s-r-s r=0$ for some $s \varepsilon R$. Consequently,
+        \begin{equation*}
+            \begin{aligned}
+                a & =r a=-[-r a]=-[-r a+0]=-[-r a+s a-s a]     \\
+                  & =-[-r a+s a-s(r a)]=-[-r+s-s r] a=-0 a=0 .
+            \end{aligned}
+        \end{equation*}
+
+        This contradicts the fact that $a \neq 0$. Therefore $J^k=0$. The last statement of the theorem is now an immediate consequence of Theorem 2.12.
+    \end{proof}
+\end{proposition}
+
+
+\subsection{Proof of Jacobson radical}
+% Proof of Jacobson radical
+
+
+\begin{lemma}
+    \label{lem: If I is a regular left ideal of a ring R, then I is contained in a maximal left ideal which is regular.}
+    If $I(\neq R)$ is a regular left ideal of a ring $R$, then $I$ is contained in a maximal left ideal which is regular.
+\end{lemma}
+
+
+\begin{lemma}
+    Let $R$ be a ring and let $K$ be the intersection of all regular maximal left ideals of $R$.
+    Then $K$ is a left quasi-regular left ideal of $R$.
+    \begin{proof}
+        $K$ is obviously a left ideal. If $a \in K$ let $T=\{r+r a \mid r \in R\}$, it suffices to show that $T=R$.
+
+        Verify that $T$ is a regular left ideal of $R$ (with $e=-a$ ). If $T \neq R$, then $T$ is contained in a regular maximal left ideal $I_0$ by \ref{lem: If I is a regular left ideal of a ring R, then I is contained in a maximal left ideal which is regular.}.
+        Since $a \in K \subset I_0, r a \in I_0$ for all $r \in R$. Thus since $r+r a \in T \subset I_0$, we must have $r \in I_0$ for all $r \in R$, which contradicts the maximality of $I_0$.
+        Therefore $T=R$.
+    \end{proof}
+\end{lemma}
+
+
+\begin{lemma}
+    Let $R$ be a ring that has a simple left $R$-module.
+    If $\mathfrak{a}$ is a left quasi-regular left ideal of $R$, then $\mathfrak{a}$ is contained in the intersecion of all the left annihilators of simple left $R$-modules($\mathfrak{a}$ annihilate all simple left $R$-modules).
+    \begin{proof}
+        If $\mathfrak{a} \not \subset \bigcap \Ann(M)$, where the intersection is taken over all simple left $R$-modules $M$, then $\mathfrak{a} M \neq 0$ for some simple left $R$-module $M$, whence $\mathfrak{a} m \neq 0$ for some nonzero $m \in M$. Since $\mathfrak{a}$ is a left ideal, $\mathfrak{a} m$ is a nonzero submodule of $M$.
+        Consequently $M=\mathfrak{a} m$ by simplicity and hence $a m=-m$ for some $a \in \mathfrak{a}$.
+        Since $\mathfrak{a}$ is left quasi-regular, there exists $r \in R$ such that $r+a+r a=0$.
+        Therefore, $0=0 m =(r+a+r a) m=r m+a m+r a m=r m-m-r m=-m$.
+        Since this conclusion contradicts the fact that $m \neq 0$, we must have $\mathfrak{a} \subset \bigcap \Ann(M)$.
+    \end{proof}
+\end{lemma}
+
+
+\begin{lemma}
+    \label{thm: left primitive}
+    An ideal $P$ of a ring $R$ is left primitive if and only if $P$ is the left annihilator of a simple left $R$-module.
+\end{lemma}
+
+
+
+\begin{theorem}
+    If $R$ is a ring, then there is an ideal $\Jac(R)$ of $R$ such that:
+    \begin{enumerate}
+        \item
+              $\Jac(R)$ is the intersection of all the left annihilators of simple left $R$-modules;
+
+        \item
+              $\Jac(R)$ is the intersection of all the regular maximal left ideals of $R$ ;
+
+        \item
+              $\Jac(R)$ is the intersection of all the left primitive ideals of $R$ ;
+
+        \item
+              $\Jac(R)$ is a left quasi-regular ideal which contains every left quasi-regular left ideal of $R$;
+
+        \item
+              Statements 1-4 are also true if"left" is replaced by "right".
+    \end{enumerate}
+    The ideal $J(R)$ is called the \textbf{Jacobson radical} of the ring $R$.
+\end{theorem}
+
+
+
+\section{Questions}
+\begin{question}
+    Let $R$ be a ring. $J\left(\operatorname{Mat}_n R\right)=\operatorname{Mat}_n J(R)$.
+    \begin{proof}
+        (a) If $A$ is a left $R$-module, consider the elements of $A^n=A \oplus A \oplus \cdots \oplus A$ ( $n$ summands) as column vectors; then $A^n$ is a left $\left(\operatorname{Mat}_n R\right)$-module (under ordinary matrix multiplication).
+
+        (b) If $A$ is a simple $R$-module, $A^n$ is a simple $\left(\operatorname{Mat}_n R\right)$-module.
+
+        (c) $J\left(\operatorname{Mat}_n R\right) \subset \operatorname{Mat}_n J(R)$.
+
+        (d) $\operatorname{Mat}_n J(R) \subset J\left(\operatorname{Mat}_n R\right)$. [Hint: prove that $\operatorname{Mat}_n J(R)$ is a left quasi-regular ideal of $\operatorname{Mat}_n R$ as follows. For each $k=1,2, \ldots, n$ let $K_k$ consist of all matrices $\left(a_{i j}\right)$ such that $a_{i j} \varepsilon J(R)$ and $a_{i j}=0$ if $j \neq k$. Show that $K_k$ is a left quasi-regular left ideal of $\operatorname{Mat}_n R$ and observe that $K_1+K_2+\cdots+K_n=\operatorname{Mat}_n J(R)$. $]$
+    \end{proof}
+\end{question}
+
+
+\section{Semirings} % Semirings
+
+
+
+\begin{definition}
+    A ring $R$ is said to be (Jacobson) \textbf{semisimple} if its Jacobson radical $J(R)$ is zero.
+
+    $R$ is said to be a \textbf{radical ring }if $J(R)=R$.
+\end{definition}
+
+
+
+\begin{theorem}
+    Let $R$ be a ring.
+    \begin{enumerate}
+        \item
+              If $R$ is primitive, then $R$ is semisimple.
+        \item
+              If $R$ is simple and semisimple, then $R$ is primitive.
+        \item
+              If $R$ is simple, then $R$ is either a primitive semisimple or a radical ring.
+    \end{enumerate}
+    \begin{proof}
+        1.
+        $R$ has a faithful simple left $R$-module $M$, whence $J(R) \subset \Ann(M)=0$ by \ref{thm: Jacobson radical}.
+
+        2.
+        $R \neq 0$ by simplicity. There must exist a simple left $R$-module $A$; (otherwise by Theorem 2.3 (i) $J(R)=R \neq 0$, contradicting semisimplicity). The left annihilator $Q(A)$ is an ideal of $R$ by Theorem 1.4 and $Q(A) \neq R$ (since $R A \neq 0$ ). Consequently $Q(A)=0$ by simplicity, whence $A$ is a simple faithful $R$-module. Therefore $R$ is primitive.
+    \end{proof}
+\end{theorem}
+
+
+
+\begin{definition}
+    A ring $R$ is said to be a \textbf{subdirect product} of the family of rings $\left\{R_{i} \mid i \in I\right\}$ if R is a subring of the direct product $\prod_{i \in I} R_{i}$ such that $\pi_{k}(R)=R_{k}$ for every $k \in I$, where $\pi_{k}: \prod_{i=I} R_{i} \rightarrow R_{k}$ is the canonical epimorphism.
+\end{definition}
+
+
+\begin{theorem}
+    A nonzero ring $R$ is semisimple if and only if R is isomorphic to a subdirect product of primitive rings.
+\end{theorem}
+\begin{theorem}[Wedderburn-Artin]
+    The following conditions on a ring $R$ are equivalent.
+
+    (1) $R$ is a nonzero semisimple left Artinian ring.
+
+    (2) $R$ is a direct product of a finite number of simple ideals each of which is isomorphic to the endomorphism ring of a finite dimensional vector space over a division ring.
+
+    (3) there exist division rings $D_1, \ldots, D_k$ and positive integers $n_1, \ldots, n_k$ such that $R$ is isomorphic to the ring $M_{n_1} \left(D_1\right) \times M_{n_2} \left(D_2\right) \times \cdots \times M_{n_k} \left(D_{k}\right)$.
+\end{theorem}
+
+\begin{corollary}
+
+    (1) A semisimple left Artinian ring has an identity.
+
+    (2) A semisimple ring is left Artinian if and only if it is right Artinian.
+
+    (3) A semisimple left Artinian ring is both left and right Noetherian.
+\end{corollary}
+
+\begin{theorem}
+    The following conditions on a nonzero module $M$ over a ring $R$ are equivalent.
+
+    (1) $M$ is the sum of a family of simple submodules.
+
+    (2) $M$ is the (internal) direct sum of a family of simple submodules.
+
+    (3) For every nonzero element $a$ of $M$, $ Ra \neq 0$; and every submodule $N$ of $M$ is a direct summand.
+
+    A module $M$ that satisfies the equivalent conditions is said to be \textbf{semisimple} or \textbf{completely reducible}.
+\end{theorem}
+
+
+\begin{theorem}
+    The following conditions on a nonzero ring $R$ with identity are equivalent.
+
+    (1) $R$ is semisimple left Artinian.
+
+    (2) every unitary left $R$-module is projective.
+
+    (3) every unitary left $R$-module is injective.
+
+    (4) every short exact sequence of unitary left $R$-modules is split exact.
+
+    (5) every nonzero unitary left $R$-module is semisimple.
+
+    (6) $R$ is itself a unitary semisimple left $R$-module.
+
+    (7) every left ideal of $R$ is of the form $Re$ with $e$ idempotent.
+
+    (8) $R$ is the (internal) direct sum (as a left $R$-module) of minimal left ideals $K_1, \ldots, K_{m}$ such that $K_{i}=R e_{i}\left(e_{i} \in R\right)$ for $i=1,2, \ldots, m$ and $\left\{e_1, \ldots, e_{m}\right\}$ is a set of orthogonal idempotents with $e_1+e_2+\cdots+e_{m}=1_{R}$.
+\end{theorem}
+
+\begin{theorem}
+    \label{thm: Simple decomposition of semisimple left Artinian ring}
+    Let $R$ be a semisimple left Artinian ring.
+
+    (1) $R=I_1 \times \cdots \times I_{n}$ where each $I_{j}$ is a simple ideal of $R$.
+
+    (2) If $J$ is any simple ideal of $R$, then $J=I_{k}$ for some $k$.
+
+    (3) If $R=J_1 \times \cdots \times J_{m}$ with each $J_{k}$ a simple ideal of $R$, then $n=m$ and (after reindexing) $I_{k}=J_{k}$ for $k=1,2, \ldots, n$.
+
+    The uniquely determined simple ideals $I_1, \ldots, I_n$  are called the \textbf{simple components} of $R$.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Algebra}
+\begin{definition}
+    Let $A$ be an algebra over a commutatuve ring K with identity.
+
+    (1) A \textbf{left algebra $A$-module} is a unitary left $K$-module $M$ such that $M$ is a left module over the ring A and $k(am)=(ka) m=a(km )$ for all $k \in K, a \in A, m \in M$.
+    Indeed,
+    \begin{equation*}
+        \begin{cases*}
+            \left(k_1a_1+k_2a_2\right)\left(m_1+m_2\right)
+            =
+            k_1a_1m_1+k_1a_1m_2+k_2a_2m_1+k_2a_2m_2 \\
+            k(am)=(ka) m=a(km)                      \\
+            1_K m=m ,1_K a=a
+        \end{cases*}
+    \end{equation*}
+    for all $k \in K, a \in A, m \in M$
+
+    (2) A left algebra $A$-submodule of $M$ is a subset of $M$ which is itself an left algebra $A$-module.
+
+    (3) A left algebra $A$-module $M$ is \textbf{simple} (or \textbf{irreducible}) if $AM\neq 0$ and $M$ has no proper $A$-submodules.
+
+    (4) A homomorphism $f: M \rightarrow N$ of algebra $A$-modules is a map that is both a $K$-module and an $A$-module homomorphism.
+\end{definition}
+
+\begin{theorem}
+    Let $A$ be a $K$-algebra.
+
+    (1)
+    A subset $I$ of $A$ is a regular maximal left algebra ideal if and only if $I$ is a regular maximal left ideal of the ring $A$.
+
+    (2)
+    The Jacobson radical of the ring $A$ coincides with the Jacobson radical of the algebra $A$.
+    In particular $A$ is a semisimple ring if and only if $A$ is a semisimple algebra.
+\end{theorem}
+
+
+
+\begin{theorem}
+    Let $A$ be a $K$-algebra.
+
+    (1)
+    Every simple algebra $A$-module is a simple module over the ring $A$.
+
+    (2)
+    Every simple module $M$ over the ring $A$ can be given a unique $K$-module structure in such a way that $M$ is a simple algebra $A$-module.
+\end{theorem}
+
+

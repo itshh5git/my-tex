@@ -1,0 +1,1397 @@
+\documentclass[12pt, oneside]{book}
+
+\usepackage{../mypackages}
+
+
+
+
+
+\begin{document}
+\frontmatter
+\title{{\Huge{\textbf{Homological Algebra}}}}
+\maketitle
+
+\dominitoc % 初始化minitoc
+\pagenumbering{Roman}
+\tableofcontents % 主目录
+
+
+\mainmatter
+\pagenumbering{arabic} % 正文编页码字体 
+
+
+\chapter{Abelian Categories}
+\minitoc
+
+\section{Some notion}
+\begin{definition}
+    Let $\mathcal{C}$ be a category.
+    \begin{enumerate}
+        \item
+              A \textbf{zero object} $0$ in $\mathcal{C}$ is an object that is both initial and terminal.
+        \item
+              the \textbf{zero morphism} from object $A$ to object $B$ is the unique morphism $0_{A,B}: A \rightarrow 0 \rightarrow B$ that factors through the zero object.
+    \end{enumerate}
+\end{definition}
+
+
+
+
+
+
+
+
+\begin{definition}
+    Let $\mathcal{C}$ be a category with zero object and morphism $f: A \rightarrow B$, then
+    \begin{enumerate}
+        \item
+              The \textbf{kernel} of $f$ is an equalizer of $f$ and $0_{A,B}$.
+
+        \item
+              its \textbf{image} of $f$ is $\Ker\left( \Coker\left( f \right) \right)$, that is,
+              $\Im\left( f \right)=   $
+        \item
+              its \textbf{coimage} of $f$ is $\Coker\left( \Ker\left( f \right) \right)$
+    \end{enumerate}
+
+\end{definition}
+
+\section{Additive Categories}
+
+\begin{definition}
+    A category $\mathcal{C}$ is \textbf{additive} if
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $\operatorname{Hom}(A, B)$ is an (additive) abelian group for every $A, B \in \operatorname{obj}(\mathcal{C})$,
+        \item
+              the distributive laws hold: given morphisms
+              \begin{equation*}
+                  X \xrightarrow{a} A \underset{g}{\stackrel{f}{\rightrightarrows}} B \xrightarrow{b} Y,
+              \end{equation*}
+              where $X$ and $Y \in \operatorname{obj}(\mathcal{C})$, then
+              \begin{equation*}
+                  b(f+g)=b f+b g \quad \text { and } \quad(f+g) a=f a+g a
+              \end{equation*}
+        \item $\mathcal{C}$ has a zero object $0$,
+        \item
+              $\mathcal{C}$ has finite products and finite coproducts: for all objects $A, B$ in $\mathcal{C}$, both $A \prod B$ and $A \coprod B$ exist in $\operatorname{obj}(\mathcal{C})$.
+    \end{enumerate}
+    \begin{remark}
+        In an additive category, the product and coproduct of two objects $A$ and $B$ coincide up to isomorphism, called the \textbf{direct sum} and denoted by $A \oplus B$.
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    If $\mathcal{C}$ and $\mathcal{D}$ are additive categories, a functor $T: \mathcal{C} \rightarrow \mathcal{D}$ (of either variance) is called \textbf{additive functor} if, for all $A, B$ and all $f, g \in \operatorname{Hom}(A, B)$, we have
+    \begin{equation*}
+        T(f+g)=T f+T g ;
+    \end{equation*}
+    \begin{remark}
+        That is, the function $\operatorname{Hom}_{\mathcal{C}}(A, B) \rightarrow \operatorname{Hom}_{\mathcal{D}}(T A, T B)$, given by $f \mapsto T f$, is a homomorphism of abelian groups.
+
+        Of course, if $T$ is an additive functor, then $T(0)=0$, where 0 is either a zero object or a zero morphism.
+    \end{remark}
+\end{definition}
+
+
+\begin{proposition}
+    Let $\mathcal{C}$ be an additive category, and let $A, A_1, A_2 \in \operatorname{obj}(\mathcal{C})$. Then $A \cong A_1 \prod A_2$ if and only if there are morphisms $\iota_1: A_1 \rightarrow A, \iota_2: A_2 \rightarrow A$, $p_1: A \rightarrow A_1$, and $p_2: A \rightarrow A_2$ such that
+    \begin{equation*}
+        p_1 \iota_1=1_{A_1}, \quad p_2 \iota_2=1_{A_2}, \quad p_1 \iota_2=0, \quad p_2 \iota_1=0, \quad \text { and } \quad \iota_1 p_1+\iota_2 p_2=1_A .
+    \end{equation*}
+    Moreover, $A \sqcap B$ is also a coproduct with injections $i$ and $j$, and so
+    \begin{equation*}
+        A \sqcap B \cong A \sqcup B .
+    \end{equation*}
+    \begin{proof}
+        The proof of the first statement, left to the reader, is a variation of the proof of Proposition 2.20. The proof of the second statement is a variation of the proof of Proposition 5.8, and it, too, is left to the reader. The last statement holds because two coproducts, here $A \sqcup B$ and $A \sqcap B$, must be isomorphic.
+    \end{proof}
+\end{proposition}
+
+\begin{corollary}
+    If $\mathcal{C}$ and $\mathcal{D}$ are additive categories and $T: \mathcal{C} \rightarrow \mathcal{D}$ is an additive functor of either variance, then $T(A \oplus B) \cong T(A) \oplus T(B)$ for all $A, B \in \operatorname{obj}(\mathcal{C})$.
+\end{corollary}
+
+
+
+
+\section{Abelian Categories}
+\begin{definition}
+    A category $\mathcal{C}$ is an \textbf{abelian category} if
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              it is an additive category
+        \item
+              every morphism has a kernel and a cokernel,
+        \item
+              every monomorphism is a kernel and every epimorphism is a cokernel.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    A category $\mathcal{P}$ is an \textbf{exact category} if $\mathcal{P}$ is a full subcategory of some abelian category $\mathcal{A}$ and if $\mathcal{P}$ is closed under extensions; that is, if $0 \rightarrow P^{\prime} \rightarrow A \rightarrow P^{\prime \prime} \rightarrow 0$ is an exact sequence in $\mathcal{A}$, and if $P^{\prime}, P^{\prime \prime} \in \operatorname{obj}(\mathcal{P})$, then $A \in \operatorname{obj}(\mathcal{P})$.
+
+    Every abelian category is an exact category. The full subcategory of Ab consisting of all torsion-free abelian groups is an exact category, but it is not an abelian category.
+\end{definition}
+
+\section{Functors between Abelian Categories}
+
+\begin{definition}
+    Let $F:\mathcal{A} \rightarrow \mathcal{B}$ be a covariant functor between abelian categories.
+    \begin{enumerate}
+        \item
+              $F$ is \textbf{left exact} if for every exact sequence $0 \rightarrow A^{\prime} \rightarrow A \rightarrow A^{\prime \prime}\rightarrow 0$ in $\mathcal{A}$, the sequence $0 \rightarrow F\left(A^{\prime}\right) \rightarrow F(A) \rightarrow F\left(A^{\prime \prime}\right)$ is exact in $\mathcal{B}$.
+        \item
+              $F$ is \textbf{right exact} if for every exact sequence $A^{\prime} \rightarrow A \rightarrow A^{\prime \prime} \rightarrow 0$ in $\mathcal{A}$, the sequence $F\left(A^{\prime}\right) \rightarrow F(A) \rightarrow F\left(A^{\prime \prime}\right) \rightarrow 0$ is exact in $\mathcal{B}$.
+        \item
+              $F$ is \textbf{exact} if it is both left exact and right exact; that is, for every exact sequence $0 \rightarrow A^{\prime} \rightarrow A \rightarrow A^{\prime \prime} \rightarrow 0$ in $\mathcal{A}$, the sequence $0 \rightarrow F\left(A^{\prime}\right) \rightarrow F(A) \rightarrow F\left(A^{\prime \prime}\right) \rightarrow 0$ is exact in $\mathcal{B}$.
+    \end{enumerate}
+    \begin{remark}
+        Note that a functor $F$ is left exact if and only if it preserves kernels, $F\left(\Ker\left( f \right)\right)=\Ker\left( F(f) \right)$ and $F$ is right exact if and only if it preserves cokernels, $F\left(\Coker\left( f \right)\right)=\Coker\left( F(f) \right)$.
+    \end{remark}
+\end{definition}
+\begin{definition}
+    Let $F:\mathcal{A} \rightarrow \mathcal{B}$ be a contravariant functor between abelian categories.
+    \begin{enumerate}
+        \item
+              $F$ is \textbf{left exact} if for every exact sequence $0 \rightarrow A^{\prime} \rightarrow A \rightarrow A^{\prime \prime} \rightarrow 0$ in $\mathcal{A}$, the sequence $0 \rightarrow F\left(A^{\prime \prime}\right) \rightarrow F(A) \rightarrow F\left(A^{\prime}\right) $ is exact in $\mathcal{B}$.
+        \item
+              $F$ is \textbf{right exact} if for every exact sequence $0\rightarrow A^{\prime} \rightarrow A \rightarrow A^{\prime \prime} \rightarrow 0$ in $\mathcal{A}$, the sequence $ F\left(A^{\prime \prime}\right) \rightarrow F(A) \rightarrow F\left(A^{\prime}\right)\rightarrow 0$ is exact in $\mathcal{B}$.
+        \item
+              $F$ is \textbf{exact} if it is both left exact and right exact; that is, for every exact sequence $0 \rightarrow A^{\prime} \rightarrow A \rightarrow A^{\prime \prime} \rightarrow 0$ in $\mathcal{A}$, the sequence $0 \rightarrow F\left(A^{\prime \prime}\right) \rightarrow F(A) \rightarrow F\left(A^{\prime}\right) \rightarrow 0$ is exact in $\mathcal{B}$.
+    \end{enumerate}
+\end{definition}
+
+
+\section{Diagram Chase}
+
+
+\begin{lemma}
+    [Snake's lemma]
+    \label{lem: snake's lemma}
+    Let $\mathcal{A}$ be an abelian category. Given a commutative diagram with exact rows
+    \begin{equation*}
+        \begin{tikzcd}
+            0 \arrow[r] & A' \arrow[r,"u"] \arrow[d,"f^\prime"] & A \arrow[r,"v"]\arrow[d,"f"]  & A^{\prime\prime} \arrow[d,"f^{\prime\prime}"] \arrow[r] & 0 \\
+            0 \arrow[r] & B^\prime  \arrow[r,"u^{\prime}"]  & B \arrow[r,"v^{\prime}"]  & B^{\prime\prime} \arrow[r] & 0
+        \end{tikzcd}
+    \end{equation*}
+    there is an exact sequence
+    \begin{equation*}
+        0 \rightarrow \Ker\left(f^\prime\right) \rightarrow \Ker\left(f\right) \rightarrow \Ker\left(f^{\prime\prime}\right) \xrightarrow{\delta} \Coker\left(f^\prime\right) \rightarrow \Coker\left(f\right) \rightarrow \Coker\left(f^{\prime\prime}\right) \rightarrow 0
+    \end{equation*}
+    \begin{proof}
+        Let $i: \Ker\left( f^{\prime\prime} \right) \rightarrow A^{\prime\prime}$ denote the kernel of $f^{\prime\prime}$ and
+        pullback $P=A\times_{A^{\prime\prime}} \Ker\left( f^{\prime\prime} \right)$:
+        \begin{equation*}
+            \begin{tikzcd}
+                &&P\arrow[d,"p_A"]\arrow[r,"p_{ker}"]& \Ker\left( f^{\prime\prime} \right) \arrow[d,"i"]&\\
+                0 \arrow[r] & A' \arrow[r,"u"] \arrow[d,"f^\prime"] & A \arrow[r,"v"]\arrow[d,"f"]  & A^{\prime\prime} \arrow[d,"f^{\prime\prime}"] \arrow[r] & 0 \\
+                0 \arrow[r] & B^\prime \arrow[d,"\pi"]  \arrow[r,"u^{\prime}"]  & B \arrow[r,"v^{\prime}"]  & B^{\prime\prime} \arrow[r] & 0\\
+                &\Coker\left( f^\prime \right)&&&
+            \end{tikzcd}
+        \end{equation*}
+        Then we have
+        \[
+            v' \circ \bigl( f \circ p_A \bigr)
+            = f'' \circ  i \circ p_{\ker}
+            = 0
+        \]
+        Thus $f \circ p_A$ factors through $\ker(v') = \left(B^\prime \xrightarrow{u^\prime}B\right)$.
+        Since $u'$ is the kernel of $v'$, there exists a unique morphism
+        \[
+            \phi : P \longrightarrow B'
+        \]
+        Let $\pi : B' \to \operatorname{coker}(f')$ denote the cokernel of $f'$.
+        Consider the composite
+        \[
+            \pi \circ \phi : P \longrightarrow \operatorname{coker}(f').
+        \]
+
+        In an abelian category, pullbacks of epimorphisms are epimorphisms;
+        thus $p_{\ker} : P \to \ker(f'')$ is an epimorphism.
+        Therefore there exists a unique morphism
+        \[
+            \delta : \ker(f'') \longrightarrow \operatorname{coker}(f')
+        \]
+        such that
+        \[
+            \delta \circ p_{\ker} = \pi \circ \phi .
+        \]
+        This $\delta$ is the connecting morphism.
+
+        We now verify exactness of the long sequence.
+
+        \smallskip
+        \noindent\textbf{Exactness at $\ker f'$ and $\ker f$.}
+        The sequence
+        \[
+            0 \to A' \xrightarrow{u} A \xrightarrow{v} A''
+        \]
+        is exact, and kernels commute with monomorphisms in abelian categories.
+        This implies that the induced map
+        \[
+            \ker(f') \longrightarrow \ker(f)
+        \]
+        is a monomorphism, and its image equals the kernel of
+        \[
+            \ker(f) \longrightarrow \ker(f'').
+        \]
+        Thus exactness holds.
+
+        \smallskip
+        \noindent\textbf{Exactness at $\ker f''$.}
+        We must show:
+        \[
+            \operatorname{im}(\ker f \to \ker f'') = \ker(\delta).
+        \]
+
+        First, the composite $\delta \circ (\ker f \to \ker f'')$ is zero.
+        Indeed, if $x$ lies in $\ker(f)$ then $f(x)=0$; tracing the universal property
+        of the pullback, one obtains a morphism $\widetilde{x}: \ker(f) \to P$ such that
+        \[
+            \phi \circ \widetilde{x}
+        \]
+        factors through $\operatorname{im}(f')$.
+        Since $q$ kills $\operatorname{im}(f')$, we have
+        \[
+            \delta \circ p_{\ker} \circ \widetilde{x}
+            = q \circ \phi \circ \widetilde{x}
+            = 0,
+        \]
+        and because $p_{\ker}$ is an epimorphism, $\delta$ is zero on the image of $\ker f$.
+
+        Conversely, suppose $\delta(x'')=0$.
+        Then $q \circ \phi$ vanishes on $p_{\ker}^{-1}(x'')$, so the morphism
+        $\phi$ factors through $\operatorname{im}(f')$.
+        Using the universal property of the pullback again, this yields a lift of $x''$
+        to an element of $\ker(f)$, proving that $x''$ lies in the image of
+        $\ker f \to \ker f''$.
+
+        Thus exactness holds at $\ker f''$.
+
+        \smallskip
+        \noindent\textbf{Exactness at $\operatorname{coker}(f')$ and $\operatorname{coker}(f)$.}
+        The connecting morphism $\delta$ shows that
+        \[
+            \operatorname{im}(\delta) \subseteq \ker(\operatorname{coker}(f') \to \operatorname{coker}(f)).
+        \]
+        Conversely, if an element of $\operatorname{coker}(f')$ maps to zero in
+        $\operatorname{coker}(f)$, one checks (using cokernel universal properties and
+        commutativity of the diagram) that it arises from a unique element of $\ker(f'')$ via $\delta$.
+        The argument is dual to the previous kernel argument and uses only
+        the universal property of cokernels.
+
+        \smallskip
+        \noindent\textbf{Exactness at $\operatorname{coker}(f'')$.}
+        This follows directly from the right exactness of the bottom row
+        \[
+            B' \xrightarrow{u'} B \xrightarrow{v'} B'' \to 0.
+        \]
+
+        \smallskip
+
+        All maps are natural in the entire diagram since every step was constructed only
+        by limits, colimits, kernels, and cokernels, which are functorial.
+        Thus the long sequence is exact and natural.
+    \end{proof}
+\end{lemma}
+
+
+
+
+\section{Exact Sequences} % Exact Sequences
+\begin{definition}
+    Let $R$ be a ring.
+    A sequence of left module homomorphisms
+    \begin{equation*}
+        \cdots \xrightarrow{f_{i-1}} M_{i-1} \xrightarrow{f_i} M_i \xrightarrow{f_{i+1}} M_{i+1} \xrightarrow{f_{i+2}} \cdots
+    \end{equation*}
+    is \textbf{exact} provided $\Im {f}_i=\Ker {f}_{{i}+1}$ for all $i$.
+\end{definition}
+
+\begin{definition}
+    A exact sequence
+    \begin{equation*}
+        \begin{tikzcd}
+            0 \arrow[r,""]&A \arrow[r,"f"]&B \arrow[r,"g"]&C\arrow[r,""]&0
+        \end{tikzcd}
+    \end{equation*}
+    is called to be \textbf{short exact sequence}, and we often say that $B$ is an \textbf{extension} of $A$ by $C$.
+    \begin{remark}
+        \begin{equation*}
+            0 \rightarrow \Ker f \rightarrow A \xrightarrow{f} B \rightarrow \Coker f \rightarrow 0
+        \end{equation*}
+    \end{remark}
+\end{definition}
+
+
+
+\begin{proposition}.
+    \begin{enumerate}
+        \item Given two short exact sequence
+    \end{enumerate}
+\end{proposition}
+
+
+
+\begin{theorem}
+    Let $R$ be a ring and
+    \begin{equation*}
+        \begin{tikzcd}
+            0 \arrow[r] & A \arrow[r, "f"] \arrow[d,"\alpha"] & B \arrow[r, "g"] \arrow[d,"\beta"] & C \arrow[r] \arrow[d, "\gamma"] & 0 \\
+            0 \arrow[r] & A' \arrow[r, "f'"] & B' \arrow[r, "g'"]   & C' \arrow[r]       & 0
+        \end{tikzcd}
+    \end{equation*}
+    a commutative diagram of R-modules and R-module homomorphisms such that each row is a short exact sequence. Then
+    \begin{enumerate}
+        \item
+              $\alpha, \gamma$ monomorphisms $\Rightarrow \beta$ is a monomorphism;
+
+        \item
+              $\alpha, \gamma$ epimorphisms $\Rightarrow \beta$ is an epimorphism;
+
+        \item
+              $\alpha, \gamma$ isomorphisms $\Rightarrow \beta$ is an isomorphism.
+    \end{enumerate}
+    \begin{remark}
+        Two short exact sequences are said to be \textbf{isomorphic} if $\alpha, \beta$, and $\gamma$ are isomorphisms.
+        In fact, isomorphism of short exact sequences is an equivalence relation.
+    \end{remark}
+\end{theorem}
+
+
+
+
+
+
+
+
+\begin{lemma}
+    Let $f:A\rightarrow B:G$ and if $gf=1_A$, then
+    \begin{equation*}
+        M=\Im\left( f \right)\oplus\Ker\left( g \right)
+    \end{equation*}
+\end{lemma}
+
+
+
+\begin{theorem}
+    \label{thm: Split exact sequence}
+    Let $R$ be a ring and $0 \rightarrow A_1 \xrightarrow{{f}} B \xrightarrow{{g}} A_2 \rightarrow 0$ a short exact sequence of $R$-module homomorphisms. Then the following conditions are equivalent.
+    \begin{enumerate}
+        \item
+              $g$ is split epimorphism
+
+        \item
+              $f$ is split monomorphism
+
+        \item
+              $\Im\left( f \right)=\Ker\left( g \right)$ is a direct summand of $B$.
+
+
+              In this case,
+              we have that $B\cong A_1\oplus A_2$ and $\Im\left( f \right)=\Ker\left( g \right)\cong A_1$.
+              $0 \rightarrow A_1 \xrightarrow{\iota_1} A_1 \oplus A_2 \xrightarrow{\pi_2} A_2 \rightarrow 0$.
+    \end{enumerate}
+    \begin{remark}
+        A short exact sequence that satisfies the equivalent conditions is said to be \textbf{split} or a \textbf{split exact sequence}.
+    \end{remark}
+    \begin{proof}
+        1. $\Rightarrow$ 3.
+        Verify that that diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                0 \arrow[r] & A_1  \arrow[r,"\iota_1"] \arrow[d,"1_{A_1}"] & A_1\oplus A_2 \arrow[r,"\pi_2"] \arrow[d,"f\oplus h"] & A_2 \arrow[d,"1_{A_2}"] \arrow[r] & 0 \\
+                0 \arrow[r] & A_1 \arrow[r,"f"]           & B \arrow[r,"g"]                      & A_2 \arrow[r]           & 0
+            \end{tikzcd}
+        \end{equation*}
+        is commutative, thus $f\oplus h$ is isomorphism.
+
+
+        3. $\Rightarrow$ 1.
+        Given a commutative diagram with exact rows and $\varphi$ an isomorphism:
+        \begin{equation*}
+            \begin{tikzcd}
+                0 \arrow[r] & A_1 \arrow[r,shift left=1,"\iota_1"] \arrow[d,"1_{A_1}"] & A_1\oplus A_2\arrow[l,dashed,shift left=1,"\pi_1"] \arrow[r,shift left=1,"\pi_2" ] \arrow[d,"\varphi"] & \arrow[l,shift left=1,dashed,"\iota_2"]  A_2 \arrow[r] \arrow[d, "1_{A_2}"] & 0 \\
+                0 \arrow[r] & A_1 \arrow[r, "f"] & B \arrow[r, "g"]   & A_2 \arrow[r]       & 0
+            \end{tikzcd}
+        \end{equation*}
+        define $h: A_2 \rightarrow B$ to be $\varphi \iota_2$ and $k: B \rightarrow A_1$ to be $\pi_1 \varphi^{-1}$. Use the commutativity of the diagram and the facts $\pi_i l_i=1_{A_i}, \varphi^{-1} \varphi=1_{A_1 \oplus A_2}$ to show that $k f=1_{A_1}$ and $g h=1_{A_2}$.
+    \end{proof}
+\end{theorem}
+
+\begin{proposition}
+    Let $R$ be a ring.
+    \begin{enumerate}
+        \item
+              $\Hom_R(M,-)$ and $\Hom_R(-,N)$ are left exact.
+        \item
+              if $A$ is right $R$-module and $B$ is left $R$-module,  $A \oplus -$ and $- \oplus B$ are right exact functor.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+
+\section{Projective Object} % Projective modules
+\begin{definition}
+    Let $\mathcal{C}$ be a category.
+    An object $P$ in $\mathcal{C}$ is called a \textbf{projective object} if for every epimorphism $g:A\rightarrow B$ and every morphism $f:P\rightarrow B$, there exists a morphism $\tilde{f}:P\rightarrow A$ such that $g\tilde{f}=f$.
+    \begin{equation*}
+        \begin{tikzcd}
+            & P \arrow[ldd,dashed," \exists \tilde{f}"'] \arrow[dd,"f"] & \\
+            & & \\
+            A \arrow[r,"g"]& B &
+        \end{tikzcd}
+    \end{equation*}
+\end{definition}
+
+\begin{definition}
+    The category $\mathcal{C}$ is said to have \textbf{enough projectives} if for every object $X$ in $\mathcal{C}$, there exists an epimorphism $P \rightarrow X$ with $P$ a projective object.
+\end{definition}
+
+\subsection{In Abelian category} % In Abelian category
+Let $\mathcal{A}$ be an Abelian category.
+\begin{theorem}
+    The following conditions on a object $P$ are equivalent.
+    \begin{enumerate}
+        \item
+              $P$ is projective;
+
+        \item
+              every short exact sequence $0 \rightarrow A \rightarrow B \rightarrow P \rightarrow 0$ is split;
+        \item
+              functor $\Hom(P,-)$ is exact.
+        \item
+              for all object $A$, $\Ext^n\left(P,A\right) = 0$ when $n\geq 1$.
+        \item
+              for all object $A$, $\Ext^1\left(P,A\right) = 0$
+    \end{enumerate}
+\end{theorem}
+
+
+
+\begin{corollary}
+    The direct sum $\bigoplus_{i \in I} {P}_i$ is projective if and only if each ${P}_i$ is projective.
+\end{corollary}
+
+\subsection{In $R$-$\Mod$}
+In the category $R$-$\Mod$ of left $R$-modules, projective objects are called projective modules.
+
+
+\begin{theorem}
+    \label{thm: Equivalent conditions of projective}
+    The $R$-module $P$ is projective if and only if
+    \begin{enumerate}
+        \item
+              $P$ is a direct summand of a free module $F=R^{\oplus(I)}$.
+        \item
+              there exists a free module $R^{\oplus(I)}$ and an idempotent endomorphism $e:F\rightarrow F$ such that $\Im\left( e \right)\cong P$.
+    \end{enumerate}
+    \begin{remark}
+        If $P$ is finitely generated, then we can choose $F$ to have finite rank $n$ and idempotent matrix $e\in M_n\left( R \right)$, that, $P\cong e \left(R^n \right)$
+    \end{remark}
+\end{theorem}
+
+
+\begin{theorem}
+    \label{thm: Free module is projective}
+    Every free module $F$ over a ring $R$ is projective.
+\end{theorem}
+
+\begin{corollary}
+    \label{cor: Every module $M$ over a ring $R$ is the homomorphic image of a projective $R$-module.}
+    Every module $M$ over a ring $R$ is the homomorphic image (or quotient equivalently ) of a projective $R$-module.
+    Thus $R$-$\Mod$ has enough projectives.
+\end{corollary}
+
+
+
+
+
+
+
+
+
+
+\begin{theorem}
+    Let $R$ be a P.I.D.
+    Then a projective $R$-module must be free.
+\end{theorem}
+\begin{corollary}
+    Every submodule of module $M$ over P.I.D $R$ is free.
+\end{corollary}
+
+\begin{proposition}
+    If $R$ is commutative then the tensor product of two projective $R$-modules is projective.
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Injective object} % Injective modules
+\begin{definition}
+    Let $\mathcal{C}$ be a category.
+    An object $E$ in $\mathcal{C}$ is called an \textbf{injective object} if for every monomorphism $f:A\rightarrow B$ and every morphism $h:A\rightarrow E$, there exists a morphism $\tilde{h}:B\rightarrow E$ such that $\tilde{h}f=h$.
+    \begin{equation*}
+        \begin{tikzcd}
+            A \arrow[dd,"h"']\arrow[r,"f"] & B \arrow[ldd,dashed, "\exists \tilde{h}"]  \\
+            &  \\
+            E &
+        \end{tikzcd}
+    \end{equation*}
+\end{definition}
+\begin{definition}
+    Let $\mathcal{C}$ be a category. We say that $\mathcal{C}$ has \textbf{enough injectives} if for every object $X$ in $\mathcal{C}$, there exists a monomorphism $X \rightarrow E$ with $E$ an injective object.
+\end{definition}
+\begin{definition}
+    Let $\mathcal{C}$ be a category and object $X$.
+    If there exists a essential monomorphism $X \rightarrow E\left(X\right)$ with $E$ an injective object, then $E\left(X\right)$ is called an \textbf{injective envelope} of $X$.
+\end{definition}
+
+
+
+
+\subsection{In Abelian category} % % In Abelian category
+\begin{theorem}
+    Let $\mathcal{A}$ be a Abelian category.
+    The following conditions on a object $E$ are equivalent.
+    \begin{enumerate}
+        \item
+              $E$ is injective;
+
+        \item
+              every short exact sequence $0 \rightarrow E \xrightarrow{f} B \xrightarrow{g} C \rightarrow 0$ is split;
+        \item
+              functor $\Hom(-,E)$ is exact.
+        \item
+              for all object $A$, $\Ext^n\left(A,E\right) = 0$ when $n\geq 1$.
+        \item
+              for all object $A$, $\Ext^1\left(A,E\right) = 0$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    A direct product of $R$-modules $\prod_{i \in I} E_{i}$ is injective if and only if $E_{i}$ is injective for every $i \in I$.
+\end{corollary}
+
+
+\subsection{In $R$-$\Mod$}
+
+\begin{definition}
+    A module $E$ over a ring $R$ is said to be \textbf{injective} if given any diagram of $R$-module homomorphisms with top row exact, there exists an $R$-module homomorphism ${h}: B \rightarrow {J}$ such that the diagram
+    \begin{equation*}
+        \begin{tikzcd}
+            0 \arrow[r] & A \arrow[dd,"h"']\arrow[r,"f"] & B \arrow[ldd,dashed, "\exists \tilde{h}"]  \\
+            & &  \\
+            & E &
+        \end{tikzcd}
+    \end{equation*}
+    is commutative.
+\end{definition}
+
+\begin{theorem}
+    The $E$ is injective iff $E$ is a direct summand of any module $B$ of which it is a submodule.
+\end{theorem}
+
+
+\begin{theorem}[Baer's Criterion]
+    \label{thm: Baer's Criterion}
+    The left $R$-module $E$ is injective iff
+    for every left ideal $\mathfrak{a}$ of $R$, any $R$-module homomorphism $\mathfrak{a} \rightarrow E$ may be extended to an $R$-module homomorphism $R \rightarrow E$.
+    \begin{proof}
+        Suppose conversely that every homomorphism $g: \mathfrak{a} \rightarrow E$ can be lifted to a homomorphism $G: R \rightarrow E$.
+        To show that $E$ is injective we must show that if $0 \rightarrow A \rightarrow B$ is exact and $f: A \rightarrow E$ is an $R$ module homomorphism then there is a lift $F: B \rightarrow E$. Without loss of generality we may assume that $A$ is a submodule of $B$ and that the inclusion map is the given monomorphism.
+
+        If $\mathcal{S}$ is the collection $\left(B_i,f_i:B_i \rightarrow E\right)$ such that
+        $A\subset B_i\subset B$ and $\left.f_i\right|_{A}=f$, then the ordering $\left(B_i,f_i\right) \leq\left(B_j,f_j\right)$ if $B_i \subseteq B_j$ and $f_j= f_i$ on $B_i$ partially orders $\mathcal{S}$.
+        Since $\mathcal{S} \neq \emptyset$, by Zorn's Lemma there is a maximal element $(\tilde{B},\tilde{f})$ in $\mathcal{S}.$
+
+        We claim that $\tilde{B}=B$.
+        Suppose that $\tilde{B}\neq B$ and there is some element $b \in B$ not contained in $\tilde{B}$ and let $I=\left\{r \in R \mid r b \in \tilde{B}\right\}$. It is easy to check that $I$ is a left ideal in $R$, and the map $g: I \rightarrow E$ defined by $g(x)=\tilde{f}(x b)$ is an $R$-module homomorphism from $I$ to $E$. By hypothesis, there is a lift $G: R \rightarrow E$ of $g$.
+
+        Consider the submodule $\tilde{B}+R b$ of $B$, and define the map $F^{\prime}: \tilde{B}+R b \rightarrow E$ by $F^{\prime}\left(b^{\prime}+r b\right)=\tilde{f}\left(b^{\prime}\right)+G(r)$. If $b_1+r_1 b=b_2+r_2 b$ then $\left(r_1-r_2\right) b=b_2-b_1 \in \tilde{B}$, which
+        shows that $r_1-r_2 \in I$, so that
+        \begin{equation*}
+            G\left(r_1-r_2\right)=g\left(r_1-r_2\right)=F\left(\left(r_1-r_2\right) m\right)=F\left(m_2-m_1\right) .
+        \end{equation*}
+        and so $F\left(m_1\right)+G\left(r_1\right)=F\left(m_2\right)+G\left(r_2\right)$. Hence $F^{\prime}$ is well defined and it is then immediate that $F^{\prime}$ is an $R$-module homomorphism extending $f$ to $B^{\prime}+R b$.
+        This contradicts the maximality of $B^{\prime}$, so that $B^{\prime}=M$, which completes the proof.
+    \end{proof}
+\end{theorem}
+
+\begin{proposition}
+    Let $R$ be a P.I.D and a $R$-module $E$. then $E$ is injective if and only if $r E=E$ for every nonzero $r \in R$ ($E$ is divisible).
+    \begin{proof}
+        Suppose $R$ is a P.I.D and $E$ is injective.
+        Let $r$ be a nonzero element of $R$ and $x \in E$.
+        Consider the $R$-module homomorphism $f: \left(r\right) \rightarrow E$ defined by $f(r)=x$.
+        Then ther is a extension $F:R\rightarrow E$ by \cref{thm: Baer's Criterion} and $x=f(r)=F(r)=rF(1)=ry$.
+    \end{proof}
+\end{proposition}
+
+
+
+\begin{proposition}
+    $R$-$\Mod$ has enough injectives objects.
+\end{proposition}
+
+
+\section{Flat Modules} % Flat modules
+
+\begin{definition}
+    Let $R$ be a ring, then a right $R$-module $A$ is \textbf{flat} if $A \otimes_R \square$ is an exact functor; that is, whenever
+    \begin{equation*}
+        0 \rightarrow B^{\prime} \xrightarrow{i} B \xrightarrow{p} B^{\prime \prime} \rightarrow 0
+    \end{equation*}
+    is an exact sequence of left $R$-modules, then
+    \begin{equation*}
+        0 \rightarrow A \otimes_R B^{\prime} \xrightarrow{1_A \otimes i} A \otimes_R B \xrightarrow{1_A \otimes p} A \otimes_R B^{\prime \prime} \rightarrow 0
+    \end{equation*}
+    is an exact sequence of abelian groups.
+    \begin{remark}
+        If $D$ is an $\left(S, R\right)$-bimodule then is an exact sequence of left $S$-modules.
+        In particular, if $S=R$ is a commutative ring, then is an exact sequence of $R$-modules with respect to the standard $R$-module structures.
+    \end{remark}
+\end{definition}
+
+\begin{theorem}
+    [A Flatness Criterion]
+    Let $A$ be right $R$-module.
+    Then $A$ is flat if and only if for every finitely generated ideal $I$ of $R$, the map from $A \otimes_R I \rightarrow A \otimes_R R \cong A$ induced by the inclusion $I \subseteq R$ is again injective (or, equivalently, $A \otimes_R I \cong A I \subseteq A$ ).
+
+
+\end{theorem}
+\begin{corollary}[A Flatness Criterion for quotients]
+    Let $A$ be a left $R$-module.
+    Suppose $A=F / K$ where $F$ is flat and $K$ is an $R$-submodule of $F$.
+    Then $A$ is flat if and only if $F I \cap K=K I$ for every finitely generated ideal $I$ of $R$.
+\end{corollary}
+
+
+
+\begin{proposition}
+    Let $R$ be an arbitrary ring.
+    \begin{enumerate}
+        \item
+              The right $R$-module $R$ is a flat right $R$-module.
+        \item  A direct sum $\bigoplus_j M_j$ of right $R$-modules is flat if and only each $M_j$ is flat.
+        \item  Every projective right $R$-module $P$ is flat.
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{example}
+    $\mathbb{Q}\oplus \mathbb{Z}$ is a flat $\mathbb{Z}$-module but neither projective nor injective.
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Homological Algebra}
+\minitoc
+
+
+\section{Complex and Homology}
+\begin{definition}
+    Let $\mathcal{A}$ be an abelian category.
+    \begin{enumerate}
+        \item
+              A \textbf{complex} (abbreviating \textbf{chain complex}) in an abelian category $\mathcal{A}$ is a sequence of objects and morphisms in $\mathcal{A}$ (called \textbf{differentials}),
+              \begin{equation*}
+                  \cdots \rightarrow  C_{n+1}\xrightarrow{d_{n+1}} C_n\xrightarrow{d_n}C_{n-1}\xrightarrow{d_{n-1}} \rightarrow \cdots
+              \end{equation*}
+              such that :
+              \begin{equation*}
+                  d_n d_{n+1}=0 \quad \text { for all } n \in \mathbb{Z} .
+              \end{equation*}
+              We usually simplify the notation, writing $\mathbf{C}_{\bullet}$ instead of $\left(\mathbf{C}_{\bullet}, d_{\bullet}\right)$.
+        \item
+              If $\left(\mathbf{C}_{\bullet}, d_{\bullet}\right)$ and $\left(\mathbf{C}_{\bullet}^{\prime}, d_{\bullet}^{\prime}\right)$ are complexes, then a \textbf{chain map}
+              \begin{equation*}
+                  f=f_{\bullet}:\left(\mathbf{C}_{\bullet}, d_{\bullet}\right) \rightarrow\left(\mathbf{C}_{\bullet}^{\prime}, d_{\bullet}^{\prime}\right)
+              \end{equation*}
+              is a sequence of morphisms $f_n: C_n \rightarrow C_n^{\prime}$ for all $n \in \mathbb{Z}$ making the following diagram commute:
+              \begin{equation*}
+                  \begin{tikzcd}
+                      \cdots \arrow[r] & C_{n+1} \arrow[d,"f_{n+1}"] \arrow[r,"d_{n+1}"] & C_n \arrow[d,"f_n"] \arrow[r,"d_n"] & C_{n-1} \arrow[d,"f_{n-1}"] \arrow[r] & \cdots \\
+                      \cdots \arrow[r] & C_{n+1}^{\prime} \arrow[r,"d_{n+1}^{\prime}"] & C_n^{\prime} \arrow[r,"d_n^{\prime}"] & C_{n-1}^{\prime} \arrow[r] & \cdots
+                  \end{tikzcd}
+              \end{equation*}
+
+
+    \end{enumerate}
+    \begin{remark}
+        There is a Abelian category $\mathbf{Comp}(\mathcal{A})$ of complexes in $\mathcal{A}$.
+        The objects are, of course, complexes. The morphisms are chain maps. Exactly,
+        \begin{enumerate}
+            \item
+                  whose kernels and cokernels are defined
+                  \begin{equation*}
+                      \begin{tikzcd}[row sep=2.2em, column sep=2.2em]
+                          \vdots \ar[d] & \vdots \ar[d] & \vdots \ar[d] & \vdots \ar[d] \\
+                          \Ker(f_{n+1}) \ar[r, hook, "i_{n+1}"] \ar[d] &
+                          C_{n+1} \ar[r, "f_{n+1}"] \ar[d, "d_{n+1}"'] &
+                          C_{n+1}' \ar[r, two heads, "\pi_{n+1}"] \ar[d, "d_{n+1}'"'] &
+                          \Coker(f_{n+1}) \ar[d] \\
+                          \Ker(f_{n}) \ar[r, hook, "i_{n}"] \ar[d] &
+                          C_{n} \ar[r, "f_{n}"] \ar[d, "d_{n}"'] &
+                          C_{n}' \ar[r, two heads, "\pi_{n}"] \ar[d, "d_{n}'"'] &
+                          \Coker(f_{n}) \ar[d] \\
+                          \Ker(f_{n-1}) \ar[r, hook, "i_{n-1}"] \ar[d] &
+                          C_{n-1} \ar[r, "f_{n-1}"] \ar[d, "d_{n-1}"'] &
+                          C_{n-1}' \ar[r, two heads, "\pi_{n-1}"] \ar[d, "d_{n-1}'"'] &
+                          \Coker(f_{n-1}) \ar[d] \\
+                          \vdots & \vdots & \vdots & \vdots
+                      \end{tikzcd}
+                  \end{equation*}
+            \item
+                  products and coproducts
+        \end{enumerate}
+    \end{remark}
+\end{definition}
+
+
+
+
+
+\section{Homology Functor} % Homology Functor
+\begin{definition}
+    If $(\mathbf{C}, d)$ is a complex in $\mathbf{C o m p}(\mathcal{A})$, where $\mathcal{A}$ is an abelian category, define
+    \begin{equation*}
+        \begin{aligned}
+            n \text {-chains }      & =C_n,                                              \\
+            n \text {-cycles }      & =Z_n(\mathbf{C})=\operatorname{ker} d_n,           \\
+            n \text {-boundaries }  & =B_n(\mathbf{C})=\operatorname{im} d_{n+1}         \\
+            n \text {-th homology } & =H_n(\mathbf{C})=Z_n(\mathbf{C}) / B_n(\mathbf{C})
+        \end{aligned}
+    \end{equation*}
+    However, if we recognize $\mathcal{A}$ as a full subcategory of $\mathbf{A b}$, then an element of $H_n(\mathbf{C})$ is a coset $z+B_n(\mathbf{C})$; we call this element a \textbf{homology class}, and often denote it by $\operatorname{cls}\left( z \right)$ .
+
+\end{definition}
+
+\begin{theorem}
+    The homology $H_n$ is a additive functor from $\mathbf{C o m p}(\mathcal{A})$ to $\mathcal{A}$ for all $n \in \mathbb{Z}$.
+    \begin{itemize}
+        \item
+              $\mathbf{C}$ maps to $H_n(\mathbf{C})$.
+        \item
+              If $f: \mathbf{C} \rightarrow \mathbf{C}^{\prime}$ is a chain map, then $f_n$ maps $n$-cycles to $n$-cycles and $n$-boundaries to $n$-boundaries, so it induces a morphism
+              \begin{equation*}
+                  H_n(f): H_n(\mathbf{C}) \rightarrow H_n\left(\mathbf{C}^{\prime}\right)
+              \end{equation*}
+              defined by $H_n(f): \operatorname{cls}(z) \mapsto \operatorname{cls}\left(f_n z\right) $.
+    \end{itemize}
+\end{theorem}
+
+
+
+
+\begin{definition}
+    A complex $\mathbf{C}$ is a \textbf{positive complex} if $C_n=0$ for all $n<0$.
+    All positive complexes form the full subcategory $\mathbf{C o m p}_{\geq 0}(\mathcal{A})$ of $\mathbf{C o m p}(\mathcal{A})$.
+
+    A complex $\mathbf{C}$ is a \textbf{negative complex} (or cochain complex) if $C_n=0$ for all $n>0$.
+    All negative complexes form the full subcategory $\mathbf{C o m p}^{\leq 0}(\mathcal{A})$ of $\mathbf{C o m p}(\mathcal{A})$.
+
+\end{definition}
+
+
+\subsection{Homotopy} % Homotopy
+\begin{definition}
+    Let $\mathbf{C}$ and $\mathbf{D}$ be complexes, and let $p \in \mathbb{Z}$.
+    A \textbf{map of degree} $p$, denoted by $s: \mathbf{C} \rightarrow \mathbf{D}$, is a sequence $s=\left(s_n\right)$ with $s_n: C_n \rightarrow D_{n+p}$ for all $n$.
+\end{definition}
+
+\begin{definition}
+    Chain maps $f, g:(\mathbf{C}, d) \rightarrow\left(\mathbf{C}^{\prime}, d^{\prime}\right)$ are \textbf{homotopic}, denoted by $f \simeq g$, if there is a map $s=\left(s_n\right): \mathbf{C} \rightarrow \mathbf{C}^{\prime}$ of degree $1$ with
+    \begin{equation*}
+        f_n-g_n=d_{n+1}^{\prime} s_n+s_{n-1} d_n
+    \end{equation*}
+    \begin{equation*}
+        \begin{tikzcd}
+            {} \arrow[r]
+            & C_{n+1} \arrow[r, "d_{n+1}"] \arrow[d, ""]
+            & C_n \arrow[r, "d_n"] \arrow[d, ""] \arrow[dl, "s_n"']
+            & C_{n-1} \arrow[r] \arrow[d, ""] \arrow[dl, "s_{n-1}"']
+            & {} \\
+            {} \arrow[r]
+            & C'_{n+1} \arrow[r, "d'_{n+1}"]
+            & C'_n \arrow[r, "d'_n"]
+            & C'_{n-1} \arrow[r]
+            & {}
+        \end{tikzcd}
+    \end{equation*}
+    A chain map $f:(\mathbf{C}, d) \rightarrow\left(\mathbf{C}^{\prime}, d^{\prime}\right)$ is \textbf{null-homotopic} if $f \simeq 0$, where $0$ is the zero chain map.
+
+    If there is a chain map $\alpha: \mathbf{C} \rightarrow \mathbf{C}^{\prime} $ and $\beta: \mathbf{C}^{\prime}  \rightarrow \mathbf{C}$ such that $\alpha \beta \simeq 1_{\mathbf{C}^{\prime}}$ and $\beta \alpha \simeq 1_{\mathbf{C}}$, then $\mathbf{C}$ and $\mathbf{C}^{\prime}$ are \textbf{homotopy equivalent}.
+\end{definition}
+
+
+\begin{proposition}
+    \label{pro: homotopy invariance of homology}
+    Homotopic chain maps induce the same homomorphism in homology; that is, if $f, g:(\mathbf{C}, d) \rightarrow\left(\mathbf{C}^{\prime}, d^{\prime}\right)$ are homotopic chain maps, then $H_n(f)=H_n(g): H_n(\mathbf{C}) \rightarrow H_n(\mathbf{C}')$ for all $n \in \mathbb{Z}$.
+    \begin{proof}
+        If $f \simeq g$ via $s: \mathbf{C} \rightarrow \mathbf{C}^{\prime}$, and if $z_n \in Z_n(\mathbf{C})$, then
+        \begin{equation*}
+            f_n z_n-g_n z_n
+            =
+            d_{n+1}^{\prime} s_n z_n+s_{n-1} d_n z_n=d_{n+1}^{\prime} s_n z_n+0
+            \in
+            B_n\left(\mathbf{C}^{\prime}\right) .
+        \end{equation*}
+        Thus, $H_n(f): \operatorname{cls}\left(z_n\right) \mapsto \operatorname{cls}\left(f_n z_n\right)$ and $H_n(g): \operatorname{cls}\left(z_n\right) \mapsto \operatorname{cls}\left(g_n z_n\right)$ agree.
+    \end{proof}
+\end{proposition}
+
+\subsection{Long Exact Sequence in Homology} % Long Exact Sequence in Homology
+\begin{theorem}
+    \label{thm: long exact sequence in homology}
+    Let $\mathcal{A}$ be a abelian category,
+    given a short exact sequence of complexes
+    \begin{equation*}
+        0 \rightarrow \mathbf{C}^{\prime} \xrightarrow{i} \mathbf{C} \xrightarrow{\pi} \mathbf{C}^{\prime \prime} \rightarrow 0
+    \end{equation*}
+    in $\operatorname{Comp}(\mathcal{A})$, then, for each $n \in \mathbb{Z}$, there is a \textbf{connecting homomorphisms}
+    $\delta_n: H_n\left(\mathbf{C}^{\prime \prime}\right) \rightarrow H_{n-1}\left(\mathbf{C}^{\prime}\right)$
+    defined by
+    $\delta_n: \operatorname{cls}\left(z_n^{\prime \prime}\right) \mapsto \operatorname{cls}\left(i_{n-1}^{-1} d_n \pi_n^{-1} z_n^{\prime \prime}\right)$
+    and thus a long exact sequence in $\mathcal{A}$
+    \begin{equation*}
+        \cdots \rightarrow H_{n+1}\left(\mathbf{C}^{\prime\prime}\right) \xrightarrow{\delta_{n+1}}
+        H_n(\mathbf{C}^\prime) \xrightarrow{H_n(i)}
+        H_n\left(\mathbf{C}\right) \xrightarrow{H_n(p)}
+        H_{n-1}\left(\mathbf{C}^{\prime\prime}\right) \xrightarrow{\delta   _{n}}H_{n-1}\left(\mathbf{C}^{\prime}\right)\rightarrow \cdots
+    \end{equation*}
+    \begin{proof}
+        If follows from \cref{lem: snake's lemma}.
+    \end{proof}
+\end{theorem}
+
+
+\begin{theorem}[Naturality of $\delta$]
+    Let $\mathcal{A}$ be an abelian category.
+    Given a commutative diagram in $\operatorname{Comp}(\mathcal{A})$ with exact rows,
+    \begin{equation*}
+        \begin{tikzcd}
+            0 \arrow{r} & \mathbf{C}^{\prime} \arrow{r}{i} \arrow{d}{f^{\prime}} & \mathbf{C} \arrow{r}{p} \arrow{d}{f} & \mathbf{C}^{\prime \prime} \arrow{r} \arrow{d}{f^{\prime \prime}} & 0 \\
+            0 \arrow{r} & \mathbf{D}^{\prime} \arrow{r}{j}                          & \mathbf{D} \arrow{r}{q}                          & \mathbf{D}^{\prime \prime} \arrow{r}                 & 0
+        \end{tikzcd}
+    \end{equation*}
+    there is a commutative diagram in $\mathcal{A}$ with exact rows,
+    \begin{equation*}
+        \begin{tikzcd}
+            \cdots \arrow{r} & H_{n+1}\left(\mathbf{C}^{\prime \prime}\right) \arrow{r}{\delta_{n+1}} \arrow{d}{H_{n+1}\left(f^{\prime \prime}\right)} & H_n\left(\mathbf{C}^{\prime}\right) \arrow{r}{H_n(i)} \arrow{d}{H_n\left(f^{\prime}\right)} & H_n(\mathbf{C}) \arrow{r}{H_n(p)} \arrow{d}{H_n(f)} & H_{n-1}\left(\mathbf{C}^{\prime \prime}\right) \arrow{r}{\delta_n} \arrow{d}{H_{n-1}\left(f^{\prime \prime}\right)} & H_{n-1}\left(\mathbf{C}^{\prime}\right) \arrow{r} \arrow{d}{H_{n-1}\left(f^{\prime}\right)} & \cdots \\
+            \cdots \arrow{r} & H_{n+1}\left(\mathbf{D}^{\prime \prime}\right) \arrow{r}{\delta_{n+1}}                          & H_n\left(\mathbf{D}^{\prime}\right) \arrow{r}{H_n(j)}                          & H_n(\mathbf{D}) \arrow{r}{H_n(q)}                          & H_{n-1}\left(\mathbf{D}^{\prime \prime}\right) \arrow{r}{\partial_n}                          & H_{n-1}\left(\mathbf{D}^{\prime}\right) \arrow{r}                          & \cdots
+        \end{tikzcd}
+    \end{equation*}
+    \begin{remark}
+        Let $\mathbf{SES}\left(\mathbf{Comp}\left(\mathcal{A}\right)\right)$ be the category of short exact sequences in $\operatorname{Comp}(\mathcal{A})$.
+        The functors $F,G:\mathbf{SES}\left(\mathbf{Comp}\left(\mathcal{A}\right)\right) \rightarrow \mathcal{A}$ defined by
+        \begin{equation*}
+            F_n:
+            \quad
+            0 \rightarrow \mathbf{C}^{\prime} \xrightarrow{i} \mathbf{C} \xrightarrow{p} \mathbf{C}^{\prime \prime} \rightarrow 0
+            \mapsto
+            H_n\left(\mathbf{C}^{\prime \prime}\right)
+        \end{equation*}
+        and
+        \begin{equation*}
+            G_n:
+            \quad
+            0 \rightarrow \mathbf{C}^{\prime} \xrightarrow{i} \mathbf{C} \xrightarrow{p} \mathbf{C}^{\prime \prime} \rightarrow 0
+            \mapsto
+            H_{n-1}\left(\mathbf{C}^{\prime}\right)
+        \end{equation*}
+        Then $\delta_n$ is a natural transformation from $F_n$ to $G_n$.
+    \end{remark}
+\end{theorem}
+
+
+
+\section{Derived Functor} % Derived Functor
+\subsection{$\delta$-Functors}
+\begin{definition}
+    Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories.
+    A (covariant) \textbf{homological $\delta$-functor} between $\mathcal{A}$ and $\mathcal{B}$ is
+    \begin{itemize}
+        \item
+              a collection of additive functors $T_n: \mathcal{A} \rightarrow \mathcal{B}$ for $n \geq 0$
+              (Here we make the convention that $T_n=0$ for $n<0$.)
+        \item
+              together with a sequence natural transformations $\delta_n$ from the functor sending $(*)$ to $T_i(A^{\prime\prime})$ to the functor sending $(*)$ to $T_{i-1}(A^\prime)$ in $\mathcal{B}^{\mathbf{SES}\left(\mathcal{A}\right)}$, where $*$ is the short exact sequence $0 \rightarrow A^\prime \rightarrow A \rightarrow A^{\prime\prime} \rightarrow 0$ in $\mathcal{A}$
+
+              \begin{remark}
+                  That is, for each short exact sequence $0 \rightarrow A^\prime \rightarrow A \rightarrow A^{\prime\prime} \rightarrow 0$ in $\mathcal{A}$, there exists a sequence of \textbf{connecting morphisms} in $\mathcal{B}$
+                  \begin{equation*}
+                      \delta_n: T_n(A^{\prime\prime}) \rightarrow T_{n-1}(A^\prime)\tag{*}
+                  \end{equation*}
+                  for all $n \geq 1$.
+
+                  And Naturality:
+                  For each morphism in $\mathbf{SES}\left(\mathcal{A}\right)$
+                  \begin{equation*}
+                      \begin{tikzcd}
+                          0 \arrow{r} & A^\prime \arrow{r} \arrow[d ,"f^{\prime}"] & A \arrow{r} \arrow[d ,"f"] & A^{\prime\prime} \arrow{r} \arrow[d ,"f^{\prime\prime}"] & 0 \\
+                          0 \arrow{r} & B^{\prime} \arrow{r} & B \arrow{r} & B^{\prime\prime} \arrow{r} & 0
+                      \end{tikzcd}
+                  \end{equation*}
+                  the $\delta$ give a commutative diagram
+                  \begin{equation*}
+                      \begin{tikzcd}
+                          T_n\left(A^{\prime\prime}\right) \arrow{r}{\delta_n} \arrow[d,"T_n(f^{\prime\prime})"]  & T_{n-1}\left(A^{\prime}\right) \arrow[d,"T_{n-1}(f^{\prime})"] \\
+                          T_n(B^{\prime\prime}) \arrow{r}{\delta_n} & T_{n-1}(B^{\prime})
+                      \end{tikzcd}
+                  \end{equation*}
+              \end{remark}
+    \end{itemize}
+    And a condition is imposed:
+    \begin{itemize}
+        \item
+              Long exact sequence:
+              For each short exact sequence as above, there is a long exact sequence
+              \begin{equation*}
+                  \cdots T_{n+1}(A^{\prime\prime}) \xrightarrow{\delta_{n+1}} T_n(A^\prime) \rightarrow T_n(A) \rightarrow T_n(A^{\prime\prime}) \xrightarrow{\delta_n} T_{n-1}(A^\prime) \cdots
+              \end{equation*}
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Simliarly, a covariant \textbf{cohomological $\delta$-functor} between $\mathcal{A}$ and $\mathcal{B}$ is
+
+    \begin{equation*}
+        \cdots T^{n-1}(A^{\prime\prime}) \xrightarrow{\delta^{n+1}} T^n(A^{\prime}) \rightarrow T^n(A) \rightarrow T^n(A^{\prime\prime}) \xrightarrow{\delta^n} T^{n+1}(A^{\prime}) \cdots
+    \end{equation*}
+\end{definition}
+
+
+
+
+\begin{corollary}
+    Let $\mathcal{A}$ be an abelian category, then homology $H_n:\mathbf{Comp}(\mathcal{A})_{\geq 0} \rightarrow \mathcal{A}$ forms a homological $\delta$-functor.
+\end{corollary}
+
+
+\subsection{Resolutions}
+\begin{definition}
+    Let $\mathcal{A}$ be an abelian category and $A\in \Obj\left(\mathcal{A}\right)$.
+    \begin{enumerate}
+        \item
+              The \textbf{projective resolution} of $A$ is an exact sequence
+              \begin{equation*}
+                  \mathbf{P}
+                  =
+                  \quad
+                  \cdots\rightarrow P_2 \xrightarrow{d_2} P_1 \xrightarrow{d_1} P_0 \xrightarrow{\varepsilon} A \rightarrow 0
+              \end{equation*}
+              in which each $P_n$ is projective.
+        \item
+              If $\mathbf{P}$ is a projective resolution of $A$, then its \textbf{deleted projective resolution} is the complex
+              \begin{equation*}
+                  \mathbf{P}_A
+                  =
+                  \ldots\rightarrow P_2 \xrightarrow{d_2} P_1 \xrightarrow{d_1} P_0 \rightarrow 0 .
+              \end{equation*}
+    \end{enumerate}
+    \begin{remark}
+        Deleting $A$ loses no information: $A \cong \operatorname{Coker} d_1= H_0\left(\mathbf{P}_A\right)$; the inverse operation, restoring $A$ to $\mathbf{P}_A$, is called \textbf{augmenting}.
+
+        If $\mathcal{A}$ is ${ }_R \mathbf{M o d}$ or $\mathbf{M o d}_R$, then a free resolution of a module $A$ is a projective resolution in which each $P_n$ is free; a flat resolution is an exact sequence in which each $P_n$ is flat.
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    Let $\mathcal{A}$ be an abelian category and $A\in \Obj\left(\mathcal{A}\right)$.
+    An \textbf{injective resolution} of $A $ is an exact sequence
+    \begin{equation*}
+        \mathbf{E}
+        =
+        0 \rightarrow A \xrightarrow{\eta} E^0 \xrightarrow{d^0} E^1 \xrightarrow{d^1} E^2 \rightarrow \cdots
+    \end{equation*}
+    in which each $E^n$ is injective.
+    If $\mathbf{E}$ is an injective resolution of $A$, then its \textbf{deleted injective resolution} is the complex
+    \begin{equation*}
+        \mathbf{E}^A=0 \rightarrow E^0 \xrightarrow{d^0} E^1 \xrightarrow{d^1} E^2 \rightarrow \cdots
+    \end{equation*}
+    \begin{remark}
+        Deleting $A$ loses no information, for $A \cong \operatorname{ker} d^0$.
+    \end{remark}
+\end{definition}
+\begin{proposition}
+    Every (left or right) $R$-module $A$ has projective and injective resolutions respectively.
+\end{proposition}
+
+
+\begin{theorem}[Comparison Theorem]
+    \label{thm: comparison theorem}
+    Let $\mathcal{A}$ be an abelian category.
+    \begin{enumerate}
+        \item
+              Given a morphism $f: A \rightarrow A^{\prime}$ in $\mathcal{A}$, consider the diagram
+              \begin{equation*}
+                  \begin{tikzcd}
+                      \cdots \arrow[r] & P_2 \arrow[dashed]{d}{f_2} \arrow[r,"d_2"] & P_1 \arrow[dashed]{d}{f_1} \arrow[r,"d_1"] & P_0 \arrow[dashed]{d}{f_0} \arrow[r,"\varepsilon"] & A \arrow{d}{f} \arrow[r] & 0 \\
+                      \cdots \arrow[r] & P_2^{\prime} \arrow[r,"d_2^{\prime}"] & P_1^{\prime} \arrow[r,"d_1^{\prime}"] & P_0^{\prime} \arrow[r,"\varepsilon^{\prime}"] & A^{\prime} \arrow[r] & 0
+                  \end{tikzcd}
+              \end{equation*}
+              where the rows are complexes. If each $P_n$ in the top row is projective, and if the bottom row is exact, then there exists a unique chain ( in the sense of homotopy ) map $f: \mathbf{P}_A \rightarrow \mathbf{P}_{A^{\prime}}$ making the completed diagram commute.
+        \item
+              Given a morphism $g: A^{\prime} \rightarrow A$, consider the diagram of negative complexes
+              \begin{equation*}
+                  \begin{tikzcd}
+                      0 \arrow[r] & A \arrow[r,"\eta"] & E^{0}  \arrow[r,"d^{0}"] & E^{1}  \arrow[r,"d^{1}"] & E^{2}  \arrow[r] & \cdots \\
+                      0 \arrow[r] & A^\prime \arrow[u,"g"]\arrow[r,"\eta^\prime"] & E^{0\prime}\arrow[u,dashed,"g^0"] \arrow[r,"d^0"] & E^1 \arrow[r,"d^1"] & E^2 \arrow[r] & \cdots
+                  \end{tikzcd}
+              \end{equation*}
+              If the bottom row is exact and each $E^n$ in the top row is injective, then there exists a unique chain map $\mathbf{E}^{A^{\prime}} \rightarrow \mathbf{E}^A$ making the completed diagram commute.
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    The projective (injective) resolution of an object $A$ in an abelian category $\mathcal{A}$ with enough projectives (injectives) is unique up to homotopy equivalence.
+    \begin{proof}
+        It follows that every object $A$ can be a image of a projective object $P_0$ by an epimorphism $\varepsilon: P_0 \rightarrow A$. (every object can be imbedded into an injective object by a monomorphism $\eta: A \rightarrow E^0$.)
+        Then we can construct a projective resolution of $A$ step by step.
+    \end{proof}
+\end{corollary}
+
+\section{Left Derived Functors} % Derived Functors
+\subsection{Basic definition}
+\begin{definition}
+    Let $F: \mathcal{A} \rightarrow \mathcal{B}$ be a covariant functor between abelian categories and assume $\mathcal{A}$ has enough projectives.
+    We now construct its \textbf{left derived functors} $L_n F: \mathcal{A} \rightarrow \mathcal{B}$, for all $n \in \mathbb{Z}$.
+    \begin{itemize}
+        \item
+              For $A\in \mathcal{A}$, choose one deleted projective resolution $\mathbf{P}_A$ of $A$ and define
+              \begin{equation*}
+                  L_n F \left(A\right)
+                  :=
+                  H_n\left(F \left(\mathbf{P}_A\right)\right) .
+              \end{equation*}
+        \item
+              Let $f: A \rightarrow A^{\prime}$ be a morphism. By the comparison theorem, there is a chain map $\check{f}: \mathbf{P}_A \rightarrow \mathbf{P}_{A^{\prime}}$ over $f$. Then $F \check{f}: F \mathbf{P}_A \rightarrow F \mathbf{P}_{A^{\prime}}$ is also a chain map, and we define $\left(L_n F\right) f:\left(L_n F\right) A \rightarrow\left(L_n F\right) A^{\prime}$ by
+              \begin{equation*}
+                  L_n F \left(f\right):=H_n(F \check{f})
+              \end{equation*}
+    \end{itemize}
+    \begin{remark}
+        That is,
+        \begin{equation*}
+            \begin{tikzcd}
+                A   \arrow[d,"f"]     & \mathbf{P}_A \arrow[d,"\check{f}"]         & F(\mathbf{P}_A) \arrow[d,"F(\check{f})"]          & H_n (F(\mathbf{P}_A)) \arrow[d,"H_n(F(\check{f}))"]         \\
+                A^\prime & \mathbf{P}_{A^\prime} & F(\mathbf{P}_{A^\prime}) & H_n (F(\mathbf{P}_{A^\prime}))
+            \end{tikzcd}
+        \end{equation*}
+    \end{remark}
+\end{definition}
+
+\begin{lemma}
+    The definition of $L_n F$ is independent of the choice of the $\mathbf{P}_A$ and chain map $\check{f}$ over $f$.
+    \begin{proof}
+        If $\mathbf{P}_A$ and $\mathbf{P}_A^{\prime}$ are two projective resolutions of $A$, then by \cref{thm: comparison theorem}, they are homotopy equivalent.
+        Thus, $H_n\left(F\left(\mathbf{P}_A\right)\right) \cong H_n\left(F\left(\mathbf{P}_A^{\prime}\right)\right)$ by \cref{pro: homotopy invariance of homology}.
+
+        \smallskip
+
+        If $\check{f}, \check{f}^{\prime}: \mathbf{P}_A \rightarrow \mathbf{P}_{A^{\prime}}$ are two chain maps over $f$, then by \cref{thm: comparison theorem}, they are homotopic; that is, $\check{f} \simeq \check{f}^{\prime}$.
+        Thus, $H_n(F(\check{f}))=H_n\left(F\left(\check{f}^{\prime}\right)\right)$ by \cref{pro: homotopy invariance of homology}.
+    \end{proof}
+\end{lemma}
+
+
+
+
+\begin{lemma}[Horseshoe Lemma]
+    \label{lem: horseshoe lemma}
+    Let $\mathcal{A}$ be an abelian category with enough projectives.
+    Suppose given a commutative diagram
+    \begin{equation*}
+        \begin{tikzcd}
+            &&& 0 \arrow[d,""] &\\
+            \cdots\arrow[r,""]&P_1^\prime\arrow[r,""] \arrow[d,dashed,""]&P_0^\prime \arrow[d,dashed,""]\arrow[r,""] &A^\prime \arrow[r,""]\arrow[d,""]&0\\
+            &P_0^\prime \oplus P_0^{\prime\prime} \arrow[r,dashed,""] \arrow[d,dashed,""]&P_0^\prime \oplus P_0^{\prime\prime}\arrow[d,dashed,""] \arrow[r,dashed,""]& A \arrow[d,""]&\\
+            \cdots\arrow[r,""]&P_1^{\prime\prime}\arrow[r,""]&P_0^{\prime\prime}\arrow[r,""]&A^{\prime\prime}\arrow[r,""]\arrow[d,""]&0\\
+            &&&0&\\
+        \end{tikzcd}
+    \end{equation*}
+    where the column is exact and the rows are projective resolutions. Set $P_n= P_n^{\prime} \oplus P_n^{\prime \prime}$. Then the $P_n$ assemble to form a projective resolution $\mathbf{P}_A$ of $A$, and the right-hand column lifts to an split exact sequence of complexes
+    \begin{equation*}
+        0 \rightarrow \mathbf{P}_{A^{\prime}} \xrightarrow{i} \mathbf{P}_A \xrightarrow{\pi} \mathbf{P}_{A^{\prime \prime}} \rightarrow 0,
+    \end{equation*}
+\end{lemma}
+
+\begin{theorem}
+    If $F:\mathcal{A} \rightarrow \mathcal{B}$ is a additive right exact covariant functor between abelian categories, then its left derived functors $L_n F$ form a homological $\delta$-functor.
+    \begin{proof}
+        Let
+        \begin{equation*}
+            0 \rightarrow A^{\prime} \rightarrow A \rightarrow A^{\prime \prime} \rightarrow 0
+        \end{equation*}
+        be a short exact sequence in $\mathcal{A}$.
+        By the \cref{lem: horseshoe lemma}, there is an split exact sequence of complexes
+        \begin{equation*}
+            0 \rightarrow \mathbf{P}_{A^{\prime}} \xrightarrow{i} \mathbf{P}_A \xrightarrow{\pi} \mathbf{P}_{A^{\prime \prime}} \rightarrow 0
+        \end{equation*}
+        Applying the right exact functor $F$ gives an exact sequence of complexes
+        \begin{equation*}
+            0 \rightarrow F\left(\mathbf{P}_{A^{\prime}}\right) \xrightarrow{F(i)} F\left(\mathbf{P}_A\right) \xrightarrow{F(\pi)} F\left(\mathbf{P}_{A^{\prime \prime}}\right) \rightarrow 0
+        \end{equation*}
+        and hence a long exact sequence in homology by \cref{thm: long exact sequence in homology}
+        \begin{equation*}
+            \cdots \rightarrow H_{n+1}\left(F\left(\mathbf{P}_{A^{\prime \prime}}\right)\right) \xrightarrow{\delta_{n+1}} H_n\left(F\left(\mathbf{P}_{A^{\prime}}\right)\right) \xrightarrow{(L_n F)(i)} H_n\left(F\left(\mathbf{P}_A\right)\right) \xrightarrow{(L_n F)(\pi)} H_n\left(F\left(\mathbf{P}_{A^{\prime \prime}}\right)\right) \xrightarrow{\delta_n} H_{n-1}\left(F\left(\mathbf{P}_{A^{\prime}}\right)\right) \rightarrow \cdots
+        \end{equation*}
+        which is precisely
+        \begin{equation*}
+            \cdots \rightarrow L_{n+1} F\left(A^{\prime \prime}\right) \xrightarrow{\delta_{n+1}} L_n F\left(A^{\prime}\right) \xrightarrow{L_n F(i)} L_n F(A) \xrightarrow{L_n F(\pi)} L_n F\left(A^{\prime \prime}\right) \xrightarrow{\delta_n} L_{n-1} F\left(A^{\prime}\right) \rightarrow \cdots
+        \end{equation*}
+    \end{proof}
+\end{theorem}
+
+\begin{proposition}
+    \label{pro: axiom}
+    If $F:\mathcal{A} \rightarrow \mathcal{B}$ is an right exact    covariant functor between abelian categories and left derived functors $L_* F$, then
+    \begin{enumerate}
+        \item
+              $L_0F \cong F$
+        \item
+              if $P$ is projective, then $L_n F\left(P\right)=0$ for all $n>0$.
+        \item Long exact sequence:
+        \item
+              $\delta_n$ is natural
+    \end{enumerate}
+\end{proposition}
+
+
+\subsection{Tor} % Tor
+\begin{definition}
+    If $B$ is a left $R$-module and $T=\square \otimes_R B$, define
+    \begin{equation*}
+        \operatorname{Tor}_n^R(\square, B)
+        :=
+        L_n T : \mathbf{Mod}_R \rightarrow \mathbf{A b} .
+    \end{equation*}
+    Thus, if $\mathbf{P}=\rightarrow P_2 \xrightarrow{d_2} P_1 \xrightarrow{d_1} P_0 \xrightarrow{\varepsilon} A \rightarrow 0$ is the chosen projective resolution of a right $R$-module $A$, then
+    \begin{equation*}
+        \operatorname{Tor}_n^R(A, B)
+        =
+        H_n\left(\mathbf{P}_A \otimes_R B\right)
+    \end{equation*}
+    \begin{remark}
+        if $B$ is an $\left(R, S\right)$-bimodule, then the target is $\mathbf{M o d}_S$.
+        In particular, if $R$ is commutative, then $A \otimes_R B$ is an $R$-module, and so the values of $\operatorname{Tor}_n^R(\square, B)$ lie in ${ }_R \mathbf{Mod}$.
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    If $A$ is a right $R$-module and $T=A \otimes_R \square$, define
+    \begin{equation*}
+        \operatorname{tor}_n^R(A, \square):=L_n T
+    \end{equation*}
+    \begin{remark}
+        for all right $R$-modules $A$ and left $R$-modules $B$, and all $n \geq 0$,
+        \begin{equation*}
+            \operatorname{Tor}_n^R(A, B) \cong \operatorname{tor}_n^R(A, B)
+        \end{equation*}
+        Thus, the notation $\operatorname{tor}_n^R(A, B)$ is only temporary.
+    \end{remark}
+\end{definition}
+
+
+\subsection{Properties of Tor}
+
+\begin{theorem}
+    Let $R$ be a ring, $A$ a right $R$-module, and $B$ a left $R$-module.
+    \begin{enumerate}
+        \item
+              then
+              \begin{equation*}
+                  \operatorname{Tor}_n^R(A, B) \cong \operatorname{Tor}_n^{R^{\mathrm{op}}}(B, A)
+              \end{equation*}
+              for all $n \geq 0$, where $R^{\mathrm{op}}$ is the opposite ring of $R$.
+        \item
+              If $R$ is a commutative ring, then for all $n \geq 0$,
+              \begin{equation*}
+                  \operatorname{Tor}_n^R(A, B) \cong \operatorname{Tor}_n^R(B, A)
+              \end{equation*}
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{theorem}
+    A right $R$-module $F$ is flat iff $\operatorname{Tor}_n^R(F, M)=0$ for all $n \geq 1$ and every left $R$-module $M$.
+\end{theorem}
+
+
+\begin{theorem}
+    The functors $\operatorname{Tor}_n^R(A, \square)$ and $\operatorname{Tor}_n^R(\square, B)$ can be computed using flat resolutions of either variable; more precisely, for all flat resolutions $\mathbf{F}$ and $\mathbf{G}$ of $A$ and $B$, respectively, and for all $n \geq 0$,
+    \begin{equation*}
+        H_n\left(\mathbf{F}_A \otimes_R B\right) \cong \operatorname{Tor}_n^R(A, B) \cong H_n\left(A \otimes_R \mathbf{G}_B\right) .
+    \end{equation*}
+\end{theorem}
+
+
+\section{Right Derived Functor}
+\begin{definition}
+    Let $F: \mathcal{A} \rightarrow \mathcal{B}$ be a covariant functor between abelian categories and assume $\mathcal{A}$ has enough injectives.
+    We now construct its \textbf{right derived functors} $R^n F: \mathcal{A} \rightarrow \mathcal{B}$, for all $n \in \mathbb{Z}$.
+    \begin{itemize}
+        \item
+              For $A\in \mathcal{A}$, choose one deleted injective resolution $\mathbf{E}^A$ of $A$ and define
+              \begin{equation*}
+                  R^n F \left(A\right)
+                  :=
+                  H^n\left(F \left(\mathbf{E}^A\right)\right) .
+              \end{equation*}
+        \item
+              Let $f: A \rightarrow A^{\prime}$ be a morphism. By the comparison theorem, there is a chain map $\check{f}: \mathbf{E}^A \rightarrow \mathbf{E}^{A^{\prime}}$ over $f$. Then $F \check{f}: F \mathbf{E}^A \rightarrow F \mathbf{E}^{A^{\prime}}$ is also a chain map, and we define $R^n F\left(f\right):\left(R^n F\right) A \rightarrow\left(R^n F\right) A^{\prime}$ by
+              \begin{equation*}
+                  R^n F \left(f\right)
+                  :=
+                  H^n(F \check{f})
+              \end{equation*}
+    \end{itemize}
+\end{definition}
+
+
+\subsection{Ext}
+\begin{definition}
+    Let $R$ be a ring. If $T=\operatorname{Hom}_R(A, \square)$, define $\operatorname{Ext}_R^n(A, \square):=R^n T$.
+    \begin{remark}
+        If the chosen injective resolution of $B$ is $\mathbf{E}^B=0 \rightarrow B \xrightarrow{\eta} E^0 \xrightarrow{d^0} E^1 \xrightarrow{d^1} E^2 \rightarrow$, then
+        \begin{equation*}
+            \operatorname{Ext}_R^n(A, B)
+            =
+            H^n\left(\operatorname{Hom}_R\left(A, \mathbf{E}^B\right)\right)
+        \end{equation*}
+        If $R$ is commutative, then $\operatorname{Hom}_R(A, B)$ is an $R$-module, and so the values of $\operatorname{Ext}_R^n(A, \square)$ lie in .
+    \end{remark}
+\end{definition}
+
+\section{Adjoint Functors and Left/Right Exactness}
+\begin{theorem}
+    Let $L: \mathcal{A} \rightarrow \mathcal{B}$ be left adjoint to a functor $R: \mathcal{B} \rightarrow \mathcal{A}$, where $\mathcal{A}$ and $\mathcal{B}$ are arbitrary categories. Th
+    en
+    \begin{enumerate}
+        \item
+              $L$ preserves all colimits (coproducts, direct limits, cokernels, etc.). That is, if $A: I \rightarrow \mathcal{A}$ has a colimit, then so does $L A: I \rightarrow \mathcal{B}$, and
+
+              \begin{equation*}
+                  L\left(\operatorname{colim} A_i\right)=\operatorname{colim} L\left(A_i\right) .
+              \end{equation*}
+
+        \item
+              $R$ preserves all limits (products, inverse limits, kernels, etc.). That is, if $B: I \rightarrow \mathcal{B}$ has a limit, then so does $R B: I \rightarrow \mathcal{A}$, and
+
+              \begin{equation*}
+                  R\left(\lim _{i \in I} B_i\right)=\lim _{i \in I} R\left(B_i\right) .
+              \end{equation*}
+    \end{enumerate}
+\end{theorem}
+
+
+\chapter{Tor and Ext}
+\section{Tor for Abelian Groups}
+
+\begin{example}
+    Let $B$ be an abelian group and $p$ be a prime number.
+    Then
+    \begin{equation*}
+        \operatorname{Tor}_n^{\mathbb{Z}}(\mathbb{Z}_p, B)
+        =
+        \begin{cases}
+            B / pB  & n=0      \\
+            { }_p B & n=1      \\
+            0       & n \geq 2
+        \end{cases}
+    \end{equation*}
+    where $pB=\{pb : b \in B\}$ and ${ }_p B=\{b \in B : p b=0\}$.
+    To see this, use the deleted resolution
+    \begin{equation*}
+        \mathbf{P}_B: \cdots \rightarrow0 \rightarrow \mathbb{Z} \xrightarrow{p} \mathbb{Z}  \rightarrow 0
+    \end{equation*}
+\end{example}
+
+
+\begin{proposition}
+    For all abelian groups $A$ and $B$ :
+    \begin{enumerate}
+        \item
+              $\operatorname{Tor}_1^{\mathbb{Z}}(A, B)$ is a torsion abelian group.
+        \item
+              $\operatorname{Tor}_n^{\mathbb{Z}}(A, B)=0$ for $n \geq 2$.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+
+
+\chapter{Homological Dimension}
+\section{Dimension of Ringss and Modules}
+
+
+\begin{definition}
+    Let $R$ be a ring and $A$ be a left $R$-module, then $\operatorname{pd}_R(A) \leq n$ (pd abbreviates \textbf{projective dimension}) if there is a finite projective resolution
+    \begin{equation*}
+        0 \rightarrow P_n \rightarrow \cdots \rightarrow P_1 \rightarrow P_0 \rightarrow A \rightarrow 0
+    \end{equation*}
+    If no such finite resolution exists, then $\operatorname{pd}(A)=\infty ;$ otherwise $\operatorname{pd}(A)=n$ if $n$ is the length of a shortest projective resolution of $A$.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

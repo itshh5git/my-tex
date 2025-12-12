@@ -1,0 +1,557 @@
+\chapter{Group Series}
+\minitoc
+
+\section{Nilpotent Group} % Nilpotent Group
+\begin{definition}
+    Let $G$ be a group. The center $Z(G)$ of $G$ is a normal subgroup.
+    Let $Z_2(G)$ be the inverse image of $Z(G / Z(G))$ under the canonical projection $G \rightarrow G / Z(G)$.
+    Then $Z_2(G)$ is normal in $G$ and contains $Z(G)$.
+    Continue this process by defining inductively: $Z_1(G)=Z(G)$ and $Z_i(G)$ is the inverse image of $Z\left(G / Z_{i-1}(G)\right)$ under the canonical projection $G \rightarrow G / Z_{i-1}(G)$. Thus we obtain a sequence of normal subgroups of $G$, called the \textbf{ascending central series} of $G$ :
+    \begin{equation*}
+        \langle e\rangle<Z_1(G)<Z_2(G)<\cdots
+    \end{equation*}
+    A group $G$ is \textbf{nilpotent} if $Z_n(G)=G$ for some $n$.
+\end{definition}
+\begin{theorem}
+    Every finite p-group is nilpotent.
+    \begin{proof}
+        $G$ and all its nontrivial quotients are $p$-groups, and therefore, have nontrivial centers by Corollary 5.4. This implies that if $G \neq C_i(G)$, then $C_i(G)$ is strictly contained in $C_{i+1}(G)$. Since $G$ is finite, $C_n(G)$ must be $G$ for some $n$.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    The direct product of a finite number of nilpotent groups is nilpotent.
+    \begin{proof}
+        Suppose for convenience that $G=H \times K$, the proof for more than two factors being similar. Assume inductively that $C_i(G)=C_i(H) \times C_i(K)$ (the case $i=1$ is obvious). Let $\pi_H$ be the canonical epimorphism $H \rightarrow H / C_i(H)$ and similarly for $\pi_K$. Verify that the canonical epimorphism $\varphi: G \rightarrow G / C_i(G)$ is the composition
+        \begin{equation*}
+            G=H \times K \xrightarrow{\pi} H / C_i(H) \times K / C_i(K) \xrightarrow{\psi} \frac{H \times K}{C_i(H) \times C_i(K)}=\frac{H \times K}{C_i(H \times K)}=G / C_i(G),
+        \end{equation*}
+        where $\pi=\pi_H \times \pi_K$ (Theorem I.8.10), and $\psi$ is the isomorphism of Corollary I.8.11. Consequently,
+        \begin{equation*}
+            \begin{aligned}
+                C_{i+1}(G) & =\varphi^{-1}\left[C\left(G / C_i(G)\right)\right]=\pi^{-1} \psi^{-1}\left[C\left(G / C_i(G)\right)\right] \\
+                           & =\pi^{-1}\left[C\left(H / C_i(H) \times K / C_i(K)\right)\right]                                           \\
+                           & =\pi^{-1}\left[C\left(H / C_i(H)\right) \times C\left(K / C_i(K)\right)\right]                             \\
+                           & =\pi_H^{-1}\left[C\left(H / C_i(H)\right)\right] \times \pi_K^{-1}\left[C\left(K / C_i(K)\right)\right]    \\
+                           & =C_{i+1}(H) \times C_{i+1}(K) .
+            \end{aligned}
+        \end{equation*}
+        Thus the inductive step is proved and $C_i(G)=C_i(H) \times C_i(K)$ for all $i$. Since $H, K$ are nilpotent, there exists $n \in \mathrm{~N}^*$ such that $C_n(H)=H$ and $C_n(K)=K$, whence $C_n(G)=H \times K=G$. Therefore, $G$ is nilpotent.
+    \end{proof}
+\end{theorem}
+
+\begin{proposition}
+    If $H$ is a proper subgroup of a nilpotent group $G$, then $H$ is a proper subgroup of its normalizer $N_{G}(H)$.
+    \begin{proof}
+        Let $C_0(G)=\langle e\rangle$ and let $n$ be the largest index such that $C_n(G)<H$; (there is such an $n$ since $G$ is nilpotent and $H$ a proper subgroup).
+        Choose $a \in C_{n+1}(G)$ with $a \notin H$. Then for every $h \in H$,
+        \begin{equation*}
+            C_n a h
+            =
+            \left(C_n a\right)\left(C_n h\right)
+            =
+            \left(C_n h\right)\left(C_n a\right)=C_n h a
+        \end{equation*}
+        in $G / C_n(G)$ since $C_n a$ is in the center of $C_{n+1}(G)$.
+        Thus $a h=h^{\prime} h a$, where $h^{\prime} \in C_n(G)<H$. Hence $a h a^{-1} \in H$ and $a \in N_G(H)$. Since $a \notin H, H$ is a proper subgroup of $N_G(H)$.
+    \end{proof}
+\end{proposition}
+
+\begin{theorem}
+    A finite group is nilpotent if and only if it is the direct product of its Sylow subgroups.
+    \begin{proof}
+        If $G$ is the direct product of its Sylow $p$-subgroups, then $G$ is nilpotent by Theorems 7.2 and 7.3.
+
+        If $G$ is nilpotent and $P$ is a Sylow $p$-subgroup of $G$ for some prime $p$, then either $P=G$ (and we are done) or $P$ is a proper subgroup of $G$. In the latter case $P$ is a proper subgroup of $N_G(P)$ by Lemma 7.4. Since $N_G(P)$ is its own normalizer by Theorem 5.11, we must have $N_G(P)=G$ by Lemma 7.4. Thus $P$ is normal in $G$, and hence the unique Sylow $p$-subgroup of $G$ by Theorem 5.9.
+
+        Let
+        $|G|=p_1{ }^{n_1} \cdots p_k{ }^{n_k}$ ( $p_i$ distinct primes, $n_i>0$ ) and let $P_1, P_2, \ldots, P_k$ be the corresponding (proper normal) Sylow subgroups of $G$. Since $\left|P_i\right|=p_i{ }^{n_i}$ for each $i$, $P_i \cap P_j=\langle e\rangle$ for $i \neq j$. By Theorem I.5.3 $x y=y x$ for every $x \in P_i, y \in P_j(i \neq j)$. It follows that for each $i, P_1 P_2 \cdots P_{i-1} P_{i+1} \cdots P_k$ is a subgroup in which every element has order dividing $p_1^{n_1} \cdots p_{i-1}^{n_{i-1}} p_{i+1}^{n_{i+1}} \cdots p_k^{n_k}$. Consequently, $P_i \cap\left(P_1 \cdots P_{i-1} P_{i+1} \cdots P_k\right)$ $=\langle e\rangle$ and $P_1 P_2 \cdots P_k=P_1 \times \cdots \times P_k$. Since $|G|=p_1{ }^{n_1} \cdots p_k{ }^{n_k}=\left|P_1 \times \cdots \times P_k\right|$ $=\left|P_1 \cdots P_k\right|$ we must have $G=P_1 P_2 \cdots P_k=P_1 \times \cdots \times P_k$.
+    \end{proof}
+\end{theorem}
+
+
+\section{Solvable Group} % Solvable Group
+
+\subsection{Commutator Subgroup} % Commutator Subgroup
+\begin{definition}
+    Let $G$ be a group, let $x, y \in G$ and let $A, B$ be nonempty subsets of $G$.
+    \begin{enumerate}
+        \item
+              Define $[x, y]=x^{-1} y^{-1} x y$, called the \textbf{commutator of $x$ and $y$}.
+
+        \item
+              Define $[A, B]=\langle[a, b] \mid a \in A, b \in B\rangle$, the group generated by commutators of elements from $A$ and from $B$.
+
+        \item
+              Define $G^{(1)}=[G, G]$, the subgroup of $G$ generated by commutators of elements from $G$, called the \textbf{commutator subgroup of $G$}.
+
+        \item
+              $G^{(n)} = [G^{(n-1)}, G^{(n-1)}]$
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    Let $G$ be a group and $N\unlhd G$.
+    \begin{enumerate}
+        \item
+              $G^{(1)} \unlhd G$
+
+        \item
+              $G/N$ is abelian if and only if $G^{(1)} \leq N$
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+    Let $G$ be a group, let $x, y \in G$ and let $H \leq G$. Then
+    \begin{enumerate}
+        \item
+              $x y=y x[x, y]$.
+
+        \item
+              $H \unlhd G$ if and only if $[H, G] \leq H$.
+
+        \item
+              $\sigma[x, y]=[\sigma(x), \sigma(y)]$ for any automorphism $\sigma$ of $G, G^{\prime}$ char $G$ and $G / G^{\prime}$ is abelian.
+
+        \item
+              $G / G^{(1)}$ is the largest abelian quotient of $G$ in the sense that if $H \unlhd G$ and $G / H$ is abelian, then $G^{\prime} \leq H$. Conversely, if $G^{\prime} \leq H$, then $H \unlhd G$ and $G / H$ is abelian.
+
+        \item
+              If $\varphi: G \rightarrow A$ is any homomorphism of $G$ into an abelian group $A$, then $\varphi$ factors through $G^{\prime}$ i.e., $G^{\prime} \leq \operatorname{ker} \varphi$ and the following diagram commutes:
+    \end{enumerate}
+\end{proposition}
+
+\subsection{Solvable}
+\begin{definition}
+    A group $G$ is \textbf{solvable} if there is a $n>0$ such that $G^{\left(n\right)}=\left\langle e \right\rangle$.
+\end{definition}
+
+\begin{theorem}
+    The finite group $G$ is solvable if and only if for every divisor $n$ of $|G|$ such that $\left(n, \frac{|G|}{n}\right)=1, G$ has a subgroup of order $n$.
+
+
+\end{theorem}
+
+\begin{theorem}
+    If $N$ and $G / N$ are solvable, then $G$ is solvable.
+    \begin{proof}
+        To see this let $\bar{G}=G / N$, let $1=N_0 \unlhd N_1 \unlhd \ldots \unlhd N_n=N$ be a chain of subgroups of $N$ such that $N_{i+1} / N_i$ is abelian, $0 \leq i<n$ and let $\overline{1}=\overline{G_0} \unlhd \overline{G_1} \unlhd \ldots \unlhd \overline{G_m}=\bar{G}$ be a chain of subgroups of $\bar{G}$ such that $\overline{G_{i+1}} / \overline{G_i}$ is abelian, $0 \leq i<m$.
+
+        By the Lattice Isomorphism Theorem there are subgroups $G_i$ of $G$ with $N \leq G_i$ such that $G_i / N=\overline{G_i}$ and $G_i \unlhd G_{i+1}, 0 \leq i<m$. By the Third Isomorphism Theorem
+        \[
+            G_{i+1} / G_i
+            \cong
+            \left(G_{i+1} / N\right) /\left(G_i / N\right)
+            =
+            \overline{G_{i+1}} / \overline{G_i}
+        \]
+        is abelian.
+        Thus
+        \[
+            1=N_0 \unlhd N_1 \unlhd \ldots \unlhd N_n=N=G_0 \unlhd G_1 \unlhd \ldots \unlhd G_m=G
+        \]
+        is a chain of subgroups of $G$ all of whose successive quotient groups are abelian. This proves $G$ is solvable.
+    \end{proof}
+\end{theorem}
+
+\section{Normal and Subnormal Series} % Normal and Subnormal Series
+\begin{definition}
+    A \textbf{subnormal series} of a group $G$ is a chain of subgroups
+    \begin{equation*}
+        G=G_0>G_1>\cdots>G_n
+    \end{equation*}
+    such that $G_{i+1}$ is normal in $G_i$ for $0 \leq i<n$.
+    The \textbf{factors} of the series are the quotient groups $G_i /G_{i+1}$.
+    The \textbf{length} of the series is the number of strict inclusions.
+    A subnormal series such that $G_i$ is normal in $G$ for all $i$ is said to be \textbf{normal}.
+\end{definition}
+\begin{definition}
+    Let $G=G_0>G_1>\cdots>G_{n}$ be a subnormal series.
+    A one-step refinement of this series is any subnormal series of the form $G=G_0>\cdots>G_{i}>N>G_{i+1}>\cdots >G_{n}$ or $G=G_0>\cdots>G_{n}>N$, where $N$ is a normal subgroup of $G_{i}$ and (if $i<n$ ) $G_{i+1}$ is normal in $N$ .
+
+    A \textbf{refinement} of a subnormal series $S$ is any subnormal series obtained from $S$ by a finite sequence of one-step refinements.
+    A refinement of $S$ is said to be \textbf{proper} if its length is larger than the length of $S$.
+
+    Two subnormal series $S$ and $T$ of a group $G$ are \textbf{equivalent} if there is a one-to-one correspondence between the nontrivial factors of $S$ and the nontrivial factors of $T$ such that corresponding factors are isomorphic groups.
+\end{definition}
+\begin{definition}
+    A subnormal series $G=G_0>G_1>\cdots>G_{n}=\langle e\rangle$ is a \textbf{composition series} if each factor $G_i / G_{i+1}$ is simple.
+
+    A subnormal series $G=G_0>G_1>\cdots>$ $G_{n}=\langle\mathrm{e}\rangle$ is a \textbf{solvable series} if each factor is abelian.
+\end{definition}
+
+
+\begin{theorem}
+    (1) Every finite group G has a composition series.
+
+    (2) Every refinement of a solvable series is a solvable series.
+
+    (3) A subnormal series is a composition series if and only if it has no proper refinements.
+
+    \begin{proof}
+        (1) Let $G_1$ be a maximal normal subgroup of $G$; then $G / G_1$ is simple by Corollary I.5.12. Let $G_2$ be a maximal normal subgroup of $G_1$, and so on. Since $G$ is finite, this process must end with $G_n=\langle e\rangle$. Thus $G>G_1>\cdots>G_n=\langle e\rangle$ is a composition series.
+
+        (2) If $G_i / G_{i+1}$ is abelian and $G_{i+1} \triangleleft H \triangleleft G_i$, then $H / G_{i+1}$ is abelian since it is a subgroup of $G_i / G_{i+1}$ and $G_i / H$ is abelian since it is isomorphic to the quotient $\left(G_i / G_{i+1}\right) /\left(H / G_{i+1}\right)$ by the Third Isomorphism Theorem I.5.10. The conclusion now follows immediately.
+
+        (iii) If $G_{i+1} \underset{\nexists}{\unlhd} \underset{\nexists}{\unlhd} G_i$ are groups, then $H / G_{i+1}$ is a proper normal subgroup of $G_i / G_{i+1}$ and every proper normal subgroup of $G_i / G_{i+1}$ has this form by Corollary I.5.12. The conclusion now follows from the observation that a subnormal series $G=G_0>G_1>\cdots>G_n=\langle e\rangle$ has a proper refinement if and only if there is a subgroup $H$ such that for some $i, G_{i+1} \underset{\nexists}{\forall} \underset{\neq G_i \text {. }}{ }$
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    (1)
+    A group $G$ is solvable if and only if it has a solvable series.
+
+    (2)
+    A finite group $G$ is solvable if and only if $G$ has a composition series whose factors are $\mathbb{Z}_p$ of order prime number $p$.
+
+    \begin{proof}
+        (1)
+        If $G$ is solvable, then the derived series $G>G^{(1)}>G^{(2)}>\cdots>G^{(n)}$ $=\langle e\rangle$ is a solvable series by Theorem 7.8.
+
+        If $G=G_0>G_1>\cdots>G_n=\langle e\rangle$ is a solvable series for $G$, then $G / G_1$ abelian implies that $G_1>G^{(1)}$ by Theorem 7.8; $G_1 / G_2$ abelian implies $G_2>G_1{ }^{\prime}>G^{(2)}$. Continue by induction and conclude that $G_2>G^{(i)}$ for all $i$; in particular $\langle e\rangle=G_n>G^{(n)}$ and $G$ is solvable.
+
+
+
+        (2)
+        A composition series with cyclic factors is a solvable series. Conversely, assume $G=G_0>G_1>\cdots>G_n=\langle e\rangle$ is a solvable series for $G$. If $G_0 \neq G_1$, let $H_1$ be a maximal normal subgroup of $G=G_0$ which contains $G_{1:}$ If $H_1 \neq G_1$, let $H_2$ be a maximal normal subgroup of $H_1$ which contains $G_1$, and so on. Since $G$ is finite, this gives a series $G>H_1>H_2>\cdots>H_k>G_1$ with each subgroup a maximal normal subgroup of the preceding, whence each factor is simple. Doing this for each pair ( $G_i, G_{i+1}$ ) gives a solvable refinement $G=N_0>N_1>\cdots>N_r=\langle e\rangle$ of the original series by Theorem 8.4 (ii). Each factor of this series is abelian and simple and hence cyclic of prime order (Exercise I.4.3). Therefore, $G>N_1>\cdots>N_r=\langle e\rangle$ is a composition series.
+    \end{proof}
+\end{theorem}
+
+
+
+\begin{lemma}[Zassenhaus]
+    Let $A_2, A_1, B_2, B_1$ be subgroups of a group G such that $A_2$ is normal in $A_1$ and $B_2$ is normal in $B_1$ .
+
+    (1) $A_2\left(A_1 \cap B_2\right)$ is a normal subgroup of $A_2(A_1 \cap B_1)$;
+
+    (2) $B_2\left(A_2 \cap B_1\right)$ is a normal subgroup of $B_2(A_1 \cap B_1)$;
+
+    (3) $A_2(A_1 \cap B_1) / A_2\left(A_1 \cap B_2\right) \cong B_2(A_1 \cap B_1) / B_2(A_2 \cap B_1)$.
+\end{lemma}
+\begin{theorem}[Schreier]
+    Any two subnormal [resp. normal] series of a group $G$ have subnormal [resp. normal] refinements that are equivalent.
+    \begin{proof}
+        Let $G=G_0>G_1>\cdots>G_n$ and $G=H_0>H_1>\cdots>H_m$ be subnormal [resp. normal] series. Let $G_{n+1}=\langle e\rangle=H_{m+1}$ and for each $0 \leq i \leq n$ consider the groups
+        \begin{equation*}
+            \begin{gathered}
+                G_i=G_{i+1}\left(G_i \cap H_0\right)>G_{i+1}\left(G_i \cap H_1\right)>\cdots>G_{i+1}\left(G_i \cap H_j\right)>G_{i+1}\left(G_i \cap H_{j+1}\right) \\
+                >\cdots>G_{i+1}\left(G_i \cap H_m\right)>G_{i+1}\left(G_i \cap H_{m+1}\right)=G_{i+1} .
+            \end{gathered}
+        \end{equation*}
+
+        For each $0 \leq j \leq m$, the Zassenhaus Lemma (applied to $G_{i+1}, G_i, H_{j+1}$, and $H_j$ ) shows that $G_{i+1}\left(G_i \cap H_{j+1}\right)$ is normal in $G_{i+1}\left(G_i \cap H_j\right)$. [If the original series were both normal, then each $G_{i+1}\left(G_i \cap H_j\right)$ is normal in $G$ by Theorem I.5.3 (iii) and Exercises I.5.2 and I.5.13.] Inserting these groups between each $G_i$ and $G_{i+1}$, and denoting $G_{i+1}\left(G_i \cap H_j\right)$ by $G(i, j)$ thus gives a subnormal [resp. normal] refinement of the series $G_0>G_1>\cdots>G_n$ :
+        \begin{equation*}
+            \begin{aligned}
+                G             & =G(0,0)>G(0,1)>\cdots>G(0, m)>G(1,0)>G(1,1)>             \\
+                G(1,2)>\cdots & >G(1, m)>G(2,0)>\cdots>G(n-1, m)>G(n, 0)>\cdots>G(n, m),
+            \end{aligned}
+        \end{equation*}
+        where $G(i, 0)=G_i$. Note that this refinement has $(n+1)(m+1)$ (not necessarily distinct) terms. A symmetric argument shows that there is a refinement of $G=H_0>$ $H_1>\cdots>H_m$ (where $H(i, j)=H_{j+1}\left(G_i \cap H_j\right)$ and $\left.H(0, j)=H_j\right)$ :
+        \begin{equation*}
+            \begin{aligned}
+                G= & H(0,0)>H(1,0)>\cdots>H(n, 0)>H(0,1)>H(1,1)>H(2,1)>\cdots> \\
+                   & H(n, 1)>H(0,2)>\cdots>H(n, m-1)>H(0, m)>\cdots>H(n, m) .
+            \end{aligned}
+        \end{equation*}
+        8. NORMAL AND SUBNORMAL SERIES
+        111
+
+        This refinement also has $(n+1)(m+1)$ terms. For each pair $(i, j)(0 \leq i \leq n$, $0 \leq j \leq m$ ) there is by the Zassenhaus Lemma 8.9 (applied to $G_{i+1}, G_i, H_{j+1}$, and $H_j$ ) an isomorphism:
+        \begin{equation*}
+            \frac{G(i, j)}{G(i, j+1)}=\frac{G_{i+1}\left(G_i \cap H_j\right)}{G_{i+1}\left(G_i \cap H_{j+1}\right)} \cong \frac{H_{j+1}\left(G_i \cap H_j\right)}{H_{j+1}\left(G_{i+1} \cap H_j\right)}=\frac{H(i, j)}{H(i+1, j)} .
+        \end{equation*}
+
+        This provides the desired one-to-one correspondence of the factors and shows that the refinements are equivalent.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[Jordan-Hölder]
+    Any two composition series of a group $G$ are equivalent.
+    Therefore every group having a composition series determines a unique list of simple groups.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Structure of Groups}
+\minitoc
+
+\section{Free Groups} % Free Groups
+
+\subsection{Words on Free Group}
+\begin{theorem}
+    Let $G$ be a group, $X$ a set and $\varphi: S \rightarrow G$ a map. Then there is a unique group homomorphism $\Phi: F(S) \rightarrow G$ such that the following diagram commutes:
+    \[
+        \begin{tikzcd}
+            S \arrow[rr,"i"] \arrow[rrdd, "\phi"'] &  & F(S) \arrow[dd, "\Phi"] \\
+            &  &    \\
+            &  & G  \\
+        \end{tikzcd}
+    \]
+\end{theorem}
+\begin{corollary}
+    Every group $G$ is a homomorphic image of a free group.
+\end{corollary}
+\begin{corollary}
+    $F(S)$ is unique up to a unique isomorphism which is the identity map on the set $S$.
+\end{corollary}
+\begin{definition}
+    The group $F(S)$ is called the \textbf{free group on the set $S$}. A group $F$ is a free group if there is some set $S$ such that $F=F(S)$ - in this case we call $S$ a set of \textbf{free generators (or a free basis) of $F$}. The cardinality of $S$ is called the \textbf{rank of the free group}.
+\end{definition}
+\begin{theorem}[Schreier]
+    Subgroups of a free group are free.
+\end{theorem}
+
+\subsection{Presentations}
+\begin{lemma}
+    Let $G$ be a group and a subset $S$ of $G$, the normal closure of $S$ (\textbf{normal subgroup generated by $S$}) is defined by the
+    \begin{equation*}
+        \bigcap_{S\subset N\unlhd G}N
+    \end{equation*}
+\end{lemma}
+
+\begin{definition}
+    Let $X$ be a set and $Y$ a set of (reduced) words on $X$.
+    A group $G$ is said to be the group determined by the \textbf{generators} $x \in X$ and \textbf{relations} $w=e (w\in Y)$ provided $G \cong G / N$, where $F$ is the free group on $X$ and $N$ the normal subgroup of $F$ generated by $Y$.
+    One says that $(X \mid Y)$ is a \textbf{presentation} of $G$.
+
+    We say $G$ is \textbf{finitely generated} if there is a presentation $(S, R)$ such that $S$ is finite. And we say $G$ is \textbf{finitely presented} if there is a presentation $(S, R)$ with both $S$ and $R$ are finite.
+
+    If $G$ is finitely presented with $S=\left\{s_1, \ldots, s_n\right\}$ and $R=\left\{w_1, \ldots, w_k\right\}$, we write:
+    \[
+        G=\left\langle s_1, s_2, \ldots, s_n \mid w_1=w_2=\cdots=w_k=1\right\rangle
+    \]
+\end{definition}
+
+\begin{theorem}[Van Dyck]
+    Let $X$ be a set, $Y$ a set of (reduced) words on $X$ and $G$ the group defined by the generators $x \in X$ and relations $w=e (w\in Y)$.
+    If $H$ is any group such that $H=\langle X \rangle$ and $H$ satisfies all the relations $w=e(w \in Y)$, then there is an epimorphism $G \rightarrow H$.
+    \begin{proof}
+        If $F$ is the free group on $X$ then the inclusion map $X \rightarrow H$ induces an epimorphism $\varphi: F \rightarrow H$ by Corollary 9.3. Since $H$ satisfies the relations $w=e(w \in Y), Y \subset \operatorname{Ker} \varphi$. Consequently, the normal subgroup $N$ generated by $Y$ in $F$ is contained in Ker $\varphi$. By Corollary $5.8 \varphi$ induces an epimorphism $F / N \rightarrow \mathbf{H} / 0$. Therefore the composition $G \cong F / N \rightarrow \mathbf{H} / 0 \cong H$ is an epimorphism.
+    \end{proof}
+\end{theorem}
+
+
+
+\begin{theorem}
+    Every finite group is finitely presented.
+
+    Proof:
+    To see this let $G=\left\{g_1, \ldots, g_n\right\}$ be a finite group.
+    Let $S=G$ and let $\pi: F(S) \rightarrow G$ be the homomorphism extending the identity map of $S$.
+    Let
+    \[
+        R_0
+        =
+        \{
+        g_ig_jg_k^{-1}
+        :
+        i, j,k=1, \ldots, n \text{ and } g_i g_j=g_k
+        \}
+    \]
+    Clearly $R_0 \leq \operatorname{ker} \pi$.
+
+    If $N$ is the normal closure of $R_0$ in $F(S)$ and $\widetilde{G}=F(S) / N$, then $N\leq \ker \pi$ and $G$ is a homomorphic image of $\widetilde{G}$ (i.e., $\pi$ factors through $N$ ). Moreover, the set of elements $\left\{\widetilde{g}_i \mid i=1, \ldots, n\right\}$ is closed under multiplication. Since this set generates $\widetilde{G}$, it must equal $\widetilde{G}$. Thus $|\widetilde{G}|=|G|$ and so $N=\operatorname{ker} \pi$ and $\left(S, R_0\right)$ is a presentation of $G$.
+
+    This illustrates a sufficient condition for $(S, R)$ to be a presentation for a given finite group $G$ :
+    (i) $S$ must be a generating set for $G$, and
+    (ii) any group generated by $S$ satisfying the relations in $R$ must have order $\leq|G|$.
+\end{theorem}
+
+
+\section{Product and Coproduct} % Direct Product
+\subsection{Direct Product}
+\begin{definition}
+    Let $\left\{G_i \mid i \in I\right\}$ be an arbitrary family of groups.
+    Define a binary operation on the Cartesian product
+    \begin{equation*}
+        \prod_{i \in I} G_i
+        =
+        \left\{\left(g_i\right)_{i\in I}: g(i) \in G_i\right\}
+    \end{equation*}
+    by
+    \begin{equation*}
+        \left(g_i\right)_{i\in I} \cdot \left(h_i\right)_{i\in I}
+        =\left(g_i \cdot h_i\right)_{i\in I}
+    \end{equation*}
+    is called the \textbf{direct product} of the family of groups $\left\{G_i \mid i \in I\right\}$.
+    \begin{remark}
+        It equivalent that
+        \begin{equation*}
+            \prod_{i \in I} G_i
+            \cong
+            \left\langle \bigsqcup_{i\in I} G_i \mid   \bigsqcup_{i\in I} R_i,g_ig_j \right\rangle
+        \end{equation*}
+        isomorphism.
+    \end{remark}
+\end{definition}
+
+
+
+\begin{proposition}
+    If $\left\{G_i \mid i \in {I}\right\}$ is a family of groups, then
+    \begin{enumerate}
+        \item
+              The direct product $\prod_{i \in I} G_i$ is a group;
+
+        \item
+              For each ${k} \in {I}$, the map $\pi_k: \prod_{i \in I} G_i \rightarrow G_k$ given by ${f} \mapsto {f}({k})$ is an epimorphism of groups.
+              The maps $\pi_k$ are called the \textbf{canonical projections} of the direct product.
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{theorem}
+    Let $\left\{G_i : i \in I\right\}$ be a family of groups and $\left\{f_i: G \rightarrow G_i \mid i \in I\right\}$ a family of group homomorphisms.
+    Then there is a unique homomorphism $f: G \rightarrow \prod_{i \in I} G_i$ such that
+    the following diagram
+    \begin{equation*}
+        \begin{tikzcd}
+            G\arrow[d,"\exists ! f"] \arrow[rd,"f_j"] & \\
+            \prod_{i \in I} G_i \arrow[r,"\pi_j"]& G_j
+        \end{tikzcd}
+    \end{equation*}
+    is commutative
+    for all $i \in {I}$ and this property determines $\prod_{i \in I} G_i$ uniquely up to isomorphism. In other words, $\prod_{i \in I} G_i$ is a product in the category of groups.
+\end{theorem}
+
+\subsection{Free Product} % Free Product
+\begin{definition}
+    Let $\left\{G_i \mid i \in I\right\}$ be an arbitrary family of groups with presentation $\left\langle S_i \mid R_i \right\rangle$. We define
+    \begin{equation*}
+        *_{i\in I} G_i
+        =
+        \left\langle \bigsqcup_{i\in I} S_i \mid   \bigsqcup_{i\in I} R_i \right\rangle
+    \end{equation*}
+\end{definition}
+
+
+
+
+\subsection{Weak Direct Product}
+\begin{definition}
+    Let $\left\{G_i \mid i \in I\right\}$ be an arbitrary family of groups.
+    The \textbf{weak direct product} of a family of groups $\left\{G_i \mid i \in I\right\}$, denoted \begin{equation*}
+        \prod_{i \in I}^w G_i
+        =
+        \left\{f \in \prod_{i \in I} G_i : f(i)=e_i \text{ for all but a finite number of } i \in I \right\}
+    \end{equation*}
+    If all the groups $G_i$ are (additive) abelian, $\prod_{i \in I}^w G_i$ is usually called the \textbf{ direct sum} and is denoted $\sum_{i \in I} G_i$.
+\end{definition}
+
+
+\begin{theorem}
+    If $\left\{G_i \mid i \in {I}\right\}$ is a family of groups, then
+
+    (1) $\prod_{i \in I}^w G_i$ is a normal subgroup of $\prod_{i \in I} G_i$
+
+    (2) for each ${k} \in {I}$, the map
+    \begin{equation*}
+        \iota_k: G_k \rightarrow \prod_{i \in I}^w G_i
+    \end{equation*}
+    given by
+    $\iota_k({a})=\left\{{a}_{i}\right\}_{i \in {I}}$, where ${a}_{i}={e}$
+    for $i \neq {k}$ and ${a}_k={a}$, is a monomorphism of groups;
+
+    (3) for each $i \in {I}, \iota_{i}\left(G_i\right)$ is a normal subgroup of $\prod_{i \in I} G_i$.
+
+    The maps $\iota_i$ are called the \textbf{canonical injections}
+\end{theorem}
+
+
+\begin{theorem}
+    Let $\left\{{A}_{i} :i \in {I}\right\}$ be a family of abelian groups (written additively).
+    If $A$ is an abelian group and
+    $\left\{f_i: {A}_{i} \rightarrow A : i \in {I}\right\}$
+    a family of homomorphisms, then there is a unique homomorphism $f: \sum_{i \in I} A_{i} \rightarrow A$ such that
+    \begin{equation*}
+        \begin{tikzcd}
+            A & \\
+            \sum\limits_{i \in I} A_i\arrow[u,"f"]  & G_j \arrow[l,"\iota_j"]\arrow[lu,"f_j"]
+        \end{tikzcd}
+    \end{equation*}
+    for all $j \in {I}$ and this property determines $\sum_{i \in I} {~A}_{i}$ uniquely up to isomorphism. In other words, $\sum_{i \in I} {~A}_{i}$ is a coproduct in the category of abelian groups.
+\end{theorem}
+
+
+
+
+\begin{theorem}
+    Let $\left\{{N}_{i} \mid i \in {I}\right\}$ be a family of normal subgroups of a group $G$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item  $G=\left\langle\bigcup_{i \in I} {N}_{i}\right\rangle$;
+        \item for each ${k} \in {I}, {N}_k \cap\left\langle\bigcup_{i \neq k} {N}_{i}\right\rangle=\langle{e}\rangle$.
+    \end{enumerate}
+    Then $G \cong \prod_{i \in I}^w {N}_{i}$, $G$ is said to be the \textbf{internal weak direct product} of the family $\left\{{N}_{i} \mid i \in {I}\right\}$.(or the \textbf{internal direct sum} if $G$ is abelian)
+\end{theorem}
+
+
+\begin{corollary}
+    If ${N}_1, {N}_2, \ldots, {N}_{{r}}$ are normal subgroups of a group G such that $G={N}_1 {N}_2 \cdots {N}_{{r}}$ and for each $1 \leq {k} \leq {r}, {N}_k \cap\left({N}_1 \cdots {N}_{{k}-1} {N}_{{k}+1} \cdots {N}_{{r}}\right)=\langle{e}\rangle$, then $G \cong {N}_1 \times {N}_2 \times \cdots \times {N}_{{r}}$.
+\end{corollary}
+
+\begin{theorem}
+    Let $\left\{N_{i} \mid i \in I\right\}$ be a family of normal subgroups of a group $G$. Then $G$ is the internal weak direct product of the family $\left\{N_{i} \mid i \in I\right\}$ if and only if every nonidentity element of G is a unique product
+    \begin{equation*}
+        n_{i_1} n_{i_2} \cdots n_{i_k}
+    \end{equation*}
+    with $i_1, \ldots, i_k$ distinct indexs of $I$ and $e \neq n_{i_s} \in N_{i_s}$ for each $s=1,2, \ldots, k$.
+\end{theorem}
+
+
+
+\section{The Krull-Schmidt Theorem} % The Krull-Schmidt Theorem
+\begin{definition}
+    A group $G$ is \textbf{indecomposable} if $G \neq\langle e\rangle$ and $G$ is not the (internal) direct product of two of its proper subgroups.
+\end{definition}
+\begin{proposition}
+    Let $G$ be group.
+    \begin{enumerate}
+        \item
+              $G$ is indecomposable if and only if $G \neq\langle e\rangle$ and $G \cong H \times K$ implies $H=\langle e\rangle$ or $K=\langle e\rangle$.
+
+        \item
+              Every simple group is indecomposable.
+
+        \item
+              However indecomposable groups need not be simple: $\mathbb{Z}, \mathbb{Z}_{p^n}$ ( $p$ prime) and $S_n$ are indecomposable but not simple.
+    \end{enumerate}
+\end{proposition}
+\begin{definition}
+    A group $G$ is said to satisfy the \textbf{ascending chain condition (ACC) on  subgroups [resp. normal subgroup]} if for every chain $G_1<G_2<\cdots$ of subgroups [resp. normal subgroups] of $G$ there is an integer $n$ such that $G_i=G_n$ for all $i \geq n$.
+
+    $G$ is said to satisfy the descending chain condition (DCC) on subgroups [resp. normal subgroup] if for every chain $G_1>G_2>\cdots$ of subgroups [resp. normal subgroup] of $G$ there is an integer $n$ such that $G_i=G_n$ for all $i\geq n$.
+\end{definition}
+
+
+\begin{theorem}[Krull-Schmidt Theorem]
+    If a group $G$ satisfies either the ascending or descending chain condition on normal subgroups, then $G$ is the direct product of a finite number of indecomposable subgroups.
+\end{theorem}
+
+
+
+
+
+\section{The Fundentmental Theorem of Finitely Generated Abelain Groups}
+
+
+

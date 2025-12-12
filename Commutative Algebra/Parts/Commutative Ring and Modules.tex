@@ -1,0 +1,1794 @@
+\chapter{Radical Ideals}% Radical Ideals
+\minitoc
+
+$R$ is a commutative ring (with identity) throughout this chapter unless otherwise stated.
+
+\section{Radical and Nilradical} % Radical and Nilradical 
+\begin{definition}
+    Let $R$ be a commutative ring.
+    If $\mathfrak{a}$ is any ideal of $R$, the ideal
+    \begin{equation*}
+        \Rad(\mathfrak{a})
+        =
+        \left\{x \in R: x^n \in \mathfrak{a} \text { for some } n \in \mathbb{Z}_{\geq 1}\right\}
+    \end{equation*}
+    is called \textbf{radical} of $\mathfrak{a}$, sometimes denoted by $\sqrt{\mathfrak{a}}$.
+    The radical of $0$ (the set of all nilpotent elements in $R$) is called \textbf{nilradical} of $R$, denoted by $\Nil\left(R\right)$.
+\end{definition}
+\begin{proposition}
+    \label{pro: operations of radical}
+    Let $R$ be a commutative ring. Then
+    \begin{enumerate}
+        \item
+              $\mathfrak{a} \subset r(\mathfrak{a})  $
+
+        \item
+
+              $r(r(\mathfrak{a}))=r(\mathfrak{a})$
+
+        \item
+              $r(\mathfrak{a b})=r(\mathfrak{a} \cap \mathfrak{b})=r(\mathfrak{a}) \cap r(\mathfrak{b})$
+
+        \item
+
+              thus $r\left(\mathfrak{a}_1\mathfrak{a}_2\cdots \mathfrak{a}_n\right)
+                  =
+                  r\left(\bigcap \mathfrak{a}_i\right)
+                  =\bigcap r\left(\mathfrak{a}_i\right)
+              $ and
+              $r(\mathfrak{a}^n)=r(\mathfrak{a})$
+
+        \item
+
+              $r(\mathfrak{a}+\mathfrak{b})=r(r(\mathfrak{a})+r(\mathfrak{b}))$
+
+        \item
+
+              if $\mathfrak{p}$ is prime in $R$,
+              $r\left(\mathfrak{p}^n\right)
+                  =r\left(\mathfrak{p}\right)
+                  =
+                  \mathfrak{p}$ for all $n>0$.
+        \item
+              $r(\mathfrak{a})=(1) \Leftrightarrow \mathfrak{a}=(1)$
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+    \label{pro: The separability between ideal and multiplicative subset}
+    Let $R$ be a commutative ring.
+    If $S$ is a multiplicative subset which is disjoint from an ideal $\mathfrak{a}$, then there exists a prime ideal $\mathfrak{p}$ which is maximal in $\mathcal{S}=\left\{\mathfrak{b}: \mathfrak{a}\subset  \mathfrak{b} \text{ and }  \mathfrak{b}\cap S =\varnothing\right\}$.
+    \begin{proof}
+        Since $S \neq \varnothing$ and every ideal in $\mathcal{S}$ is properly contained in $R$, set $\mathcal{S}$ is partially ordered by inclusion.
+        By Zorn's Lemma there is an ideal $\mathfrak{p}$ which is maximal in $\mathcal{S}$.
+
+        Let $\mathfrak{a}_1,\mathfrak{a}_2$ be ideals of $R$ such that $\mathfrak{a}_1\mathfrak{a}_2 \subset \mathfrak{p}$.
+        If $\mathfrak{a}_1 \not \subset \mathfrak{p}$ and $\mathfrak{a}_2 \not \subset \mathfrak{p}$, then each of the ideals $\mathfrak{p}+\mathfrak{a}_1$ and $\mathfrak{p}+\mathfrak{a}_2$ properly contains $\mathfrak{p}$ and hence must meet $S$.
+        Consequently, for some $p_i \in \mathfrak{p}, a_i \in \mathfrak{a}_i$.
+        \begin{equation*}
+            p_1+a_1=s_1 \in S \quad \text { and } \quad p_2+a_2=s_2 \in S
+        \end{equation*}
+        Thus $s_1 s_2=p_1 p_2+p_1 a_2+a_1 p_2+a_1 a_2 \in \mathfrak{p}+\mathfrak{a}_1 \mathfrak{a}_2 \subset \mathfrak{p}$. This is a contradiction since $s_1 s_2 \in S$ and $S \cap \mathfrak{p}=\varnothing$.
+        Therefore $\mathfrak{a}_1 \subset \mathfrak{p}$ or $\mathfrak{a}_2 \subset \mathfrak{p}$, whence $\mathfrak{p}$ is prime.
+    \end{proof}
+\end{proposition}
+
+
+\begin{theorem}
+    \label{thm: radical}
+    Let $R$ be a commutative rng and an ideal $\mathfrak{a}$.
+    \begin{enumerate}
+        \item
+              If $\pi: R \rightarrow R / \mathfrak{a}$ is the canonical projection, then
+              $\Rad(\mathfrak{a})
+                  =
+                  \pi^{-1}\left(\Nil\left(R / \mathfrak{a}\right)\right)$
+
+        \item
+              The radical of an ideal $\mathfrak{a}$ is the intersection of the prime ideals which contain $\mathfrak{a}$, that is,
+              \begin{equation*}
+                  \Rad\left(\mathfrak{a}\right)
+                  =
+                  \bigcap_{\substack{\mathfrak{a}\subset\mathfrak{p}
+                          \\
+                          \mathfrak{p} \text{ is prime}}}
+                  \mathfrak{p}
+              \end{equation*}
+    \end{enumerate}
+    \begin{proof}
+        It is clear that
+        \begin{equation*}
+            \Rad\left(\mathfrak{a}\right)
+            \subset
+            \bigcap_{\substack{\mathfrak{a}\subset\mathfrak{p}
+                    \\
+                    \mathfrak{p} \text{ is prime}}}
+            \mathfrak{p}
+            :=
+            \tilde{\mathfrak{p}}
+        \end{equation*}
+        by \cref{cor: Prime ideal}.
+        If $ S = \tilde{\mathfrak{p}}-\Rad\left(\mathfrak{a}\right)$ is nonempty, whence is a multiplicative subset of $R$ (verify that $x,y\in S \Rightarrow xy \in S$) and disjoint from $\Rad\left(\mathfrak{a}\right)$, there exist a prime ideal $\mathfrak{p}^\prime$ that contains $\Rad\left(\mathfrak{a}\right)$ and disjoint from $S$ by \ref{pro: The separability between ideal and multiplicative subset}. But $\tilde{\mathfrak{p}}\subset \mathfrak{p}^\prime$ by the definition of $\tilde{\mathfrak{p}}$, this is a contradiction.
+    \end{proof}
+\end{theorem}
+
+\begin{proposition}
+    If $R$ is a commutative ring with identity $\neq 0$, then $R^{\times}+\Nil\left(R\right)\subset R^{\times}$.
+\end{proposition}
+
+
+
+
+\section{Ideals quotient} % Ideals quotient
+\begin{definition}
+    If $\mathfrak{a}, \mathfrak{b}$ are ideals in a commutative ring $R$, their \textbf{ideal quotient} is
+    \begin{equation*}
+        (\mathfrak{a}: \mathfrak{b})
+        =
+        \{x \in R: x \mathfrak{b} \subseteq \mathfrak{a}\}
+    \end{equation*}
+    which is an ideal.
+
+    In particular,  $\left(0: \mathfrak{b}\right)$ is the \textbf{annihilator} of $\mathfrak{b}$.
+
+    In this notation the set of all zero-divisors in $R$ is
+    \begin{equation*}
+        D=\bigcup_{x \neq 0} \operatorname{Ann}(x)
+    \end{equation*}
+
+    If $\mathfrak{b}$ is a principal ideal $(x)$, we shall write $(\mathfrak{a}: x)$ in place of $(\mathfrak{a}:(x))$.
+\end{definition}
+
+\begin{proposition}
+    Let $R$ be a commutative ring. Then
+
+    (1) $\mathfrak{a} \subseteq(\mathfrak{a}: \mathfrak{b})$
+
+    (2) $(\mathfrak{a}: \mathfrak{b}) \mathfrak{b} \subseteq \mathfrak{a}$
+
+    (3) $((\mathfrak{a}: \mathfrak{b}): \mathfrak{c})=(\mathfrak{a}: \mathfrak{b} \mathfrak{c})=((\mathfrak{a}: \mathfrak{c}): \mathfrak{b})$
+
+    (4) $\left(\bigcap_i \mathfrak{a}_i: \mathfrak{b}\right)=\bigcap_i\left(\mathfrak{a}_i: \mathfrak{b}\right)$
+
+    (5) $\left(\mathfrak{a}: \sum_i \mathfrak{b}_i\right)=\bigcap_i\left(\mathfrak{a}: \mathfrak{b}_i\right)$.
+\end{proposition}
+
+
+
+\chapter{Fractions and Localization}% Fractions and Localization
+
+\minitoc
+
+
+\section{Contraction and extension of ideal} % Contraction and extension
+\begin{definition}
+    Let $R$ be a ring and $f:A \rightarrow B$ be a ring homomorphism, \begin{enumerate}
+        \item
+              the \textbf{extension} of ideal $\mathfrak{a}$ of $A$ is the ideal generated by $f\left(\mathfrak{a}\right)$ in $B$, denoted by $\mathfrak{a}^e$.
+
+        \item
+              the \textbf{contraction} of $\mathfrak{b}$ is $f^{-1}\left(\mathfrak{b}\right)$, denoted by $\mathfrak{b}^c$.
+    \end{enumerate}
+    Especially if $A$ be a subring of $B$ and $i: A\rightarrow B$, the contraction of ideal of $\mathfrak{b}$ of $B$ is $A\cap \mathfrak{b}$.
+\end{definition}
+
+\begin{proposition}
+    \label{pro: Contraction and extension}
+    .
+    \begin{enumerate}
+        \item $\mathfrak{a} \subseteq \mathfrak{a}^{e c}, \mathfrak{b} \supseteq \mathfrak{b}^{c e}$;
+        \item  $\mathfrak{b}^c=\mathfrak{b}^{\text {cec }}, \mathfrak{a}^e=\mathfrak{a}^{\text {ece }}$;
+        \item  If $\mathcal{C}$ is the set of all contracted ideals in $A$ and if $\mathcal{E}$ is the set of all extended ideals in $B$, then $\mathcal{C}=\left\{\mathfrak{a} \mid \mathfrak{a}^{e c}=\mathfrak{a}\right\}, \mathcal{E}=\left\{\mathfrak{b} \mid \mathfrak{b}^{c e}=\mathfrak{b}\right\}$, and $\mathfrak{a} \mapsto \mathfrak{a}^e$ is a bijective map, whose inverse is $\mathfrak{b} \mapsto \mathfrak{b}^c$.
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+    \label{pro: Contraction and extension and other operations}
+    .
+    \begin{equation*}
+        \begin{array}{cc}
+            \left(\mathfrak{a}_1+\mathfrak{a}_2\right)^e=\mathfrak{a}_1^e+\mathfrak{a}_2^e                         & \left(\mathfrak{b}_1+\mathfrak{b}_2\right)^c \supseteq \mathfrak{b}_1^c+\mathfrak{b}_2^c,              \\
+            \left(\mathfrak{a}_1 \cap \mathfrak{a}_2\right)^e \subseteq \mathfrak{a}_1^e \cap \mathfrak{a}_2^e     & \left(\mathfrak{b}_1 \cap \mathfrak{b}_2\right)^c=\mathfrak{b}_1^c \cap \mathfrak{b}_2^c,              \\
+            \left(\mathfrak{a}_1 \mathfrak{a}_2\right)^e=\mathfrak{a}_1^e \mathfrak{a}_2^e                         & \left(\mathfrak{b}_1 \mathfrak{b}_2\right)^c \supseteq \mathfrak{b}_1^c \mathfrak{b}_2^c,              \\
+
+            \left(\mathfrak{a}_1: \mathfrak{a}_2\right)^e \subseteq\left(\mathfrak{a}_1^e: \mathfrak{a}_2^e\right) & \left(\mathfrak{b}_1: \mathfrak{b}_2\right)^c \subseteq\left(\mathfrak{b}_1^c: \mathfrak{b}_2^c\right) \\
+            \Rad(\mathfrak{a})^e \subseteq \Rad\left(\mathfrak{a}^e\right)                                         & \Rad(\mathfrak{b})^c=\Rad\left(\mathfrak{b}^c\right)
+        \end{array}
+    \end{equation*}
+
+    if $\mathfrak{b}$ is a prime ideal in $B$, then so $\mathfrak{b}^c$.
+
+    The set $\mathcal{C}$ is closed under the other three operations, and $\mathcal{E}$ is closed under sum and product.
+
+
+
+\end{proposition}
+
+
+\section{Rings of Quotient} % Rings of Quotient
+$A$ is a commutative ring with identity throughout this section unless otherwise stated.
+
+\begin{definition}
+    Let $A$ be a commutative ring. A subset $S$ called a \textbf{multiplicative subset} of $A$ if $S$ is a submonoid of $\left(A, \times \right)$.
+    \begin{remark}
+        In general, we always assume that $0 \notin S$.
+    \end{remark}
+\end{definition}
+
+
+\begin{definition}
+    \label{thm: ring of quotients }
+    Let $S$ be a multiplicative subset of $A$ and
+    \begin{enumerate}
+        \item
+              The relation defined on the set ${A} \times {S}$ by
+              \begin{equation*}
+                  (a, s) \sim \left(a^{\prime}, s^{\prime}\right) \Leftrightarrow s_1\left(as^{\prime}-a^{\prime}s\right)=0 \text { for some } s_1 \in S
+              \end{equation*}
+              is an equivalence relation and the equivalence class containing the element $(a, s)$ is denoted by ${a} / {s}$.
+        \item
+              ${S}^{-1} {R}$ is a commutative ring with identity $1/1$, where addition and multiplication are defined by
+              \begin{equation*}
+                  {r} / {s}+{r}^{\prime} / {s}^{\prime}=\left({rs}^{\prime}+{r}^{\prime} {s}\right) / {ss}^{\prime} \quad \text { and } \quad({r} / {s})\left({r}^{\prime} / {s}^{\prime}\right)={rr}^{\prime} / {ss}^{\prime}
+              \end{equation*}
+              is called the \textbf{ring of fractions} of $R$ by $S$.
+    \end{enumerate}
+    \begin{remark}
+        The map $\varphi_{S}: A \rightarrow {S}^{-1} {A}$ given by $a\mapsto a / 1$ is a well-defined homomorphism of rings and $\varphi\left(S\right) \subset \left({S}^{-1} {A}\right)^{\times}$.
+    \end{remark}
+\end{definition}
+\begin{theorem}[Universal property]
+    Let $\mathcal{C}$ be the category
+    \begin{itemize}
+        \item
+              whose objects are ring-homomorphisms (commutative rings with identity)
+              \begin{equation*}
+                  f: A \rightarrow B
+              \end{equation*}
+              such that for every $s \in S$, the element $f(s)$ is invertible in $B$.
+        \item
+              If $f: A \rightarrow B$ and $f^{\prime}: A \rightarrow B^{\prime}$ are two objects of $\mathcal{C}$, a morphism $g$ of $f$ into $f^{\prime}$ is a homomorphism
+              \begin{equation*}
+                  g: B \rightarrow B^{\prime}
+              \end{equation*}
+              making the diagram commutative:
+    \end{itemize}
+    We have that $\varphi_S: A \rightarrow S^{-1}A$ is a universal object in this category $\mathcal{C}$.
+\end{theorem}
+
+
+
+
+
+\begin{theorem}
+    Let $S$ be a multiplicative subset of $A$.
+    \begin{enumerate}
+        \item
+              If $S$ contains no zero divisors, then $\varphi_{{S}}$ is a monomorphism.
+        \item
+              If $A$ has no zero divisors and $0 \notin {S}$, then ${S}^{-1} {A}$ is an integral domain.
+
+        \item
+              If $S\subset A^\times$, then $\varphi_{{S}}$ is an isomorphism.
+    \end{enumerate}
+\end{theorem}
+
+
+
+
+\begin{definition}
+    Let $A$ be a commutative ring and $S$ be the set of all nonzero elements of $A$ that are not zero divisors, then $S^{-1} A$ is called the \textbf{complete ring of quotients} of the ring $A$.
+
+    The complete ring of quotients of an integral domain $A$ is its \textbf{quotient field}, denoted by $\Frac(A)$.
+\end{definition}
+
+
+
+
+
+
+
+
+
+\subsection{Ideals in ring of fractions}
+% Ideals in ring of fractions
+
+\begin{proposition}
+    Let $S$ be a multiplicative subset of a commutative ring $A$ and $\varphi_S:A\rightarrow S^{-1}A$
+    \begin{enumerate}
+        \item
+              If $\mathfrak{a}$ is an ideal in $A$, then $S^{-1} \mathfrak{a}=\left\{a / s \mid a \in \mathfrak{a} ; s \in S\right\}=\mathfrak{a} S^{-1}A=\mathfrak{a}^e$.
+        \item
+              If $\mathfrak{b}$ is an ideal in $S^{-1}A$, then $\varphi_S^{-1}\left(\mathfrak{b}\right)$ coincides with $\mathfrak{b}^c$
+        \item
+              let $\mathfrak{a}$ be an ideal of $A$, then  $S^{-1} \mathfrak{a}=S^{-1} A$ if and only if $S \cap \mathfrak{a} \neq \varnothing$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+    \begin{equation*}
+        S^{-1}\left(I+J\right)=S^{-1}I+S^{-1}J
+    \end{equation*}
+    \begin{equation*}
+        S^{-1}\left(IJ\right)=\left(S^{-1}I\right)\left(S^{-1}J\right)
+    \end{equation*}
+    \begin{equation*}
+        S^{-1}\left(I\cap J\right)=S^{-1}I\cap S^{-1}J
+    \end{equation*}
+\end{corollary}
+
+\begin{theorem}
+    Let $S$ be a multiplicative subset of a commutative ring $A$ with identity and let $I$ be an ideal in $A$.
+    \begin{enumerate}
+        \item
+              $J^{ce}=J$ for all ideals $J$ of $S^{-1}A$.
+              In other words every ideal in $S^{-1} A$ is of the form $S^{-1} I$ for some ideal $I$ in $A$.
+              Thus the set $\mathcal{E}$ consists of all ideals of $S^{-1}A$ by \ref{pro: Contraction and extension}.
+
+        \item
+              If $\mathfrak{p}$ is a prime ideal in $A$ and  $S \cap \mathfrak{p}=\varnothing$, then $S^{-1} \mathfrak{p}$ is a prime ideal in $S^{-1} A$
+        \item
+              there is a one-to-one correspondence between the set  $\mathcal{U}=\left\{\mathfrak{p}: \mathfrak{p} \text{ is prime and disjoint from } S\right\}$ and the set $\mathcal{V}=\left\{S^{-1}\mathfrak{p}: S^{-1}\mathfrak{p} \text{ is prime in } S^{-1} R\right\}$, given by $\mathfrak{p} \mapsto S^{-1} \mathfrak{p}$.
+    \end{enumerate}
+    \begin{proof}
+        Let $I=\varphi_S^{-1}(J)$, then $I^e=J^{ce}\subset J$, whence $S^{-1} I \subset J$.
+        Conversely, if $r / s \in J$, then $\varphi_S(r)=r s / s =(r / s)\left(s^2 / s\right) \in J$, whence $r \in \varphi_S^{-1}(J)=I$.
+        Thus $r / s \in S^{-1} I$ and hence $J \subset S^{-1} I$.
+    \end{proof}
+\end{theorem}
+
+
+
+
+
+
+
+\section{Localization and Local rings}
+% Localization and Local rings
+\begin{definition}
+    Let $A$ be a commutative ring with identity, $\mathfrak{p}$ a prime ideal of $A$ and multiplicative subset $S=A-\mathfrak{p}$.
+    The ring of quotients $S^{-1} A$ is called the \textbf{localization of $A$ at $\mathfrak{p}$} and is denoted $A_\mathfrak{p}$.
+    If $\mathfrak{a}$ is an ideal in $A$, then the ideal $\mathfrak{a}^e=S^{-1} \mathfrak{a}$ in $A _\mathfrak{p}$.
+    \begin{remark}
+        We always identify $A$ with its image $\varphi_S(A)$ in $A_{\mathfrak{p}}$ thus $A$ can be considered as a subring of $A_{\mathfrak{p}}$. In this case, the extension ideal $\mathfrak{a}^e= S^{-1}\mathfrak{a}=\mathfrak{a}A_\mathfrak{p}$.
+    \end{remark}
+\end{definition}
+
+\begin{theorem}
+    Let $\mathfrak{p}$ be a prime ideal in a commutative ring $A$ with identity and localization $A_{\mathfrak{p}}$.
+    \begin{enumerate}
+        \item
+              There is a one-to-one correspondence between the set $\left\{\mathfrak{q}: \mathfrak{q} \text{ is prime and contained in }\mathfrak{p} \right\}$ and the set $\left\{S^{-1}\mathfrak{q}: S^{-1}\mathfrak{q} \text{ is prime in } A_\mathfrak{p}\right\}$, given by $\mathfrak{q} \mapsto S^{-1}\mathfrak{q}$;
+        \item
+              The ideal $S^{-1}{\mathfrak{p}}$ is the unique maximal ideal of $A_{\mathfrak{p}}$.
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{definition}
+    A \textbf{local ring} is a commutative ring with identity which has a unique maximal ideal.
+\end{definition}
+
+\begin{theorem}
+    The following conditions are equivalent.
+    \begin{enumerate}
+        \item
+              $R$ is a local ring;
+        \item
+              all nonunits of $R$ are contained in some ideal $M \neq R$;
+        \item
+              the nonunits of $R$ form an ideal.
+
+        \item for all $r, s \in R$, $r + s = 1_R$ implies $r$ or $s$ is a unit.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+    Every nonzero homomorphic image of a local ring is local.
+\end{proposition}
+
+
+
+
+\chapter{Chain Condition} % Chain Condition
+\label{Chain Condition}
+\section{}
+\begin{definition}
+    Let $R$ be a ring.
+    \begin{enumerate}
+        \item
+              A $R$-module $M$ is said to satisfy the \textbf{ascending chain condition (ACC) on submodules} (or to be Noetherian) if for every chain $M_1 \subset M_2 \subset M_3 \subset \cdots$ of submodules of $M$, there is an integer n such that $M_{i}=M_{n}$ for all $i \geq n$.
+
+        \item
+              The ring $R$ is \textbf{left [resp. right] Noetherian} if $R$ satisfies ACC on submodules as a left [resp. right] $R$-module.
+              It equivalent that $R$ satisfies the ascending chain condition on left [resp. right] ideals.
+              $R$ is said to be \textbf{Noetherian} if $R$ is both left and right Noetherian.
+
+        \item
+              A module $N$ is said to satisfy, the \textbf{descending chain condition (DCC) on submodules} (or to be Artinian) if for every chain $N_1 \supset N_2 \supset N_3 \supset \cdots$ of submodules of $N$, there is an integer $m$ such that $N_{i}=N_m$ for all $i \geq m$.
+
+        \item
+              $R$ is \textbf{left [resp. right] Artinian } if $R$ satisfies DCC on submodules as a left [resp. right] $R$-module.
+              It equivalent that $R$ satisfies the descending chain condition on left [resp. right] ideals.
+              $R$ is said to be \textbf{Artinian} if $R$ is both left and right Artinian.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Let $R$ be a ring, A module $M$ is said to satisfy the \textbf{maximum condition} [resp. minimum condition] on submodules if every nonempty set of submodules of $M$ contains a maximal [resp. minimal] element (with respect to set theoretic inclusion).
+\end{definition}
+
+\begin{proposition}
+    We have
+    \begin{enumerate}
+        \item
+              Division ring $D$ is both Noetherian and Artinian.
+
+        \item
+              Every commutative principal ideal
+              ring is Noetherian  special cases include $\mathbb{Z}$, $\mathbb{Z}_n$ and $F[x]$ with $F$ a field.
+        \item The matrix ring $R\left(D\right) $ over a division ring $D$ is both Noetherian and Artinian.
+    \end{enumerate}
+\end{proposition}
+
+\subsection{Equivalent Condition of Chain Condition}
+% Equivalent Condition of Chain Condition
+\begin{theorem}
+    \label{thm: chain condition and m condition}
+    A module $A$ satisfies the ascending [resp. descending] chain condition on submodules if and only if $A$ satisfies the maximal [resp. minimal] condition on submodules.
+    \begin{proof}
+        Suppose $A$ satisfies the minimal condition on submodules and $A_1 \supset A_2 \supset \cdots$ is a chain of submodules.
+        Then the set
+        $\left\{A_i \mid i \geq 1\right\}$
+        has a minimal element, say $A_n$. Consequently, for $i \geq n$ we have $A_n \supset A_i$ by hypothesis and $A_n \subset A_i$ by minimality, whence $A_i=A_n$ for each $i \geq n$. Therefore, $A$ satisfies the descending chain condition.
+
+        Conversely suppose $A$ satisfies the descending chain condition, and $S$ is a nonempty set of submodules of $A$. Then there exists $B_0 \in S$. If $S$ has no minimal element, then for each submodule $B$ in $S$ there exists at least one submodule $B^{\prime}$ in $S$ such that $B \varsupsetneq  B^{\prime}$.
+        Thus there is a sequence $B_0, B_1, \ldots$ such that $B_0 \varsupsetneq B_1 \varsupsetneq B_2 \varsupsetneq  \cdots $.
+        This contradicts the descending chain condition. Therefore, $S$ must have a minimal element, whence $A$ satisfies the minimum condition.
+
+        The proof for the ascending chain and maximum conditions is analogous.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    Let $R$ be a ring and $0 \rightarrow A \xrightarrow{f} B \xrightarrow{g} C \rightarrow 0$ be a short exact sequence of $R$-modules.
+    Then $B$ satisfies the ACC [resp. DCC] on submodules if and only if $A$ and $C$ satisfy it.
+    \begin{proof}
+        Sufficiency.
+        If $B$ satisfies the ascending chain condition, then so does its submodule $f(A)$. By exactness $A$ is isomorphic to $f(A)$, whence $A$ satisfies the ascending chain condition. If $C_1 \subset C_2 \subset \cdots$ is a chain of submodules of $C$, then $g^{-1}\left(C_1\right) \subset g^{-1}\left(C_2\right) \subset \cdots$ is a chain of submodules of $B$. Therefore, there is an $n$ such that $g^{-1}\left(C_i\right)=g^{-1}\left(C_n\right)$ for all $i \geq n$. Since $g$ is an epimorphism by exactness, it follows that $C_i=C_n$ for all $i \geq n$. Therefore, $C$ satisfies the ascending chain condition.
+
+        Necessity.
+        Suppose $A$ and $C$ satisfy the ascending chain condition and $B_1 \subset B_2 \subset \cdots$ is a chain of submodules of $B$. For each $i$ let
+        \begin{equation*}
+            A_i=f^{-1}\left(f(A) \cap B_i\right) \quad \text { and } \quad C_i=g\left(B_i\right)
+        \end{equation*}
+        Let $f_i=\left.f\right|_{A_i}$ and $g_i=\left.g\right|_{B_i}$.
+        Verify that for each $i$ the following sequence is exact:
+        \begin{equation*}
+            0 \rightarrow A_i \xrightarrow{f_i} B_i \xrightarrow{g_i} C_i \rightarrow 0 .
+        \end{equation*}
+        Verify that $A_1 \subset A_2 \subset \cdots$ and $C_1 \subset C_2 \subset \cdots$. By hypothesis there exists an integer $n$ such that $A_i=A_n$ and $C_i=C_n$ for all $i \geq n$. For each $i \geq n$ there is a commutative diagram with exact rows:
+        \begin{equation*}
+            \begin{tikzcd}
+                0 \arrow[r,] & A_n\arrow[r,"f_n"] \arrow[dd,"\id"]& B_n \arrow[r,"g_n"]\arrow[dd,"i"]& C_n\arrow[r]\arrow[dd,"\id"]& 0\\
+                &&&&\\
+                0 \arrow[r,]& A_i\arrow[r,"f_i"] & B_i \arrow[r,"g_i"]& C_i\arrow[r,]& 0\\
+            \end{tikzcd}
+        \end{equation*}
+        The Short Five Lemma implies that the inclusion map $i$ is a isomorphism, thus be the identity map, whence $B$ satisfies the ascending chain condition.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    \label{cor: chain condition on submodules of direct sum }
+    Let $R$ be a ring, we have
+    \begin{enumerate}
+        \item
+              If $M_1$ is a submodule of a module $M$ , then $M$ satisfies the ascending [resp. descending] chain condition if and only if $M_1$ and $M / M_1$ satisfiy it.
+
+        \item
+              If $M_1, \ldots, M_n$ are modules, then the direct sum $M_1 \oplus M_2 \oplus \cdots \oplus M_n$ satisfies the ascending [resp. descending] chain condition on submodules if and only if each $A_i$ satisfies it.
+    \end{enumerate}
+\end{corollary}
+
+
+\begin{theorem}
+    \label{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring}
+    If $R$ is a left [resp. right] Noetherian [resp. Artinian] ring, then every finitely generated left [resp. right]  $R$-module $M$ is Noetherian [resp. Artinian].
+    \begin{proof}
+        If $M$ is finitely generated, then by \ref{cor: Every unitary module $M$ over a ring $R$ with identity is the homomorphic image of a free unitary $R$-module $F$.}
+        there is a free unitary $R$-module $F$ with a finite basis and an epimorphism $\pi: F \rightarrow M$. Since $F$ is a direct sum of a finite number of copies of $R$ by \ref{thm: Free unitary R-module}, $F$ is left Noetherian [resp. Artinian], whence $M \cong F / \Ker \pi$ is Noetherian [resp. Artinian] by \ref{cor: chain condition on submodules of direct sum }.
+    \end{proof}
+\end{theorem}
+\begin{theorem}
+    \label{thm: equivalent conditions of Noetherian modules}
+    A module
+    $M$ is Noetherian if and only if every submodule of $M$ is finitely generated.
+    In particular, a commutative ring $R$ is Noetherian if and only if every ideal of $R$ is finitely generated.
+\end{theorem}
+
+\section{Normal series and Composition Series of Modules} % Normal series and Composition Series of Modules
+\begin{definition}
+    Let $R$ be a ring and a $R$-module $A$.
+    \begin{enumerate}
+        \item
+              A \textbf{normal series} for $A$ is a chain of submodules: $A=A_0 \supset A_1 \supset$ $A_2 \supset \cdots \supset A_n$. The factors of the series are the quotient modules
+              \begin{equation*}
+                  A_i / A_{i+1} \quad(i=0,1, \ldots, n-1) .
+              \end{equation*}
+              The \textbf{length} of the normal series is the number of proper inclusions ( $=$ number of nontrivial factors).
+
+        \item
+              A \textbf{refinement} of the normal series $A=A_0 \supset A_1 \supset \cdots \supset A_n$ is a normal series obtained by inserting a finite number of additional submodules between the given ones. A \textbf{proper refinement} is one which has length larger than the original series.
+
+        \item
+              Two normal series are \textbf{equivalent} if there is a one-to-one correspondence between the nontrivial factors such that corresponding factors are isomorphic modules. Thus equivalent series necessarily have the same length.
+
+        \item
+              A \textbf{composition series} for $A$ is a normal series $A=A_0 \supset A_1 \supset A_2 \supset \cdots \supset A_n=0$ such that each factor $A_k / A_{k+1}$ $(k=0,1, \ldots, n-1)$ is a module with no proper nonempty submodules.
+    \end{enumerate}
+\end{definition}
+\begin{theorem}
+    \label{thm: Uniqueness of composition series of modules}
+    Any two normal series of a module $A$ have refinements that are equivalent.
+    Any two composition series of $A$ are equivalent.
+\end{theorem}
+
+\begin{theorem}
+    \label{thm: Existence of composition series of modules}
+    A nonzero module  $M$ has a composition series if and only if $M$ satisfies both the ACC and DCC on submodules.
+    \begin{proof}
+        $(\Rightarrow)$ Suppose $A$ has a composition series $S$ of length $n$. If either chain condition fails to hold, one, can find submodules
+        \begin{equation*}
+            A=A_0 \supsetneq A_1 \supsetneq A_2 \supsetneq \cdots \supsetneq A_n \supsetneq A_{n+1}
+        \end{equation*}
+        which form a normal series $T$ of length $n+1$. By \ref{thm: Uniqueness of composition series of modules}, $S$ and $T$ have refinements that are equivalent. This is a contradiction since equivalent series have equal length. For every refinement of the composition series $S$ has the same length $n$ as $S$, but every refinement of $T$ necessarily has length at least $n+1$. Therefore, $A$ satisfies both chain conditions.
+
+        $(\Leftarrow)$ If $B$ is a nonzero submodule of $A$, let $S(B)$ be the set of all proper submodules $C$ of $B$.
+        Also define $S(0)=\{0\}$.
+        For each $B$ there is a maximal element $B^{\prime}$ of $S(B)$ by \ref{thm: chain condition and m condition}. Let $S$ be the set of all submodules of $A$ and define a map $f: S \rightarrow S$ by $f(B)=B^{\prime}$
+
+        Let $A_i=f^{(i)}\left(A\right)$, then $A \supset A_1 \supset A_2 \supset \cdots$ is a descending chain by construction, whence for some $n, A_i=A_n$ for all $i \geq n$.
+        Since $A_{n+1}=f\left(A_n\right)$, the definition of $f$ shows that $A_{n+1}=A_n$ only if $A_n=0=A_{n+1}$. Let $m$ be the smallest integer such that $A_m=0$. Then $m \leq n$ and $A_k \neq 0$ for all $k<m$. Furthermore for each $k<m$, $A_{k+1}$ is a maximal submodule of $A_k$ such that $A_k \supsetneq A_{k+1}$. Consequently, each $A_k / A_{k+1}$ is nonzero and has no proper submodules by \ref{thm: The Fourth or Lattice Isomorphism Theorem of Modules}. Therefore, $A \supset A_1 \supset \cdots \supset A_m=0$ is a composition series for $A$.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    If $D$ is a division ring, then the matrices ring $M_{n} \left(D\right)$ of all $n \times n$ matrices over $D$ is both Artinian and Noetherian.
+    \begin{proof}
+        It suffices to show that $R=M_{n} \left(D\right)$ has a composition series of left ideal and a composition of right ideals.
+        Let left ideals
+        \begin{equation*}
+            R_i=Re_1+Re_2+\ldots+Re_i
+        \end{equation*}
+        and right ideals
+        \begin{equation*}
+            R_i^\prime=e_1R+e_2R+\ldots+e_iR
+        \end{equation*}
+        Verify that each $R_i$ is a left ideal of $R$ and that $R_i / R_{i-1} \cong R e_i$ which has no nonempty proper submodules , whence $R=R_n \supset R_{n-1} \supset \cdots \supset R_1 \supset R_0=0$ is a composition series of left ideals.
+    \end{proof}
+\end{corollary}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Integral}
+\section{Rings Extensions} % Rings Extensions
+\begin{definition}
+    Let $S$ be a commutative ring with identity and $R$ a subring of $S$ containing $1_S$.
+
+    \begin{enumerate}
+        \item
+              Then $S$ is said to be an \textbf{extension ring} of $R$.
+        \item
+              An element $s\in S$ is said to be \textbf{integral} over $R$ if
+              $s$ is a root of  a monic polynomial in $R[x]$.
+        \item
+              If every element of $S$ is integral over $R$, $S$ is said to be an \textbf{integral extension} of $R$.
+        \item
+              The \textbf{integral closure} of $R$ in $S$ is the set of elements of $S$ that are integral over $R$.
+        \item
+              The ring $R$ is said to be \textbf{integrally closed} in $S$ if $R$ is equal to its integral closure in $S$.
+
+              The integral closure of an integral domain $R$ in its field of fractions is called the \textbf{normalization} of $R$. An integral domain is called integrally closed or normal if it is integrally closed in its field of fractions.
+    \end{enumerate}
+    \begin{remark}
+        If follows from \cref{cor: integral extensions} that the integral closure of $R$ in $S$ is a subring of $S$ containing $R$.
+    \end{remark}
+\end{definition}
+
+
+
+\begin{theorem}
+    \label{thm: integral}
+    Let $S$ be an extension ring of $R$ and $s \in S$. Then the following conditions are equivalent.
+    \begin{enumerate}
+        \item
+              $s$ is integral over $R$
+        \item
+              Subring $R[s]$ is a finitely generated $R$-module
+        \item
+              There is a subring $T$ that $R[s]\subset T\subset S$, which is finitely generated as an $R$-module;
+        \item
+              There is a faithful $R[s]$-submodule $M$ which is finitely generated as an $R$-module.
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{corollary}
+    \label{cor: integral extensions}
+    Let $S$ be an extension ring of $R$. Then
+    \begin{enumerate}
+        \item
+              If $S$ is finitely generated as an $R$-module, then $S$ is an integral extension of $R$.
+        \item
+              If $s_1, \ldots, s_{t} \in S$ are integral over $R$, then $R\left[s_1, \ldots, s_{t}\right]$ is a finitely generated $R$-module and an integral extension ring of $R$.
+        \item
+              If $T$ is an integral extension ring of $S$ and $S$ is an integral extension ring of $R$, then $T$ is an integral extension ring of $R$ .
+    \end{enumerate}
+    \begin{proof}
+        It immediately follows from \ref{thm: integral}
+    \end{proof}
+    \begin{proof}
+        We have a tower of extension rings:
+        \begin{equation*}
+            R \subset R\left[s_1\right] \subset R\left[s_1, s_2\right] \subset \cdots \subset R\left[s_1, \ldots, s_t\right]
+        \end{equation*}
+        For each $i, s_i$ is integral over $R$ and hence integral over $R\left[s_1, \ldots, s_{i-1}\right]$. Since $R\left[s_1, \ldots, s_i\right]=R\left[s_1, \ldots, s_{i-1}\right]\left[s_i\right], R\left[s_1, \ldots, s_i\right]$ is a finitely generated module over $R\left[s_1, \ldots, s_{i-1}\right]$ by \ref{thm: integral}.
+        Thus $R\left[s_1, \ldots, s_n\right]$ is a finitely generated $R$-module, then $R\left[s_1, \ldots, s_n\right]$ is an integral extension ring of $R$ by 1.
+    \end{proof}
+    \begin{proof}
+        $T$ is obviously an extension ring of $R$.
+        If $t \in T$, then $t$ is integral over $S$ and therefore the root of some monic polynomial $f \in S[x]$, say $f=\sum_{i=0}^n s_i x^i$. Since $f$ is also a polynomial over the ring $R\left[s_0, s_1, \ldots, s_{n-1}\right], t$ is integral over $R\left[s_0, \ldots, s_{n-1}\right]$.
+
+        By \ref{thm: integral} $R\left[s_0, \ldots, s_{n-1}\right][t]$ is a finitely generated $R\left[s_0, \ldots, s_{n-1}\right]$-module.
+        But since $S$ is integral over $R, R\left[s_0, \ldots, s_{n-1}\right]$ is a finitely generated $R$-module by 2. Then
+        \begin{equation*}
+            R\left[s_0, \ldots, s_{n-1}\right][t]=R\left[s_0, \ldots, s_{n-1}, t\right]
+        \end{equation*}
+        is a finitely generated $R$-module. Since $R[t] \subset R\left[s_0, \ldots, s_{n-1}, t\right], t$ is integral over $R$ by \ref{thm: integral}.
+    \end{proof}
+\end{corollary}
+
+
+
+
+\begin{proposition}
+    \begin{enumerate}
+        \item
+              Every unique factorization domain is integrally closed.
+
+        \item
+              In particular, the polynomial ring $F\left[x_1, \ldots, x_n\right]$ ( $F$ a field) is integrally closed in its quotient field $F\left(x_1, \ldots, x_n\right)$.
+    \end{enumerate}
+\end{proposition}
+
+\subsection{integral extension} % integral extension
+\begin{theorem}
+    Let $T$ be a multiplicative subset of an integral domain $R$ such that $0 \notin T$.
+    If $R$ is integrally closed, then $T^{-1} R$ is an integrally closed integral domain.
+    \begin{proof}
+        $T^{-1} R$ is an integral domain and $R$ may be identified with a subring of $T^{-1} R$ by \ref{thm: ring of quotients }.
+        Extending this identification, the quotient field $Q(R)$ of $R$ may be considered as a subfield of the quotient field $Q\left(T^{-1} R\right)$ of $T^{-1} R$. Verify that $Q(R)=Q\left(T^{-1} R\right)$.
+
+        Let $u \in Q\left(T^{-1} R\right)$ be integral over $T^{-1} R$; then for some $r_i \in R$ and $s_i \in T$,
+        \begin{equation*}
+            u^n+\left(r_{n-1} / s_{n-1}\right) u^{n-1}+\cdots+\left(r_1 / s_1\right) u+\left(r_0 / s_0\right)=0 .
+        \end{equation*}
+        Multiply through this equation by $s^n$, where $s=s_0 s_1 \cdots s_{n-1} \in T$, and conclude that $su$ is integral over $R$. Since $s u \in Q\left(T^{-1} R\right)=Q(R)$ and $R$ is integrally closed, $s u \in R$. Therefore, $u=s u / s \in T^{-1} R$, whence $T^{-1} R$ is integrally closed.
+    \end{proof}
+\end{theorem}
+
+
+
+\begin{theorem}
+    Let $S$ be an integral extension ring of $R$. Then the following statements hold.
+    \begin{enumerate}
+        \item
+              Assume that $S$ is an integral domain. Then $R$ is a field if and only if $S$ is a field.
+        \item
+              Let $\mathfrak{p}$ be a prime ideal in $R$. Then there is a prime ideal $\mathfrak{q}$ in $S$ with $\mathfrak{p}=\mathfrak{q} \cap R$.
+
+              Moreover, $\mathfrak{p}$ is maximal if and only if $\mathfrak{q}$ is maximal.
+        \item
+              (The Going-up Theorem)
+              Let $\mathfrak{p}_1 \subseteq \mathfrak{p}_2 \subseteq \cdots \subseteq \mathfrak{p}_n$ be a chain of prime ideals in $R$ and suppose there are prime ideals $\mathfrak{q}_1 \subseteq \mathfrak{q}_2 \subseteq \cdots \subseteq \mathfrak{q}_m$ of $S$ with $\mathfrak{p}_i=\mathfrak{q}_i \cap R, 1 \leq i \leq m$ and $m<n$. Then the ascending chain of ideals can be completed: there are prime ideals $\mathfrak{q}_{m+1} \subseteq \cdots \subseteq \mathfrak{q}_n$ in $S$ such that $\mathfrak{p}_i=\mathfrak{q}_i \cap R$ for all $i$.
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{theorem} [The Going-down Theorem]
+    Assume that $S$ is an integral domain and $R$ is integrally closed in $S$. Let $\mathfrak{p}_1 \supseteq \mathfrak{p}_2 \supseteq \cdots \supseteq \mathfrak{p}_n$ be a chain of prime ideals in $R$ and suppose there are prime ideals $\mathfrak{q}_1 \supseteq \mathfrak{q}_2 \supseteq \cdots \supseteq \mathfrak{q}_m$ of $S$ with $\mathfrak{p}_i=\mathfrak{q}_i \cap R, 1 \leq i \leq m$ and $m<n$. Then the descending chain of ideals can be completed: there are prime ideals $\mathfrak{q}_{m+1} \supseteq \cdots \supseteq \mathfrak{q}_n$ in $S$ such that $\mathfrak{p}_i=\mathfrak{q}_i \cap R$ for all $i$.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{theorem}
+    \label{thm: Let S be an integral extension ring of R and let q be a prime ideal in S which
+        lies over a prime ideal p in R . Then q is maximal in S if and only if p is maximal in R .}
+    Let $S$ be an integral extension ring of $R$ and let $\mathfrak{q}$ be a prime ideal in $S$ which lies over a prime ideal $\mathfrak{p}$ in $R$ . Then $\mathfrak{q}$ is maximal in $S$ if and only if $\mathfrak{p}$ is maximal in $R$ .
+
+    \begin{proof}
+        Suppose $\mathfrak{q}$ is maximal in $S$. By \ref{thm: existence of maximal ideal} there is a maximal ideal $\mathfrak{m}$ of $R$ that contains $\mathfrak{p}$ and $\mathfrak{m}$ is prime by \ref{thm: maximal ideal is prime}.
+        By \ref{cor: going-up Theorem} there is a prime ideal $\mathfrak{q}^{\prime}$ in $S$ such that $\mathfrak{q} \subset \mathfrak{q}^{\prime}$ and $\mathfrak{q}^{\prime}$ lies over $\mathfrak{m}$. Since $\mathfrak{q}^{\prime}$ is prime, $\mathfrak{q}^{\prime} \neq S$.
+        The maximality of $\mathfrak{q}$ implies that $\mathfrak{q}=\mathfrak{q}^{\prime}$, whence $\mathfrak{p}=\mathfrak{q} \cap R=\mathfrak{q}^{\prime} \cap R=\mathfrak{m}$. Therefore, $\mathfrak{p}$ is maximal in $R$.
+
+        Conversely suppose $\mathfrak{p}$ is maximal in $R$. Since $\mathfrak{q}$ is prime in $S, \mathfrak{q} \neq S$ and there is a maximal ideal $N$ of $S$ containing $\mathfrak{q}$ and $N$ is prime, whence $1_R=1_S \notin N$. Since $\mathfrak{p}=R \cap \mathfrak{q} \subset R \cap N \subset R$, we must have $\mathfrak{p}=R \cap N$ by maximality. Thus $\mathfrak{q}$ and $N$ both lie over $\mathfrak{p}$ and $\mathfrak{q} \subset N$. Therefore, $\mathfrak{q}=N$ by \ref{thm: Let S be an integral extension ring of R and let q be a prime ideal in S which lies over a prime ideal p in R . Then q is maximal in S if and only if p is maximal in R .} .
+    \end{proof}
+\end{theorem}
+
+
+
+\section{Discrete Valuation Ring} % Discrete Valuation Ring
+\begin{definition}
+    The following conditions on a principal ideal domain are equivalent:
+    \begin{enumerate}
+        \item  $A$ has exactly one nonzero prime ideal;
+        \item up to associates, $A$ has exactly one prime element;
+        \item  $A$ is local and is not a field.
+    \end{enumerate}
+    A ring satisfying these conditions is called a \textbf{discrete valuation ring}.
+\end{definition}
+
+\begin{theorem}
+    An integral domain $A$ is a discrete valuation ring if and only if
+    \begin{enumerate}[label=(\roman*)]
+        \item  $A$ is noetherian,
+        \item  $A$ is integrally closed, and
+        \item  $A$ has exactly one nonzero prime ideal.
+    \end{enumerate}
+\end{theorem}
+
+
+
+
+\section{Dedekind Domain}
+\begin{definition}
+    A \textbf{Dedekind domain} is an integral domain $R$ satisfying the following equivalent conditions:
+    \begin{enumerate}
+        \item
+              $R$ is Noetherian, integrally closed and has Krull dimension one (Every nonzero prime ideal of $R$ is maximal).
+        \item
+              Every nonzero ideal of $R$ is invertible
+        \item
+              Every finitely generated torsion-free $R$-module is free.
+        \item
+              the localization $R_{\mathfrak{p}}$ at each prime ideal $\mathfrak{p}$ of $R$ is a discrete valuation ring.
+        \item
+              Every nonzero proper ideal of $R$ can be written as a product of prime ideals of $R$, and this factorization is unique up to the order of the factors.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+    Let $A$ be an integral domain, and let $S$ be a multiplicative subset of $A$.
+    \begin{enumerate}
+        \item If $A$ is noetherian, then so also is $S^{-1} A$.
+        \item If $A$ is integrally closed, then so also is $S^{-1} A$.
+        \item If $A$ has Krull dimension one, then so also does $S^{-1} A$.
+        \item If $A$ is a Dedekind domain, then so also is $S^{-1} A$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    A noetherian integral domain $A$ is a Dedekind domain if and only if, for every nonzero prime ideal $\mathfrak{p}$ in $A$, the localization $A_{\mathfrak{p}}$ is a discrete valuation ring.
+\end{proposition}
+
+
+
+\subsection{Unique factorization of ideals} % Unique factorization of ideals
+\begin{theorem}
+    Let $A$ be a Dedekind domain.
+    Every proper nonzero ideal $\mathfrak{a}$ of $A$ can be written in the form
+    \begin{equation*}
+        \mathfrak{a}
+        =
+        \mathfrak{p}_1^{r_1} \cdots \mathfrak{p}_n^{r_n}
+    \end{equation*}
+    with the $\mathfrak{p}_i$ distinct prime ideals and the $r_i>0$; the $\mathfrak{p}_i$ and the $r_i$ are uniquely determined.
+\end{theorem}
+
+\subsection{The ideal class group} % The ideal class group
+\begin{definition}
+    Let $R$ be an integral domain with quotient field $K$.
+    A \textbf{fractional ideal} of $R$ is
+    \begin{enumerate}[label=(\roman*)]
+        \item a nonzero $R$-submodule $I$ of $K$
+        \item there exists a nonzero $d \in R$ such that $d I \subset R$ i,e, $\left(R:I\right)\cap R \neq \varnothing$
+    \end{enumerate}
+\end{definition}
+
+
+
+
+\begin{definition}
+    If $R$ is an integral domain with quotient field $K$, then the set of all
+    fractional ideals of $R$ forms a commutative monoid, with identity $R$ and multiplication given by
+    \begin{equation*}
+        I J
+        =
+        \left\{\sum_{i=1}^n a_i b_i \mid a_i \in I ; b_i \in J ; n \in \mathbb{Z}_{\geq 1}\right\}
+    \end{equation*}
+    A fractional ideal $I$ of an integral domain $R$ is said to be \textbf{invertible} if $I J=R$ for some fractional ideal $J$ of $R$.
+\end{definition}
+
+
+\begin{theorem}
+    Let $A$ be a Dedekind domain.
+    The set $\operatorname{Id}(A)$ of fractional ideals is a group; in fact, it is the free abelian group on the set of nonzero prime ideals.
+\end{theorem}
+
+
+
+\begin{definition}
+    We define the \textbf{ideal class group} $\mathrm{Cl}(A)$ of $A$ to be the quotient $\mathrm{Cl}(A)=\operatorname{Id}(A) / \mathrm{P}(A)$ of $\operatorname{Id}(A)$ by the subgroup of principal ideals.
+    The \textbf{class number} of $A$ is the order of $\operatorname{Cl}(A)$ (when finite).
+
+    In the case that $A$ is the ring of integers $\mathcal{O}_K$ in a number field $K$, we often refer to $\mathrm{Cl}\left(\mathcal{O}_K\right)$ as the ideal class group of $K$, and its order as the class number of $K$.
+\end{definition}
+
+\begin{proposition}
+    Let $R$ be an integral domain with quotient field $K$.
+    \begin{enumerate}
+        \item
+              Indeed for any fractional ideal $I$ the set $I^{-1}=\{a \in K \mid a I \subset R\}$ is easily seen to be a fractional ideal such that $I^{-1} I=I I^{-1} \subset R$.
+        \item
+              The inverse of an invertible fractional ideal $I$ is unique and is $I^{-1}=\left\{a \in K \mid a I \subset R\right\}$.
+              If $I$ is invertible and $I J=J I=R$, then clearly $J \subset I^{-1}$.
+              Conversely, since $I^{-1}$ and $J$ are $R$-submodules of $K, I^{-1}=R I^{-1}=(J I) I^{-1}=J\left(I I^{-1}\right) \subset J R=R J \subset J$, whence $J=I^{-1}$.
+        \item
+              If $I, A, B$ are fractional ideals of $R$ such that $I A=I B$ and $I$ is invertible, then $A=R A=\left(I^{-1} I\right) A=I^{-1}(I B)=R B=B$.
+        \item
+              If $I$ is an ordinary ideal in $R$, then $R \subset I^{-1}$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{lemma}
+    Let $I, I_1, I_2, \ldots, I_{n}$ be ideals in an integral domain R .
+    \begin{enumerate}
+        \item
+              The ideal $I_1 I_2 \cdots I_{n}$ is invertible if and only if each $I_{j}$ is invertible.
+
+        \item
+              If $\mathfrak{p}_1 \cdots \mathfrak{p}_{m}=I=\mathfrak{q}_1 \cdots \mathfrak{q}_{n}$, where the $\mathfrak{p}_{i}$ and $\mathfrak{q}_{j}$ are prime ideals in $R$ and every $\mathfrak{p}_{i}$ is invertible, then $m=n$ and (after reindexing) $\mathfrak{p}_{i}=\mathfrak{q}_{i}$ for each $i=1, \ldots, m$.
+    \end{enumerate}
+\end{lemma}
+
+
+
+
+
+
+\begin{lemma}
+    If $I$ is a fractional ideal of an integral domain $R$ with quotient field $K$ and $f\in \operatorname{Hom}_{R}(I, R)$, then for all $a, b \in I: af(b)=bf(a)$.
+\end{lemma}
+
+\begin{lemma}
+    Every invertible fractional ideal of an integral domain $R$ with quotient field $K$ is a finitely generated $R$-module.
+\end{lemma}
+
+\begin{theorem}
+    Let $R$ be an integral domain and $I$ a fractional ideal of $R$.
+    Then $I$ is invertible if and only if $I$ is a projective $R$-module.
+\end{theorem}
+
+
+
+\section{Discrete valuations}
+\begin{definition}
+    Let $K$ be a field.
+    A \textbf{discrete valuation} on $K$ is a nonzero homomorphism $v: K^{\times} \rightarrow \mathbb{Z}$ such that $v(a+b) \geq \min (v(a), v(b))$.
+
+    As $v$ is not the zero homomorphism, its image is a nonzero subgroup of $\mathbb{Z}$, and is therefore of the form $m \mathbb{Z}$ for some $m \in \mathbb{Z}$. If $m=1$, then $v: K^{\times} \rightarrow \mathbb{Z}$ is surjective, and $v$ is said to be \textbf{normalized}; otherwise, $x \mapsto m^{-1} \cdot v(x)$ will be a normalized discrete valuation.
+
+    We extend $v$ to a map $K \rightarrow \mathbb{Z} \cup\{\infty\}$ by setting $v(0)=\infty$, where $\infty$ is a symbol $\geq n$ for all $n \in \mathbb{Z}$.
+    \begin{remark}
+        We have
+        \begin{enumerate}
+            \item $v(\zeta)=0$ for some $\zeta \in K^{\times}$
+            \item $v(-a)=v(a)$ for all $a \in K$;
+            \item $v(a+b) = \max \left\{v(a),v(b)\right\}$ if $v(a) \neq v(b)$.
+        \end{enumerate}
+        We often use "ord" rather than " $v$ " to denote a discrete valuation.
+    \end{remark}
+\end{definition}
+
+\begin{proposition}
+    Let $v$ be a discrete valuation on $K$, then
+    \begin{equation*}
+        A
+        :=
+        \{a \in K \mid v(a) \geq 0\}
+    \end{equation*}
+    is a principal ideal domain with maximal ideal
+    \begin{equation*}
+        \mathfrak{m}
+        =
+        \{a \in K \mid v(a)>0\}
+    \end{equation*}
+    If $v\left(K^{\times}\right)=m \mathbb{Z}$, then the ideal $\mathfrak{m}$ is generated by every element of $v^{-1}\left(m\right)$.
+\end{proposition}
+
+
+\begin{definition}
+    Let $A$ be a Dedekind domain and let $\mathfrak{p}$ be a prime ideal in $A$. For any $c \in K^{\times}$, let $v(c)$ be the exponent of $\mathfrak{p}$ in the factorization of
+    $(c)$.
+    Then $v$ is a normalized discrete valuation on $K$, called the \textbf{discrete valuation associated to} $\mathfrak{p}$, denoted by $\operatorname{ord}_{\mathfrak{p}}$.
+\end{definition}
+
+\begin{proposition}
+    Let $x_1, \ldots, x_m$ be elements of a Dedekind domain $A$, and let $\mathfrak{p}_1, \ldots, \mathfrak{p}_m$ be distinct prime ideals of $A$. For every integer $n$, there is an $x \in A$ such that
+    \begin{equation*}
+        \operatorname{ord}_{\mathfrak{p}_i}\left(x-x_i\right)>n, \quad i=1,2, \ldots, m .
+    \end{equation*}
+\end{proposition}
+
+
+\section{Integral closures of Dedekind domains}
+
+\begin{theorem}
+    Let $A$ be a Dedekind domain with field of fractions $K$ and $L/K$ be a finite separable extension, then the integral closure of $A$ in $L$ is Dedekind domain.
+\end{theorem}
+
+
+\begin{definition}
+    Let $A$ be a Dedekind domain with field of fractions $K$, and let $B$ be the integral closure of $A$ in a finite separable extension $L$ of $K$.
+    A prime ideal $\mathfrak{p}$ of $A$ will factor in $B$,
+    \begin{equation*}
+        \mathfrak{p} B=\mathfrak{P}_1^{e_1} \cdots \mathfrak{P}_g^{e_g}
+    \end{equation*}
+    wher $\mathfrak{P}$ are distinct prime ideals in $B$ and $e_i\geq 1$,
+    \begin{enumerate}
+        \item
+              If any of the numbers is $>1$, then we say that $\mathfrak{p}$ is \textbf{ramified} in $B$ (or $L$ ).
+              The number $e_i$ is called the \textbf{ramification index} .
+
+        \item
+              We say $\mathfrak{P}$ divides $\mathfrak{p}$,written $\mathfrak{P} \mid \mathfrak{p}$, if $\mathfrak{P}$ occurs in the factorization of $\mathfrak{p}$ in $B$.
+    \end{enumerate}
+    We then write $e(\mathfrak{P} / \mathfrak{p})$ for the ramification index and $f(\mathfrak{P} / \mathfrak{p})$ for the degree of the field extension $[B / \mathfrak{P}: A / \mathfrak{p}]$ (called the \textbf{residue class degree}).
+    \begin{enumerate}[resume]
+        \item
+              $\mathfrak{p}$ is said to \textbf{split} (or split completely) in $L$ if $e_i=f_i=1$ for all $i$
+
+        \item
+              $\mathfrak{p}$ is said to be \textbf{inert} in $L$ if $\mathfrak{p} B$ is a prime ideal (so $g=1=e$ ).
+    \end{enumerate}
+\end{definition}
+
+
+\begin{theorem}
+    Let $m$ be the degree of $L$ over $K$, and let $\mathfrak{P}_1, \ldots, \mathfrak{P}_g$ be the prime ideals dividing $\mathfrak{p}$; then
+    \begin{equation*}
+        \sum_{i=1}^g e_i f_i=m
+    \end{equation*}
+    where $e_i=e\left(\mathfrak{P}_i / \mathfrak{p}\right)$ and $f_i=f\left(\mathfrak{P}_i / \mathfrak{p}\right)$. If $L$ is Galois over $K$, then all the ramification numbers are equal, and all the residue class degrees are equal, and so
+
+    \begin{equation*}
+        e f g=m .
+    \end{equation*}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+\chapter{The Hilbert Nullstellensatz} % The Hilbert Nullstellensatz
+
+
+
+\begin{definition}
+    Let $k$ be a field and $F$ is an algebraically closed extension field of $K$.
+
+    If $S$ is a subset of $K\left[x_1, \ldots, x_n\right]$, the set of all zeros of $S$ is called the \textbf{affine $K$-variety} (or algebraic set) in $F^n$ defined by $S$ and is denoted $V(S)$. Thus
+    \begin{equation*}
+        V(S)=\left\{\left(a_1, \ldots, a_n\right) \in F^n \mid f\left(a_1, \ldots, a_n\right)=0 \text { for all } f \in S\right\} .
+    \end{equation*}
+    Note that if $I$ is the ideal of $K\left[x_1, \ldots, x_n\right]$ generated by $S$, then $V(I)=V(S)$.
+
+    The assignment $S \mapsto V(S)$ defines a function from the set of all subsets of $K\left[x_1, \ldots, x_n\right]$ to the set of all subsets of $F^n$. Conversely, define a function from the set of subsets of $F^n$ to the set of subsets of $K\left[x_1, \ldots, x_n\right]$ by $Y \mapsto J(Y)$, where $Y \subset F^n$ and
+    \begin{equation*}
+        J(Y)=\left\{f \in K\left[x_1, \ldots, x_n\right] \mid f\left(a_1, \ldots, a_n\right)=0 \text { for all }\left(a_1, \ldots, a_n\right) \in Y\right\} .
+    \end{equation*}
+    Note that $J(Y)$ is actually an ideal of $K\left[x_1, \ldots, x_n\right]$.
+\end{definition}
+
+\begin{theorem}
+    [Hilbert Nullstellensatz]
+    Let $F$ be an algebraically closed extension field of a field $K$ and $I$ a proper ideal of $K\left[x_1, \ldots, x_{n}\right]$.Then
+    \begin{equation*}
+        \operatorname{Rad} \left(I\right)
+        =
+        J(V(I))
+    \end{equation*}
+    In other words, $f\left(a_1, \ldots, a_{n}\right)=0$ for every zero $\left(a_1, \ldots, a_{n}\right)$ of I in $F^{n}$ if and only if $f^{m} \in I$ for some $m \geq 1$.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+\chapter{Noetherian Modules and Rings} % Noetherian Modules and Rings
+\minitoc
+
+\section{Properties of Noetherian Modules and Rings} % properties of Noetherian Modules and Rings
+\begin{theorem}
+    Recall that a module $M$ is Noetherian.
+
+    \ref{thm: chain condition and m condition}
+    A module $M$ satisfies the ascending [resp. descending] chain condition on submodules if and only if $M$ satisfies the maximal [resp. minimal] condition on submodules.
+
+    \ref{thm: equivalent conditions of Noetherian modules}
+    A module
+    $M$ satisfies the ACC on submodules if and only if every submodule of $M$ is finitely generated.
+    In particular, a commutative ring $R$ is Noetherian if and only if every ideal of $R$ is finitely generated.
+
+    \ref{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring}
+    If $R$ is a left [resp. right] Noetherian [resp. Artinian] ring with identity, then every finitely generated unitary left [resp. right]  $R$-module $A$ satisfies the ACC [resp. DCC] on submodules.
+\end{theorem}
+
+
+\begin{proposition}
+    If $A$ is Noetherian and $\phi$ is a homomorphism, then $B=\phi(A)$ is Noetherian.
+\end{proposition}
+
+\begin{proposition}
+    Let $A$ be a subring of $B$; suppose that $A$ is Noetherian and that $B$ is finitely generated as an $A$-module. Then $B$ is Noetherian (as a ring).
+\end{proposition}
+
+
+
+
+\begin{proposition}
+    If $A$ is Noetherian and $S$ is any multiplicatively closed subset of $A$, then $S^{-1} A$ is Noetherian.
+\end{proposition}
+
+
+
+\begin{theorem}
+    If $R$ is a commutative Noetherian ring with identity, then so is $R\left[x_1, \ldots, x_{n}\right]$ and $R\left[\left[x\right]\right]$
+\end{theorem}
+
+\begin{proposition}
+    If $R$ is a commutative ring with identity and $\mathfrak{p}$ is an ideal which is maximal in the set of all ideals of $R$ which are not finitely generated, then $\mathfrak{p}$ is prime.
+
+    \begin{proof}
+        Suppose $a b \in \mathfrak{p}$ but $a \notin \mathfrak{p}$ and $b \notin \mathfrak{p}$. Then $\mathfrak{p}+(a)$ and $\mathfrak{p}+(b)$ are ideals properly containing $\mathfrak{p}$ and therefore finitely generated by maximality of $\mathfrak{p}$. Consequently $\mathfrak{p}+(a)=\left(p_1+r_1 a, \ldots, p_n+r_n a\right)$
+        and
+        $\mathfrak{p}+(b)=\left(p_1^{\prime}+r_1^{\prime} b, \ldots p_m^{\prime}+r_m^{\prime} b\right)$ for some $p_i, p_i^{\prime} \in \mathfrak{p}$ and $r_i, r_i^{\prime} \in R$.
+
+        If $J=\left(\mathfrak{p}:a\right)=\{r \in R \mid r a \in \mathfrak{p}\}$, then $J$ is an ideal. Since $a b \in \mathfrak{p},\left(p_i{ }^{\prime}+r_i{ }^{\prime} b\right) a=p_i{ }^{\prime} a+r_i{ }^{\prime} a b \in \mathfrak{p}$ for all $i$, whence $\mathfrak{p} \subset\mathfrak{p}+(b) \subset J$. By maximality, $J$ is finitely generated, say $J=$ $\left(j_1, \ldots, j_k\right)$.
+
+        If $x \in \mathfrak{p}$, then $x \in \mathfrak{p}+(a)$ and hence for some $s_i \in R, x=\sum_{i=1}^n s_i\left(p_i+r_i a\right)$ $=\sum_{i=1}^n s_i p_i+\sum_{i=1}^n s_i r_i a$. Consequently, $\left(\sum_i s_i r_i\right) a=x-\sum_i s_i p_i \in \mathfrak{p}$, whence $\sum_i s_i r_i \in J$. Thus for some $t_i \in R, \sum_{i=1}^n s_i r_i=\sum_{i=1}^k t_i j_i$ and $x=\sum_{i=1}^n s_i p_i+\sum_{i=1}^k t_i j_i a$. Therefore, $\mathfrak{p}$ is generated by $p_1, \ldots, p_n, j_1 a, \ldots, j_k a$, which is a contradiction. Thus $a \in \mathfrak{p}$ or $b \in \mathfrak{p}$ and $\mathfrak{p}$ is prime by
+        \ref{thm: Prime ideal}
+    \end{proof}
+\end{proposition}
+
+
+\begin{theorem} [I.S.Cohen]
+    A commutative ring $R$ with identity is Noetherian if and only if every prime ideal of $R$ is finitely generated.
+
+    \begin{proof}
+        Let $\mathcal{S}$ be the set of all ideals of $R$ which are not finitely generated.
+        If $\mathcal{S}$ is nonempty, then use Zorn's Lemma to find a maximal element $P$ of $S . P$ is prime by Proposition 2.4 and hence finitely generated by hypothesis.
+
+        This is a contradiction unless $\delta=\varnothing$. Therefore, $R$ is Noetherian by Theorem 1.9.
+    \end{proof}
+\end{theorem}
+
+\section{Primary Decomposition} % Primary Decomposition
+Throught this section, $R$ be a commutative ring with identity
+\subsection{Primary (Submodule) Ideals} % Primary Decomposition
+\begin{definition}
+    Let $R$ be a commutative ring with identity and $M$ a $R$-module.
+    \begin{enumerate}
+        \item An ideal $\mathfrak{q}$ in $R$ is \textbf{primary} if $\mathfrak{q} \neq R$ and if
+              \begin{equation*}
+                  x y \in \mathfrak{q} ,x\notin \mathfrak{q}\Rightarrow  y^n \in \mathfrak{q} \text { for some } n>0 \text {. }
+              \end{equation*}
+              In other words,
+              $\mathfrak{q}$ is primary $\Leftrightarrow R / \mathfrak{q} \neq 0$ and every zero-divisor in $R / \mathfrak{q}$ is nilpotent.
+        \item
+              A submodule $Q$ of $M$ is primary if $Q\neq M$ and if
+              \begin{center}
+                  $r \in R, m \in M-Q$ and $rm \in Q \Rightarrow r^n M \subset Q$ for some positive integer $n$
+              \end{center}
+              It is equivalent that
+              \begin{itemize}
+                  \item $\left(Q:M\right)=\Ann\left(M/Q\right)$ is a primary ideal in $R$
+                  \item principal homomorphism $a_{M/Q}$ is injective or nilpotent for each $a \in R$
+              \end{itemize}
+    \end{enumerate}
+    \begin{remark}
+        If we view $R$ as itself $R$-module, the two definition are equivalent for $R$.
+    \end{remark}
+\end{definition}
+
+\begin{theorem}
+    Let $R$ be a commutative ring and $M$ an $R$-module.
+    \begin{enumerate}
+        \item
+              If $\mathfrak{q}$ is a primary ideal in $R$, ideal $\mathfrak{p}=\Rad(\mathfrak{q})$ is a prime ideal containing $\mathfrak{q}$.
+              The radical $\mathfrak{p}$ is called the \textbf{associated prime ideal of $\mathfrak{q}$} or that $\mathfrak{q}$ is \textbf{$\mathfrak{p}$-primary}.
+
+        \item
+              If $N$ is a primary submodule of $M$, $\left(N:M\right)=
+                  \left\{r\in R \mid rM\subset N\right\}$
+              is a primary ideal in $R$.
+              Thus $\mathfrak{p}
+                  =
+                  \Rad\left(N:M\right)
+                  =
+                  \left\{r \in R \mid r^n M \subset N \text{ for some } n>0\right\}$ is a prime ideal in $R$ .
+              The primary submodule $N$ of a module $M$ is said to \textbf{belong to a prime ideal $\mathfrak{p}$} or to be a \textbf{$\mathfrak{p}$-primary submodule} of $M$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    \label{thm: Equivalent condition about associated prime ideal of primary ideals}
+    Let $R$ be a commutative ring, $\mathfrak{q}$ and $\mathfrak{p}$ be ideals in $R$.
+    Then $\mathfrak{q}$ is primary for $\mathfrak{p}$ if and only if
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $\mathfrak{q} \subset \mathfrak{p}\subset \Rad \left(\mathfrak{q}\right)$
+        \item
+              if $ab \in \mathfrak{q}$ and $a \notin \mathfrak{q}$, then $b \in \mathfrak{p}$.
+    \end{enumerate}
+    \begin{proof}
+        Suppose (i) and (ii) hold.
+        If $a b \in \mathfrak{q}$ with $a \not\in \mathfrak{q}$, then $b \in \mathfrak{p} \subset \operatorname{Rad} \mathfrak{q}$, whence $b^n \in \mathfrak{q}$ for some $n>0$. Therefore $\mathfrak{q}$ is primary.
+
+        To show that $\mathfrak{q}$ is primary for $\mathfrak{p}$ we need only show $\mathfrak{p}=\operatorname{Rad} \mathfrak{q}$.
+        By (i), $\mathfrak{p} \subset \operatorname{Rad} \mathfrak{q}$. If $b \in \operatorname{Rad} \mathfrak{q}$, let $n$ be the least integer such that $b^n \in \mathfrak{q}$. If $n=1, b \in \mathfrak{q} \subset \mathfrak{p}$. If $n>1$, then $b^{n-1} b=b^n \in \mathfrak{q}$, with $b^{n-1} \notin \mathfrak{q}$ by the minimality of $n$.
+        By (ii), $b \in \mathfrak{p}$. Thus $b \in \operatorname{Rad} \mathfrak{q}$ implies $b \in \mathfrak{p}$, whence $\operatorname{Rad} \mathfrak{q} \subset \mathfrak{p}$.
+    \end{proof}
+\end{theorem}
+
+
+\begin{corollary}
+    \label{cor: intersection of primary ideal}
+    Let $R$ be a commutative ring with identity, if $\mathfrak{q}_1, \mathfrak{q}_2, \ldots, \mathfrak{q}_{n}$ are $\mathfrak{p}$-primary, then $\bigcap_{i=1}^n \mathfrak{q}_i$ is also $\mathfrak{p}$-primary.
+    \begin{proof}
+        Let $\mathfrak{q}=\bigcap_{i=1}^n \mathfrak{q}_i$.
+        Then by \ref{pro: operations of radical}, $\operatorname{Rad} \mathfrak{q}=\bigcap_{i=1}^n \operatorname{Rad} \mathfrak{q}_i$ $=\bigcap_{i=1}^n \mathfrak{p}=\mathfrak{p}$; in particular, $\mathfrak{q} \subset \mathfrak{p} \subset \operatorname{Rad} \mathfrak{q}$.
+        If $a b \in \mathfrak{q}$ and $a \notin \mathfrak{q}$, then $a b \in \mathfrak{q}_i$ and $a \not \in \mathfrak{q}_i$ for some $i$. Since $\mathfrak{q}_i$ is $\mathfrak{p}$-primary, $b \in \mathfrak{p}$ by \ref{thm: Equivalent condition about associated prime ideal of primary ideals}.
+        Consequently, $\mathfrak{q}$ itself is $\mathfrak{p}$-primary by \ref{thm: Equivalent condition about associated prime ideal of primary ideals}.
+    \end{proof}
+\end{corollary}
+
+\begin{proposition}
+    Clearly every prime ideal is primary. Also the contraction of a primary ideal is primary, for if $f: A \rightarrow B$ and if $\mathfrak{q}$ is a primary ideal in $B$, then $A / \mathfrak{q}^c$ is isomorphic to a subring of $B / q$.
+\end{proposition}
+
+
+
+\begin{proposition}
+    If $\Rad(\mathfrak{a})$ is maximal, then $\mathfrak{a}$ is primary. In particular, the powers of a maximal ideal $\mathfrak{m}$ are $\mathfrak{m}$-primary.
+    \begin{proof}
+        Let $\Rad(\mathfrak{a})=\mathfrak{m}$. The image of $\mathfrak{m}$ in $A / \mathfrak{a}$ is the nilradical of $A / \mathfrak{a}$, hence $A / \mathfrak{a}$ has only one prime ideal $\pi(\mathfrak{m})$, by (1.8). Hence every element of $A / \mathfrak{a}$ is either a unit or nilpotent, and so every zero-divisor in $A / a$ is nilpotent.
+    \end{proof}
+\end{proposition}
+
+\subsection{Primary Decomposition} % Primary Decomposition
+\begin{definition}
+    Let $R$ be a commutative ring with identity and $M$ an unitary $R$-module.
+    \begin{enumerate}
+        \item
+              An ideal $\mathfrak{a}$ of $R$ has a \textbf{primary decomposition} if
+              \begin{enumerate}[label=(\roman*)]
+                  \item
+                        $\mathfrak{a}=\mathfrak{q}_1 \cap \mathfrak{q}_2 \cap \cdots \cap \mathfrak{q}_n$ with each $\mathfrak{q}_i$ primary
+              \end{enumerate}
+              then the primary decomposition is said to be \textbf{reduced (or irredundant)} if
+              \begin{enumerate}[label=(\roman*),resume]
+                  \item
+                        no $\mathfrak{q}_i$ contains $\mathfrak{q}_1 \cap \cdots \cap \mathfrak{q}_{i-1} \cap \mathfrak{q}_{i+1} \cap \cdots \cap \mathfrak{q}_{n}$ and the $\mathfrak{p}_i=\Rad\mathfrak{q}_i$ are all distinct,
+              \end{enumerate}
+
+        \item
+              A submodule $N$ of $N$ has a \textbf{primary decomposition} if
+              \begin{enumerate}[label=(\roman*)]
+                  \item
+                        $N
+                            =
+                            Q_1 \cap Q_2 \cap \cdots \cap Q_n$, with each $Q_i$ a $\mathfrak{p}_i$-primary submodule of $N$ for some prime ideal $\mathfrak{p}_i$ of $R$.
+              \end{enumerate}
+              then the primary decomposition is said to be \textbf{reduced}. if
+              \begin{enumerate}[label=(\roman*),resume]
+                  \item
+                        no $Q_i$ contains $Q_1 \cap \ldots \cap Q_{i-1} \cap Q_{i+1} \cap \ldots \cap Q_n$ and the ideals $\mathfrak{p}_i, \ldots, \mathfrak{p}_i$ are all distinct,
+              \end{enumerate}
+    \end{enumerate}
+    If $\mathfrak{p}_j \not \subset \mathfrak{p}_i$ for all $j \neq i$, then $\mathfrak{p}_i$ is said to be an \textbf{isolated prime} ideal of $N$.
+    In other words, $\mathfrak{p}_i$ is isolated if it is minimal in the set $\left\{\mathfrak{p}_1, \ldots, \mathfrak{p}_n\right\}$. If $\mathfrak{p}_i$ is not isolated it is said to be \textbf{embedded}.
+
+\end{definition}
+
+
+\begin{theorem}
+    \label{thm: Existence of reduced primary decomposition}
+    Let $R$ be a commutative ring with identity and $M$ a unitary module.
+    \begin{enumerate}
+        \item
+              If an ideal $\mathfrak{a}$ of $R$ has a primary decomposition, then $\mathfrak{a}$ has a reduced primary decomposition.
+
+        \item
+              If a submodule $N$ has a primary decomposition, then $N$ has a reduced primary decomposition.
+    \end{enumerate}
+    \begin{proof}
+        1.
+        If $\mathfrak{a}=\mathfrak{q}_1 \cap \ldots \cap \mathfrak{q}_n\left(\mathfrak{q}_i\right.$ primary $)$ and some $\mathfrak{q}_i$ contains $\mathfrak{q}_1 \cap \ldots \cap$ $\mathfrak{q}_{i-1} \cap \mathfrak{q}_{i+1} \cap \cdots \cap \mathfrak{q}_n$, then $\mathfrak{a}=\mathfrak{q}_1 \cap \cdots \cap \mathfrak{q}_{i-1} \cap \mathfrak{q}_{i+1} \cap \cdots \cap \mathfrak{q}_n$ is also a primary decomposition. By thus eliminating the superfluous $\mathfrak{q}_i$ (and reindexing) we have $\mathfrak{a}=\mathfrak{q}_1 \cap \cdots \cap \mathfrak{q}_k$ with no $\mathfrak{q}_i$ containing the intersection of the other $\mathfrak{q}_j$.
+
+        Let $\mathfrak{p}_1, \ldots, \mathfrak{p}_r$ be the distinct prime ideals in the set $\left\{\operatorname{Rad} \mathfrak{q}_1, \ldots, \operatorname{Rad} \mathfrak{q}_k\right\}$. Let $\mathfrak{q}_i^{\prime}(1 \leq i \leq r)$ be the intersection of all the $\mathfrak{q}$ 's that belong to the prime $\mathfrak{p}_i$, that is,
+        \begin{equation*}
+            \mathfrak{q}^\prime_i
+            =
+            \bigcap_{\Rad\left( \mathfrak{q_j} \right)=\mathfrak{p_i}} \mathfrak{q}_j
+        \end{equation*}
+        By \ref{cor: intersection of primary ideal} each $\mathfrak{q}_i^{\prime}$ is primary for $\mathfrak{p}_i$. Clearly no $\mathfrak{q}_i^{\prime}$ contains the intersection of all the other $\mathfrak{q}_i^{\prime}$. Therefore, $\mathfrak{a}=\bigcap_{i=1}^k \mathfrak{q}_i=\bigcap_{i=1}^r \mathfrak{q}_i^{\prime}$, whence $\mathfrak{a}$ has a reduced primary decomposition.
+
+        2.
+        It is similar to 1.
+        Note that $\left(\bigcap Q_i:M\right) = \bigcap \left(Q_i:M\right)$.
+    \end{proof}
+\end{theorem}
+
+
+\begin{theorem}
+    \label{thm: Uniqueness of reduced primary decomposition}
+    Let $R$ be a commutative ring with identity.
+    If $M$ is an unitary $R$-module and $N$ is a proper submodule of $M$ with two reduced primary decompositions,
+    \begin{equation*}
+        Q_1 \cap Q_2 \cap \cdots \cap Q_k=N
+        =
+        Q_1^{\prime} \cap Q_2^{\prime} \cap \cdots \cap Q_{s}^{\prime}
+    \end{equation*}
+    where $Q_i$ is $\mathfrak{p}_i$-primary and $Q_{j}^{\prime}$ is $\mathfrak{p}_j^{\prime}$-primary.
+    Then $k=s$ and (after reordering if necessary) $\mathfrak{p}_i=\mathfrak{p}_i^{\prime}$ for all $i=1,2, \ldots, k$.
+    Furthermore if $Q_{i}$ and $Q_i^{\prime}$ both are $\mathfrak{p}_i$-primary and $\mathfrak{p}_i$ is an isolated prime, then $Q_{i}=Q_{i}^{\prime}$.
+\end{theorem}
+
+\begin{theorem}
+    \label{thm: primary decomposition in Noetherian unitary R-module}
+    Let $R$ be a commutative ring with identity and $M$ an Noetherian unitary $R$-module.
+    Then every submodule $N\neq M$ has a reduced primary decomposition.
+    \begin{proof}
+        Let $\mathcal{S}$ be the set of all submodules of $M$ that do not have a primary decomposition.
+        Clearly no primary submodule is in $\mathcal{S}$.
+        We must show that $\mathcal{S}$ is actually empty. If $\mathcal{S}$ is nonempty, then $\mathcal{S}$ contains a maximal element $C$ by Theorem 1.4.
+
+        Since $C$ is not primary, there exist $r \in R$ and $b \in M-C$ such that $r b \in C$ but $r^n M \not \subset C$ for all $n>0$.
+        Let $M_n=\left(C:r^n\right)=\left\{x \in M \mid r^n x \in C\right\}$.
+        Then each $M_n$ is a submodule of $M$ and $M_1 \subset M_2 \subset M_3 \subset \cdots$. By hypothesis there exists $k>0$ such that $M_i=M_k$ for $i \geq k$.
+        Let $D$ be the submodule $r^kM+C=\left\{x \in M \mid x=r^k y+c\right.$ for some $\left.y \in M, c \in C\right\}$. Clearly $C \subset M_k \cap D$.
+
+        Conversely, if $x \in M_k \cap D$, then $x=r^k y+c$ and $r^k x \in C$, whence $r^{2 k} v=r^k\left(r^k y\right)=r^k(x-c)=r^k x-r^k c \in C$. Therefore, $y\in M_{2 k}=M_k$. Consequently, $r^k y \in C$ and hence $x=r^k y+c \in C$.
+        Therefore $M_k \cap D \subset C$, whence $M_k \cap D=C$. Now $C \neq M_k \neq M$ and $C \neq D \neq M$ since $b \in M_k-C$ and $r^k M \not \subset C$. By the maximality of $C$ in $\mathcal{S}, M_k$ and $D$ must have primary decompositions. Thus $C$ has a primary decomposition, which is a contradiction. Therefore $\mathcal{S}$ is empty and every submodule has a primary decomposition. Consequently, every submodule has a reduced primary decomposition by \ref{thm: Existence of reduced primary decomposition}.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    If $R$ is a commutative Noetherian ring with identity and $M$ is a finitely generated unitary $R$-module.
+    Then every submodule $N(\neq M)$ of $M$ has a reduced primary decomposition.
+    \begin{proof}
+        This is an immediate consequence of \ref{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring} \ref{thm: equivalent conditions of Noetherian modules} and \ref{thm: primary decomposition in Noetherian unitary R-module}
+    \end{proof}
+\end{corollary}
+
+
+\section{Nakayama's Lemma} % Noetherian Rings and Modules
+
+
+\begin{theorem}[Nakayama's lemma]
+    \label{pro: Nakayama's lemma}
+    Let $M$ be a finitely generated left $R$-module and an left ideal $\mathfrak{a} \subset J_l(R)$.
+    Then $\mathfrak{a} M=M$ implies $M=0$.
+    \begin{proof}
+        Since $\mathfrak{a}M +M$, we have
+        \begin{equation*}
+            \left(x_1,\ldots,x_n\right)^T
+            =
+            \left(a_{ij}\right)_{n\times n}\left(x_1,\ldots,x_n\right)^T
+        \end{equation*}
+        that is,
+        \begin{equation*}
+            \left(I-A\right)\left(x_1,\ldots,x_n\right)^T=0
+        \end{equation*}
+        where $A \in M_n(\mathfrak{a})\subset M_n\left(J(R)\right)$.
+        Thus $I-A$ is invertible in $M_n(R)$, whence $x_i$=0, $M=0$.
+    \end{proof}
+\end{theorem}
+
+
+\begin{corollary}
+    Let $M$ be a finitely generated left $R$-module, $N$ a submodule of $M$, left ideal $\mathfrak{a} \subset J_l(R)$.
+    Then $M=\mathfrak{a} M+N \Rightarrow M=N$.
+\end{corollary}
+
+
+
+
+
+
+\section{Nakayama lemma}
+\begin{lemma}[Nakayama]
+    \label{lem: Nakayama lemma}
+    If $J$ is an ideal in a commutative ring $R$ with identity, then the following conditions are equivalent.
+    \begin{enumerate}
+        \item
+              $J$ is contained in every maximal ideal of $R$ ;
+        \item
+              $1_{R}-j$ is a unit for every $j \in J$
+        \item
+              If $M$ is a finitely generated $R$-module such that $JM=M$, then $M=0$;
+        \item
+              If $N$ is a submodule of a finitely generated $R$-module $M$ such that $M=JM+N$, then $M=N$.
+        \item
+              for every Noetherian $R$-module $M$, $\bigcap_{n=1} J^n M=0$.
+    \end{enumerate}
+    \begin{proof}
+        It is easy to verify that 1. $\Leftrightarrow$ 2. $\Leftrightarrow$ 3. $\Leftrightarrow$ 4.
+
+        ($\Rightarrow$ 5.)
+        If $N=\bigcap_n J^n M$, then $J N=N$ by \ref{thm: Krull Intersection Theorem}.
+        Since $N$ is finitely generated by \ref{thm: equivalent conditions of Noetherian modules}, $B=0$ by 3.
+
+        ($\Leftarrow$ 5.)
+        We may assume $R \neq 0$. If $M$ is any maximal ideal of $R$, then $M \neq R$ and $A=R / M$ is a nonzero $R$-module that has no proper submodules by \ref{thm: The Fourth or Lattice Isomorphism Theorem of Modules}.
+        Thus $A$ trivially satisfies the ascending chain condition, whence $\bigcap J^n A=0$ by hypothesis. Since $J A$ is a submodule of $A$, either $J A=A$ or $J A=0$. If $J A=A$, then $J^n A=A$ for all $n$. Consequently, $\bigcap_n J^n A=A \neq 0$, which is a contradiction. Hence $J A=0$. But $0=J A=J(R / M)$ implies that $J \subset J R \subset M$.
+    \end{proof}
+\end{lemma}
+
+\begin{corollary}
+    If $R$ is a Noetherian local ring with maximal ideal $\mathfrak{m}$, then $\bigcap_{n=1}^{\infty} \mathfrak{m}^n=0$.
+\end{corollary}
+
+\begin{proposition}
+    If $R$ is a local ring, then every finitely generated projective $R$-module is free.
+    \begin{proof}
+        If $P$ is a finitely generated projective $R$-module, then by \ref{cor: Every left module $M$ over a ring $R$ is the homomorphic image of a free $R$-module $F$.}
+        there exists a free $R$-module $F$ with a finite basis and an epimorphism $\pi: F \rightarrow P$. Among all the free $R$-modules $F$ with this property choose one with a basis $\left\{x_1, x_2, \ldots, x_n\right\}$ that has a minimal number of elements. Since $\pi$ is an epimorphism $\left\{\pi\left(x_1\right), \ldots, \pi\left(x_n\right)\right\}$ necessarily generate $P$.
+
+        We shall first show that $K=\operatorname{Ker} \pi$ is contained in $\mathfrak{m} F$, where $\mathfrak{m}$ is the unique maximal ideal of $R$.
+
+        If $K \not \subset \mathfrak{m} F$, then there exists $k \in K$ with $k \notin \mathfrak{m} F$. Now $k=r_1 x_1+r_2 x_2+\cdots+r_n x_n$ with $r_i \in R$ uniquely determined. Since $k \notin \mathfrak{m} F$, some $r_i$, say $r_1$, is not an element of $\mathfrak{m}$, thus $r_1$ is a unit, whence $x_1-r_1^{-1} k=-r_1^{-1} r_2 x_2-\cdots-r_1^{-1} r_n x_n$.
+
+        Consequently, since $k \in \operatorname{Ker} \pi, \pi\left(x_1\right)
+            =
+            \pi\left(x_1-r_1^{-1} k\right)
+            =
+            \sum_{i=2}^n-r_1 r_i \pi\left(x_i\right)$. Therefore, $\left\{\pi\left(x_2\right), \ldots, \pi\left(x_n\right)\right\}$ generates $P$. Thus if $F^{\prime}$ is the free submodule of $F$ with basis $\left\{x_2, \ldots, x_n\right\}$ and $\pi^{\prime}: F^{\prime} \rightarrow P$ the restriction of $\pi$ to $F^{\prime}$, then $\pi^{\prime}$ is an epimorphism. This contradicts the choice of $F$ as having a basis of minimal cardinality. Hence $K \subset \mathfrak{m} F$.
+
+        Since $0 \rightarrow K \xrightarrow{\subset} F \xrightarrow{\pi} P \rightarrow 0$ is exact and $P$ is projective $K \oplus P \cong F$ by \ref{thm: Equivalent conditions of projective}.
+        Under this isomorphism $(k, 0) \mapsto k$ for all $k \in K$ (see the proof of Theorem IV.1.18), whence $F$ is the internal direct sum $F=K \oplus P^{\prime}$ with $P^{\prime} \cong P$. Thus $F=K+P^{\prime} \subset \mathfrak{m} F+P^{\prime}$. If $u \in F$, then $u=\sum_i m_i v_i+p_i$ with $m_i \in \mathfrak{m}, v_i \in F, p_i \in P^{\prime}$. Consequently, in the $R$-module $F / P^{\prime}$,
+        \begin{equation*}
+            u+P^{\prime}=\sum_i m_i v_i+P^{\prime}=\sum_i m_i\left(v_i+P^{\prime}\right) \in \mathfrak{m}\left(F / P^{\prime}\right)
+        \end{equation*}
+        whence $\mathfrak{m}\left(F / P^{\prime}\right)=F / P^{\prime}$. Since $F$ is finitely generated, so is $F / P^{\prime}$. Therefore $K \cong F / P^{\prime}=0$ by \ref{lem: Nakayama lemma}.
+        Thus $P \cong P^{\prime}=F$ and $P$ is free.
+    \end{proof}
+\end{proposition}
+
+\chapter{Completions} % Completions
+\section{Filtered and Graded Modules} % Filtered and Graded Modules
+Let $A$ be a commutative ring and $M$ a module.
+\section{Filterations} % Filterations
+\begin{definition}
+    Let $A$ be a ring, $\mathfrak{a}$ an ideal of $A$ and $M$ an $A$-module.
+    \begin{enumerate}
+        \item
+              A \textbf{filtration} of $M$ one means an sequence of submodules $\mathcal{F}=\left\{F_iM\right\}$
+              \begin{equation*}
+                  \cdots \subset F_{n+1}M\subset F_{n}M \subset F_{n+1}M \subset \cdots \subset M
+              \end{equation*}
+
+              \begin{remark}
+                  A descending filtration of $M$ one means a sequence of submodules
+                  \begin{equation*}
+                      M=F^0M \supset F^1M \supset F^2M \supset \cdots \supset F^nM \supset \cdots
+                  \end{equation*}
+                  A increasing filtration of $M$ one means a sequence of submodules
+                  \begin{equation*}
+                      F_0M \subset F_1M \subset F_2M \subset \cdots \subset F_nM \subset \cdots \subset M
+                  \end{equation*}
+                  with union $\bigcup_{n=0}^{\infty} F_nM=M$.
+              \end{remark}
+    \end{enumerate}
+    In this chapter, we shall only consider descending filtrations.
+    \begin{enumerate}[resume]
+        \item
+              We say that it is an \textbf{$\mathfrak{a}$-filtration} if $\mathfrak{a} F^nM \subset F^{n+1}M$ for all $n$.
+
+
+        \item
+              We say that an $\mathfrak{a}$-filtration is \textbf{$\mathfrak{a}$-stable} if we have $\mathfrak{a} F^nM=F^{n+1}M$ for all $n$ sufficiently large.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{lemma}
+    If $\left(M_n\right),\left(M_n^{\prime}\right)$ are stable a-filtrations of $M$, then they have bounded difference: that is, there exists an integer $n_0$ such that $M_{n+n_0} \subseteq M_n^{\prime}$ and $M_{n+n_0}^{\prime} \subseteq M_n$ for all $n \geqslant 0$.
+    \begin{proof}
+        Enough to take $M_n^{\prime}=\mathfrak{a}^n M$. Since $\mathfrak{a} M_n \subseteq M_{n+1}$ for all $n$, we have $\mathfrak{a}^n M \subseteq M_n$; also $\mathfrak{a} M_n=M_{n+1}$ for all $n \geqslant n_0$ say, hence $M_{n+n_0}=\mathfrak{a}^n M_{n_0} \subseteq \mathfrak{a}^n M$.
+    \end{proof}
+\end{lemma}
+
+
+
+\section{Graded} % Graded
+\begin{definition}
+    The ring $A$ is called a \textbf{graded ring} if it is a family $\left\{A_n\right\}_{n \geqslant 0}$ of subgroups of $A$, such that
+    \begin{equation*}
+        A=\bigoplus_{n=0}^{\infty} A_n
+    \end{equation*}
+    as an abelian group and $A_m A_n \subseteq A_{m+n}$ for all $m, n \geqslant 0$.
+    \begin{remark}
+        Thus $A_0$ is a subring of $A$, and each $A_n$ is an $A_0$-module.
+        Furthermore, $A_{+}=\bigoplus_{n>0} A_n$ is an ideal of $A$.
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    Let $A$ be a graded ring and $A$-module $M$.
+    \begin{enumerate}
+        \item
+              A \textbf{graded $A$-module} is an $A$-module $M$ together with a family $\left\{M_n\right\}_{n \geqslant 0}$ of subgroups of $M$ such that $M=\bigoplus_{n=0}^{\infty} M_n$ as an abelian group and $A_m M_n \subseteq M_{m+n}$ for all $m, n \geqslant 0$.
+
+        \item
+              Elements of $M_n$ are then called \textbf{homogeneous of degree $n$}.
+
+        \item
+              Any element $y \in M$ can be written uniquely as a finite sum $\sum_n y_n$, where $y_n \in M_n$ for all $n \geqslant 0$, and all but a finite number of the $y_n$ are 0 . The non-zero components $y_n$ are called the \textbf{homogeneous components} of $y$.
+    \end{enumerate}
+    \begin{remark}
+        Thus each $M_n$ is an $A_0$-module.
+    \end{remark}
+\end{definition}
+
+
+\begin{definition}
+    If $M, N$ are graded $A$-modules, a homomorphism of graded $A$-modules is an $A$-module homomorphism $f: M \rightarrow N$ such that $f\left(M_n\right) \subseteq N_n$ for all $n \geqslant 0$.
+
+
+\end{definition}
+
+
+\begin{proposition}
+    Let $A$ be a graded ring.
+    Then $A$ is Notetherian if and only if $A_0$ is Noetherian, and $A$ is finitely generated as $A_0$-algebra
+\end{proposition}
+
+\section{First associated graded ring} % First associated graded ring
+\begin{definition}
+    Let $A$ be a ring, ideal $\mathfrak{a}$ and $A$-module $M$ filtered by $\mathfrak{a}$-filtration $\left\{M_n\right\}$.
+    \begin{enumerate}
+        \item
+              We can form a \textbf{first associated graded ring}
+              \begin{equation*}
+                  S=S_{\mathfrak{a}}\left(A\right)
+                  =
+                  \bigoplus_{n=0}^{\infty} \mathfrak{a}^n
+              \end{equation*}
+              $\mathfrak{a}^0=A$.
+              \begin{remark}
+                  It is also a $A$-algebra called \textbf{Rees algebra}, with the homomorphism $A \rightarrow S_{\mathfrak{a}}\left(A\right)$ defined by $a \mapsto \left(a,0,0,\ldots\right)$.
+              \end{remark}
+
+        \item
+              Then $M_S=\bigoplus_n M_n$ is a graded $S_{\mathfrak{a}}\left(A\right)$-module.
+    \end{enumerate}
+    \begin{remark}
+        If $A$ is Noetherian, $\mathfrak{a}$ is generated by $x_1, \ldots, x_r$; then $S_{\mathfrak{a}}\left(A\right)= A\left[x_1, \ldots, x_r\right]$ and is Noetherian.
+    \end{remark}
+\end{definition}
+
+
+\begin{lemma}
+    Let $A$ be a Noetherian ring, ideal $\mathfrak{a}$, and $M$ a finitely generated module, with an $\mathfrak{a}$-filtration.
+    Then $M_S$ is finite over $S_{\mathfrak{a}}\left(A\right)$ if and only if the filtration of $M$ is $\mathfrak{a}$-stable.
+\end{lemma}
+
+\begin{theorem}[Artin-Rees]
+    Let $A$ be a Noetherian ring, $\mathfrak{a}$ an ideal, $M$ a finite $A$-module with a stable $\mathfrak{a}$-filtration.
+    Let $N$ be a submodule, and let $N_n=N \cap M_n$. Then $\left\{N_n\right\}$ is a stable $\mathfrak{a}$-filtration of $N$.
+\end{theorem}
+
+\begin{corollary}
+    Let $A$ be a Noetherian ring, $M$ a finite $A$-module, and $N$ a submodule.
+    Let $\mathfrak{a}$ be an ideal. There exists an integer $s$ such that for all integers $n \geq s$ we have
+    \begin{equation*}
+        \mathfrak{a}^n M \cap N=\mathfrak{a}^{n-s}\left(\mathfrak{a}^s M \cap N\right)
+    \end{equation*}
+\end{corollary}
+
+\section{Second associated graded ring}
+\begin{definition}
+    Let $A$ be a ring, $\mathfrak{a}$ an ideal and $M$ an $A$-module with an $\mathfrak{a}$-filtration $\left\{M_n\right\}$.
+    \begin{enumerate}
+        \item
+              We define the \textbf{second associated graded ring}
+              \begin{equation*}
+                  \operatorname{gr}_{\mathfrak{a}}(A)=\bigoplus_{n=0}^{\infty} \mathfrak{a}^n / \mathfrak{a}^{n+1} .
+              \end{equation*}
+              where $\mathfrak{a}^0=A$.
+        \item
+              We define
+              \begin{equation*}
+                  \operatorname{gr}(M)=\bigoplus_{n=0}^{\infty} M_n / M_{n+1}
+              \end{equation*}
+              then $\operatorname{gr}(M)$ is a graded $\operatorname{gr}_{\mathfrak{a}}(A)$-module.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    Let $A$ be a Noetherian ring and $\mathfrak{a}$ an ideal. Then
+    \begin{enumerate}
+        \item
+              $\operatorname{gr}_{\mathfrak{a}}(A)$ is Noetherian.
+        \item
+              If $M$ is a finitely generated $A$-module with a stable $\mathfrak{a}$-filtration, then $\operatorname{gr}(M)$ is a finitely generated graded $\operatorname{gr}_{\mathfrak{a}}(A)$-module.
+    \end{enumerate}
+\end{proposition}
+
+\section{Graded Algebra} % Graded Algebra
+\begin{definition}
+    Let $K$ be a commutative ring and $A$ a $K$-algebra.
+    Then $A$ is called \textbf{graded $K$-algebra} if
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $A=\bigoplus_{n=0}^{\infty} A_n$ is a graded ring,
+        \item
+              each $A_n$ is a $K$-submodule of $A$,
+    \end{enumerate}
+    \begin{remark}
+        Thus $A$ becomes a graded $A$ module in a natural way.
+        And $K \hookrightarrow A_0$ be a ring-homomorphism.
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    Let $K$ be a commutative ring and $A$ a $K$-algebra.
+    A increasing \textbf{filtration} of $A$ is
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              a sequence of $K$-submodules $F_0\subset F_1 \subset F_2 \subset \cdots\subset A$ such that
+        \item
+              $F_i F_j \subseteq F_{i+j}$ for all $i, j$.
+        \item
+              $A=\bigcup_{n=0}^{\infty} F_n$
+    \end{enumerate}
+    Then $A$ is called a \textbf{filtered $K$-algebra}.
+\end{definition}
+
+
+\begin{definition}
+    Let $K$ be a commutative ring and $A$ a filtered $K$-algebra with filtration $\mathcal{F}=\left\{F_n\right\}$.
+    We define the \textbf{graded $K$-algebra associated with} $\mathcal{F}$
+    \begin{equation*}
+        \operatorname{gr}(A)=\bigoplus_{n=0}^{\infty} F_n / F_{n-1}
+    \end{equation*}
+    where $F_{-1}=0$.
+    Multiplication is defined in the obvious way.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Krull intersection theorem}
+\begin{lemma}
+    \label{lem: finitely generated module M and R/Ann(M)}
+    Let $M$ be a finitely generated module over a commutative ring $R$ with identity.
+    Then $M$ is Noetherian [resp. Artinian] if and only if $R/ \Ann \left(M\right)$ is a Noetherian [resp. Artinian] ring.
+
+    \begin{proof}
+        Let $M$ be generated by $m_1, \ldots, m_n$ and assume $M$ satisfies the ascending chain condition.
+        Then $M=R m_1+\cdots+R m_n$ by \ref{thm: Structure of subfield(subring) generated by sets}.
+        Consequently,
+        $\Ann\left( M \right) =\Ann\left( m_1 \right) \cap \Ann\left( m_2 \right)  \cap \cdots \cap \Ann\left( m_n \right)$, whence there is a monomorphism of rings
+        \begin{equation*}
+            \theta: R / I \rightarrow R / I_1 \times \cdots \times R / I_n
+        \end{equation*}
+        It is easy to see that $\theta$ is also an $R$-module monomorphism. Verify that for each $j$ the map $R / I_j \rightarrow R b_j$ given by $r+I_j \mapsto r b_j$ is an isomorphism of $R$-modules.
+
+        Since the submodule $R b_j$ of $M$ necessarily satisfies the ascending chain condition, so does $R / I_j$. Therefore, $R / I_1 \oplus \cdots \oplus R / I_n$ satisfies the ascending chain condition on $R$-submodules by \ref{cor: chain condition on submodules of direct sum }.
+        Consequently its submodule $\operatorname{Im} \theta \cong R / I$ satisfies the ascending chain condition on $R$-submodules. But every ideal of the ring $R / I$ is an $R$-submodule of $R / I$. Therefore, $R / I$ is Noetherian.
+
+        Conversely suppose $R / \Ann\left( M \right)$ is Noetherian.
+        Verify that $M$ is an $R / \Ann\left( M \right)$-module with $(r+\Ann\left( M \right)) m=r m$ and that the $R / I$-submodules of $M$ are precisely the $R$-submodules.
+        Consequently, $M$ satisfies the ascending chain condition by \ref{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring}.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}
+    \label{lem: lemma of Krull Intersection Theorem}
+    Let $R$ be a commutative ring with identity, $\mathfrak{p}$ be a prime ideal in $R$ and $M$ be a Noetherian $R$-module.
+    If $N$ is a $\mathfrak{p}$-primary submodule of  $M$, then there exists a positive integer $k$ such that $\mathfrak{p}^{k} M \subset N $, i.e. $\mathfrak{p}^k\subset \mathfrak{q}=\left(M:N\right)$
+
+
+    \begin{proof}
+        Let $I$ be the annihilator of $M$ in $R$ and consider the ring $\bar{R}=R / I$.
+        Denote the coset $r+I \in \bar{R}$ by $\bar{r}$. Clearly $I \subset
+            \left(M:N\right)
+            \subset \mathfrak{p}$, whence $\bar{\mathfrak{p}}=\mathfrak{p} / I$ is an ideal of $\bar{R}$.
+        $M$ and $N$ are each $\bar{R}$-modules with $\bar{r} a=r a(r \in R, a \in M)$.
+
+        We claim that $N$ is a primary $\bar{R}$-submodule of $M$. If $\bar{r} a \in N$ with $r \in R$ and $a \in M-N$, then $r a \in N$. Since $N$ is a primary $R$-submodule, $r^n M \subset N$ for some $n$, whence $\bar{r}^n M \subset N$ and $N$ is $\bar{R}$-primary.
+
+        Since $\left\{\bar{r} \in \bar{R} \mid \bar{r}^k M \subset N\right.$ for some $\left.k>0\right\}=\left\{\bar{r} \in \bar{R} \mid r^k M \subset N\right\}$ $=\{\bar{r} \in \bar{R} \mid r \in \mathfrak{p}\}=\bar{\mathfrak{p}}$, $ \bar{\mathfrak{p}}$ is a prime ideal of $\bar{R}$ and $N$ is a $\bar{\mathfrak{p}}$-primary $\bar{R}$-submodule of $M$.
+
+        Since $\bar{R}$ is Noetherian by \ref{lem: finitely generated module M and R/Ann(M)}, $\bar{\mathfrak{p}}$ is finitely generated by \ref{thm: equivalent conditions of Noetherian modules}.
+        Let $\bar{p}_1, \ldots, \bar{p}_s\left(p_i \in \mathfrak{p}\right)$ be the generators of $\bar{\mathfrak{p}}$. For each $i$ there exists $n_i$ such that $\bar{p}_i^{n_i} M \subset N$. If $m=n_1+\cdots+n_s$, then it follows that $\bar{\mathfrak{p}}^m M \subset N$. The facts-that $\bar{\mathfrak{p}}=\mathfrak{p} / I$ and $I M=0$ now imply that $\mathfrak{p}^m M \subset N$.
+    \end{proof}
+\end{lemma}
+
+
+
+\begin{theorem}[Krull Intersection Theorem]
+    \label{thm: Krull Intersection Theorem}
+    Let $R$ be a commutative ring with identity, $\mathfrak{a}$ an ideal of $R$ and $M$ a Noetherian $R$-module.
+    If submodule $N=\bigcap_{n=1}^{\infty} \mathfrak{a}^{n} M$, then $\mathfrak{a}N=N$.
+
+    \begin{proof}
+        If $\mathfrak{a} N=M$, then $M=\mathfrak{a} N \subset N$, whence $N=M=\mathfrak{a} N$. If $\mathfrak{a} N \neq M$, then by \ref{thm: primary decomposition in Noetherian unitary R-module}
+        $\mathfrak{a} N$ has a reduced primary decomposition:
+        \begin{equation*}
+            \mathfrak{a} N=Q_1 \cap Q_2 \cap \cdots \cap Q_s
+        \end{equation*}
+        where each $Q_i$ is a $\mathfrak{p}_i$-primary submodule of $M$ for some prime ideal $\mathfrak{p}_i$ of $R$. Since $\mathfrak{a} N \subset N$ in any case, we need only show that $N \subset Q_i$ for every $i$.
+
+        Let $i(1 \leq i \leq s)$ be fixed. Suppose first that $\mathfrak{a} \subset \mathfrak{p}_i$.
+        By \ref{lem: lemma of Krull Intersection Theorem} there is an integer $m$ such that $\mathfrak{p}_i^m M \subset Q_i$, whence $N=\bigcap_n \mathfrak{a}^n M \subset \mathfrak{a}^m M \subset \mathfrak{p}_i^m M \subset Q_i$. Now suppose $\mathfrak{a} \not \subset \mathfrak{p}_i$. Then there exists $r \in \mathfrak{a}-\mathfrak{p}_i$. If $N \not \subset Q_i$, then there exists $b \in N-Q_i$. Since $r b \in \mathfrak{a} N \subset Q_i, b \notin Q_i$ and $Q_i$ is primary, $r^n M \subset Q_i$ for some $n>0$. Consequently, $r \in \mathfrak{p}_i$ since $Q_i$ is a $\mathfrak{p}_i$-primary submodule. This contradicts the choice of $r \in \mathfrak{a}-\mathfrak{p}_i$. Therefore $B \subset Q_i$.
+    \end{proof}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

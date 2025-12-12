@@ -1,0 +1,507 @@
+\chapter{Ring Theory}
+\minitoc
+
+\section{Basic Definition} % Basic Definition
+\begin{definition}
+    A \textbf{ring} $R$ is a set together with two binary operations $+$ and $\times$ satisfying the following axioms:
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $(R,+)$ is an abelian group,
+
+        \item
+              $\times $ is associative
+
+        \item
+              the distributive laws hold in $R$ : for all $a, b, c \in R$
+              \begin{equation*}
+                  (a+b) \times c=(a \times c)+(b \times c) \quad \text { and } \quad a \times(b+c)=(a \times b)+(a \times c)
+              \end{equation*}
+    \end{enumerate}
+    The ring $R$ is \textbf{commutative} if
+    \begin{enumerate}[resume,label=(\roman*)]
+        \item
+              multiplication $\times$ is commutative.
+    \end{enumerate}
+    The ring $R$ is called unital if it has an \textbf{identity} $1_R$  s.t.
+    \begin{enumerate}[resume,label=(\roman*)]
+        \item
+              $1_R \times a=a \times 1_R=a$ for all $a \in R$.
+    \end{enumerate}
+    \begin{remark}
+        In this book, we usually use the term "ring" to refer a unital ring.
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    A \textbf{subring} of $R$ is a subgroup of $R$ that is closed under multiplication and contains the identity element $1_R$. .
+\end{definition}
+
+
+
+\begin{proposition}
+    Let $R$ be a ring. Then
+    \begin{enumerate}
+        \item
+              $0 a=a 0=0$ for all $a \in R$.
+        \item  $(-a) b=a(-b)=-(a b)$ for all $a, b \in R$.
+        \item
+              $(-a)(-b)=a b$ for all $a, b \in R$.
+        \item
+              the identity is unique and $-a=(-1) a$.
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{definition}
+    Let $R$ be a ring.
+    \begin{enumerate}
+        \item
+              A nonzero element $a$ of $R$ is called a \textbf{zero divisor} if there is a nonzero element $b$ in $R$ such that either $a b=0$ or $b a=0$.
+
+        \item
+              An element $u$ of $R$ is called a \textbf{unit} in $R$ if there is some $v$ in $R$ such that $u v=v u=1$. The set of units in $R$ is denoted $R^{\times}$.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{definition} %% integral domain
+    A commutative ring with identity $1 \neq 0$ is called an \textbf{integral domain} if it has no zero divisors.
+\end{definition}
+
+\begin{proposition}[Cancellation property] %% Cancellation property
+    Let $R$ be a ring. Then
+    \begin{enumerate}
+        \item
+              Assume $a, b$ and $c$ are elements of $R$ with $a$ not a zero divisor. If $a b=a c$, then either $a=0$ or $b=c$.
+
+        \item In particular, if $a, b, c$ are any elements in an integral domain and $a b=a c$, then either $a=0$ or $b=c$.
+
+        \item Any finite integral domain is a field.
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{definition}
+    Let $R$ be a ring.
+    If there is a least positive integer $n$ such that $nr=0$ for all $r \in R$, then $R$ is said to have \textbf{characteristic} $n$ . If no such $n$ exists $R$ is said to have characteristic zero. (Notation: $\char{R}={n}$).
+\end{definition}
+
+
+\begin{theorem}
+    Let $R$ be a ring with identity $1_{R}$ and characteristic ${n}>0$.
+    \begin{enumerate}
+        \item
+              If $\varphi: \mathbb{Z} \rightarrow R$ is the map given by ${m} \mapsto m 1_{{R}}$, then $\varphi$ is a homomorphism of rings with kernel $\langle{n}\rangle=n\mathbb{Z}$.
+
+        \item
+              $n$ is the least positive integer such that ${n} 1_{{R}}=0$.
+
+        \item
+              If $R$ has no zero divisors (in particular if $R$ is an integral domain), then $n$ is prime.
+    \end{enumerate}
+\end{theorem}
+
+
+\section{Ideal} % Ideal
+\subsection{Definition and Quotient Ring} % Definition and Quotient Ring
+\begin{definition}
+    Let $R$ be a ring.
+    A subset $\mathfrak{a}$ of $R$ is a \textbf{left ideal} of $R$ if
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $\mathfrak{a}$ is an additive subgroup of $R$,
+        \item
+              $\mathfrak{a}$ is closed under left multiplication by elements from $R$, i.e., $r \mathfrak{a} \subseteq \mathfrak{a}$ for all $r \in R$.
+    \end{enumerate}
+    A subset $\mathfrak{b}$ that is both a left ideal and a right ideal is called an \textbf{ideal} (or a \textbf{two-sided ideal}) of $R$.
+    An ideal $\mathfrak{b}$ is \textbf{proper} if $\mathfrak{b} \neq R$ and $\mathfrak{b} \neq 0$. The ideal $\{0\}$ is called the \textbf{trivial ideal} and is denoted by $0$.
+\end{definition}
+
+\begin{theorem}
+    Let $R$ be a ring.
+    A nonempty subset $\mathfrak{a}$ of a ring $R$ is a left [resp. right] ideal if and only if for all $a,{b} \in {\mathfrak{a}}$ and ${r} \in R$ :
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $a, {b} \in {\mathfrak{a}} \quad \Rightarrow \quad a-{b} \in {\mathfrak{a}}$
+        \item
+              $a \in {\mathfrak{a}}, {r} \in {R} \quad \Rightarrow \quad {ra} \in {\mathfrak{a}}$
+              $[$resp. ${ar} \in {\mathfrak{a}}$$]$
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    \label{cor: ideal}
+    Let $R$ be a ring.
+    \begin{enumerate}
+        \item If $\left\{I_\alpha \right\}$ is a family of ideals [resp. left ideal] in a ring $R$, then
+              \begin{equation*}
+                  \bigcap I_\alpha
+              \end{equation*}
+              is also a ideal [resp. left ideal].
+
+        \item If $\left\{J_\beta\right\}$ is a chain of ideals [resp. left ideal] in $\mathcal{P}(R)$ i.e. either $J_\beta \subset$ or $J_{\beta'} \subset J_\beta$ holds for all $\beta,\beta'$, then
+
+              \begin{equation*}
+                  \bigcup J_\beta
+              \end{equation*}
+
+              is also a ideal [resp. left ideal] of $R$.
+    \end{enumerate}
+\end{corollary}
+
+\begin{definition}
+    Let $R$ be a ring and let $\mathfrak{a}$ be an ideal of $R$. Then the (additive) quotient group $R / \mathfrak{a}$ is a ring called the \textbf{quotient ring of $R$ by $\mathfrak{a}$} under the binary operations:
+    \begin{equation*}
+        (r+\mathfrak{a})+(s+\mathfrak{a})=(r+s)+\mathfrak{a} \quad \text { and } \quad(r+\mathfrak{a}) \times(s+\mathfrak{a})=(r s)+\mathfrak{a}
+    \end{equation*}
+    for all $r, s \in R$.
+
+    Conversely, if $\mathfrak{b}$ is any subgroup such that the above operations are well defined, then $\mathfrak{b}$ is an ideal of $R$.
+    \begin{remark}
+        If $\mathfrak{a}$ is a left [resp. right] ideal of $R$, then the quotient group $R / \mathfrak{a}$ is left [resp. right] $R$-module under the operation
+    \end{remark}
+\end{definition}
+
+
+\subsection{Ideals generated by a set}
+% Ideals generated by a set
+\begin{definition}
+    Let $A_1, A_2, \ldots, A_n$ be nonempty subsets of a rng $R$.
+    Then
+    \begin{enumerate}
+        \item Denote by $A_1+A_2+\cdots+A_n$ the set
+              \begin{equation*}
+                  \left\{a_1+a_2+\cdots+a_n : a_i \in A_i, i=1,2, \ldots, n\right\}
+              \end{equation*}
+
+        \item
+              If $A$ and $B$ are nonempty subsets of $R$ let $A B$ denote the set of all finite sums
+              \begin{equation*}
+                  \left\{a_1 b_1+\cdots+a_n b_n : n \in \mathbb{Z}_{\geq 1} ; a_i \in A , b_i \in B \right\}
+              \end{equation*}
+              If $A$ consists of a single element $a$, we write $a B$ for $A B$. Similarly if $B=\{b\}$, we write $A b$ for $A B$.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    Let $A, A_1, A_2, \ldots, A_{{n}}, {B}$ and $C$ be subsets of ring $R$.
+    Then
+    \begin{enumerate}
+        \item  $(A+{B})+{C}=A+({B}+{C})$; $A+B=B+A$
+
+        \item $(AB) {C}=A(BC)$
+
+        \item ${B}\left(A_1+A_2\right)={BA}_1+{BA}_2$; and $\left(A_1+A_2\right) {C}=A_1 {C}+A_2 {C}$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+    Let $X$ be a subset of a rng $R$. Let $\left\{I_\alpha \right\}$ be the family of all (left) ideals in $R$ which contain $X$.
+    Then $\bigcap I_\alpha $ is called the \textbf{(left) ideal generated by $X$}. This ideal is denoted $(X)$. The elements of $X$ are called \textbf{generators} of the ideal $(X)$.
+
+    If $X=\left\{x_1, \ldots, x_n\right\}$, then the ideal $(X)$ is denoted by $\left(x_1, x_2, \ldots, x_n\right)$ and said to be \textbf{finitely generated}.
+
+    An ideal $(x)$  generated by a single element is called a \textbf{principal ideal}. A principal ideal ring is a ring in which every ideal is principal. A principal ideal ring which is an integral domain is called a \textbf{principal ideal domain}.
+\end{definition}
+
+\begin{theorem}
+    \label{thm: Ideals generated by a set}
+    Let $R$ be a rng and $X \subset R$,
+    then
+    \begin{enumerate}
+        \item
+              the left [resp. right] ideal generated by $X$ is
+              \begin{equation*}
+                  \left(X\right)_l
+                  =
+                  RX
+                  \quad  \text{  [resp.] }
+                  \left(X\right)_r= +XR
+              \end{equation*}
+              the (two-sided) ideal generated by $X$ is
+              \begin{equation*}
+                  \left(X\right)
+                  =
+                  RX+XR +RXR
+              \end{equation*}
+        \item
+              if $R$ has identity, we have $\left(X\right)_l=RX$,$\left(X\right)_r=RX$ and $\left(X\right)=RX+XR+RXR$
+        \item
+              if $R$ is commutative, $\left(X\right)_l=\left(X\right)_r=\left(X\right)=RX$
+    \end{enumerate}
+\end{theorem}
+
+
+
+
+
+\subsection{Prime ideal} % Prime ideal
+\begin{definition}
+    Let $R$ be a ring.
+    An ideal $\mathfrak{p}$ in $R$ is said to be \textbf{prime} if
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $\mathfrak{p} \neq {R}$
+        \item
+              for any ideals $A, B$ in $R$,
+              $\mathfrak{a} \mathfrak{b} \subset \mathfrak{p}\Rightarrow \mathfrak{a} \subset\mathfrak{p} \text { or } \mathfrak{b} \subset \mathfrak{p}$
+    \end{enumerate}
+    The set of all prime ideals in a ring $R$ is called the \textbf{spectrum} of $R$, denoted by $\operatorname{Spec}(R)$.
+\end{definition}
+
+\begin{theorem}
+    \label{thm: Prime ideal}
+    Let $R$ be a ring and an ideal $\mathfrak{p} \neq R$.
+    \begin{enumerate}
+        \item
+              If $a b \in \mathfrak{p} \Rightarrow a \in \mathfrak{p}\text { or  } b \in \mathfrak{p}$ for all $a,b\in R$, then $\mathfrak{p}$ is prime.
+    \end{enumerate}
+    If $R$ is commutative,
+    \begin{enumerate}[resume]
+        \item ideal $\mathfrak{p}$ is prime if and only if then $\mathfrak{p}$ satisfies the above condition.
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    \label{cor: Prime ideal}
+    Let $R$ be a commutative ring and $\mathfrak{p}$ be an ideal in $R$. The following conditions are equivalent.
+    \begin{enumerate}
+        \item
+              Ideal $\mathfrak{p}$ is prime
+        \item
+              $R-\mathfrak{p}$ is a multiplicative set.
+        \item
+              ${R} / \mathfrak{p} $ is an integral domain.
+    \end{enumerate}
+\end{corollary}
+
+
+\begin{theorem}
+    \label{thm: lemma of primary decomposition}
+    Let $K$ be a subring of a commutative ring $R$.
+    If $\mathfrak{p}_1, \ldots, \mathfrak{p}_{\mathrm{n}}$ are prime ideals of R such that $K\subset \mathfrak{p}_1 \cup \mathfrak{p}_2 \cup \ldots \cup \mathfrak{p}_{\mathrm{n}}$, then $K \subset \mathfrak{p}_{i}$ for some $i$ .
+    \begin{proof}
+        Assume $K \not \subset \mathfrak{p}_i$ for every $i$. It then suffices to assume that $n>1$ and $n$ is minimal; that is, for each $i, K \not \subset \bigcup_{j \neq i} \mathfrak{p}_j$.
+        For each $i$ there exists $a_i \in K-\bigcup_{j \neq i} \mathfrak{p}_1$. Since $K \subset \bigcup_i \mathfrak{p}_i$, each $a_i \in \mathfrak{p}_i$. The element $a_1+a_2 a_3 \cdots a_n$ lies in $K$
+        and hence in $\bigcup_i \mathfrak{p}_i$. Therefore $a_1+a_2 a_3 \cdots a_n=b_j$ with $b_j \in \mathfrak{p}_j$. If $j>1$, then $a_1 \in \mathfrak{p}_j$, which is a contradiction. If $j=1$, then $a_2 a_3 \cdots a_n \in \mathfrak{p}_1$, whence $a_i \in \mathfrak{p}_1$ for some $i>1$ by \ref{cor: Prime ideal}.
+    \end{proof}
+\end{theorem}
+
+
+
+
+
+
+\subsection{Maximal ideal} % Maximal ideal
+
+\begin{definition}
+    Let $R$ be a ring. An ideal $\mathfrak{m}$ is called a \textbf{maximal ideal} [resp. maximal left ideal]
+    if
+    \begin{enumerate}[label=(\roman*)]
+        \item  $\mathfrak{m} \neq R$
+        \item the only ideals[resp. left ideal] containing $\mathfrak{m}$ are $R$ and $\mathfrak{m}$.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{theorem}
+    In a ring $R$ with identity $1_R\neq 0$, every ideal [resp. left ideal] in $R$ (except $R$ itself) is contained in a [resp. left ideal] maximal ideal.
+    \label{thm: existence of maximal ideal}
+    \begin{proof}
+        It follows from Zorn's lemma and \cref{cor: ideal}
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    \label{thm: maximal ideal is prime}
+    If $R$ is a commutative ring, then every maximal ideal $\mathfrak{m}$ is prime.
+\end{theorem}
+
+
+\begin{theorem}
+    \label{thm: maximal ideal}
+    Let $\mathfrak{m}$ be an ideal in a ring $R$ with identity $1_R \neq 0$.
+    \begin{enumerate}
+        \item
+              If $\mathfrak{m}$ is maximal and $R$ is commutative, then the quotient ring $R / M$ is a field.
+
+        \item
+              If the quotient ring $R / \mathfrak{m}$ is a division ring, then $\mathfrak{m}$ is maximal.
+    \end{enumerate}
+    \begin{remark}
+
+    \end{remark}
+\end{theorem}
+
+\begin{corollary}
+    \label{cor: equivalent conditions of field}
+    The following conditions on a commutative ring $R$ with identity $1_R \neq 0$ are equivalent.
+    \begin{enumerate}
+        \item
+              $R$ is a field.
+
+        \item
+              $R$ has only trivial ideals.
+
+        \item
+              $0$ is a maximal ideal in $R$.
+
+        \item
+              $R$ is simple.
+        \item
+              every nonzero homomorphism of rings $R \rightarrow {S}$ is a monomorphism.
+    \end{enumerate}
+\end{corollary}
+
+
+
+\subsection{Chinese Remainder Theorem}
+\begin{definition}
+    The ideals $\mathfrak{a}$ and $\mathfrak{b}$ of the ring $R$ are said to be \textbf{comaximal} if $\mathfrak{a}+\mathfrak{b}=R$.
+\end{definition}
+
+
+\begin{theorem}[Chinese Remainder Theorem]
+    Let $R$ be a commutative ring with $1_R\neq 0$ and $\mathfrak{a}_1, \mathfrak{a}_2, \ldots, \mathfrak{a}_k$ be ideals in $R$. Then
+    \begin{enumerate}
+        \item
+              The map
+              \begin{equation*}
+                  R \rightarrow R / \mathfrak{a}_1 \times R / \mathfrak{a}_2 \times \cdots \times R / \mathfrak{a}_k
+              \end{equation*}
+              defined by
+              \begin{equation*}
+                  r \mapsto\left(r+\mathfrak{a}_1, r+\mathfrak{a}_2, \ldots, r+\mathfrak{a}_k\right)
+              \end{equation*}
+              is a ring homomorphism with kernel $\mathfrak{a}_1 \cap \mathfrak{a}_2 \cap \cdots \cap \mathfrak{a}_k$.
+
+        \item
+              If for each $i, j \in\{1,2, \ldots, k\}$ with $i \neq j$ the ideals $\mathfrak{a}_i$ and $\mathfrak{a}_j$ are comaximal, then this map is surjective and
+              \begin{equation*}
+                  \quad R /\left(\mathfrak{a}_1 \mathfrak{a}_2 \cdots \mathfrak{a}_k\right)=R /\left(\mathfrak{a}_1 \cap \mathfrak{a}_2 \cap \cdots \cap \mathfrak{a}_k\right) \cong R / \mathfrak{a}_1 \times R / \mathfrak{a}_2 \times \cdots \times R / \mathfrak{a}_k
+              \end{equation*}
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    Let $n$ be a positive integer and let $p_1^{\alpha_1} p_2^{\alpha_2} \ldots p_k^{\alpha_k}$ be its factorization into powers of distinct primes. Then
+    \begin{equation*}
+        \mathbb{Z} / n \mathbb{Z}
+        \cong
+        \left(\mathbb{Z} / p_1^{\alpha_1} \mathbb{Z}\right) \times\left(\mathbb{Z} / p_2^{\alpha_2} \mathbb{Z}\right) \times \cdots \times\left(\mathbb{Z} / p_k^{\alpha_k} \mathbb{Z}\right)
+    \end{equation*}
+    as rings, so in particular we have the following isomorphism of multiplicative groups:
+    \begin{equation*}
+        (\mathbb{Z} / n \mathbb{Z})^{\times} \cong\left(\mathbb{Z} / p_1^{\alpha_1} \mathbb{Z}\right)^{\times} \times\left(\mathbb{Z} / p_2^{\alpha_2} \mathbb{Z}\right)^{\times} \times \cdots \times\left(\mathbb{Z} / p_k^{\alpha_k} \mathbb{Z}\right)^{\times} .
+    \end{equation*}
+\end{corollary}
+
+
+
+\section{Homomorphisms}  % Homomorphisms
+
+\begin{definition}
+    Let $R$ and $S$ be ring.
+    \begin{enumerate}
+        \item
+              A \textbf{ring homomorphism} is a map $f: R \rightarrow S$ satisfying
+              \begin{equation*}
+                  f(a+b)=f(a)+f(b), \quad
+                  f(a b)=f(a) f(b)
+              \end{equation*}
+              for all $a, b \in R$ and $f(1_R)=1_S$.
+        \item
+              The \textbf{kernel} of the ring homomorphism $f$, denoted $\Ker f$, is the set of elements of $R$ that map to $0$ in $S$.
+
+        \item
+              A bijective ring homomorphism is called an \textbf{isomorphism}.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{theorem}[The First Isomorphism Theorem for Rings]
+    If $f: R \rightarrow S$ is a homomorphism of rings, then
+    \begin{enumerate}
+        \item
+              The kernel of $f$ is an ideal of $R$.
+
+        \item
+              The image of $f$ is a subring of $S$ and $R / \Ker f\cong f(R)$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    If $I$ is any ideal of $R$, then the \textbf{natural projection}
+    \begin{equation*}
+        R \rightarrow R / I \quad \text { defined by } \quad r \mapsto r+I
+    \end{equation*}
+    is a surjective ring homomorphism with kernel $I$. Thus every ideal is the kernel of a ring homomorphism.
+\end{corollary}
+
+
+\begin{theorem}[The Second Isomorphism Theorem for Rings]
+    Let $R$ be a ring. Let $A$ be a subring and let $B$ be an ideal of $R$. Then $A+B=\{a+b \mid a \in A, b \in B\}$ is a subring of $R, A \cap B$ is an ideal of $A$ and \begin{equation*}
+        (A+B) / B \cong A /(A \cap B)
+    \end{equation*}
+\end{theorem}
+
+
+\begin{theorem}[The Third Isomorphism Theorem for Rings]
+    Let $I$ and $J$ be ideals of $R$ with $I \subseteq J$. Then $J / I$ is an ideal of $R / I$ and
+    \begin{equation*}
+        (R / I) /(J / I) \cong R / J
+    \end{equation*}
+\end{theorem}
+
+\begin{theorem}[The Fourth or Lattice Isomorphism Theorem for Rings]
+    Let $\mathfrak{a}$ be an ideal of ring $R$.
+    \begin{enumerate}
+        \item
+              The correspondence
+              \begin{equation}
+                  R \leftrightarrow R / \mathfrak{a}
+              \end{equation}
+              is an inclusion preserving bijection between the collection of subrings of $R$ that contain $I$ and the collection of subrings of $R / \mathfrak{a}$.
+
+        \item
+              Furthermore, a subring $A$ containing $\mathfrak{a}$ is an  ideal of $R$ if and only if $A / \mathfrak{a}$ is an ideal of $R / \mathfrak{a}$.
+    \end{enumerate}
+\end{theorem}
+
+
+
+\section{Rings of Polynomial and Formal Power Series}
+We only consider $R\left[x\right]$ where $R$ is a commutative ring with identity.
+
+\begin{proposition}
+    Let $R$ be a ring with identity and $f=\sum_{i=0}^{\infty} a_{i} x^{i} \in R[[x]]$.
+    \begin{enumerate}
+        \item
+              $f$ is a unit in $R[[x]]$ if and only if its constant term $a_0$ is a unit in $R$
+        \item
+              If $a_0$ is irreducible in $R$, then $f$ is irreducible in $R[[x]]$.
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{corollary}
+    If $R$ is a division ring, then
+    \begin{enumerate}
+        \item
+              $R[[x]]^\times$ are precisely those power series with nonzero constant term.
+        \item
+              The principal ideal $(x)$ consists precisely of the nonunits in $R[[x]]$ and is the unique maximal ideal of $R[[x]]$.
+
+        \item
+              Thus if $R$ is a field, $R[[x]]$ is a local ring.
+    \end{enumerate}
+\end{corollary}
+
+
+
+
+
+
+
+
+

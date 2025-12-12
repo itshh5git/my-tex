@@ -1,0 +1,711 @@
+\chapter{Laplace Equation}
+\minitoc
+
+\section{Fundmental Solution} % Fundmental Solution
+\begin{definition}
+    The function
+    \begin{equation*}
+        \Phi(x) 
+        := 
+        \begin{cases}
+            -\frac{1}{2 \pi} \log \left|x\right| & (n=2) \\ 
+            \frac{1}{n(n-2) \alpha(n)} \frac{1}{|x|^{n-2}} & (n \geq 3)
+        \end{cases}
+    \end{equation*}
+    defined for $x \in \mathbb{R}^n-\left\{0\right\}$, is the \textbf{fundamental solution of Laplace's equation}.
+\end{definition}
+
+\begin{proposition}
+    Observe also that we have the estimates
+    \begin{equation*}
+        |D \Phi(x)| \leq \frac{C}{|x|^{n-1}},\left|D^2 \Phi(x)\right| \leq \frac{C}{|x|^n} \quad(x \neq 0)
+    \end{equation*}
+    $\mathbf{D}$
+    for some constant $C>0$.
+\end{proposition}
+\section{Solving Poisson's equation}
+\begin{theorem}
+    Let us for simplicity now assume $f \in C_c^2\left(\mathbb{R}^n\right)$; Define $u$ 
+    \begin{equation*}
+        u(x)
+        =
+        \Phi*f(x)
+        =\int_{\mathbb{R}^n} \Phi(x-y)f(y) \d y
+    \end{equation*}
+    Then
+
+    (1) $u \in C^2\left(\mathbb{R}^n\right)$
+    and
+
+    (2) $-\Delta u=f$ in $\mathbb{R}^n$.
+    
+    Proof:
+    1. We have
+    \begin{equation*}
+        u(x)
+        =
+        \int_{\mathbb{R}^n} \Phi(x-y) f(y) \d y
+        =
+        \int_{\mathbb{R}^n} \Phi(y) f(x-y) \d y
+    \end{equation*}
+    hence
+    \begin{equation*}
+    \frac{u\left(x+h e_i\right)-u(x)}{h}=\int_{\mathbb{R}^n} \Phi(y)\left[\frac{f\left(x+h e_i-y\right)-f(x-y)}{h}\right] d y
+    \end{equation*}
+    where $h \neq 0$ and $e_i=(0, \ldots, 1, \ldots, 0)$, the $1$ in the $i^{\text {th }}$-slot. But
+    \begin{equation*}
+    \frac{f\left(x+h e_i-y\right)-f(x-y)}{h} \rightarrow f_{x_i}(x-y)
+    \end{equation*}
+    uniformly on $\mathbb{R}^n$ as $h \rightarrow 0$ since  $f\in C_c^2\left(\mathbb{R}^n\right)$, and thus
+    \begin{equation*}
+    u_{x_i}(x)=\int_{\mathbb{R}^n} \Phi(y) f_{x_i}(x-y) d y 
+    \end{equation*}
+    Similarly
+    \begin{equation*}
+    u_{x_i x_j}(x)=\int_{\mathbb{R} n} \Phi(y) f_{x_i x_j}(x-y) d y 
+    \end{equation*}
+    As the expression on the right-hand side is continuous in the variable $x$, we see $u \in C^2\left(\mathbb{R}^n\right)$.
+
+    2. Since $\Phi$ blows up at 0 , we will need for subsequent calculations to isolate this singularity inside a small ball. So fix $\varepsilon>0$. Then an integration by parts yields
+    \begin{equation*}
+        \begin{aligned}
+            \Delta u(x) & =\int_{B(0, \varepsilon)} \Phi(y) \Delta_x f(x-y) d y+\int_{\mathbb{R}^n-B(0, \varepsilon)} \Phi(y) \Delta_x f(x-y) d y \\
+            & := I_{\varepsilon} -\int_{\mathbb{R}^n-B(0, \varepsilon)} D \Phi(y) \cdot D_y f(x-y) d y 
+            +\int_{\partial B(0, \varepsilon)} \Phi(y) \frac{\partial f}{\partial \nu}(x-y) d S(y)\\
+            & :=I_\varepsilon +K_\varepsilon + L_\varepsilon
+        \end{aligned}
+    \end{equation*}
+    $\nu$ denoting the inward pointing unit normal along $\partial B(0, \varepsilon)$.
+    Now We readily check
+    \begin{equation*}
+        \left|I_{\varepsilon}\right| \leq C\left\|D^2 f\right\|_{L^{\infty}\left(\mathbb{R}^n\right)} \int_{B(0, \varepsilon)}|\Phi(y)| d y 
+        = \mathcal{O}(1)
+    \end{equation*}
+    and
+    \begin{equation*}
+        \left|L_{\varepsilon}\right| \leq\|D f\|_{L^{\infty}\left(\mathbb{R}^n\right)} \int_{\partial B(0, \varepsilon)}|\Phi(y)| d S(y) 
+        = \mathcal{O}(1)
+    \end{equation*}
+
+    3. We continue by integrating by parts once again in the term $K_{\varepsilon}$, to discover
+    \begin{equation*}
+        \begin{aligned}
+            K_{\varepsilon} & = -\int_{\mathbb{R}^n-B(0, \varepsilon)} D \Phi(y) \cdot D_y f(x-y) d y\\
+            & =\int_{\mathbb{R}^n-B(0, \varepsilon)} \Delta \Phi(y) f(x-y) d y-\int_{\partial B(0, \varepsilon)} \frac{\partial \Phi}{\partial \nu}(y) f(x-y) d S(y) \\
+            & =-\int_{\partial B(0, \varepsilon)} \frac{\partial \Phi}{\partial \nu}(y) f(x-y) d S(y)\\
+            & = -\int_{\partial B(0, \varepsilon)}  
+            \frac{-1}{n \alpha(n)} \frac{y}{|y|^n} \left(-\frac{y}{\varepsilon}\right) f(x-y)  d S(y)\\
+            & = -\int_{\partial B(0, \varepsilon)} \frac{1}{n \alpha(n) \varepsilon^{n-1}} f(x-y) d S(y)\\
+            & \to -f(x) \quad \text{ as } \varepsilon \text{ to } 0
+        \end{aligned}
+    \end{equation*}
+    
+\end{theorem}
+\section{Harmonic Function}
+\subsection{Mean-value and Smooth properties}
+\begin{theorem}[Mean-value formulas for Laplace's equation]
+    Consider now open set $U \subset \mathbb{R}^n$ and $u \in C^2(U)$
+    is harmonic, then
+    \begin{equation*}
+    u(x)=\fint_{\partial B(x, r)} u(y) dS =\fint_{B(x, r)} u(y) dy
+    \end{equation*}
+    for each ball $B(x, r) \subset U$.
+
+    Proof. 
+        1. Set
+    \begin{equation*}
+    \phi(r)
+    :=
+    \fint_{\partial B(x, r)} u(y) dS
+    =
+    \fint_{\partial B(0, 1)} u(x+rz) dS(z)
+    \end{equation*}
+    Then
+    \begin{equation*}
+    \begin{aligned}
+    \phi^{\prime}(r) & =\fint_{\partial B(0, 1)} Du(x+rz)\cdot z dS(z)\\
+    & = \fint_{\partial B(x, r)} Du(y) \cdot \frac{y-x}{r} d S(y) \\
+    & = \fint_{\partial B(x, r)}  \frac{\partial u}{\partial \nu} d S(y) \\
+    & = \frac{r}{n} \fint_{ B(x, r)}  \Delta u(y) d y=0
+    \end{aligned}
+    \end{equation*}
+    Hence $\phi$ is constant, and so
+    \begin{equation*}
+    \phi(r)=\lim _{t \rightarrow 0} \phi(t)= u(x)
+    \end{equation*}
+
+    2. Observe next that our employing polar coordinates gives
+    \begin{equation*}
+        \begin{aligned}
+            \int_{B(x, r)} u(y) d y & =\int_0^r\left(\int_{\partial B(x, s)} u \d S\right) \d s \\
+            & =u(x) \int_0^r n \alpha(n) s^{n-1} \d s=\alpha(n) r^n u(x)
+        \end{aligned}
+    \end{equation*}
+    
+
+    \textbf{Remark} We can see that the two Mean-value formulas is equivalent for $u\in C(U)$.
+\end{theorem}
+\begin{theorem}[Smoothness] 
+    If $u \in C(U)$ satisfies the mean-value property for each ball $B(x, r) \subset U$, then
+    \begin{equation*}
+    u \in C^{\infty}(U)
+    \end{equation*}
+    Note carefully that $u$ may not be smooth, or even continuous, up to $\partial U$.
+
+    Proof: 
+    Let $\eta$ be a standard mollifier, and recall that $\eta$ is a radial function. Set $u^{\varepsilon}:=\eta_{\varepsilon} * u$ in $U_{\varepsilon}=\{x \in U \mid \operatorname{dist}(x, \partial U)>\varepsilon\}$, then $u^{\varepsilon} \in C^{\infty}\left(U_{\varepsilon}\right)$. We will prove $u$ is smooth by demonstrating that in fact $u \equiv u^{\varepsilon}$ on $U_{\varepsilon}$. 
+    
+    Indeed if $x \in U_{\varepsilon}$, then
+    \begin{equation*}
+        \begin{aligned}
+            u^{\varepsilon}(x) & =\int_U \eta_{\varepsilon}(x-y) u(y) \d y \\
+            & =\int_{B(x, \varepsilon)} \eta_{\varepsilon}(x-y) u(y) \d y \\
+            & = \int_0^{\varepsilon} \eta_\varepsilon \left(r\right) \left(\int_{\partial B(x, r)} u \d S\right) \d r  \\
+            & = u(x) \int_0^{\varepsilon} \eta_\varepsilon \left(r\right) \left(\int_{\partial B(x, r)} \d S\right) \d r  \\
+            & = u(x) \int_{B(x, \varepsilon)} \eta_{\varepsilon}(x-y) \d y 
+        \end{aligned}
+    \end{equation*}
+    Thus $u^{\varepsilon} \equiv u$ in $U_{\varepsilon}$, and so $u \in C^{\infty}\left(U_{\varepsilon}\right)$ for each $\varepsilon>0$.
+\end{theorem}
+\begin{theorem}[Converse to mean-value property] 
+    If $u \in C(U)$ satisfies  mean-value property
+    for each ball $B(x, r) \subset U$, then $u$ is harmonic.
+
+    Proof: 
+    We have $u\in C^\infty(U)$.
+    If $\Delta u \not \equiv 0$, there exists some ball $B(x, r) \subset U$ such that, say, $\Delta u>0$ within $B(x, r)$. But then for $\phi$ as above,
+    \begin{equation*}
+    0=\phi^{\prime}(r)=\frac{r}{n} \fint_{B(x, r)} \Delta u(y) d y>0,
+    \end{equation*}
+    a contradiction.
+\end{theorem}
+\begin{corollary}
+    The Laplace's equation $\Delta u=0$ is rotation invariant; that is, if $O$ is an orthogonal $n \times n$ matrix and we define
+    \begin{equation*}
+    v(x):=u(O x) 
+    \end{equation*}
+    $x \in \mathbb{R}^n$, then $\Delta v=0$.
+\end{corollary}
+\begin{theorem}[Harnack's inequality]
+    For each connected open set $V$ $\subset \subset U$, there exists a positive constant $C_V$, depending only on $V$, such that
+    \begin{equation*}
+        \sup _V u \leq C \inf _V u
+    \end{equation*}
+    for all nonnegative harmonic functions $u$ in $U$.
+
+    Proof:
+    Let $r:=\frac{1}{4} \operatorname{dist}(V, \partial U)$. Choose $x, y \in V,|x-y| \leq r$. Then
+    \begin{equation*}
+    u(x) 
+    =
+    \fint_{B(x, 2 r)} u d z \geq \frac{1}{\alpha(n) 2^n r^n} \int_{B(y, r)} u dz 
+    =
+    \frac{1}{2^n} u(y)
+    \end{equation*}
+    Thus $2^n u(y) \geq u(x) \geq \frac{1}{2^n} u(y)$ if $x, y \in V,|x-y| \leq r$.
+    Since $V$ is connected and $\bar{V}$ is compact, we can cover $\bar{V}$ by a chain of finitely many balls $\left\{B_i\right\}_{i=1}^N$, each of which has radius $\frac{r}{2}$ and $B_i \cap B_{i-1} \neq \varnothing $ for $i=2, \ldots, N$. Then
+    \begin{equation*}
+    u(x) \geq \frac{1}{2^{n(N+1)}} u(y)
+    \end{equation*}
+    for all $x, y \in V$.
+\end{theorem}
+\subsection{Maximum Principle}
+\begin{theorem}[Strong maximum principle] 
+    Assuming that open set $U\subset\subset \mathbb{R}^n$.
+    Suppose $u \in C^2(U) \cap C(\bar{U})$ is harmonic within $U$ ($u$ is well defined in $\bar{U}$ and has a maximum point).
+
+    (1) Then
+    \begin{equation*}
+        \max _{\bar{U}} u=\max _{\partial U} u
+    \end{equation*}
+
+    (2) Furthermore, if $U$ is connected and there exists a point $x_0 \in U$ such that
+    \begin{equation*}
+    u\left(x_0\right)=\max _{\bar{U}} u
+    \end{equation*}
+    then
+    $u$ is constant within $\bar{U}$.
+
+    Replacing $u$ by $-u$, we recover also similar assertions with "min" replacing "max".
+    
+    Proof:
+    Suppose there exists a point $x_0 \in U$ with $u\left(x_0\right)=M:=\max _{\bar{U}} u$. Then for $0<r<\operatorname{dist}\left(x_0, \partial U\right)$, the mean-value property asserts
+    \begin{equation*}
+    M=u\left(x_0\right)=\fint_{B\left(x_0, r\right)} u d y \leq M
+    \end{equation*}
+    As equality holds only if $u(y)=M$ for all $y \in B\left(x_0, r\right)$. Hence the set $\{x \in U \mid u(x)=M\}$ is both open and closed in $U$ relatively and thus equals $U$ if $U$ is connected. This proves assertion (ii), from which (i) follows.
+\end{theorem}
+\begin{corollary}
+    If $U$ is a bounded region and $u \in C^2(U) \cap C(\bar{U})$ satisfies
+    \begin{equation*}
+    \left\{\begin{aligned}
+    \Delta u=0 & \text { in } U \\
+    u=g & \text { on } \partial U
+    \end{aligned}\right.
+    \end{equation*}
+    where $g \geq 0$ and $g \not\equiv0$, then $u$ is positive everywhere in $U$.
+\end{corollary}
+\subsection{Local Estimates on Derivatives and Analyticity}
+\begin{theorem}[Local Estimates on derivatives] 
+    Assume $u$ is harmonic in $U\subset\mathbb{R}^n$.
+    Then
+    \begin{equation*}
+    \left|D^\alpha u\left(x_0\right)\right| 
+    \leq
+    \frac{C_{\left|\alpha\right|}}{r^{n+k}}\|u\|_{L^1\left(B\left(x_0, r\right)\right)}
+    \tag{1}
+    \end{equation*}
+    for each ball $B\left(x_0, r\right) \subset U$ and each multiindex $\alpha$. 
+    Here $|\alpha|=k$
+    \begin{equation*}
+    C_0=\frac{1}{\alpha(n)}, C_k=\frac{\left(2^{n+1} n k\right)^k}{\alpha(n)} \quad(k=1, \ldots)
+    \tag{2}
+    \end{equation*}
+    
+    \begin{equation*}
+        \left\|D^k u\right\|_{L^\infty}= \mathcal{O}\left(\frac{1}{r^{n+k}}\right)
+    \end{equation*}
+    Proof:
+    1. We establish (1), (2) by induction on $k$, the case $k=0$ being immediate from the mean-value formula. For $k=1$, we note upon differentiating Laplace's equation that $u_{x_i}$ is harmonic. Consequently
+    \begin{equation*}
+    \begin{aligned}
+    \left|u_{x_i}\left(x_0\right)\right| & = \left|\fint_{B\left(x_0, r / 2\right)} u_{x_i} \d x\right| \\
+    & =\left|\frac{2^n}{\alpha(n) r^n} \int_{\partial B\left(x_0, r / 2\right)} u \nu_i d S\right| \\
+    & \leq \frac{2 n}{r}\|u\|_{L^{\infty}\left(\partial B\left(x_0, \frac{r}{2}\right)\right)}
+    \end{aligned}
+    \end{equation*}
+    Now if $x \in \partial B\left(x_0, r / 2\right)$, then $B(x, r / 2) \subset B\left(x_0, r\right) \subset U$, and so
+    \begin{equation*}
+    |u(x)| \leq \frac{1}{\alpha(n)}\left(\frac{2}{r}\right)^n\|u\|_{L^1\left(B\left(x_0, r\right)\right)}
+    \end{equation*}
+    for $k=0$. Combining the inequalities above, we deduce
+    \begin{equation*}
+    \left|D^\alpha u\left(x_0\right)\right| \leq \frac{2^{n+1} n}{\alpha(n)} \frac{1}{r^{n+1}}\|u\|_{L^1\left(B\left(x_0, r\right)\right)}
+    \end{equation*}
+    if $|\alpha|=1$. This verifies (1), (2) for $k=1$.
+
+    2. Assume now $k \geq 2$ and (1), (2) are valid for all balls in $U$ and each multiindex of order less than or equal to $k-1$.
+    Fix $B\left(x_0, r\right) \subset U$ and let $\alpha$
+    be a multiindex with $|\alpha|=k$. 
+    Then $D^\alpha u=\left(D^\beta u\right)_{x_i}$ for some $i \in\{1, \ldots, n\}$, $|\beta|=k-1$.
+    We establish that
+    \begin{equation*}
+    \left|D^\alpha u\left(x_0\right)\right| \leq \frac{n k}{r}\left\|D^\beta u\right\|_{L^{\infty}\left(\partial B\left(x_0, \frac{r}{k}\right)\right)}
+    \end{equation*}
+    If $x \in \partial B\left(x_0, \frac{r}{k}\right)$, then $B\left(x, \frac{k-1}{k} r\right) \subset B\left(x_0, r\right) \subset U$. Thus (1), (2) for $k-1$ imply
+    \begin{equation*}
+    \left|D^\beta u(x)\right| \leq \frac{\left(2^{n+1} n(k-1)\right)^{k-1}}{\alpha(n)\left(\frac{k-1}{k} r\right)^{n+k-1}}\|u\|_{L^1\left(B\left(x_0, r\right)\right)}
+    \end{equation*}
+    Combining the two previous estimates yields the bound
+    \begin{equation*}
+    \left|D^\alpha u\left(x_0\right)\right| \leq \frac{\left(2^{n+1} n k\right)^k}{\alpha(n) r^{n+k}}\|u\|_{L^1\left(B\left(x_0, r\right)\right)}
+    \end{equation*}
+    This confirms (1), (2) for $|\alpha|=k$.
+\end{theorem}
+
+\begin{corollary}[Liouville's Theorem] 
+    Suppose $u: \mathbb{R}^n \rightarrow \mathbb{R}$ is harmonic and bounded. Then $u$ is constant.
+\end{corollary}
+
+\begin{theorem}[Analyticity]
+    Assume $u$ is harmonic in $U$. Then $u$ is analytic in $U$.
+
+    Proof. 
+    1. Fix any point $x_0 \in U$. We must show $u$ can be represented by a convergent power series in some neighborhood of $x_0$.
+    
+    Let $r:=\frac{1}{4} \operatorname{dist}\left(x_0, \partial U\right)$. Then $M:=\frac{1}{\alpha(n) r^n}\|u\|_{L^1\left(B\left(x_0, 2 r\right)\right)}<\infty$.
+
+    2. Since $B(x, r) \subset B\left(x_0, 2 r\right) \subset U$ for each $x \in B\left(x_0, r\right)$, Theorem 7 provides the bound
+    \begin{equation*}
+    \begin{aligned}
+        \left\|D^\alpha u\right\|_{L^{\infty}\left(B\left(x_0, r\right)\right)} &\leq M\left(\frac{2^{n+1} n}{r}\right)^{|\alpha|}|\alpha|^{|\alpha|}\\
+        &\leq
+        M\left(\frac{2^{n+1} n^2 e}{r}\right)^{|\alpha|} \alpha!
+    \end{aligned}
+    \end{equation*}
+    since
+    \begin{equation*}
+    |\alpha|^{|\alpha|} 
+    \leq e^{|\alpha|} n^{|\alpha|} \alpha!
+    \end{equation*}
+
+    3. The Taylor series for $u$ at $x_0$ is
+    \begin{equation*}
+    \sum_\alpha \frac{D^\alpha u\left(x_0\right)}{\alpha!}\left(x-x_0\right)^\alpha
+    \end{equation*}
+    the sum taken over all multiindices. We assert this power series converges, provided
+    \begin{equation*}
+    \left|x-x_0\right|<\frac{r}{2^{n+2} n^3 e}
+    \end{equation*}
+    To verify this, let us compute for each $N$ the remainder term:
+    \begin{equation*}
+    \begin{aligned}
+    R_N(x) & :=u(x)-\sum_{k=0}^{N-1} \sum_{|\alpha|=k} \frac{D^\alpha u\left(x_0\right)\left(x-x_0\right)^\alpha}{\alpha!} \\
+    & =\sum_{|\alpha|=N} \frac{D^\alpha u\left(x_0+ \theta_x \left(x-x_0\right)\right)\left(x-x_0\right)^\alpha}{\alpha!}
+    \end{aligned}
+    \end{equation*}
+    for some $0 \leq \theta_x  \leq 1$. We establish this formula by writing out the first $N$ terms and the error in the Taylor expansion about 0 for the function of one variable $g(t):=u\left(x_0+t\left(x-x_0\right)\right)$, at $t=1$. Then, we can estimate
+    \begin{equation*}
+    \begin{aligned}
+    \left|R_N(x)\right| & \leq M \sum_{|\alpha|=N}\left(\frac{2^{n+1} n^2 e}{r}\right)^N\left(\frac{r}{2^{n+2} n^3 e}\right)^N \\
+    & \leq M n^N \frac{1}{(2 n)^N}=\frac{M}{2^N} \rightarrow 0 \quad \text { as } N \rightarrow \infty
+    \end{aligned}
+    \end{equation*}
+\end{theorem}
+\section{Subharmonic function}
+\begin{definition}
+    We say $v \in C^2(\bar{U})$ is \textbf{subharmonic} if
+    \begin{equation*}
+        -\Delta v \leq 0 \quad \text { in } U
+    \end{equation*}
+\end{definition}
+\begin{theorem}
+    Suppoes subharmonic $v$ in $U$, then
+    \begin{equation*}
+        v(x) \leq \fint_{\partial {B(x, r)}} v \d y     
+    \end{equation*}
+    for all $B(x, r)\subset U$. Therefore,
+    \begin{equation*}
+    \max_{\bar{U}} v = \max_{\partial U} v
+    \end{equation*}
+\end{theorem}
+\begin{corollary}
+    Let $U$ be a bounded, open subset of $\mathbb{R}^n$. Prove that there exists a constant $C$, depending only on $U$, such that
+    \begin{equation*}
+    \max _{\bar{U}}|u| \leq C\left(\max _{\partial U}|g|+\max _{\bar{U}}|f|\right)
+    \end{equation*}
+    whenever $u$ is a smooth solution of
+    \begin{equation*}
+    \left\{\begin{aligned}
+    -\Delta u=f & \text { in } U \\
+    u=g & \text { on } \partial U
+    \end{aligned}\right.
+    \end{equation*}
+
+    Proof:
+    Apply previous theorem to the subharmonic funcion $u+\frac{\left|x\right|^2}{2n}\lambda$, where $\lambda=\max_{\bar{U}} \left|f\right|$.
+\end{corollary}
+\begin{theorem}
+    Let $\phi: \mathbb{R} \rightarrow \mathbb{R}$ be smooth and convex. Assume $u$ is harmonic and $v:=\phi(u)$, then $v$ is subharmonic.
+
+    Consequently, $v:=|D u|^2$ is subharmonic, whenever $u$ is harmonic.
+\end{theorem}
+\section{Green's funcion}%% Green's funcion
+\begin{lemma}
+    Assume $U$ is open, bounded, and $\partial U$ is $C^1$. Suppose $u \in C^2(\bar{U})$ is an arbitrary function, we have the indentity
+    \begin{equation*}
+        u(x)
+        = 
+        \int_{\partial U} \Phi(y-x) \frac{\partial u}{\partial \nu}(y)-u(y) \frac{\partial \Phi}{\partial \nu}(y-x) \d S(y) 
+        -
+        \int_U \Phi(y-x) \Delta u(y) \d y
+    \end{equation*}
+    for any $x\in U$.
+
+    Proof:
+    Fix $x \in U$, choose $\varepsilon>0$ so small that $B(x, \varepsilon) \subset U$, and apply Green's formula on the region $V_{\varepsilon}:=U-B(x, \varepsilon)$ to $u(y)$ and $\Phi(y-x)$. We thereby compute
+    \begin{equation*}
+    \begin{aligned}
+      & \int_{V_{\varepsilon}} u(y) \Delta \Phi(y-x)-\Phi(y-x) \Delta u(y) d y \\
+    = &\int_{\partial V_{\varepsilon}} u(y) \frac{\partial \Phi}{\partial \nu}(y-x)-\Phi(y-x) \frac{\partial u}{\partial \nu}(y) d S(y)
+    \end{aligned}
+    \end{equation*}
+    that is
+    \begin{equation*}
+        \begin{aligned}
+            & \int_{U}-\int_{B(x,\varepsilon)} -\Phi(y-x) \Delta u(y) d y \\
+            = &\int_{\partial U_{\varepsilon}}-\int_{\partial B_{(x,\varepsilon)}}
+            u(y) \frac{\partial \Phi}{\partial \nu}(y-x)-\Phi(y-x) \frac{\partial u}{\partial \nu}(y) d S(y)
+        \end{aligned}
+    \end{equation*}
+    We observe also
+    \begin{equation*}
+        \left|\int_{\partial B(x, \varepsilon)} \Phi(y-x) \frac{\partial u}{\partial \nu}(y) d S(y)\right| \leq C \varepsilon^{n-1} \left|\Phi(\varepsilon)\right| \to 0
+    \end{equation*}
+    as $\varepsilon \rightarrow 0$. Furthermore
+    \begin{equation*}
+    \int_{\partial B(x, \varepsilon)} u(y) \frac{\partial \Phi}{\partial \nu}(y-x) d S(y)=\fint_{\partial B(x, \varepsilon)} u(y) d S(y) \rightarrow u(x)
+    \end{equation*}
+    Hence our sending $\varepsilon \rightarrow 0$ yields the formula
+    \begin{equation*}
+    u(x)= \int_{\partial U} \Phi(y-x) \frac{\partial u}{\partial \nu}(y)- \frac{\partial \Phi}{\partial \nu}(y-x) u(y) dS(y) 
+    -\int_U \Phi(y-x) \Delta u(y) d y
+    \end{equation*}
+\end{lemma}
+
+\begin{definition}
+    \textbf{Green's function} for the region $U$ is
+    \begin{equation*}
+        G(x, y):=\Phi(y-x)-\phi^x(y) \quad(x, y \in U, x \neq y)
+    \end{equation*}
+    where corrector function $\phi^x=\phi^x(y)$, solving the boundary-value problem
+    \begin{equation*}
+    \left\{\begin{aligned}
+    \Delta \phi^x (y) & =0 & & \text { in } U \\
+    \phi^x (y) & =\Phi(y-x) & & \text { on } \partial U
+    \end{aligned}\right.
+    \end{equation*}
+    Let us apply Green's formula once more, to compute
+    \begin{equation*}
+    \begin{aligned}
+    -\int_U \phi^x(y) \Delta u(y)\d y& = \int_U u(y) \Delta \phi^x(y) \d y -  \phi^x(y) \Delta u(y)\d y\\
+     & =\int_{\partial U} u(y) \frac{\partial \phi^x}{\partial \nu}(y)-\phi^x(y) \frac{\partial u}{\partial \nu}(y) d S(y) \\
+    & =\int_{\partial U} u(y) \frac{\partial \phi^x}{\partial \nu}(y)-\Phi(y-x) \frac{\partial u}{\partial \nu}(y) d S(y)
+    \end{aligned}
+    \end{equation*}
+    and obtain 
+    \begin{equation*}
+    \Phi(y-x) \frac{\partial u}{\partial \nu}(y) d S(y)
+    =
+    \int_{\partial U} u(y) \frac{\partial \phi^x}{\partial \nu}(y)
+    +
+    \int_U \phi^x(y) \Delta u(y) dy
+     \end{equation*}
+    Then we find that 
+    \begin{equation*}
+        \begin{aligned}
+            &u(x) & \\
+            = & \int_{\partial U} \Phi(y-x) \frac{\partial u}{\partial \nu}(y)-u(y) \frac{\partial \Phi}{\partial \nu}(y-x) d S(y) -\int_U \Phi(y-x) \Delta u(y) dy\\
+            = & \int_{\partial U} u(y) \left[\frac{\partial \phi^x}{\partial \nu}(y)-\frac{\partial \Phi}{\partial \nu}(y-x)\right] dS(y) 
+            + 
+            \int_U \left[\phi^x(y)-\Phi(y-x)\right] \Delta u(y)\d y  \\
+            = & -\int_{\partial U} u(y) \frac{\partial G}{\partial \nu}(x, y) d S(y)-\int_U G(x, y) \Delta u(y)\d y
+        \end{aligned}
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}[Representation formula using Green's function]
+    Suppose now $u \in C^2(\bar{U})$ solves the boundary-value problem
+    \begin{equation*}
+        \left\{\begin{aligned}
+        -\Delta u=f & \text { in } U \\
+        u=g & \text { on } \partial U
+        \end{aligned}\right.
+    \end{equation*}
+    for given continuous functions $f, g$, then
+    \begin{equation*}
+        u(x)=-\int_{\partial U} g(y) \frac{\partial G}{\partial \nu}(x, y) \d S(y)+\int_U f(y) G(x, y) \d y
+    \end{equation*}
+\end{theorem}
+
+\begin{theorem}[Symmetry of Green's function] 
+    For all $x, y \in U, x \neq y$, we have
+    \begin{equation*}
+    G(y, x)=G(x, y)
+    \end{equation*}
+    
+    Proof:
+    Fix $x, y \in U, x \neq y$. Write
+    \begin{equation*}
+    v(z):=G(x, z), w(z):=G(y, z) 
+    \end{equation*}
+    for $z\in U$.
+    Then $\Delta v(z)=0(z \neq x), \Delta w(z)=0(z \neq y)$ and $w=v=0$ on $\partial U$. Thus our applying Green's identity on $V:=U-[B(x, \varepsilon) \cup B(y, \varepsilon)]$ for sufficiently small $\varepsilon>0$ yields
+    \begin{equation*}
+    \int_{\partial B(x, \varepsilon)} \frac{\partial v}{\partial \nu} w-\frac{\partial w}{\partial \nu} v d S(z)=\int_{\partial B(y, \varepsilon)} \frac{\partial w}{\partial \nu} v-\frac{\partial v}{\partial \nu} w d S(z)
+    \end{equation*}
+    Now $w$ is smooth near $x$, whence
+    \begin{equation*}
+    \left|\int_{\partial B(x, \varepsilon)} \frac{\partial w}{\partial \nu} v d S\right|
+    =
+    o(1) 
+    \quad \text { as } \varepsilon \rightarrow 0
+    \end{equation*}
+    On the other hand, $v(z)=\Phi(z-x)-\phi^x(z)$, where $\phi^x$ is smooth in $U$. Thus
+    \begin{equation*}
+    \lim _{\varepsilon \rightarrow 0} \int_{\partial B(x, \varepsilon)} \frac{\partial v}{\partial \nu} w d S=\lim _{\varepsilon \rightarrow 0} \int_{\partial B(x, \varepsilon)} \frac{\partial \Phi}{\partial \nu}(x-z) w(z) d S=w(x)
+    \end{equation*}
+    Thus the left-hand side converges to $w(x)$ as $\varepsilon \rightarrow 0$. Likewise the right-hand side converges to $v(y)$. Consequently
+    \begin{equation*}
+    G(y, x)=w(x)=v(y)=G(x, y)
+    \end{equation*}
+\end{theorem}
+
+\subsection{(Upper) Half-Space}
+\begin{definition}[Green's function for the half-space] 
+    Let $\phi^x(y)= \Phi (y-\tilde{x})$ in $\mathbb{R}_{+}^n$,
+    \begin{equation*}
+    G(x, y):=\Phi(y-x)-\Phi(y-\tilde{x}) 
+    \end{equation*}
+    Then if $y \in \partial \mathbb{R}_{+}^n$,
+    \begin{equation*}
+    \frac{\partial G}{\partial \nu}(x, y)=-G_{y_n}(x, y)=-\frac{2 x_n}{n \alpha(n)} \frac{1}{|x-y|^n}
+    \end{equation*}
+    The function
+    \begin{equation*}
+    K(x, y):=\frac{2 x_n}{n \alpha(n)} \frac{1}{|x-y|^n} \quad\left(x \in \mathbb{R}_{+}^n, y \in \partial \mathbb{R}_{+}^n\right)
+    \end{equation*}
+    is \textbf{Poisson's kernel for $\mathbb{R}_{+}^n$}.
+\end{definition}
+\begin{theorem}[Poisson's formula for half-space]
+    Suppose the boundary-value problem
+    \begin{equation*}
+        \left\{\begin{aligned}
+        \Delta u=0 & \text { in } \mathbb{R}_{+}^n \\
+        u=g & \text { on } \partial \mathbb{R}_{+}^n
+        \end{aligned}\right.
+    \end{equation*}
+    $g \in C\left(\mathbb{R}^{n-1}\right) \cap$ $L^{\infty}\left(\mathbb{R}^{n-1}\right)$
+    , and define $u$ by 
+    \begin{equation*}
+        u(x)=\frac{2 x_n}{n \alpha(n)} \int_{\partial \mathbb{R}_{+}^n} \frac{g(y)}{|x-y|^n} \d y \quad\left(x \in \mathbb{R}_{+}^n\right)
+    \end{equation*}
+    Then
+
+    (1) $u \in C^{\infty}\left(\mathbb{R}_{+}^n\right) \cap L^{\infty}\left(\mathbb{R}_{+}^n\right)$,
+
+    (2) $\Delta u=0$ in $\mathbb{R}_{+}^n$,
+
+    (3) $\lim\limits _{\substack{x \rightarrow x^0 \\ x \in \mathbb{R}_{+}^n}} u(x)=g\left(x^0\right)$ for each point $x^0 \in \partial \mathbb{R}_{+}^n$.
+\end{theorem}
+
+\subsection{Ball}
+
+\begin{definition}[Green's function for ball] 
+    Let 
+    $$\phi^x(y)=\Phi\left(\frac{\left|x\right|}{r} (y-\tilde{x})\right)$$ 
+    for $x, y \in B(0,r), x \neq y$, where $\tilde{x}=r^2\cdot\frac{x}{\left|x\right|}$
+    
+    \begin{equation*}
+    G(x, y):=\Phi(y-x)-\Phi\left(\frac{\left|x\right|}{r} (y-\tilde{x})\right) 
+    \end{equation*}
+    Accordingly
+    \begin{equation*}
+    \begin{aligned}
+    \frac{\partial G}{\partial \nu}(x, y) & =\sum_{i=1}^n y_i G_{y_i}(x, y) \\
+    & =\frac{-1}{n \alpha(n)} \frac{1}{|x-y|^n} \sum_{i=1}^n y_i\left(\left(y_i-x_i\right)-y_i|x|^2+x_i\right) \\
+    & =\frac{-1}{n \alpha(n)} \frac{1-|x|^2}{|x-y|^n}
+    \end{aligned}
+    \end{equation*}
+    for each $y \in \partial B(0,1)$
+    The function
+    \begin{equation*}
+    K_r(x, y):=\frac{r^2-|x|^2}{n \alpha(n) r} \frac{1}{|x-y|^n} \quad \left(x \in B(0, r), y \in \partial B(0, r)\right)
+    \end{equation*}
+    is \textbf{Poisson's kernel for the ball $B(0, r)$}.
+\end{definition}
+
+\begin{theorem}[Poisson's formula for ball]
+    Assume $g \in C(\partial B(0, r))$ and Suppose now $u$ solves the boundary-value problem
+    \begin{equation*}
+        \left\{
+            \begin{aligned}
+                \Delta u=0 & \text { in } B(0, r) \\
+                u=g & \text { on } \partial B(0, r)
+            \end{aligned}
+            \right.
+    \end{equation*}
+    Then
+    \begin{equation*}
+        u(x)
+        =
+        \frac{r^2-|x|^2}{n \alpha(n) r} \int_{\partial B(0, r)} \frac{g(y)}{|x-y|^n} \d S(y) \quad\left(x \in B^0(0, r)\right) 
+    \end{equation*}
+    
+    (1) $u \in C^{\infty}\left(B(0, r)\right)$
+
+    (2) $\Delta u=0 $ in $B(0, r)$
+
+    (3) $\lim\limits_{\substack{x \rightarrow x^0 \\ x \in B(0, r)}} u(x)=g\left(x^0\right)$ for each point $x^0 \in \partial B(0, r)$.
+\end{theorem}
+
+\begin{theorem}[Reflection principle]
+    Let $U^{+}$ denote the open half-ball 
+    $\mathbb{R}^n_+ \cap B$.
+    Assume $u \in C^2\left(U^{+}\right) \cap C\left(\overline{U^{+}}\right)$ is harmonic in $U^{+}$, with $u=0$ on $\bar{U}^+ \cap \left\{x_n=0\right\}$. Set
+    \begin{equation*}
+    v(x):= \begin{cases}u(x) & \text { if } x_n \geq 0 \\ -u\left(x_1, \ldots, x_{n-1},-x_n\right) & \text { if } x_n<0\end{cases}
+    \end{equation*}
+    for $x \in U=B(0,1)$. Then $v \in C^2(U)\cap C(\bar{U})$ and thus $v$ is harmonic in $U$.
+
+    Proof: Noted that $v\in C(\bar{U})$. Suppoes poission integral relative to $v$
+    \begin{equation*}
+    \tilde{v}(x)= \int_{\partial B(0,1)} K(x,y) v(y) dS(y)
+    \end{equation*}
+    then $\tilde{v} \in C^2(U)\cap C(\bar{U})$ is harmonic within $B(0,1)$. Also, we observe that
+    \begin{equation*}
+    \tilde{v}= v \quad \text{ on } \partial U^+ 
+    \end{equation*}
+    Thus we have $\tilde{v} = v$ in $U^+$ since $\tilde{v}-v$ is harmonic within $U^+$. Similarly, we conclude that $\tilde{v} =v$ in $U^-$.
+\end{theorem}
+\section{Energy Methods} %% Energy Methods
+\begin{theorem}[Uniqueness]
+    Assume $U$ is open, bounded, and $\partial U$ is $C^1$.
+    Consider first the boundary-value problem
+    \begin{equation*}
+    \left\{\begin{aligned}
+    -\Delta u=f & \text { in } U \\
+    u=g & \text { on } \partial U 
+    \end{aligned}\right.
+    \tag{1}
+    \end{equation*}
+    There exists at most one solution $u \in$ $C^2(\bar{U})$.
+
+    Proof:
+    Assume $\tilde{u}$ is another solution and set $w:=u-\tilde{u}$. 
+    Then $\Delta w=0$ in $U$, and so an integration by parts shows
+    \begin{equation*}
+    0=
+    \int_U w \Delta w \d x
+    =
+    \int_{\partial U} w \frac{\partial w}{\partial \nu} dS
+    -\int_U|D w|^2 \d x
+    =-\int_U|D w|^2 \d x
+    \end{equation*}
+    Thus $D w \equiv 0$ in $U$, and, since $w=0$ on $\partial U$, we deduce $w=u-\tilde{u} \equiv 0$ in $U$.
+
+\end{theorem}
+\begin{theorem}[Dirichlet's principle]
+    For this, we define the energy functional
+    \begin{equation*}
+    I[w]:=\int_U \frac{1}{2}\left|D w\right|^2-w f \\d x 
+    \tag{2}
+    \end{equation*}
+    $w$ belonging to the admissible set
+    \begin{equation*}
+        \mathcal{A}:=\left\{w \in C^2(\bar{U}) \mid w=g \text { on } \partial U\right\} .
+    \end{equation*}
+    Assume $u \in C^2(\bar{U})$ solves (1). Then
+    \begin{equation*}
+    I[u]=\min _{w \in \mathcal{A}} I[w] .
+    \end{equation*}
+    Conversely, if $u \in \mathcal{A}$ satisfies (2), then $u$ solves the boundary-value problem (1).
+
+    Proof: 
+    1. Assume $u$ solves (1) and choose $w \in \mathcal{A}$. Then we have
+    \begin{equation*}
+    0=\int_U(-\Delta u-f)(u-w) \d x
+    \end{equation*}
+    An integration by parts yields
+    \begin{equation*}
+    0=\int_U D u \cdot D(u-w)-f(u-w) \d x
+    \end{equation*}
+    and there is no boundary term since $u-w=g-g\equiv 0$ on $\partial U$. Hence
+    \begin{equation*}
+    \begin{aligned}
+    \int_U|D u|^2-u f \d x & =\int_U D u \cdot D w-w f \d x \\
+    & \leq \int_U \frac{1}{2}|D u|^2 \d x+\int_U \frac{1}{2}|D w|^2-w f \d x
+    \end{aligned}
+    \end{equation*}
+    Rearranging, we conclude
+    \begin{equation*}
+    I[u] \leq I[w] \quad(w \in \mathcal{A}) .
+    \end{equation*}
+    
+    2. Now, conversely, suppose (2) holds. Fix any $v \in C_c^{\infty}(U)$ and write
+    \begin{equation*}
+    \begin{aligned}
+        i(\tau) &:=I[u+\tau v] \\
+        & =\int_U \frac{1}{2}|D u+\tau D v|^2-(u+\tau v) f \d x \\
+        & =\int_U \frac{1}{2}|D u|^2+\tau D u \cdot D v+\frac{\tau^2}{2}|D v|^2-(u+\tau v) f \d x
+    \end{aligned}
+    \end{equation*}
+    Since $u+\tau v \in \mathcal{A}$ for each $\tau$, the scalar function $i(\cdot)$ has a minimum at zero, and thus
+    \begin{equation*}
+        0
+        =
+        i^{\prime}(0)
+        =\int_U D u \cdot D v-v f \d x=\int_U(-\Delta u-f) v \d x
+    \end{equation*}
+    This identity is valid for each function $v \in C_c^{\infty}(U)$ and so $-\Delta u=f$ in $U$.   
+\end{theorem}

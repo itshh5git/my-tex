@@ -1,0 +1,438 @@
+\chapter{Heat Equation}%% Heat Equation
+\section{Fundmental Solution}
+\begin{definition}
+    The function
+    \begin{equation*}
+        \Phi(x, t):= \begin{cases}\frac{1}{(4 \pi t)^{n / 2}} e^{-\frac{|x|^2}{4 t}} & \left(x \in \mathbb{R}^n, t>0\right) \\ 0 & \left(x \in \mathbb{R}^n, t<0\right)\end{cases}
+    \end{equation*}
+    is called the \textbf{fundamental solution of the heat equation}.
+\end{definition}
+\begin{theorem}[Solution of initial-value problem]
+    We now employ $\Phi$ to fashion a solution to the  Cauchy problem
+    \begin{equation*}
+        \left\{
+        \begin{aligned}
+            u_t-\Delta u=0 & \text { in } \mathbb{R}^n \times(0, \infty) \\
+            u=g            & \text { on } \mathbb{R}^n \times\{t=0\}
+        \end{aligned}
+        \right.
+    \end{equation*}
+    Assume $g \in C\left(\mathbb{R}^n\right) \cap$ $L^{\infty}\left(\mathbb{R}^n\right)$, and define $u$ by
+    \begin{equation*}
+        u(x, t)  =\int_{\mathbb{R}^n} \Phi(x-y, t) g(y) \d y
+        \quad\left(x \in \mathbb{R}^n, t>0\right)
+    \end{equation*}
+    Then
+
+    (1) $u \in C^{\infty}\left(\mathbb{R}^n \times(0, \infty)\right)$,
+
+    (2) $u_t(x, t)-\Delta u(x, t)=0 \quad\left(x \in \mathbb{R}^n, t>0\right)$
+
+    (3) $\lim\limits_{\substack{(x, t) \rightarrow(x^0, 0) \\ x \in \mathbb{R}^n, t>0}} u(x, t)=g\left(x^0\right)$ for each point $x^0 \in \mathbb{R}^n$.
+
+    \textbf{Remark} We sometimes write
+    \begin{equation*}
+        \left\{\begin{aligned}
+            \Phi_t-\Delta \Phi & =0        &  & \text { in } \mathbb{R}^n \times(0, \infty) \\
+            \Phi               & =\delta_0 &  & \text { on } \mathbb{R}^n \times\{t=0\}
+        \end{aligned}\right.
+    \end{equation*}
+    $\delta_0$ denoting the Dirac measure on $\mathbb{R}^n$ giving unit mass to the point $0$.
+\end{theorem}
+\begin{theorem}[Solution of nonhomogeneous problem]
+    Now let us turn our attention to the nonhomogeneous initial-value problem
+    \begin{equation*}
+        \left\{
+        \begin{aligned}
+            u_t-\Delta u=f(x,t) & \text { in } \mathbb{R}^n \times(0, \infty) \\
+            u=0                 & \text { on } \mathbb{R}^n \times\{t=0\} .
+        \end{aligned}\right.
+    \end{equation*}
+    assuming $f \in$ $C_1^2\left(\mathbb{R}^n \times[0, \infty)\right)$ and $f$ has compact support.
+    We have
+    \begin{equation*}
+        \begin{aligned}
+            u(x, t) & =\int_0^t \int_{\mathbb{R}^n} \Phi(x-y, t-s) f(y, s) \d y \d s                                             \\
+                    & =\int_0^t \frac{1}{(4 \pi(t-s))^{n / 2}} \int_{\mathbb{R}^n} e^{-\frac{|x-y|^2}{4(t-s)}} f(y, s) \d y \d s
+        \end{aligned}
+    \end{equation*}
+    for $x \in \mathbb{R}^n, t>0$. Then
+
+    (1) $u \in C_1^2\left(\mathbb{R}^n \times(0, \infty)\right)$,
+
+    (2) $u_t(x, t)-\Delta u(x, t)=f(x, t) \quad\left(x \in \mathbb{R}^n, t>0\right)$,
+
+    (3) $\lim\limits_{\substack{(x, t) \rightarrow\left(x^0, 0\right) \\ x \in \mathbb{R}^n, t>0}} u(x, t)=0 \quad$ for each point $x^0 \in \mathbb{R}^n$.
+
+    Proof:
+    1. First we change variables, to write
+    \begin{equation*}
+        u(x, t)=\int_0^t \int_{\mathbb{R}^n} \Phi(y, s) f(x-y, t-s) \d y \d s
+    \end{equation*}
+    As $f \in C_1^2\left(\mathbb{R}^n \times[0, \infty)\right)$ has compact support and $\Phi=\Phi(y, s)$ is smooth near $s=t>0$, we compute
+    \begin{equation*}
+        u_t(x, t)=  \int_0^t \int_{\mathbb{R}^n} \Phi(y, s) f_t(x-y, t-s)\d yds
+        +\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y
+    \end{equation*}
+    and
+    \begin{equation*}
+        u_{x_i x_j}(x, t)=\int_0^t \int_{\mathbb{R}^n} \Phi(y, s) f_{x_i x_j}(x-y, t-s) \d y \d s \quad(i, j=1, \ldots, n)
+    \end{equation*}
+    Thus $u_t, D_x^2 u$, and likewise $u, D_x u$, belong to $C\left(\mathbb{R}^n \times(0, \infty)\right)$.
+
+    2. We then calculate
+    \begin{equation*}
+        \begin{aligned}
+            u_t(x, t)-\Delta u(x, t)= & \int_0^t \int_{\mathbb{R}^n} \Phi(y, s)\left[\left(\frac{\partial}{\partial t}-\Delta_x\right) f(x-y, t-s)\right] \d y \d s               \\
+                                      & +\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y                                                                                             \\
+            =                         & \int_{\varepsilon}^t \int_{\mathbb{R}^n} \Phi(y, s)\left[\left(-\frac{\partial}{\partial s}-\Delta_y\right) f(x-y, t-s)\right] \d y \d s  \\
+                                      & +\int_0^{\varepsilon} \int_{\mathbb{R}^n} \Phi(y, s)\left[\left(-\frac{\partial}{\partial s}-\Delta_y\right) f(x-y, t-s)\right] \d y \d s \\
+                                      & +\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y                                                                                             \\
+            =                         & I_{\varepsilon}+J_{\varepsilon}+K
+        \end{aligned}
+    \end{equation*}
+    Now
+    \begin{equation*}
+        \left|J_{\varepsilon}\right| \leq\left(\left\|f_t\right\|_{L^{\infty}}+\left\|D^2 f\right\|_{L^{\infty}}\right) \int_0^{\varepsilon} \int_{\mathbb{R}^n} \Phi(y, s) \d y \d s \leq \varepsilon C
+    \end{equation*}
+    Integrating by parts, we also find
+    \begin{equation*}
+        \begin{aligned}
+            I_{\varepsilon}= & \int_{\varepsilon}^t \int_{\mathbb{R}^n}\left[\left(\frac{\partial}{\partial s}-\Delta_y\right) \Phi(y, s)\right] f(x-y, t-s) \d y \d s \\
+                             & +\int_{\mathbb{R}^n} \Phi(y, \varepsilon) f(x-y, t-\varepsilon) d y                                                                     \\
+                             & -\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y                                                                                           \\
+            =                & \int_{\mathbb{R}^n} \Phi(y, \varepsilon) f(x-y, t-\varepsilon) d y-K
+        \end{aligned}
+    \end{equation*}
+    since $\Phi$ solves the heat equation we ascertain
+    \begin{equation*}
+        \begin{aligned}
+            u_t(x, t)-\Delta u(x, t) & =\lim _{\varepsilon \rightarrow 0} \int_{\mathbb{R}^n} \Phi(y, \varepsilon) f(x-y, t-\varepsilon) d y \\
+                                     & = \lim _{\varepsilon \rightarrow 0} f(x,t-\varepsilon)                                                \\
+                                     & = f(x, t) \quad\left(x \in \mathbb{R}^n, t>0\right)
+        \end{aligned}
+    \end{equation*}
+    the limit as $\varepsilon \rightarrow 0$ being computed. Finally note $\|u(\cdot, t)\|_{L^{\infty}} \leq t\|f\|_{L^{\infty}} \rightarrow 0$.
+\end{theorem}
+
+\section{Mean-value formula}
+\begin{definition}
+    Let $U\subset \mathbb{R}^n$ be open amd bounded, and fix a time $T>0$.
+
+    (1) We define the parabolic cylinder
+    \begin{equation*}
+        U_T:=U \times(0, T]
+    \end{equation*}
+
+    (2) The parabolic boundary of $U_T$ is
+    \begin{equation*}
+        \Gamma_T:=\bar{U}_T-U_T
+    \end{equation*}
+\end{definition}
+\begin{definition}
+    For fixed $x \in \mathbb{R}^n, t \in \mathbb{R}, r>0$, we define
+    \begin{equation*}
+        E(x, t ; r):=\left\{(y, s) \in \mathbb{R}^{n+1} \mid s \leq t, \Phi(x-y, t-s) \geq \frac{1}{r^n}\right\} .
+    \end{equation*}
+    $E(x, t ; r)$ is sometimes called a "heat ball".
+
+    Noted that $t-\frac{r^2}{4 \pi} \leq  s \leq t $ and $E(x,t;r)$ is bounded.
+\end{definition}
+\begin{theorem}[A mean-value property for the heat equation]
+    Let $u \in$ $C_1^2\left(U_T\right)$ solve the heat equation $\left(\frac{\partial}{\partial t} - \Delta\right) u = 0$. Then
+    \begin{equation*}
+        u(x, t)=\frac{1}{4 r^n} \iint_{E(x, t ; r)} u(y, s) \frac{|x-y|^2}{(t-s)^2} \d y \d s
+    \end{equation*}
+    for each $E(x, t ; r) \subset U_T$.
+
+    Proof:
+    Step 1.
+    Shift the space and time coordinates so that $x=0$ and $t=0$. Upon mollifying if necessary, we may assume $u$ is smooth. Write $E(r)=E(0,0 ; r)$ and set
+    \begin{equation*}
+        \begin{aligned}
+            \phi(r) & :=\frac{1}{r^n} \iint_{E(r)} u(y, s) \frac{|y|^2}{s^2} \d y \d s   \\
+                    & =\iint_{E(1)} u\left(r y, r^2 s\right) \frac{|y|^2}{s^2} \d y \d s
+        \end{aligned}
+    \end{equation*}
+    We compute
+    \begin{equation*}
+        \begin{aligned}
+            \phi^{\prime}(r) & =\iint_{E(1)} \sum_{i=1}^n u_{y_i} y_i \frac{|y|^2}{s^2}+2 r u_s \frac{|y|^2}{s} \d y \d s                 \\
+                             & =\frac{1}{r^{n+1}} \iint_{E(r)} \sum_{i=1}^n u_{y_i} y_i \frac{|y|^2}{s^2}+2 u_s \frac{|y|^2}{s} \d y \d s \\
+                             & =: A+B
+        \end{aligned}
+    \end{equation*}
+
+    Step 2.
+    Also, let us introduce the useful function
+    \begin{equation*}
+        \psi:=-\frac{n}{2} \log (-4 \pi s)+\frac{|y|^2}{4 s}+n \log r
+    \end{equation*}
+    and observe $\psi=0$ on $\partial E(r)-\{(0,0)\}$,
+    $E(r)^\circ =\left\{\psi >0 \right\}$.
+    since $\Phi(y,-s)=r^{-n}$ on $\partial E(r)$. We utilize (21) to write
+    \begin{equation*}
+        \begin{aligned}
+            B & =\frac{1}{r^{n+1}} \iint_{E(r)} 4 u_s \sum_{i=1}^n y_i \psi_{y_i} \d y \d s               \\
+              & =-\frac{1}{r^{n+1}} \iint_{E(r)} 4 n u_s \psi+4 \sum_{i=1}^n u_{s y_i} y_i \psi \d y \d s
+        \end{aligned}
+    \end{equation*}
+    there is no boundary term since $\psi=0$ on $\partial E(r)-\{(0,0)\}$. Integrating by parts with respect to $s$, we discover
+    \begin{equation*}
+        \begin{aligned}
+            B & =\frac{1}{r^{n+1}} \iint_{E(r)}-4 n u_s \psi+4 \sum_{i=1}^n u_{y_i} y_i \psi_s \d y \d s                                         \\
+              & =\frac{1}{r^{n+1}} \iint_{E(r)}-4 n u_s \psi+4 \sum_{i=1}^n u_{y_i} y_i\left(-\frac{n}{2 s}-\frac{|y|^2}{4 s^2}\right) \d y \d s \\
+              & =\frac{1}{r^{n+1}} \iint_{E(r)}-4 n u_s \psi-\frac{2 n}{s} \sum_{i=1}^n u_{y_i} y_i \d y \d s-A
+        \end{aligned}
+    \end{equation*}
+    Consequently, since $u$ solves the heat equation,
+    \begin{equation*}
+        \begin{aligned}
+            \phi^{\prime}(r) & =A+B                                                                                                    \\
+                             & =\frac{1}{r^{n+1}} \iint_{E(r)}-4 n \Delta u \psi-\frac{2 n}{s} \sum_{i=1}^n u_{y_i} y_i \d y \d s      \\
+                             & =\sum_{i=1}^n \frac{1}{r^{n+1}} \iint_{E(r)} 4 n u_{y_i} \psi_{y_i}-\frac{2 n}{s} u_{y_i} y_i \d y \d s \\
+                             & =0
+        \end{aligned}
+    \end{equation*}
+    Thus $\phi$ is constant, and therefore
+    \begin{equation*}
+        \phi(r)=\lim _{t \rightarrow 0} \phi(t)=u(0,0)\left(\lim _{t \rightarrow 0} \frac{1}{t^n} \iint_{E(t)} \frac{|y|^2}{s^2} \d y \d s\right)=4 u(0,0)
+    \end{equation*}
+\end{theorem}
+
+\section{Properties of solution}
+
+\begin{definition}
+    Let $U\subset \mathbb{R}^n$ be open amd bounded, and fix a time $T>0$.
+
+    (1) We define the parabolic cylinder
+    \begin{equation*}
+        U_T:=U \times(0, T]
+        =
+        U\times \left(0,T\right)\bigcup U \times \left\{T\right\}
+    \end{equation*}
+
+    (2) The parabolic boundary of $U_T$ is
+    \begin{equation*}
+        \Gamma_T:=\bar{U}_T-U_T
+        =
+        \partial U \times \left[0.T\right] \bigcup \bar{U} \times \left\{0\right\}
+    \end{equation*}
+    Noted that $\bar{U}_T= \bar{U} \times \left[0,T\right]$ and
+\end{definition}
+\begin{theorem}[Strong maximum principle for the heat equation]
+    Suppoes $U \subset \subset \mathbb{R}^n$ and
+    assume $u \in C_1^2\left(U_T\right) \cap C\left(\bar{U}_T\right)$ solves the heat equation in $U_T$.
+    Then
+
+    (1)
+    \begin{equation*}
+        \max _{\bar{U}_T} u=\max _{\Gamma_T} u
+    \end{equation*}
+
+    (2) Furthermore, if $U$ is connected and there exists a point $\left(x_0, t_0\right) \in U_T$ such that
+    \begin{equation*}
+        u\left(x_0, t_0\right)=\max _{\bar{U}_T} u
+    \end{equation*}
+    then $u$ is constant in $\bar{U}_{t_0} =\bar{U} \times [0, t_0 ]$.
+
+    Proof:
+    Step 1. Suppose there exists a point $\left(x_0, t_0\right) \in U_T$ with
+    \begin{equation*}
+        u\left(x_0, t_0\right)
+        =
+        M
+        :=
+        \max_{\bar{U}_T} u
+    \end{equation*}
+    Then for all sufficiently small $r>0, E\left(x_0, t_0 ; r\right) \subset U_T$; and we employ the mean-value property to deduce
+    \begin{equation*}
+        M=u\left(x_0, t_0\right)=\frac{1}{4 r^n} \iint_{E\left(x_0, t_0 ; r\right)} u(y, s) \frac{\left|x_0-y\right|^2}{\left(t_0-s\right)^2} d y d s \leq M
+    \end{equation*}
+    since
+    \begin{equation*}
+        1=\frac{1}{4 r^n} \iint_{E\left(x_0, t_0 ; r\right)} \frac{\left|x_0-y\right|^2}{\left(t_0-s\right)^2} d y d s
+    \end{equation*}
+    Equality holds only if $u$ is identically equal to $M$ within $E\left(x_0, t_0 ; r\right)$.
+    Consequently
+    \begin{equation*}
+        u(y, s)=M \quad \text { for all }(y, s) \in E\left(x_0, t_0 ; r\right) .
+    \end{equation*}
+
+    Step 2.
+    Draw any line segment $L$ in $U_T$ connecting $\left(x_0, t_0\right)$ with some other point $\left(y_0, s_0\right) \in U_T$, with $s_0<t_0$. Consider
+    \begin{equation*}
+        r_0:=\min \left\{s \geq s_0 \mid u(x, t)=M \text { for all points }(x, t) \in L, s \leq t \leq t_0\right\}
+    \end{equation*}
+    Since $u$ is continuous, the minimum is attained. Assume $r_0>s_0$. Then $u\left(z_0, r_0\right)=M$ for some point $\left(z_0, r_0\right)$ on $L \cap U_T$ and so $u \equiv M$ on $E\left(z_0, r_0 ; r\right)$ for all sufficiently small $r>0$. Since $E\left(z_0, r_0 ; r\right)$ contains $L \cap\left\{r_0-\sigma \leq t \leq\right.$ $\left.r_0\right\}$ for some small $\sigma>0$, we have a contradiction. Thus $r_0=s_0$, and hence $u \equiv M$ on $L$.
+
+    2. Now fix any point $x \in U$ and any time $0 \leq t<t_0$. There exist points $\left\{x_0, x_1, \ldots, x_m=x\right\}$ such that the line segments in $\mathbb{R}^n$ connecting $x_{i-1}$ to $x_i$ lie in $U$ for $i=1, \ldots, m$. (This follows since the set of points in $U$ which can be so connected to $x_0$ by a polygonal path is nonempty, open and relatively closed in $U$.) Select times $t_0>t_1>\cdots>t_m=t$. Then the line segments in $\mathbb{R}^{n+1}$ connecting $\left(x_{i-1}, t_{i-1}\right)$ to $\left(x_i, t_i\right)(i=1, \ldots, m)$ lie in $U_T$. According to step $1, u \equiv M$ on each such segment and so $u(x, t)=M$.
+\end{theorem}
+\begin{theorem}[Uniqueness on bounded domains]
+    Let $g \in C\left(\Gamma_T\right), f \in$ $C\left(U_T\right)$. Then there exists at most one solution $u \in C_1^2\left(U_T\right) \cap C\left(\bar{U}_T\right)$ of the initial/boundary-value nonhomogeneous problem
+    \begin{equation*}
+        \left\{\begin{aligned}
+            u_t-\Delta u=f & \text { in } U_T        \\
+            u=g            & \text { on } \Gamma_T .
+        \end{aligned}\right.
+    \end{equation*}
+\end{theorem}
+\begin{theorem}[Smoothness]
+    Suppose $U\subset \mathbb{R}^n$ is open and $u \in C_1^2\left(U_T\right)$ solves the heat equation in $U_T$. Then
+    \begin{equation*}
+        u \in C^{\infty}\left(U_T\right)
+    \end{equation*}
+\end{theorem}
+\begin{theorem}[Local Estimates on derivatives]
+    There exists for each pair of integers $k, l=0,1, \ldots$ a constant $C_{k, l}$ such that
+    \begin{equation*}
+        \max _{C(x, t ; r / 2)}\left|D_x^k D_t^l u\right| \leq \frac{C_{k , l}}{r^{k+2 l+n+2}}\|u\|_{L^1(C(x, t ; r))}
+    \end{equation*}
+    for all cylinders $C(x, t ; r / 2) \subset C(x, t ; r) \subset U_T$ and all solutions $u$ of the heat equation in $U_T$.
+\end{theorem}
+
+\section{Cauchy Problem}
+\begin{theorem}[Maximum principle for the Cauchy problem]
+    Suppose $u \in C_1^2\left(\mathbb{R}^n \times(0, T]\right) \cap C\left(\mathbb{R}^n \times[0, T]\right)$ solves
+    \begin{equation*}
+        \left\{\begin{aligned}
+            u_t-\Delta u=0 & \text { in } \mathbb{R}^n \times(0, T)  \\
+            u=g            & \text { on } \mathbb{R}^n \times\{t=0\}
+        \end{aligned}\right.
+    \end{equation*}
+    and satisfies the growth estimate
+    \begin{equation*}
+        u(x, t) \leq A e^{a|x|^2} \quad\left(x \in \mathbb{R}^n, 0 \leq t \leq T\right)
+    \end{equation*}
+    for constants $A, a>0$. Then
+    \begin{equation*}
+        \sup _{\mathbb{R}^n \times[0, T]} u=\sup _{\mathbb{R}^n} g .
+    \end{equation*}
+\end{theorem}
+\begin{corollary}[Uniqueness for Cauchy problem]
+    Let $g \in C\left(\mathbb{R}^n\right)$ and $f \in$ $C\left(\mathbb{R}^n \times[0, T]\right)$.
+    Then there exists at most one solution $u \in C_1^2\left(\mathbb{R}^n \times(0, T]\right) \cap$ $C\left(\mathbb{R}^n \times[0, T]\right)$ of the initial-value problem
+    \begin{equation*}
+        \left\{\begin{aligned}
+            u_t-\Delta u=f & \text { in } \mathbb{R}^n \times(0, T)  \\
+            u=g            & \text { on } \mathbb{R}^n \times\{t=0\}
+        \end{aligned}\right.
+    \end{equation*}
+    satisfying the growth estimate
+    \begin{equation*}
+        |u(x, t)| \leq A e^{a|x|^2} \quad\left(x \in \mathbb{R}^n, \quad 0 \leq t \leq T\right)
+    \end{equation*}
+    for constants $A, a>0$.
+\end{corollary}
+
+\section{Energy Methods}
+\begin{theorem}
+    We investigate again the initial/boundary-value problem
+    \begin{equation*}
+        \left\{\begin{aligned}
+            u_t-\Delta u=f & \text { in } U_T      \\
+            u=g            & \text { on } \Gamma_T
+        \end{aligned}\right.
+    \end{equation*}
+    We assume as usual that $U \subset \mathbb{R}^n$ is open and bounded and that $\partial U$ is $C^1$. The terminal time $T>0$ is given. Set energy
+    \begin{equation*}
+        e(t):=\int_U u^2(x, t) \d x
+    \end{equation*}
+    for $0 \leq t \leq T$.
+\end{theorem}
+\begin{theorem}[Uniqueness]
+    Assume that $U \subset \mathbb{R}^n$ is open and bounded and that $\partial U$ is $C^1$. The terminal time $T>0$ is given.
+    There exists only one solution $u \in C_1^2\left(\bar{U}_T\right)$ of the initial/boundary-value nonhomogeneous problem
+    \begin{equation*}
+        \left\{\begin{aligned}
+            u_t-\Delta u=f & \text { in } U_T      \\
+            u=g            & \text { on } \Gamma_T
+        \end{aligned}\right.
+    \end{equation*}
+    Proof. 1. If $\tilde{u}$ is another solution, $w:=u-\tilde{u}$ solves
+    \begin{equation*}
+        \left\{
+        \begin{aligned}
+            w_t-\Delta w=0 & \text { in } U_T        \\
+            w=0            & \text { on } \Gamma_T .
+        \end{aligned}
+        \right.
+    \end{equation*}
+    Set
+    \begin{equation*}
+        e(t):=\int_U w^2(x, t) \d x \quad(0 \leq t \leq T)
+    \end{equation*}
+    Then
+    \begin{equation*}
+        \begin{aligned}
+            \dot{e}(t) & =2 \int_U w w_t \d x          \\
+                       & =2 \int_U w \Delta w \d x     \\
+                       & =-2 \int_U|D w|^2 \d x \leq 0
+        \end{aligned}
+    \end{equation*}
+    and so
+    \begin{equation*}
+        e(t) \leq e(0)=0 \quad(0 \leq t \leq T)
+    \end{equation*}
+    Consequently $w=u-\tilde{u} \equiv 0$ in $U_T$.
+\end{theorem}
+\begin{theorem}[Backwards uniqueness]
+    Suppose $u, \tilde{u} \in C^2\left(\bar{U}_T\right)$ solve
+    \begin{equation*}
+        \left\{\begin{aligned}
+            u_t-\Delta u=0 & \text { in } U_T                     \\
+            u=g            & \text { on } \partial U \times[0, T]
+        \end{aligned}\right.
+    \end{equation*}
+    If
+    \begin{equation*}
+        u(x, T)=\tilde{u}(x, T) \quad \text{ for all } x \in U
+    \end{equation*}
+    then
+    \begin{equation*}
+        u \equiv \tilde{u} \quad \text { within } U_T .
+    \end{equation*}
+
+    Proof.
+    1. Write $w:=u-\tilde{u}$ and set
+    \begin{equation*}
+        e(t):=\int_U w^2(x, t) \d x \quad(0 \leq t \leq T)
+    \end{equation*}
+    As before
+    \begin{equation*}
+        \dot{e}(t)=-2 \int_U|D w|^2 \d x
+    \end{equation*}
+    Furthermore
+    \begin{equation*}
+        \begin{aligned}
+            \ddot{e}(t) & =-4 \int_U D w \cdot D w_t \d x \\
+                        & =4 \int_U \Delta w w_t \d x     \\
+                        & =4 \int_U(\Delta w)^2 \d x
+        \end{aligned}
+    \end{equation*}
+    Now since $w=0$ on $\partial U$,
+    \begin{equation*}
+        \begin{aligned}
+            \int_U|D w|^2 \d x & =-\int_U w \Delta w \d x                                                             \\
+                               & \leq\left(\int_U w^2 \d x\right)^{1 / 2}\left(\int_U(\Delta w)^2 \d x\right)^{1 / 2}
+        \end{aligned}
+    \end{equation*}
+    Thus
+    \begin{equation*}
+        (\dot{e}(t))^2 \leq e(t) \ddot{e}(t)
+    \end{equation*}
+
+    2. Now if $e(t)=0$ for all $0 \leq t \leq T$, we are done. Otherwise there exists an interval $\left[t_1, t_2\right] \subset[0, T]$, with
+    \begin{equation*}
+        e(t)>0 \quad \text { for } t_1 \leq t<t_2
+    \end{equation*}
+    and
+    \begin{equation*}e\left(t_2\right)=0\end{equation*}
+
+    3. Consequently
+    \begin{equation*}
+        f(t):=\log e(t) \quad\left(t_1 \leq t<t_2\right)
+    \end{equation*}
+    is convex on the interval $\left(t_1, t_2\right)$ and $f(t_2^-) = -\infty$, a contradiction.
+\end{theorem}
+

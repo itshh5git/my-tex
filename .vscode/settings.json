@@ -1,0 +1,152 @@
+{
+    "latex-workshop.latex.autoBuild.run": "onFileChange", // 设置是否自动编译
+    "latex-workshop.latex.autoClean.run": "onFailed", // 仅在编译失败时清理辅助文件
+    "latex-workshop.latex.recipe.default": "first", // 使用上次的recipe编译组合
+    "files.exclude": {
+        "**/.git": false,
+        "**/*.aux": true,
+        "**/*.log": true,
+        "**/*.maf": true,
+        "**/*.mtc*": true,
+        "**/*.out": true,
+        "**/*.synctex.gz": true,
+        "**/*.synctex(busy)": true,
+        "**/*.toc": true
+    }, // 配置文件资源管理器中要隐藏的文件和文件夹
+    "latex-workshop.showContextMenu": true,
+    "latex-workshop.intellisense.package.enabled": true, // 启用 LaTeX 包的智能感知
+    "latex-workshop.message.error.show": false,
+    "latex-workshop.message.warning.show": false,
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click", // 用于反向同步的内部查看器的键绑定:双击
+    "latex-workshop.view.pdf.viewer": "tab", // 在 VS Code 标签页中打开 PDF
+    "latex-workshop.synctex.afterBuild.enabled": true, // 编译后启用正向同步
+    "editor.formatOnSave": true, // 保存时自动格式化
+    "editor.formatOnType": true, // 输入时自动格式化
+    "editor.formatOnSaveMode": "file", // 格式化整个文件
+    "[tex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop"
+    },
+    "[latex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop"
+    },
+    // 启用 LaTeX 格式化并使用 latexindent
+    "latex-workshop.formatting.latex": "latexindent",
+    // 指定 latexindent 的路径（如果系统PATH中有则不需要绝对路径）
+    "latex-workshop.formatting.latexindent.path": "latexindent",
+    // 配置 latexindent 的参数
+    "latex-workshop.formatting.latexindent.args": [
+        "-c",
+        "%DIR%/",
+        "%TMPFILE%",
+        "-y=defaultIndent: '    '" // 4个空格缩进
+    ],
+    // 自定义 LaTeX 构建工具和编译组合
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+    ],
+    // 定义 LaTeX 编译组合
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "XeLaTeX",
+            "tools": [
+                "xelatex"
+            ]
+        },
+        {
+            "name": "PDFLaTeX",
+            "tools": [
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "BibTeX",
+            "tools": [
+                "bibtex"
+            ]
+        },
+        {
+            "name": "LaTeXmk",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "xelatex -> bibtex -> xelatex*2",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "pdflatex -> bibtex -> pdflatex*2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        }
+    ],
+    // 清理辅助文件的配置
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.ist",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk"
+    ]
+}

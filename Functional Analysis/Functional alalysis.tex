@@ -1,0 +1,2488 @@
+\documentclass[12pt, oneside]{book}
+
+\usepackage{../mypackages}
+
+
+
+
+
+\begin{document}
+\frontmatter
+\title{{\Huge{\textbf{Functional Analysis}}}}
+\maketitle
+
+\dominitoc % 初始化minitoc
+\pagenumbering{Roman}
+\tableofcontents % 主目录
+
+
+\mainmatter
+\pagenumbering{arabic} % 正文编页码字体 
+
+
+\chapter{Topological Linear Space}
+
+
+\section{Vector Spaces} % 1.1
+
+
+\begin{definition}
+    If $X$ is a vector space, $A \subset X, B \subset X, x \in X$, and $\lambda \in \mathbb{F}$, the following notations will be used:
+    \begin{equation*}
+        \begin{aligned}
+            x+A       & =\{x+a: a \in A\}          \\
+            x-A       & =\{x-a: a \in A\}          \\
+            A+B       & =\{a+b: a \in A, b \in B\} \\
+            \lambda A & =\{\lambda a: a \in A\}
+        \end{aligned}
+    \end{equation*}
+
+    A set $Y \subset X$ is called a \textbf{subspace} of $X$ if $Y$ is itself a vector space (with respect to the same operations, of course).
+
+    A set $C \subset X$ is said to be \textbf{convex} if
+    \begin{equation*}
+        t C+(1-t) C \subset C \quad(0 \leq t \leq 1)
+    \end{equation*}
+
+    A set $B \subset X$ is said to be \textbf{balanced} if $\alpha B \subset B$ for every $\alpha \in \mathbb{F}$ with $|\alpha| \leq 1$
+\end{definition}
+
+
+\begin{definition}
+    Suppose $\tau$ is a topology on a vector space $X$ such that
+
+    (a) every point of $X$ is a closed set.
+
+    (b) the vector space operations
+    \begin{equation*}
+        +: X\times X \rightarrow X
+    \end{equation*}
+    and
+    \begin{equation*}
+        \cdot : \mathbb{F}\times X \rightarrow X
+    \end{equation*}
+    are continuous with respect to $\tau$.
+    Under these conditions, $\tau$ is said to be a vector topology on $X$, and $X$ is a \textbf{topological vector space}.
+
+    A subset $E$ of a topological vector space is said to be \textbf{bounded} if to every neighborhood $V$ of 0 in $X$ corresponds a number $s>0$ such that $E \subset t V$ for every $t>s$
+\end{definition}
+
+\begin{proposition}
+    $T_a = a+x$ and $M_\lambda =\lambda x$ are homeomorphisms of $X$ onto $X$.
+\end{proposition}
+
+
+\begin{definition}
+    Types of topological vector spaces In the following definitions, $X$ always denotes a topological vector space, with topology $\tau$.
+
+    (a) $X$ is \textbf{locally convex} if there is a local base $\mathscr{B}$ whose members are convex.
+
+    (b) $X$ is \textbf{locally bounded} if $0$ has a bounded neighborhood.
+
+    (c) $X$ is \textbf{locally compact} if $0$ has a neighborhood whose closure is compact.
+
+    (d) $X$ is metrizable if $\tau$ is compatible with some metric $d$.
+
+    (e) $X$ is an $F$-space if its topology $\tau$ is induced by a complete invariant metric $d$. (Compare Section 1.25.)
+
+    (f) $X$ is a Fréchet space if $X$ is a locally convex $F$-space.
+
+    (i) $X$ has the \textbf{Heine-Borel property} if every closed and bounded subset of $X$ is compact.
+
+\end{definition}
+
+
+\section{Linear Span} %% 1.2
+
+\begin{definition}
+    The intersection
+    \begin{equation*}
+        \bigcap Y_\sigma
+    \end{equation*}
+    of all linear subspaces $Y_\sigma$ containing the set $S$ is called the \textbf{linear span of the set $S$}.
+\end{definition}
+
+\begin{theorem}
+    Let $X$ be linear space and $S\subset X$.
+
+    (1) The linear span of a set $S$ is the smallest linear subspace containing $S$.
+
+    (2) The linear span of $S$ consists of all elements $x$ of the form
+    \begin{equation*}
+        x=\sum_1^n a_i x_i, \quad x_i \in S, a_i \in \mathbb{F}, n \text { any natural number }
+    \end{equation*}
+
+    (3)
+    \begin{equation*}
+        \span S
+        =
+        \bigcup_F \span \left\{x_1,x_2,\ldots, x_n\right\}
+    \end{equation*}
+\end{theorem}
+
+\section{Convex Set}  %% 1.3
+\begin{definition}
+    $X$ is a linear space over $\mathbb{R}$; a subset $K$ of $X$ is called \textbf{convex} if, whenever $x$ and $y$ belong to $K$, the whole segment with endpoints $x, y$, meaning all points of the form
+    \begin{equation*}
+        a x+(1-a) y, \quad 0 \leq a \leq 1,
+    \end{equation*}
+    also belong to $K$.
+\end{definition}
+
+\begin{theorem}
+    Let $K$ be a convex subset of a linear space $X$ over $\mathbb{R}$. Suppose that $x_1, \ldots, x_n$ belong to $K$; then so does every $x$ of the form
+    \begin{equation*}
+        x  =\sum_{j=1}^n a_j x_j
+    \end{equation*}
+    where $a_j \geq 0, \sum_1^n a_j =1$.The form is called \textbf{convex combinations} of $x_1,x_2,\ldots x_n$.
+\end{theorem}
+
+
+
+
+
+
+
+\begin{theorem}
+    Let $X$ be a linear space over $\mathbb{R}$.
+
+    (1) The empty set is convex.
+
+    (2) A subset consisting of a single point is convex.
+
+    (3) Every linear subspace of $X$ is convex.
+
+    (4) The sum of two convex subsets is convex.
+
+    (5) If $K$ is convex, so is $-K$.
+
+    (6) The intersection of an arbitrary collection of convex sets is convex.
+
+    (7) Let $\left\{K_\alpha\right\}$ be a collection of convex subsets that is totally ordered by inclusion. Then their union $\bigcup K_\alpha$ is convex.
+
+    (8) The image of a convex set under a linear map is convex.
+
+    (9) The inverse image of a convex set under a linear map is convex.
+\end{theorem}
+
+\begin{definition}
+    Let $S$ be any subset of a linear space $X$ over $\mathbb{R}$. The \textbf{convex hull} of $S$ is defined as the intersection of all convex sets containing $S$. The hull is denoted as $\widehat{S}$.
+\end{definition}
+
+
+\begin{definition}
+    The \textbf{closed convex hull} of a subset $M$ of a normed linear space $X$ is the smallest closed convex set containing $M$, that is the intersection of all closed convex sets containing $M$. We denote this set as $\breve{M}$.
+
+    Indeed, the closed convex hull of $M$ is the closure of the convex hull of $M$.
+\end{definition}
+
+
+\begin{theorem}
+
+
+    (i) The convex hull of $S$ is the smallest convex set containing $S$.
+
+    (2) The convex hull of $S$ consists of all convex combinations of points of $S$.
+\end{theorem}
+\begin{definition}
+    A subset $E$ of a convex set $K$ is called an \textbf{extreme subset} of $K$ if:
+
+    (a) $E$ is convex and nonempty.
+
+    (b) whenever a point $x$ of $E$ is expressed as
+    \begin{equation*}
+        x=\frac{y+z}{2}, \quad y, z \text { in } K
+    \end{equation*}
+    then both $y$ and $z$ belong to $E$.
+    An extreme subset consisting of a single point is called an \textbf{extreme point} of $K$.
+\end{definition}
+
+
+\section{Linear Maps}
+\begin{theorem}
+    The subspaces $N_j=N(T^j)$ defined have these properties:
+    \begin{equation*}
+        N_j \subset N_{j+1} \quad \text { for all } j
+    \end{equation*}
+    and
+    \begin{equation*}
+        \dim\left(\frac{N_j}{N_{j-1}}\right)
+        \geq
+        \dim\left(\frac{N_{j+1}}{N_j}\right) \quad \text { for all } j
+    \end{equation*}
+
+    Proof:
+    We claim that $T$ maps
+    \begin{equation*}
+        N_{j+1} / N_j \rightarrow N_j / N_{j-1}
+    \end{equation*}
+    in a injective function. To see this, note that a nonzero element of $N_{j+1} / N_j$ is represented by  $z + N_{j}$ where $z$ does not lie in $N_j$ but in $N_{j+1}$. Clearly,
+    $T z$
+    lies in $N_j$ but not in
+    $N_{j-1}$
+    ; this shows the one-to-oneness.
+\end{theorem}
+\begin{corollary}
+    Suppose that for some $i$
+    \begin{equation*}
+        N_i=N_{i+1}
+    \end{equation*}
+    then
+    \begin{equation*}
+        N_i=N_k \quad \text { for all } k>i
+    \end{equation*}
+\end{corollary}
+
+\begin{definition}
+    A subspace $Y$ of $X$ is called an \textbf{invariant subspace} of a linear map $T: X \rightarrow X$ if
+    $T\left(Y\right) \subset Y$.
+\end{definition}
+
+
+\begin{theorem}
+    Suppose that $Y$ is an invariant subspace of $X$ for a mapping $T: X \rightarrow X$. Then
+
+    (1) there is a natural interpretation of $T'$ as a mapping $X / Y \rightarrow X / Y$.
+
+    (2) if both maps
+    \begin{equation*}
+        T: Y \longrightarrow Y \text { and } T': X / Y \longrightarrow X / Y
+    \end{equation*}
+    are invertible, so is $T: X \rightarrow X$.
+\end{theorem}
+
+\begin{theorem}
+    Let $T$ be a linear map: $X \rightarrow X$.
+
+    (1) For any $y$ in $X$, the set $\{p(T) y\}$, where $p$ represents any polynomial, is an invariant subspace of $M$.
+
+    (2) Let $A$ be a linear map: $X \rightarrow X$ that commutes with $T$.
+    Then the nullspace of $T$ is an invariant subspace of $A$.
+\end{theorem}
+
+
+
+
+
+\chapter{The Hahn-Banach Theorem}
+
+\section{The Hahn-Banach Theorem} % 2.1
+
+\begin{definition}
+    A \textbf{seminorm} on a vector space $X$ is a real-valued function $p$ on $X$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item Subadditivity: $p(x+y) \leq p(x)+p(y)$.
+        \item Homogeneity: $p(\alpha x)=|\alpha| p(x)$ for all $x$ and $y$ in $X$ and all scalars $\alpha \in \mathbb{F}$.
+    \end{enumerate}
+    Therefore a seminorm also satisfies that (c)
+    Positive semi-definite : $p(x)\geq 0$ for all $x\in X$ and $p(0)=0$
+\end{definition}
+
+\begin{definition}
+    A \textbf{sublinear functional} on a vector space $X$ is a real-valued function $p$ on $X$ such that
+
+    \begin{enumerate}[label=(\roman*)]
+        \item Subadditivity
+        \item Positive Homogeneity
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Hahn-Banach theorem for real linear space]
+    Let $X$ be a linear space over $\mathbb{R}$, and $p$ a sublinear functional.
+    And $Y$ denotes a linear subspace of $X$ on which a linear functional $\ell$ is defined that is dominated by $p$ :
+    \begin{equation*}
+        \ell(y) \leq p(y) \quad \text { for all } y \text { in } Y
+    \end{equation*}
+    Then, $\ell$ can be extended to all of $X$ as a linear functional dominated by $p$ :
+    \begin{equation*}
+        \ell(x) \leq p(x) \quad \text { for all } x \text { in } X
+    \end{equation*}
+
+    Proof:
+    Step 1.
+    Suppose that $Y$ is not all of $X$; then there is some $z$ in $X$ that is not in $Y$. Denote by $Z=\mathrm{span}\{Y,z\}$. Our aim is to extend $\ell$ as a linear functional to $Z$, that is,
+    \begin{equation*}
+        \ell(y+a z)=\ell(y)+a \ell(z) \leq p(y+a z)
+    \end{equation*}
+    holds for all $y$ in $Y$ and all real $a$. The inequality holds for $a = 0$. Since $p$ is positive homogeneous, it suffices to verify it for $a= \pm 1$:
+    \begin{equation*}
+        \ell(y)+\ell(z) \leq p(y+z), \quad \ell\left(y^{\prime}\right)-\ell(z) \leq p\left(y^{\prime}-z\right)
+    \end{equation*}
+    Thus for all $y, y^{\prime}$ in $Y$,
+    \begin{equation*}
+        \ell\left(y^{\prime}\right)-p\left(y^{\prime}-z\right) \leq \ell(z) \leq p(y+z)-\ell(y)
+    \end{equation*}
+    must hold. Such an $\ell(z)$ exists iff for all pairs $y, y^{\prime}$,
+    \begin{equation*}
+        \ell\left(y^{\prime}\right)-p\left(y^{\prime}-z\right) \leq p(y+z)-\ell(y)
+    \end{equation*}
+    This is the same as
+    \begin{equation*}
+        \ell\left(y^{\prime}\right)+\ell(y)=\ell\left(y^{\prime}+y\right) \leq p(y+z)+p\left(y^{\prime}-z\right)
+    \end{equation*}
+    We prove the possibility of extending $\ell$ from $Y$ to $Z$ by the Subadditivity of $p$.
+
+    Step 2.
+    Consider all extensions of $\ell$ to linear spaces $Z$ containing $Y$ on which domination condition continues to hold. We order these extensions by defining
+    \begin{equation*}
+        (Z, \ell) \leq\left(Z^{\prime}, \ell^{\prime}\right)
+    \end{equation*}
+    to mean that $Z^{\prime}$ contains $Z$, and that $\ell^{\prime}$ agrees with $\ell$ on $Z$.
+    Let $\left\{\left(Z_\nu, \ell_\nu\right)\right\}$ be a totally ordered collection of extensions of $\ell$. Then we can define $\ell$ on the union $Z=\cup Z_\nu$ as being $\ell_\nu$ on $Z_\nu$. Clearly, $\ell$ on $Z$ satisfies ( $3^{\prime}$ ); equally clearly, $\left(Z_\nu, \ell_\nu\right) \leq(Z, \ell)$ for all $\nu$. This shows that every totally ordered collection of extensions of $\ell$ has an upper bound. So the hypothesis of Zorn's lemma is satisfied, and we conclude that there exists a maximal extension. But according to the foregoing, a maximal extension must be to the whole space $X$.
+\end{theorem}
+
+\begin{theorem}[Hahn-Banach Theorem for complex linear space]
+    Let $X$ be a linear space over $\mathbb{C}$, and $p$ a semi-norm.
+    Let $Y$ be a linear subspace of $X$ over $\mathbb{C}$, and let $\ell$ be a complex linear functional on $Y$ that satisfies
+    \begin{equation*}
+        |\ell(y)| \leq p(y) \quad \text { for } y \text { in } Y
+    \end{equation*}
+    Then $\ell$ can be extended to all of $X$ so that
+    \begin{equation*}
+        |\ell(x)| \leq p(x) \quad \text { for } x \text { in } X
+    \end{equation*}
+
+    Proof:
+    Step 1.
+    Split $\ell$ into its real and imaginary part:
+    \begin{equation*}
+        \ell(y)=\ell_1(y)+i \ell_2(y)
+    \end{equation*}
+    where
+    \begin{equation*}
+        \ell_1
+        =
+        \frac{\ell+\overline{\ell}}{2}
+        \text{ and }
+        \ell_2
+        =
+        \frac{\ell-\overline{\ell}}{2i}
+    \end{equation*}
+    Clearly, $\ell_1$ and $\ell_2$ are linear over $\mathbb{R}$, and are related by
+    \begin{equation*}
+        \ell_1(i y)=-\ell_2(y)
+    \end{equation*}
+    Conversely, if $\ell_1$ is a linear functional over $\mathbb{R}$,
+    \begin{equation*}
+        \ell(x)=\ell_1(x)-i \ell_1(i x)
+    \end{equation*}
+    is linear over $\mathbb{C}$.
+
+    Step 2.
+    We turn now to the task of extending $\ell$ by extending $\ell_1$. It follows that
+    \begin{equation*}
+        \ell_1(y) \leq p(y)
+    \end{equation*}
+    Therefore by the real H-B theorem, $\ell_1$ can be extended to all of $X$.  We define $\ell$ on $X$
+    \begin{equation*}
+        \ell(x)=\ell_1(x)-i \ell_1(i x)
+    \end{equation*}
+    Clearly, $\ell$ is linear over $\mathbb{C}$ and we claim that (29) holds. To see this, write
+    \begin{equation*}
+        \ell(x)= r \alpha, \quad r \text { is real }, \quad|\alpha|=1
+    \end{equation*}
+    Then
+    \begin{equation*}
+        |\ell(x)|=r=\alpha^{-1} \ell(x)=\ell\left(\alpha^{-1} x\right)=\ell_1\left(\alpha^{-1} x\right) \leq p\left(\alpha^{-1} x\right)=p(x)
+    \end{equation*}
+    This completes the proof of the complex H-B theorem.
+\end{theorem}
+
+\section{Geometric Hahn-Banach Theorem} % 2.2
+
+\subsection{Minkowski functional}
+
+\begin{definition}
+    Let $X$ be topological linear space and $A,B \subset X$.
+
+    (1) Set $A$ is said to be \textbf{absorbing}, if every $x \in X$ lies in $t A$ for some $t=t(x)>0$, i.e.
+    \begin{equation*}
+        X=\bigcup_{n=1}^\infty nA
+    \end{equation*}
+    Noted that $0\in A$ if $A$ is absorbing.
+
+    (2) A set $B \subset X$ is said to be \textbf{balanced} if $\alpha B \subset B$ for every $\alpha \in \mathbb{F}$ with $|\alpha| \leq 1$.
+\end{definition}
+
+\begin{proposition}
+    There exists balanced and absorbing neigbourdhood basis of $0$.
+\end{proposition}
+
+
+\begin{definition}
+    Let $K$ be a convex set that $ {0}\in K$.
+    We denote the \textbf{gauge (Minkowski functional)} $p_K$ of $K$ with respect to the origin as follows:
+    \begin{equation*}
+        p_K(x)
+        =
+        \inf \left\{a : a>0, \frac{x}{a} \in K\right\}
+    \end{equation*}
+\end{definition}
+\begin{proposition}
+    Let $K$ be a convex set that that $ {0}\in K$. Then
+
+    (1) $p_K(x) \in [0,\infty]$, $p_K( {0}) =0 $
+
+    (2) Positive Homogeneity
+
+    (3) Subadditivity
+\end{proposition}
+
+\begin{proposition}
+    Let $K$ be a convex set in topological linear space $X$ over $\mathbb{F}$, which we take to be the origin and the gauge $p_K$ of $K$
+
+    (1) $0\leq p_K <\infty$ if and only if $K$ is absorbing sets.
+
+    (2) If $K$ is balanced, then $p_K$ is homogeneity over $\mathbb{F}$
+\end{proposition}
+
+
+\begin{corollary}
+    If $K$ is a balanced, absorbing convex set, then $p_k$ is a seminorm on $X$.
+\end{corollary}
+
+\subsubsection{}
+\begin{theorem}
+    For any convex set $K$,
+
+    (1) If $x \in K$, then $p_K(x) \leq 1  $
+
+    (2) $p_K(x)<1$ iff  $x$ is an interior point of $K$.
+
+\end{theorem}
+
+\begin{theorem}
+    Let $p$ denote a sublinear functional defined on a linear space $X$ over $\mathbb{R}$.
+
+    (1) The set of points $x$ satisfying
+    \begin{equation*}
+        p(x)<1
+    \end{equation*}
+    is a convex subset of $X$, and $0$ is an interior point of it.
+
+    (2) The set of points $x$ satisfying
+    \begin{equation*}
+        p(x) \leq 1
+    \end{equation*}
+    is a convex subset of $X$.
+\end{theorem}
+
+\subsection{Separation Theorem}
+
+\begin{definition}
+    Suppose that $\ell$ is a linear functional not $\equiv 0$; for any real $c$, all points of $X$ belong to one, and only one, of the following three sets:
+    \begin{equation*}
+        \ell(x)<c, \quad \ell(x)=c, \quad \ell(x)>c .
+    \end{equation*}
+    The set of $x$ that satisfies
+    \begin{equation*}
+        \ell(x)=c
+    \end{equation*}
+    is called a \textbf{hyperplane}; the sets where $\ell(x)<c$, respectively $\ell(x)>c$ are called \textbf{open halfspaces}. The sets where
+    \begin{equation*}
+        \ell(x) \geq c, \quad \text { or } \quad \ell(x) \leq c
+    \end{equation*}
+    are called \textbf{closed halfspaces}.
+
+\end{definition}
+\begin{theorem}[Hyperplane Separation Theorem]
+    Let $K$ be a nonempty convex subset of a linear space $X$ over $\mathbb{R}$;
+    suppose that $K$ has an interior point.
+    Then any point $y$ not in $K$ can be separated from $K$ by a hyperplane $\ell_y(x)=c$; that is, there is a linear functional $\ell$, depending on $y$, such that
+    \begin{equation*}
+        \ell(x)\leq c \quad \text { for all } x \text { in } K ; \quad \ell(y)=c .
+    \end{equation*}
+
+    Proof:
+    Assume that $0$ is interior point of $ K$, and denote by $p_K$ the gauge of $K$. It follows that $p_K$ is a sublinear functional and $p_K(x)\leq 1$ for every $x$ in $K$. We set
+    \begin{equation*}
+        \ell(y)=1.
+    \end{equation*}
+    Then $\ell$ is defined on $\mathrm{span}\{y\}$ and we observe that
+    \begin{equation*}
+        \ell(z) \leq p_K(z)
+    \end{equation*}
+    for all $z=ay \in \mathrm{span}\{y\}$.
+    Then we conclude from the real H-B theorem that $\ell$ can be so extended to all of $X$ and
+    \begin{equation*}
+        \ell(x)
+        \leq
+        p_K(x)
+        \leq
+        1
+    \end{equation*}
+    for all $x\in K$.
+\end{theorem}
+
+\begin{theorem}[Extended Hyperplane Separation]
+    Let $X$ is a linear space over $\mathbb{R}, H$, and $M$ disjoint convex subsets of $X$, at least one of which has an interior point. Then $H$ and $M$ can be separated by a hyperplane $\ell(x)=c$; that is, there is a nonzero linear functional $\ell$, and a number $c$, such that
+    \begin{equation*}
+        \ell(u) \leq c \leq \ell(v)
+    \end{equation*}
+    for all $u$ in $H$, all $v$ in $M$.
+
+    Proof:
+    First, we note that the difference set $H-M=K$ is convex; since either $H$ or $M$ contains an interior point, so does $K$.
+
+    Since $H$ and $M$ are disjoint, $0 \notin K$; there is a linear functional $\ell$ such that
+    \begin{equation*}
+        \ell(x) \leq \ell(0)=0 \text { for all } x \text { in } K
+    \end{equation*}
+    It is equivalent that
+    \begin{equation*}
+        \ell(u) \leq \ell(v)
+    \end{equation*}
+    for all $u\in H$, $v\in M$, with $c=\sup _{u \in H} \ell(u)$.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Normed Space}
+\section{Norms}
+\begin{definition}
+    Let $X$ denote a linear space over $\mathbb{R}$ or $\mathbb{C}$. A norm in $X$ is a real-valued function: $X \rightarrow \mathbb{R}$, denoted as $|x|$, with the following properties:
+
+    \begin{enumerate}[label=(\roman*)]
+        \item Positivity,
+              \begin{equation*}
+                  |x|>0 \quad \text { for } x \neq 0 ;|0|=0
+              \end{equation*}
+
+        \item Subadditivity,
+              \begin{equation*}
+                  |x+y| \leq|x|+|y|
+              \end{equation*}
+
+        \item Homogeneity. For all scalars $a\in \mathbb{R}$ of $\mathbb{C}$,
+              \begin{equation*}
+                  |a x|=|a||x|
+              \end{equation*}
+    \end{enumerate}
+    With the aid of a norm we can introduce a metric in $X$, by defining the distance of two points to be
+    \begin{equation*}
+        d(x, y)=|x-y|
+    \end{equation*}
+
+    It is easy to verify that this has all properties of a metric. Conversely, it is easy to show that every metric in a linear space that is translation invariant and homogeneous:
+    \begin{equation*}
+        d(x+z, y+z)=d(x, y), \quad d(a x, a y)=|a| d(x, y)
+    \end{equation*}
+\end{definition}
+
+\begin{definition}
+    Two different norms, $|x|_1$ and $|x|_2$, defined on the same space $X$ are called \textbf{equivalent} if there is a constant $c$ such that
+    \begin{equation*}
+        c|x|_1 \leq|x|_2 \leq c^{-1}|x|_1
+    \end{equation*}
+    for all $x$ in $X$.
+
+    The significance of this notion is that equivalent norms induce the same topology.
+\end{definition}
+
+\begin{proposition}
+    Let $X$ ba a normed space over $\mathbb{F}$.
+
+    (1) A subspace $Y$ of $X$ is again a normed linear space.
+
+    (2) Given two linear spaces $Z$ and $U$, their Cartesian product, denoted as a direct sum $Z \oplus U$, consists of all ordered pairs $(z, u), z \in Z, u \in U$. When $Z$ and $U$ are normed, $Z \oplus U$ can be normed, such as by setting
+    \begin{equation*}
+        |(z, u)|=|z|+|u|, \quad|(z, u)|^{\prime}=\max \{|z|,|u|\}, \text { or } \quad|(z, u)|^{\prime \prime}=\left(|z|^2+|u|^2\right)^{1 / 2}
+    \end{equation*}
+\end{proposition}
+
+\begin{definition}
+    Let $Y$ be a closed subspace of a normed linear space $X$. Let $\overline{x}$ be an equivalence class of elements of $X \bmod Y$. We define norm on $X/Y$
+    \begin{equation*}
+        \|\overline{x}\|=\inf _{x\in \overline{x}}\left|x\right|
+    \end{equation*}
+\end{definition}
+
+\begin{definition}
+    A \textbf{Banach space} is a normed linear space that is complete.
+\end{definition}
+
+\begin{theorem}
+    The completion $\overline{X}$ of a normed linear space $X$ under the metric has a natural linear structure that makes $\overline{X}$ a complete normed linear space.
+
+    Proof. Recall that the points of the completion of a metric space are equivalence classes of Cauchy sequences. The term-by-term sum of two Cauchy sequences is again a Cauchy sequence, and sums of equivalent Cauchy sequences are equivalent.
+
+
+\end{theorem}
+
+\begin{proposition}
+    If $X$ is Banach space, $Y$ a closed subspace of $X$, the quotient space $X / Y$ is complete.
+\end{proposition}
+\begin{definition}
+    A normed linear space is called \textbf{separable} if it contains a countable set of points that is dense, namely, whose closure is the whole space.
+\end{definition}
+
+\section{}
+
+\begin{lemma}[Riesz's Lemma]
+    Let $Y$ be a closed, proper subspace of the normed linear space $X$. Then for all $\alpha < 1$, there is a united vector $z$ in $X$,
+    \begin{equation*}
+        |z|=1
+    \end{equation*}
+    and that satisfies
+    \begin{equation*}
+        d(z,Y)>\alpha
+    \end{equation*}
+
+    Proof:
+    Since $Y$ is a proper subspace of $X$, some point $x$ of $X$ does not belong to $Y$. Since $Y$ is closed, $x$ has a positive distance to $Y$ :
+    \begin{equation*}
+        \inf_{y \in Y}|x-y|=d>0
+    \end{equation*}
+    There is then a $y_0$ in $Y$ such that
+    \begin{equation*}
+        d \leq \left|x-y_0\right|< d + \varepsilon
+    \end{equation*}
+    Denote $z^{\prime}=x-y_0$ we can then write
+    \begin{equation*}
+        \left|z^{\prime}\right|< d+\varepsilon
+    \end{equation*}
+    It follows that
+    \begin{equation*}
+        \left|z^{\prime}-y\right|
+        \geq d(x,Y)
+        \geq d
+    \end{equation*}
+    for all  $y \in  Y$.
+    We set
+    \begin{equation*}
+        z=\frac{z^{\prime}}{\left|z^{\prime}\right|}
+    \end{equation*}
+    Then
+    \begin{equation*}
+        d(z,Y)
+        =
+        \frac{1}{\left|z'\right|}d(z',Y)
+        \geq
+        \frac{d}{d+\varepsilon}
+        >\alpha
+    \end{equation*}
+    for sufficiently small $\varepsilon$.
+\end{lemma}
+
+\begin{corollary}
+    Let $X$ be an infinite-dimensional normed linear space; then the unit ball $B_1$ defined in $X$ is not compact.
+\end{corollary}
+
+\begin{proposition}
+    (1) All norms are equivalent on finite-dimensional spaces.
+
+    (2) Every finite-dimensional subspace of a normed linear space is closed. (Hint: Use the fact that )
+\end{proposition}
+
+\begin{definition}
+    A norm is called \textbf{strictly subadditive} if in (2) strict inequality holds except when $x$ or $y$ is a nonnegative multiple of the other.
+\end{definition}
+
+\begin{definition}
+    If there is an increasing function $\epsilon(r)$ defined for positive $r$,
+    \begin{equation*}
+        \epsilon(r)>0, \quad \lim _{r \rightarrow 0} \epsilon(r)=0
+    \end{equation*}
+    such that for all $x, y$ in the unit ball $|x| \leq 1,|y| \leq 1$, the inequality
+    \begin{equation*}
+        \left|\frac{x+y}{2}\right| \leq 1-\epsilon(|x-y|)
+    \end{equation*}
+    holds. A normed linear space whose norm satisfies this for all united vectors $x, y$, where $\epsilon(r)$ is some function satisfying, is called \textbf{uniformly convex}.
+
+
+\end{definition}
+
+\begin{theorem}
+    Let $X$ be a uniformly convex Banach space. Let $K$ be a closed, convex subset of $X, z$ any point of $X$. Then there is a unique point $k$ of $K$ which is closer to $z$ than any other point of $K$.
+    \begin{equation*}
+        d(z,k) =d(z,K)
+    \end{equation*}
+
+    Proof:
+    We may take $z=0$, provided that we assume that 0 does not lie in $K$. Denote by $s$ the distance of 0 to $K$, that is,
+    \begin{equation*}
+        s=\inf |k|, \quad k \text { in } K
+    \end{equation*}
+    Since $0$ does not lie in $K$, and since $K$ is closed, $s>0$. Let $\left\{y_n\right\}$ be a minimizing sequence for, that is,
+    \begin{equation*}
+        y_n \text { in } K, \quad\left|y_n\right|=s_n \rightarrow s
+    \end{equation*}
+    Define the unit vectors $x_n$ as
+    \begin{equation*}
+        x_n=\frac{k_n}{s_n}
+    \end{equation*}
+    we can write
+    \begin{equation*}
+        \begin{aligned}
+            \frac{x_n+x_m}{2} & =\frac{1}{2 s_n} y_n+\frac{1}{2 s_m} y_m                                  \\
+                              & =\left(\frac{1}{2 s_n}+\frac{1}{2 s_m}\right)\left(c_n y_n+c_m y_m\right)
+        \end{aligned}
+    \end{equation*}
+    Clearly, $c_n$ and $c_m$ are positive, and $c_n+c_m=1$. Since $K$ is convex, it follows that $c_n y_n+c_m y_m$ belongs to $K$. Therefore,
+    \begin{equation*}
+        \left|c_n k_n+c_m k_m\right| \geq s
+    \end{equation*}
+    And we get that
+    \begin{equation*}
+        \left|\frac{x_n+x_m}{2}\right| \geq \frac{s}{2 s_n}+\frac{s}{2 s_m}
+    \end{equation*}
+    Since $\left\{k_n\right\}$ is a minimizing sequence, $s_n \rightarrow s$; therefore the right side tends to $1$. So it follows from uniformly convexity that $\lim _{n, m \rightarrow \infty}\left|x_n-x_m\right|=0$.
+    It follows that also
+    \begin{equation*}
+        \lim_{n, m \rightarrow \infty}\left|k_n-k_m\right|=0
+    \end{equation*}
+    meaning that the minimizing sequence $\left\{k_n\right\}$ is a Cauchy sequence. Since $X$ is complete and $K$ is closed, the sequence $\left\{k_n\right\}$ converges to an element $k$ of $K$. Clearly, $|k|=s$.
+\end{theorem}
+
+\section{Isometries}
+\begin{definition}
+    We turn now to \textbf{isometries} of a Banach space $X$ onto itself, meaning mappings $T$ of $X$ onto $X$ which preserve the distance of any pair of points:
+    \begin{equation*}
+        |T(x)-T(y)|=|x-y| \quad \text { for all } x, y \text { in } X
+    \end{equation*}
+
+\end{definition}
+\begin{theorem}
+    Let $X$ be a linear space over $\mathbb{R}$ with a strictly subadditive norm. Let $T$ be an isometric mapping of $X$ into itself that maps the origin into itself. Then $T$ is linear.
+
+    Proof:
+    Denote for simplicity $T(x)$ by $x^{\prime}$. Take any pair of points $x$ and $y$ and define
+    \begin{equation*}
+        z=\frac{x+y}{2}
+    \end{equation*}
+    We have
+    \begin{equation*}
+        \begin{aligned}
+             & \left|x^{\prime}-z^{\prime}\right|=|x-z|=\frac{|x-y|}{2} \\
+             & \left|z^{\prime}-y^{\prime}\right|=|z-y|=\frac{|x-y|}{2}
+        \end{aligned}
+    \end{equation*}
+    and
+    \begin{equation*}
+        \left|x^{\prime}-y^{\prime}\right|=|x-y|
+    \end{equation*}
+    These imply that
+    \begin{equation*}
+        \left|x^{\prime}-y^{\prime}\right|=\left|x^{\prime}-z^{\prime}+z^{\prime}-y^{\prime}\right|=\left|x^{\prime}-z^{\prime}\right|+\left|z^{\prime}-y^{\prime}\right|
+    \end{equation*}
+    Since the norm is strictly subadditive, $x^{\prime}-z^{\prime}$ and $z^{\prime}-y^{\prime}$ must be positive multiples of each other. Since they have the same norm, they must be equal: $x^{\prime}-z^{\prime}=$ $z^{\prime}-y^{\prime}$. Hence
+    \begin{equation*}
+        2 z^{\prime}=x^{\prime}+y^{\prime}
+    \end{equation*}
+
+    Then we can conclude that $T$ is linear.
+\end{theorem}
+
+\begin{theorem}[Mazur and Ulam]
+    Let $X$ and $X^{\prime}$ be two normed linear spaces over $\mathbb{R}$, $T$ an isometric mapping of $X$ onto $X^{\prime}$ that carries $0$ into $0$. Then $T$ is linear.
+
+    Proof:
+    1. There may be other points $u$ also halfway between $x$ and $y$ :
+    \begin{equation*}
+        |x-u|=|y-u|=\frac{|x-y|}{2} .
+    \end{equation*}
+    We denote the set of all such $u$ by $A$. We claim that this set $A$ is symmetric with respect to the midpoint $z$. That is, that if $u$ belongs to $A$, then so does
+    \begin{equation*}
+        v=2 z-u
+    \end{equation*}
+    We define the diameter $d_A$ of $A$ as the greatest distance between pairs of points of $A$ :
+    \begin{equation*}
+        d_A=\sup _{u, w \in A}|u-w|
+    \end{equation*}
+    Since $A$ is symmetric with respect to $z$, for all $u$ in $A$,
+    \begin{equation*}
+        |u-z| \leq \frac{1}{2} d_A
+    \end{equation*}
+
+    2. Of course, there may be other points $p$ in $A$ with this property:
+    \begin{equation*}
+        |u-p| \leq \frac{1}{2} d_A \quad \text { for all } u \text { in } A
+    \end{equation*}
+    We denote the set of all such $p$ by $A_1$. We claim that $A_1$ is symmetric with respect to the midpoint $z$. That is, if $p$ belongs to $A_1$, so does
+    \begin{equation*}
+        q=2 z-p
+    \end{equation*}
+    It follows that the diameter of $A_1$ does not exceed half the diameter of $A$ :
+    \begin{equation*}
+        d_{A_1} \leq \frac{1}{2} d_A
+    \end{equation*}
+
+    3. We now repeat this construction, obtaining a nested sequence of sets $A \supset A_1 \supset$ $A_2 \cdots$, each containing the midpoint $z$, each symmetric with respect to $z$, and their diameters satisfying
+    \begin{equation*}
+        d_{A_{n+1}} \leq \frac{1}{2} d_{A_n}
+    \end{equation*}
+    Clearly, $d_{A_n}$ tends to zero; it follows that the intersection of all the sets $A_n$ consist of the single point $z$. This characterizes the midpoint $z$ of $x, y$ purely in terms of the metric structure of $X$.
+
+    4. It follows that $M$
+    maps every point of $A_n$ into $A_n'$ bijectively and thus
+    \begin{equation*}
+        T\left(\frac{x+y}{2}\right)
+        =
+        T\left(\bigcap A_n\right)
+        =
+        \bigcap T\left(A_n\right)
+        =
+        \frac{T\left(x\right)+ T\left(y\right)}{2}
+    \end{equation*}
+\end{theorem}
+
+
+
+
+\chapter{Bounded Linear Maps}
+
+\section{Baire Space}
+
+
+
+\begin{definition}
+    Let topological space $X$ and $A,B,C$ be subsets of $X$.
+
+
+    (1) If $\overline{A}=X$, $A$ is called \textbf{dense}.
+
+    (2) If $B^\circ = \varnothing$, we say that $B$ has \textbf{empty interior}.
+
+    (2) If $\overline{C}^\circ = \varnothing$
+    , then $C$ is called \textbf{nonwhere dense}.
+
+    \textbf{Remark} It is following from
+    $\overline{U^c}=
+        \left(U^\circ\right)^c$ that $U$ has empty interior if and only if $U^c$ is dense in $X$
+\end{definition}
+
+
+
+\begin{definition}
+    Let topological space $X$ and $A$ be a subset of $X$. $A$ is called \textbf{first category set} if there is a sequence of nowwhere dense sets $\{E_n\}_{n=1}^{\infty}$ that
+    \begin{equation*}
+        A
+        =
+        \bigcup E_n
+    \end{equation*}
+    If $B\subset X$ is not a first category set, then $B$ is called \textbf{second category set}.
+\end{definition}
+
+\begin{definition}
+    A topological space $X$ is called \textbf{Baire Space} if every nonempty open sets are the second category sets.
+\end{definition}
+
+\begin{proposition}[Equivalent condition]
+    Let topological space $X$. Then the following propositions are equivalent.
+
+    (1) $X$ is Baire space.
+
+    (2) Let $\{E_n\}$ be a denumerable sequence of dense open sets, then $\bigcap E_n$ is also dense.
+
+    (3) Let $\{F_n\}$ be a denumerable sequence of closed sets with empty interior, then $\bigcup F_n$ has also empty interior.
+
+    (4) Every nonempty open set is the second category set.
+
+    (5) If $A$ is the first category set, then $A$ has empty interior (Equivalently, $A^c$ is dense in $X$).
+\end{proposition}
+
+\begin{theorem}[Baire category theorem]
+    If $X$ is a complete metric space or a locally compact Hausdorff space, then $X$ is Baire space.
+\end{theorem}
+
+
+
+
+
+
+
+\section{Basic Theory}
+\begin{definition}
+    Let $X$ and $Y$ are a pair of normed spaces. A linear map
+    \begin{equation*}
+        T: X \rightarrow Y
+    \end{equation*}
+    is called continuous if it maps convergent sequences into convergent ones, that is, if
+    \begin{equation*}
+        x_n \longrightarrow x \quad \text { implies } \quad T x_n \longrightarrow T x
+    \end{equation*}
+
+\end{definition}
+\begin{definition}
+    A linear map $T: X \rightarrow U$ of one normed space $X$ into another $Y$ is called \textbf{bounded} if there is a constant $c$ such that for all $x$ in $X$
+    \begin{equation*}
+        \|T x\| \leq c|x|
+    \end{equation*}
+    Its norm, denoted as $|T|$, is defined by
+    \begin{equation*}
+        \left\| T\right\|_{}
+        =
+        \sup _{x \neq 0} \frac{|T x|}{|x|}
+    \end{equation*}
+    The set of all bounded maps of one Banach space $X$ into another $U$ is denoted by
+    \begin{equation*}
+        \mathcal{L}(X, U)
+    \end{equation*}
+\end{definition}
+
+
+
+\begin{theorem}
+    Let $X$ and $U$ denote normed linear spaces, $T: X \rightarrow U$ a bounded linear map.
+
+    (1) $N\left(T\right)$ is a closed linear subspace of $X$. Then
+
+    (2) $T$, when regarded as a map
+    \begin{equation*}
+        T_0:X/{N_{T}}\longrightarrow U
+    \end{equation*}
+    is a injective, bounded linear map with $\left|T_0\right|=|T|$. And $R\left(T_0\right)= R\left(T\right)$.
+
+
+    Proof:
+    $N_{T}$ is the inverse image in $X$ of $\{0\}$ in $U$. Since $\{0\}$ is a closed set, and $T$ is continuous, $N_{T}$ is closed.
+
+    Let $x_1\equiv x_2 \bmod N$  if $x_1-x_2 \in N_{T}$. By definition, and linearity, $T x_1=T x_2$; therefore the mapping $T_0$ is unequivocally defined.
+
+    Using the definition of the norm of a map, and some obvious manipulations, we have
+    \begin{equation*}
+        |T|
+        =
+        \sup _{x \neq 0} \frac{|T x|}{|x|}
+        =
+        \sup _{\overline{x} \neq 0} \sup_{y \equiv x} \frac{|T x|}{|y|}
+        =
+        \sup_{\overline{x} \neq 0} \frac{|T x|}{\inf\limits_{y\in \overline{x}} |y|}
+        =
+        \sup_{\overline{x} \neq 0} \frac{|T\overline{x}|}{|\overline{x}|}
+        =
+        \left|T_0\right|
+    \end{equation*}
+\end{theorem}
+
+
+\begin{theorem}
+    Suppose $X$ and $U$ are normed space.
+
+    (1) $\mathcal{L}(X,U)$ is a normed space
+
+    (2) If $U$ is Banach space then so $\mathcal{L}(X,U)$.
+\end{theorem}
+
+\begin{definition}
+    Let $X,U$ be normed space, and linear operator
+    \begin{equation*}
+        T: X \rightarrow U
+    \end{equation*}
+    Let $\ell$ be a point of $U^{\prime}$, then composite $\ell(T x) \in X'$
+    \begin{equation*}
+        \ell(T x)=\xi(x)
+    \end{equation*}
+    The linear functional $\xi \in X^{\prime}$ clearly depends linearly on $\ell$ : $\xi=T^{\prime} \ell$
+    \begin{equation*}
+        T^{\prime}: U^{\prime} \rightarrow X^{\prime}
+    \end{equation*}
+    is called the \textbf{transpose} of $T$
+    \begin{equation*}
+        \langle \ell, Tx \rangle_U
+        =
+        \langle T^{\prime} \ell, x\rangle_X
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}
+    Let $X,U$ be normed space
+
+    (1) The transpose $T^{\prime}$ of a bounded linear map $T$ is bounded, and
+    \begin{equation*}
+        \left|T^{\prime}\right|=|T|
+    \end{equation*}
+
+    (ii) The nullspace of $T^{\prime}$ is the annihilator of the range of $T$,
+    \begin{equation*}
+        N\left(T^{\prime}\right)=R\left(T\right)^{\perp}
+    \end{equation*}
+
+    (iii) The nullspace of $T$ is the annihilator of the range of $T^{\prime}$,
+    \begin{equation*}
+        N\left(T\right)
+        =
+        R\left(T^{\prime}\right)^{\perp}
+    \end{equation*}
+
+    (iv) $(T+ {N})^{\prime}=T^{\prime}+ {N}^{\prime}$.
+\end{theorem}
+
+
+
+\section{Uniformly Bounded Theorem}
+
+\begin{theorem}[Banach-Steinhauss theorem]
+    Let $X$ be Banach space, $Y$ normed space and a collection of bounded linear operator $\{T_\alpha\}\subset \mathcal{L} (X,Y)$.
+    If
+    \begin{equation*}
+        \sup_\alpha \|T_\alpha x\|
+        <
+        \infty
+    \end{equation*}
+    for each $x\in X$. Then
+    \begin{equation*}
+        \sup_\alpha
+        \|T_\alpha\|
+        <
+        \infty
+    \end{equation*}
+
+    Proof:
+    Let
+    \begin{equation*}
+        f(x)
+        =
+        \sup_\alpha \|T_\alpha x\|
+    \end{equation*}
+    is well defined and lower-continues.
+    Then we define
+    \begin{equation*}
+        M_n
+        =
+        \{x\in X : f(x)=\sup_\alpha \|T_\alpha x\| <n\}
+    \end{equation*}
+    is closed and $X=\bigcup M_n$. Therefore, there exist a $n_0$ such that $M_{n_0}$ has nonempty interior i.e.
+    \begin{equation*}
+        B(x_0,r)
+        \subset
+        M_{n_0}
+    \end{equation*}
+    For all $\|y\|\leq 1$, we write $x= x_0 + ry \in B(x_0,r)
+        \subset M_{n_0}$. Thus
+    \begin{equation*}
+        \|T_\alpha y \|
+        =
+        \frac{1}{r}  \|T_\alpha x -T_\alpha x_0 \|
+        \leq
+        \frac{n+f(x_0) }{r}
+        \leq
+        M
+    \end{equation*}
+    for every $\alpha$, then
+    \begin{equation*}
+        \sup_\alpha \|T_\alpha\|
+        \leq
+        M
+    \end{equation*}
+\end{theorem}
+
+\begin{corollary}
+    A weakly convergent sequence of maps of Banach space $X$ into normed space $Y$ is uniformly bounded.
+\end{corollary}
+
+
+
+
+
+
+
+
+\section{The Openning Map Theorem}
+\begin{theorem}
+    Suppose $X$ and $Y$ are Banach spaces, and $T: X \rightarrow U$ a bounded linear mapping of $X$ onto $U$. Then there is a $d>0$ such that
+    \begin{equation*}
+        T B_1(0) \supset B_d(0)
+    \end{equation*}
+
+    Proof:
+    We have
+    \begin{equation*}
+        Y
+        =
+        \bigcup_{n=1}^\infty T(B_X(0,n))
+    \end{equation*}
+    thus
+    \begin{equation*}
+        Y
+        =
+        \bigcup_{n=1}^\infty \overline{T(B_X(0,n))}
+    \end{equation*}
+    then there exist a $n_0$ that $\overline{T(B_X(0,n))}$ has nonempty interior in $Y$ i.e.
+    \begin{equation*}
+        B_Y(y_0,r)
+        \subset
+        \overline{T(B_X(0,n))}
+    \end{equation*}
+    We can conclude that
+    \begin{equation*}
+        B_Y(0,r)
+        \subset
+        \overline{T(B_X(0,n))}
+    \end{equation*}
+    and
+    \begin{equation*}
+        B_Y(0,\varepsilon)
+        \subset
+        \overline{T(B_X(0,1))}
+    \end{equation*}
+    where $\varepsilon$ is any positive number $< \min\{\frac{r}{n_0},1\}$. Furthermore,
+    \begin{equation*}
+        B_Y(0,\varepsilon^{i+1})
+        \subset
+        \overline{T(B_X(0,\varepsilon^i))}
+    \end{equation*}
+    Then we prove that  $B_Y(0,\varepsilon^2)
+        \subset
+        T(B_X(0,1))$ for some $\varepsilon$ .
+
+    For every $y\in B_Y(0,\varepsilon^2)$, there exists $x_1 \in B_X(0,\varepsilon)$
+    \begin{equation*}
+        \|y-Tx_1\| \leq \varepsilon^3
+    \end{equation*}
+    and $x_2\in B_X(0,\varepsilon^2)$
+    \begin{equation*}
+        \|y-Tx_1 -Tx_2\| \leq \varepsilon^4
+    \end{equation*}
+    \begin{equation*}
+        \ldots
+    \end{equation*}
+    We have a sequence $\{x_k\} \in X$ with $\|x_k\| \leq \varepsilon^{k}$ and
+    \begin{equation*}
+        T(x_1+\cdots +x_n)
+        \to
+        y
+    \end{equation*}
+    as $n\to \infty$. Noted $\{x_k\}$ is a Cauchy sequence in $X$ thus there exist $x$ with $\|x\|\leq \frac{\varepsilon}{1-\varepsilon}
+        <1$ ( if we chooes $\varepsilon < \frac{1}{2}$) with $Tx =y$.
+
+\end{theorem}
+
+
+\begin{corollary}[Openning Map Theorem]
+    $X$ and $U$ are Banach spaces, $T: X \rightarrow U$ a bounded linear map onto $U$. Then $T$ is a open map.
+\end{corollary}
+\begin{corollary}[Banach inverse operator theorem]
+    Suppoes that $X$ and $Y$ are Banach spaces, $T: X \rightarrow Y$ a bounded linear map that carries $X$ to $Y$ surjectively. Then
+    \begin{equation*}
+        T^{-1} \in \mathcal{L}(Y,X)
+    \end{equation*}
+\end{corollary}
+
+\begin{corollary}[Equivalent Norms Theorem]
+    Let $X$ be Banach space with norms $\|\cdot\|_1$, $\|\cdot\|_2$. If $\|\cdot\|_2$ is stronger than $\|\cdot\|_1$, then the two norms are equivalent.
+
+\end{corollary}
+
+\section{Closed Graph Theorem}
+
+\begin{definition}
+    Let $X,U$ be normed space and $T$ be linear map with domain $D\left(T\right)$ a subspace of $X$.
+    A map $M:D(T)\rightarrow U$ is called \textbf{closed} if whenever $\left\{x_n\right\}$ is a sequence in $D(T)$ such that
+    \begin{equation*}
+        x_n \longrightarrow x \quad \text { and } \quad T x_n \rightarrow u
+    \end{equation*}
+    then
+    \begin{equation*}
+        T x=u
+    \end{equation*}
+
+    It equivalent that the graph of $T$
+    \begin{equation*}
+        G(T)
+        =
+        \{(x,Tx):x\in X\}
+    \end{equation*}
+    is closed in $X\times U$.
+\end{definition}
+
+
+\begin{proposition}
+    Let $X$ be normed space,
+    $Y$ be Banach space.
+
+    (1) If linear operator
+    \begin{equation*}
+        T: D(T)\rightarrow Y
+    \end{equation*}
+    be continues. Then $Y$ can be extended to $\overline{D(T)}$ that
+    \begin{equation*}
+        T_1\mid_{D(T)} =T
+    \end{equation*}
+    and $\|T_1\| =\|T\|$.
+
+    (2) If the domain of continues linear operator $T$ is closed, then $T$ is a closed linear operator.
+
+    (3) Thus every continues linear operator can be seen as closed linear operator.
+\end{proposition}
+
+
+\begin{theorem}[Closed Graph Theorem]
+    Let $X$ and $Y$ be Banach spaces, $T: X \rightarrow Y$ is a closed linear map.
+    Then $T$ is continuous.
+
+    Proof:
+    Define the linear space $G$ to consist of all pairs $g$ of form
+    \begin{equation*}
+        g
+        =
+        \left(x, T x\right), \quad x \text { in } X
+    \end{equation*}
+    We define the following norm for $g$ in $G$:
+    \begin{equation*}
+        |g|=|x|+|T x|
+    \end{equation*}
+    Clearly, $G$ is Banach space.
+
+    Define the mapping $ {P}: G \rightarrow X$ to be the projection
+    By definition of $|g|,| {P} g| \leq|g|$, meaning that $ {P}$ is a bounded operator, $| {P}| \leq 1$. Clearly, $ {P}$ is linear and maps $G$ one-to-one $X$.
+    Therefore, the inverse of $ {P}$ is bounded; that is, there is a constant $c$ such that
+    \begin{equation*}
+        c| {P} g| \geq \left|g\right|
+    \end{equation*}
+    It follows that $(c-1)|x| \geq|T x|$, meaning that $T$ is bounded.
+
+    \textbf{Remark} The condition can be weakened to $D(T)$ is closed in Banach space $X$, then $T : D(T)\rightarrow U$ is continues.
+\end{theorem}
+\begin{theorem}
+    Suppoes that $X$ is a linear space equipped with two norms $|x|_1$ and $|x|_2$ that are compatible in the following sense:
+
+    \begin{enumerate}
+        \item[(a)]  If a sequence $\left\{x_n\right\}$ converges in both norms, the two limits are equal.
+
+        \item[(b)] $X$ is complete with respect to both norms
+    \end{enumerate}
+    then the two norms are equivalent.
+
+    Proof:
+    Denote by $X_1$, resp. $X_2$ the space $X$ under the 1-, resp. 2-norm. By hypothesis, both $X_1$ and $X_2$ are complete. Compatibility clearly means that the identity map between $X_1$ and $X_2$ is closed. Therefore, by the closed graph theorem, it is bounded in both directions.
+\end{theorem}
+
+\begin{theorem}
+    $X$ and $U$ are Banach spaces, $T: X \rightarrow U$ a bounded linear map. Assume that the range $R\left(T\right)$ is a finite-codimensional subspace of $U$; then $R\left(T\right)$ is closed.
+
+    Exercise 11. Prove theorem 14. (Hint: Extend $T$ to $X \oplus Z$ so that its range is all of $U$.)
+
+    Exercise 12. Show that for every infinite-dimensional Banach space there are linear subspaces of finite codimension that are not closed. (Hint: Use Zorn's lemma.)
+\end{theorem}
+
+\begin{theorem}
+    Let  $X$ be a Banach space, $Y$ and $Z$ closed subspaces of $X$ that complement each other:
+    \begin{equation*}
+        X=Y \oplus Z
+    \end{equation*}
+    Denote the two components of $x=y+z$ by
+    \begin{equation*}
+        y= {P}_Y x, \quad z= {P}_Z x
+    \end{equation*}
+
+    (1) $ {P}_Y$ and $ {P}_Z$ are linear maps    on $Y$ and $Z$, respectively.
+
+    (2) $ {P}_Y^2= {P}_Y,  {P}
+        _Z^2= {P}_Z,  {P}_Y  {P}_Z=0$.
+
+    (3) $ {P}_Y$ and $ {P}_Z$ are continuous.
+
+    Proof:
+    Parts (1) and (2) are obvious. To prove part (3) we observe that since $Y$ and $Z$ are closed, and the decomposition is unique, it follows that the graphs of $ {P}_Y$ and $ {P}_Z$ are closed. The closed graph theorem does the rest.
+\end{theorem}
+
+
+\begin{theorem}
+    $X$ and $U$ are Banach spaces, M: $X \rightarrow U$ a bounded linear map whose range $R(M)$ is a subset of $U$ of second category. Then the range of $T$ is all of $U$.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Duals of Normed Linear Space}
+
+\section{Bounded Linear Functional}
+\begin{definition}
+    The collection of all continuous linear functionals on normed space $X$ is called the \textbf{dual} of $X$. It is denoted by $X^*$.
+\end{definition}
+\begin{theorem}
+    A linear functional $\ell$ on $X$ is continuous if and only if it is bounded.
+
+
+\end{theorem}
+\begin{theorem}
+    The nullspace of a bounded linear functional $\ell$ on a normed linear space is a closed linear subspace. For $\ell$ nontrivial, meaning $\not \equiv 0$, the nullspace has codimension 1 .
+\end{theorem}
+
+\begin{theorem}
+    The dual $X^*$ of normed linear space $X$ over $\mathbb{F}$ is a Banach space over $\mathbb{F}$.
+\end{theorem}
+
+\section{Extension of Bounded Linear functional}
+
+\begin{theorem}
+    Let $X$ be a normed linear space over $\mathbb{F}$, $Y$ a subspace, and $\ell$ a linear functional defined on $Y$ and bounded there:
+    \begin{equation*}
+        |\ell(y)| \leq c|y|, \quad y \text { in } Y
+    \end{equation*}
+    Then $\ell$ can be extended as a bounded linear functional to all of $X$ so that its bound on $X$ equals its bound on $Y$.
+\end{theorem}
+\begin{theorem}
+    Say that $y_1, \ldots, y_N$ are $N$ linearly independent vectors in a normed linear space $X$ over $\mathbb{F}$, $a_1, \ldots, a_N$ arbitrary numbers. Then there exists a bounded linear functional $\ell$ such that
+    \begin{equation*}
+        \ell\left(y_j\right)=a_j, \quad j=1, \ldots, N
+    \end{equation*}
+\end{theorem}
+\begin{corollary}
+    Every finite-dimensional subspace $Y$ of a normed linear space $X$ has a closed complement $Z$ such that
+    \begin{equation*}
+        X=Y \oplus Z
+    \end{equation*}
+
+    Proof. Choose a basis $y_1, \ldots, y_N$ in $Y$, there exist $N$ bounded linear functionals $\ell_j, j=1, \ldots, N$, such that
+    \begin{equation*}
+        \ell_j\left(y_k\right)=\delta_{j k}
+    \end{equation*}
+    and the nullspace $Z_j$ of $\ell_j$ is closed. So then is their intersection
+    \begin{equation*}
+        Z=Z_1 \cap \ldots \cap Z_N =\{\ell_k\}^{\bot }
+    \end{equation*}
+    It is easy to check that $Z$ and $Y$ are complementary, namely that $X=Y \oplus Z$.
+\end{corollary}
+\begin{theorem}
+    Let $X$ be a normed linear space over $\mathbb{F}, Y$ a linear subspace of $X$. For any $z$ in $X$
+    \begin{equation*}
+        d(z,Y)
+        =
+        \max_{ \substack{ \left|\ell\right|\leq 1\\ \ell \in  Y^\bot} }|\ell(z)|
+    \end{equation*}
+
+    Proof:
+    Step 1.
+    Since the functionals $\ell \in Y^\bot$, and since $|\ell| \leq 1,|\ell(z)|=|\ell(z-y)| \leq|z-y|$ holds for all $y$ in $Y$; therefore
+    \begin{equation*}
+        |\ell(z)| \leq d(z,Y)
+    \end{equation*}
+
+    Step 2.
+    To show equality, we look at the linear space $Y_0 = \mathrm{span}\{Y,z\}$, and define on $Y_0$ the linear functional $\ell_0$ :
+    \begin{equation*}
+        \ell_0(y+a z)=a d(z,Y)
+    \end{equation*}
+    It follows that $\ell_0$ is bounded on $Y_0$ by $1$; so it can be extended to all of $X$ so that $\left|\ell_0\right|=1$ and
+    \begin{equation*}
+        \ell_0(z)=d(z,Y)
+    \end{equation*}
+\end{theorem}
+\begin{corollary}
+    For every $y$ in a normed linear space $X$ over $\mathbb{F}$, then
+    \begin{equation*}
+        |y|=\max _{|\ell|=1}|\ell(y)|
+    \end{equation*}
+\end{corollary}
+
+\section{}
+
+\begin{definition}
+    Let $X$ be normed space. The set of linear functionals $\ell$ that vanish on a subset $S$ of $X$ is called the \textbf{annihilator} of $S$, and is denoted by $S^{\perp}$.
+\end{definition}
+\begin{definition}
+    The \textbf{closed linear span} of a subset $\left\{y_\alpha\right\}$ of a normed linear space is the smallest closed linear space containing all $y_\alpha$, that is, the intersection of all closed linear spaces containing all $y_j$.
+
+    Indeed, the closed linear span of $\left\{y_\alpha\right\}$ is the closure of the linear span $Y$ of $\left\{y_j\right\}$, consisting of all finite linear combinations of the $y_\alpha$ :
+    \begin{equation*}
+        \mathrm{span}F
+        =
+        \left\{\sum_F \lambda_\alpha y_\alpha\right\}
+    \end{equation*}
+\end{definition}
+\begin{proposition}
+    Suppose $X$ be a normed linear space over $\mathbb{F}$ and $S \subset X$.
+
+    (1) $S^{\perp}$ is a closed linear subspace of $X^{*}$.
+
+    (2) Let $Y$ be a closed subspace of a normed linear space $X$, then $(X / Y)'$ is isomorphic with $Y^{\perp}$.
+
+    (3) Spanning Criterion.
+    \begin{equation*}
+        \overline{\mathrm{span} S}
+        =
+        (S^\bot)^\bot
+    \end{equation*}
+\end{proposition}
+
+\begin{theorem}
+    $X$ is a normed linear space over $\mathbb{F}, Y$ a subspace of $X$. For any $\ell$ in $X^{\prime}$, define
+    \begin{equation*}
+        \left\|\ell\right\|_Y
+        =
+        |\ell_{\mid_Y}|
+        =
+        \sup _{\substack{y \in Y \\|y|=1}}\left|\ell(y)\right|
+    \end{equation*}
+    Then
+    \begin{equation*}
+        |\ell|_Y=\min _{m \in Y^{\perp}}|\ell-m|
+    \end{equation*}
+
+    Proof:
+    For any $m$ in $Y^{\perp}$, and any $y$ in $Y$ with $|y|=1$,
+    \begin{equation*}
+        |\ell(y)|=|(\ell-m)(y)| \leq|\ell-m| .
+    \end{equation*}
+    It follows that
+    \begin{equation*}
+        |\ell|_Y \leq \left|\ell -m\right|
+    \end{equation*}
+    for all $m\in Y^\bot$.
+
+
+    Then the restriction of $\ell$ to $Y$ has an extension to $X$, call it $\ell_0$, whose norm on $X$ equals its norm on $Y$ :
+    \begin{equation*}
+        \left|\ell_0\right|=|\ell|_Y
+    \end{equation*}
+    Since $\ell_0$ and $\ell$ are equal on $Y, \ell-\ell_0=m_0$ belongs to $Y^{\perp}$ thus
+    \begin{equation*}
+        |\ell-m|=\left|\ell_0\right|=|\ell|_Y
+    \end{equation*}
+\end{theorem}
+
+
+\section{Reflexive Spaces}
+\begin{definition}
+    A Banach space is called \textbf{reflexive} if $X^{**}=X$, that is, if $X$ is all of $X^{**}$.
+\end{definition}
+\begin{theorem}
+    Every Hilbert space is reflexive.
+\end{theorem}
+\begin{theorem}[Milman]
+    A uniformly convex Banach space is reflexive.
+\end{theorem}
+
+
+
+
+
+
+\begin{theorem}
+    A closed linear subspace $Y$ of a reflexive Banach space $X$ is reflexive.
+
+    Proof:
+    Every bounded linear functional $\ell$ on $X$, when restricted to $Y$, becomes a bounded linear functional $\ell|_Y$ on $Y$; we denote this functional by $\ell_0$. Since by Hahn Banach every bounded linear functional on $Y$ can be extended to $X$, this restriction map $\ell \rightarrow \ell_0$,
+    \begin{equation*}
+        X^* \longrightarrow Y^*
+    \end{equation*}
+    maps $X^*$ onto $Y^*$. The restriction map induces the following mapping from $Y^{\prime \prime}$ to $X^{\prime \prime}$ : For any $\eta$ in $Y^{\prime \prime}$ we define $\zeta$ in $X^{\prime \prime}$ by setting, for any $\ell$ in $X^{\prime}$,
+    \begin{equation*}
+        \zeta(\ell)=\eta\left(\ell_0\right)
+    \end{equation*}
+    where $\ell_0$ is the restriction of $\ell$ to $Y$. Since $X$ is reflexive, $\zeta$ can be identified with an element $z$ of $X$ :
+    \begin{equation*}
+        \zeta(\ell)=\ell(z)
+    \end{equation*}
+    setting this into (29) gives
+    \begin{equation*}
+        \ell(z)=\eta\left(\ell_0\right)
+    \end{equation*}
+
+    We claim that $z$ belongs to $Y$. To show this, we note that if $\ell$ belongs to $Y^{\perp}$, meaning it vanishes on $Y$, then $\ell_0=0$, and so by $\left(29^{\prime}\right), \ell(z)=0$. We appeal now to theorem 8 to conclude that $z$ belongs to the closure of $Y$. But since $Y$ is closed, $z$ belongs to $Y$. So we can rewrite ( $29^{\prime}$ ) as
+    \begin{equation*}
+        \ell_0(z)=\eta\left(\ell_0\right)
+    \end{equation*}
+
+    Since every functional in $Y^{\prime}$ occurs as $\ell_0$, (30) shows that every $\eta$ in $Y^{\prime \prime}$ can be identified with some $z$ in $Y$.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Support Function}
+
+\begin{definition}
+    For any bounded subset $M$ of a normed linear space $X$ over $\mathbb{R}$, we define the \textbf{support function} of $M$, $S_M : X'\rightarrow \mathbb{R}$
+    \begin{equation*}
+        S_M(\ell)
+        =
+        \sup _{y \in M} \ell(y)
+    \end{equation*}
+\end{definition}
+
+
+\begin{theorem}
+    Support functions $S_M, S_N$ have the following properties:
+
+    (i) Subadditivity
+
+    (ii) $S_M(0)=0$.
+
+    (iii) Positive homogeneity
+
+    (iv) Monotonicity, for $M \subset N, \quad S_M(\ell) \leq S_N(\ell)$.
+
+    (v) Additivity, $S_{M+N}=S_M+S_N$.
+
+    (vi) $S_{-M}(\ell)=S_M(-\ell)$.
+
+    (vii) $S_{\overline{M}}=S_M$
+
+    (viii) $S_{\overset{\frown}{M}}=S_M$.
+\end{theorem}
+
+\begin{theorem}
+    Let $X$ be a normed linear space over $\mathbb{R}$, $M$ a bounded subset of $X$. Then a point $z \in \breve{M}$ if and only if
+    \begin{equation*}
+        \ell(z) \leq S_M(\ell) \quad \text{ for all } \ell \in X'
+    \end{equation*}
+\end{theorem}
+
+\chapter{Weak Converge}
+
+\section{Topological Preliminaries}
+
+
+\begin{definition}
+    Let $\tau_1$ and $\tau_2$ be two topologies on a set $X$, and assume $\tau_1 \subset \tau_2$; that is, every $\tau_1$-open set is also $\tau_2$-open. Then we say that $\tau_1$ is \textbf{weaker} than $\tau_2$, or that $\tau_2$ is \textbf{stronger} than $\tau_1$.
+
+    In this situation, the identity mapping on $X$ is continuous from $\left(X, \tau_2\right)$ to $\left(X, \tau_1\right)$ and is an open mapping from $\left(X, \tau_1\right)$ to $\left(X, \tau_2\right)$.
+\end{definition}
+
+\begin{definition}
+    Suppose that $X$ is a set and $\mathscr{F}$ is a nonempty family of mappings $f_\alpha: X \rightarrow Y_{f_\alpha}$, where each $Y_{f_\alpha}$ is a topological space. (In many important cases, $Y_f$ is the same for all $f_\alpha \in \mathscr{F}$).
+    Let $\tau$ be topology generated by the subbasis
+    \begin{equation*}
+        \left\{
+        f_\alpha^{-1}(V) : f_\alpha\in \mathscr{F}
+        , V \text{ is open in } Y_{f_\alpha}
+        \right\}
+    \end{equation*}
+    It is in fact the weakest topology on $X$ that makes every $f \in \mathscr{F}$ continuous. This $\tau$ is called the \textbf{weak topology on $X$ induced by $\mathscr{F}$}, or, more succinctly, \textbf{the  $\mathscr{F}$-topology of $X$}.
+\end{definition}
+
+
+
+
+
+
+
+
+
+\section{The Weak Topology}
+
+\begin{definition}
+    Suppose $X$ is a topological vector space with topology $\tau$, whose dual $X^*$ separates points on $X$.
+    The $X^*$-topology of $X$ is called the \textbf{weak topology of $X$}, denoted by $\sigma\left(X,X^*\right)$
+\end{definition}
+
+
+\begin{proposition}
+    Suppoes $X$ is a normed sapce.
+
+    (1) $\sigma\left(X,X^*\right)$ is weaker than normed topology; that is, every weak open sets is open.
+
+    (2) $\left(X, \sigma\left(X,X^*\right)\right)$ is Hausdorff.
+
+    (3) Thus the weak limit, if it exists, is unique.
+\end{proposition}
+
+\subsection{Weak convergence}
+
+\begin{theorem}
+    Let $X$ be a normed space and $\left\{x_n\right\} \to x$ weakly in $X$.
+    Then
+
+    (1) $\left\{\left\|x_n\right\|\right\}$ is bounded.
+
+    (2)
+    \begin{equation*}
+        \left\|x\right\|
+        \leq
+        \lim\inf \left\|x_n\right\|
+    \end{equation*}
+
+    Proof:
+    It follows that uniformly bounded theorem that $(1)$ holds.
+    Then, there is a $\ell \in X^*$ such that
+    \begin{equation*}
+        |x|=|\ell(x)|, \quad|\ell|=1
+    \end{equation*}
+    Since weak convergence means that
+    \begin{equation*}
+        \ell(x)=\lim \ell\left(x_n\right)
+    \end{equation*}
+    and since
+    \begin{equation*}
+        \left|\ell\left(x_n\right)\right| \leq|\ell|\left|x_n\right|=\left|x_n\right|
+    \end{equation*}
+\end{theorem}
+
+\begin{theorem}
+    Let $X$ be a normed space, $\left\{x_n\right\} \subset X$ and $x \in X$. Then $x_n \to x$ weakly if and only if
+    \begin{enumerate}
+        \item $\left\|x_n\right\|$ is bounded
+        \item there exists a dense subset $M$ of $X^*$ such that
+              \begin{equation*}
+                  \lim_{n \to \infty} \langle f , x_n\rangle
+                  =
+                  \langle f , x\rangle
+              \end{equation*}
+              holds for all $f \in M$
+    \end{enumerate}
+
+\end{theorem}
+
+\subsection{Weakly Closedness}
+
+\begin{proposition}
+    Let $X$ be a normed space and $A\subset X$. Then
+
+    (1) If $A$ is weakly compact, then $A$ is closed weakly.
+
+
+    (2) If $A$ is weakly sequentially compact, then $A$ is closed weakly.
+\end{proposition}
+
+\begin{theorem}[Mazur]
+    Suppose $X$ be a normed space and $\left\{x_n\right\} \to x$ weakly in $X$.
+    Then $x$ belongs to the closed convex hull of $\left\{x_n\right\}$;
+    that is, for any $\varepsilon > 0$, there exists $\lambda_1,\lambda_2,\ldots ,\lambda_n \geq 0$ with $\sum \lambda_i=1$, such that
+    \begin{equation*}
+        \left\|x_0-\sum_{i=1}^n \lambda_i x_i\right\| < \varepsilon
+    \end{equation*}
+\end{theorem}
+
+\begin{corollary}[Mazur]
+    Let $K$ be a closed, convex subset of a normed linear space $X$. Then $K$ is closed weakly.
+
+    Another proof:
+    Let $S_K$ be the support function of $K$. It follows from that definition that for any $\ell$ in $X^*$
+    \begin{equation*}
+        \ell\left(x_n\right) \leq S_K(\ell)
+    \end{equation*}
+    Since $\ell\left(x_n\right)$ tends to $\ell(x)$, it follows that also
+    \begin{equation*}
+        \ell(x) \leq S_K(\ell)
+    \end{equation*}
+    this guarantees that $x$ also belongs to $K$.
+\end{corollary}
+
+
+
+
+
+\subsection{Weakly compact and weakly sequentially compact}
+
+
+\begin{definition}
+    A subset $C$ of a Banach space $X$ is called \textbf{weakly sequentially compact} if any sequence of points in $C$ has a subsequence weakly convergent to a point of $C$.
+\end{definition}
+
+\begin{proposition}
+    Let $X$ be a Banach space. Then
+
+    (1) A weakly sequentially compact set is bounded in norm and closed weakly.
+
+    (2) A weakly compact set is bounded in norm and closed weakly.
+\end{proposition}
+
+
+
+\begin{theorem}
+    Assume that $X$ is Banach space.
+    Then every bounded sequence $\left\{x_n\right\}$ has a weakly convergence subsequence if and only if $X$ is reflexive.
+
+    Proof:
+    Step 1.
+    Assume that $X$ is reflexive. Let $\left\{x_n\right\}$ be any sequence of points in the unit ball of $X$, that is, $\left|x_n\right| \leq 1$.
+    Denote
+    \begin{equation*}
+        X_0 = \overline{\span \left\{x_n\right\}}
+    \end{equation*}
+    Since $X$ is assumed reflexive, it follows that closed subspace $X_0$ is reflexive.
+    Since $X_0^{**}=X_0$ is separable as well, it follows that $X_0^{*}$ also is separable.
+    Meaning that it contains a dense, denumerable subset $\left\{f_j\right\}$ of $\left\{X_0^*\right\}$
+
+
+    Step 2. Using the classical diagonal process, we can select a subsequence $\left\{z_n\right\}$ of $\left\{x_n\right\}$ such that
+    \begin{equation*}
+        \lim _{n \to \infty} \langle f_j,z_n\rangle
+    \end{equation*}
+    exists for every $f_j$.
+    Since all $z_n$ satisfy $\left|z_n\right| \leq 1$, and since the $\left\{f_j\right\}$ are dense, it follows that for all $f$ in $X_0^{*}$, $\langle f_,z_n\rangle$ tends to a limit as $n \rightarrow \infty$.
+    This limit is a bounded linear functional $\langle \cdot,Z \rangle$ on $X_0^*$ :
+    \begin{equation*}
+        \lim _{n \rightarrow \infty} \langle f,z_n\rangle
+        =
+        \langle f,z \rangle
+    \end{equation*}
+
+    Since $\left|m\left(z_n\right)\right| \leq|m|\left|z_n\right| \leq|m|$, it follows from ( $16^{\prime}$ ) that the linear functional $y(m)$ has norm $\leq 1$.
+
+    Since $Y$ is reflexive, there is a $y$ in $Y$ such that $y(m)=m(y),|y| \leq 1$,
+    and so (16) says that for all $m$ in $Y^{\prime}, m\left(z_n\right)$ tends to $m(y)$ as $n \rightarrow \infty$. Since the restriction of any $\ell$ in $X^{\prime}$ to $Y$ is an $m$ in $Y^{\prime}$, this proves that $z_n$ converges weakly to a point $y$ in the unit ball.
+\end{theorem}
+
+\begin{corollary}
+    In a reflexive Banach space $X$, subset $A$ of $X$ is weakly sequentially compact if and only if $A$ is bounded in norm and closed weakly.
+
+    Thus the closed unit ball in reflexive Banach space is weakly sequentially compact.
+\end{corollary}
+
+
+
+\begin{theorem}[Eberlein-Smulian]
+    Assume that $X$ is Banach space and $A\subset X$, then the following conditions are equivalent
+
+    (1) $A$ is weakly compact.
+
+    (2) $A$ is weakly sequentially compact.
+
+    (3) $A$ is weakly countably compact
+\end{theorem}
+
+
+
+
+
+
+
+\newpage
+\section{The Weak*-Topology}
+\begin{definition}
+    Let $X$ be a topological vector space whose dual is $X^*$. And $X$ separates points on $X^*$.
+    The $X$-topology of $X^*$ is called the \textbf{weak$^*$-topology of $X^*$}, denoted by $\sigma\left(X^*,X\right)$
+\end{definition}
+
+
+
+
+\subsection{Weak* convergence and weak* sequentially compact}
+
+\begin{theorem}
+    Let $X$ be a Banach space and $\left\{f_n\right\} \to f$ weakly* in $X^*$.
+    Then
+    \begin{equation*}
+        \left\|f\right\|
+        \leq
+        \lim\inf \left\|f_n\right\|
+    \end{equation*}
+\end{theorem}
+
+
+\begin{theorem}[Helly]
+    Let $X$ be a separable Banach space. Then
+
+    (1) Every bounded sequence $\left\{f_n\right\}$ has a  weak* convergence subsequence.
+
+    (2) Thus the closed unit ball in $X^*$ is weak* sequentially compact.
+
+    Proof:
+    Step 1.
+    Given a sequence $\left\{f_n\right\}$ in closed united ball of $X^*$,
+    \begin{equation*}
+        \left|f_n\right| \leq 1,
+    \end{equation*}
+    and take a denumerable set $\left\{x_k\right\}$ that is dense in $X$.
+    Since
+    \begin{equation*}
+        \left\{\langle f_n,x_k\rangle\right\}_{n=1}^\infty
+    \end{equation*}
+    is bounded for all $k$, we can, by the diagonal process, select a subsequence $\left\{g_n\right\}$ of $\left\{f_n\right\}$ such that
+    \begin{equation*}
+        F(x)
+        =
+        \lim _{n \rightarrow \infty}
+        \langle g_n,x_k\rangle
+    \end{equation*}
+    exists for all $x_k$,
+    It follows that $\langle g_n,x\rangle$ tends to a limit for all $x$ that lie in the closure of the set $\left\{x_k\right\}=X$.
+
+    Step 2.
+    It is easy to see that this limit $F$ is a linear function of $x$, and that it is bounded by $1$.
+\end{theorem}
+\subsection{Weak* compact}
+
+\begin{theorem}[Banach-Alaoglu]
+    Let $X$ be normed space. The closed unit ball
+    \begin{equation*}
+        B
+        =
+        \left\{f \in X^* :\|f\|\leq 1\right\}
+    \end{equation*}
+    in dual space $X^*$ is weak* compact.
+\end{theorem}
+
+
+\begin{corollary}
+    Let $X$ be normed space and subset
+    $S$ is weak* closed in $X^*$.
+    Then $S$ is weak* compact if and only if $S$ is bounded in norm.
+\end{corollary}
+
+
+
+
+
+
+\section{Strong and Weak Topology on \texorpdfstring{$\mathcal{L}(X,Y)$}{}}
+
+\begin{definition}
+    Let $X,Y$ be normed space.
+
+    (1) The norm of linear maps $X \rightarrow Y$ defines a metric topology in $\mathcal{L}(X, Y)$ that is sometimes called the \textbf{uniform topology}. $\left\{T_n\right\}$ is called uniformly convergent if
+    \begin{equation*}
+        \|T_n-T\|
+        \to
+        0
+    \end{equation*}
+    as $n\to \infty$.
+
+    (2) The \textbf{strong topology} in $\mathcal{L}(X, Y)$ is the $X$-topology in which all functions
+    $\mathcal{L} \rightarrow U$ of the form
+    \begin{equation*}
+        x : T \mapsto T x
+    \end{equation*}
+    are continuous, $x$ being any point of $X$. $\left\{T_n\right\}$ is called \textbf{strongly convergent} if
+    \begin{equation*}
+        s-\lim _{n \rightarrow \infty} T_n x
+    \end{equation*}
+    exists for every $x$ in $X$.
+
+    (3) The \textbf{weak topology} in $\mathcal{L}(X, Y)$ is the weakest topology in which all linear functionals of the form
+    \begin{equation*}
+        T \longrightarrow
+        \langle  \ell,T x \rangle_Y
+    \end{equation*}
+    are continuous, $x\in X$ and $\ell\in Y^*$. $\left\{T_n\right\}$ is called \textbf{weakly convergent }if $\{T_n x\}$ converge weakly in $Y$
+    \begin{equation*}
+        w-\lim _{n \rightarrow \infty} T_n x
+    \end{equation*}
+    exists for all $x$ in $X$.
+\end{definition}
+
+
+\begin{theorem}
+    Let $X, Y$ be Banach spaces, $T_n$ a sequence of linear maps uniformly bounded in norm.
+    Suppose further that
+    \begin{equation*}
+        s-\lim T_n x
+    \end{equation*}
+    exists for a dense set of $x$ in $X$. Then $\left\{T_n\right\}$ converges strongly.
+\end{theorem}
+
+
+
+
+\subsection{Application}
+\begin{theorem}
+    Let $X$ be a reflexive Banach space, $K$ a closed, convex subset of $X, z$ any point of $X$. Then there is a unique point $y$ such that
+    \begin{equation*}
+        d(z,y)
+        =
+        d(z,K)
+    \end{equation*}
+
+
+    Proof. We may take $z=0$, and assume that $0 \notin K$. Denote by $s$ the distance of 0 to $K$, that is,
+    \begin{equation*}
+        s=\inf |y|, \quad y \text { in } K
+    \end{equation*}
+    Let $\left\{y_n\right\}$ be a minimizing sequence.
+    We may assume that each $y_n$ lies in $K\cap B(0,2s)$. This is a bounded, closed, convex set, therefore, a subsequence $\left\{z_n\right\}$ of $\left\{y_n\right\}$ converges weakly to some point $z$ of $K$. And
+    \begin{equation*}
+        |z|
+        \leq
+        \liminf \left|z_n\right|
+        =
+        s
+    \end{equation*}
+    since $\left\{z_n\right\}$ is the subsequence of a minimizing sequence. We have that $\left|z\right|=s$ and $z$ is a point of $K$ closest to $0$.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Compact operator}
+
+\section{Topology}
+\begin{proposition}
+    In a complete metric space $X$. The following propositions are equivalent
+
+    (1) $S$ is precompact : $\overline{S}$ is compact.
+
+    (2) Every sequence of points of $S$ contains a convergent subsequence.
+
+    (3) $S$ is completely bounded: for every $\epsilon>0$ it can be covered by a finite number of balls of radius $\epsilon$.
+\end{proposition}
+
+\begin{proposition}
+    (c) If $C_1$ and $C_2$ are precompact subsets of a Banach space $X$, then $C_1+C_2$ is precompact.
+
+
+    (d) If $C$ is a precompact set in a Banach space, so is its convex hull.
+
+    (e) If $C$ is a precompact subset of a Banach space $X, T$ a linear, bounded map of $X$ into another Banach space $U$, then $T C$ is a precompact subset of $U$.
+
+\end{proposition}
+
+
+
+
+\section{Basic Theory}
+\begin{definition}
+    Suppose $X$ and $Y$ denote Banach spaces. A linear map $T: X \rightarrow Y$ is called \textbf{compact} if the image $ T\left(B\right)$ of the unit ball $B$ in $X$ is precompact in $Y$.
+\end{definition}
+
+\begin{theorem}
+    Let $X,Y$ be Banach space ,$A,B \in \mathfrak{C}(X,Y)$, and $\alpha,\beta\in \mathbb{F}$. Then
+
+    (1)
+    \begin{equation*}
+        \alpha A+ \beta B\in \mathfrak{C}(X,Y)
+    \end{equation*}
+
+    (2) If $M\in \mathcal{L}(W,X)$, Then
+    \begin{equation*}
+        MA\in \mathfrak{C}(W,Y)
+    \end{equation*}
+
+    (3) If $N\in \mathcal{L}(Y,Z)$, then
+    \begin{equation*}
+        AN\in \mathfrak{C}(X,Z)
+    \end{equation*}
+
+    (4) Let $C_n\in \mathfrak{C}(X,Y)$ be a sequence of compact maps that converge uniformly to $C$,
+    \begin{equation*}
+        \lim_{n\to \infty} \left\|C_n-C\right\|=0
+    \end{equation*}
+    Then $C$ is compact.
+
+    \textbf{Remark}  Let Banach space $X=Y$, the compact operator form a closed two-side ideal in $\mathcal{L}(X)$
+\end{theorem}
+
+\begin{theorem}
+    $X$ and $Y$ are Banach spaces, $ {C}: X \rightarrow Y$ a compact linear map. Let $X_1$ be a closed subspace of $X$, and $Y_2$ the closure in $Y$ of $ {C} X_1$.
+
+    (1) The restriction of $ {C}$ to $X_1 \rightarrow Y_1$ is a compact map.
+
+    (2) Suppose that $Y=X$, and the closed subspace $Y$ is invariant under $ {C}$, namely is mapped into itself by $ {C}$. Then $ {C}: X / Y \rightarrow X / Y$ is compact.
+
+    (3) A degenerate bounded linear map $ {D}\left(\operatorname{dim} R_{ {D}}<\infty\right)$ is compact.
+\end{theorem}
+
+
+\begin{theorem}[Completely continuous]
+    Let $X,Y$ be Banach space and $C\in \mathfrak{C}(X,Y)$. If $\left\{x_n\right\}$  converge  to $x$ weakly in $X$, then $\left\{Cx_n\right\}$ converges to $Cx$ in norms.
+
+    Proof:
+    Assume that there $\left\{x_{n_i}\right\}$ and $\varepsilon>0$ that
+    $\left\| Cx_{n_i} -Cx\right\| \geq \varepsilon$.
+    Since $\left\{x_n\right\}$ converges weakly, then $\left\{x_n\right\}$ is bounded by uniformly bounded theorem.  It follows from the compactness of $C$ then that there exist subsequence $\left\{x_{n_j}\right\}$  that
+    \begin{equation*}
+        s-
+        \lim Cx_{n_j} = y
+    \end{equation*}
+    and $\left\|y-Cx\right\| \geq \varepsilon$.
+
+    On the another hand, for any $y^* \in Y^*$
+    \begin{equation*}
+        \langle y^*, Cx_{n}\rangle
+        =
+        \langle C^*y^*, x_{n}\rangle
+        \to
+        \langle C^*y^*, x \rangle
+        = \langle y^*, Cx\rangle
+    \end{equation*}
+    so
+    $w-\lim Cx_{n}=Cx$, thus $w-\lim Cx_{n_j}=Cx$ in $Y$, it follows that $y=Cx$. This contradicts.
+\end{theorem}
+
+\begin{theorem}
+    Let $X, Y$ be Banach space. Then $T \in \mathfrak{C}(X,Y)$ if and only if $T^* \in \mathfrak{C}(X^*,Y^*)$
+
+    Proof: Denote $\left\{y_\alpha ^* \right\} = B_{Y^*}$. Let
+    \begin{equation*}
+        \varphi_\alpha (y) = \langle y_\alpha^*, y\rangle
+        ,
+        \quad
+        y \in \overline{T(B_X)}
+    \end{equation*}
+    It is obvious that $\varphi_\alpha$ is equi-continuous and uniformly bounded on compact set $\overline{T(B_X)}$. It follows from Arzela-Ascoli theorem that $\left\{\varphi_\alpha\right\}$ is precompact in $C\left(\overline{T(B_X)}\right)$.
+    Thus $\left\{\varphi_\alpha\right\}$ is completely bounded, there exists finite $y^*_1, y^*_{2},\ldots, y^*_k \in B_{Y^*}$, that for any $y_\alpha^*$ there is a $i$
+    \begin{equation*}
+        \sup_{y\in \overline{T(B_X)}} \left|\langle y_i^*,y\rangle-\langle y_\alpha^*,y\rangle\right|
+        <
+        \varepsilon
+    \end{equation*}
+    for all $\varepsilon>0$.
+    \begin{equation*}
+        \begin{aligned}
+            \left\| T^*y_i^*-T^*y_\alpha^* \right\|
+             & =\sup_{x\in B_X}\left|\langle T^*y_i^*,x\rangle-\langle T^*y_\alpha^*, x\rangle\right| \\
+             & =\sup_{x\in B_X} \left|\langle y_i^*,Tx\rangle-\langle y_\alpha^*,Tx\rangle\right|     \\
+             & = \sup_{y\in T(B_X)} \left|\langle y_i^*,y\rangle-\langle y_\alpha^*,y\rangle\right|   \\
+             & < \varepsilon
+        \end{aligned}
+    \end{equation*}
+    Therefore $T^*(B_{Y^*})$ is completely bounded, thus $T^*$ is compact.
+
+    If $T^*$ is compact, it follows from that $T^{**} \in \mathfrak{C}(X^{**},Y^{**})$ is compact, then $T=T^{**}\mid_{X} : X \rightarrow Y$ is compact.
+\end{theorem}
+
+
+
+\section{Riesz-Fredholm Theory}
+
+\subsection{Closed range}
+\begin{theorem}[Closed range]
+    Let $X$ be Banach space and $A\in \mathfrak{C} (X)$, set
+    \begin{equation*}
+        T=I-A
+    \end{equation*}
+    Then $R(T)$ is closed.
+
+    Proof: Consider
+    \begin{equation*}
+        T_1 : X/N(T) \rightarrow X
+    \end{equation*}
+    it follows that $T_1$ is bounded linear, injective and $R(T_1)=R(T)$.
+
+    We prove that $T^{-1}$ is continuous. Assume that there exists $\left\{\overline{x}_n\right\} $ that $\left\| \overline{x} \right\|_{} > \delta$ and $T_1\overline{x}_n \to 0$. Let $\overline{w}_n = \frac{\overline{x}_n}{\left\| \overline{x} \right\|_{}}$, then
+    \begin{equation*}
+        \left\| \overline{w}_n \right\|_{}=1,\quad T_1 \overline{w}_n\to 0
+    \end{equation*}
+    We have $w_n \in \overline{w}_n$ that
+    \begin{equation*}
+        \left\| w_n \right\|_{}\leq 2, \quad (I-A)w_n \to 0
+    \end{equation*}
+    Since $A$ is compact, there is $\left\{w_{n_k}\right\}$ that $A w_{n_k} \to w$. It follows that
+    \begin{equation*}
+        w_{n_k} = Aw_{n_k} +(I-A) w_{n_k} \to w
+    \end{equation*}
+    then $Tw =0$, $\left\| \overline{w} \right\|_{}=0$. It contradicts with $\left\| \overline{w} \right\|_{} =0$
+\end{theorem}
+
+\begin{corollary}
+    It follows from span criterion that
+    \begin{equation*}
+        R(T)=\overline{R(T)} = N(T^*)^\bot
+    \end{equation*}
+\end{corollary}
+
+
+\subsection{Null Space}
+\begin{theorem}
+    Let $X$ be Banach space and $A\in \mathfrak{C} (X)$, set
+    \begin{equation*}
+        T=I-A
+    \end{equation*}
+    Then
+
+    (1) $N(T)$ is finite-dimensional.
+
+    (1') $N(T^*)$ is finite-dimensional.
+
+    (2)
+    There is an integer $i$ such that
+    \begin{equation*}
+        N(T^k)=N(T^i) \quad \text { for } k>i
+    \end{equation*}
+    (It is equivalent that $N(T^{i+1})=N(T^i)$ )
+
+
+    Proof:
+    (1) follows from the Riesz's Lemma.
+
+    (2) Assume, that is, that $N_{i-1}$ is a proper subset of $N_i$ for all $i$. There would be for every $i$ a vector $y_i$ such that
+    \begin{equation*}
+        y_i \text { in } N_i, \quad\left|y_i\right|=1, \quad d\left(y_i, N_{i-1}\right)>\frac{1}{2}
+    \end{equation*}
+    Take $m<n$; by definition of $T$,
+    \begin{equation*}
+        A y_n-A y_m
+        =
+        y_n-T y_n-y_m+T y_m
+    \end{equation*}
+    The last three terms on the right belong to $N_{n-1}$, so, their sum differs from $y_n$ by $\frac{1}{2}$ at least.
+    This proves that $\left|A y_n- A y_m\right|>\frac{1}{2}$ which contradicts compactness of $A$ and $\left\|y_k\right\|=1$.
+\end{theorem}
+
+\begin{corollary}
+    It follows form $N(T) = R\left(T^*\right)^\bot$ that
+    \begin{equation*}
+        \dim N(T) =\Codim R(T^*)
+    \end{equation*}
+\end{corollary}
+
+\begin{lemma}
+    In infinite dimension Banach space $X$,
+
+    (1) Let $x_1,x_2,\ldots x_n \in X$, then there exists closed subspace $X_1$ such that
+    \begin{equation*}
+        X=\span\left\{x_1,x_2,\ldots,x_n\right\} \oplus X_1
+    \end{equation*}
+    Indeed, $X_1=\left\{x_1^*,x_2^*,\ldots,x_n^*\right\}^\bot$
+
+    (2) Let $f_1,f_2,\ldots,f_m \in X^*$, then there exists $y_1,y_2,\ldots,y_m$ such that
+    \begin{equation*}
+        f_i(y_j)=\delta_{ij}
+    \end{equation*}
+\end{lemma}
+
+\begin{theorem}
+    Let $C$ be a compact map of a Banach space $X \rightarrow X$. Then $T=I-C$ satisfies
+    \begin{equation*}
+        \operatorname{ind} T
+        =
+        \operatorname{dim} N\left(T\right)
+        -
+        \operatorname{codim} R(T)
+        =
+        0
+    \end{equation*}
+
+    Proof:
+    Step 1. We start with the special case that $N(T)$ is trivial.
+    We show that then  $\Codim R(T)=0$. Now suppose, on the contrary, that $R(T)=X_1$ is a proper closed subspace of $X$.
+    Then, since by assumption, ${T}$ is one-to-one, it follows from $C\mid_{X_1}$ is compact that $T X_1=X_2$ is a proper closed subspace of $X_1$. Define $X_k$ as ${T}^k X$. We deduce similarly that $X \supset X_1 \supset X_2 \supset \cdots$, and that all inclusions are proper, $X_k$ is closed.
+
+    We appeal now to Riesz's lemma; we can choose $x_k$ in $X_k$ so that
+    \begin{equation*}
+        \left|x_k\right|=1, \quad \operatorname{dist}\left(x_k, X_{k+1}\right)>\frac{1}{2}
+    \end{equation*}
+    Let $m$ and $n$ be two distinct indices, $m<n$. Then
+    \begin{equation*}
+        Ax_m-A x_n=x_m- {T} x_m-x_n+ {T} x_n
+    \end{equation*}
+    The last three terms on the right all belong to $X_{m+1}$; therefore,
+    \begin{equation*}
+        \left\|A x_m- A x_n \right\|
+        >
+        \frac{1}{2}
+    \end{equation*}
+    This contradicts the assumption that $ {C}$ maps the unit ball into a precompact set.
+
+    Step 2. Denote $N(T)=\span\left\{x_1,x_2,\ldots,x_n\right\}$, if $\Codim R(T) = \dim N(T^*) >n $ then we define
+    \begin{equation*}
+        {T_1}:
+        \span\left\{x_1,x_2,\ldots,x_n\right\} \oplus X_1
+        \rightarrow
+        \span\left\{y_1,y_2,\ldots,y_n\right\} \oplus R(T)
+    \end{equation*}
+    \begin{equation*}
+        T_1\left(\sum_1^n c_i x_i +y\right)
+        =
+        \sum_1^n c_i y_i + Ty
+    \end{equation*}
+    It obvious that $T_1$ is also compact, $N(T_1)=0$ thus $T_1$ is surjectively by Step 1. But it contradicts.
+\end{theorem}
+
+\begin{corollary}
+    \begin{equation*}
+        \dim N(T) =\dim N(T^*)
+    \end{equation*}
+\end{corollary}
+
+
+\subsection{Riesz-Fredholm}
+\begin{theorem}
+    Let $X$ be Banach space and $C\in \mathfrak{C}(X)$, $T=I-C$. Then
+
+    (1) $R(T) = N(T^*)^\bot$, $R(T^*) = N(T)^\bot $
+
+    (2) $\ind T =\dim N(T) -\Codim R(T) = 0$, $\dim N(T^*) =\Codim R(T)= N(T)$
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Spectral Theorey of Compact Maps}
+
+\subsection{}
+\begin{theorem}[Riesz-Schauder]
+    Let $X$ be a Banach space of infinite dimension and ${C} \in \mathfrak{C}(X)$.
+
+    (1) $0\in \sigma(C)$
+
+    (2) $\sigma(C)\backslash\left\{0\right\} \subset \sigma_p(C)$; and for each nonzero eigenvalue $\lambda\in \sigma_p$, $N(\lambda I- C)$ is finite dimension.
+
+    (3) $\sigma$ is at most denumerable sets that accumulate only at $0$
+
+    Proof: (1),(2). To prove (3), suppose that there is $\left\{\lambda_n\right\} \subset \sigma(C)\backslash\left\{0\right\}$ that $\lambda_n \neq \lambda_m$ for all $n\neq m$ and $\lambda_n \to \lambda\neq 0$. Then there exists nonzero
+    \begin{equation*}
+        x_n \in N(\lambda_n I-C)
+    \end{equation*}
+    It follows that $\left\{x_n\right\}$ is linear independent.
+    Let $E_n=\span\left\{x_1,x_2,\ldots,x_n\right\}$, then there $y\in E_{n+1}$ that
+    \begin{equation*}
+        \left\| y_{n+1} \right\|_{} =1, \quad d(y_{n+1,E_n}) >\frac{1}{2}
+    \end{equation*}
+    Then for all $n,m\in\mathbb{N}$ with $n>m$
+    \begin{equation*}
+        M\left\|Cy_n - Cy_m\right\|
+        >
+        \left\| \frac{C y_n}{\lambda_n} -\frac{C y_m}{\lambda_m} \right\|_{}
+        =
+        \left\| y_n-\left(y_n-\frac{C y_n}{\lambda_n}+ \frac{C y_m}{\lambda_n}\right) \right\|_{} >\frac{1}{2}
+    \end{equation*}
+    since $y_n-\frac{C y_n}{\lambda_n}+\frac{C y_m}{\lambda_m} \in E_{n-1}$.
+    It contradicts with the compactness of $C$.
+\end{theorem}
+
+
+\section{Hilbert-Schmidt}
+\begin{definition}
+    An operator $A$ mapping a Hilbert space $H$ into itself is called \textbf{symmetric} if $A=A^*$
+\end{definition}
+\begin{theorem}
+    A symmetric operator ${A}$ as above is closed, thus bounded.
+\end{theorem}
+\begin{theorem}
+    Let $A$ be a symmetric operator on $H$:
+
+    (1) The (hermitean) quadratic form $({A} x, x)$ is real for all $x$ in $H$.
+
+    (2) The quadratic form is not identically zero unless the operator ${A} \equiv 0$.
+\end{theorem}
+
+
+\begin{definition}
+    A symmetric operator ${K}$ mapping a Hilbert space $H$ into itself is called \textbf{positive definite} if the associated quadratic form $({K} x, x)$ is nonnegative for every $x$ in $H$.
+    This is denoted as $0 \leq {K}$.
+
+    Let A and ${B}$ denote two symmetric operators mapping a Hilbert space $H$ into itself. The inequality ${A} \leq {B}$ means that $0 \leq {B}-{A}$.
+\end{definition}
+
+
+
+\subsection{Fundmental Theorem}
+\begin{theorem}
+    Let $H$ be Hilbert space, $A$ is symmetric and compact operator on $H$, Then there exists unit element $x_0$ such that
+    \begin{equation*}
+        \left|\left(A x_0,x_0\right)\right|
+        =
+        \sup_{\left\| x \right\|_{}=1} \left|\left(Ax,x\right)\right|
+    \end{equation*}
+    and
+    \begin{equation*}
+        Ax_0 =\lambda x_0
+    \end{equation*}
+    where $\lambda = \sup_{\left\| x \right\|_{}=1} \left|\left(Ax,x\right)\right|$.
+
+    Proof:
+    Since ${A}$ is a bounded operator,  $\left|({A} x, x)\right|$ does not exceed $\|{A}\|$ on the unit sphere. Suppose that :
+    \begin{equation*}
+        \sup _{\|x\|=1}({A} x, x)=\lambda
+    \end{equation*}
+    Let $\left\{x_n\right\}$ be a maximizing sequence on the unit sphere. Since the unit ball in a Hilbert space is weakly sequentially compact, a subsequence, also denoted as $\left\{x_n\right\}$, converges weakly to a limit we denote as $z$.
+    It follows that ${A} x_n$ converges strongly to ${A} z$ and
+    \begin{equation*}
+        \left({A} x_n, x_n\right)
+        =
+        \left(Az ,x_n\right) +\left(Ax_n-Az ,x_n\right)
+        \to
+        ({A} z, z)
+    \end{equation*}
+    Therefore
+    \begin{equation*}
+        ({A} z, z)=\lambda
+    \end{equation*}
+    And it obvious $\left|z\right| = 1$ by maximality
+
+    The homogeneous function
+    \begin{equation*}
+        R_{{A}}(x)=\frac{({A} x, x)}{\|x\|^2}
+    \end{equation*}
+    is called the Rayleigh quotient. Clearly, the vector $z$ maximizes $R_{{A}}(z)$ among all nonzero vectors, not just unit vectors. Let $w$ be any vector in $H$, $t$ any real number. The function $R(z+t w)$ as function of $t$ achieves its maximum at $t=0$; therefore
+    \begin{equation*}
+        R'\left(z+tw\right)
+        =
+        \frac{(A w, z)+(A z, w)}{\|z\|^2}-({A} z, z) \frac{(w, z)+(z, w)}{\|z\|^4}
+        =0
+    \end{equation*}
+    from which, using the symmetry of ${A}$ and ( $4^{\prime}$ ), we get
+    \begin{equation*}
+        \operatorname{Re}(A z-m z, w)=0
+    \end{equation*}
+    thus $Az= \lambda z$
+\end{theorem}
+\begin{corollary}
+    A symmetric compact operator $A$ mapping a Hilbert space $H$ into itself has real eigenvalues. If $A\neq 0$, $A$ has nonzero eigenvalues.
+\end{corollary}
+
+\begin{theorem}[Spectral Theorem]
+    $A$ denotes a compact symmetric operator mapping Hilbert space $H$ into itself. Then there is an at most denumerable eigenvalues $\left\{\lambda_n\right\} \subset \mathbb{R}$ that accumulate only at $0$,
+    and an orthonormal base $\left\{e_\alpha \right\}$ for $H$ consisting of
+    eigenvector of ${A}$ :
+    \begin{equation*}
+        {A} e_\alpha = \lambda_{n,\alpha} e_\alpha
+    \end{equation*}
+
+
+    Proof :
+    For any $\lambda \in \sigma_p(A)\backslash \left\{0\right\}$, suppose the orthonormal base of $N(\lambda I -A)$ is
+    \begin{equation*}
+        \left\{e_i^{\left(\lambda\right)}\right\}_{i=1}^{m(\lambda)}
+    \end{equation*}
+    where $m(\lambda) = \dim N(\lambda I -A)$ is the geometric multiplicity. If $0\in \sigma_p(A)$, denote the orthonormal base of $N(A)$ by
+    \begin{equation*}
+        \left\{e_\alpha^{(0)}\right\}
+    \end{equation*}
+
+    Let
+    \begin{equation*}
+        M= \left\{e_\alpha\right\}
+    \end{equation*}
+    be the union of base as above. We prove that $\overline{\span M}=H$. If not, then $M^\bot \neq \left\{0\right\}$.
+    Let
+    \begin{equation*}
+        A_1=A\mid_{M^\bot}
+    \end{equation*}
+    it follows that $A_1$ has no eigenvalues and is compact, symmetric. It contradicts.
+\end{theorem}
+
+
+\subsection{}
+
+\begin{theorem}
+    Let $A$ be a compact symmetric operator; denote its positive eigenvalues, indexed in decreasing order, by $\lambda_k \leq \lambda_{k+1} , k=1,2, \ldots$. Denote by $R_{ {A}}(x)$ its Rayleigh quotient.
+
+    (1) Fischer's principle:
+    \begin{equation*}
+        \lambda_N=\max _{S_N} \min _{x \in S_N} R_{ {A}}(x)
+    \end{equation*}
+    where $S_N$ is any linear subspace of $H$ of dimension $N$.
+
+    (2) Courant's principle:
+    \begin{equation*}
+        \lambda_N=\min _{S_{N-1}} \max _{x \perp S_{N-1}} R_{ {A}}(x)
+    \end{equation*}
+\end{theorem}
+
+
+
+
+
+
+\subsection{Normal Operator}
+
+\begin{definition}
+    An operator $ {N}$ mapping a Hilbert space $H$ into itself is called \textbf{normal} if $ {N}$ and its adjoint commute:
+    \begin{equation*}
+        {N}^*  {N}= {N N}^*
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}
+    Every compact normal operator on has a complete set of orthonormal eigenvectors.
+
+    Proof:
+    Decompose $ {N}$ into the sum of its symmetric and antisymmetric parts:
+    \begin{equation*}
+        {N}= {R}+ {J}, \quad \text { where }  {R}=\frac{ {N}+ {N}^*}{2},  {J}=\frac{ {N}- {N}^*}{2}
+    \end{equation*}
+    Clearly, $ {R}$ is symmetric, $ {J}$ antisymmetric, and $ {N}^*= {R}- {J}$. Since $ {N}$ and $ {N}^*$ commute, so do $ {R}$ and $ {J}$. And the adjoint $ {N}^*$ of the compact operator $ {N}$ is compact; therefore so are $ {J}$ and $ {R}$.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,49 @@
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{esint}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{tikz-cd}
+\usepackage{commutative-diagrams}
+\usepackage{geometry}       
+\usepackage{titlesec}       % 自定义章节标题
+\usepackage{titletoc}       % 自定义目录样式
+\usepackage{fancyhdr}       % 自定义页眉页脚
+\usepackage{setspace}       % 行间距设置
+\usepackage{fontspec}       % 字体设置
+\usepackage{ulem}           % 标记线
+
+
+
+
+
+ % 设置正文字体
+
+
+
+
+% ========== 行间距设置 ==========
+\onehalfspacing % 1.5倍行距
+
+% ========== 目录样式 ==========
+\setcounter{tocdepth}{3} % 目录显示到 subsection
+\setcounter{secnumdepth}{2} % 编号深度subsection
+
+% ========== 自定义命令 ==========
+\newtheorem{theorem}{Theorem}[section] 
+% 定义定理类环境 跟section的计数器
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{example}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{question}[theorem]{Question}
+% 与theorem环境共享计数器 
+
+% ========== 封面 ==========
+
+\author{HHH}

@@ -1,0 +1,593 @@
+\chapter{Nolinear First-Order PDE}
+
+\section{Complete integrals, Envelopes}
+\subsection{Complete integrals}
+\begin{definition}
+    In this chapter we investigate general nonlinear first-order partial differential equations of the form
+    \[
+    F(D u, u, x)=0
+    \]
+    where $x \in U$ and $U$ is an open subset of $\mathbb{R}^n$. Here
+    \[
+    F: \mathbb{R}^n \times \mathbb{R} \times \bar{U} \rightarrow \mathbb{R}
+    \]
+    is given, and $u: \bar{U} \rightarrow \mathbb{R}$ is the unknown, $u=u(x)$.
+
+    Let us write
+    \[
+    F=F(p, z, x)=F\left(p_1, \ldots, p_n, z, x_1, \ldots, x_n\right)
+    \]
+    for $p \in \mathbb{R}^n, z \in \mathbb{R}, x \in U$. We also assume hereafter that $F$ is smooth and set
+    \[
+    \left\{\begin{array}{l}
+    D_p F=\left(F_{p_1}, \ldots, F_{p_n}\right) \\
+    D_z F=F_z \\
+    D_x F=\left(F_{x_1}, \ldots, F_{x_n}\right)
+    \end{array}\right.
+    \]
+    
+    We are concerned with discovering solutions $u$ of the boundary-value PDE 
+    \[
+    \left\{\begin{aligned}
+    F(Du,u,x)=0 & \quad \text { in } U \\
+    u=g & \quad \text { on } \Gamma
+    \end{aligned}\right.
+    \]
+    where $\Gamma$ is some given subset of $\partial U$ and $g: \Gamma \rightarrow \mathbb{R}$ is prescribed.
+\end{definition}
+\begin{definition}[Complete integrals]
+    We begin our analysis of the nonlinear first-order PDE
+    \[
+    F(D u, u, x)=0
+    \]
+    Suppose $A \subset \mathbb{R}^n$ is an open set. Assume for each parameter $a=$ $\left(a_1, \ldots, a_n\right) \in A$ we have a $C^2$ solution $u=u(x ; a)$.
+   
+    A $C^2$ function $u=u(x ; a)$ is called $a$ \textbf{complete integral} in $U \times A$ provided
+    \[
+    u(x ; a) \text { solves the PDE for each } a \in A
+    \]
+    and
+    \[
+    \operatorname{rank}\left(D_a u, D_{x a}^2 u\right)=n \quad(x \in U, a \in A)
+    \]
+    where
+    \[
+    \left(D_a u, D_{x a}^2 u\right):=\left(\begin{array}{cccc}
+    u_{a_1} & u_{x_1 a_1} & \cdots & u_{x_n a_1} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    u_{a_n} & u_{x_1 a_n} & \cdots & u_{x_n a_n}
+    \end{array}\right)_{n \times(n+1)} .
+    \]
+\end{definition}
+\begin{definition}
+    Let $u=u(x ; a)$ be a $C^1$ function of $x \in U$, parameter $a \in A$, where $U \subset \mathbb{R}^n$ and $A \subset \mathbb{R}^m$ are open sets. Consider the vector equation
+    \[
+    D_a u(x ; a)=0 \quad(x \in U, a \in A) .
+    \]
+    Suppose that we can solve it for the parameter $a$,
+    \[
+    a=\phi(x) 
+    \]
+    thus
+    \[
+    D_a u(x ; \phi(x))=0 \quad(x \in U) .
+    \]
+    We then call
+    \[
+    v(x):=u(x ; \phi(x)) \quad(x \in U)
+    \]
+    the \textbf{envelope} of the functions $\{u(\cdot ; a)\}_{a \in A}$.
+\end{definition}
+\begin{theorem}[Construction of new solutions]
+    Suppose for each $a \in A$ as above that $u=u(\cdot ; a)$ solves the PDE. Assume further that the envelope $v$, defined above, exists and is a $C^1$ function. Then $v$ solves PDE as well called a \textbf{singular integral} of PDE.
+    
+    Proof. 
+    We have $v(x)=u(x ; \phi(x))$; and so for $i=1, \ldots, n$
+    \[
+    \begin{aligned}
+    v_{x_i}(x) & =u_{x_i}(x ; \phi(x))+\sum_{j=1}^m u_{a_j}(x, \phi(x)) \phi_{x_i}^j(x) \\
+    & =u_{x_i}(x ; \phi(x))
+    \end{aligned}
+    \]
+    Hence for each $x \in U$,
+    \[
+    F(D v(x), v(x), x)=F(D u(x ; \phi(x)), u(x ; \phi(x)), x)=0 .
+    \]
+\end{theorem}
+
+\section{Characteristics}
+
+\subsection{Derivation of Characteristic ODE}
+\begin{theorem}[Structure of Characteristic ODE]
+    We return to our basic nonlinear first-order PDE
+    \[
+    F(D u, u, x)=0 \quad \text { in } U \tag{1}
+    \]
+    subject now to the boundary condition
+    \[
+    u=g \quad \text { on } \Gamma \tag{2}
+    \]
+    where $\Gamma \subseteq \partial U$ and $g: \Gamma \rightarrow \mathbb{R}$ are given. We hereafter suppose that $F, g$ are smooth functions and assume $u$ is a $C^2$ solution.
+
+    Let us suppose the curve is described parametrically by the function 
+    \[
+    \mathbf{x}(s)=\left(x^1(s), \ldots, x^n(s)\right)^T \tag{3}
+    \]
+    the parameter $s$ lying in some subinterval $I \subseteq \mathbb{R}$. We define also
+    \[
+    z(s):=u(\mathbf{x}(s)) \tag{4}
+    \]
+    In addition, set
+    \[
+    \mathbf{p}(s):=D u(\mathbf{x}(s)) \tag{5}
+    \]
+    that is, $\mathbf{p}(s)=\left(p^1(s), \ldots, p^n(s)\right)$, where
+    \[
+    p^i(s)=u_{x_i}(\mathbf{x}(s)) \quad(i=1, \ldots, n) \tag{5'}
+    \]
+    records the values of the gradient $Du$.
+
+    We must choose the function $\mathbf{x}(\cdot)$ in such a way that we can compute $z(\cdot)$ and $\mathbf{p}(\cdot)$. Indeed, we set $\mathbf{x}$ solves the ODE
+    \[
+    \dot{\mathbf{x}}(s)
+    = 
+    F_p(\mathbf{p}(s), z(s), \mathbf{x}(s)) \tag{6}
+    \]
+    that is,
+    \[
+    \dot{x}^j(s)=F_{p_j}(\mathbf{p}(s), z(s), \mathbf{x}(s))  \tag{6'}
+    \]
+    Then we differentiate (5) 
+    \[
+    \dot{\mathbf{p}}(s)=D^2 u(\mathbf{x}(s)) \dot{\mathbf{x}}(s) \tag{7}
+    \]
+    that is,
+    \[
+    \dot{p}^i(s)=\sum_{j=1}^n u_{x_i x_j}(\mathbf{x}(s)) \dot{x}^j(s)  \tag{7'}
+    \]
+    On the other hand, we can also differentiate the PDE (1) with respect to $x_i$:
+    \[
+    {F_p} D^2u + F_z Du + F_x = \mathbf{0} \tag{8}
+    \]
+    that is,
+    \[
+    \sum_{j=1}^n F_{p_j}(D u, u, x) u_{x_j x_i}+F_z(D u, u, x) u_{x_i}+F_{x_i}(D u, u, x)=0 \tag{8'}
+    \]
+    We evaluate (8) at $x=\mathbf{x}(s)$, obtaining the identity:
+    \[
+    F_p(\mathbf{p}(s),z(s),\mathbf{x}(s)) D^2u (\mathbf{x}(s)) 
+    +
+    F_z(\mathbf{p}(s), z(s), \mathbf{x}(s)) \mathbf{p}(s)
+    +
+    F_x(\mathbf{p}(s), z(s), \mathbf{x}(s))
+    \]
+    that is, 
+    \[
+    \begin{aligned}
+    & \sum_{j=1}^n F_{p_j}(\mathbf{p}(s), z(s), \mathbf{x}(s)) u_{x_i x_j}(\mathbf{x}(s)) \\
+    & \quad+F_z(\mathbf{p}(s), z(s), \mathbf{x}(s)) p^i(s)+F_{x_i}(\mathbf{p}(s), z(s), \mathbf{x}(s))=0
+    \end{aligned}
+    \] 
+    Substitute this expression and (8) into (6):
+    (9)
+    \[
+    \dot{p}^i(s)
+    =
+    -F_{x_i} (\mathbf{p}(s), z(s), \mathbf{x}(s)) 
+    -
+    F_z(\mathbf{p}(s), z(s), \mathbf{x}(s)) p^i(s) 
+    \tag{9}
+    \]
+    Finally we differentiate (3):
+    \[
+    \dot{z}(s)=\sum_{j=1}^n u_{x_j}(\mathbf{x}(s)) \dot{x}^j(s)=\sum_{j=1}^n p^j(s) F_{p_j}(\mathbf{p}(s), z(s), \mathbf{x}(s))
+    \]
+    the second equality holding by (5) and (8).
+
+    
+    We summarize by rewriting equations (8)-(10) in vector notation:
+    \[
+    \left\{
+        \begin{array}{l}
+            \dot{\mathbf{p}}(s)=-D_x F(\mathbf{p}(s), z(s), \mathbf{x}(s))-D_z F(\mathbf{p}(s), z(s), \mathbf{x}(s)) \mathbf{p}(s) \\ 
+            \dot{z}(s)=D_p F(\mathbf{p}(s), z(s), \mathbf{x}(s)) \cdot \mathbf{p}(s) \\
+            \dot{\mathbf{x}}(s)=D_p F(\mathbf{p}(s), z(s), \mathbf{x}(s)) 
+        \end{array}
+    \right.
+    \]
+    Furthermore,
+    \[
+    F(\mathbf{p}(s), z(s), \mathbf{x}(s)) \equiv 0
+    \]
+    These identities hold for $s \in I$.
+
+    The important system (11) of $2 n+1$ first-order ODE comprises the characteristic equations of the  first-order PDE (1). 
+    The functions $\mathbf{p}(\cdot)=\left(p^1(\cdot), \ldots, p^n(\cdot)\right), z(\cdot), \mathbf{x}(\cdot)=\left(x^1(\cdot), \ldots, x^n(\cdot)\right)$ are called the characteristics. We will sometimes refer to $\mathbf{x}(\cdot)$ as the projected characteristic: it is the projection of the full characteristics $(\mathbf{p}(\cdot), z(\cdot), \mathbf{x}(\cdot)) \subset \mathbb{R}^{2 n+1}$ onto the physical region $U \subset \mathbb{R}^n$.
+\end{theorem}
+
+\subsection{Boundary Condition}
+\begin{lemma}[Straightening the boundary]
+    To simplify subsequent calculations, it is convenient first to change variables, so as to "flatten out" part of the boundary $\partial U$. To accomplish this, we first fix any point $x^0 \in \partial U$. Then we find smooth mappings $\boldsymbol{\Phi}, \boldsymbol{\Psi}: \mathbb{R}^n \rightarrow \mathbb{R}^n$ such that $\boldsymbol{\Psi}=\boldsymbol{\Phi}^{-1}$ and $\boldsymbol{\Phi}$ straightens out $\partial U$ near $x^0$.
+
+    Given any function $u: U \rightarrow \mathbb{R}$, let us write $V:=\boldsymbol{\Phi}(U)$ and set
+    \[
+    v(y):=u(\boldsymbol{\Psi}(y)) \quad(y \in V)
+    \]
+    Then
+    \[
+    u(x)=v(\boldsymbol{\Phi}(x)) \quad(x \in U)
+    \]
+    
+    Now suppose that $u$ is a $C^1$ solution of our boundary-value problem (1), (2) in $U$. What PDE does $v$ then satisfy in $V$ ?
+    
+    According to (25), we see
+    \[
+    u_{x_i}(x)=\sum_{k=1}^n v_{y_k}(\boldsymbol{\Phi}(x)) \Phi_{x_i}^k(x) \quad(i=1, \ldots, n)
+    \]
+    that is,
+    \[
+    D u(x)=D v(y) D \Phi(x)
+    \]
+    
+    Thus (1) implies
+    \[
+    F(D v(y) D \Phi(\Psi(y)), v(y), \Psi(y))=F(D u(x), u(x), x)=0
+    \]
+    
+    This is an expression having the form
+    \[
+    G(D v(y), v(y), y)=0 \quad \text { in } V
+    \]
+    
+    In addition $v=h$ on $\Delta$, where $\Delta:=\boldsymbol{\Phi}(\Gamma)$ and $h(y):=g(\boldsymbol{\Psi}(y))$.
+    In summary, our problem (1), (2) transforms to read
+    \[
+    \left\{\begin{aligned}
+    G(D v, v, y)=0 & \text { in } V \\
+    v=h & \text { on } \Delta
+    \end{aligned}\right.
+    \]
+    for $G, h$ as above. The point is that if we change variables to straighten out the boundary near $x^0$, the boundary-value problem (1), (2) converts into a problem having the same form.
+\end{lemma}
+\begin{lemma}[Compatibility conditions on boundary data]
+    We intend now to utilize the characteristic ODE to construct a solution at least near $x^0 \in \Gamma$, lying in the plane $\left\{x_n=0\right\}$, and for this we must discover appropriate initial conditions
+    \[
+    \mathbf{p}(0)=p^0, z(0)=z^0, \mathbf{x}(0)=x^0
+    \]
+
+    Now clearly if the curve $\mathbf{x}(\cdot)$ passes through $x^0$, we should insist that
+    \[
+    z^0=g\left(x^0\right) \tag{1}
+    \]
+    Since boundary-values implies $u\left(x_1, \ldots x_{n-1}, 0\right)=g\left(x_1, \ldots, x_{n-1}\right)$ near $x^0$, we may differentiate to find
+    \[
+    Du \left(x^0\right)
+    =
+    \left(Dg\left(x^0\right),0\right)
+    \]
+    As we also want the PDE to hold, we should therefore insist $p^0=$ $\left(p_1^0, \ldots, p_n^0\right)$ satisfies these relations:
+    \[
+    \left\{
+    \begin{aligned}
+        p_i^0=g_{x_i}\left(x^0\right) & \quad(i=1, \ldots, n-1) \\
+        F\left(p^0, z^0, x^0\right)=0 &
+    \end{aligned}\right. \tag{2}
+    \]
+    These identities provide $n$ equations for the $n$ quantities $p^0=\left(p_1^0, \ldots, p_n^0\right)$.
+
+    We call (1) and (2) the compatibility conditions. A triple $\left(p^0, z^0, x^0\right) \in$ $\mathbb{R}^{2 n+1}$ verifying (1), (2) is admissible. 
+
+    \textbf{Remark} Note $z^0$ is uniquely determined by the boundary condition and our choice of the point $x^0$, but a vector $p^0$ satisfying (2) may not exist or may not be unique.
+\end{lemma}
+\begin{lemma}[Noncharacteristic boundary conditions]
+    Given a point $y=\left(y_1, \ldots, y_{n-1}, 0\right) \in \Gamma$, with $y$ close to $x^0$, we intend to solve the characteristic ODE
+    \[
+    \left\{
+        \begin{array}{l}
+            \dot{\mathbf{p}}(s)=-D_x F(\mathbf{p}(s), z(s), \mathbf{x}(s))-D_z F(\mathbf{p}(s), z(s), \mathbf{x}(s)) \mathbf{p}(s) \\ 
+            \dot{z}(s)=D_p F(\mathbf{p}(s), z(s), \mathbf{x}(s)) \cdot \mathbf{p}(s) \\ 
+            \dot{\mathbf{x}}(s)=D_p F(\mathbf{p}(s), z(s), \mathbf{x}(s))
+        \end{array}\right.
+    \]
+    with the initial conditions
+    \[
+    \mathbf{p}(0)=\mathbf{q}(y), z(0)=g(y), \mathbf{x}(0)=y
+    \]
+    
+    Our task then is to find a function $\mathbf{q}(\cdot)=\left(q^1(\cdot), \ldots, q^n(\cdot)\right)$, so that
+    \[
+    \mathbf{q}\left(x^0\right)=p^0
+    \]
+    and $(\mathbf{q}(y), g(y), y)$ is admissible for every given $y$ near $x$; that is, the compatibility conditions
+    \[
+    \left\{
+    \begin{aligned}
+        q^i(y)=g_{x_i}(y) & \quad(i=1, \ldots, n-1) \\
+        F(\mathbf{q}(y), g(y), y)=0 &
+    \end{aligned}
+    \right.
+    \]
+    hold for all $y \in \Gamma$ close to $x^0$.
+    
+    There exists a unique solution $\mathbf{q}(\cdot)$ of for all $y \in \Gamma$ sufficiently close to $x^0$, provided
+    \[
+    F_{p_n}\left(p^0, z^0, x^0\right) \neq 0
+    \]
+    We say admissible $\left(p^0, z^0, x^0\right)$ is \textbf{noncharacteristic} if 
+    $F_{p_n}\left(p^0, z^0, x^0\right) \neq 0$
+    
+    Proof: 
+    Our problem is to find $q^n(y)$ so that
+    \[
+    F(\mathbf{q}(y), g(y), y)=0
+    \]
+    where $q^i(y)=g_{x_i}(y)$ for $i=1, \ldots, n-1$. Since $F\left(p^0, z^0, x^0\right)=0$, the Implicit Function Theorem implies we can indeed locally and uniquely solve for $q^n(y)$, provided that the noncharacteristic condition is valid.
+
+    \textbf{Remark} If $\Gamma$ is not flat near $x^0$, the condition that $\Gamma$ be noncharacteristic reads
+    \[
+    D_p F\left(p^0, z^0, x^0\right) \cdot \boldsymbol{\nu}\left(x^0\right) \neq 0
+    \]
+    $\boldsymbol{\nu}\left(x^0\right)$ denoting the outward unit normal to $\partial U$ at $x^0$. 
+\end{lemma}
+
+\subsection{Local Solution}
+\begin{definition}
+    Suppose further that $\left(p^0, z^0, x^0\right)$ is an admissible triple of boundary data, which is noncharacteristic. According to Lemma 1 there is a function $\mathbf{q}(\cdot)$ so that $p^0=\mathbf{q}\left(x^0\right)$ and the triple $(\mathbf{q}(y), g(y), y)$ is admissible, for all $y$ sufficiently close to $x^0$.
+
+    Given any such point $y=\left(y_1, \ldots, y_{n-1}, 0\right)$ near $x^0$, we solve the characteristic ODE 
+    \[
+    \left\{
+        \begin{array}{l}
+            \dot{\mathbf{p}}(s)=-D_x F(\mathbf{p}(s), z(s), \mathbf{x}(s))-D_z F(\mathbf{p}(s), z(s), \mathbf{x}(s)) \mathbf{p}(s) \\ 
+            \dot{z}(s)=D_p F(\mathbf{p}(s), z(s), \mathbf{x}(s)) \cdot \mathbf{p}(s) \\ 
+            \dot{\mathbf{x}}(s)=D_p F(\mathbf{p}(s), z(s), \mathbf{x}(s))
+        \end{array}\right.
+    \]
+    subject to initial conditions 
+    \[
+    \mathbf{p}(0)=\mathbf{q}(y), z(0)=g(y), \mathbf{x}(0)=y
+    \]
+    Let us write
+    \[
+    \left\{\begin{array}{l}
+    \mathbf{p}(s)=\mathbf{p}(y, s)=\mathbf{p}\left(y_1, \ldots, y_{n-1}, s\right) \\
+    z(s)=z(y, s)=z\left(y_1, \ldots, y_{n-1}, s\right) \\
+    \mathbf{x}(s)=\mathbf{x}(y, s)=\mathbf{x}\left(y_1, \ldots, y_{n-1}, s\right)
+    \end{array}\right.
+    \]
+    to display the dependence of the solution on $s$ and $y$. Also, we will henceforth when convenient regard $x^0$ as lying in $\mathbb{R}^{n-1}$.
+\end{definition}
+\begin{lemma}[Local invertibility] 
+    Assume we have the noncharacteristic condition $F_{p_n}\left(p^0, z^0, x^0\right) \neq 0$. 
+    Then there exist an open interval $I \subseteq \mathbb{R}$ containing $0$, a neighborhood $W$ of $x^0$ in $\Gamma \subset \mathbb{R}^{n-1}$, and a neighborhood $V$ of $x^0$ in $\mathbb{R}^n$, such that for each $x \in V$ there exist unique $s \in I, y \in W$ such that
+    \[
+    x=\mathbf{x}(y, s)
+    \]
+    The mappings $x \mapsto \left(s, y\right)$ are $C^2$.
+
+    Proof:
+    We have $\mathbf{x}\left(x^0, 0\right)=x^0$. Consequently the Inverse Function Theorem gives the result, provided 
+    $$\operatorname{det} \frac{\partial \mathbf{x}}{ \partial (y,s) }\left(x^0, 0\right) \neq 0$$
+    Now
+    \[
+    \mathbf{x}(y, 0)=(y, 0) \quad(y \in \Gamma)
+    \]
+    and so if $i=1, \ldots, n-1$,
+    \[
+    x_{y_i}^j\left(x^0, 0\right)=\left\{\begin{aligned}
+    \delta_{i j} & (j=1, \ldots, n-1) \\
+    0 & (j=n)
+    \end{aligned}\right.
+    \]
+     
+    Furthermore equation (31)(c) implies
+    \[
+    x_s^j\left(x^0, 0\right)=F_{p_j}\left(p^0, z^0, x^0\right) .
+    \]
+    
+    Thus
+    \[
+    D \mathbf{x}\left(x^0, 0\right)=\left(\begin{array}{ccc}
+    1 & & 0 \\
+    \ddots & \vdots & \vdots \\
+    0 & 1 & \vdots \\
+    0 & \cdots & 0
+    \end{array} F_{p_n}\left(p^0, z^0, x^0\right)\right)_{n \times n}
+    \]
+    whence $\operatorname{det} D \mathbf{x}\left(x^0, 0\right) \neq 0$ follows from the noncharacteristic condition (35).
+     
+     
+    In view of Lemma 2 for each $x \in V$, we can locally uniquely solve the equation
+    \[
+    \left\{\begin{array}{l}
+    x=\mathbf{x}(y, s) \\
+    \text { for } y=\mathbf{y}(x), s=s(x)
+    \end{array}\right.
+    \]
+    
+    Finally, let us define
+    \[
+    \left\{\begin{array}{l}
+    u(x):=z(\mathbf{y}(x), s(x)) \\
+    \mathbf{p}(x):=\mathbf{p}(\mathbf{y}(x), s(x))
+    \end{array}\right.
+    \]
+    for $x \in V$ and $s, y$ as in (37).
+    We come finally to our principal assertion, namely, that we can locally weave together the solutions of the characteristic ODE into a solution of the PDE.
+\end{lemma}
+
+\section{Hamilton-Jacobi Equation}
+
+\subsection{}
+\begin{definition}
+    We study in some detail the initial-value problem for the Hamilton-Jacobi equation:
+    \[
+    \left\{\begin{aligned}
+    u_t+H(D u)=0 & \text { in } \mathbb{R}^n \times(0, \infty) \\
+    u=g & \text { on } \mathbb{R}^n \times\{t=0\} .
+    \end{aligned}\right.
+    \]
+    Here $u: \mathbb{R}^n \times[0, \infty) \rightarrow \mathbb{R}$ is the unknown, $u=u(x, t)$, and $D u=D_x u=$ $\left(u_{x_1}, \ldots, u_{x_n}\right)$. We are given the Hamiltonian $H: \mathbb{R}^n \rightarrow \mathbb{R}$ and the initial function $g: \mathbb{R}^n \rightarrow \mathbb{R}$.
+\end{definition}
+\begin{definition}
+    Assume that $L: \mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}$ is a given smooth function, hereafter called the \textbf{Lagrangian}.
+    We write
+    \[
+    L=L(v, x)=L\left(v_1, \ldots, v_n, x_1, \ldots, x_n\right) \quad\left(v, x \in \mathbb{R}^n\right)
+    \]
+    and
+    \[
+    \left\{\begin{array}{l}
+    D_v L=\left(L_{v_1} \cdots L_{v_n}\right) \\
+    D_x L=\left(L_{x_1} \cdots L_{x_n}\right) .
+    \end{array}\right.
+    \]
+    
+    Now fix two points $x, y \in \mathbb{R}^n$ and a time $t>0$. We introduce then the \textbf{action functional}
+    \[
+    I[\mathbf{w}(\cdot)]
+    :=
+    \int_0^t L(\dot{\mathbf{w}}(s), \mathbf{w}(s)) d s 
+    \]
+    defined for functions $\mathbf{w}(\cdot)=\left(w^1(\cdot), w^2(\cdot), \ldots, w^n(\cdot)\right)$ belonging to the admissible class
+    \[
+    \mathcal{A}:=\left\{\mathbf{w}(\cdot) \in C^2\left([0, t] ; \mathbb{R}^n\right) \mid \mathbf{w}(0)=y, \mathbf{w}(t)=x\right\}
+    \]
+\end{definition}
+\begin{theorem}[Euler-Lagrange equations]
+    We assume that there in fact exists a function $\mathbf{x}(\cdot) \in \mathcal{A}$ satisfying our calculus of variations Problem
+    \[
+    I[\mathbf{x}] 
+    =
+    \min_{\mathbf{w} \in \mathcal{A}} I[\mathbf{w}]
+    \]
+    Then $\mathbf{x}(\cdot)$ solves the system of Euler-Lagrange equations
+    \[
+    -\frac{d}{d s}\left(D_v L(\dot{\mathbf{x}}(s), \mathbf{x}(s))\right)+D_x L(\dot{\mathbf{x}}(s), \mathbf{x}(s))
+    =
+    \mathbf{0} 
+    \]
+    for $ 0 \leq s \leq t$.
+    
+    Proof:
+    1. Choose a smooth function $\mathbf{y}:[0, t] \rightarrow \mathbb{R}^n$ satisfying
+    \[
+    \mathbf{y}(0)=\mathbf{y}(t)=\mathbf{0}
+    \]
+    and define for $\tau \in \mathbb{R}$
+    \[
+    \mathbf{w}(\cdot):=\mathbf{x}(\cdot)+\tau \mathbf{y}(\cdot)
+    \]
+    Then $\mathbf{w}(\cdot) \in \mathcal{A}$ and so
+    \[
+    I[\mathbf{x}(\cdot)] \leq I[\mathbf{w}(\cdot)]
+    \] 
+    Thus the real-valued function
+    \[
+    i(\tau):=I[\mathbf{x}(\cdot)+\tau \mathbf{y}(\cdot)]
+    \]
+    has a minimum at $\tau=0$, and consequently
+    \[
+    i^{\prime}(0)=0 
+    \]
+    provided $i^{\prime}(0)$ exists.
+
+    2. We explicitly compute this derivative. Observe
+    \[
+    i(\tau)=\int_0^t L(\dot{\mathbf{x}}(s)+\tau \dot{\mathbf{y}}(s), \mathbf{x}(s)+\tau \mathbf{y}(s)) d s
+    \]
+    and so
+    \[
+    i^{\prime}(\tau)=\int_0^t \sum_{i=1}^n L_{v_i}(\dot{\mathbf{x}}+\tau \dot{\mathbf{y}}, x+\tau \mathbf{y}) \dot{y}^i+L_{x_i}(\dot{\mathbf{x}}+\tau \dot{\mathbf{y}}, x+\tau \mathbf{y}) y^i d s
+    \]
+    Set $\tau=0$:
+    \[
+    0=i^{\prime}(0)=\int_0^t \sum_{i=1}^n L_{v_i}(\dot{\mathbf{x}}, \mathbf{x}) \dot{y}^i+L_{x_i}(\dot{\mathbf{x}}, \mathbf{x}) y^i d s
+    \]
+    We then integrate by parts in the first term inside the integral, to discover
+    \[
+    0=\sum_{i=1}^n \int_0^t\left[-\frac{d}{d s}\left(L_{v_i}(\dot{\mathbf{x}}, \mathbf{x})\right)+L_{x_i}(\dot{\mathbf{x}}, \mathbf{x})\right] y^i d s
+    \]
+    This identity is valid for all smooth functions $\mathbf{y}(\cdot)=\left(y^1(\cdot), \ldots, y^n(\cdot)\right)$ satisfying the boundary conditions $\mathbf{y}(0)=\mathbf{y}(t)=\mathbf{0}$, and so for $0 \leq s \leq t$
+    \[
+    -\frac{d}{d s}\left(L_{v_i}(\dot{\mathbf{x}}, \mathbf{x})\right)+L_{x_i}(\dot{\mathbf{x}}, \mathbf{x})=0 \quad(i=1, \ldots, n)
+    \]
+
+    \textbf{Remark}  If curve $\mathbf{x}(\cdot) \in \mathcal{A}$ solves the Euler-Lagrange equations, we say $\mathbf{x}(\cdot)$ is a \textbf{critical point} of $I[\cdot]$. So every minimizer is a critical point, but a critical point need not be a minimizer.
+\end{theorem}
+\begin{definition}
+    We hereafter assume the $C^2$ function $\mathbf{x}(\cdot)$ is a critical point of the action functional and thus solves the Euler-Lagrange equations.
+
+    First we set
+    \[
+    \mathbf{p}(s):=D_v L(\dot{\mathbf{x}}(s), \mathbf{x}(s)) \quad(0 \leq s \leq t) 
+    \]
+    $\mathbf{p}(\cdot)$ is called the \textbf{generalized momentum} corresponding to the position $\mathbf{x}(\cdot)$ and velocity $\dot{\mathbf{x}}(\cdot)$. We next make this important hypothesis:
+    \[
+    \left\{\begin{array}{l}
+    \text { Suppose for all } x, p \in \mathbb{R}^n \text { that the equation } \\
+    \qquad p=D_v L(v, x) \\
+    \text { can be uniquely solved for } v \text { as a smooth } \\
+    \text { function of } p \text { and } x, v=\mathbf{v}(p, x)
+    \end{array}\right.
+    \]
+    
+    The \textbf{Hamiltonian} $H$ associated with the Lagrangian $L$ is
+    \[
+    H(p, x):=p \cdot \mathbf{v}(p, x)-L(\mathbf{v}(p, x), x) \quad\left(p, x \in \mathbb{R}^n\right)
+    \]
+    where the function $\mathbf{v}(\cdot)$ is defined implicitly 
+\end{definition}
+\begin{theorem}[Derivation of Hamilton's ODE] 
+    The functions $\mathbf{x}(\cdot)$ and $\mathbf{p}(\cdot)$ satisfy Hamilton's equations:
+    \[
+    \left\{\begin{array}{l}
+    \dot{\mathbf{x}}(s)=D_p H(\mathbf{p}(s), \mathbf{x}(s)) \\
+    \dot{\mathbf{p}}(s)=-D_x H(\mathbf{p}(s), \mathbf{x}(s))
+    \end{array}\right.
+    \]
+    for $0 \leq s \leq t$. 
+    
+    Furthermore,
+    the mapping $s \mapsto H(\mathbf{p}(s), \mathbf{x}(s))$ is constant.
+\end{theorem}
+
+\subsection{Legendre Transform, Hopf-Lax Formula}
+\begin{definition}[Legendre transform] 
+    We suppose the Lagrangian $L: \mathbb{R}^n \rightarrow$ $\mathbb{R}$ satisfies these conditions: the mapping $ L(v)$ is convex (hence continuous)
+    and
+    \[
+    \lim _{|v| \rightarrow \infty} \frac{L(v)}{|v|}=+\infty
+    \]
+    The \textbf{Legendre transform} of $L$ is
+    \[
+    L^*(p):=\sup _{v \in \mathbb{R}^n}\{p \cdot v-L(v)\} \quad\left(p \in \mathbb{R}^n\right)
+    \]
+    This is also referred to as the \textbf{Fenchel transform}.
+\end{definition}
+\begin{theorem}[Convex duality of Hamiltonian and Lagrangian] 
+    Assume $L$ satisfies those conditions and define $H=L^*$. 
+
+    (i) Then
+    the mapping $p \mapsto H(p)$ is convex
+    and
+    \[
+    \lim _{|p| \rightarrow \infty} \frac{H(p)}{|p|}=+\infty
+    \]
+
+    (ii) Furthermore
+    \[
+    L=H^* = (L^*)^*
+    \]
+    We say $H$ and $L$ are \textbf{dual convex functions}. 
+    
+    The identity (15) implies that the three statements
+    \[
+    \left\{\begin{aligned}
+    p \cdot v & =L(v)+H(p) \\
+    p & =D L(v) \\
+    v & =D H(p)
+    \end{aligned}\right.
+    \]
+    are equivalent provided $H$ is differentiable at $p$ and $L$ is differentiable at $v$.
+\end{theorem}

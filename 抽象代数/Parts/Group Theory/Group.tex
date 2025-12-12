@@ -1,0 +1,1243 @@
+\chapter{Group}
+\minitoc
+
+\section{Basic Definition} % Group
+\subsection{Basic Definition} % Basic D efinition
+\begin{definition}
+    Let $G$ be a set.
+    \begin{enumerate}
+        \item
+              A \textbf{binary operation} $\cdot$ on $G$ is a function $\cdot: G \times G \rightarrow G$. For any $a, b \in G$ we shall write $a \cdot b$ for $\cdot(a, b)$.
+
+        \item
+              A binary operation $\cdot$ on $G$ is \textbf{associative} if for all $a, b, c \in G$ we have $a \cdot(b \cdot c)=(a \cdot b) \cdot c$.
+
+        \item
+              If $\cdot$ is a binary operation on $G$ we say elements $a$ and $b$ of $G$ \textbf{commute} if $a \cdot b=b \cdot a$. We say $\cdot$ is \textbf{commutative} if for all $a, b \in G, a \cdot b=b \cdot a$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    A \textbf{semigroup} is a nonempty set $G$ together with a binary operation on $G$ which is associative
+
+    A \textbf{monoid} is a semigroup $G$ which contains a identity element $e \in G$ such that $ge=eg=g$ for all $g \in G$.
+
+    A \textbf{group} is a monoid $G$ such that for every $g \in G$ there exists a inverse element $g^{-1} \in G$ such that $g^{-1} g=g g^{-1}=e$.
+
+    A semigroup G is said to be abelian or commutative if its binary operation is
+    (iv) commutative: $\mathrm{ab}=\mathrm{ba}$ for all $a, b \in G$.
+
+    The \textbf{order} of a group $G$ is the cardinal number $\left|G\right|$ .
+    $ G$ is said to be finite [resp. infinite] if $|G|$ is finite [resp. infinite].
+\end{definition}
+
+\begin{proposition}
+    If $G$ is a semigroup, then
+    \begin{enumerate}
+        \item
+              for any $a_1, a_2, \ldots, a_n \in G$ the value of $a_1 \cdot a_2 \cdot \cdots \cdot a_n$ is independent of how the expression is bracketed (this is called the generalized associative law).
+
+        \item
+              $x^{a+b}=x^a x^b$
+
+        \item
+              $\left(x^a\right)^b=x^{a b}$
+    \end{enumerate}
+    If $G$ is a monoid,
+    \begin{enumerate}[resume]
+        \item  the identity of $G$ is unique
+    \end{enumerate}
+    If $G$ is a group,
+    \begin{enumerate}[resume]
+        \item
+              for each $a \in G, a^{-1}$ is unique
+
+        \item
+              $\left(a^{-1}\right)^{-1}=a$ for all $a \in G$
+
+        \item
+              $(a \cdot b)^{-1}=\left(b^{-1}\right) \cdot\left(a^{-1}\right)$
+
+        \item
+              $a^{-n}$ is defined to be $\left(a^{-1}\right)^n=\left(a^n\right)^{-1}$
+
+        \item
+              for all $a, b, c \in G$, $ab=ac \Rightarrow b=c$ and $ba=ca \Rightarrow b=c$ (left and right. cancellation);
+
+        \item
+              for $a, b \in G$ the equations $ax=b$ and $ya=b$ have unique solutions in $G$: $x=a^{-1} b$ and $y=ba^{-1}$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    Let $G$ be a semigroup. Then the following conditions on $G$ are equivalent
+    \begin{enumerate}
+        \item
+              $G$ is a group
+
+        \item
+              There exists an element $e \in G$ such that $ea=a$ for all $a \in G$ (left identity clement);
+              for each $a \in G$, there exists an element $a^{-1} \in G$ such that $a^{-1} a=ea$ (left inverse).
+
+        \item
+              There exists an element $e \in G$ such that $ae=a$ for all $a \in G$ (right identity clement);
+              for each $a \in G$, there exists an element $a^{-1} \in G$ such that $aa^{-1} =ea$ (right inverse).
+
+        \item
+              For all $a, b \in G$ the equations $ax=b$ and $yb=a$ have solutions in $G$ .
+    \end{enumerate}
+\end{proposition}
+
+\begin{theorem}
+    Let $\sim$ be an equivalence relation on a monoid $G$.
+    Then the set $G / \sim$ is a monoid under the binary operation defined by $\bar{a}\cdot \bar{b}=\bar{ab}$,
+
+    If G is an [abelian] group, then so is $G / R$.
+
+
+    An equivalence relation on a monoid $G$ that satisfies the hypothesis of the theorem is called a congruence relation on $G$.
+\end{theorem}
+
+
+\subsubsection{Order}
+\begin{definition}
+    For $G$ a group and $x \in G$ define the \textbf{order} of $x$ to be the smallest positive integer $n$ such that $x^n=1$, and denote this integer by $|x|$. In this case $x$ is said to be of order $n$. If no positive power of $x$ is the identity, the order of $x$ is defined to be infinity and $x$ is said to be of \textbf{infinite order}.
+\end{definition}
+\begin{theorem}
+    If $x$ and $g$ are elements of the group $G$, then
+
+    (1) $|x|=\left|g^{-1} x g\right|$
+
+    (2) $|a b|=|b a|$ for all $a, b \in G$
+
+    (3) If $x^n=1$ and $x^m=1$, then $x^d=1$, where $d=(m, n)$.
+
+    (4) If $x^m=1$ for some $m \in \mathbb{Z}$, then $\left|x\right|$ divides $m$.
+\end{theorem}
+\subsection{Subgroup} % Subgroup
+\begin{definition}
+    Let $G$ be a group. The subset $H$ of $G$ is a \textbf{subgroup} of $G$ if $H$ is nonempty and $H$ is closed under products and inverses (i.e., $x, y \in H$ implies $x^{-1} \in H$ and $x y \in H)$. If $H$ is a subgroup of $G$ we shall write $H \leq G$.
+\end{definition}
+
+
+\begin{theorem}[The subgroup criterion]
+    Let $G$ be a group, then
+
+    (1) A subset $H$ of a group $G$ is a subgroup if and only if
+    \begin{enumerate}[label=(\roman*)]
+        \item $H \neq \varnothing $, and
+
+        \item for all $x, y \in H, x y^{-1} \in H$.
+              Furthermore, if $H$ is finite, then it suffices to check that $H$ is nonempty and closed under multiplication.
+    \end{enumerate}
+
+    (2) If $\mathcal{A}$ is any nonempty collection of subgroups of $G$, then the intersection of all members of $\mathcal{A}$ is also a subgroup of $G$.
+
+    (3) If $\mathcal{B}$ is a chain (with respect to set inclusion) in the family of all subgroups of $G$, then the union of all members in $\mathcal{B}$ is also a subgroup of $G$
+\end{theorem}
+\begin{proposition}
+    Let $H$ and $K$ be subgroups of $G$. THen $H \cup K$ is a subgroup if and only if either $H \subseteq K$ or $K \subseteq H$.
+\end{proposition}
+
+
+
+
+\subsubsection{Subgroup generated by sets}% Subgroup generated by sets
+\begin{definition}
+    If $X$ is any subset of the group $G$ define
+
+    \begin{equation*}
+        \langle X\rangle=\bigcap_{X \subseteq H \leq G} H
+    \end{equation*}
+    This is called the \textbf{subgroup of $G$ generated by $X$}.
+    When $X$ is the finite set $\left\{a_1, a_2, \ldots, a_n\right\}$ we write $\left\langle a_1, a_2, \ldots, a_n\right\rangle$ for the group generated by $a_1, a_2, \ldots, a_n$.
+    If $A$ and $B$ are two subsets of $G$ we shall write $\langle A, B\rangle$ in place of $\langle A \cup B\rangle$.
+
+    If $H$ and $K$ are subgroups, $\left\langle H\cup K \right\rangle$ is called the \textbf{join} of $H$ and $K$ and is denoted $H \bigvee  K$ (additive notation: H + K)
+\end{definition}
+
+\begin{theorem}
+    Suppose a group $G$ and subset $A\subset G$, then
+    \begin{equation*}
+        \langle A\rangle
+        =
+        \left\{a_1^{\epsilon_1} a_2^{\epsilon_2} \ldots a_n^{\epsilon_n} \mid n \in \mathbb{Z}, n \geq 0 \text { and } a_i \in A, \epsilon_i= \pm 1 \text { for each } i\right\}
+    \end{equation*}
+    ($\langle A\rangle=\{e\}$ if $A=\varnothing $)
+\end{theorem}
+\subsubsection{Normal Subgroup and Normalizer}
+\begin{definition}
+    Let $G$ be a group.
+    \begin{enumerate}
+        \item
+              A subgroup $N$ of a group $G$ is called \textbf{normal subgroup} if every element of $G$ normalizes $N$, i.e. $g N g^{-1}=N$ for all $g \in G$. If $N$ is a normal subgroup of $G$ we shall write $N \unlhd G$.
+
+        \item
+              Define the \textbf{normalizer of $X$ in $G$} to be the set (subgroup)
+              \begin{equation*}
+                  N_G(X)=\left\{g \in G \mid g X g^{-1}=X\right\}
+              \end{equation*}
+              If $K$ is any subset of $N_G(X)$, we shall say \textbf{$K$ normalizes $X$}.
+    \end{enumerate}
+\end{definition}
+\begin{theorem}
+    Let $N$ be a subgroup of the group $G$. The following conditions are equivalent:
+    \begin{enumerate}
+        \item
+              $N \unlhd G$
+
+
+        \item
+              $N_G(N)=G$
+
+        \item
+              $g N=N g$ for all $g \in G$
+
+        \item
+              $g N g^{-1} \subseteq N$ for all $g \in G$.
+
+        \item
+              Left and right congruence modulo $N$ coincide (that is, define the same equivalence relation on G );
+
+        \item
+              every left coset of $N$ in $G$ is a right coset of $N$ in $G$
+        \item for any $x,y\in G$, $xy\in N\Leftrightarrow yx\in N $.
+    \end{enumerate}
+\end{theorem}
+
+
+
+\begin{theorem}
+    Let $K$ and $N$ be subgroups of a group $G$ with $N$ normal in $G$ . Then
+
+    (1) ${N} \cap {K}$ is a normal subgroup of $K$;
+
+    (2) $N$ is a normal subgroup of ${N} \vee {K}$;
+
+    (3) ${NK}={N} \vee {K}={KN}$;
+
+    (4) if K is normal in G and ${K} \cap {N}=\langle{e}\rangle$, then ${nk}={kn}$ for all ${k} \in {K}$ and ${n} \in {N}$.
+\end{theorem}
+
+
+\begin{definition}
+    If $N$ is a normal subgroup of a group $G$ and $G / {N}$ is the set of all (left) cosets of $N$ in $G$, then $G / {N}$ is a group of order $[G: {N}]$ under the binary operation given by $\left(aN\right)\cdot (bN)={abN}$.
+    Then the group $G / N$ is called the \textbf{quotient group of $G$ by $N$}.
+\end{definition}
+
+\subsubsection{Center and Centralizers}
+\begin{definition}
+    Let $X$ be any nonempty subset
+    of $G$.
+    Define
+    \begin{equation*}
+        C_G(X)
+        =
+        \left\{ g \in G : g x g^{-1}=x
+        \text{ for all } x \in X\right\}
+    \end{equation*}
+    This subset of $G$ is called the \textbf{centralizer of $X$ in $G$}.
+    $C_G(X)$ is a subgroup of $G$ which consists of element commute with every element of $X$.
+    Define
+    \begin{equation*}
+        Z(G)
+        =
+        C_G(G)
+        =
+        \left\{ g \in G : g a g^{-1}=a
+        \text{ for all } a \in G\right\}
+    \end{equation*}
+    the set of elements commuting with all the elements of $G$. This subset of $G$ is called the \textbf{center of $G$}.
+\end{definition}
+
+
+
+\begin{proposition}
+    Suppose a group $G$.
+    \begin{enumerate}
+        \item
+              $C_G(Z(G))=G$
+
+        \item
+
+              $N_G(Z(G))=G$
+
+        \item
+              If $A$ and $B$ are subsets of $G$ with $A \subseteq B$ then $C_G(B) \leq C_G(A)$.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+
+\subsection{Coset} % Coset
+
+\begin{definition}
+    For any $H \leq G$ and any $g \in G$ let
+    \begin{equation*}
+        g H
+        =
+        \{g n : n \in H\}
+        \quad \text { and } \quad
+        H g
+        =
+        \{n g : n \in H\}
+    \end{equation*}
+    called respectively a \textbf{left coset} and a \textbf{right coset of $N$ in $G$}. Any element of a coset is called a representative for the coset.
+\end{definition}
+\begin{theorem}
+    Let $H$ be any subgroup of the group $G$. Then
+    \begin{enumerate}
+        \item
+              The set $\left\{g H :g \in G\right\}$ of left cosets of $H$ in $G$ form a partition of $G$.
+
+        \item
+              For all $u, v \in G, u H=v H$ if and only if $v^{-1} u \in N$, denoted
+              \begin{equation*}
+                  a \equiv_{\text{l}} b \left(\bmod H\right)
+              \end{equation*}
+              This is a congruence relation.
+
+        \item
+              Right [resp. left] congruence modulo $H$ is an equivalence relation on $G$
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{theorem}
+    If $K, H, G$ are groups with $K<H<G$, then $[G: K]=[G: H][H: K]$.
+    If any two of these indices are finite, then so is the third.
+\end{theorem}
+\begin{theorem}[Lagrange's Theorem]
+    If $G$ is a finite group and $H$ is a subgroup of $G$, then the order of $H$ divides the order of $G$ and the number of left cosets of $H$ in $G$ equals $\frac{|G|}{|H|}$ called the \textbf{index of $H$ in $G$} and is denoted by $[G: H]$.
+\end{theorem}
+\begin{corollary}
+    If $G$ is a finite group and $x \in G$, then the order of $x$ divides the order of $G$. In particular $x^{|G|}=1$ for all $x$ in $G$.
+\end{corollary}
+\begin{corollary}
+    If $G$ is a group of prime order $p$, then $G$ is cyclic, hence $G \cong Z_p$.
+\end{corollary}
+\begin{definition}
+    Let $H$ and $K$ be subsets of a group and define
+    \[
+        H K=\{h k \mid h \in H, k \in K\} .
+    \]
+\end{definition}
+\begin{theorem}
+    If $H$ and $K$ are finite subgroups of a group then
+    \[
+        |H K|=\frac{|H||K|}{|H \cap K|} .
+    \]
+\end{theorem}
+
+
+\begin{proposition}
+    If $H$ and $K$ are subgroups of a group, $H K$ is a subgroup if and only if $H K=K H$.
+\end{proposition}
+
+\begin{corollary}
+    If $H$ and $K$ are subgroups of $G$ and $H \leq N_G(K)$, then $H K$ is a subgroup of $G$.
+
+    In particular, if $K \unlhd G$ then $H K =KH \leq G$ for any $H \leq G$.
+\end{corollary}
+
+
+
+
+
+\begin{definition}
+    The \textbf{quotient group}, $G / N$ (read $G$ modulo $N$), is
+    \[
+        \{gN : g\in G\}
+    \]
+    with the operation defined by
+    \[
+        g_1N \cdot g_2N
+        =
+        g_1N  g_2N
+        =
+        g_1g_2 N
+    \]
+\end{definition}
+\begin{proposition}
+    (1) If $N \leq Z(G)$, then $N \unlhd G$.
+
+    (2) $Z(G) \unlhd G$.
+\end{proposition}
+
+\subsection{Cyclic Groups} %% Cyclic Groups
+\begin{definition}
+    A group $G$ is \textbf{cyclic} if $H$ can be generated by a single element, i.e., there is some element $x \in H$ such that $G=\left\{x^n : n \in \mathbb{Z}\right\}$.
+\end{definition}
+
+\begin{theorem}
+    Any two cyclic groups of the same order are isomorphic. More specifically,
+
+    (1) If $n \in \mathbb{Z}_{>0}$and $\langle x\rangle$ and $\langle y\rangle$ are both cyclic groups of order $n$, then the map
+    \[
+        \begin{aligned}
+            \varphi:\langle x\rangle & \rightarrow\langle y\rangle \\
+            x^k                      & \mapsto y^k
+        \end{aligned}
+    \]
+    is well defined and is an isomorphism.
+
+    (2) If $\langle x\rangle$ is an infinite cyclic group, the map
+    \[
+        \begin{aligned}
+            \varphi: \mathbb{Z} & \rightarrow\langle x\rangle \\
+            k                   & \mapsto x^k
+        \end{aligned}
+    \]
+    is well defined and is an isomorphism.
+\end{theorem}
+
+
+
+
+\section{Homomorphisms}  %% Homomorphisms
+
+\subsection{Homomorphisms} %% Homomorphisms
+
+\begin{definition}
+    Let $(G, \cdot)$ and $(H, \times)$ be groups. A map $\varphi: G \rightarrow H$ such that
+    \begin{equation*}
+        \varphi(x \cdot y)=\varphi(x) \times \varphi(y), \quad \text { for all } x, y \in G
+    \end{equation*}
+    is called a \textbf{group homomorphism}.
+
+    If $f$ is injective as a map of sets, $f$ is said to be a \textbf{monomorphism}.
+    If $f$ is surjective, $f$ is
+    called an \textbf{epimorphism}.
+    If $f$ is bijective, $f$ is called an \textbf{isomorphism}.
+    In this case $G$ and $H$
+    are said to be \textbf{isomorphic} (written $G \cong H$).
+    A homomorphism $f: G \rightarrow G $ is called an \textbf{endomorphism} of $G$ and an isomorphism $f: G \rightarrow G $ is called an \textbf{automorphism} of $G$.
+\end{definition}
+
+\begin{definition}
+    Let $f$ is a homomorphism $f: G \rightarrow H$.
+    The \textbf{kernel} of homomorphism $f$ is the set
+    \begin{equation*}
+        \left\{ g \in G \mid f(g)= e \right\}
+    \end{equation*}
+    and will be denoted by $\Ker f$.
+\end{definition}
+\begin{theorem}
+    Let $f: G \rightarrow H$ be a homomorphism of groups. Then
+
+    (1)
+    $f$ is a monomorphism if and only if $\Ker f=e$;
+
+    (2) $f$ is an isomorphism if and only if there is a homomorphism $f^{-1}: H \rightarrow G$ such that $ff^{-1}=1_{H}$ and $f^{-1} f=1_{G}$.
+\end{theorem}
+
+\begin{proposition}
+    Let $G$ and $H$ be groups and let $\varphi: G \rightarrow H$ be a homomorphism.
+    \begin{enumerate}
+        \item
+              $\varphi\left(1_G\right)=1_H$, where $1_G$ and $1_H$ are the identities of $G$ and $H$, respectively.
+
+        \item
+              $\varphi\left(g^n\right)=\varphi(g)^n$ for all $n \in \mathbb{Z}$.
+
+        \item
+              $\ker\varphi \unlhd G$.
+
+        \item
+              $\Im (\varphi)$ is a subgroup of $H$.
+    \end{enumerate}
+\end{proposition}
+
+\subsubsection{Natural Projection}
+\begin{definition}
+    Let $N \unlhd G$. The homomorphism
+    \[
+        \pi: G \rightarrow G / N
+    \] defined by
+    \[
+        \pi(g)
+        =
+        g N
+        =
+        Ng
+    \]
+    is called the \textbf{natural projection} (homomorphism) of $G$ onto $G / N$. If $\bar{H} \leq G / N$ is a subgroup of $G / N$, the \textbf{complete preimage} of $\bar{H}$ in $G$ is the preimage of $\bar{H}$ under the natural projection homomorphism.
+\end{definition}
+\begin{theorem}
+    A subgroup $N$ of the group $G$ is normal if and only if it is the kernel of some homomorphism.
+\end{theorem}
+
+
+\subsection{Isomorphism Theorem}
+
+\begin{theorem}[The First Isomorphism Theorem]
+    If $\varphi: G \rightarrow H$ is a homomorphism of groups,then
+    \begin{equation*}
+        G / \operatorname{ker} \varphi \cong \varphi(G)
+    \end{equation*}
+    and
+    \begin{equation*}
+        \begin{tikzcd}
+            G \arrow[d, "\pi"'] \arrow[rr, "\varphi"] &  & \varphi (G) \\
+            G/\ker \varphi \arrow[rru]             &  &    \\
+        \end{tikzcd}
+    \end{equation*}
+
+\end{theorem}
+\begin{corollary}
+    Let $\varphi: G \rightarrow H$ be a homomorphism of groups.
+    \begin{enumerate}
+        \item
+              $\varphi$ is injective if and only if $\operatorname{ker} \varphi=1$.
+
+        \item
+              $|G: \operatorname{ker} \varphi|=|\varphi(G)|$.
+    \end{enumerate}
+\end{corollary}
+
+
+\begin{proposition}
+    If $H$ and $K$ are subgroups of a group, $H K$ is a subgroup if and only if $H K=K H$.
+\end{proposition}
+\begin{proposition}
+    Let $G$ be a group, let $A$ and $B$ be subgroups of $G$ and assume $A \leq N_G(B) $(particularly, $B \unlhd A$ or $A,B\unlhd G$). Then
+
+    (1) $B \unlhd AB =BA \leq G$
+
+    (2) $A\cap B \unlhd A$
+\end{proposition}
+\begin{theorem}[The Second Isomorphism Theorem]
+    Let $G$ be a group, let $A$ and $B$ be subgroups of $G$ and assume $A \leq N_G(B)$. Then
+    \[
+        AB/B \cong A/ A\cap B
+    \]
+\end{theorem}
+
+
+\begin{theorem}[The Third Isomorphism Theorem]
+    Let $G$ be a group and $H \unlhd G$. Then for each $H\leq K \unlhd G$ we have $K / H \unlhd G / H$ and
+    \begin{equation*}
+        (G / H) /(K / H) \cong G / K
+    \end{equation*}
+    If we denote the quotient by $H$ with a bar, this can be written
+    \begin{equation*}
+        \bar{G }/ \bar{K} \cong G / K
+    \end{equation*}
+
+\end{theorem}
+
+\begin{theorem}[The Fourth or Lattice Isomorphism Theorem]
+    Let $G$ be a group and let $N$ be a normal subgroup of $G$. Then there is a bijection from the set $\mathcal{U}=\left\{H: N<H<G\right\}$ onto the set $\mathcal{V}=\left\{\bar{H}:\bar{H}<\bar{G}\right\}$.
+    This bijection has the following properties: for all $A, B \leq G$ with $N \leq A$ and $N \leq B$
+    \begin{enumerate}
+        \item
+              $A \leq B$ if and only if $\bar{A} \leq \bar{B}$,
+
+        \item
+              if $A \leq B$, then $|B: A|=|\bar{B}: \bar{A}|$,
+
+        \item
+              $\overline{\langle A, B\rangle}=\langle\bar{A}, \bar{B}\rangle$,
+        \item
+              $\overline{A \cap B}=\bar{A} \cap \bar{B}$
+        \item
+              $A \unlhd G$ if and only if $\bar{A} \unlhd \bar{G}$.
+    \end{enumerate}
+\end{theorem}
+
+\subsection{Automorphism}
+\begin{definition}
+    Let $G$ be a group. An isomorphism from $G$ onto itself is called an \textbf{automorphism} of $G$. The set of all automorphisms of $G$ is denoted by $\operatorname{Aut}(G)$.
+
+    $\operatorname{Aut}(G)$ is a subgroup of $S_G$.
+\end{definition}
+
+\begin{proposition}
+    Let $H$ be a normal subgroup of the group $G$. Then $G$ acts by conjugation on $H$ as automorphisms of $H$
+    \[
+        \sigma_g : h \mapsto g h g^{-1} \quad \text { for each } h \in H
+    \]
+    For each $g \in G$, conjugation by $g$ is an automorphism of $H$.
+
+    The permutation representation $\sigma : g\mapsto \sigma_g$ afforded by this action is a homomorphism of $G$ into $\operatorname{Aut}(H)$ with kernel $C_G(H)$ that
+    \[
+        G/C_G(H)\cong \sigma(G) \leq {Aut}(H)
+    \]
+    In particular, $G / C_G(H)$ is isomorphic to a subgroup of $\operatorname{Aut}(H)$.
+\end{proposition}
+
+\begin{corollary}
+    If $K$ is any subgroup of the group $G$ and $g \in G$, then $K \cong g K g^{-1}$. Conjugate elements and conjugate subgroups have the same order.
+\end{corollary}
+
+\begin{corollary}
+    For $H \leq G$, the quotient group $N_G(H) / C_G(H)$ is isomorphic to a subgroup of $\operatorname{Aut}(H)$. (Observe that $H\unlhd N_G(H) = G'$ and $C_{G'}(H)= C_G(H)$)
+
+    In particular, $G / Z(G)$ is isomorphic to a subgroup of $\operatorname{Aut}(G)$.
+\end{corollary}
+\begin{definition}
+    Let $G$ be a group and let $g \in G$. Conjugation by $g$ is called an \textbf{inner automorphism} of $G$ and the subgroup of $\operatorname{Aut}(G)$ consisting of all inner automorphisms is denoted by $\operatorname{Inn}(G)$.
+    \begin{equation*}
+        G/Z(G) \cong {Inn}(G) \leq {\Aut}(H)
+    \end{equation*}
+\end{definition}
+
+\begin{definition}
+    A subgroup $H$ of a group $G$ is called \textbf{characteristic} in $G$, denoted $H$ char $G$, if every automorphism of $G$ maps $H$ to itself, i.e., $\sigma(H)=H$ for all $\sigma \in \operatorname{Aut}(G)$.
+\end{definition}
+
+
+\chapter{Group Action} % Group Action
+\minitoc
+
+\section{Basic Definition}
+
+\begin{definition}
+    A \textbf{group action} of a group $G$ on a set $X$ is a map from $G \times X$ to $X$ (written as $g \cdot x$, for all $g \in G$ and $x \in X$ ) satisfying the following properties:
+    \begin{enumerate}[label=(\roman*)]
+        \item $g_1 \cdot\left(g_2 \cdot x\right)=\left(g_1 g_2\right) \cdot x$, for all $g_1, g_2 \in G, x \in X$
+
+        \item  $e \cdot x=x$ for all $x \in X$.
+    \end{enumerate}
+    If $G$ acts on a set $X$ and distinct elements of $X$ induce distinct permutations of $X$, the action is said to be \textbf{faithful}.
+
+    The \textbf{kernel of the action} of $G$ on $X$ is defined as
+    \begin{equation*}
+        \left\{g \in G : g \cdot x=x, \text { for all } x \in X\right\}
+    \end{equation*}
+\end{definition}
+
+\begin{proposition}
+    \label{proposition: Permutation representation associated to the action}
+    Let $G$ acts on $X$, then
+    \begin{enumerate}
+        \item
+              for each fixed $g \in G$
+              \begin{equation*}
+                  \sigma_g : x\mapsto g\cdot x
+              \end{equation*}
+              is a permutation of $X$.
+
+        \item  the map
+              \begin{equation*}
+                  \sigma : G \rightarrow \mathfrak{S}_X \quad \text{provided that } g \mapsto \sigma_g
+              \end{equation*}
+              is a homomorphism called the \textbf{permutation
+                  representation associated to the action}.
+
+        \item Conversely, if $\varphi: G \rightarrow \mathfrak{S}_X$ is any homomorphism, then the map from $G \times X$ to $X$ defined by
+              \begin{equation*}
+                  g \cdot a=\varphi(g)(a) \quad \text { for all } g \in G, \text { and all } x \in X
+              \end{equation*}
+              satisfies the properties of a group action of $G$ on $X$.
+
+        \item  Thus the action of $G$ on $X$ and  $\Hom\left(G,\mathfrak{S}_X\right)$ are in bijective correspondence.
+              And the kernel of an action of the group $G$ on the set $X$ is the same as the kernel of the corresponding permutation representation $\sigma : G \rightarrow \mathfrak{S}_X$.
+    \end{enumerate}
+
+
+\end{proposition}
+
+
+\begin{corollary}
+    \label{corollary: The faithness of action}
+    Let $G$ acts on $X$, then
+
+    \begin{enumerate}
+        \item
+              the action is faithful if and only if the associated permutation representation is injective.
+
+        \item
+              the action is faithful if and only if the kerel of the action is $\{e\}$
+
+        \item
+              if $G$ be a group acting on $X$ and $K$ be the kernel of the action, then $G/K$ acts on $X$ by
+              \begin{equation*}
+                  (g+K)\cdot x= g\cdot x
+              \end{equation*}
+              faithfully
+    \end{enumerate}
+\end{corollary}
+
+
+\subsection{Orbits and Stabilizer} % Orbits and Stabilizer
+\begin{definition}
+    Let $G$ be a group acting on the nonempty set $X$.
+    \begin{enumerate}
+        \item
+              The equivalence class
+              \begin{equation*}
+                  \mathcal{O}_x
+                  =
+                  \{g \cdot x : g \in G\}
+              \end{equation*}
+              is called the \textbf{orbit} of $G$ containing $x$.
+
+        \item
+              If $\left|\mathcal{O}_x\right|=1$, i.e. $g\cdot x =x$ for all $g\in G$, then we call $x$ \textbf{fixed element} of $X$.
+
+        \item
+              The action of $G$ on $X$ is called \textbf{transitive} if there is only one orbit, i.e. given any two elements $x, y \in X$ there is some $g \in G$ such that $y=g \cdot x$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    If $G$ is a group acting on a set $X$ and $x$ is some fixed element of $X$, the \textbf{stabilizer of $x$ in $G$} is the subgroup
+    \begin{equation*}
+        G_x=\{g \in G \mid g \cdot x=x\}
+    \end{equation*}
+\end{definition}
+
+\begin{proposition}
+    Let $G$ act on the set $X$ and $x,y \in X$
+    \begin{enumerate}
+        \item
+              The kernel of the action is
+              $\bigcap_{x\in X} G_x$
+        \item
+              If $ y= g \cdot x$, then $G_y=g G_x g^{-1}$.
+
+        \item
+              Thus if $G$ acts transitively on $X$ then the kernel of the action is
+              \begin{equation*}
+                  \bigcap_{g \in G} g G_x g^{-1}
+              \end{equation*}
+              where $x$ is any element in $X$.
+    \end{enumerate}
+\end{proposition}
+
+
+
+\subsection{The Class Equation} % The Class Equation
+\begin{definition}
+    Let $G$ be a group acts on $X$ and $X'$ respectively. If there exists a one-to-one map $\varphi$ that
+    \[
+        \varphi (g\cdot x)
+        =
+        g\cdot \varphi(x)
+    \]
+    for all $g\in G$ and $x\in X$. We say the two action are \textbf{equivalent}.
+\end{definition}
+\begin{theorem}
+    Let $G$ be a group acting on the nonempty set $X$, $x\in X$. Then the action on $\left\{gG_x:g\in G\right\}$ by left multiplication and the action of $G$ on $\mathcal{O}_x$ are equivalent.
+    \begin{proof}
+        We define
+        \begin{equation*}
+            \psi:
+            \left\{gG_x:g\in G\right\}\longrightarrow \mathcal{O}_x \text{  given that  } gG_x \mapsto g \cdot x
+        \end{equation*}
+        Then for any $a\in G$,
+        \begin{equation*}
+            \psi\left(a\cdot gG_x\right)
+            =
+            \psi\left(agG_x\right)
+            =
+            ag\cdot x
+            =
+            a\cdot \left(g\cdot x\right)
+            =
+            a\cdot \psi\left(G_x\right)
+        \end{equation*}
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}[The Class Equation]
+    \label{cor: The class equation}
+    Let $G$ be group acting on a finite $X$. Then
+    \begin{enumerate}
+        \item
+              The number of elements in the orbit of $x\in G$ is
+              \begin{equation*}
+                  \#\mathcal{O}_x
+                  =
+                  \left[G:G_x\right]
+              \end{equation*}
+
+        \item
+              let $x_1, x_2, \ldots, x_r$ be representatives of the distinct orbit of $X$, we have partition
+              \begin{equation*}
+                  X
+                  =
+                  \bigsqcup \mathcal{O}_{x_1}
+              \end{equation*}
+              Furthermore,
+              \begin{equation*}
+                  \# X
+                  =
+                  \sum_{i=1}^r [G:G_x]
+              \end{equation*}
+    \end{enumerate}
+\end{corollary}
+
+
+\section{Group Actions by Left multiplication}
+
+\subsection{Left regular action} % Left regular action
+\begin{definition}
+    Let $G$ be any group and acts on itself defined by
+    \begin{equation*}
+        g\cdot x =gx
+    \end{equation*}
+    for each $g \in G$ and $x \in G$.
+    This action is called the \textbf{left regular action} of $G$ on itself. Associated to the left regular action, the homomorphism
+    \[
+        \varphi: G \rightarrow {\Aut}(G)
+    \]
+    defined by
+    \[
+        g\rightarrow \sigma_g
+    \]
+    is called \textbf{left regular representation}.
+\end{definition}
+
+\begin{corollary}[Cayley's Theorem]
+    Every group is isomorphic to a subgroup of some symmetric group. If $G$ is a group of order $n$, then $G$ is isomorphic to a subgroup of $S_n$.
+\end{corollary}
+
+\subsection{$G$ acts on (left) coset space by (left) multiplication}
+\begin{theorem}
+    \label{thm: $G$ act on the set $X$ of left cosets of $H$ in $G$ by left multiplication}
+    Let $G$ be a group, $H$ be a subgroup of $G$. If $G$ act on the set $X=\left\{xH: x\in G\right\}$ by left multiplication. Then
+    \begin{enumerate}
+        \item
+              $G$ acts transitively on $X$
+
+        \item
+              The stabilizer of $xH \in X$ is the subgroup $xHx^{-1}$
+
+        \item
+              the kernel of the action $\pi_H$ is
+              \begin{equation*}
+                  \bigcap_{x\in G} G_{xH}
+                  =
+                  \bigcap_{x \in G} x H x^{-1}
+              \end{equation*}
+              thus $\Ker \pi_H$ is the largest normal subgroup of $G$ contained in $H$.
+
+        \item
+              The set of all fixed elements in $X$ is
+              \begin{equation*}
+                  \left\{xH:xHx^{-1}=H\right\}
+                  =
+                  \left\{xH:x\in N_G(H)\right\}
+              \end{equation*}
+              Thus the number of all distinct fixed elements are
+              \begin{equation*}
+                  \#\left\{xH:x\in N_G(H)\right\}
+                  =
+                  \left[N_G(H):H\right]
+              \end{equation*}
+    \end{enumerate}
+\end{theorem}
+\begin{corollary}
+    If $H$ is a subgroup of index $n$ in a group G and no nontrivial normal subgroup of $G$ is contained in $H$, then $G$ is isomorphic to a subgroup of $\mathfrak{S}_n$.
+\end{corollary}
+\begin{corollary}
+    If $H$ is a subgroup of a finite group $G$ of index $p$, where $p$ is the smallest prime dividing $\left|G\right|$, then $H$ is normal in $G$.
+    \begin{proof}
+        Let $X$ be the set of all left cosets of $H$ in $G$ and $\pi_H:G\rightarrow X$ be the associated permutation representation.
+        By
+        \ref{thm: $G$ act on the set $X$ of left cosets of $H$ in $G$ by left multiplication}, $\Ker \pi_H$ is normal in $G$ and contained in $H$.
+        Furthermore $G / \Ker \pi_H$ is isomorphic to a subgroup of $\mathfrak{S}_X\cong \mathfrak{S}_p$ by \ref{corollary: The faithness of action} and \ref{cor: Cayley theorem for group action}.
+        Hence
+        $|G / \Ker \pi_H|
+            =\left[H:\Ker\pi_H\right]
+            \left[ G :H \right]$ divides $p!$, we must have
+        $\left[H:\Ker\pi_H\right]=1$ since $\left[H:\Ker\pi_H\right]$ divide $\left| G \right|$ and the minimality of $p$.
+        Thus $H=\Ker\pi_H$ is normal in $G$.
+    \end{proof}
+\end{corollary}
+
+
+
+
+
+\section{Group Actions by Conjugation}
+\subsection{$G$ acts on itself by conjugation}
+\begin{definition}
+    Suppose $G$ is any group and we  consider $G$ acting on itself by conjugation:
+    \begin{equation*}
+        g \cdot a=g a g^{-1} \quad \text { for all } g \in G, a \in G
+    \end{equation*}
+    Two elements $a$ and $b$ of $G$ are said to be \textbf{conjugate} in $G$ if there is some $g \in G$ such that $b=gag^{-1}$.
+    The orbits of $G$ acting on itself by conjugation are called the \textbf{conjugacy classes of $G$}.
+\end{definition}
+
+\begin{proposition}
+    Let $G$ be a finite group and act on itself by conjugation.
+    \begin{enumerate}
+        \item
+              For each $g\in G$, conjugation by g induces an automorphism of $G$.
+              \begin{equation*}
+                  \sigma_g:x\mapsto gxg^{-1}
+              \end{equation*}
+              Thus there is a homomorphism $\sigma:G \rightarrow \Aut G $ whose kernel is $C(G)=\{g \in G \mid gx=xg \text{ for all } x \in G\}$.
+              The automorphism $\sigma_g$ is called the \textbf{inner automorphism} induced by $g$.
+
+        \item
+              The stabilizer of $s \in G$ is
+              \begin{equation*}
+                  G_s
+                  =
+                  \left\{g \in G : g\cdot s = g s g^{-1}
+                  =
+                  s\right\}
+                  =
+                  C_G(s)
+              \end{equation*}
+              is the centralizer of $s$ in $G$.
+
+        \item
+              \begin{equation*}
+                  \# \mathcal{O}_s =\left[G:C_G\left(s\right)\right]
+              \end{equation*}
+
+        \item
+              Let $g_1, g_2, \ldots, g_r$ be representatives of the distinct conjugacy classes of $G$ not contained in the center $Z(G)$ of $G$. Then
+              \begin{equation*}
+                  |G|
+                  =
+                  |Z(G)|+\sum_{i=1}^r\left[G: C_G\left(g_i\right)\right]
+              \end{equation*}
+    \end{enumerate}
+\end{proposition}
+
+\subsection{$G$ acts on $\mathcal{P}(G)$ by conjugation} % $G$ acts on $\mathcal{P}(G)$ by conjugation
+\begin{definition}
+    A group $G$ acts on the set $\mathcal{P}(G)$ of all subsets of itself by defining
+    \begin{equation*}
+        g \cdot S=g S g^{-1}
+    \end{equation*}
+    for any $g \in G$ and $S \in \mathcal{P}(G)$.
+    Two subsets $S$ and $T$ of $G$ are said to be \textbf{conjugate} in $G$ if there is some $g \in G$ such that $T=g S g^{-1}$.
+\end{definition}
+
+\begin{proposition}
+    For action by conjugation,
+    \begin{enumerate}
+        \item
+              The stabilizer $G_S$ of $S$
+              \begin{equation*}
+                  G_S=\left\{g \in G : g\cdot S = g S g^{-1}=S\right\}=N_G(S)
+              \end{equation*}
+
+              is the normalizer of $S$ in $G$.
+
+        \item
+              The number of conjugates of a subset $S$ in a group $G$ is the index of the normalizer of $S$, that is, $ \# \mathcal{O}_S=\left[G: N_G(S)\right]$.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+\begin{corollary}
+    If $H$ is any a nontrivial normal subgroup of $G$ then $H \cap Z(G) \neq 1$. In particular, every normal subgroup of order $p$ is contained in the center.
+\end{corollary}
+
+
+
+
+\section{Sylow's Theorem} % Sylow's Theorem
+\begin{definition}
+    Let $G$ be a group and let $p$ be a prime.
+    \begin{enumerate}
+        \item
+              A group of order $p^\alpha$ for some $\alpha \geq 1$ is called a \textbf{p-group}. Subgroups of $G$ which are $p$-groups are called \textbf{$p$-subgroups}.
+
+        \item
+              If $G$ is a group of order $p^\alpha m$, where $p \nmid m$, then a subgroup of order $p^\alpha$ is called a \textbf{Sylow p-subgroup of $G$}.
+
+        \item
+              The set of Sylow $p$-subgroups of $G$ will be denoted by $S y l_p(G)$ and the number of Sylow $p$-subgroups of $G$ will be denoted by $n_p(G)$.
+    \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+    \label{lem: The number of fixed element in $p$-group action}
+    If a $p$-group $G$ acts on a finite set $X$, then the number of all fixed elements in $X$
+    \begin{equation*}
+        \#\left\{x\in X : \# \mathcal{O}_x=1\right\} \equiv \#X (\bmod p)
+    \end{equation*}
+\end{lemma}
+\begin{corollary}
+    The center $C(G)$ of a nontrivial finite $p$-group $G$ contains more than one element.
+\end{corollary}
+\begin{theorem}[Cauchy]
+    If $G$ is a finite group whose order is divisible by a prime $p$, then $G$ contains an element of order $p$.
+    \begin{proof}(J. H. McKay)
+        It is equivalent that equations $x^p=e$ has at least a solution in $G$.
+        Let $S$ be the set of $p$-tuples of group elements $\left\{\left(a_1, a_2, \ldots, a_p\right) \mid a_i \in G\right.$ and $\left.a_1 a_2 \cdots a_p=e\right\}$. Since $a_p$ is uniquely determined as $\left(a_1 a_2 \cdots a_{p-1}\right)^{-1}$, it follows that $|S|=n^{p-1}$, where $|G|=n$. Since $p|n,|S| \equiv 0(\bmod p)$.
+
+        Let the group $\mathbb{Z}_p$ act on $S$ by cyclic permutation; that is, for $k \in \mathbb{Z}_p$,
+        \begin{equation*}
+            k\left(a_1, a_2, \ldots, a_p\right)
+            =
+            \left(a_{k+1}, a_{k+2}, \ldots, a_p, a_1, \ldots, a_k\right)
+        \end{equation*}
+        Verify that $\left(a_{k+1}, a_{k+2}, \ldots, a_k\right) \in S$; for $0, k, k^{\prime} \in \mathbb{Z}_p$ and $x \in S, 0 x=x$ and $\left(k+k^{\prime}\right) x=k\left(k^{\prime} x\right)$.
+        Therefore the action of $\mathbb{Z}_p$ on $S$ is well defined.
+
+        Now $\left(a_1, \ldots, a_p\right) \in S_0$ if and only if $a_1=a_2=\cdots=a_p$; clearly $(e, e, \ldots, e) \in S_0$ and hence $\left|S_0\right| \neq 0$. By \ref{lem: The number of fixed element in $p$-group action}, $0 \equiv|S| \equiv\left|S_0\right|(\bmod p)$. Since $\left|S_0\right| \neq 0$ there must be at least $p$ elements in $S_0$; that is, there is $a \neq e$ such that $(a, a, \ldots, a) \in S_0$ and hence $a^p=e$. Since $p$ is prime, $|a|=p$.
+    \end{proof}
+\end{theorem}
+\begin{corollary}
+    A finite group $G$ is a $p$-group if and only if every element has a order of $p$.
+\end{corollary}
+
+\begin{lemma}
+    If $H$ is a $p$ -subgroup of a finite group $G$ , then $\left[N_G(H): H\right] \equiv[G: H](\bmod p)$.
+    \begin{proof}
+        Consider $G$ acts on $X=\left\{xH\right\}$ by left multiplication.
+        It follows from \ref{thm: $G$ act on the set $X$ of left cosets of $H$ in $G$ by left multiplication} and \ref{lem: The number of fixed element in $p$-group action} that
+        \begin{equation*}
+            \left[N_G(H):H\right]
+            =
+            \# \left\{xH: \#\mathcal{O}_{xH}=1\right\}
+            \equiv
+            \# X
+            =
+            \left[G:H\right]
+            (\bmod p)
+        \end{equation*}
+
+    \end{proof}
+\end{lemma}
+\begin{corollary}
+    If $H$ is $p$-subgroup of a finite group $G$ such that $p$ divides $[G: H]$, then $N_{G}(H) \neq H$.
+\end{corollary}
+\begin{theorem}[First Sylow Theorem]
+    Let $G$ be a group of order $p^{n} m$, with $n \geq 1, p$ prime, and $(p, m)=1$. Then $G$ contains a subgroup of order $p^{i}$ for each $1 \leq i \leq n$ and every subgroup of G of order $p^{i}(i<n)$ is normal in some subgroup of order $p^{i+1}$.
+    \begin{proof}
+        Since $p||G|, G$ contains an element $a$, and therefore, a subgroup $\langle a\rangle$ of order $p$ by Cauchy's Theorem.
+        Proceeding by induction assume $H$ is a subgroup of $G$ of order $p^i(1 \leq i<n)$. Then $p \mid[G: H]$ and by Lemma 5.5 and Corollary $5.6 H$ is normal in $N_G(H), H \neq N_G(H)$ and $1<\left|N_G(H) / H\right|=\left[N_G(H): H\right] \equiv[G: H] \equiv 0$ $(\bmod p)$. Hence $p\left|\left|N_G(H) / H\right|\right.$ and $N_G(H) / H$ contains a subgroup of order $p$ as above.
+        By \ref{thm: The Fourth or Lattice Isomorphism Theorem of Modules} this group is of the form $H_1 / H$ where $H_1$ is a subgroup of $N_G(H)$ containing $H$. Since $H$ is normal in $N_G(H), H$ is necessarily normal in $H_1$. Finally $\left|H_1\right|=|H|\left|H_1 / H\right|=p^i p=p^{i+1}$.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    \label{cor: Corollary of first Sylow theorem}
+    Let $G$ be a group of order $p^n m$ with $p$ prime, $n \geq 1$ and  $(m,p)=1$.
+
+    (1) $H$ is a Sylow $p$-subgroup of $G$ if and only if $H$ is a maximal $p$-subgroup of $G$.
+
+    (2)
+    Every conjugate of a Sylow $p$-subgroup is a Sylow $p$-subgroup.
+
+    (3) If there is only one Sylow $p$-subgroup $P$, then $P$ is normal in $G$ .
+\end{corollary}
+
+\begin{theorem}[Second Sylow theorem]
+    \label{thm: Second Sylow theorem}
+    If $H$ is a $p$-subgroup of a finite group $G$, and $P$ is any Sylow $p$ -subgroup of $G$, then there exists $x \in G$ such that $H<xPx^{-1}$.
+    In particular, any two Sylow $p$ -subgroups of $G$ are conjugate.
+    \begin{proof}
+        Let $X$ be the set of left cosets of $P$ in $G$ and let $H$ act on $X$ by (left) translation.
+        \begin{equation*}
+            \# X_0
+            \equiv
+            \# X
+            =
+            [G: P](\bmod p)
+        \end{equation*}
+        by \ref{lem: The number of fixed element in $p$-group action}.
+        But $p \nmid[G: P]$; therefore $\# X_0 \neq 0$ and there exists $x P \in X_0$, that is,  the stabilizer of $xP$ in $H$
+        \begin{equation*}
+            H_{xP}
+            =
+            xPx^{-1}
+            \cap H
+            =
+            H
+        \end{equation*}
+        by \ref{thm: $G$ act on the set $X$ of left cosets of $H$ in $G$ by left multiplication} and \ref{cor: The class equation}. Thus $H < xPx^{-1}$.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[Third Sylow Theorem]
+    If $G$ is a finite group and $p$ a prime, then the number of Sylow $p$-subgroups of $G$, $n_p=\left[G:N_G(P)\right]$ divides $\left|G\right|$ and $n_p\equiv 1 \left(\bmod p\right)$.
+    \begin{proof}
+        (1)
+        By the second Sylow Theorem the number of Sylow $p$-subgroups is the number of conjugates of any one of them, say $P$. But this number is $\left[G: N_G(P)\right]$, a divisor of $|G|$.
+
+        (2)
+        Let $X$ be the set of all Sylow $p$-subgroups of $G$ and let $P$ act on $X$ by conjugation.
+        Then the set of all fixed elements in $X$
+        \begin{equation*}
+            X_0
+            =
+            \left\{Q: gQg^{-1}=Q \text{ for all } g \in P\right\}
+            =
+            \left\{Q: P <N_G (Q)\right\}
+        \end{equation*}
+        Both $P$ and $Q$ are Sylow $p$-subgroups of $G$ and hence of $N_G(Q)$ and are therefore conjugate in $N_G(Q)$. But since $Q$ is normal in $N_G(Q)$, this can only occur if $Q=P$ by \ref{thm: Second Sylow theorem}.
+        Therefore, $X_0=\{P\}$ and by \ref{lem: The number of fixed element in $p$-group action}, $n_p=\# X \equiv\# X_0=1(\bmod p)$.
+    \end{proof}
+\end{theorem}
+\begin{corollary}
+    If $P$ is a Sylow $p$-subgroup of a finite group $G$, then $N_{G}\left(N_{G}(P)\right)$ $=N_{G}(P)$.
+    \begin{proof}
+        Every conjugate of $P$ is a Sylow $p$-subgroup of $G$ and of any subgroup of $G$ that contains it. Since $P$ is normal in $N=N_G(P), P$ is the only Sylow $p$-subgroup of $N$ by \ref{cor: Corollary of first Sylow theorem}. Therefore,
+        \begin{equation*}
+            x \in N_G(N) \Rightarrow x N x^{-1}=N \Rightarrow x P x^{-1}<N \Rightarrow x P x^{-1}=P \Rightarrow x \in N .
+        \end{equation*}
+        Hence $N_G\left(N_G(P)\right)<N$; the other inclusion is obvious.
+    \end{proof}
+\end{corollary}
+
+
+
+
+
+\subsection{}
+
+\begin{lemma}
+    Lemma 19. Let $P \in S y l_p(G)$. If $Q$ is any $p$-subgroup of $G$, then $Q \cap N_G(P)=Q \cap P$.
+    \begin{proof}
+        Let $H=N_G(P) \cap Q$. Since $P \leq N_G(P)$ it is clear that $P \cap Q \leq H$, so we must prove the reverse inclusion. Since by definition $H \leq Q$, this is equivalent to showing $H \leq P$. We do this by demonstrating that $P H$ is a $p$-subgroup of $G$ containing both $P$ and $H$; but $P$ is a $p$-subgroup of $G$ of largest possible order, so we must have $P H=P$, i.e., $H \leq P$.
+
+        Since $H \leq N_G(P)$, by Corollary 15 in Section 3.2, $P H$ is a subgroup. By Proposition 13 in the same section
+        \begin{equation*}
+            |P H|=\frac{|P||H|}{|P \cap H|} .
+        \end{equation*}
+
+        All the numbers in the above quotient are powers of $p$, so $P H$ is a $p$-group. Moreover, $P$ is a subgroup of $P H$ so the order of $P H$ is divisible by $p^\alpha$, the largest power of $p$ which divides $|G|$. These two facts force $|P H|=p^\alpha=|P|$. This in turn implies $P=P H$ and $H \leq P$. This establishes the lemma.
+    \end{proof}
+\end{lemma}
+\begin{corollary}
+    Let $P$ be a Sylow $p$-subgroup of $G$. Then the following are equivalent:
+
+    (1) $P$ is the unique Sylow $p$-subgroup of $G$, i.e., $n_p=1$
+
+    (2) $P$ is normal in $G$
+
+    (3) $P$ is characteristic in $G$
+
+    (4) All subgroups generated by elements of $p$-power order are $p$-groups, i.e., if $X$ is any subset of $G$ such that $|x|$ is a power of $p$ for all $x \in X$, then $\langle X\rangle$ is a $p$-group.
+\end{corollary}
+\begin{definition}
+    A \textbf{maximal subgroup} of a group $G$ is a proper subgroup $M$ of $G$ such that there are no subgroups $H$ of $G$ with $M<H<G$.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Symmetric Group}
+
+\section{Basic Definition}
+\begin{definition}
+    Let $\Omega$ be any nonempty set and let $S_{\Omega}$ be the set of all bijections from $\Omega$ to itself (i.e., the set of all permutations of $\Omega$ ).
+
+    The set $S_{\Omega}$ is a group under function composition: o. Note that $\circ$ is a binary operation on $S_{\Omega}$ since if $\sigma: \Omega \rightarrow \Omega$ and $\tau: \Omega \rightarrow \Omega$ are both bijections, then $\sigma \circ \tau$ is also a bijection from $\Omega$ to $\Omega$. Since function composition is associative in general, o is associative. The identity of $S_{\Omega}$ is the permutation 1 defined by $1(a)=a$, for all $a \in \Omega$. For every permutation $\sigma$ there is a ( 2 -sided) inverse function, $\sigma^{-1}: \Omega \rightarrow \Omega$ satisf ying $\sigma \circ \sigma^{-1}=\sigma^{-1} \circ \sigma=1$. Thus, all the group axioms hold for ( $S_{\Omega}, \circ$ ). This group is called the \textbf{symmetric group} on the set $\Omega$.
+
+    In the special case when $\Omega=\{1,2,3, \ldots, n\}$, the symmetric group on $\Omega$ is denoted $S_n$
+
+    A \textbf{cycle} is a string of integers which represents the element of $S_n$ which cyclically permutes these integers and fixes all other integers. The cycle $\left(a_1 a_2 \ldots a_m\right)$ is the permutation which sends $a_i$ to $a_{i+1}, 1 \leq i \leq m-1$ and sends $a_m$ to $a_1$.
+
+    We can represent this description of $\sigma$ by \textbf{cycle decomposition}.
+
+    The length of a cycle is the number of integers which appear in it. A cycle of length $t$ is called a \textbf{t-cycle}.
+    A 2-cycle is called a \textbf{transposition}.
+    \[
+        \left(a_1 a_2 \ldots a_m\right)=\left(a_1 a_m\right)\left(a_1 a_{m-1}\right)\left(a_1 a_{m-2}\right) \ldots\left(a_1 a_2\right)
+    \]
+
+    Two cycles are called disjoint if they have no numbers in common.
+\end{definition}
+\begin{proposition}
+    The order of an element in $S_n$ equals the least common multiple of the lengths
+    of the cycles in its cycle decomposition.
+\end{proposition}
+\begin{proposition}
+    Let $\sigma, \tau$ be elements of the symmetric group $S_n$ and
+
+    (1) suppose $\sigma$ has cycle decomposition
+    \[
+        \left(a_1 a_2 \ldots a_{k_1}\right)\left(b_1 b_2 \ldots b_{k_2}\right) \ldots
+    \]
+    Then $\tau \sigma \tau^{-1}$ has cycle decomposition
+    \[
+        \left(\tau\left(a_1\right) \tau\left(a_2\right) \ldots \tau\left(a_{k_1}\right)\right)\left(\tau\left(b_1\right) \tau\left(b_2\right) \ldots \tau\left(b_{k_2}\right)\right) \ldots,
+    \]
+
+    (2) Suppose $\sigma$ has the form
+    \[
+        \left(\begin{matrix}
+                1   & 2   & \cdots & n   \\
+                a_1 & a_2 & \cdots & a_n \\
+            \end{matrix}\right)
+    \]
+    then $\tau \sigma \tau^{-1}$ is
+    \[
+        \left(\begin{matrix}
+                \tau(1)   & \tau(2)   & \cdots & \tau(n)   \\
+                \tau(a_1) & \tau(a_2) & \cdots & \tau(a_n) \\
+            \end{matrix}\right)
+    \]
+\end{proposition}
+\begin{definition}
+    (1) If $\sigma \in S_n$ is the product of disjoint cycles of lengths $n_1, n_2, \ldots, n_r$ with $n_1 \leq n_2 \leq \cdots \leq n_r$ (including its 1-cycles) then the integers $n_1, n_2, \ldots, n_r$ are called the \textbf{cycle type} of $\sigma$.
+
+    (2) If $n \in \mathbb{Z}^{+}$, a partition of $n$ is any nondecreasing sequence of positive integers whose sum is $n$.
+\end{definition}
+\begin{proposition}
+    Two elements of $S_n$ are conjugate in $S_n$ if and only if they have the same cycle type. The number of conjugacy classes of $S_n$ equals the number of partitions of $n$.
+\end{proposition}
+
+
+\section{The Alternating Group}
+\begin{definition}
+    Let $x_1, \ldots, x_n$ be independent variables and let $\Delta$ be the polynomial
+    \[
+        \Delta=\prod_{1 \leq i<j \leq n}\left(x_i-x_j\right)
+    \]
+    For each $\sigma \in S_n$ let $\sigma$ act on $\Delta$ by permuting the variables in the same way it permutes their indices:
+    \[
+        \sigma(\Delta)=\prod_{1 \leq i<j \leq n}\left(x_{\sigma(i)}-x_{\sigma(j)}\right)
+    \]
+    or each $\sigma \in S_n$ let
+    \[
+        \in(\sigma)= \begin{cases}+1, & \text { if } \sigma(\Delta)=\Delta \\ -1, & \text { if } \sigma(\Delta)=-\Delta\end{cases}
+    \]
+    Then
+
+    (1) $\in(\sigma)$ is called the sign of $\sigma$.
+
+    (2) $\sigma$ is called an \textbf{even permutation} if $\in(\sigma)=1$ and an \textbf{odd permutation} if $\in(\sigma)=-1$
+\end{definition}
+
+\begin{proposition}
+    (1) The map $\in: S_n \rightarrow\{ \pm 1\}$ is a homomorphism.
+
+    (2) Transpositions are all odd permutations and $\epsilon$ is a surjective homomorphism.
+
+    (3) An $m$-cycle is an odd permutation if and only if $m$ is even.
+
+    (4) The permutation $\sigma$ is odd if and only if the number of cycles of even length in its cycle decomposition is odd.
+\end{proposition}
+
+
+
+\begin{definition}
+    \textbf{The alternating group of degree $n$}, denoted by $A_n$, is the kernel of the homomorphism $\epsilon$ (i.e., the set of even permutations).
+\end{definition}
+
+
+
+

@@ -1,0 +1,1038 @@
+\chapter{Manifolds}
+
+\section{Manifolds} % Manifolds
+
+\subsection{Topological Manifolds}  % Topological Manifolds
+\begin{definition}
+    Suppose $M$ is a topological space. We say that $M$ is a \textbf{topological manifold} of dimension $n$ or a topological n-manifold if it has the following properties:
+    \begin{enumerate}[label=(\roman*)]
+        \item $M$ is a Hausdorff space
+        \item $M$ is second-countable
+        \item $M$ is locally Euclidean of dimension $n$: each point $p$ of $M$ has a neighborhood $U$ that is homeomorphic to an open subset $\widehat{U}$ of $\mathbb{R}^n$. $\left(U,\varphi\right)$ called \textbf{coordinate chart}.
+    \end{enumerate}
+    Given a chart $(U, \varphi)$, we call the set $U$ a \textbf{coordinate domain}, and $\varphi$ is called a \textbf{local coordinate map}.
+\end{definition}
+
+
+
+
+
+\subsection{}
+\begin{proposition}
+    Suppose $M$ is a topological manifold, then
+
+    (1) $M$ is local compact
+
+    (2) $M$ is connected
+
+    (4) $M$ is path-connected
+
+    (5) $M$ is Lindelof's : any open
+\end{proposition}
+\begin{definition}
+    Let $M$ be a topological space. A collection $\mathcal{X}$ of subsets of $M$ is said to be \textbf{locally finite} if each point of $M$ has a neighborhood that intersects at most finitely many of the sets in $\mathcal{X}$.
+
+    Given a cover $\mathcal{U}$ of $M$, another cover $\mathcal{V}$ is called a \textbf{refinement} of $\mathcal{U}$ if for each $V \in \mathcal{V}$ there exists some $U \in \mathcal{U}$ such that $V \subseteq U$.
+
+    We say that $M$ is \textbf{paracompact} if every open cover of $M$ admits an open, locally finite refinement.
+\end{definition}
+
+
+
+\begin{theorem}[$\sigma$-compact]
+    A second-countable, locally compact Hausdorff space (thus a manifold) admits an exhaustion by compact sets.
+
+    Proof:
+    Let $X$ be such a space. Because $X$ is a locally compact Hausdorff space, it has a basis of precompact open subsets; since it is second-countable, it is covered by countably many such sets. Let $\left(U_i\right)_{i=1}^{\infty}$ be such a countable cover. Beginning with $K_1=\overline{U}_1$, assume by induction that we have constructed compact sets $K_1, \ldots, K_k$ satisfying $U_j \subseteq K_j$ for each $j$ and $K_{j-1} \subseteq \operatorname{Int} K_j$ for $j \geq 2$. Because $K_k$ is compact, there is some $m_k$ such that $K_k \subseteq U_1 \cup \cdots \cup U_{m_k}$. If we let $K_{k+1}=\overline{U}_1 \cup \cdots \cup \overline{U}_{m_k}$, then $K_{k+1}$ is a compact set whose interior contains $K_k$. Moreover, by increasing $m_k$ if necessary, we may assume that $m_k \geq k+1$, so that $U_{k+1} \subseteq K_{k+1}$. By induction, we obtain the required exhaustion.
+\end{theorem}
+
+\begin{theorem}[Paracompact]
+    Every topological manifold is paracompact. In fact, given a topological manifold $M$, an open cover $\mathcal{X}$ of $M$, and any basis $\mathfrak{B}$ for the topology of $M$, there exists a countable, locally finite open refinement of $\mathcal{X}$ consisting of elements of $\mathcal{B}$.
+
+    Proof:
+    Given $M, \mathcal{X}$, and $\mathcal{B}$ as in the hypothesis of the theorem, let $\left(K_j\right)_{j=1}^{\infty}$ be an exhaustion of $M$ by compact sets (Proposition A.60). For each $j$, let $V_j=K_{j+1} \backslash$ $\operatorname{Int} K_j$ and $W_j=\operatorname{Int} K_{j+2} \backslash K_{j-1}$ (where we interpret $K_j$ as $\varnothing$ if $j<1$ ). Then $V_j$ is a compact set contained in the open subset $W_j$. For each $x \in V_j$, there is some $X_x \in \mathcal{X}$ containing $x$, and because $\mathcal{B}$ is a basis, there exists $B_x \in \mathcal{B}$ such that $x \in B_x \subseteq X_x \cap W_j$. The collection of all such sets $B_x$ as $x$ ranges over $V_j$ is an open cover of $V_j$, and thus has a finite subcover. The union of all such finite subcovers as $j$ ranges over the positive integers is a countable open cover of $M$ that refines $\mathcal{X}$. Because the finite subcover of $V_j$ consists of sets contained in $W_j$, and $W_j \cap W_{j^{\prime}}=\varnothing$ except when $j-2 \leq j^{\prime} \leq j+2$, the resulting cover is locally finite.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Smooth Structures and Smooth Manifolds}
+\begin{definition}
+    Let $M$ be a topological $n$-manifold.
+    \begin{enumerate}
+        \item
+              Two charts $(U, \varphi)$ and $(V, \psi)$ are said to be \textbf{smoothly compatible} if either $U \cap V=\varnothing$ or the two \textbf{transition map}
+              \begin{equation*}
+                  \psi \circ \varphi^{-1}: \varphi(U \cap V) \rightarrow \psi(U \cap V),\quad
+                  \varphi \circ \psi^{-1}: \psi(U \cap V) \rightarrow \varphi(U \cap V)
+              \end{equation*}
+              are $C^\infty$.
+
+        \item
+              We define an \textbf{smooth atlas} $\mathcal{A}$ for $M$ to be a collection of charts $\left\{\left(U_\alpha, \varphi_\alpha\right)\right\}$ whose domains cover $M$ and any two charts in $\mathcal{A}$ are smoothly compatible with each other.
+
+        \item
+              A smooth atlas $\mathcal{A}$ on $M$ is \textbf{maximal} if it is not properly contained in any larger smooth atlas.
+              If $M$ is a topological manifold, a \textbf{smooth structure} on $M$ is a maximal smooth atlas.
+
+              A $C^\infty$ manifold is a pair $(M, \mathcal{A})$, where $M$ is a topological manifold and $\mathcal{A}$ is a \textbf{smooth structure} on $M$.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+    Let $M$ be a topological manifold.
+
+    (1)
+    Every smooth atlas $\mathcal{A}$ for $M$ is contained in a unique maximal smooth atlas $\overline{\mathcal{A}}$, called the \textbf{smooth structure determined by $\mathcal{A}$}. Indeed, $\overline{\mathcal{A}}$ denote the set of all charts that
+    are smoothly compatible with every chart in $\mathcal{A}$.
+
+    (2)
+    Two smooth atlases for $M$ determine the same smooth structure if and only if
+    their union is a smooth atlas.
+    \begin{proof}
+        We only prove (1).
+        Let $\mathcal{A}$ be a smooth atlas for $M$, and let $\overline{\mathcal{A}}$ denote the set of all charts that are smoothly compatible with every chart in $\mathcal{A}$.
+
+        Step 1.
+        To show that $\overline{\mathcal{A}}$ is a smooth atlas.
+        For any $(U, \varphi),(V, \psi) \in \overline{\mathcal{A}}$, let $x=\varphi(p) \in \varphi(U \cap V)$ be arbitrary, then there is some chart $(W, \theta) \in \mathcal{A}$ such that $p \in W$.
+        Since every chart in $\overline{\mathcal{A}}$ is smoothly compatible with $\left(W, \theta\right)$, both of the maps $\theta \circ \varphi^{-1}$ and $\psi \circ \theta^{-1}$ are smooth where they are defined.
+        Since $p \in U \cap V \cap W$, it follows that $\psi \circ \varphi^{-1}=$ $\left(\psi \circ \theta^{-1}\right) \circ\left(\theta \circ \varphi^{-1}\right)$ is smooth on a neighborhood of $x$. Thus, $\psi \circ \varphi^{-1}$ is smooth in a neighborhood of each point in $\varphi(U \cap V)$. Therefore, $\overline{\mathcal{A}}$ is a smooth atlas.
+
+        Step 2.
+        To check that it is maximal, just note that any chart that is smoothly compatible with every chart in $\overline{\mathcal{A}}$ must in particular be smoothly compatible with every chart in $\mathcal{A}$, so it is already in $\overline{\mathcal{A}}$. This proves the existence of a maximal smooth atlas containing $\mathcal{A}$.
+
+        Step 3.
+        Uniqueness.
+        If $\mathcal{B}$ is any other maximal smooth atlas containing $\mathcal{A}$, each of its charts is smoothly compatible with each chart in $\mathcal{A}$, so $\mathcal{B} \subseteq \overline{\mathcal{A}}$. By maximality of $\mathcal{B}, \mathcal{B}=\overline{\mathcal{A}}$.
+    \end{proof}
+\end{proposition}
+
+
+
+\begin{definition}
+    A subset $S$ of a $C^\infty$ manifold $M$ of dimension $n$ is a \textbf{regular submanifold of dimension $s$}
+    if for every $p \in S$ there is a coordinate neighborhood $(U, \varphi)$ of $p$ such that $U \cap S$ is defined by the vanishing of $n-s$ of the coordinate functions.
+    By renumbering the coordinates, we may assume that these $n-k$ coordinate functions are $x^{s+1}, \ldots, x^n$.
+    \begin{equation*}
+        \varphi(U\cap S)
+        =
+        \varphi(U)\cap \left(\mathbb{R}^s \times 0 \right)
+    \end{equation*}
+    Let
+    \begin{equation*}
+        \varphi_S: U \cap S \rightarrow \mathbb{R}^s
+    \end{equation*}
+    be the restriction of the first $k$ components of $\varphi$ to $U \cap S$. Then $\left(U \cap S, \varphi_S\right)$ is a chart for $S$ in the subspace topology.
+\end{definition}
+
+
+
+\subsection{Manifold with Boundary}
+\subsection{Topological Manifold with Boundary}
+\begin{definition}
+    An \textbf{n-dimensional topological manifold with boundary} is a second-countable Hausdorff space $M$ in which every point $p$ has a neighborhood $U$ homeomorphic $\varphi$ to an open subset of $\mathbb{R}^n_+$ .
+    The open subset $U \subseteq M$ together with a map $\varphi: U \rightarrow \mathbb{R}^n_+$ that is a homeomorphism onto an open subset of $\mathbb{R}^n_+$  will be called a \textbf{chart} for $M$.
+
+    We will call $(U, \varphi)$ an \textbf{interior chart} if $\varphi(U)$ is an open subset of $\mathbb{R}^n$, and a \textbf{boundary chart} if $\varphi(U)$ is an open subset of $\mathbb{R}^n_+$ such that $\varphi(U) \cap \partial \mathbb{R}^n_+ \neq \varnothing$.
+
+    A point $p \in M$ is called an \textbf{interior point} of $M$ if it is in the domain of some interior chart. It is a \textbf{boundary point} of $M$ if it is in the domain of a boundary chart that sends $p$ to $\partial \mathbb{R}^n_+$.
+
+    The boundary of $M$ (the set of all its boundary points) is denoted by $\partial M$; similarly, its interior, the set of all its interior points, is denoted by $\operatorname{Int} M$.
+
+
+
+    \textbf{Remark}  $\partial M$ and $\Int M$ are disjoint sets whose union is $M$
+\end{definition}
+
+\begin{proposition}
+    Let $M$ be a topological $n$-manifold with boundary.
+
+    (1) $\Int M$ is an open subset of $M$ and a topological n-manifold without boundary.
+
+    (2) $\partial M$ is a closed subset of $M$ and a topological $(n-1)$-manifold without boundary.
+
+    (3) $M$ is a topological manifold if and only if $\partial M=\varnothing$.
+
+    (4) If $n=0$, then $\partial M=\varnothing$ and $M$ is a $0$ -manifold.
+\end{proposition}
+
+
+\begin{proposition}
+    Let $M$ be a topological manifold with boundary.
+
+    (1) $M$ has a countable basis of precompact coordinate balls and half-balls.
+
+    (2) $M$ is locally compact.
+
+    (3) $M$ is paracompact.
+
+    (4) $M$ is locally path-connected.
+
+    (5) $M$ has countably many components, each of which is an open subset of $M$ and a connected topological manifold with boundary.
+
+    (6) The fundamental group of $M$ is countable.
+\end{proposition}
+
+
+
+\subsection{Smooth Manifold with Boundary}
+\begin{definition}
+    Let $M$ be a topological manifold with boundary. A \textbf{smooth structure} for $M$ is defined to be a maximal smooth atlas $\mathcal{A}$, a collection of charts whose domains cover $M$ and whose transition maps (and their inverses) are smooth.
+    With such a structure, $\left(M,\mathcal{A}\right)$ is called a \textbf{smooth manifold with boundary}.
+
+    Just as for smooth manifolds, if $M$ is a smooth manifold with boundary, any chart in the given smooth atlas is called a smooth chart for $M$.
+
+
+    Recall that a map from an arbitrary subset $A \subseteq \mathbb{R}^n$ to $\mathbb{R}^k$ is said to be smooth if in a neighborhood of each point of $A$ it admits an extension to a smooth map defined on an open subset of $\mathbb{R}^n$.
+
+\end{definition}
+
+
+
+\section{Smooth Maps on a Manifold} % Smooth Maps on a Manifold
+
+\subsection{Smooth Functions on a Manifold} % Smooth Functions on a Manifold
+\begin{definition}
+    Suppose $M$ is a smooth $n$-manifold, $k$ is a nonnegative integer, and $f: M \rightarrow \mathbb{R}^k$ is any function. We say that $f$ is a \textbf{smooth function} if for every $p \in M$, there exists a smooth chart $(U, \varphi)$ for $M$ whose domain contains $p$ and such that the composite function
+    \begin{equation*}
+        f \circ \varphi^{-1} : \varphi(U)\rightarrow
+        \mathbb{R}^k
+    \end{equation*}
+    is smooth on the open subset $\varphi(U) \subseteq \mathbb{R}^n$.
+    The function $f \circ \varphi^{-1}(x)$ is called the \textbf{local coordinate representation} of $f$.
+\end{definition}
+
+\begin{proposition}
+    Let $M$ be a manifold of dimension $n$, and $f: M \rightarrow \mathbb{R}$ a real-valued function on $M$. The following are equivalent:
+    \begin{enumerate}
+        \item
+              The function $f: M \rightarrow \mathbb{R}$ is $C^{\infty}$.
+
+        \item
+              The manifold $M$ has an atlas such that for every chart ( $U, \phi$ ) in the atlas, $f \circ \phi^{-1}: \mathbb{R}^n \supset \phi(U) \rightarrow \mathbb{R}$ is $C^{\infty}$.
+
+        \item
+              For every chart $(V, \psi)$ on $M$, the function $f \circ \psi^{-1}: \mathbb{R}^n \supset \psi(V) \rightarrow \mathbb{R}$ is $C^{\infty}$.
+    \end{enumerate}
+\end{proposition}
+
+
+
+\subsection{Smooth Maps Between Manifolds} % Smooth Maps Between Manifolds
+
+\begin{definition}
+    Let $M, N$ be smooth manifolds, and let $f: M \rightarrow N$ be a continuous map. We say that $f$ is a \textbf{smooth map} if for every $p \in M$, there exist smooth charts $(U, \varphi)$ containing $p$ and $(V, \psi)$ containing $f(p)$ (assume that $f(U) \subseteq V$ without generality) and the composite map
+    \begin{equation*}
+        \tilde{f}=\psi \circ f \circ \varphi^{-1} :\varphi(f^{-1}(V)\cap U)\rightarrow \psi(V)
+    \end{equation*}
+    is smooth. We call $\tilde{f}=\psi \circ f \circ \varphi^{-1}$ the \textbf{coordinate representation
+        of $f$ with respect to the given coordinates}.
+\end{definition}
+
+\begin{proposition}
+    Let $N$ and $M$ be smooth manifolds, and $F: N \rightarrow M$ a continuous map. The following are equivalent:
+    \begin{enumerate}
+        \item
+              The map $F: N \rightarrow M$ is $C^{\infty}$.
+
+        \item
+              There are atlases $\mathfrak{U}$ for $N$ and $\mathfrak{V}$ for $M$ such that for every chart $\left(U, \phi\right)$ in $\mathfrak{U}$ and $(V, \psi)$ in $\mathfrak{V}$, the map
+              \begin{equation*}
+                  \psi \circ F \circ \phi^{-1}: \phi\left(U \cap F^{-1}(V)\right) \rightarrow \mathbb{R}^m
+              \end{equation*}
+              is $C^{\infty}$.
+
+        \item
+              For every chart $\left(U, \phi\right)$ on $N$ and $\left(V, \psi\right)$ on $M$, the map
+              \begin{equation*}
+                  \psi \circ F \circ \phi^{-1}: \phi\left(U \cap F^{-1}(V)\right) \rightarrow \mathbb{R}^m
+              \end{equation*}
+              is $C^{\infty}$.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+\begin{proposition}
+    Let $M, N$, and $P$ be smooth manifolds with or without boundary.
+
+    (1) Every constant map c:M $\rightarrow N$ is smooth.
+
+    (2) The identity map of $M$ is smooth.
+
+    (3) If $U \subseteq M$ is an open submanifold with or without boundary, then the inclusion map $U \hookrightarrow M$ is smooth.
+
+    (4) If $F: M \rightarrow N$ and $G: N \rightarrow P$ are smooth, then so is $G \circ F: M \rightarrow P$.
+\end{proposition}
+
+
+
+
+\subsection{Diffeomorphisms}
+\begin{definition}
+    If $M$ and $N$ are smooth manifolds with or without boundary, a \textbf{diffeomorphism} from $M$ to $N$ is a smooth bijective map $F: M \rightarrow N$ that has a smooth inverse. We say that $M$ and $N$ are \textbf{diffeomorphic} if there exists a diffeomorphism between them. Sometimes this is symbolized by $M \approx N$.
+\end{definition}
+
+\begin{proposition}
+
+    (1) Every composition of diffeomorphisms is a diffeomorphism.
+
+    (2) Every finite product of diffeomorphisms between smooth manifolds is a diffeomorphism.
+
+    (3) Every diffeomorphism is a homeomorphism and an open map.
+
+    (4) The restriction of a diffeomorphism to an open submanifold with or without boundary is a diffeomorphism onto its image.
+
+    (5) "Diffeomorphic" is an equivalence relation on the class of all smooth manifolds with or without boundary.
+\end{proposition}
+
+
+\begin{definition}
+    Let $f: M \rightarrow N$ be a smooth map, and let $(U, \varphi)$ and $(V, \psi)$ be charts on $M$ and $N$ respectively such that $f(U) \subset V$. Denote by
+    \begin{equation*}
+        \tilde{f}= \psi \circ f \circ \varphi^{-1}
+    \end{equation*}
+    Then the matrix
+    \begin{equation*}
+        \left(\frac{\partial \tilde{f}^i}{\partial x^j} \right)
+    \end{equation*}
+    is called the \textbf{Jacobian matrix of $f$ relative to the charts $(U, \varphi)$ and $(V, \psi)$}.
+
+    We define the rank of $f$ at $p$
+    \begin{equation*}
+        \rank_p f := \rank \left(\frac{\partial \tilde{f}^i}{\partial x^j} \right)_{\varphi(p)}
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}[Constant rank theorem]
+    Let $M$ and $N$ be manifolds of dimensions $m$ and $n$ respectively.
+    Suppose $f: M \rightarrow N$ has constant rank $k$ in a neighborhood of a point $p$ in $M$.
+    Then there are charts $(U, \varphi)$ centered at $p$ in $N$ and $(V, \psi)$ centered at $f(p)$ in $M$ such that for $\left(x^1, \ldots, x^m\right)$ in $\varphi(U)$,
+    \begin{equation*}
+        \psi \circ f \circ \varphi^{-1}:
+        \left(x^1, \ldots, x^m\right)
+        \mapsto
+        \left(x^1, \ldots, x^k, 0, \ldots, 0\right)
+    \end{equation*}
+
+    Proof. Choose a chart $(\overline{U}, \overline{\varphi})$ about $p$ in $M$ and $(\overline{V}, \overline{\psi})$ about $f(p)$ in $M$.
+    Then $\overline{\psi} \circ f \circ \overline{\varphi}^{-1}$ is a map between open subsets of Euclidean spaces.
+    Because $\overline{\varphi}$ and $\overline{\psi}$ are diffeomorphisms, $\overline{\psi} \circ f \circ \overline{\varphi}^{-1}$ has the same constant rank $k$ as $f$ in a neighborhood of $\overline{\varphi}(p)$ in $\mathbb{R}^n$.
+
+    By the constant rank theorem for Euclidean spaces there are a diffeomorphism $G$ of a neighborhood of $\overline{\varphi}(p)$ in $\mathbb{R}^m$ and a diffeomorphism $F$ of a neighborhood of $(\overline{\psi} \circ f)(p)$ in $\mathbb{R}^m$ such that
+    \begin{equation*}
+        F \circ \overline{\psi} \circ f \circ \overline{\varphi}^{-1} \circ G^{-1}
+        \left(x^1, \ldots, x^m\right)=\left(x^1, \ldots, x^k, 0, \ldots, 0\right) .
+    \end{equation*}
+    Set $\phi=G \circ \overline{\varphi}$ and $\psi=F \circ \overline{\psi}$.
+\end{theorem}
+
+\section{Partition of unity}%% Partition of unity
+\subsection{Topological Preliminaries}
+\begin{definition}
+    Let $X$ be a topological space.
+
+    (1) A collection $\mathcal{A}$ of subsets of $X$ is said to be \textbf{locally finite} in $X$ if every point of $X$ has a neighborhood that intersects only finitely many elements of $\mathcal{A}$.
+
+    (2) A collection $\mathcal{B}$ of subsets of $X$ is said to be \textbf{countably locally finite} if $\mathcal{B}$ can be written as the countable union of collections $\mathcal{B}_n$, each of which is locally finite.
+\end{definition}
+
+
+
+\begin{definition}
+    Let $X$ be a topological space, if there exists $X_j$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item For each $j$, the closure $\overline{X}_j$ is compact.
+
+        \item For each $j$, $ \overline{X}_j \subset X_{j+1}$.
+
+        \item  $M=\bigcup_j X_j$.
+    \end{enumerate}
+    The subsets $ \left\{X_j\right\}$ described is called an \textbf{exhaustion} of $M$.
+\end{definition}
+
+
+
+\begin{definition}
+    A real-valued continuous function $f$ on $X$ is called an \textbf{exhausion function} for $X$ if for any $c \in \mathbb{R}$, the sublevel set $f^{-1}\left((\infty, c]\right)$ is compact.
+\end{definition}
+
+\begin{lemma}[Lindelof's]
+    Let $X$ be a second countable space, then every open cover $\mathcal{A}$ has a countable subcover.
+\end{lemma}
+
+\begin{theorem}
+    If $X$ is a second countable, locally compact and Hausdorff space (thus a manifold), then there exists a exhaustion of $X$.
+
+    Proof.
+    First, there exists a open cover $\mathcal{A}$ that every element of $\mathcal{A}$ has compact closure, then there exists countable many
+    \begin{equation*}
+        A_1, A_2, \ldots
+    \end{equation*}
+    such that $\bigcup A_i = X$ and $\overline{A_i}$ is compact.
+
+    We let $X_1=A_1$. Since $A_i$ is an open cover of $\overline{X}_1$ which is compact, there exists finitely many open sets $A_{i_1}, \cdots, A_{i_k}$ so that $\overline{X}_1 \subset A_{i_1} \cup \cdots \cup A_{i_k}$.
+    Let $X_2=A_{i_1} \cup \cdots \cup A_{i_k} \cup A_2$. Obviously $\overline{X}_2$ is compact.
+    Repeat this procedure again and again, we could get a desired sequence of open sets $X_1, X_2, X_3, \cdots$.
+\end{theorem}
+
+\begin{definition}
+    Let $\mathcal{A}$ be a open cover of the space $X$, then a open cover $\mathcal{B}$ of $X$ is said to be a \textbf{refinement} of $\mathcal{A}$ (or is said to refine $\mathcal{A}$ ) if for each element $B$ of $\mathcal{B}$, there is an element $A$ of $\mathcal{A}$ containing $B$.
+\end{definition}
+\begin{definition}
+    A space $X$ is \textbf{paracompact} if every open cover $\mathcal{A}$ of $X$ has a locally finite open      refinement $\mathcal{B}$ of $\mathcal{A}$.
+\end{definition}
+
+\begin{theorem}
+    Let $M$ be any topological manifold. For any open cover $\mathcal{U}=\left\{U_\alpha\right\}$ of $M$, one can find two countable family of open covers $\mathcal{V}=\left\{V_j\right\}$ and $\mathcal{W}=\left\{W_j\right\}$ of $M$ so that
+    \begin{enumerate}[label=(\roman*)]
+        \item $\mathcal{W}$ is a locally finite open refinement of $\mathcal{U}$.
+        \item For each $j$, $ \overline{V}_j$ is compact and $\overline{V}_j \subset W_j$.
+
+    \end{enumerate}
+
+    Proof.
+    Let $\left\{X_j\right\}$ be a exhaustion of $M$.  For each $p \in M$, there is an $j$ and an $\alpha(p)$ so that $p \in \overline{X}_{j+1} \backslash X_j$ and $p \in U_{\alpha(p)}$.
+    Since $M$ is locally Euclidean, one can always choose open neighborhoods $V_p, W_p$ of $p$ so that $\overline{V}_p$ is compact and
+    \begin{equation*}
+        p
+        \in
+        V_p
+        \subset
+        \overline{V}_p
+        \subset
+        W_p
+        \subset
+        U_{\alpha(p)} \cap\left(X_{j+2} \backslash \overline{X}_{j-1}\right)
+    \end{equation*}
+    Now for each $j$, since the "stripe" $\overline{X}_{j+1} \backslash X_j$ is compact, one can choose finitely many points $p_1^j, \cdots, p_{k_j}^j$ so that $V_{p_1^j}, \cdots, V_{p_{k_j}^j}$ is an open cover of $\overline{X}_{j+1} \backslash X_j$.
+    Denote all these $V_{p_k^j}$ 's by $V_1, V_2, \cdots$, and the corresponding $W_{p_k^j}$ 's by $W_1, W_2, \cdots$. Then $\mathcal{V}=\left\{V_k\right\}$ and $\mathcal{W}=\left\{W_k\right\}$ are open covers of $M$ that satisfies all the conditions.
+\end{theorem}
+
+
+\begin{corollary}
+    Manifolds is paracompact, $\sigma$-compact
+\end{corollary}
+
+
+
+
+\subsection{Existence}
+\begin{lemma}
+    There exists $f_1,f_2, f_3$ such that
+\end{lemma}
+
+\begin{theorem}[Bump function on manifold]
+    Let $M$ be a smooth manifold, $K \subset M$ is a compact subset, and $U \subset M$ an open subset that contains $K$.
+    Then there is a $\varphi \in C^{\infty}(M)$ so that $K \prec f \prec U$ ($0 \leq \varphi \leq 1, \varphi \equiv 1$ on $K$ and $\operatorname{supp}(\varphi) \subset U$).
+
+    Proof. For each $q \in K$, there is a chart $\left(\varphi_q, U_q, V_q\right)$ near $q$ so that $U_q \subset U$ and $V_q$ contains the open ball $B_3(0)$ in $\mathbb{R}^n$.
+    Let $U'_q=\varphi_q^{-1}\left(B_1(0)\right)$, and let
+    \begin{equation*}
+        f_q(p)= \begin{cases}f_3\left(\varphi_q(p)\right) & , p \in U_q    \\
+             0                            & , p \notin U_q\end{cases}
+    \end{equation*}
+    Then $f_q \in C^{\infty}(M), \operatorname{supp}\left(f_q\right) \subset U_q \subset U$ and $f_1 \equiv 1$ on ${U}'_q$.
+
+    Now the family of open sets $\left\{U'_q\right\}$ is an open cover of $K$.
+    Since $K$ is compact, there is a finite sub-cover $\left\{{U}'_{q_1}, \cdots, U'_{q_n}\right\}$. Let \begin{equation*}
+        \psi=\sum_{i=1}^n f_{q_i}
+    \end{equation*}
+    Then $\psi$ is a smooth and compactly supported function on $M$ so that $\psi \geq 1$ on $K$ and $\operatorname{supp}(\psi) \subset U$.
+    It follows that the function $\varphi(p)=f_2(\psi(p))$ satisfies all the conditions we required.
+\end{theorem}
+
+
+\begin{definition}
+    Suppose $M$ is a topological space, and let $\mathcal{A}=\left\{A_\alpha\right\}$ be an arbitrary open cover of $M$.
+    A \textbf{partition of unity subordinate to $\mathcal{A}$} is an indexed family
+    \begin{equation*}
+        \left\{\rho_\alpha: \rho_\alpha: M \rightarrow \mathbb{R} \text{ is continue}\right\}
+    \end{equation*}
+    with the following properties:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\rho_\alpha \prec A_\alpha$
+              $(\supp \rho_\alpha \subset A_\alpha)$ for all $\alpha$
+        \item  The family of supports $\left\{\operatorname{supp} \rho_\alpha\right\}$ is locally finite.
+        \item  $\sum_{\alpha} \rho_\alpha(x) \equiv 1$ on $M$
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    Suppose $M$ is a smooth manifold with or without boundary, and $\left\{U_\alpha\right\}_{\alpha \in A}$ is any indexed open cover of $M$. Then there exists a smooth partition of unity subordinate to $\left\{U_\alpha\right\}_{\alpha \in A}$.
+
+    Proof.
+    We can find nonnegative functions $\varphi_j \in C^{\infty}(M)$ so that $\overline{V}_j\prec\varphi_j \prec  W_j$ on $\overline{V}_j$ and $\operatorname{supp}\left(\varphi_j\right) \subset W_j$.
+    Since $\mathcal{W}$ is a locally finite cover, $\varphi=\sum \varphi_j$ is a well-defined smooth function on $M$. Since each $\varphi_j$ is nonnegative, and $\mathcal{V}$ is a cover of $M, \varphi$ is strictly positive on $M$. It follows that the functions $\psi_j=\frac{\varphi_j}{\varphi}$ are smooth and satisfy $0 \leq \psi_j \leq 1$ and $\sum_j \psi_j=1$.
+
+    Let
+    \begin{equation*}
+        \rho_\alpha=\sum_{W_j \subset U_\alpha} \psi_j
+    \end{equation*}
+    Note that the right hand side is a finite sum near each point, so it does define a smooth function. Clearly the family $\left\{\rho_\alpha\right\}$ is a partition of unity subordinate to $\left\{U_\alpha\right\}$.
+\end{theorem}
+
+
+
+\subsection{Application}
+
+\begin{theorem}[Smooth Urysohn lemma]
+    Let $M$ be a smooth manifold, $F \subset M$ is a closed subset, and $U \subset M$ an open subset that contains $F$. Then there is a "bump" function $\varphi \in C^{\infty}(M)$ so that $0 \leq \varphi \leq 1, \varphi \equiv 1$ on $F$ and $\operatorname{supp}(\varphi) \subset U$.
+
+    Proof. Let $\left\{\rho_1, \rho_2\right\}$ be a partition of unity subordinate to the open cover $\left\{U, M \backslash F\right\}$. Then $\varphi=\rho_1$ is what we need: $\rho_1=1$ on $F$ since $\rho_2=0$ on $F$.
+\end{theorem}
+
+
+
+
+\begin{theorem}[Whitney Approximation Theorem]
+    Let $M$ be a smooth manifold, $F \subset M$ a closed subset and $k$ be a positive integer.
+    Then for any continuous function $f: M \rightarrow \mathbb{R}^k$ which is smooth on $F$ and any positive continuous function $\delta: M \rightarrow \mathbb{R}_{>0}$, there exists $f \in C^{\infty}(M)$ so that
+    \begin{equation*}
+        f(p)=g(p), \quad \forall p \in F
+    \end{equation*}
+    and
+    \begin{equation*}
+        |f(p)-g(p)|<\delta(p), \quad \forall p \in M
+    \end{equation*}
+
+    Proof.
+    By definition, there exists an open set $U \supset A$ and a smooth function $f_0$ defined on $U$ so that $f_0=f$ on $F$. Let
+    \begin{equation*}
+        U_0
+        =
+        \left\{p \in U:\left|f_0(p)-f(p)\right|<\delta(p)\right\}
+    \end{equation*}
+    Then $U_0$ is open in $M$ and $U_0 \supset F$.
+
+
+    Next we construct a open cover of $M \backslash F$.
+    For any $q \in M \backslash F$, we let
+    \begin{equation*}
+        U_q
+        =
+        \{p \in M \backslash A:|f(p)-f(q)|<\delta(p)\}
+    \end{equation*}
+    Then $\left\{U_q \mid q \in M \backslash F\right\}$ is an open covering of $M \backslash F$.
+    Now let $\left\{\rho_0, \rho_q: q \in M\right\}$ be P.O.U. subordinate to the open cover $\left\{U_0, U_q: q \in M\right\}$ of $M$, and define a function on $M$ via
+    \begin{equation*}
+        g(p)
+        =
+        \rho_0(p) f_0(p)+\sum_{q \in M} \rho_q(p) f(q) .
+    \end{equation*}
+    Since the summation is locally finite, $g$ is smooth. Also by definition, $g=f_0=f$ on $F$. Moreover, for any $q \in M$ one has
+    \begin{equation*}
+        \begin{aligned}
+            \left| g(p)-f(p)\right| & =\left|\rho_0(p) f_0(p)+\sum_q \rho_q(p) f(q)-\rho_0(p) f(p)-\sum_q \rho_q(p) f(p)\right| \\
+                                    & \leq \rho_0(p)\left|f_0(p)-f(p)\right|+\sum_q \rho_q(p)|f(q)-f(p)|                        \\
+                                    & <\rho_0(p) \delta(p)+\sum_q \rho_q(p) \delta(p)                                           \\
+                                    & =\delta(p)
+        \end{aligned}
+    \end{equation*}
+\end{theorem}
+\begin{corollary}[Tietze]
+    Let $M$ be a smooth manifold and closed set $F \subset$. If $f$ is smooth on $F$, then there exists $g \in C^\infty\left(M\right)$ that $f=g$ on $F$.
+\end{corollary}
+
+\begin{theorem}
+    [Existence of Smooth Exhaustion Function]
+    Every smooth manifold with or without boundary admits a smooth positive exhaustion function.
+    \begin{proof}
+        Let $M$ be a smooth manifold with or without boundary, let $\left\{V_j\right\}_{j=1}^{\infty}$ be any countable open cover of $M$ by precompact open subsets, and let $\left\{\psi_j\right\}$ be a smooth partition of unity subordinate to this cover. Define $f \in C^{\infty}(M)$ by
+        \begin{equation*}
+            f(p)=\sum_{j=1}^{\infty} j \psi_j(p)
+        \end{equation*}
+        Then $f$ is smooth because only finitely many terms are nonzero in a neighborhood of any point, and positive because $f(p) \geq \sum_j \psi_j(p)=1$.
+
+        To see that $f$ is an exhaustion function, let $c \in \mathbb{R}$ be arbitrary, and choose a positive integer $N>c$. If $p \notin \bigcup_{j=1}^N \bar{V}_j$, then $\psi_j(p)=0$ for $1 \leq j \leq N$, so
+        \begin{equation*}
+            f(p)=\sum_{j=N+1}^{\infty} j \psi_j(p) \geq \sum_{j=N+1}^{\infty} N \psi_j(p)=N \sum_{j=1}^{\infty} \psi_j(p)=N>c .
+        \end{equation*}
+        Equivalently, if $f(p) \leq c$, then $p \in \bigcup_{j=1}^N \bar{V}_j$. Thus $f^{-1}((-\infty, c])$ is a closed subset of the compact set $\bigcup_{j=1}^N \bar{V}_j$ and is therefore compact.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[Level Sets of Smooth Functions]
+    Let $M$ be a smooth manifold. If $K$ is any closed subset of $M$, there is a smooth nonnegative function $f: M \rightarrow \mathbb{R}$ such that $f^{-1}(0)=K$.
+    \begin{proof}
+        We begin with the special case in which $M=\mathbb{R}^n$ and $K \subseteq \mathbb{R}^n$ is a closed subset. For each $x \in M \backslash K$, there is a positive number $r \leq 1$ such that $B_r(x) \subseteq$ $M \backslash K$. By Proposition A.16, $M \backslash K$ is the union of countably many such balls $\left\{B_{r_i}\left(x_i\right)\right\}_{i=1}^{\infty}$.
+
+        Let $h: \mathbb{R}^n \rightarrow \mathbb{R}$ be a smooth bump function that is equal to 1 on $\bar{B}_{1 / 2}(0)$ and supported in $B_1(0)$. For each positive integer $i$, let $C_i \geq 1$ be a constant that bounds the absolute values of $h$ and all of its partial derivatives up through order $i$. Define $f: \mathbb{R}^n \rightarrow \mathbb{R}$ by
+        \begin{equation*}
+            f(x)=\sum_{i=1}^{\infty} \frac{\left(r_i\right)^i}{2^i C_i} h\left(\frac{x-x_i}{r_i}\right)
+        \end{equation*}
+
+        The terms of the series are bounded in absolute value by those of the convergent series $\sum_i 1 / 2^i$, so the entire series converges uniformly to a continuous function by the Weierstrass $M$-test. Because the $i$ th term is positive exactly when $x \in B_{r_i}\left(x_i\right)$, it follows that $f$ is zero in $K$ and positive elsewhere.
+
+        It remains only to show that $f$ is smooth. We have already shown that it is continuous, so suppose $k \geq 1$ and assume by induction that all partial derivatives of $f$ of order less than $k$ exist and are continuous. By the chain rule and induction, every $k$ th partial derivative of the $i$ th term in the series can be written in the form
+        \begin{equation*}
+            \frac{\left(r_i\right)^{i-k}}{2^i C_i} D_k h\left(\frac{x-x_i}{r_i}\right),
+        \end{equation*}
+        where $D_k h$ is some $k$ th partial derivative of $h$. By our choices of $r_i$ and $C_i$, as soon as $i \geq k$, each of these terms is bounded in absolute value by $1 / 2^i$, so the differentiated series also converges uniformly to a continuous function. It then follows from Theorem C. 31 that the $k$ th partial derivatives of $f$ exist and are continuous. This completes the induction, and shows that $f$ is smooth.
+
+        Now let $M$ be an arbitrary smooth manifold, and $K \subseteq M$ be any closed subset. Let $\left\{B_\alpha\right\}$ be an open cover of $M$ by smooth coordinate balls, and let $\left\{\psi_\alpha\right\}$ be a subordinate partition of unity. Since each $B_\alpha$ is diffeomorphic to $\mathbb{R}^n$, the preceding argument shows that for each $\alpha$ there is a smooth nonnegative function $f_\alpha: B_\alpha \rightarrow \mathbb{R}$ such that $f_\alpha^{-1}(0)=B_\alpha \cap K$. The function $f=\sum_\alpha \psi_\alpha f_\alpha$ does the trick.
+    \end{proof}
+\end{theorem}
+
+
+\section{In paracompact Hausdorff space}
+
+\begin{lemma}[Shrinking lemma]
+    Let $X$ be a paracompact Hausdorff space; let $\left\{U_\alpha\right\}_{\alpha \in J}$ be open cover of $X$.
+    Then there exists a locally finite open cover $\left\{V_\alpha\right\}_{\alpha \in J}$ of  $X$ such that $\overline{V}_\alpha \subset U_\alpha$ for each $\alpha$.
+
+    Proof. Let $\mathcal{A}$ be the collection of all open sets $A$ such that $\overline{A}$ is contained in some element of the collection $\left\{U_\alpha\right\}$.
+    Regularity of $X$ implies that $\mathcal{A}$ covers $X$.
+    Since $X$ is paracompact, we can find a locally finite collection $\mathcal{B}=\left\{B_\beta\right\}_{\beta \in K}$ of open sets covering $X$ that refines $\mathcal{A}$
+
+    Let us index $\mathcal{B}$ bijectively with some index set $K$, then the general element of $\mathscr{B}$ can be denoted $B_\beta$, for $\beta \in K$, and $\left\{B_\beta\right\}_{\beta \in K}$ is a locally finite indexed famuly. Since $\mathscr{B}$ refines $\mathscr{A}$, we can define a function $f: K \rightarrow J$ by choosing, for each $\beta$ in $K$, an element $f(\beta) \in J$ such that
+    \begin{equation*}
+        \overline{B}_\beta \subset U_{f(\beta)}
+    \end{equation*}
+    Then for each $\alpha \in J$, we define $V_\alpha$ to be the union of many $B_\beta$
+    \begin{equation*}
+        V_\alpha
+        =
+        \bigcup_{f(\beta)=\alpha}B_\beta
+    \end{equation*}
+    Because the collection $\mathcal{B}_\alpha$ is locally finite, $\overline{V}_\alpha= \bigcup \overline{B}_\beta$, so that $\overline{V}_\alpha \subset U_\alpha$.
+
+    Finally, we check local finiteness. Given $x \in X$, choose a neighborhood $W$ of $x$ such that $W$ intersects $B_\beta$ for only finitely many values of $\beta$, say $\beta=\beta_1, \ldots, \beta_K$. Then $W$ can intersect $V_\alpha$ only if $\alpha$ is one of the indices $f\left(\beta_1\right), \ldots, f\left(\beta_K\right)$.
+\end{lemma}
+
+\begin{theorem}
+    Let $X$ be a paracompact Hausdorff space; let $\left\{U_\alpha\right\}_{\alpha \in J}$ be an indexed open covering of $X$. Then there exists a partition of unity on $X$ subordinate to $\left\{U_\alpha\right\}$.
+
+    Proof.
+    We begin by applying the shrinking lemma twice, to find locally finite indexed famles of open sets $\left\{W_\alpha\right\}$ and $\left\{V_\alpha\right\}$ covering $X$, such that
+    \begin{equation*}
+        W_\alpha \subset \overline{W}_\alpha \subset V_\alpha \subset \overline{V}_\alpha \subset U_\alpha
+    \end{equation*}
+    for each $\alpha$ Since $X$ is normal, we may choose, for each $\alpha$, a continuous function $\varphi_\alpha: X \rightarrow[0,1]$ such that $\varphi_\alpha\left(\overline{W}_\alpha\right)=\{1\}$ and $\varphi_\alpha\left(X-V_\alpha\right)=\{0\}$.
+    Since $\varphi_\alpha$ is nonzero only at points of $V_\alpha$, we have
+    \begin{equation*}
+        \supp \varphi_\alpha\subset \overline{V}_\alpha \subset U_\alpha
+    \end{equation*}
+    Furthermore, the indexed family $\left\{\overline{V}_\alpha\right\}$ is locally finite (since an open set intersects $\overline{V}_\alpha$ only if it intersects $V_\alpha$ ); hence the indexed family  $\supp \varphi_\alpha$ is also locally finite. Note that because $\left\{W_\alpha\right\}$ covers $X$, for any given $x$ at least one of the functions $\psi_\alpha$ is positive at $x$.
+
+    We can now make sense of the formally infinite sum
+    \begin{equation*}
+        \varphi(x)=\sum_\alpha \varphi_\alpha(x)
+    \end{equation*}
+    and define
+    \begin{equation*}
+        \rho_\alpha(x)
+        =
+        \frac{\varphi_\alpha(x)}{\varphi(x)}
+    \end{equation*}
+    to obtain our desired partition of unity.
+\end{theorem}
+
+
+
+
+
+
+
+
+\chapter{Tangent Vectors} % Tangent Vectors
+\minitoc
+
+\section{The Tangent Space at a Point}
+\begin{definition}
+    We define a \textbf{germ} of a $C^{\infty}$ function at $p$ in $M$ to be an equivalence class of $C^{\infty}$ functions defined in a neighborhood of $p$ in $M$, two such functions being equivalent if they agree on some, possibly smaller, neighborhood of $p$. The set of germs of $C^{\infty}$ real-valued functions at $p$ in $M$ is denoted by $C_p^{\infty}(M)$. The addition and multiplication of functions make $C_p^{\infty}(M)$ into a ring; with scalar multiplication by real numbers, $C_p^{\infty}(M)$ becomes an algebra over $\mathbb{R}$.
+\end{definition}
+
+\begin{definition}
+    We define a \textbf{derivation} at a point in a manifold $M$, or a point-derivation of $C_p^{\infty}(M)$, to be a linear map $D: C_p^{\infty}(M) \rightarrow \mathbb{R}$ such that
+    \begin{equation*}
+        D(f g)=(D f) g(p)+f(p) D g
+    \end{equation*}
+    A \textbf{tangent vector} at a point $p$ in a manifold $M$ is a derivation at $p$, the tangent vectors at $p$ form a vector space $T_p(M)$, called the \textbf{tangent space} of $M$ at $p$.
+    We also write $T_p M$ instead of $T_p(M)$.
+\end{definition}
+
+\section{The Differential of a Smooth Map}
+% The Differential of a Map
+
+\begin{definition}
+    If $M$ and $N$ are smooth manifolds with or without boundary and $F: M \rightarrow N$ is a smooth map, we define a map
+    \begin{equation*}
+        d F_p: T_p M \rightarrow T_{F(p)} N
+    \end{equation*}
+    called the \textbf{differential} of $F$ at $p$, as follows.
+    Given $v \in T_p M$, we let $d F_p(v)$ be the derivation at $F(p)$ that acts on $C^{\infty}_{F(p)}(N)$ by the rule
+    \begin{equation*}
+        \left\langle d F_p(v), f \right\rangle
+        =
+        \left\langle  v, f \circ F \right\rangle \quad \text{ for all } f \in C_{F(p)}^\infty(N)
+    \end{equation*}
+\end{definition}
+
+
+\begin{proposition}
+    Let $M, N$, and $P$ be smooth manifolds with or without boundary, let $F: M \rightarrow N$ and $G: N \rightarrow P$ be smooth maps, and let $p \in M$.
+    \begin{enumerate}
+        \item
+              $d F_p: T_p M \rightarrow T_{F(p)} N$ is linear.
+
+        \item
+              The chain rule. $d(G \circ F)_p=d G_{F(p)} \circ d F_p: T_p M \rightarrow T_{G \circ F(p)} P$.
+
+        \item
+              $d\left(\operatorname{Id}_M\right)_p=\operatorname{Id}_{T_p M}: T_p M \rightarrow T_p M$.
+
+        \item
+              If $F$ is a diffeomorphism, then $d F_p: T_p M \rightarrow T_{F(p)} N$ is an isomorphism of vector spaces, and $\left(d F_p\right)^{-1}=d\left(F^{-1}\right)_{F(p)}$.
+    \end{enumerate}
+\end{proposition}
+
+
+\section{Computations in Coordinates} % Computations in Coordinates
+
+\begin{proposition}
+    Let $(U, \phi)=\left(U, x^1, \ldots, x^n\right)$ be a chart about a point $p$ in a manifold $M$. Then
+    \begin{enumerate}
+        \item
+              \begin{equation*}
+                  d\phi\left(\left.\frac{\partial}{\partial x^i}\right|_p\right)=\left.\frac{\partial}{\partial r^i}\right|_{\phi(p)}
+              \end{equation*}
+
+        \item
+              If $(U, \phi)=\left(U, x^1, \ldots, x^n\right)$ is a chart containing $p$, then the tangent space $T_p M$ has basis
+              \begin{equation*}
+                  \left.\frac{\partial}{\partial x^1}\right|_p, \ldots,\left.\frac{\partial}{\partial x^n}\right|_p
+              \end{equation*}
+
+        \item
+              (Transition matrix for coordinate vectors). Suppose $(U, x^1, \ldots, x^n)$ and $\left(V, y^1, \ldots, y^n\right)$ are two coordinate charts on a manifold $M$. Then
+              \begin{equation*}
+                  \frac{\partial}{\partial x^j}=\sum_i \frac{\partial y^i}{\partial x^j} \frac{\partial}{\partial y^i}
+              \end{equation*}
+              on $U \cap V$.
+    \end{enumerate}
+\end{proposition}
+
+\subsection{The Differential in Coordinates}
+\subsection{Change of Coordinates}
+
+
+
+
+\section{The Tangent Bundle} % The Tangent Bundle
+\begin{definition}
+    Given a smooth manifold $M$ with or without boundary, we define the \textbf{tangent bundle} of $M$, denoted by $TM$, to be the disjoint union of the tangent spaces at all points of $M$ :
+    \begin{equation*}
+        T M=\coprod_{p \in M} T_p M
+    \end{equation*}
+    We usually write an element of this disjoint union as an ordered pair $(p, v)$ of $v_p$, with $p \in M$ and $v \in T_p M$. The tangent bundle comes equipped with a \textbf{natural projection map} $\pi: T M \rightarrow M$, which sends each vector in $T_p M$ to the point $p$ at which it is tangent: $\pi(p, v)=p$.
+\end{definition}
+
+\begin{proposition}
+    For any smooth $n$-manifold $M$, the tangent bundle $T M$ has a natural topology and smooth structure that make it into a
+    $2 n$-dimensional smooth manifold.
+    With respect to this structure, the projection $\pi: T M \rightarrow M$, $\left(x^i,v^i\right)\mapsto \left(x^i\right)$ is smooth.
+    \begin{proof}
+        We begin by defining the maps that will become our smooth charts. Given any smooth chart $(U, \varphi,x^1, \ldots, x^n)$ for $M$ and define a injective map $\tilde{\varphi}: \pi^{-1}(U) \rightarrow \mathbb{R}^{2 n}$ by
+        \begin{equation*}
+            \tilde{\varphi}\left(\left.v^i \frac{\partial}{\partial x^i}\right|_p\right)=\left(x^1(p), \ldots, x^n(p), v^1, \ldots, v^n\right)
+        \end{equation*}
+
+        Now suppose we are given two smooth charts $\left(U, \varphi\right)$ and  $\left(V, \psi\right)$, and let $(\pi^{-1}(U), \tilde{\varphi}),(\pi^{-1}(V), \tilde{\psi})$ be the corresponding charts on $T M$.
+        The sets
+        \begin{equation*}
+            \begin{aligned}
+                 & \tilde{\varphi}\left(\pi^{-1}(U) \cap \pi^{-1}(V)\right)=\varphi(U \cap V) \times \mathbb{R}^n \quad \text { and } \\
+                 & \tilde{\psi}\left(\pi^{-1}(U) \cap \pi^{-1}(V)\right)=\psi(U \cap V) \times \mathbb{R}^n
+            \end{aligned}
+        \end{equation*}
+        are open in $\mathbb{R}^{2 n}$, and the transition map $\tilde{\psi} \circ \widetilde{\varphi}^{-1}: \varphi(U \cap V) \times \mathbb{R}^n \rightarrow \psi(U \cap V) \times \mathbb{R}^n$ can be written explicitly as
+        \begin{equation*}
+            \begin{aligned}
+                \tilde{\psi} & \circ \tilde{\varphi}^{-1}\left(x^1, \ldots, x^n, v^1, \ldots, v^n\right)                                                                                          \\
+                             & =\left(\tilde{x}^1(x), \ldots, \tilde{x}^n(x), \frac{\partial \tilde{x}^1}{\partial x^j}(x) v^j, \ldots, \frac{\partial \tilde{x}^n}{\partial x^j}(x) v^j\right) .
+            \end{aligned}
+        \end{equation*}
+        This is clearly smooth.
+
+        Choosing a countable cover $\left\{U_i\right\}$ of $M$ by smooth coordinate domains, we obtain a countable cover of $T M$ by coordinate domains $\left\{\pi^{-1}\left(U_i\right)\right\}$ satisfying conditions (i)-(iv) of the smooth manifold chart lemma (Lemma 1.35). To check the Hausdorff condition (v), just note that any two points in the same fiber of $\pi$ lie in one chart, while if ( $p, v$ ) and ( $q, w$ ) lie in different fibers, there exist disjoint smooth coordinate domains $U, V$ for $M$ such that $p \in U$ and $q \in V$, and then $\pi^{-1}(U)$ and $\pi^{-1}(V)$ are disjoint coordinate neighborhoods containing ( $p, v$ ) and ( $q, w$ ), respectively.
+
+        To see that $\pi$ is smooth, note that with respect to charts ( $U, \varphi$ ) for $M$ and $\left(\pi^{-1}(U), \tilde{\varphi}\right)$ for $T M$, its coordinate representation is $\pi(x, v)=x$.
+
+        The coordinates $\left(x^i, v^i\right)$ are called \textbf{natural coordinates} on $TM$.
+    \end{proof}
+\end{proposition}
+
+\section{Curves in a Manifold and Velocity Vectors}
+
+\begin{definition}
+    If $M$ is a manifold with or without boundary, we define a \textbf{curve} in $M$ to be a continuous map $\gamma: J \rightarrow M$; where $J \subset \mathbb{R}$ is an interval.
+\end{definition}
+\begin{definition}
+    Now let $M$ be a smooth manifold with or without boundary.
+    Our definition of tangent spaces leads to a natural interpretation of velocity vectors: given a smooth curve $\gamma: J \rightarrow M$ and $t_0 \in J$, we define the \textbf{velocity} of $\gamma$ at $t_{0}$, denoted by $\gamma^{\prime}\left(t_0\right)$, to be the vector
+    \begin{equation*}
+        \gamma^{\prime}\left(t_0\right)=d \gamma\left(\left.\frac{d}{d t}\right|_{t_0}\right) \in T_{\gamma\left(t_0\right)} M
+    \end{equation*}
+    where $d /\left.d t\right|_{t_0}$ is the standard coordinate basis vector in $T_{t_0} \mathbb{R}$.
+
+    This tangent vector acts on functions by
+    \begin{equation*}
+        \gamma^{\prime}\left(t_0\right) f=d \gamma\left(\left.\frac{d}{d t}\right|_{t_0}\right) f=\left.\frac{d}{d t}\right|_{t_0}(f \circ \gamma)=(f \circ \gamma)^{\prime}\left(t_0\right)
+    \end{equation*}
+    In other words, $\gamma^{\prime}\left(t_0\right)$ is the derivation at $\gamma\left(t_0\right)$ obtained by taking the derivative of a function along $\gamma$. (If $t_0$ is an endpoint of $J$, this still holds, provided that we interpret the derivative with respect to $t$ as a one-sided derivative, or equivalently as the derivative of any smooth extension of $f \circ \gamma$ to an open subset of $\mathbb{R}$.)
+
+    Now let $(U, \varphi,x^i)$ be a smooth chart.
+    If $\gamma\left(t_0\right) \in U$, we can write the coordinate representation of $\gamma$ as $\gamma(t)=\left(\gamma^1(t), \ldots, \gamma^n(t)\right)$ for $t$ sufficiently close to $t_0$, and then the coordinate formula for the differential yields
+    \begin{equation*}
+        \gamma^{\prime}\left(t_0\right)=\left.\frac{d \gamma^i}{d t}\left(t_0\right) \frac{\partial}{\partial x^i}\right|_{\gamma\left(t_0\right)}
+    \end{equation*}
+\end{definition}
+
+\begin{proposition}
+    [The Velocity of a Composite Curve]
+    Let $F: M \rightarrow N$ be a smooth map, and let $\gamma: J \rightarrow M$ be a smooth curve. For any $t_0 \in J$, the velocity at $t=t_0$ of the composite curve $F \circ \gamma: J \rightarrow N$ is given by
+    \begin{equation*}
+        (F \circ \gamma)^{\prime}\left(t_0\right)=d F\left(\gamma^{\prime}\left(t_0\right)\right)
+    \end{equation*}
+    \begin{proof}
+        Just go back to the definition of the velocity of a curve:
+        \begin{equation*}
+            (F \circ \gamma)^{\prime}\left(t_0\right)=d(F \circ \gamma)\left(\left.\frac{d}{d t}\right|_{t_0}\right)=d F \circ d \gamma\left(\left.\frac{d}{d t}\right|_{t_0}\right)=d F\left(\gamma^{\prime}\left(t_0\right)\right)
+        \end{equation*}
+    \end{proof}
+\end{proposition}
+
+\begin{corollary}
+    [Computing the Differential Using a Velocity Vector]
+    Suppose $F: M \rightarrow N$ is a smooth map, $p \in M$, and $v \in T_p M$. Then
+    \begin{equation*}
+        d F_p(v)=(F \circ \gamma)^{\prime}(0)
+    \end{equation*}
+    for any smooth curve $\gamma: J \rightarrow M$ such that $0 \in J, \gamma(0)=p$, and $\gamma^{\prime}(0)=v$.
+\end{corollary}
+
+
+
+
+\chapter{Submersions, Immersions, and Embeddings}
+\section{Maps of Constant Rank}
+\begin{definition}
+    Suppose $M$ and $N$ are smooth manifolds with or without boundary. 
+    Given a smooth map $F: M \rightarrow N$ and a point $p \in M$, we define the rank of $\boldsymbol{F}$ at $\boldsymbol{p}$ to be the rank of the linear map $d F_p: T_p M \rightarrow T_{F(p)} N$.
+    
+
+    If the rank of $d F_p$ is equal to this upper bound, we say that $\boldsymbol{F}$ has full rank at $\boldsymbol{p}$, and if $F$ has full rank everywhere, we say $F$ has full rank.
+
+    
+    A smooth map $F: M \rightarrow N$ is called a smooth \textbf{submersion} if its differential is surjective at each point (or equivalently, if $\operatorname{rank} F=\operatorname{dim} N$ ). It is called a smooth \textbf{inmersion} if its differential is injective at each point (equivalently, $\operatorname{rank} F=\operatorname{dim} M$ ).
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Sard's Theorem} % Sard's Theorem
+
+\section{Sets of Measure Zero} % Sets of Measure Zero
+\begin{definition}
+    If $M$ is a smooth $m$-manifold with or without boundary, we say that a subset $A \subseteq M$ \textbf{has measure zero in $M$} if for every smooth chart $(U, \varphi)$ for $M$, the subset $\varphi(A \cap U) \subseteq \mathbb{R}^n$ has $n$-dimensional measure zero.
+
+
+\end{definition}
+
+\begin{lemma}
+    Let $M$ be a smooth $n$-manifold with or without boundary and $A \subseteq M$. Suppose that for some collection $\left\{\left(U_\alpha, \varphi_\alpha\right)\right\}$ of smooth charts whose domains cover $A, \varphi_\alpha\left(A \cap U_\alpha\right)$ has measure zero in $\mathbb{R}^n$ for each $\alpha$. Then $A$ has measure zero in $M$.
+
+    Proof:
+    Let $(V, \psi)$ be an arbitrary smooth chart. We need to show that $\psi(A \cap V)$ has measure zero. Some countable collection of the $U_\alpha$ 's covers $A \cap V$. For each such $U_\alpha$, we have
+    \begin{equation*}
+        \psi\left(A \cap V \cap U_\alpha\right)=\left(\psi \circ \varphi_\alpha^{-1}\right) \circ \varphi_\alpha\left(A \cap V \cap U_\alpha\right)
+    \end{equation*}
+    Now, $\varphi_\alpha\left(A \cap V \cap U_\alpha\right)$ is a subset of $\varphi_\alpha\left(A \cap U_\alpha\right)$, which has measure zero in $\mathbb{R}^n$ by hypothesis. By Proposition 6.5 applied to $\psi \circ \varphi_\alpha^{-1}$, therefore, $\psi\left(A \cap V \cap U_\alpha\right)$ has measure zero. Since $\psi(A \cap V)$ is the union of countably many such sets, it too has measure zero.
+\end{lemma}
+
+\begin{theorem}
+    Suppose $M$ and $N$ are differential $m$-manifolds with or without boundary, $F: M \rightarrow N$ is a $C^1$ map, and $A \subseteq M$ is a subset of measure zero. Then $F(A)$ has measure zero in $N$.
+\end{theorem}
+
+\begin{corollary}
+    Suppose $M$ and $N$ are differential manifolds with or without boundary, $\dim M \leq \dim N$, and $F \in C^1\left(M,N\right)$.
+    If $A \subset M$ is a subset of measure zero, then $F(A)$ has measure zero in $N$.
+\end{corollary}
+
+
+\section{Sard's Theorem} %% Sard's Theorem
+
+\begin{definition}
+    If $f: M \rightarrow N$ is a smooth map,
+
+    (1) A point $p \in M$ is said to be a \textbf{regular point of $f$} if $d f_p: T_p M \rightarrow$ $T_{f(p)} N$ is surjective $\left(\rank_p f =\dim N\right)$.
+    A point $c \in N$ is said to be a \textbf{regular value} of $f$ if every point of the level set $f^{-1}(c)$ is a regular point.
+
+    (2) A point $q \in M$ is said to be a \textbf{critical point of $f$} if $d f_p: T_p M \rightarrow$ $T_{f(p)} N$ is not surjective $\left(\rank_p f <\dim N\right)$.
+    A point $d \in N$ is said to be a \textbf{critical value} of $f$ if there exists a critical point in level set $f^{-1}(d)$.
+\end{definition}
+
+\begin{theorem}[Sard's Theorem]
+    Suppose $M$ and $N$ are smooth manifolds with or without boundary and $f: M \rightarrow N$ is a smooth map. Then the set of critical values of $f$ has measure zero in $N$.
+\end{theorem}
+
+
+\begin{corollary}
+    Suppose $M$ and $N$ are smooth manifolds with or without boundary, and $F: M \rightarrow N$ is a smooth map. If $\operatorname{dim} M<\operatorname{dim} N$, then $F(M)$ has measure zero in $N$.
+\end{corollary}
+
+\begin{corollary}
+    Suppose $M$ is a smooth manifold with or without boundary, and $S \subseteq M$ is an immersed submanifold with or without boundary. If $\operatorname{dim} S<\operatorname{dim} M$, then $S$ has measure zero in $M$.
+\end{corollary}
+
+\section{The Whitney Embedding Theorem}
+\begin{theorem}[Whitney Embedding Theorem]
+    Every smooth $n$-manifold with or without boundary admits a proper smooth embedding into $\mathbb{R}^{2 n+1}$.
+\end{theorem}
+\begin{corollary}
+    Every smooth n-dimensional manifold with or without boundary is diffeomorphic to a properly embedded submanifold (with or without boundary) of $\mathbb{R}^{2 n+1}$.
+\end{corollary}
+
+
+\begin{corollary}
+    Suppose $M$ is a compact smooth $n$-manifold with or without boundary. If $N \geq 2 n+1$, then every smooth map from $M$ to $\mathbb{R}^N$ can be uniformly approximated by embeddings.
+\end{corollary}
+
+
+
+
+\begin{theorem}[Whitney Immersion Theorem]
+    Every smooth n-manifold with or without boundary admits a smooth immersion into $\mathbb{R}^{2 n}$.
+\end{theorem}
+
+\begin{theorem}[Strong Whitney Immersion Theorem]
+    If $n>1$, every smooth $n$-manifold admits a smooth immersion into $\mathbb{R}^{2 n-1}$.
+\end{theorem}
+
+
+
+\chapter{123}
+
+\section{}
+
+\begin{definition}
+    Let $X, B$, and $F$ be Hausdorff spaces and $p: X \rightarrow B$ a map.
+    Then $p$ is called a \textbf{bundle projection with fiber $F$}, if each point of $B$ has a neighborhood $U$ such that there is a homeomorphism
+    \begin{equation*}
+        \phi: U \times F \rightarrow p^{-1}(U), \quad \text{that } p(\phi\langle b, y\rangle)=b
+    \end{equation*}
+    for all $b \in U$ and $y \in F$.
+    Such a map $\phi$ is called a \textbf{trivialization of the bundle over $U$}.
+\end{definition}
+
+\begin{definition}
+    Let $K$ be a topological group acting effectively on the Hausdorff space $F$ as a group of homeomorphisms. Let $X$ and $B$ be Hausdorff spaces. By a fiber bundle over the base space $B$ with total space $X$, fiber $F$, and structure group $K$, we mean a bundle projection $p: X \rightarrow B$ together with a collection $\mathcal{A}$ of trivializations $\phi: U \times F \rightarrow p^{-1}(U)$, of $p$ over $U$, called charts over $U$, such that:
+    \begin{enumerate}[label=(\roman*)]
+        \item  each point of $B$ has a neighborhood over which there is a chart in $\Phi$;
+
+        \item  if $\phi: U \times F \rightarrow p^{-1}(U)$ is in $\mathcal{A}$ and $V \subset U$ then the restriction of $\phi$ to $V \times F$ is in $\mathcal{A}$
+
+        \item  if $\phi, \psi \in \mathcal{A}$ are charts over $U$ then there is a map $\theta: U \rightarrow K$ such that $\psi\langle u, y\rangle=\phi\langle u, \theta(u)(y)\rangle$; and
+
+        \item  the set $\mathcal{A}$ is maximal among collections satisfying (a), (b), and (c).
+    \end{enumerate}
+    The bundle is called smooth if all these spaces are manifolds and all maps involved are smooth.
+\end{definition}
+
+
+\begin{definition}
+    A \textbf{vector bundle} is a fiber bundle in which the fiber is a euclidean space and the structure group is the general linear group of this euclidean space or some subgroup of that group.
+
+    A vector bundle is usually denoted by a Greek letter such as $\xi$ and its total space by $E(\xi)$ and base space by $B(\xi)$. Its fiber projection is denoted by $\pi_{\xi}$ or just by $\pi$. The following definition, given only for vector bundles, has a fairly obvious generalization to general fiber bundles, but we need it only for vector bundles.
+\end{definition}
+
+
+\begin{definition}
+    If $\xi$ and $\eta$ are vector bundles then a \textbf{bundle map} $\xi \rightarrow \eta$ is a map $g: E(\xi) \rightarrow E(\eta)$ carrying each fiber of $\xi$ onto some fiber of $\eta$ isomorphically.
+    A bundle map $g$ is a \textbf{bundle isomorphism} or a bundle equivalence if it is a homeomorphism.
+    (In particular, the fibers have the same dimension and there is an induced map $B(\xi) \rightarrow B(\eta)$.)
+\end{definition}
+
+\section{}
+
+
+
+\begin{definition}
+    Let $M, X, Y$ be smooth manifolds and let $f: X \rightarrow M$ and $g: Y \rightarrow M$ be smooth maps with $g$ an embedding ($Y$ is a submanifold of $M$).
+    Then $f$ is said to be transverse :o $g$ (denoted by $f \pitchfork g$ ) if, whenever $f(x)=g(y)$, the images of the differentials $f_*: T_x(X) \rightarrow T_{f(x)}(M)$ and $g_*: T_y(Y) \rightarrow T_{g(y)}(M)=T_{f(x)}(M)$ span $T_{f(x)}(M)$.
+\end{definition}
+
+\begin{definition}
+    Let $f: M \rightarrow N$ be a smooth map, and $X \subset N$ be a smooth submanifold. We say \textbf{$f$ intersect $X$ transversally}, and denote by $f \pitchfork g$, if
+    \begin{equation*}
+        \Im\left(d f_p\right)+T_{f(p)} X=T_{f(p)} N, \quad \forall p \in f^{-1}(X)
+    \end{equation*}
+
+
+\end{definition}
+
+
+\begin{definition}
+    We say two smooth submanifolds $X_1$ and $X_2$ in $M$ \textbf{intersect transversally} if for any $p \in X_1 \cap X_2$,
+    \begin{equation*}
+        T_p X_1+T_p X_2=T_p M
+    \end{equation*}
+    In this case we write $X_1 \pitchfork X_2$.
+\end{definition}
+
+
+
+
+
