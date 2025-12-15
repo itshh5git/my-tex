@@ -207,10 +207,7 @@
               $A$ is a noetherian, integrally closed and has exactly one nonzero prime ideal.
     \end{enumerate}
 \end{theorem}
-
-
 We can associate discrete valuations to prime ideals in Dedekind domains.
-
 \begin{definition}
     Let $A$ be a Dedekind domain and let $\mathfrak{p}$ be a prime ideal in $A$. For any $c \in K^{\times}$, let $v(c)$ be the exponent of $\mathfrak{p}$ in the factorization of
     $(c)$.
@@ -608,35 +605,31 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
     The \textbf{ring of integers} of $K$ is the integral closure of $\mathbb{Z}$ in $K$, denoted by $\mathcal{O}_K$ or $\mathbb{Z}_K$; its elements are called the \textbf{algebraic integers} in $K$.
 \end{definition}
 
+\section{}
 
-
-\section{Trace, Norm and Discriminant} % Trace, Norm and Discriminant
 \begin{definition}
-    Let $B/A$ be a ring extension such that $B$ is a free $A$-module of rank $n$. Then every $\beta \in B$ defines an $A$-linear map
+    Let $A=\mathbb{Z}$ and $M$ be a free $A$-module of rank $n$, the \textbf{index} of $N := \mathbb{Z} f_1+\mathbb{Z} f_2+\cdots+\mathbb{Z} f_n$ in $M$ is
     \begin{equation*}
-        T_\beta x \mapsto \beta x: B \rightarrow B,
+        (M: N):=\left|\operatorname{det}\left(a_{i j}\right)\right|
     \end{equation*}
-    and the trace and determinant of this map are well-defined.
-    We call them the \textbf{trace} $\operatorname{Tr}_{B / A} \beta$ and \textbf{norm} $\operatorname{Nm}_{B / A} \beta$ of $\beta$ in the extension $B / A$.
-
-    \begin{remark}
-        Especially, $L / K$ is a finite extension of fields of degree $n$.
-        In this case, let $\chi_a$ be a characteristic polynomial of $T_a$ of degree $n$, and $m_a$ be the minimal polynomial of $a$ over $K$ of degree $d=\left[K(a),K\right]$.
-    \end{remark}
+    where $\left(f_k\right)=\left(a_{ij}\right)\left(e_k\right)$ for some $A$-basis $\left\{e_k\right\}$.
 \end{definition}
 
 
-\begin{proposition}
-    Let $L / K$ be an extension of fields of degree $n$ and $a \in L$. Then
+
+\section{Trace and Norm} % Trace and Norm
+\begin{definition}
+    Let $B/A$ be a ring extension such that $B$ is a free $A$-module of rank $n$. Then every $\beta \in B$ defines an $A$-linear map
     \begin{equation*}
-        \chi_a=m_a^e
+        T_\beta : B \rightarrow B,\quad x \mapsto \beta x
     \end{equation*}
-    where $e=[L: K(a)]=n/\deg m_a$.
-\end{proposition}
+    and the trace and determinant of this map are well-defined.
+    We call them the \textbf{trace} $\operatorname{Tr}_{B / A} \beta$ and \textbf{norm} $\operatorname{N}_{B / A} \beta$ of $\beta$ in the extension $B / A$.
+\end{definition}
 
 
 
-\begin{corollary}
+\begin{proposition}
     Let $L / K$ be an separable extension of fields of degree $n$, $\overline{K}$ an algebraic closure of $K$ containing $L$.
     Let
     \begin{equation*}
@@ -652,7 +645,7 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
               $\chi_a(X)=\prod_{\sigma \in \operatorname{Hom}_K(L, \overline{K})}(X-\sigma(a))$,
         \item
               $\operatorname{Tr}_{L / K}(a)=\sum_{\sigma} \sigma(a)$, and
-              $\operatorname{Norm}_{L / K}(a)=\prod_{\sigma} \sigma(a)$.
+              $\operatorname{N}_{L / K}(a)=\prod_{\sigma} \sigma(a)$.
     \end{enumerate}
     \begin{proof}
         Let $F=K(a)$, then $\overline{K}/F$ is Galois thus separable
@@ -670,7 +663,7 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
             \left(X-\overline{\sigma}_\alpha \circ \overline{\sigma}_\beta(a)\right)=\prod_{\sigma \in \operatorname{Hom}_K(L, \overline{K})}(X-\sigma(a)) .
         \end{equation*}
     \end{proof}
-\end{corollary}
+\end{proposition}
 
 \begin{corollary}
     Let $L / F / K$  be finite separable field extensions. Then
@@ -684,44 +677,146 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
 
 
 
-\subsection{Discriminant} % Discriminant
+\section{Discriminant} % Discriminant
+\subsection{}
+Let $A$ be an integral domain with fraction field $K=\operatorname{Frac}(A)$ and $L/K$ be finite separable field extension. Let $B:=A_L$ be the integral closure of $A$ in $L$.
+\begin{proposition}
+    \label{pro: pro of integral closure}
+    Then the following statements hold:
+    \begin{enumerate}
+        \item
+              Every $a \in L$ can be written as $a=\frac{s}{r}$ with $s \in B$ and $0 \neq r \in A$.
+        \item
+              $L=\operatorname{Frac}(B)$ and $B$ is integrally closed.
+    \end{enumerate}
+    If $A$ is integrally closed
+    \begin{enumerate}[resume]
+        \item
+              For any $K$-basis $\alpha_1, \ldots, \alpha_n$ of $L$, there is an element $r \in A \backslash\{0\}$ such that $r \alpha_i \in B$ for all $i=1, \ldots, n$.
+              Clearly, $\left\{r\alpha_i\right\}_{i=1}^n\subset B$ is also a $K$-basis of $L$.
+        \item
+              $B \cap K=A$.
+    \end{enumerate}
+\end{proposition}
 
+\begin{lemma}
+    Let $\alpha_1, \ldots, \alpha_n$ be a basis of $L/K$ which is contained in $B$, of discriminant $d=d\left(\alpha_1, \ldots, \alpha_n\right)$. Then one has
+    \begin{equation*}
+        d B \subseteq A \alpha_1+\cdots+A \alpha_n
+    \end{equation*}
+\end{lemma}
+
+\begin{proposition}
+    ,
+    \begin{enumerate}
+        \item
+              There exists free $A$-submodules $M$ and $M^{\prime}$ of $L$ such that
+              \begin{equation*}
+                  M \subset B \subset M^{\prime} .
+              \end{equation*}
+        \item
+              Therefore $B$ is a finitely generated $A$-module if $A$ is noetherian,
+        \item
+              If $A$ is a principal ideal domain, then every finitely generated $B$-submodule $M \neq 0$ of $L$ is a free $A$-module of rank $n$.
+              In particular, $B$ admits an integral basis over $A$.
+    \end{enumerate}
+    \begin{remark}
+        When $A$ is a principal ideal domain, a basis for $B$ as an $A$-module is called an \textbf{integral basis} of $B$ over $A$ (is also a $K$-basis of $L$).
+    \end{remark}
+    \begin{proof}
+        Let $\left\{\alpha_1, \ldots, \alpha_n\right\}\subset B$ be a basis for $L$ over $K$.
+        Because the trace pairing is nondegenerate, there is a dual basis $\left\{\alpha_1^{\prime}, \ldots, \alpha_n^{\prime}\right\}$ of $L$ over $K$ such that $\operatorname{Tr}\left(\alpha_i \cdot \alpha_j^{\prime}\right)=\delta_{i j}$.
+        We shall show that
+        \begin{equation*}
+            A \alpha_1+A \alpha_2+\cdots+A \alpha_n \subset B \subset A \alpha_1^{\prime}+A \alpha_2^{\prime}+\cdots+A \alpha_n^{\prime} .
+        \end{equation*}
+        The first inclusion is clear because the $\alpha_i$ are in $B$.
+
+        To show the second inclusion, let $b \in B$ and $b$ can be written uniquely as a linear combination $b=\sum k_j \alpha_j^{\prime}$ of the $\alpha_j^{\prime}$ with coefficients $k_j \in K$.
+        As $\alpha_i$ and $b$ are in $B$, so also is $b \cdot \alpha_i$, and so $\operatorname{Tr}\left(b \cdot \alpha_i\right) \in A$.
+        But
+        \begin{equation*}
+            \operatorname{Tr}\left(b \cdot \alpha_i\right)=\operatorname{Tr}\left(\sum_j k_j \alpha_j^{\prime} \cdot \alpha_i\right)=\sum_j k_j \operatorname{Tr}\left(\alpha_j^{\prime} \cdot \alpha_i\right)=\sum_j k_j \cdot \delta_{i j}=k_i .
+        \end{equation*}
+        Hence $k_i \in A\cap K= A$, proving the second inclusion.
+    \end{proof}
+\end{proposition}
+
+
+
+
+
+
+\subsection{Discriminant} % Discriminant
 
 \begin{definition}
     Let $B/A$ be a ring extension, and assume that $B$ is free of rank $n$ as an $A$-module.
-    Let $\alpha_1, \ldots, \alpha_m$ be elements of $B$.
-    We define their \textbf{discriminant} to be
+
+    \begin{enumerate}
+        \item
+              Let $\alpha_1, \ldots, \alpha_n$ be $A$-basis of $B$.
+              We define their \textbf{discriminant} to be
+              \begin{equation*}
+                  \disc_{B/A}\left(\alpha_1, \ldots, \alpha_n\right)
+                  :=
+                  \operatorname{det}\left(\operatorname{Tr}_{B / A}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq n} .
+              \end{equation*}
+        \item
+              The \textbf{trace pairing} on $B/A$ is the bilinear pairing
+              \begin{equation*}
+                  B \times B \rightarrow A, \quad(x, y) \mapsto \operatorname{Tr}_{B / A}(x y)
+              \end{equation*}
+              with Gram matrix $\left(\operatorname{Tr}_{B / A}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq n}$ with respect to the basis $\left\{\alpha_1, \ldots, \alpha_n\right\}$ of $B$.
+        \item
+              If two basis $\left(\beta_1,\ldots,\beta_n\right)=\left(\alpha_1,\ldots,\alpha_n\right)\left(a_{ij}\right)_{1 \leq i,j \leq n}$ where $\left(a_{ij}\right)\in M_n(A)$, then
+              \begin{equation*}
+                  \operatorname{disc}\left(\beta_1, \ldots, \beta_n\right)=\operatorname{det}(a_{ij})^2 \operatorname{disc}\left(\alpha_1, \ldots, \alpha_n\right) .
+              \end{equation*}
+              Thus the discriminant of a basis of $B$ is well-defined up to multiplication by the square of a unit in $A$.
+              The ideal generated by the discriminant, or $\disc\left(\alpha_1, \ldots, \alpha_n\right)$ itself regarded as an element of $A / A^{\times 2}$, is called the \textbf{discriminant} of $B$ over $A$, denoted $\operatorname{disc}(B / A)$.
+              \begin{remark}
+                  Then elements $\gamma_1, \ldots, \gamma_n$ form a basis for $B$ as an $A$-module if and only if
+                  \begin{equation*}
+                      \left(\disc\left(\gamma_1, \ldots, \gamma_n\right)\right)=(\disc(B / A)) \quad(\text { as ideals in } A) .
+                  \end{equation*}
+              \end{remark}
+    \end{enumerate}
+\end{definition}
+
+
+
+
+
+
+\begin{definition}
+    By proposition, every finitely generated $\mathcal{O}_K$-submodule $\mathfrak{a}$ of $K$ admits a $\mathbb{Z}$-basis $\alpha_1, \ldots, \alpha_n$.
+    The \textbf{discriminant} of ideal $\mathfrak{a}$ is defined as
     \begin{equation*}
-        \disc_{B/A}\left(\alpha_1, \ldots, \alpha_m\right)=\operatorname{det}\left(\operatorname{Tr}_{B / A}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq m} .
+        d(\mathfrak{a})
+        :=
+        \disc_{\mathfrak{a}/\mathbb{Z}}\left(\alpha_1, \ldots, \alpha_n\right)
     \end{equation*}
-    The \textbf{trace pairing} on $B/A$ is the bilinear pairing
+    is independent of the choice of a $\mathbb{Z}$-basis. ($\mathbb{Z}^{\times 2}=\{1\}$)
+
+    In the special case of an integral basis $\omega_1, \ldots, \omega_n$ of $\mathcal{O}_K$ we obtain the discriminant of the algebraic number field $K$,
     \begin{equation*}
-        B \times B \rightarrow A, \quad(x, y) \mapsto \operatorname{Tr}_{B / A}(x y)
+        d_K:=d\left(\mathcal{O}_K\right)=d\left(\omega_1, \ldots, \omega_n\right)
     \end{equation*}
-    with Gram matrix $\left(\operatorname{Tr}_{B / A}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq n}$ with respect to the basis $\left\{\alpha_1, \ldots, \alpha_n\right\}$ of $B$.
     \begin{remark}
-        Especially, if $L / K$ is a finite separable field extension of degree $n$.
+        Note that $d_K=\disc_{\mathcal{O}_K/\mathbb{Z}}\left(\omega_1, \ldots, \omega_n\right)=\disc_{K/\mathbb{Q}}\left(\omega_1, \ldots, \omega_n\right)$.
     \end{remark}
 \end{definition}
 
-
-\begin{definition}
-    Let $B/A$ be a ring extension, and assume that $B$ is free of rank $n$ as an $A$-module.
-    If two basis $\left(\beta_1,\ldots,\beta_n\right)=\left(\alpha_1,\ldots,\alpha_n\right)\left(a_{ij}\right)_{1 \leq i,j \leq n}$ where $\left(a_{ij}\right)\in M_n(A)$, then
-    \begin{equation*}
-        \operatorname{disc}\left(\beta_1, \ldots, \beta_n\right)=\operatorname{det}(a_{ij})^2 \operatorname{disc}\left(\alpha_1, \ldots, \alpha_n\right) .
-    \end{equation*}
-    Thus the discriminant of a basis of $B$ is well-defined up to multiplication by the square of a unit in $A$.
-    The ideal generated by the discriminant, or $\disc\left(\alpha_1, \ldots, \alpha_n\right)$ itself regarded as an element of $A / A^{\times 2}$, is called the \textbf{discriminant} of $B$ over $A$, denoted $\operatorname{disc}(B / A)$.
-\end{definition}
-
 \begin{proposition}
-    Let $A \subset B$ be integral domains and assume that $B$ is a free $A$-module of rank $m$ and that $\disc(B / A) \neq 0$.
-    Then elements $\gamma_1, \ldots, \gamma_m$ form a basis for $B$ as an $A$-module if and only if
+    If $\mathfrak{a} \subseteq \mathfrak{a}^{\prime}$ are two nonzero finitely generated $\mathcal{O}_K$-submodules of $K$, then the index $\left(\mathfrak{a}^{\prime}: \mathfrak{a}\right)$ is finite and satisfies
+
     \begin{equation*}
-        \left(\disc\left(\gamma_1, \ldots, \gamma_m\right)\right)=(\disc(B / A)) \quad(\text { as ideals in } A) .
+        d(\mathfrak{a})=\left(\mathfrak{a}^{\prime}: \mathfrak{a}\right)^2 d\left(\mathfrak{a}^{\prime}\right) .
     \end{equation*}
+
 \end{proposition}
+
+
 
 \begin{proposition}
     Let $L / K$ be a finite separable field extension of degree $n$, $\left\{\alpha_i\right\}$ a $K$-basis of $L$ and $\operatorname{Hom}_K(L, \overline{K})=\left\{\sigma_1, \ldots, \sigma_n\right\}$.
@@ -754,11 +849,7 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
 
 
 \begin{corollary}
-    Let $A$ be an integral domain, $K$ its field of fractions, $L / K$ a separable finite field extension of degree $n$ and $B$ the integral closure of $A$ in $L$.
-    If $B$ is free of rank $n$ over $A$, then $\operatorname{disc}(B / A) \neq 0$.
-    \begin{proof}
-        If $\left\{\beta_1, \ldots, \beta_m\right\}$ is a basis for $B$ as an $A$-module, then it follows easily from  that it is also a basis for $L$ as a $K$-vector space. Hence $\operatorname{disc}(B / A)$ represents $\operatorname{disc}(L / K)$.
-    \end{proof}
+    $d_{\mathcal{O}_K}\neq 0$
 \end{corollary}
 
 
@@ -767,179 +858,33 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
 
 
 
-\section{Rings of Integers}
-We now show that $\mathbb{Z}_K$ ($\mathcal{O}_K$) is finitely generated as a $\mathbb{Z}$-module, thus integral over $\mathbb{Z}$.
-
-\begin{proposition}
-    \label{pro: pro of integral closure}
-    Let $A$ be an integral domain with fraction field $K=\operatorname{Frac}(A)$ and $L/K$ be finite field extension.
-    Let $B:=A_L$ be the integral closure of $A$ in $L$. Then the following statements hold:
-    \begin{enumerate}
-        \item
-              Every $a \in L$ can be written as $a=\frac{s}{r}$ with $s \in B$ and $0 \neq r \in A$.
-        \item
-              $L=\operatorname{Frac}(B)$ and $B$ is integrally closed.
-    \end{enumerate}
-    If $A$ is integrally
-    \begin{enumerate}[resume]
-        \item
-              For any $K$-basis $\alpha_1, \ldots, \alpha_n$ of $L$, there is an element $r \in A \backslash\{0\}$ such that $r \alpha_i \in B$ for all $i=1, \ldots, n$.
-              Clearly, $\left\{r\alpha_i\right\}_{i=1}^n\subset B$ is also a $K$-basis of $L$.
-        \item
-              $B \cap K=A$.
-    \end{enumerate}
-\end{proposition}
-
-
-
-\begin{proposition}
-    Let $A$ be an integrally closed integral domain with field of fractions $K$, and let $B$ the integral closure of $A$ in a separable extension $L$ of $K$ of degree $n$.
-    \begin{enumerate}
-        \item
-              There exists free $A$-submodules $M$ and $M^{\prime}$ of $L$ such that
-              \begin{equation*}
-                  M \subset B \subset M^{\prime} .
-              \end{equation*}
-        \item
-              Therefore $B$ is a finitely generated $A$-module if $A$ is noetherian,
-        \item
-              $B$ is free of rank $n$ over $A$ if $A$ is a principal ideal domain.
-
-    \end{enumerate}
-    \begin{remark}
-        Indeed, $B$ is a finitely generated $A$-module
-    \end{remark}
-    \begin{proof}
-        Let $\left\{\alpha_1, \ldots, \alpha_n\right\}\subset B$ be a basis for $L$ over $K$.
-        Because the trace pairing is nondegenerate, there is a dual basis $\left\{\alpha_1^{\prime}, \ldots, \alpha_n^{\prime}\right\}$ of $L$ over $K$ such that $\operatorname{Tr}\left(\alpha_i \cdot \alpha_j^{\prime}\right)=\delta_{i j}$.
-        We shall show that
-        \begin{equation*}
-            A \alpha_1+A \alpha_2+\cdots+A \alpha_n \subset B \subset A \alpha_1^{\prime}+A \alpha_2^{\prime}+\cdots+A \alpha_n^{\prime} .
-        \end{equation*}
-        The first inclusion is clear because the $\alpha_i$ are in $B$.
-
-        To show the second inclusion, let $b \in B$ and $b$ can be written uniquely as a linear combination $b=\sum k_j \alpha_j^{\prime}$ of the $\alpha_j^{\prime}$ with coefficients $k_j \in K$.
-        As $\alpha_i$ and $b$ are in $B$, so also is $b \cdot \alpha_i$, and so $\operatorname{Tr}\left(b \cdot \alpha_i\right) \in A$.
-        But
-        \begin{equation*}
-            \operatorname{Tr}\left(b \cdot \alpha_i\right)=\operatorname{Tr}\left(\sum_j k_j \alpha_j^{\prime} \cdot \alpha_i\right)=\sum_j k_j \operatorname{Tr}\left(\alpha_j^{\prime} \cdot \alpha_i\right)=\sum_j k_j \cdot \delta_{i j}=k_i .
-        \end{equation*}
-        Hence $k_i \in A\cap K= A$, proving the second inclusion.
-    \end{proof}
-\end{proposition}
-
-
-\begin{definition}
-    When $K$ is a number field ($A=\mathbb{Z}, L=\mathbb{Q}, B=\mathcal{O}_K$), the basis $\alpha_1, \ldots, \alpha_n$ for $\mathcal{O}_K$ as a free $\mathbb{Z}$-module (also a $\mathbb{Q}$-basis of $K$) is called an \textbf{integral basis}.
-    \begin{remark}
-
-        (a)
-        Let $C=\sum A \beta_i \subset B$, with $\beta_i$ a basis for $L$ over $K$. Define
-
-        \begin{equation*}
-            C^*=\{\beta \in L \mid \operatorname{Tr}(\beta \gamma) \in A \text { for all } \gamma \in C\} .
-        \end{equation*}
-
-
-        By linearity,
-
-        \begin{equation*}
-            \beta \in C^* \Longleftrightarrow \operatorname{Tr}\left(\beta \beta_i\right) \in A \text { for } i=1, \ldots, m,
-        \end{equation*}
-
-        and it follows that
-
-        \begin{equation*}
-            C^*=\sum A \beta_i^{\prime} .
-        \end{equation*}
-
-
-        Thus we have:
-
-        \begin{equation*}
-            C=\sum A \beta_i \subset B \subset \sum A \beta_i^{\prime}=C^* .
-        \end{equation*}
-
-        (b) Write $L=\mathbb{Q}[\beta]$ with $\beta \in B$, and let $f(X)$ be the minimal polynomial of $\beta$. Let $C=\mathbb{Z}[\beta]=\mathbb{Z} 1+\mathbb{Z} \beta+\cdots+\mathbb{Z} \beta^{m-1}$. We want to find $C^*$.
-
-        One can show that
-        \begin{equation*}
-            \operatorname{Tr}\left(\beta^i / f^{\prime}(\beta)\right)=\left\{\begin{array}{ccc}
-                0 & \text { if } & 0 \leq i \leq m-2 \\
-                1 & \text { if } & i=m-1
-            \end{array}\right.
-        \end{equation*}
-        It follows from this that
-
-        \begin{equation*}
-            \operatorname{det}\left(\operatorname{Tr}\left(\beta^i \cdot \beta^j / f^{\prime}(\beta)\right)=(-1)^m\right.
-        \end{equation*}
-
-        (the only term contributing to the determinant is the product of the elements on the other diagonal). If $\beta_0^{\prime}, \ldots, \beta_{m-1}^{\prime}$ is the dual basis to $1, \beta, \ldots, \beta^{m-1}$, so that $\operatorname{Tr}\left(\beta^i \cdot \beta_j^{\prime}\right)=\delta_{i j}$, then
-
-        \begin{equation*}
-            \operatorname{det}\left(\operatorname{Tr}\left(\beta^i \cdot \beta_j^{\prime}\right)\right)=1 .
-        \end{equation*}
-
-
-        On comparing these formulas, one sees that the matrix relating the family
-
-        \begin{equation*}
-            \left\{1 / f^{\prime}(\beta), \ldots, \beta^{m-1} / f^{\prime}(\beta)\right\}
-        \end{equation*}
-
-        to the basis
-
-        \begin{equation*}
-            \left\{\beta_0^{\prime}, \ldots, \beta_{m-1}^{\prime}\right\}
-        \end{equation*}
-
-        has determinant $\pm 1$, and so it is invertible in $M_n(A)$. Thus we see that $C^*$ is a free $A$-module with basis $\left\{1 / f^{\prime}(\beta), \ldots, \beta^{m-1} / f^{\prime}(\beta)\right\}$ :
-
-        \begin{equation*}
-            C=A[\beta] \subset B \subset f^{\prime}(\beta)^{-1} A[\beta]=C^* .
-        \end{equation*}
-    \end{remark}
-\end{definition}
-
-
-
-
-
-\section{Rings of integers in Number Fields} % Rings of integers in Number Fields
-
-\begin{definition}
-    Let $K$ be a number field. A subring $\mathcal{O}$ of $\mathbb{Z}_K$ is called an \textbf{order} of $K$ if $\mathcal{O}$ has an integral basis of length $[K: \mathbb{Q}]$.
-\end{definition}
-
-\begin{corollary}
-    Any order in a number field $K$ is a dedekind domain.
-\end{corollary}
-
-
-
-
-\begin{definition}
-    Let $K$ be a number field with ring of integers $\mathbb{Z}_K$ and $0 \neq \mathfrak{a} \subset K$ be a finitely generated $\mathbb{Z}_K$-module.
-    The \textbf{discriminant} of $\mathfrak{a}$ is defined as $\operatorname{disc}\left(\alpha_1, \ldots, \alpha_n\right)$ for any $\mathbb{Z}$-basis of the free $\mathbb{Z}$-module $\mathfrak{a}$ (see Proposition 3.14). (By Proposition 2.8 (c), this definition does not depend on the choice of $\mathbb{Z}$-basis because the basis transformation matrix is invertible with integral entries and thus has determinant $\pm 1$.)
-
-    The discriminant of $K$ is defined as $\operatorname{disc}\left(\mathbb{Z}_K\right)$.
-\end{definition}
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{The Finiteness of the Class Number}
 \section{}
+\begin{theorem}
+    Let $L$ be a finite extension of a number field $K$, let $A$ be a Dedekind domain in $K$ with field of fractions $K$, and let $B$ be the integral closure of $A$ in $L$. Assume that $B$ is a free $A$-module.
+    Then a prime $\mathfrak{p}$ ramifies in $L$ if and only if $\mathfrak{p} \mid \operatorname{disc}(B / A)$. In particular, only finitely many prime ideals ramify.
+\end{theorem}
+
+
+\section{}
+Again $A$ is a Dedekind domain with field of fractions $K$, and $B$ is the integral closure of $A$ in a finite separable extension $L$ of $K$.
+\begin{theorem}
+    Suppose that $B=A[\alpha]$, and let $f(X)$ be the minimal polynomial of $\alpha$ over $K$. Let $\mathfrak{p}$ be a prime ideal in $A$. Choose monic polynomials $g_1(X), \ldots, g_r(X)$ in $A[X]$ that are distinct and irreducible modulo $\mathfrak{p}$, and such that $f(X) \equiv \prod g_i(X)^{e_i}$ modulo $\mathfrak{p}$. Then
+    \begin{equation*}
+        \mathfrak{p} B=\prod\left(\mathfrak{p}, g_i(\alpha)\right)^{e_i}
+    \end{equation*}
+    is the factorization of $\mathfrak{p} B$ into a product of powers of distinct prime ideals. Moreover, the residue field $B /\left(\mathfrak{p}, g_i(\alpha)\right) \simeq(A / \mathfrak{p})[X] /\left(\bar{g}_i\right)$, and so the residue class degree $f_i$ is equal to the degree of $g_i$.
+    \begin{proof}
+        Our assumption is that the map $X \mapsto \alpha$ defines an isomorphism
+        \begin{equation*}
+            A[X] /(f(X)) \rightarrow B .
+        \end{equation*}
+        When we divide out by $\mathfrak{p}$ (better, tensor with $A / \mathfrak{p}$ ), this becomes an isomorphism
+        \begin{equation*}
+            k[X] /(\bar{f}(X)) \rightarrow B / \mathfrak{p} B, \quad X \mapsto \alpha .
+        \end{equation*}
+        where $k=A / \mathfrak{p}$. The ring $k[X] /(\bar{f})$ has maximal ideals $\left(\bar{g}_1\right), \ldots,\left(\bar{g}_r\right)$, and $\Pi\left(\bar{g}_i\right)^{e_i}=0$ (but no product with smaller exponents is zero). The ideal $\left(\bar{g}_i\right)$ in $k[X] /(\bar{f})$ corresponds to the ideal $\left(g_i(\alpha)\right)+\mathfrak{p} B$ in $B / \mathfrak{p} B$, and this corresponds to the ideal $\mathfrak{P}_i \stackrel{\text { def }}{=}\left(\mathfrak{p}, g_i(\alpha)\right)$ in $B$. Thus $\mathfrak{P}_1, \ldots, \mathfrak{P}_r$ is the complete set of prime ideals containing $\mathfrak{p} B$, and hence is the complete set of prime divisors of $\mathfrak{p}$ (see 3.12). When we write $\mathfrak{p} B=\prod \mathfrak{P}_i^{e_i}$, then the $e_i$ are characterized by the fact that $\mathfrak{p} B$ contains $\prod \mathfrak{P}_i^{e_i}$ but it does not contain the product when any $e_i$ is replaced with a smaller value. Thus it follows from the above (parenthetical) statement that $e_i$ is the exponent of $\bar{g}_i$ occurring in the factorization of $\bar{f}$.
+    \end{proof}
+\end{theorem}
 
 
 
@@ -950,6 +895,20 @@ We now show that $\mathbb{Z}_K$ ($\mathcal{O}_K$) is finitely generated as a $\m
 
 
 
+
+
+
+
+
+
+\chapter{Dirichlet Unit Theorem}
+\begin{theorem} [Dirichlet]
+    Let $K$ be a number field of degree $n=r_1+2 r_2$. Then there is a group isomorphism
+    \begin{equation*}
+        \mathcal{O}_K^{\times} \simeq \mu_K \times \mathbb{Z}^{r_1+r_2-1},
+    \end{equation*}
+    where $\mu_K$ is the (finite) subgroup of $\mathcal{O}_K^{\times}$consisting of roots of unity.
+\end{theorem}
 
 
 
