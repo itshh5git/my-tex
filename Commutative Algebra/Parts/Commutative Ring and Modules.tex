@@ -1,3 +1,354 @@
+\chapter{}
+
+\section{Ideals quotient} % Ideals quotient
+\begin{definition}
+    If $\mathfrak{a}, \mathfrak{b}$ are ideals in a commutative ring $R$, their \textbf{ideal quotient} is
+    \begin{equation*}
+        (\mathfrak{a}: \mathfrak{b})
+        =
+        \{x \in R: x \mathfrak{b} \subseteq \mathfrak{a}\}
+    \end{equation*}
+    which is an ideal.
+    If $\mathfrak{b}$ is a principal ideal $(x)$, we shall write $(\mathfrak{a}: x)$ in place of $(\mathfrak{a}:(x))$.
+\end{definition}
+
+\begin{proposition}
+    Let $R$ be a commutative ring. Then
+    \begin{enumerate}
+        \item
+              $\mathfrak{a} \subseteq(\mathfrak{a}: \mathfrak{b})$
+
+        \item
+              $(\mathfrak{a}: \mathfrak{b}) \mathfrak{b} \subseteq \mathfrak{a}$
+
+        \item
+              $((\mathfrak{a}: \mathfrak{b}): \mathfrak{c})=(\mathfrak{a}: \mathfrak{b} \mathfrak{c})=((\mathfrak{a}: \mathfrak{c}): \mathfrak{b})$
+
+        \item
+              $\left(\bigcap_i \mathfrak{a}_i: \mathfrak{b}\right)=\bigcap_i\left(\mathfrak{a}_i: \mathfrak{b}\right)$
+
+        \item
+              $\left(\mathfrak{a}: \sum_i \mathfrak{b}_i\right)=\bigcap_i\left(\mathfrak{a}: \mathfrak{b}_i\right)$.
+    \end{enumerate}
+\end{proposition}
+
+
+
+\section{Primary Decomposition} % Primary Decomposition
+Throught this section, $R$ be a commutative ring with identity
+\subsection{Primary (Submodule) Ideals} % Primary Decomposition
+\begin{definition}
+    Let $A$ be a commutative ring with identity and $M$ an $A$-module.
+    \begin{enumerate}
+        \item An ideal $\mathfrak{q}$ in $A$ is \textbf{primary} if $\mathfrak{q} \neq A$ and if
+              \begin{equation*}
+                  x y \in \mathfrak{q} ,x\notin \mathfrak{q}\Rightarrow  y^n \in \mathfrak{q} \text { for some } n>0 \text {. }
+              \end{equation*}
+              In other words,
+              $\mathfrak{q}$ is primary $\Leftrightarrow R / \mathfrak{q} \neq 0$ and every zero-divisor in $R / \mathfrak{q}$ is nilpotent.
+        \item
+              A submodule $Q$ of $M$ is primary if $Q\neq M$ and if
+              \begin{center}
+                  $r \in R, m \in M-Q$ and $rm \in Q \Rightarrow r^n M \subset Q$ for some positive integer $n$
+              \end{center}
+              It is equivalent that
+              \begin{itemize}
+                  \item $\left(Q:M\right)=\Ann\left(M/Q\right)$ is a primary ideal in $R$
+                  \item principal homomorphism $a_{M/Q}$ is injective or nilpotent for each $a \in R$
+              \end{itemize}
+    \end{enumerate}
+    \begin{remark}
+        If we view $A$ as itself $A$-module, the two definition are equivalent for $A$.
+    \end{remark}
+\end{definition}
+
+
+\begin{proposition}
+    Let $A$ be a commutative ring and $M$ an $A$-module.
+    \begin{enumerate}
+        \item
+              If $\mathfrak{q}$ is a primary ideal in $A$, ideal $\mathfrak{p}=\Rad(\mathfrak{q})$ is a prime ideal containing $\mathfrak{q}$.
+              The radical $\mathfrak{p}$ is called the \textbf{associated prime ideal of $\mathfrak{q}$} or that $\mathfrak{q}$ is \textbf{$\mathfrak{p}$-primary}.
+
+        \item
+              If $N$ is a primary submodule of $M$, $\left(N:M\right)=
+                  \left\{r\in A \mid rM\subset N\right\}$
+              is a primary ideal in $A$.
+              Thus $\mathfrak{p}
+                  =
+                  \Rad\left(N:M\right)
+                  =
+                  \left\{r \in A \mid r^n M \subset N \text{ for some } n>0\right\}$ is a prime ideal in $A$ .
+              The primary submodule $N$ of a module $M$ is said to \textbf{belong to a prime ideal $\mathfrak{p}$} or to be a \textbf{$\mathfrak{p}$-primary submodule} of $M$.
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{theorem}
+    \label{thm: Equivalent condition about associated prime ideal of primary ideals}
+    Let $A$ be a commutative ring, $\mathfrak{q}$ and $\mathfrak{p}$ be ideals in $A$.
+    Then $\mathfrak{q}$ is primary for $\mathfrak{p}$ if and only if
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $\mathfrak{q} \subset \mathfrak{p}\subset \Rad \left(\mathfrak{q}\right)$
+        \item
+              if $ab \in \mathfrak{q}$ and $a \notin \mathfrak{q}$, then $b \in \mathfrak{p}$.
+    \end{enumerate}
+    \begin{proof}
+        Suppose (i) and (ii) hold.
+        If $a b \in \mathfrak{q}$ with $a \not\in \mathfrak{q}$, then $b \in \mathfrak{p} \subset \operatorname{Rad} \mathfrak{q}$, whence $b^n \in \mathfrak{q}$ for some $n>0$. Therefore $\mathfrak{q}$ is primary.
+
+        To show that $\mathfrak{q}$ is primary for $\mathfrak{p}$ we need only show $\mathfrak{p}=\operatorname{Rad} \mathfrak{q}$.
+        By (i), $\mathfrak{p} \subset \operatorname{Rad} \mathfrak{q}$. If $b \in \operatorname{Rad} \mathfrak{q}$, let $n$ be the least integer such that $b^n \in \mathfrak{q}$. If $n=1, b \in \mathfrak{q} \subset \mathfrak{p}$. If $n>1$, then $b^{n-1} b=b^n \in \mathfrak{q}$, with $b^{n-1} \notin \mathfrak{q}$ by the minimality of $n$.
+        By (ii), $b \in \mathfrak{p}$. Thus $b \in \operatorname{Rad} \mathfrak{q}$ implies $b \in \mathfrak{p}$, whence $\operatorname{Rad} \mathfrak{q} \subset \mathfrak{p}$.
+    \end{proof}
+\end{theorem}
+
+
+\begin{corollary}
+    \label{cor: intersection of primary ideal}
+    Let $A$ be a commutative ring with identity, if $\mathfrak{q}_1, \mathfrak{q}_2, \ldots, \mathfrak{q}_{n}$ are $\mathfrak{p}$-primary, then $\bigcap_{i=1}^n \mathfrak{q}_i$ is also $\mathfrak{p}$-primary.
+    \begin{proof}
+        Let $\mathfrak{q}=\bigcap_{i=1}^n \mathfrak{q}_i$.
+        Then by \ref{pro: operations of radical}, $\operatorname{Rad} \mathfrak{q}=\bigcap_{i=1}^n \operatorname{Rad} \mathfrak{q}_i$ $=\bigcap_{i=1}^n \mathfrak{p}=\mathfrak{p}$; in particular, $\mathfrak{q} \subset \mathfrak{p} \subset \operatorname{Rad} \mathfrak{q}$.
+        If $a b \in \mathfrak{q}$ and $a \notin \mathfrak{q}$, then $a b \in \mathfrak{q}_i$ and $a \not \in \mathfrak{q}_i$ for some $i$. Since $\mathfrak{q}_i$ is $\mathfrak{p}$-primary, $b \in \mathfrak{p}$ by \ref{thm: Equivalent condition about associated prime ideal of primary ideals}.
+        Consequently, $\mathfrak{q}$ itself is $\mathfrak{p}$-primary by \ref{thm: Equivalent condition about associated prime ideal of primary ideals}.
+    \end{proof}
+\end{corollary}
+
+\begin{proposition}
+    Clearly every prime ideal is primary. Also the contraction of a primary ideal is primary, for if $f: A \rightarrow B$ and if $\mathfrak{q}$ is a primary ideal in $B$, then $A / \mathfrak{q}^c$ is isomorphic to a subring of $B / q$.
+\end{proposition}
+
+
+
+\begin{proposition}
+    If $\Rad(\mathfrak{a})$ is maximal, then $\mathfrak{a}$ is primary. In particular, the powers of a maximal ideal $\mathfrak{m}$ are $\mathfrak{m}$-primary.
+    \begin{proof}
+        Let $\Rad(\mathfrak{a})=\mathfrak{m}$. The image of $\mathfrak{m}$ in $A / \mathfrak{a}$ is the nilradical of $A / \mathfrak{a}$, hence $A / \mathfrak{a}$ has only one prime ideal $\pi(\mathfrak{m})$, by (1.8). Hence every element of $A / \mathfrak{a}$ is either a unit or nilpotent, and so every zero-divisor in $A / a$ is nilpotent.
+    \end{proof}
+\end{proposition}
+
+\subsection{Primary Decomposition} % Primary Decomposition
+\begin{definition}
+    Let $R$ be a commutative ring with identity and $M$ an unitary $R$-module.
+    \begin{enumerate}
+        \item
+              An ideal $\mathfrak{a}$ of $R$ has a \textbf{primary decomposition} if
+              \begin{enumerate}[label=(\roman*)]
+                  \item
+                        $\mathfrak{a}=\mathfrak{q}_1 \cap \mathfrak{q}_2 \cap \cdots \cap \mathfrak{q}_n$ with each $\mathfrak{q}_i$ primary
+              \end{enumerate}
+              then the primary decomposition is said to be \textbf{reduced (or irredundant)} if
+              \begin{enumerate}[label=(\roman*),resume]
+                  \item
+                        no $\mathfrak{q}_i$ contains $\mathfrak{q}_1 \cap \cdots \cap \mathfrak{q}_{i-1} \cap \mathfrak{q}_{i+1} \cap \cdots \cap \mathfrak{q}_{n}$ and the $\mathfrak{p}_i=\Rad\mathfrak{q}_i$ are all distinct,
+              \end{enumerate}
+
+        \item
+              A submodule $N$ of $N$ has a \textbf{primary decomposition} if
+              \begin{enumerate}[label=(\roman*)]
+                  \item
+                        $N
+                            =
+                            Q_1 \cap Q_2 \cap \cdots \cap Q_n$, with each $Q_i$ a $\mathfrak{p}_i$-primary submodule of $N$ for some prime ideal $\mathfrak{p}_i$ of $R$.
+              \end{enumerate}
+              then the primary decomposition is said to be \textbf{reduced}. if
+              \begin{enumerate}[label=(\roman*),resume]
+                  \item
+                        no $Q_i$ contains $Q_1 \cap \ldots \cap Q_{i-1} \cap Q_{i+1} \cap \ldots \cap Q_n$ and the ideals $\mathfrak{p}_i, \ldots, \mathfrak{p}_i$ are all distinct,
+              \end{enumerate}
+    \end{enumerate}
+    If $\mathfrak{p}_j \not \subset \mathfrak{p}_i$ for all $j \neq i$, then $\mathfrak{p}_i$ is said to be an \textbf{isolated prime} ideal of $N$.
+    In other words, $\mathfrak{p}_i$ is isolated if it is minimal in the set $\left\{\mathfrak{p}_1, \ldots, \mathfrak{p}_n\right\}$. If $\mathfrak{p}_i$ is not isolated it is said to be \textbf{embedded}.
+
+\end{definition}
+
+
+\begin{theorem}
+    \label{thm: Existence of reduced primary decomposition}
+    Let $R$ be a commutative ring with identity and $M$ a unitary module.
+    \begin{enumerate}
+        \item
+              If an ideal $\mathfrak{a}$ of $R$ has a primary decomposition, then $\mathfrak{a}$ has a reduced primary decomposition.
+
+        \item
+              If a submodule $N$ has a primary decomposition, then $N$ has a reduced primary decomposition.
+    \end{enumerate}
+    \begin{proof}
+        1.
+        If $\mathfrak{a}=\mathfrak{q}_1 \cap \ldots \cap \mathfrak{q}_n\left(\mathfrak{q}_i\right.$ primary $)$ and some $\mathfrak{q}_i$ contains $\mathfrak{q}_1 \cap \ldots \cap$ $\mathfrak{q}_{i-1} \cap \mathfrak{q}_{i+1} \cap \cdots \cap \mathfrak{q}_n$, then $\mathfrak{a}=\mathfrak{q}_1 \cap \cdots \cap \mathfrak{q}_{i-1} \cap \mathfrak{q}_{i+1} \cap \cdots \cap \mathfrak{q}_n$ is also a primary decomposition. By thus eliminating the superfluous $\mathfrak{q}_i$ (and reindexing) we have $\mathfrak{a}=\mathfrak{q}_1 \cap \cdots \cap \mathfrak{q}_k$ with no $\mathfrak{q}_i$ containing the intersection of the other $\mathfrak{q}_j$.
+
+        Let $\mathfrak{p}_1, \ldots, \mathfrak{p}_r$ be the distinct prime ideals in the set $\left\{\operatorname{Rad} \mathfrak{q}_1, \ldots, \operatorname{Rad} \mathfrak{q}_k\right\}$. Let $\mathfrak{q}_i^{\prime}(1 \leq i \leq r)$ be the intersection of all the $\mathfrak{q}$ 's that belong to the prime $\mathfrak{p}_i$, that is,
+        \begin{equation*}
+            \mathfrak{q}^\prime_i
+            =
+            \bigcap_{\Rad\left( \mathfrak{q_j} \right)=\mathfrak{p_i}} \mathfrak{q}_j
+        \end{equation*}
+        By \ref{cor: intersection of primary ideal} each $\mathfrak{q}_i^{\prime}$ is primary for $\mathfrak{p}_i$. Clearly no $\mathfrak{q}_i^{\prime}$ contains the intersection of all the other $\mathfrak{q}_i^{\prime}$. Therefore, $\mathfrak{a}=\bigcap_{i=1}^k \mathfrak{q}_i=\bigcap_{i=1}^r \mathfrak{q}_i^{\prime}$, whence $\mathfrak{a}$ has a reduced primary decomposition.
+
+        2.
+        It is similar to 1.
+        Note that $\left(\bigcap Q_i:M\right) = \bigcap \left(Q_i:M\right)$.
+    \end{proof}
+\end{theorem}
+
+
+\begin{theorem}
+    \label{thm: Uniqueness of reduced primary decomposition}
+    Let $R$ be a commutative ring with identity.
+    If $M$ is an unitary $R$-module and $N$ is a proper submodule of $M$ with two reduced primary decompositions,
+    \begin{equation*}
+        Q_1 \cap Q_2 \cap \cdots \cap Q_k=N
+        =
+        Q_1^{\prime} \cap Q_2^{\prime} \cap \cdots \cap Q_{s}^{\prime}
+    \end{equation*}
+    where $Q_i$ is $\mathfrak{p}_i$-primary and $Q_{j}^{\prime}$ is $\mathfrak{p}_j^{\prime}$-primary.
+    Then $k=s$ and (after reordering if necessary) $\mathfrak{p}_i=\mathfrak{p}_i^{\prime}$ for all $i=1,2, \ldots, k$.
+    Furthermore if $Q_{i}$ and $Q_i^{\prime}$ both are $\mathfrak{p}_i$-primary and $\mathfrak{p}_i$ is an isolated prime, then $Q_{i}=Q_{i}^{\prime}$.
+\end{theorem}
+
+\begin{theorem}
+    \label{thm: primary decomposition in Noetherian unitary R-module}
+    Let $R$ be a commutative ring with identity and $M$ an Noetherian unitary $R$-module.
+    Then every submodule $N\neq M$ has a reduced primary decomposition.
+    \begin{proof}
+        Let $\mathcal{S}$ be the set of all submodules of $M$ that do not have a primary decomposition.
+        Clearly no primary submodule is in $\mathcal{S}$.
+        We must show that $\mathcal{S}$ is actually empty. If $\mathcal{S}$ is nonempty, then $\mathcal{S}$ contains a maximal element $C$ by Theorem 1.4.
+
+        Since $C$ is not primary, there exist $r \in R$ and $b \in M-C$ such that $r b \in C$ but $r^n M \not \subset C$ for all $n>0$.
+        Let $M_n=\left(C:r^n\right)=\left\{x \in M \mid r^n x \in C\right\}$.
+        Then each $M_n$ is a submodule of $M$ and $M_1 \subset M_2 \subset M_3 \subset \cdots$. By hypothesis there exists $k>0$ such that $M_i=M_k$ for $i \geq k$.
+        Let $D$ be the submodule $r^kM+C=\left\{x \in M \mid x=r^k y+c\right.$ for some $\left.y \in M, c \in C\right\}$. Clearly $C \subset M_k \cap D$.
+
+        Conversely, if $x \in M_k \cap D$, then $x=r^k y+c$ and $r^k x \in C$, whence $r^{2 k} v=r^k\left(r^k y\right)=r^k(x-c)=r^k x-r^k c \in C$. Therefore, $y\in M_{2 k}=M_k$. Consequently, $r^k y \in C$ and hence $x=r^k y+c \in C$.
+        Therefore $M_k \cap D \subset C$, whence $M_k \cap D=C$. Now $C \neq M_k \neq M$ and $C \neq D \neq M$ since $b \in M_k-C$ and $r^k M \not \subset C$. By the maximality of $C$ in $\mathcal{S}, M_k$ and $D$ must have primary decompositions. Thus $C$ has a primary decomposition, which is a contradiction. Therefore $\mathcal{S}$ is empty and every submodule has a primary decomposition. Consequently, every submodule has a reduced primary decomposition by \ref{thm: Existence of reduced primary decomposition}.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    If $R$ is a commutative Noetherian ring with identity and $M$ is a finitely generated unitary $R$-module.
+    Then every submodule $N(\neq M)$ of $M$ has a reduced primary decomposition.
+    \begin{proof}
+        This is an immediate consequence of \ref{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring} \ref{thm: equivalent conditions of Noetherian modules} and \ref{thm: primary decomposition in Noetherian unitary R-module}
+    \end{proof}
+\end{corollary}
+
+
+\section{Contraction and extension of ideal} % Contraction and extension
+\begin{definition}
+    Let $R$ be a ring and $f:A \rightarrow B$ be a ring homomorphism, \begin{enumerate}
+        \item
+              the \textbf{extension} of ideal $\mathfrak{a}$ of $A$ is the ideal generated by $f\left(\mathfrak{a}\right)$ in $B$, denoted by $\mathfrak{a}^e$.
+
+        \item
+              the \textbf{contraction} of $\mathfrak{b}$ is $f^{-1}\left(\mathfrak{b}\right)$, denoted by $\mathfrak{b}^c$.
+    \end{enumerate}
+    Especially if $A$ be a subring of $B$ and $i: A\rightarrow B$, the contraction of ideal of $\mathfrak{b}$ of $B$ is $A\cap \mathfrak{b}$.
+\end{definition}
+
+\begin{proposition}
+    \label{pro: Contraction and extension}
+    .
+    \begin{enumerate}
+        \item $\mathfrak{a} \subseteq \mathfrak{a}^{e c}, \mathfrak{b} \supseteq \mathfrak{b}^{c e}$;
+        \item  $\mathfrak{b}^c=\mathfrak{b}^{\text {cec }}, \mathfrak{a}^e=\mathfrak{a}^{\text {ece }}$;
+        \item  If $\mathcal{C}$ is the set of all contracted ideals in $A$ and if $\mathcal{E}$ is the set of all extended ideals in $B$, then $\mathcal{C}=\left\{\mathfrak{a} \mid \mathfrak{a}^{e c}=\mathfrak{a}\right\}, \mathcal{E}=\left\{\mathfrak{b} \mid \mathfrak{b}^{c e}=\mathfrak{b}\right\}$, and $\mathfrak{a} \mapsto \mathfrak{a}^e$ is a bijective map, whose inverse is $\mathfrak{b} \mapsto \mathfrak{b}^c$.
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+    \label{pro: Contraction and extension and other operations}
+    .
+    \begin{equation*}
+        \begin{array}{cc}
+            \left(\mathfrak{a}_1+\mathfrak{a}_2\right)^e=\mathfrak{a}_1^e+\mathfrak{a}_2^e                         & \left(\mathfrak{b}_1+\mathfrak{b}_2\right)^c \supseteq \mathfrak{b}_1^c+\mathfrak{b}_2^c,              \\
+            \left(\mathfrak{a}_1 \cap \mathfrak{a}_2\right)^e \subseteq \mathfrak{a}_1^e \cap \mathfrak{a}_2^e     & \left(\mathfrak{b}_1 \cap \mathfrak{b}_2\right)^c=\mathfrak{b}_1^c \cap \mathfrak{b}_2^c,              \\
+            \left(\mathfrak{a}_1 \mathfrak{a}_2\right)^e=\mathfrak{a}_1^e \mathfrak{a}_2^e                         & \left(\mathfrak{b}_1 \mathfrak{b}_2\right)^c \supseteq \mathfrak{b}_1^c \mathfrak{b}_2^c,              \\
+
+            \left(\mathfrak{a}_1: \mathfrak{a}_2\right)^e \subseteq\left(\mathfrak{a}_1^e: \mathfrak{a}_2^e\right) & \left(\mathfrak{b}_1: \mathfrak{b}_2\right)^c \subseteq\left(\mathfrak{b}_1^c: \mathfrak{b}_2^c\right) \\
+            \Rad(\mathfrak{a})^e \subseteq \Rad\left(\mathfrak{a}^e\right)                                         & \Rad(\mathfrak{b})^c=\Rad\left(\mathfrak{b}^c\right)
+        \end{array}
+    \end{equation*}
+
+    if $\mathfrak{b}$ is a prime ideal in $B$, then so $\mathfrak{b}^c$.
+
+    The set $\mathcal{C}$ is closed under the other three operations, and $\mathcal{E}$ is closed under sum and product.
+
+
+
+
+\end{proposition}
+
+
+\section{Nakayama's Lemma} % Noetherian Rings and Modules
+
+
+\begin{theorem}[Nakayama's lemma]
+    \label{pro: Nakayama's lemma}
+    Let $M$ be a finitely generated left $R$-module and an left ideal $\mathfrak{a} \subset J_l(R)$.
+    Then $\mathfrak{a} M=M$ implies $M=0$.
+    \begin{proof}
+        Since $\mathfrak{a}M +M$, we have
+        \begin{equation*}
+            \left(x_1,\ldots,x_n\right)^T
+            =
+            \left(a_{ij}\right)_{n\times n}\left(x_1,\ldots,x_n\right)^T
+        \end{equation*}
+        that is,
+        \begin{equation*}
+            \left(I-A\right)\left(x_1,\ldots,x_n\right)^T=0
+        \end{equation*}
+        where $A \in M_n(\mathfrak{a})\subset M_n\left(J(R)\right)$.
+        Thus $I-A$ is invertible in $M_n(R)$, whence $x_i$=0, $M=0$.
+    \end{proof}
+\end{theorem}
+
+
+\begin{corollary}
+    Let $M$ be a finitely generated left $R$-module, $N$ a submodule of $M$, left ideal $\mathfrak{a} \subset J_l(R)$.
+    Then $M=\mathfrak{a} M+N \Rightarrow M=N$.
+\end{corollary}
+
+
+
+
+\begin{corollary}
+    If $R$ is a Noetherian local ring with maximal ideal $\mathfrak{m}$, then $\bigcap_{n=1}^{\infty} \mathfrak{m}^n=0$.
+\end{corollary}
+
+\begin{proposition}
+    If $R$ is a local ring, then every finitely generated projective $R$-module is free.
+    \begin{proof}
+        If $P$ is a finitely generated projective $R$-module, then by \ref{cor: Every left module $M$ over a ring $R$ is the homomorphic image of a free $R$-module $F$.}
+        there exists a free $R$-module $F$ with a finite basis and an epimorphism $\pi: F \rightarrow P$. Among all the free $R$-modules $F$ with this property choose one with a basis $\left\{x_1, x_2, \ldots, x_n\right\}$ that has a minimal number of elements. Since $\pi$ is an epimorphism $\left\{\pi\left(x_1\right), \ldots, \pi\left(x_n\right)\right\}$ necessarily generate $P$.
+
+        We shall first show that $K=\operatorname{Ker} \pi$ is contained in $\mathfrak{m} F$, where $\mathfrak{m}$ is the unique maximal ideal of $R$.
+
+        If $K \not \subset \mathfrak{m} F$, then there exists $k \in K$ with $k \notin \mathfrak{m} F$. Now $k=r_1 x_1+r_2 x_2+\cdots+r_n x_n$ with $r_i \in R$ uniquely determined. Since $k \notin \mathfrak{m} F$, some $r_i$, say $r_1$, is not an element of $\mathfrak{m}$, thus $r_1$ is a unit, whence $x_1-r_1^{-1} k=-r_1^{-1} r_2 x_2-\cdots-r_1^{-1} r_n x_n$.
+
+        Consequently, since $k \in \operatorname{Ker} \pi, \pi\left(x_1\right)
+            =
+            \pi\left(x_1-r_1^{-1} k\right)
+            =
+            \sum_{i=2}^n-r_1 r_i \pi\left(x_i\right)$. Therefore, $\left\{\pi\left(x_2\right), \ldots, \pi\left(x_n\right)\right\}$ generates $P$. Thus if $F^{\prime}$ is the free submodule of $F$ with basis $\left\{x_2, \ldots, x_n\right\}$ and $\pi^{\prime}: F^{\prime} \rightarrow P$ the restriction of $\pi$ to $F^{\prime}$, then $\pi^{\prime}$ is an epimorphism. This contradicts the choice of $F$ as having a basis of minimal cardinality. Hence $K \subset \mathfrak{m} F$.
+
+        Since $0 \rightarrow K \xrightarrow{\subset} F \xrightarrow{\pi} P \rightarrow 0$ is exact and $P$ is projective $K \oplus P \cong F$ by \ref{thm: Equivalent conditions of projective}.
+        Under this isomorphism $(k, 0) \mapsto k$ for all $k \in K$ (see the proof of Theorem IV.1.18), whence $F$ is the internal direct sum $F=K \oplus P^{\prime}$ with $P^{\prime} \cong P$. Thus $F=K+P^{\prime} \subset \mathfrak{m} F+P^{\prime}$. If $u \in F$, then $u=\sum_i m_i v_i+p_i$ with $m_i \in \mathfrak{m}, v_i \in F, p_i \in P^{\prime}$. Consequently, in the $R$-module $F / P^{\prime}$,
+        \begin{equation*}
+            u+P^{\prime}=\sum_i m_i v_i+P^{\prime}=\sum_i m_i\left(v_i+P^{\prime}\right) \in \mathfrak{m}\left(F / P^{\prime}\right)
+        \end{equation*}
+        whence $\mathfrak{m}\left(F / P^{\prime}\right)=F / P^{\prime}$. Since $F$ is finitely generated, so is $F / P^{\prime}$. Therefore $K \cong F / P^{\prime}=0$ by \ref{lem: Nakayama lemma}.
+        Thus $P \cong P^{\prime}=F$ and $P$ is free.
+    \end{proof}
+\end{proposition}
+
+
+
+
+
 \chapter{Radical Ideals}% Radical Ideals
 \minitoc
 
@@ -120,91 +471,12 @@ $R$ is a commutative ring (with identity) throughout this chapter unless otherwi
 
 
 
-\section{Ideals quotient} % Ideals quotient
-\begin{definition}
-    If $\mathfrak{a}, \mathfrak{b}$ are ideals in a commutative ring $R$, their \textbf{ideal quotient} is
-    \begin{equation*}
-        (\mathfrak{a}: \mathfrak{b})
-        =
-        \{x \in R: x \mathfrak{b} \subseteq \mathfrak{a}\}
-    \end{equation*}
-    which is an ideal.
-
-    In particular,  $\left(0: \mathfrak{b}\right)$ is the \textbf{annihilator} of $\mathfrak{b}$.
-
-    In this notation the set of all zero-divisors in $R$ is
-    \begin{equation*}
-        D=\bigcup_{x \neq 0} \operatorname{Ann}(x)
-    \end{equation*}
-
-    If $\mathfrak{b}$ is a principal ideal $(x)$, we shall write $(\mathfrak{a}: x)$ in place of $(\mathfrak{a}:(x))$.
-\end{definition}
-
-\begin{proposition}
-    Let $R$ be a commutative ring. Then
-
-    (1) $\mathfrak{a} \subseteq(\mathfrak{a}: \mathfrak{b})$
-
-    (2) $(\mathfrak{a}: \mathfrak{b}) \mathfrak{b} \subseteq \mathfrak{a}$
-
-    (3) $((\mathfrak{a}: \mathfrak{b}): \mathfrak{c})=(\mathfrak{a}: \mathfrak{b} \mathfrak{c})=((\mathfrak{a}: \mathfrak{c}): \mathfrak{b})$
-
-    (4) $\left(\bigcap_i \mathfrak{a}_i: \mathfrak{b}\right)=\bigcap_i\left(\mathfrak{a}_i: \mathfrak{b}\right)$
-
-    (5) $\left(\mathfrak{a}: \sum_i \mathfrak{b}_i\right)=\bigcap_i\left(\mathfrak{a}: \mathfrak{b}_i\right)$.
-\end{proposition}
-
 
 
 \chapter{Fractions and Localization}% Fractions and Localization
 
 \minitoc
 
-
-\section{Contraction and extension of ideal} % Contraction and extension
-\begin{definition}
-    Let $R$ be a ring and $f:A \rightarrow B$ be a ring homomorphism, \begin{enumerate}
-        \item
-              the \textbf{extension} of ideal $\mathfrak{a}$ of $A$ is the ideal generated by $f\left(\mathfrak{a}\right)$ in $B$, denoted by $\mathfrak{a}^e$.
-
-        \item
-              the \textbf{contraction} of $\mathfrak{b}$ is $f^{-1}\left(\mathfrak{b}\right)$, denoted by $\mathfrak{b}^c$.
-    \end{enumerate}
-    Especially if $A$ be a subring of $B$ and $i: A\rightarrow B$, the contraction of ideal of $\mathfrak{b}$ of $B$ is $A\cap \mathfrak{b}$.
-\end{definition}
-
-\begin{proposition}
-    \label{pro: Contraction and extension}
-    .
-    \begin{enumerate}
-        \item $\mathfrak{a} \subseteq \mathfrak{a}^{e c}, \mathfrak{b} \supseteq \mathfrak{b}^{c e}$;
-        \item  $\mathfrak{b}^c=\mathfrak{b}^{\text {cec }}, \mathfrak{a}^e=\mathfrak{a}^{\text {ece }}$;
-        \item  If $\mathcal{C}$ is the set of all contracted ideals in $A$ and if $\mathcal{E}$ is the set of all extended ideals in $B$, then $\mathcal{C}=\left\{\mathfrak{a} \mid \mathfrak{a}^{e c}=\mathfrak{a}\right\}, \mathcal{E}=\left\{\mathfrak{b} \mid \mathfrak{b}^{c e}=\mathfrak{b}\right\}$, and $\mathfrak{a} \mapsto \mathfrak{a}^e$ is a bijective map, whose inverse is $\mathfrak{b} \mapsto \mathfrak{b}^c$.
-    \end{enumerate}
-\end{proposition}
-
-
-\begin{proposition}
-    \label{pro: Contraction and extension and other operations}
-    .
-    \begin{equation*}
-        \begin{array}{cc}
-            \left(\mathfrak{a}_1+\mathfrak{a}_2\right)^e=\mathfrak{a}_1^e+\mathfrak{a}_2^e                         & \left(\mathfrak{b}_1+\mathfrak{b}_2\right)^c \supseteq \mathfrak{b}_1^c+\mathfrak{b}_2^c,              \\
-            \left(\mathfrak{a}_1 \cap \mathfrak{a}_2\right)^e \subseteq \mathfrak{a}_1^e \cap \mathfrak{a}_2^e     & \left(\mathfrak{b}_1 \cap \mathfrak{b}_2\right)^c=\mathfrak{b}_1^c \cap \mathfrak{b}_2^c,              \\
-            \left(\mathfrak{a}_1 \mathfrak{a}_2\right)^e=\mathfrak{a}_1^e \mathfrak{a}_2^e                         & \left(\mathfrak{b}_1 \mathfrak{b}_2\right)^c \supseteq \mathfrak{b}_1^c \mathfrak{b}_2^c,              \\
-
-            \left(\mathfrak{a}_1: \mathfrak{a}_2\right)^e \subseteq\left(\mathfrak{a}_1^e: \mathfrak{a}_2^e\right) & \left(\mathfrak{b}_1: \mathfrak{b}_2\right)^c \subseteq\left(\mathfrak{b}_1^c: \mathfrak{b}_2^c\right) \\
-            \Rad(\mathfrak{a})^e \subseteq \Rad\left(\mathfrak{a}^e\right)                                         & \Rad(\mathfrak{b})^c=\Rad\left(\mathfrak{b}^c\right)
-        \end{array}
-    \end{equation*}
-
-    if $\mathfrak{b}$ is a prime ideal in $B$, then so $\mathfrak{b}^c$.
-
-    The set $\mathcal{C}$ is closed under the other three operations, and $\mathcal{E}$ is closed under sum and product.
-
-
-
-\end{proposition}
 
 
 \section{Rings of Quotient} % Rings of Quotient
@@ -508,6 +780,70 @@ $A$ is a commutative ring with identity throughout this section unless otherwise
     $M$ is Noetherian if and only if every submodule of $M$ is finitely generated.
     In particular, a commutative ring $R$ is Noetherian if and only if every ideal of $R$ is finitely generated.
 \end{theorem}
+\section{Properties of Noetherian Modules and Rings} % properties of Noetherian Modules and Rings
+\begin{theorem}
+    Recall that a module $M$ is Noetherian.
+
+    \ref{thm: chain condition and m condition}
+    A module $M$ satisfies the ascending [resp. descending] chain condition on submodules if and only if $M$ satisfies the maximal [resp. minimal] condition on submodules.
+
+    \ref{thm: equivalent conditions of Noetherian modules}
+    A module
+    $M$ satisfies the ACC on submodules if and only if every submodule of $M$ is finitely generated.
+    In particular, a commutative ring $R$ is Noetherian if and only if every ideal of $R$ is finitely generated.
+
+    \ref{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring}
+    If $R$ is a left [resp. right] Noetherian [resp. Artinian] ring with identity, then every finitely generated unitary left [resp. right]  $R$-module $A$ satisfies the ACC [resp. DCC] on submodules.
+\end{theorem}
+
+
+\begin{proposition}
+    If $A$ is Noetherian and $\phi$ is a homomorphism, then $B=\phi(A)$ is Noetherian.
+\end{proposition}
+
+\begin{proposition}
+    Let $A$ be a subring of $B$; suppose that $A$ is Noetherian and that $B$ is finitely generated as an $A$-module. Then $B$ is Noetherian (as a ring).
+\end{proposition}
+
+
+
+
+\begin{proposition}
+    If $A$ is Noetherian and $S$ is any multiplicatively closed subset of $A$, then $S^{-1} A$ is Noetherian.
+\end{proposition}
+
+
+
+\begin{theorem}
+    If $R$ is a commutative Noetherian ring with identity, then so is $R\left[x_1, \ldots, x_{n}\right]$ and $R\left[\left[x\right]\right]$
+\end{theorem}
+
+\begin{proposition}
+    If $R$ is a commutative ring with identity and $\mathfrak{p}$ is an ideal which is maximal in the set of all ideals of $R$ which are not finitely generated, then $\mathfrak{p}$ is prime.
+
+    \begin{proof}
+        Suppose $a b \in \mathfrak{p}$ but $a \notin \mathfrak{p}$ and $b \notin \mathfrak{p}$. Then $\mathfrak{p}+(a)$ and $\mathfrak{p}+(b)$ are ideals properly containing $\mathfrak{p}$ and therefore finitely generated by maximality of $\mathfrak{p}$. Consequently $\mathfrak{p}+(a)=\left(p_1+r_1 a, \ldots, p_n+r_n a\right)$
+        and
+        $\mathfrak{p}+(b)=\left(p_1^{\prime}+r_1^{\prime} b, \ldots p_m^{\prime}+r_m^{\prime} b\right)$ for some $p_i, p_i^{\prime} \in \mathfrak{p}$ and $r_i, r_i^{\prime} \in R$.
+
+        If $J=\left(\mathfrak{p}:a\right)=\{r \in R \mid r a \in \mathfrak{p}\}$, then $J$ is an ideal. Since $a b \in \mathfrak{p},\left(p_i{ }^{\prime}+r_i{ }^{\prime} b\right) a=p_i{ }^{\prime} a+r_i{ }^{\prime} a b \in \mathfrak{p}$ for all $i$, whence $\mathfrak{p} \subset\mathfrak{p}+(b) \subset J$. By maximality, $J$ is finitely generated, say $J=$ $\left(j_1, \ldots, j_k\right)$.
+
+        If $x \in \mathfrak{p}$, then $x \in \mathfrak{p}+(a)$ and hence for some $s_i \in R, x=\sum_{i=1}^n s_i\left(p_i+r_i a\right)$ $=\sum_{i=1}^n s_i p_i+\sum_{i=1}^n s_i r_i a$. Consequently, $\left(\sum_i s_i r_i\right) a=x-\sum_i s_i p_i \in \mathfrak{p}$, whence $\sum_i s_i r_i \in J$. Thus for some $t_i \in R, \sum_{i=1}^n s_i r_i=\sum_{i=1}^k t_i j_i$ and $x=\sum_{i=1}^n s_i p_i+\sum_{i=1}^k t_i j_i a$. Therefore, $\mathfrak{p}$ is generated by $p_1, \ldots, p_n, j_1 a, \ldots, j_k a$, which is a contradiction. Thus $a \in \mathfrak{p}$ or $b \in \mathfrak{p}$ and $\mathfrak{p}$ is prime by
+        \ref{thm: Prime ideal}
+    \end{proof}
+\end{proposition}
+
+
+\begin{theorem} [I.S.Cohen]
+    A commutative ring $R$ with identity is Noetherian if and only if every prime ideal of $R$ is finitely generated.
+
+    \begin{proof}
+        Let $\mathcal{S}$ be the set of all ideals of $R$ which are not finitely generated.
+        If $\mathcal{S}$ is nonempty, then use Zorn's Lemma to find a maximal element $P$ of $S . P$ is prime by Proposition 2.4 and hence finitely generated by hypothesis.
+
+        This is a contradiction unless $\delta=\varnothing$. Therefore, $R$ is Noetherian by Theorem 1.9.
+    \end{proof}
+\end{theorem}
 
 \section{Normal series and Composition Series of Modules} % Normal series and Composition Series of Modules
 \begin{definition}
@@ -555,21 +891,43 @@ $A$ is a commutative ring with identity throughout this section unless otherwise
     \end{proof}
 \end{theorem}
 
+
+
+
+\chapter{Noetherian Modules and Rings} % Noetherian Modules and Rings
+\minitoc
+
+\section{Artinian Rings} % Artinian Rings
+In this section we shall study commutative Artinian rings.
+\begin{theorem}
+    Let $A$ be a commutative ring with identity.
+    \begin{enumerate}
+        \item
+              $A$ is Artinian
+        \item
+              $\Spec \left(A\right)$ is finite and $\dim A=0$
+        \item
+              $A$ is Noetherian and $\dim A=0$.
+        \item
+              $A$ is uniquely (up to isomorphism) a finite direct product of Artin local rings.
+    \end{enumerate}
+\end{theorem}
+
 \begin{corollary}
-    If $D$ is a division ring, then the matrices ring $M_{n} \left(D\right)$ of all $n \times n$ matrices over $D$ is both Artinian and Noetherian.
-    \begin{proof}
-        It suffices to show that $R=M_{n} \left(D\right)$ has a composition series of left ideal and a composition of right ideals.
-        Let left ideals
-        \begin{equation*}
-            R_i=Re_1+Re_2+\ldots+Re_i
-        \end{equation*}
-        and right ideals
-        \begin{equation*}
-            R_i^\prime=e_1R+e_2R+\ldots+e_iR
-        \end{equation*}
-        Verify that each $R_i$ is a left ideal of $R$ and that $R_i / R_{i-1} \cong R e_i$ which has no nonempty proper submodules , whence $R=R_n \supset R_{n-1} \supset \cdots \supset R_1 \supset R_0=0$ is a composition series of left ideals.
-    \end{proof}
+    In a commutative Artin ring the nilradical is equal to the Jacobson radical.
 \end{corollary}
+
+\begin{proposition}
+    Let $A$ be an Artin local ring. Then the following are equivalent:
+    \begin{enumerate}
+        \item
+              every ideal in $A$ is principal;
+        \item
+              the maximal ideal $\mathfrak{m}$ is principal;
+        \item
+              $\operatorname{dim}_k\left(\mathfrak{m} / \mathfrak{m}^2\right) \leqslant 1$.
+    \end{enumerate}
+\end{proposition}
 
 
 
@@ -1009,36 +1367,12 @@ $A$ is a commutative ring with identity throughout this section unless otherwise
 
 
 
-\chapter{The Hilbert Nullstellensatz} % The Hilbert Nullstellensatz
 
 
 
-\begin{definition}
-    Let $k$ be a field and $F$ is an algebraically closed extension field of $K$.
 
-    If $S$ is a subset of $K\left[x_1, \ldots, x_n\right]$, the set of all zeros of $S$ is called the \textbf{affine $K$-variety} (or algebraic set) in $F^n$ defined by $S$ and is denoted $V(S)$. Thus
-    \begin{equation*}
-        V(S)=\left\{\left(a_1, \ldots, a_n\right) \in F^n \mid f\left(a_1, \ldots, a_n\right)=0 \text { for all } f \in S\right\} .
-    \end{equation*}
-    Note that if $I$ is the ideal of $K\left[x_1, \ldots, x_n\right]$ generated by $S$, then $V(I)=V(S)$.
 
-    The assignment $S \mapsto V(S)$ defines a function from the set of all subsets of $K\left[x_1, \ldots, x_n\right]$ to the set of all subsets of $F^n$. Conversely, define a function from the set of subsets of $F^n$ to the set of subsets of $K\left[x_1, \ldots, x_n\right]$ by $Y \mapsto J(Y)$, where $Y \subset F^n$ and
-    \begin{equation*}
-        J(Y)=\left\{f \in K\left[x_1, \ldots, x_n\right] \mid f\left(a_1, \ldots, a_n\right)=0 \text { for all }\left(a_1, \ldots, a_n\right) \in Y\right\} .
-    \end{equation*}
-    Note that $J(Y)$ is actually an ideal of $K\left[x_1, \ldots, x_n\right]$.
-\end{definition}
 
-\begin{theorem}
-    [Hilbert Nullstellensatz]
-    Let $F$ be an algebraically closed extension field of a field $K$ and $I$ a proper ideal of $K\left[x_1, \ldots, x_{n}\right]$.Then
-    \begin{equation*}
-        \operatorname{Rad} \left(I\right)
-        =
-        J(V(I))
-    \end{equation*}
-    In other words, $f\left(a_1, \ldots, a_{n}\right)=0$ for every zero $\left(a_1, \ldots, a_{n}\right)$ of I in $F^{n}$ if and only if $f^{m} \in I$ for some $m \geq 1$.
-\end{theorem}
 
 
 
@@ -1046,369 +1380,6 @@ $A$ is a commutative ring with identity throughout this section unless otherwise
 
 
 
-
-
-
-\chapter{Noetherian Modules and Rings} % Noetherian Modules and Rings
-\minitoc
-
-\section{Properties of Noetherian Modules and Rings} % properties of Noetherian Modules and Rings
-\begin{theorem}
-    Recall that a module $M$ is Noetherian.
-
-    \ref{thm: chain condition and m condition}
-    A module $M$ satisfies the ascending [resp. descending] chain condition on submodules if and only if $M$ satisfies the maximal [resp. minimal] condition on submodules.
-
-    \ref{thm: equivalent conditions of Noetherian modules}
-    A module
-    $M$ satisfies the ACC on submodules if and only if every submodule of $M$ is finitely generated.
-    In particular, a commutative ring $R$ is Noetherian if and only if every ideal of $R$ is finitely generated.
-
-    \ref{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring}
-    If $R$ is a left [resp. right] Noetherian [resp. Artinian] ring with identity, then every finitely generated unitary left [resp. right]  $R$-module $A$ satisfies the ACC [resp. DCC] on submodules.
-\end{theorem}
-
-
-\begin{proposition}
-    If $A$ is Noetherian and $\phi$ is a homomorphism, then $B=\phi(A)$ is Noetherian.
-\end{proposition}
-
-\begin{proposition}
-    Let $A$ be a subring of $B$; suppose that $A$ is Noetherian and that $B$ is finitely generated as an $A$-module. Then $B$ is Noetherian (as a ring).
-\end{proposition}
-
-
-
-
-\begin{proposition}
-    If $A$ is Noetherian and $S$ is any multiplicatively closed subset of $A$, then $S^{-1} A$ is Noetherian.
-\end{proposition}
-
-
-
-\begin{theorem}
-    If $R$ is a commutative Noetherian ring with identity, then so is $R\left[x_1, \ldots, x_{n}\right]$ and $R\left[\left[x\right]\right]$
-\end{theorem}
-
-\begin{proposition}
-    If $R$ is a commutative ring with identity and $\mathfrak{p}$ is an ideal which is maximal in the set of all ideals of $R$ which are not finitely generated, then $\mathfrak{p}$ is prime.
-
-    \begin{proof}
-        Suppose $a b \in \mathfrak{p}$ but $a \notin \mathfrak{p}$ and $b \notin \mathfrak{p}$. Then $\mathfrak{p}+(a)$ and $\mathfrak{p}+(b)$ are ideals properly containing $\mathfrak{p}$ and therefore finitely generated by maximality of $\mathfrak{p}$. Consequently $\mathfrak{p}+(a)=\left(p_1+r_1 a, \ldots, p_n+r_n a\right)$
-        and
-        $\mathfrak{p}+(b)=\left(p_1^{\prime}+r_1^{\prime} b, \ldots p_m^{\prime}+r_m^{\prime} b\right)$ for some $p_i, p_i^{\prime} \in \mathfrak{p}$ and $r_i, r_i^{\prime} \in R$.
-
-        If $J=\left(\mathfrak{p}:a\right)=\{r \in R \mid r a \in \mathfrak{p}\}$, then $J$ is an ideal. Since $a b \in \mathfrak{p},\left(p_i{ }^{\prime}+r_i{ }^{\prime} b\right) a=p_i{ }^{\prime} a+r_i{ }^{\prime} a b \in \mathfrak{p}$ for all $i$, whence $\mathfrak{p} \subset\mathfrak{p}+(b) \subset J$. By maximality, $J$ is finitely generated, say $J=$ $\left(j_1, \ldots, j_k\right)$.
-
-        If $x \in \mathfrak{p}$, then $x \in \mathfrak{p}+(a)$ and hence for some $s_i \in R, x=\sum_{i=1}^n s_i\left(p_i+r_i a\right)$ $=\sum_{i=1}^n s_i p_i+\sum_{i=1}^n s_i r_i a$. Consequently, $\left(\sum_i s_i r_i\right) a=x-\sum_i s_i p_i \in \mathfrak{p}$, whence $\sum_i s_i r_i \in J$. Thus for some $t_i \in R, \sum_{i=1}^n s_i r_i=\sum_{i=1}^k t_i j_i$ and $x=\sum_{i=1}^n s_i p_i+\sum_{i=1}^k t_i j_i a$. Therefore, $\mathfrak{p}$ is generated by $p_1, \ldots, p_n, j_1 a, \ldots, j_k a$, which is a contradiction. Thus $a \in \mathfrak{p}$ or $b \in \mathfrak{p}$ and $\mathfrak{p}$ is prime by
-        \ref{thm: Prime ideal}
-    \end{proof}
-\end{proposition}
-
-
-\begin{theorem} [I.S.Cohen]
-    A commutative ring $R$ with identity is Noetherian if and only if every prime ideal of $R$ is finitely generated.
-
-    \begin{proof}
-        Let $\mathcal{S}$ be the set of all ideals of $R$ which are not finitely generated.
-        If $\mathcal{S}$ is nonempty, then use Zorn's Lemma to find a maximal element $P$ of $S . P$ is prime by Proposition 2.4 and hence finitely generated by hypothesis.
-
-        This is a contradiction unless $\delta=\varnothing$. Therefore, $R$ is Noetherian by Theorem 1.9.
-    \end{proof}
-\end{theorem}
-
-\section{Primary Decomposition} % Primary Decomposition
-Throught this section, $R$ be a commutative ring with identity
-\subsection{Primary (Submodule) Ideals} % Primary Decomposition
-\begin{definition}
-    Let $R$ be a commutative ring with identity and $M$ a $R$-module.
-    \begin{enumerate}
-        \item An ideal $\mathfrak{q}$ in $R$ is \textbf{primary} if $\mathfrak{q} \neq R$ and if
-              \begin{equation*}
-                  x y \in \mathfrak{q} ,x\notin \mathfrak{q}\Rightarrow  y^n \in \mathfrak{q} \text { for some } n>0 \text {. }
-              \end{equation*}
-              In other words,
-              $\mathfrak{q}$ is primary $\Leftrightarrow R / \mathfrak{q} \neq 0$ and every zero-divisor in $R / \mathfrak{q}$ is nilpotent.
-        \item
-              A submodule $Q$ of $M$ is primary if $Q\neq M$ and if
-              \begin{center}
-                  $r \in R, m \in M-Q$ and $rm \in Q \Rightarrow r^n M \subset Q$ for some positive integer $n$
-              \end{center}
-              It is equivalent that
-              \begin{itemize}
-                  \item $\left(Q:M\right)=\Ann\left(M/Q\right)$ is a primary ideal in $R$
-                  \item principal homomorphism $a_{M/Q}$ is injective or nilpotent for each $a \in R$
-              \end{itemize}
-    \end{enumerate}
-    \begin{remark}
-        If we view $R$ as itself $R$-module, the two definition are equivalent for $R$.
-    \end{remark}
-\end{definition}
-
-\begin{theorem}
-    Let $R$ be a commutative ring and $M$ an $R$-module.
-    \begin{enumerate}
-        \item
-              If $\mathfrak{q}$ is a primary ideal in $R$, ideal $\mathfrak{p}=\Rad(\mathfrak{q})$ is a prime ideal containing $\mathfrak{q}$.
-              The radical $\mathfrak{p}$ is called the \textbf{associated prime ideal of $\mathfrak{q}$} or that $\mathfrak{q}$ is \textbf{$\mathfrak{p}$-primary}.
-
-        \item
-              If $N$ is a primary submodule of $M$, $\left(N:M\right)=
-                  \left\{r\in R \mid rM\subset N\right\}$
-              is a primary ideal in $R$.
-              Thus $\mathfrak{p}
-                  =
-                  \Rad\left(N:M\right)
-                  =
-                  \left\{r \in R \mid r^n M \subset N \text{ for some } n>0\right\}$ is a prime ideal in $R$ .
-              The primary submodule $N$ of a module $M$ is said to \textbf{belong to a prime ideal $\mathfrak{p}$} or to be a \textbf{$\mathfrak{p}$-primary submodule} of $M$.
-    \end{enumerate}
-\end{theorem}
-
-\begin{theorem}
-    \label{thm: Equivalent condition about associated prime ideal of primary ideals}
-    Let $R$ be a commutative ring, $\mathfrak{q}$ and $\mathfrak{p}$ be ideals in $R$.
-    Then $\mathfrak{q}$ is primary for $\mathfrak{p}$ if and only if
-    \begin{enumerate}[label=(\roman*)]
-        \item
-              $\mathfrak{q} \subset \mathfrak{p}\subset \Rad \left(\mathfrak{q}\right)$
-        \item
-              if $ab \in \mathfrak{q}$ and $a \notin \mathfrak{q}$, then $b \in \mathfrak{p}$.
-    \end{enumerate}
-    \begin{proof}
-        Suppose (i) and (ii) hold.
-        If $a b \in \mathfrak{q}$ with $a \not\in \mathfrak{q}$, then $b \in \mathfrak{p} \subset \operatorname{Rad} \mathfrak{q}$, whence $b^n \in \mathfrak{q}$ for some $n>0$. Therefore $\mathfrak{q}$ is primary.
-
-        To show that $\mathfrak{q}$ is primary for $\mathfrak{p}$ we need only show $\mathfrak{p}=\operatorname{Rad} \mathfrak{q}$.
-        By (i), $\mathfrak{p} \subset \operatorname{Rad} \mathfrak{q}$. If $b \in \operatorname{Rad} \mathfrak{q}$, let $n$ be the least integer such that $b^n \in \mathfrak{q}$. If $n=1, b \in \mathfrak{q} \subset \mathfrak{p}$. If $n>1$, then $b^{n-1} b=b^n \in \mathfrak{q}$, with $b^{n-1} \notin \mathfrak{q}$ by the minimality of $n$.
-        By (ii), $b \in \mathfrak{p}$. Thus $b \in \operatorname{Rad} \mathfrak{q}$ implies $b \in \mathfrak{p}$, whence $\operatorname{Rad} \mathfrak{q} \subset \mathfrak{p}$.
-    \end{proof}
-\end{theorem}
-
-
-\begin{corollary}
-    \label{cor: intersection of primary ideal}
-    Let $R$ be a commutative ring with identity, if $\mathfrak{q}_1, \mathfrak{q}_2, \ldots, \mathfrak{q}_{n}$ are $\mathfrak{p}$-primary, then $\bigcap_{i=1}^n \mathfrak{q}_i$ is also $\mathfrak{p}$-primary.
-    \begin{proof}
-        Let $\mathfrak{q}=\bigcap_{i=1}^n \mathfrak{q}_i$.
-        Then by \ref{pro: operations of radical}, $\operatorname{Rad} \mathfrak{q}=\bigcap_{i=1}^n \operatorname{Rad} \mathfrak{q}_i$ $=\bigcap_{i=1}^n \mathfrak{p}=\mathfrak{p}$; in particular, $\mathfrak{q} \subset \mathfrak{p} \subset \operatorname{Rad} \mathfrak{q}$.
-        If $a b \in \mathfrak{q}$ and $a \notin \mathfrak{q}$, then $a b \in \mathfrak{q}_i$ and $a \not \in \mathfrak{q}_i$ for some $i$. Since $\mathfrak{q}_i$ is $\mathfrak{p}$-primary, $b \in \mathfrak{p}$ by \ref{thm: Equivalent condition about associated prime ideal of primary ideals}.
-        Consequently, $\mathfrak{q}$ itself is $\mathfrak{p}$-primary by \ref{thm: Equivalent condition about associated prime ideal of primary ideals}.
-    \end{proof}
-\end{corollary}
-
-\begin{proposition}
-    Clearly every prime ideal is primary. Also the contraction of a primary ideal is primary, for if $f: A \rightarrow B$ and if $\mathfrak{q}$ is a primary ideal in $B$, then $A / \mathfrak{q}^c$ is isomorphic to a subring of $B / q$.
-\end{proposition}
-
-
-
-\begin{proposition}
-    If $\Rad(\mathfrak{a})$ is maximal, then $\mathfrak{a}$ is primary. In particular, the powers of a maximal ideal $\mathfrak{m}$ are $\mathfrak{m}$-primary.
-    \begin{proof}
-        Let $\Rad(\mathfrak{a})=\mathfrak{m}$. The image of $\mathfrak{m}$ in $A / \mathfrak{a}$ is the nilradical of $A / \mathfrak{a}$, hence $A / \mathfrak{a}$ has only one prime ideal $\pi(\mathfrak{m})$, by (1.8). Hence every element of $A / \mathfrak{a}$ is either a unit or nilpotent, and so every zero-divisor in $A / a$ is nilpotent.
-    \end{proof}
-\end{proposition}
-
-\subsection{Primary Decomposition} % Primary Decomposition
-\begin{definition}
-    Let $R$ be a commutative ring with identity and $M$ an unitary $R$-module.
-    \begin{enumerate}
-        \item
-              An ideal $\mathfrak{a}$ of $R$ has a \textbf{primary decomposition} if
-              \begin{enumerate}[label=(\roman*)]
-                  \item
-                        $\mathfrak{a}=\mathfrak{q}_1 \cap \mathfrak{q}_2 \cap \cdots \cap \mathfrak{q}_n$ with each $\mathfrak{q}_i$ primary
-              \end{enumerate}
-              then the primary decomposition is said to be \textbf{reduced (or irredundant)} if
-              \begin{enumerate}[label=(\roman*),resume]
-                  \item
-                        no $\mathfrak{q}_i$ contains $\mathfrak{q}_1 \cap \cdots \cap \mathfrak{q}_{i-1} \cap \mathfrak{q}_{i+1} \cap \cdots \cap \mathfrak{q}_{n}$ and the $\mathfrak{p}_i=\Rad\mathfrak{q}_i$ are all distinct,
-              \end{enumerate}
-
-        \item
-              A submodule $N$ of $N$ has a \textbf{primary decomposition} if
-              \begin{enumerate}[label=(\roman*)]
-                  \item
-                        $N
-                            =
-                            Q_1 \cap Q_2 \cap \cdots \cap Q_n$, with each $Q_i$ a $\mathfrak{p}_i$-primary submodule of $N$ for some prime ideal $\mathfrak{p}_i$ of $R$.
-              \end{enumerate}
-              then the primary decomposition is said to be \textbf{reduced}. if
-              \begin{enumerate}[label=(\roman*),resume]
-                  \item
-                        no $Q_i$ contains $Q_1 \cap \ldots \cap Q_{i-1} \cap Q_{i+1} \cap \ldots \cap Q_n$ and the ideals $\mathfrak{p}_i, \ldots, \mathfrak{p}_i$ are all distinct,
-              \end{enumerate}
-    \end{enumerate}
-    If $\mathfrak{p}_j \not \subset \mathfrak{p}_i$ for all $j \neq i$, then $\mathfrak{p}_i$ is said to be an \textbf{isolated prime} ideal of $N$.
-    In other words, $\mathfrak{p}_i$ is isolated if it is minimal in the set $\left\{\mathfrak{p}_1, \ldots, \mathfrak{p}_n\right\}$. If $\mathfrak{p}_i$ is not isolated it is said to be \textbf{embedded}.
-
-\end{definition}
-
-
-\begin{theorem}
-    \label{thm: Existence of reduced primary decomposition}
-    Let $R$ be a commutative ring with identity and $M$ a unitary module.
-    \begin{enumerate}
-        \item
-              If an ideal $\mathfrak{a}$ of $R$ has a primary decomposition, then $\mathfrak{a}$ has a reduced primary decomposition.
-
-        \item
-              If a submodule $N$ has a primary decomposition, then $N$ has a reduced primary decomposition.
-    \end{enumerate}
-    \begin{proof}
-        1.
-        If $\mathfrak{a}=\mathfrak{q}_1 \cap \ldots \cap \mathfrak{q}_n\left(\mathfrak{q}_i\right.$ primary $)$ and some $\mathfrak{q}_i$ contains $\mathfrak{q}_1 \cap \ldots \cap$ $\mathfrak{q}_{i-1} \cap \mathfrak{q}_{i+1} \cap \cdots \cap \mathfrak{q}_n$, then $\mathfrak{a}=\mathfrak{q}_1 \cap \cdots \cap \mathfrak{q}_{i-1} \cap \mathfrak{q}_{i+1} \cap \cdots \cap \mathfrak{q}_n$ is also a primary decomposition. By thus eliminating the superfluous $\mathfrak{q}_i$ (and reindexing) we have $\mathfrak{a}=\mathfrak{q}_1 \cap \cdots \cap \mathfrak{q}_k$ with no $\mathfrak{q}_i$ containing the intersection of the other $\mathfrak{q}_j$.
-
-        Let $\mathfrak{p}_1, \ldots, \mathfrak{p}_r$ be the distinct prime ideals in the set $\left\{\operatorname{Rad} \mathfrak{q}_1, \ldots, \operatorname{Rad} \mathfrak{q}_k\right\}$. Let $\mathfrak{q}_i^{\prime}(1 \leq i \leq r)$ be the intersection of all the $\mathfrak{q}$ 's that belong to the prime $\mathfrak{p}_i$, that is,
-        \begin{equation*}
-            \mathfrak{q}^\prime_i
-            =
-            \bigcap_{\Rad\left( \mathfrak{q_j} \right)=\mathfrak{p_i}} \mathfrak{q}_j
-        \end{equation*}
-        By \ref{cor: intersection of primary ideal} each $\mathfrak{q}_i^{\prime}$ is primary for $\mathfrak{p}_i$. Clearly no $\mathfrak{q}_i^{\prime}$ contains the intersection of all the other $\mathfrak{q}_i^{\prime}$. Therefore, $\mathfrak{a}=\bigcap_{i=1}^k \mathfrak{q}_i=\bigcap_{i=1}^r \mathfrak{q}_i^{\prime}$, whence $\mathfrak{a}$ has a reduced primary decomposition.
-
-        2.
-        It is similar to 1.
-        Note that $\left(\bigcap Q_i:M\right) = \bigcap \left(Q_i:M\right)$.
-    \end{proof}
-\end{theorem}
-
-
-\begin{theorem}
-    \label{thm: Uniqueness of reduced primary decomposition}
-    Let $R$ be a commutative ring with identity.
-    If $M$ is an unitary $R$-module and $N$ is a proper submodule of $M$ with two reduced primary decompositions,
-    \begin{equation*}
-        Q_1 \cap Q_2 \cap \cdots \cap Q_k=N
-        =
-        Q_1^{\prime} \cap Q_2^{\prime} \cap \cdots \cap Q_{s}^{\prime}
-    \end{equation*}
-    where $Q_i$ is $\mathfrak{p}_i$-primary and $Q_{j}^{\prime}$ is $\mathfrak{p}_j^{\prime}$-primary.
-    Then $k=s$ and (after reordering if necessary) $\mathfrak{p}_i=\mathfrak{p}_i^{\prime}$ for all $i=1,2, \ldots, k$.
-    Furthermore if $Q_{i}$ and $Q_i^{\prime}$ both are $\mathfrak{p}_i$-primary and $\mathfrak{p}_i$ is an isolated prime, then $Q_{i}=Q_{i}^{\prime}$.
-\end{theorem}
-
-\begin{theorem}
-    \label{thm: primary decomposition in Noetherian unitary R-module}
-    Let $R$ be a commutative ring with identity and $M$ an Noetherian unitary $R$-module.
-    Then every submodule $N\neq M$ has a reduced primary decomposition.
-    \begin{proof}
-        Let $\mathcal{S}$ be the set of all submodules of $M$ that do not have a primary decomposition.
-        Clearly no primary submodule is in $\mathcal{S}$.
-        We must show that $\mathcal{S}$ is actually empty. If $\mathcal{S}$ is nonempty, then $\mathcal{S}$ contains a maximal element $C$ by Theorem 1.4.
-
-        Since $C$ is not primary, there exist $r \in R$ and $b \in M-C$ such that $r b \in C$ but $r^n M \not \subset C$ for all $n>0$.
-        Let $M_n=\left(C:r^n\right)=\left\{x \in M \mid r^n x \in C\right\}$.
-        Then each $M_n$ is a submodule of $M$ and $M_1 \subset M_2 \subset M_3 \subset \cdots$. By hypothesis there exists $k>0$ such that $M_i=M_k$ for $i \geq k$.
-        Let $D$ be the submodule $r^kM+C=\left\{x \in M \mid x=r^k y+c\right.$ for some $\left.y \in M, c \in C\right\}$. Clearly $C \subset M_k \cap D$.
-
-        Conversely, if $x \in M_k \cap D$, then $x=r^k y+c$ and $r^k x \in C$, whence $r^{2 k} v=r^k\left(r^k y\right)=r^k(x-c)=r^k x-r^k c \in C$. Therefore, $y\in M_{2 k}=M_k$. Consequently, $r^k y \in C$ and hence $x=r^k y+c \in C$.
-        Therefore $M_k \cap D \subset C$, whence $M_k \cap D=C$. Now $C \neq M_k \neq M$ and $C \neq D \neq M$ since $b \in M_k-C$ and $r^k M \not \subset C$. By the maximality of $C$ in $\mathcal{S}, M_k$ and $D$ must have primary decompositions. Thus $C$ has a primary decomposition, which is a contradiction. Therefore $\mathcal{S}$ is empty and every submodule has a primary decomposition. Consequently, every submodule has a reduced primary decomposition by \ref{thm: Existence of reduced primary decomposition}.
-    \end{proof}
-\end{theorem}
-
-\begin{corollary}
-    If $R$ is a commutative Noetherian ring with identity and $M$ is a finitely generated unitary $R$-module.
-    Then every submodule $N(\neq M)$ of $M$ has a reduced primary decomposition.
-    \begin{proof}
-        This is an immediate consequence of \ref{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring} \ref{thm: equivalent conditions of Noetherian modules} and \ref{thm: primary decomposition in Noetherian unitary R-module}
-    \end{proof}
-\end{corollary}
-
-
-\section{Nakayama's Lemma} % Noetherian Rings and Modules
-
-
-\begin{theorem}[Nakayama's lemma]
-    \label{pro: Nakayama's lemma}
-    Let $M$ be a finitely generated left $R$-module and an left ideal $\mathfrak{a} \subset J_l(R)$.
-    Then $\mathfrak{a} M=M$ implies $M=0$.
-    \begin{proof}
-        Since $\mathfrak{a}M +M$, we have
-        \begin{equation*}
-            \left(x_1,\ldots,x_n\right)^T
-            =
-            \left(a_{ij}\right)_{n\times n}\left(x_1,\ldots,x_n\right)^T
-        \end{equation*}
-        that is,
-        \begin{equation*}
-            \left(I-A\right)\left(x_1,\ldots,x_n\right)^T=0
-        \end{equation*}
-        where $A \in M_n(\mathfrak{a})\subset M_n\left(J(R)\right)$.
-        Thus $I-A$ is invertible in $M_n(R)$, whence $x_i$=0, $M=0$.
-    \end{proof}
-\end{theorem}
-
-
-\begin{corollary}
-    Let $M$ be a finitely generated left $R$-module, $N$ a submodule of $M$, left ideal $\mathfrak{a} \subset J_l(R)$.
-    Then $M=\mathfrak{a} M+N \Rightarrow M=N$.
-\end{corollary}
-
-
-
-
-
-
-\section{Nakayama lemma}
-\begin{lemma}[Nakayama]
-    \label{lem: Nakayama lemma}
-    If $J$ is an ideal in a commutative ring $R$ with identity, then the following conditions are equivalent.
-    \begin{enumerate}
-        \item
-              $J$ is contained in every maximal ideal of $R$ ;
-        \item
-              $1_{R}-j$ is a unit for every $j \in J$
-        \item
-              If $M$ is a finitely generated $R$-module such that $JM=M$, then $M=0$;
-        \item
-              If $N$ is a submodule of a finitely generated $R$-module $M$ such that $M=JM+N$, then $M=N$.
-        \item
-              for every Noetherian $R$-module $M$, $\bigcap_{n=1} J^n M=0$.
-    \end{enumerate}
-    \begin{proof}
-        It is easy to verify that 1. $\Leftrightarrow$ 2. $\Leftrightarrow$ 3. $\Leftrightarrow$ 4.
-
-        ($\Rightarrow$ 5.)
-        If $N=\bigcap_n J^n M$, then $J N=N$ by \ref{thm: Krull Intersection Theorem}.
-        Since $N$ is finitely generated by \ref{thm: equivalent conditions of Noetherian modules}, $B=0$ by 3.
-
-        ($\Leftarrow$ 5.)
-        We may assume $R \neq 0$. If $M$ is any maximal ideal of $R$, then $M \neq R$ and $A=R / M$ is a nonzero $R$-module that has no proper submodules by \ref{thm: The Fourth or Lattice Isomorphism Theorem of Modules}.
-        Thus $A$ trivially satisfies the ascending chain condition, whence $\bigcap J^n A=0$ by hypothesis. Since $J A$ is a submodule of $A$, either $J A=A$ or $J A=0$. If $J A=A$, then $J^n A=A$ for all $n$. Consequently, $\bigcap_n J^n A=A \neq 0$, which is a contradiction. Hence $J A=0$. But $0=J A=J(R / M)$ implies that $J \subset J R \subset M$.
-    \end{proof}
-\end{lemma}
-
-\begin{corollary}
-    If $R$ is a Noetherian local ring with maximal ideal $\mathfrak{m}$, then $\bigcap_{n=1}^{\infty} \mathfrak{m}^n=0$.
-\end{corollary}
-
-\begin{proposition}
-    If $R$ is a local ring, then every finitely generated projective $R$-module is free.
-    \begin{proof}
-        If $P$ is a finitely generated projective $R$-module, then by \ref{cor: Every left module $M$ over a ring $R$ is the homomorphic image of a free $R$-module $F$.}
-        there exists a free $R$-module $F$ with a finite basis and an epimorphism $\pi: F \rightarrow P$. Among all the free $R$-modules $F$ with this property choose one with a basis $\left\{x_1, x_2, \ldots, x_n\right\}$ that has a minimal number of elements. Since $\pi$ is an epimorphism $\left\{\pi\left(x_1\right), \ldots, \pi\left(x_n\right)\right\}$ necessarily generate $P$.
-
-        We shall first show that $K=\operatorname{Ker} \pi$ is contained in $\mathfrak{m} F$, where $\mathfrak{m}$ is the unique maximal ideal of $R$.
-
-        If $K \not \subset \mathfrak{m} F$, then there exists $k \in K$ with $k \notin \mathfrak{m} F$. Now $k=r_1 x_1+r_2 x_2+\cdots+r_n x_n$ with $r_i \in R$ uniquely determined. Since $k \notin \mathfrak{m} F$, some $r_i$, say $r_1$, is not an element of $\mathfrak{m}$, thus $r_1$ is a unit, whence $x_1-r_1^{-1} k=-r_1^{-1} r_2 x_2-\cdots-r_1^{-1} r_n x_n$.
-
-        Consequently, since $k \in \operatorname{Ker} \pi, \pi\left(x_1\right)
-            =
-            \pi\left(x_1-r_1^{-1} k\right)
-            =
-            \sum_{i=2}^n-r_1 r_i \pi\left(x_i\right)$. Therefore, $\left\{\pi\left(x_2\right), \ldots, \pi\left(x_n\right)\right\}$ generates $P$. Thus if $F^{\prime}$ is the free submodule of $F$ with basis $\left\{x_2, \ldots, x_n\right\}$ and $\pi^{\prime}: F^{\prime} \rightarrow P$ the restriction of $\pi$ to $F^{\prime}$, then $\pi^{\prime}$ is an epimorphism. This contradicts the choice of $F$ as having a basis of minimal cardinality. Hence $K \subset \mathfrak{m} F$.
-
-        Since $0 \rightarrow K \xrightarrow{\subset} F \xrightarrow{\pi} P \rightarrow 0$ is exact and $P$ is projective $K \oplus P \cong F$ by \ref{thm: Equivalent conditions of projective}.
-        Under this isomorphism $(k, 0) \mapsto k$ for all $k \in K$ (see the proof of Theorem IV.1.18), whence $F$ is the internal direct sum $F=K \oplus P^{\prime}$ with $P^{\prime} \cong P$. Thus $F=K+P^{\prime} \subset \mathfrak{m} F+P^{\prime}$. If $u \in F$, then $u=\sum_i m_i v_i+p_i$ with $m_i \in \mathfrak{m}, v_i \in F, p_i \in P^{\prime}$. Consequently, in the $R$-module $F / P^{\prime}$,
-        \begin{equation*}
-            u+P^{\prime}=\sum_i m_i v_i+P^{\prime}=\sum_i m_i\left(v_i+P^{\prime}\right) \in \mathfrak{m}\left(F / P^{\prime}\right)
-        \end{equation*}
-        whence $\mathfrak{m}\left(F / P^{\prime}\right)=F / P^{\prime}$. Since $F$ is finitely generated, so is $F / P^{\prime}$. Therefore $K \cong F / P^{\prime}=0$ by \ref{lem: Nakayama lemma}.
-        Thus $P \cong P^{\prime}=F$ and $P$ is free.
-    \end{proof}
-\end{proposition}
 
 \chapter{Completions} % Completions
 \section{Filtered and Graded Modules} % Filtered and Graded Modules
