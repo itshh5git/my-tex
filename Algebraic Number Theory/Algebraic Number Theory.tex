@@ -540,54 +540,6 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
 
 
 
-\section{Integral closures of Dedekind domains}
-
-\begin{theorem}
-    Let $A$ be a Dedekind domain with field of fractions $K$ and $L/K$ be a finite separable extension, then the integral closure of $A$ in $L$ is Dedekind domain.
-\end{theorem}
-
-
-\begin{definition}
-    Let $A$ be a Dedekind domain with field of fractions $K$, and let $B$ be the integral closure of $A$ in a finite separable extension $L$ of $K$.
-    A prime ideal $\mathfrak{p}$ of $A$ will factor in $B$,
-    \begin{equation*}
-        \mathfrak{p}B
-        =
-        \mathfrak{P}_1^{e_1} \cdots \mathfrak{P}_g^{e_g}
-    \end{equation*}
-    wher $\mathfrak{P}$ are distinct prime ideals in $B$ and $e_i\geq 1$,
-    \begin{enumerate}
-        \item
-              If any of the numbers is $>1$, then we say that $\mathfrak{p}$ is \textbf{ramified} in $B$ (or $L$ ).
-              The number $e_i$ is called the \textbf{ramification index} .
-
-        \item
-              We say $\mathfrak{P}$ divides $\mathfrak{p}$,written $\mathfrak{P} \mid \mathfrak{p}$, if $\mathfrak{P}$ occurs in the factorization of $\mathfrak{p}$ in $B$.
-    \end{enumerate}
-    We then write $e(\mathfrak{P} / \mathfrak{p})$ for the ramification index and $f(\mathfrak{P} / \mathfrak{p})$ for the degree of the field extension $[B / \mathfrak{P}: A / \mathfrak{p}]$ (called the \textbf{residue class degree}).
-    \begin{enumerate}[resume]
-        \item
-              $\mathfrak{p}$ is said to \textbf{split} (or split completely) in $L$ if $e_i=f_i=1$ for all $i$
-
-        \item
-              $\mathfrak{p}$ is said to be \textbf{inert} in $L$ if $\mathfrak{p}$ is a prime ideal in $B$ (so $g=1=e$ ).
-    \end{enumerate}
-\end{definition}
-
-
-\begin{theorem}
-    Let $m$ be the degree of $L$ over $K$, and let $\mathfrak{P}_1, \ldots, \mathfrak{P}_g$ be the prime ideals dividing $\mathfrak{p}$; then
-    \begin{equation*}
-        \sum_{i=1}^g e_i f_i=m
-    \end{equation*}
-    where $e_i=e\left(\mathfrak{P}_i / \mathfrak{p}\right)$ and $f_i=f\left(\mathfrak{P}_i / \mathfrak{p}\right)$. If $L$ is Galois over $K$, then all the ramification numbers are equal, and all the residue class degrees are equal, and so
-
-    \begin{equation*}
-        e f g=m .
-    \end{equation*}
-\end{theorem}
-
-
 
 
 \chapter{}
@@ -858,32 +810,69 @@ Let $A$ be an integral domain with fraction field $K=\operatorname{Frac}(A)$ and
 
 
 
-\section{}
+
+\section{Ramification}
+In this section, let $A$ be a Dedekind domain with field of fractions $K$, and let $B$ be the integral closure of $A$ in a finite separable extension $L$ of $K$.
 \begin{theorem}
-    Let $L$ be a finite extension of a number field $K$, let $A$ be a Dedekind domain in $K$ with field of fractions $K$, and let $B$ be the integral closure of $A$ in $L$. Assume that $B$ is a free $A$-module.
+    $B$ is also a Dedekind domain.
+\end{theorem}
+
+
+\begin{definition}
+    A prime ideal $\mathfrak{p}$ of $A$ will factor in $B$,
+    \begin{equation*}
+        \mathfrak{p}B
+        =
+        \mathfrak{P}_1^{e_1} \cdots \mathfrak{P}_g^{e_g}
+    \end{equation*}
+    wher $\mathfrak{P}$ are distinct prime ideals in $B$ and $e_i\geq 1$,
+    \begin{enumerate}
+        \item
+              We say $\mathfrak{P}$ divides $\mathfrak{p}$,written $\mathfrak{P} \mid \mathfrak{p}$, if $\mathfrak{P}$ occurs in the factorization of $\mathfrak{p}$ in $B$.
+              The number $e_i$ is called the \textbf{ramification index} of $\mathfrak{P}_i$ over $\mathfrak{p}$.
+        \item
+              If any of the numbers is $>1$, then we say that $\mathfrak{p}$ is \textbf{ramified}.
+
+    \end{enumerate}
+    We then write $e(\mathfrak{P} / \mathfrak{p})$ for the ramification index and $f(\mathfrak{P} / \mathfrak{p})$ for the degree of the field extension $[B / \mathfrak{P}: A / \mathfrak{p}]$ (called the \textbf{residue class degree}).
+    \begin{enumerate}[resume]
+        \item
+              $\mathfrak{p}$ is said to \textbf{split} (or split completely) in $L$ if $e_i=f_i=1$ for all $i$
+
+        \item
+              $\mathfrak{p}$ is said to be \textbf{inert} in $L$ if $\mathfrak{p}$ is a prime ideal in $B$ (so $g=1=e$ ).
+    \end{enumerate}
+\end{definition}
+
+
+\begin{theorem}
+    Let $m$ be the degree of $L$ over $K$, and let $\mathfrak{P}_1, \ldots, \mathfrak{P}_g$ be the prime ideals dividing $\mathfrak{p}$; then
+    \begin{equation*}
+        \sum_{i=1}^g e_i f_i=m
+    \end{equation*}
+    where $e_i=e\left(\mathfrak{P}_i / \mathfrak{p}\right)$ and $f_i=f\left(\mathfrak{P}_i / \mathfrak{p}\right)$. If $L$ is Galois over $K$, then all the ramification numbers are equal, and all the residue class degrees are equal, and so
+
+    \begin{equation*}
+        e f g=m .
+    \end{equation*}
+\end{theorem}
+
+
+Again $A$ is a Dedekind domain with field of fractions $K$, and $B$ is the integral closure of $A$ in a finite separable extension $L$ of $K$.
+\begin{theorem}
+    Assume that $B$ is a free $A$-module.
     Then a prime $\mathfrak{p}$ ramifies in $L$ if and only if $\mathfrak{p} \mid \operatorname{disc}(B / A)$. In particular, only finitely many prime ideals ramify.
 \end{theorem}
 
 
-\section{}
-Again $A$ is a Dedekind domain with field of fractions $K$, and $B$ is the integral closure of $A$ in a finite separable extension $L$ of $K$.
-\begin{theorem}
-    Suppose that $B=A[\alpha]$, and let $f(X)$ be the minimal polynomial of $\alpha$ over $K$. Let $\mathfrak{p}$ be a prime ideal in $A$. Choose monic polynomials $g_1(X), \ldots, g_r(X)$ in $A[X]$ that are distinct and irreducible modulo $\mathfrak{p}$, and such that $f(X) \equiv \prod g_i(X)^{e_i}$ modulo $\mathfrak{p}$. Then
+\begin{theorem}[Dedekind-Kummer]
+    Suppose that $B=A[\alpha]$, and let $f(X)$ be the minimal polynomial of $\alpha$ over $K$. Let $\mathfrak{p}$ be a prime ideal in $A$ and reducible $f(X) =\prod g_i(X)^{e_i}$ in $\left(A/\mathfrak{p}\right)[X]$. Then
     \begin{equation*}
         \mathfrak{p} B=\prod\left(\mathfrak{p}, g_i(\alpha)\right)^{e_i}
     \end{equation*}
-    is the factorization of $\mathfrak{p} B$ into a product of powers of distinct prime ideals. Moreover, the residue field $B /\left(\mathfrak{p}, g_i(\alpha)\right) \simeq(A / \mathfrak{p})[X] /\left(\bar{g}_i\right)$, and so the residue class degree $f_i$ is equal to the degree of $g_i$.
-    \begin{proof}
-        Our assumption is that the map $X \mapsto \alpha$ defines an isomorphism
-        \begin{equation*}
-            A[X] /(f(X)) \rightarrow B .
-        \end{equation*}
-        When we divide out by $\mathfrak{p}$ (better, tensor with $A / \mathfrak{p}$ ), this becomes an isomorphism
-        \begin{equation*}
-            k[X] /(\bar{f}(X)) \rightarrow B / \mathfrak{p} B, \quad X \mapsto \alpha .
-        \end{equation*}
-        where $k=A / \mathfrak{p}$. The ring $k[X] /(\bar{f})$ has maximal ideals $\left(\bar{g}_1\right), \ldots,\left(\bar{g}_r\right)$, and $\Pi\left(\bar{g}_i\right)^{e_i}=0$ (but no product with smaller exponents is zero). The ideal $\left(\bar{g}_i\right)$ in $k[X] /(\bar{f})$ corresponds to the ideal $\left(g_i(\alpha)\right)+\mathfrak{p} B$ in $B / \mathfrak{p} B$, and this corresponds to the ideal $\mathfrak{P}_i \stackrel{\text { def }}{=}\left(\mathfrak{p}, g_i(\alpha)\right)$ in $B$. Thus $\mathfrak{P}_1, \ldots, \mathfrak{P}_r$ is the complete set of prime ideals containing $\mathfrak{p} B$, and hence is the complete set of prime divisors of $\mathfrak{p}$ (see 3.12). When we write $\mathfrak{p} B=\prod \mathfrak{P}_i^{e_i}$, then the $e_i$ are characterized by the fact that $\mathfrak{p} B$ contains $\prod \mathfrak{P}_i^{e_i}$ but it does not contain the product when any $e_i$ is replaced with a smaller value. Thus it follows from the above (parenthetical) statement that $e_i$ is the exponent of $\bar{g}_i$ occurring in the factorization of $\bar{f}$.
-    \end{proof}
+    is the factorization of $\mathfrak{p} B$ into a product of powers of distinct prime ideals.
+
+    Moreover, the residue field $B /\left(\mathfrak{p}, g_i(\alpha)\right) \simeq(A / \mathfrak{p})[X] /\left(\bar{g}_i\right)$, and so the residue class degree $f_i$ is equal to the degree of $g_i$.
 \end{theorem}
 
 
@@ -907,7 +896,7 @@ Again $A$ is a Dedekind domain with field of fractions $K$, and $B$ is the integ
     \begin{equation*}
         \mathcal{O}_K^{\times} \simeq \mu_K \times \mathbb{Z}^{r_1+r_2-1},
     \end{equation*}
-    where $\mu_K$ is the (finite) subgroup of $\mathcal{O}_K^{\times}$consisting of roots of unity.
+    where $\mu_K$ is the torsion subgroup of $\mathcal{O}_K^{\times}$ (the finite cyclic subgroup consisting of roots of unity)
 \end{theorem}
 
 

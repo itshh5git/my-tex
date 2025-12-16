@@ -1,0 +1,81 @@
+\documentclass[12pt, oneside]{book}
+
+\usepackage{../mypackages}
+
+
+
+
+
+\begin{document}
+\frontmatter
+\title{{\Huge{\textbf{Representation of Groups}}}}
+\maketitle
+
+\dominitoc % 初始化minitoc
+\pagenumbering{Roman}
+\tableofcontents % 主目录
+
+
+
+\chapter{Introduction}
+\section{}
+
+\begin{definition}
+    Suppose now $G$ is a finite group and $k$ is a field.
+    \begin{enumerate}
+        \item
+              A \textbf{$k$-linear representation} of $G$
+              is a group homomorphism
+              \begin{equation*}
+                  \rho : G \rightarrow\GL(V)
+              \end{equation*}
+              where $V$ is a $k$ vector space of dimension $n$.
+
+        \item
+              Let $\rho$ and $\rho^{\prime}$ be two representations of the same group $G$ in vector spaces $\mathbf{V}$ and $\mathbf{V}^{\prime}$.
+              These representations are said to be similar (or isomorphic) if there exists a linear isomorphism $\tau: \mathbf{V} \rightarrow \mathbf{V}^{\prime}$ which "transforms" $\rho$ into $\rho^{\prime}$, that is, which satisfies the identity
+
+              \begin{equation*}
+                  \tau \circ \rho(s)=\rho^{\prime}(s) \circ \tau \quad \text { for all } s \in \mathbf{G} .
+              \end{equation*}
+
+
+              When $\rho$ and $\rho^{\prime}$ are given in matrix form by $\mathrm{R}_s$ and $\mathrm{R}_s^{\prime}$ respectively, this means that there exists an invertible matrix $T$ such that
+
+              \begin{equation*}
+                  \mathrm{T} \cdot \mathrm{R}_s=\mathrm{R}_s^{\prime} \cdot \mathrm{T}, \quad \text { for all } s \in \mathrm{G},
+              \end{equation*}
+
+              which is also written $\mathrm{R}_s^{\prime}=\mathrm{T} \cdot \mathrm{R}_s \cdot \mathrm{~T}^{-1}$. We can identify two such representations (by having each $x \in \mathrm{~V}$ correspond to the element $\tau(x) \in \mathrm{V}^{\prime}$ ); in particular, $\rho$ and $\rho^{\prime}$ have the same degree.
+    \end{enumerate}
+    \begin{remark}
+        A $k$-linear representation of $G$ is equivalent to a finite dimension $k[G]$-module
+    \end{remark}
+\end{definition}
+
+
+
+\mainmatter
+\pagenumbering{arabic} % 正文编页码字体 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
