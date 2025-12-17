@@ -2,7 +2,7 @@
 \minitoc
 
 
-\section{Simplicity} % Simplicity
+\section{Simplicity and Primitivity} % Simplicity
 \begin{definition}
     A ring $R$ is said to be \textbf{simple} if $R$ has no proper two-sided ideals.
 \end{definition}
@@ -39,7 +39,7 @@
               Every nonzero $R$-module homomorphism $g: N_2 \rightarrow M$ is an epimorphism;
 
         \item
-              The endomorphism ring $\operatorname{Hom}_{R}(M,M)$ is a division ring,
+              The endomorphism ring $D=\operatorname{Hom}_{R}(M,M)$ is a division ring,
               then $M$ is a vector space over $\operatorname{Hom}_R(M,M)$ with $f a=f(a)$
     \end{enumerate}
 \end{lemma}
@@ -48,7 +48,7 @@
 
 
 
-\section{Primitivity} % Primitivity
+\subsection{Primitivity} % Primitivity
 \begin{definition}
     Let $R$ be a ring.
     \begin{enumerate}
@@ -145,8 +145,7 @@
 
 \begin{theorem}[Classic Jacobson Density Theorem]
     \label{thm: Jacobson Density Theorem}
-    Let $R$ be a primitive ring and $M$ a faithful simple $R$-module.
-    Consider $M$ as a vector space over the division ring $\operatorname{Hom}_{R}(M, M)=D$.
+    Let $R$ be a primitive ring with a faithful simple $R$-module $M$ and division ring $D=\End_{R}(M)$.
     Then $R$ is a dense ring of endomorphisms of the $D$-vector space $M$ (viewed $\alpha :R \hookrightarrow \Hom_{R}\left( M,M \right)$ by $ r\mapsto \alpha_r$ where $\alpha_r: m\mapsto rm$ in $M$).
     \begin{remark}
         If $R$ is not primitive, then $R$ is not a subring of $\Hom_{R}\left( M,M \right)$.
@@ -181,6 +180,24 @@
 
 
 
+\section{Simple ring} % Simple ring
+\begin{corollary}
+    If $R$ is a nonzero simple ring, then
+    \begin{equation*}
+        R\cong \alpha(R) \subseteq \End_D(V)
+    \end{equation*}
+    for some faithful simple $R$-module $V$ and division ring $D=\End_R(V)$.
+\end{corollary}
+
+
+
+
+
+
+
+
+
+
 \begin{corollary}
     \label{cor: Structure of primitive rings}
     If $R$ is a primitive ring, then for some division ring $D$ either $R$ is isomorphic to the endomorphism ring of a finite dimensional vector space over $D$
@@ -203,9 +220,6 @@
 
 
 
-
-
-\subsection{Simple Artinian Rings}
 \begin{theorem}[Wedderburn-Artin]
     \label{thm: Wedderburn-Artin theorem}
     The following conditions on a ring $R$ are equivalent.
@@ -270,125 +284,12 @@
 
 
 
-\section{Jacobson Radical} % Jacobson Radical
 
-\begin{definition}
-    Let $R$ be a ring. A element $x \in R$ is said to be \textbf{right quasi-regular} if there exists $y \in R$ such that $x+y-xy=0$, $y$ is called a \textbf{right quasi-inverse} of $x$.
-    \begin{remark}
-        That is, $1-x$ has a right inverse $1-y$.
-    \end{remark}
-
-\end{definition}
-\begin{definition}
-    A element $a\in R$ is said \textbf{right quasi-nilpotent element} if for every $r \in R$, $r a$ is right quasi-regular.
-    \begin{remark}
-        That is, $1-ra$ has a right inverse for every $r \in R$.
-    \end{remark}
-\end{definition}
-
-\begin{theorem}
-    \label{thm: Jacobson radical}
-    Let $R$ be a ring, then there is an ideal $J(R)$ of $R$ such that:
-    \begin{enumerate}
-        \item
-              $J(R)$ is the intersection of all maximal left ideals of $R$ ;
-        \item
-              $J(R)$ is the intersection of all the annihilators of simple left $R$-modules;
-        \item
-              $J(R)=\left\{x\in R: x \text{ is right quasi-nilpotent element}\right\}$
-    \end{enumerate}
-    \begin{remark}
-        The ideal $J(R)$ is called the \textbf{Jacobson radical} of the ring $R$.
-        Statements 1-4 are also true if"left" is replaced by "right", thus $J(R)$ is a two-sided ideal.
-    \end{remark}
-\end{theorem}
-
-
-
-\begin{theorem}
-    If $\left\{R_{i} \mid i \in I\right\}$ is a family of rings, then $J\left(\prod_{i \in I} R_i\right)=\prod_{i \in I} J\left(R_i\right)$.
-\end{theorem}
-
-\begin{theorem}
-    Let $R$ be a ring.
-    \begin{enumerate}
-        \item
-              If an ideal I of a ring $R$ is itself considered as a ring, then $J(I)=I \cap J(R)$.
-              $\qquad$
-
-        \item
-              $J(R)$ is a radical ring i.e. $J\left(J\left(R\right)\right)=J\left(R\right)$.
-    \end{enumerate}
-    \begin{proof}
-        1.
-        $I \cap J(R)$ is clearly an ideal of $I$. If $a \in I \cap J(R)$, then $a$ is left quasiregular in $R$, whence $r+a+r a=0$ for some $r \in R$. But $r=-a-r a \in I$. Thus every element of $I \cap J(R)$ is left quasi-regular in $I$. Therefore $I \cap J(R) \subset J(I)$ by Theorem 2.3 (iv) (applied to $I$ ).
-
-        Suppose $a \in J(I)$. For any $r \in R,-(r a)^2=-(r a r) a \in I J(I) \subset J(I)$, whence $-(r a)^2$ is left quasi-regular in $I$ by Theorem 2.3 (iv). Consequently by Lemma 2.15 (i) $r a$ is left quasi-regular in $I$ and hence in $R$. Thus $R a$ is a left quasi-regular left ideal of $R$, whence $a \in J(R)$ by Lemma 2.15 (ii). Therefore $a \in J(I) \cap J(R) \subset I \cap J(R)$. Consequently $J(I) \subset I \cap J(R)$, which completes the proof that $J(I)=I \cap J(R)$. Statements (ii) and (iii) are now immediate consequences of (i).
-    \end{proof}
-\end{theorem}
-
-\subsubsection{Nil and nilpotent ideals} % Nil and nilpotent ideals
-\begin{definition}
-    An element a of a ring $R$ is nilpotent if $a^n=0$ for some positive integer $n$.
-    A (left, right, two-sided) ideal $\mathfrak{a}$ of $R$ is \textbf{nil} if every element of $\mathfrak{a}$ is nilpotent; $\mathfrak{a}$ is \textbf{nilpotent} if $\mathfrak{a}^n=0$ for some integer $n$.
-\end{definition}
-
-
-\begin{theorem}
-    \label{thm: nil ideal}
-    Let $R$ be a ring.
-    \begin{enumerate}
-        \item
-              If $a\in R$ is nilpotent, $a$ is both left and right quasiregula with quasi inverse $r=-a+a^2-a^3+\cdots+(-1)^{n-1} a^{n-1}$
-        \item
-              Every nil left ( or right) ideal is contained in $J(R)$.
-        \item
-              Thus every nil ring is a radical ring.
-    \end{enumerate}
-\end{theorem}
-
-\begin{proposition}
-    If $R$ is a left (or right) Artinian ring, then the radical $J(R)$ is a nilpotent ideal. Consequently every nil left or right ideal of $R$ is nilpotent and $J(R)$ is the unique maximal nilpotent left (or right) ideal of $R$.
-
-    REMARK. If $R$ is left [resp. right] Noetherian, then every nil left or right ideal is nilpotent (Exercise 16).
-
-    \begin{proof}
-        Let $J=J(R)$ and consider the chain of (left) ideals $J \supset J^2 \supset J^3 \supset \cdots$. By hypothesis there exists $k$ such that $J^i=J^k$ for all $i \geq k$. We claim that $J^k=0$. If $J^k \neq 0$, then the set $S$ of all left ideals $I$ such that $J^k I \neq 0$ is nonempty (since $J^k J^k=J^{2 k}=J^k \neq 0$ ). By Theorem VIII.1.4 $S$ has a minimal element $J_0$. Since $J^k I_0 \neq 0$, there is a nonzero $a \varepsilon I_0$ such that $J^k a \neq 0$. Clearly $J^k a$ is a left ideal of $R$ that is contained in $I_0$. Furthermore $J^k a \varepsilon S$ since $J^k\left(J^k a\right)=J^{2 k} a=J^k a \neq 0$. Con-
-
-        sequently $J^k a=I_0$ by minimality. Thus for some nonzero $r \varepsilon J^k, r a=a$. Since $-r \varepsilon J^k \subset J(R),-r$ is left quasi-regular, whence $s-r-s r=0$ for some $s \varepsilon R$. Consequently,
-        \begin{equation*}
-            \begin{aligned}
-                a & =r a=-[-r a]=-[-r a+0]=-[-r a+s a-s a]     \\
-                  & =-[-r a+s a-s(r a)]=-[-r+s-s r] a=-0 a=0 .
-            \end{aligned}
-        \end{equation*}
-
-        This contradicts the fact that $a \neq 0$. Therefore $J^k=0$. The last statement of the theorem is now an immediate consequence of Theorem 2.12.
-    \end{proof}
-\end{proposition}
-
-
-\subsection{Questions}
-\begin{question}
-    Let $R$ be a ring. $J\left(\operatorname{Mat}_n R\right)=\operatorname{Mat}_n J(R)$.
-    \begin{proof}
-        (a) If $A$ is a left $R$-module, consider the elements of $A^n=A \oplus A \oplus \cdots \oplus A$ ( $n$ summands) as column vectors; then $A^n$ is a left $\left(\operatorname{Mat}_n R\right)$-module (under ordinary matrix multiplication).
-
-        (b) If $A$ is a simple $R$-module, $A^n$ is a simple $\left(\operatorname{Mat}_n R\right)$-module.
-
-        (c) $J\left(\operatorname{Mat}_n R\right) \subset \operatorname{Mat}_n J(R)$.
-
-        (d) $\operatorname{Mat}_n J(R) \subset J\left(\operatorname{Mat}_n R\right)$. [Hint: prove that $\operatorname{Mat}_n J(R)$ is a left quasi-regular ideal of $\operatorname{Mat}_n R$ as follows. For each $k=1,2, \ldots, n$ let $K_k$ consist of all matrices $\left(a_{i j}\right)$ such that $a_{i j} \varepsilon J(R)$ and $a_{i j}=0$ if $j \neq k$. Show that $K_k$ is a left quasi-regular left ideal of $\operatorname{Mat}_n R$ and observe that $K_1+K_2+\cdots+K_n=\operatorname{Mat}_n J(R)$. $]$
-    \end{proof}
-\end{question}
 
 
 \chapter{Semisimplicity} % Semirings
-\section{}
-\begin{theorem}
-    Let $R$ be a ring. Then $R$ is left Artinian if and only if $R$ is right Artinian.
-\end{theorem}
-\subsection{Definitions}
+\section{Definitions}
+
 \begin{theorem}
     \label{thm: Semisimple modules}
     Let $R$ be a ring and $M$ a left $R$-module.
@@ -429,7 +330,7 @@
     \end{proof}
 
     \begin{remark}
-        A module $M$ satisfying the three conditions is said to be \textbf{semisimple}.
+        A left $R$-module $M$ satisfying the three conditions is said to be \textbf{semisimple}.
         Similarly one defines a right semisimple module.
     \end{remark}
 \end{theorem}
@@ -443,27 +344,41 @@
 \section{Structure of semisimple rings} % Structure of semisimple rings
 
 \begin{definition}
-    A ring $R$ is called \textbf{left semisimple} if $1\neq 0$, and if $R$ is semisimple as a left $R$-module.
+    A ring $R$ is called \textbf{semisimple} if $1\neq 0$, and if $R$ is semisimple as a left $R$-module.
 \end{definition}
 
 
-\begin{theorem}
-    The following conditions on a ring $R$ are equivalent:
-    \begin{enumerate}
-        \item  $R$ is left semisimple.
-        \item
-              Every left $R$-module is a semisimple module.
-        \item
-              Every left $R$-module is injective.
-        \item
-              Every left $R$-module is projective.
-        \item
-              Every short exact sequence of left $R$-modules splits.
-    \end{enumerate}
-\end{theorem}
+
+
+\begin{proposition}
+    If $R$ is a semisimple ring, then $R$ is Artinian.
+    \begin{proof}
+        Since ${}_R R $ is semisimple module, there exist simple left ideals $L_j$ of $R$ such that
+        \begin{equation*}
+            {}_R R
+            \cong
+            \bigoplus_{j \in J} L_j
+        \end{equation*}
+        with projection maps $\pi_j: R \rightarrow L_j$ for each $j \in J$.
+        Since the sum is direct, $\left\{j_k: \pi_{j_k}(1_R) \neq 0\right\}$ is finite.
+        Then
+        $J=\left\{j_k: \pi_{j_k}(1_R) \neq 0\right\}$ is finite and
+        \begin{equation*}
+            {}_R R
+            \cong
+            L_{1} \oplus L_{2} \oplus \cdots \oplus L_{n}
+        \end{equation*}
+        Therefore ring $R$ is Artinian.
+    \end{proof}
+    \begin{remark}
+        It is clear that any simple ideal $L$ of $R$ is isomorphic to some $L_j$, thus $R$ has finitely many minimal left ideals up to isomorphism.
+    \end{remark}
+\end{proposition}
+
 
 
 \begin{lemma}
+    \label{lem:lemma of Wedderburn}
     If $L$ and $L^{\prime}$ are minimal left ideals in a ring $R$, then each of the following statements implies the one below it:
     \begin{enumerate}
         \item
@@ -475,126 +390,252 @@
     \end{enumerate}
     If also $L^2 \neq(0)$, then (iii) implies (i) and the three statements are equivalent.
 \end{lemma}
-
-
-\begin{theorem}
-    \label{thm: Structure of semisimple rings}
-    Let $R$ be a left semisimple ring.
-    \begin{enumerate}
-        \item
-              $R=\bigoplus_{i=1}^n L_i$
-              for some positive integer $n$ and simple left ideal $L_i$, and any other simple left ideal of $R$ is isomorphic to one of the $L_i$.
-              1m
-              and thus $R$ is both left Artinian and left Noetherian.
-        \item
-              Then there is only a finite number of non-isomorphic simple left ideals, say $L_1, \ldots, L_t$.
-              \begin{equation*}
-                  R_i
-                  =
-                  \bigoplus_{L_p\cong L_i} L_p \cong L_i^{\oplus n_i}
-              \end{equation*}
-              is the sum of all simple left ideals isomorphic to $L_i$, and $L_i$ appears $n_i$ times in the above direct sum decomposition and $R_iR_j=0$
-
-        \item
-              and $R$ is ring isomorphic to the direct product of simple rings
-              \begin{equation*}
-                  R
-                  =
-                  \prod_{i=1}^t R_i
-                  \cong
-                  \prod_{i=1}^t M_{n_i}\left(D_i\right)
-              \end{equation*}
-              where $R_i=L_i^{\oplus n_i}$ is a two-sided ideal of $R$, which is also a simple Artinian ring (the operations being those induced by $R$).
-              And $D_i$ is the division ring $\Hom_{R}\left( L_i,L_i \right)$..
-    \end{enumerate}
+\begin{theorem}[Wedderburn-Artin]
+    If $R$ is a semisimple ring, then we have ring isomorphisms
+    \begin{equation*}
+        R
+        \cong
+        \prod_{i=1}^t  R_i
+        \cong \prod_{i=1}^t M_{n_i}\left(D_i\right)
+    \end{equation*}
+    where $R_i\cong M_{n_i}\left(D_i\right)$ is a simple ring for each $i \in I$.
     \begin{proof}
-        Step 1.
-        By the semisimplicity of $R$,
+        Let $\left\{L_{j_i}\right\}_{i=1}^t$ be all distinct simple left ideals of $R$ up to isomorphism and define $R_i$ be the sum
         \begin{equation*}
-            {}_R R\cong \bigoplus_{i\in I} L_i
+            {}_R R_i
+            :=
+            \bigoplus_{L_j \cong L_i} L_j
         \end{equation*}
-        where each $L_i$ is a simple left ideal of $R$.
-        Then there are finite number of $i$ (without loss of generality) such that
-        \begin{equation*}
-            1_R=e_1+e_2+\cdots+e_n
-        \end{equation*}
-        where $e_i\in L_i$.
-        For each $r\in R$, we have
-        \begin{equation*}
-            r=r 1_R=r e_1+r e_2+\cdots+r e_n
-        \end{equation*}
-        thus
-        \begin{equation*}
-            R=\bigoplus_{i=1}^n L_i
-        \end{equation*}
-        then $R$ has a composition series of left ideals and thus left Artinian and left Noetherian.
-
-        Step 2.
-        Let $\pi_i$ be the  $R$-module projection from $R$ to $R_i$.
-        we have
-        \begin{equation*}
-            \pi_i^2=\pi_i, \pi_j \pi_i=0 \text{ for } i\neq j, \text{ and } \sum_{i=1}^t \pi_i=1_R
-        \end{equation*}
-        then for each $x_i\in R_i$ and $r\in R$
-        \begin{equation*}
-            x_i\pi_i(1_R)=x_i=\pi_i(1_R)x_i
-        \end{equation*}
-        \begin{equation*}
-            x_ir=x_i\sum \pi_j(r)=x_i\pi_i(r)\in R_i
-        \end{equation*}
-        thus $R_i$ is a two-sided ideal of $R$ and a ring with identity $\pi_i(1_R)$.
-        The projection from $R$ to $R_i$ gives a ring homomorphism
+        Thus, as left $R$-modules,
+        \[
+            {}_R R \cong \bigoplus_{i=1}^t {}_R R_i.
+        \]
+        Then $R_i$ is a two-sided ideal of $R$ by \cref{lem:lemma of Wedderburn} and hence a ring with identity element $e_i=\pi_i(1_R)$ ($\pi_i$ the projection from $R$ to $R_i$).
+        The projection from $R$ to $R_i$ induce a ring homomorphism
         \begin{equation*}
             R\cong \prod_{i=1}^t R_i
         \end{equation*}
 
-        Step 3.
-        Let $I$ be a nonzero two-sided ideal of $R_i$, then $I$ is a left ideal of $R$ and thus contain a simple left ideal $L$ of $R$.
-        There is a $x\in R_i$ such that
+
+        It remains to show that each $R_i$ is simple.
+        Let $I$ be a nonzero two-sided ideal of $R_i$, then $I$ is a left ideal of $R$.
+        Since $R$ is semisimple, there exists a left ideal $J$ of $R$ such that
         \begin{equation*}
-            L\subset Rx\subset I
+            R=I \oplus J
         \end{equation*}
-        Then $\left\{rL:r\in R\right\}$ achieves all simple left ideals of $R$ isomorphic to $L$ (every $f\in \Hom_{R}\left( L_i,L_i^\prime \right)$ can be extended to $\tilde{f}\in \Hom_{R}\left( R,R \right)$ by defining right multiplication.).
-        Thus $R_i=\sum rL = I$ and thus $R_i$ is simple.
-        And since $R_i$ is Artinian, $R_i \cong M_{n_i}\left(D_i\right)$ by \cref{thm: Wedderburn-Artin theorem}.
+        Then
+        \begin{equation*}
+            R_i=e_i R=e_i I+e_i J \subset I
+        \end{equation*}
+        Thus $R_i$ is simple.
     \end{proof}
 \end{theorem}
 
+\section{Structure of modules over semisimple rings} % Structure of modules over semisimple rings
 
+\subsection{Modules over $M_n(D)$}
+\begin{proposition}
+    Let $R=M_n(D)$ for some division ring $D$ and positive integer $n$.
+    \begin{enumerate}
+        \item
+              If $S$ is a left $R$-module, then
+              \begin{equation*}
+                  {}_R S   \cong {}_R D^n
+              \end{equation*}
+        \item
+              every left $R$-module is isomorphic to$\left({}_R D^n\right)^{(I)}$ for some index set $I$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+    There is, up to isomorphism, only one simple left module over a Artinian simple ring $R$; namely, the left $R$-module $R e$, where $e$ is any primitive idempotent of $R$.
+\end{corollary}
+
+\subsection{Modules over semisimple rings}
 
 \begin{theorem}
-    Let $R$ be left semisimple and $M$ be a left $R$-module $\neq 0$. Then
+    Let semisimple ring
     \begin{equation*}
-        M=\bigoplus_{i=1}^t R_i M=\bigoplus_{i=1}^t e_i M,
+        R\cong \prod_{i=1}^t R_i
     \end{equation*}
-    and $R_i M$ is the submodule of $M$ consisting of the sum of all simple submodules isomorphic to $L_i$.
-    \begin{proof}
-        Let $M_i$ be the sum of all simple submodules of $M$ isomorphic to $L_i$.
-        If $V$ is a simple submodule of $M$, then $R V=V$, and hence $L_i V=V$ for some $i$. By a previous lemma, we have $L_i \approx V$. Hence $M$ is the direct sum of $M_1, \ldots, M_s$. It is then clear that $R_i M=M_i$.
-    \end{proof}
+    where each $R_i\cong M_{n_i}(D_i)$.
+    Then every left $R$-module $M$ is isomorphic to
+    \begin{equation*}
+        \bigoplus_{i=1}^t e_iM
+        \cong
+        \bigoplus_{i=1}^t S_i^{\left(\kappa_i\right)}
+    \end{equation*}
+    where $e_iM\cong S_i$ is the unique simple left $R_i$-module and $\kappa_i$ is a cardinal number.
+    And the decomposition is unique in the sense that if
+    \begin{equation*}
+        M \cong \bigoplus_{i=1}^t S_i^{\left(\kappa_i\right)} \cong \bigoplus_{i=1}^t S_i^{\left(\kappa_i^{\prime}\right)}
+    \end{equation*}
+    then $\kappa_i=\kappa_i^{\prime}$ for each $i$
+    \begin{remark}
+        If $M$ is finitely generated, then each $\kappa_i$ is finite.
+    \end{remark}
 \end{theorem}
+
+
+\section{Jacobson Radical} % Jacobson Radical
+
+\begin{definition}
+    Let $R$ be a ring. A element $x \in R$ is said to be \textbf{right quasi-regular} if there exists $y \in R$ such that $x+y-xy=0$, $y$ is called a \textbf{right quasi-inverse} of $x$.
+    \begin{remark}
+        That is, $1-x$ has a right inverse $1-y$.
+    \end{remark}
+
+\end{definition}
+\begin{definition}
+    A element $a\in R$ is said \textbf{right quasi-nilpotent element} if for every $r \in R$, $r a$ is right quasi-regular.
+    \begin{remark}
+        That is, $1-ra$ has a right inverse for every $r \in R$.
+    \end{remark}
+\end{definition}
+
+\subsection{Jacobson radical}
+\begin{theorem}
+    \label{thm: Jacobson radical}
+    Let $R$ be a ring, then the following sets are equal:
+    \begin{enumerate}
+        \item
+              the intersection of all maximal left ideals of $R$
+        \item [1']
+              the intersection of all maximal right ideals of $R$
+
+        \item
+              the intersection of all the annihilators of simple left $R$-modules;
+        \item [2']
+              the intersection of all the annihilators of simple right $R$-modules;
+        \item
+              $\left\{x\in R: x \text{ is right quasi-nilpotent element}\right\}$
+        \item [3']
+              $\left\{x\in R: x \text{ is left quasi-nilpotent element}\right\}$
+        \item
+              Nakayama's
+              $\left\{x\in R: \text{ for any finitely generated module } M, xM=M\Rightarrow M=0\right\}$
+        \item
+              the ideal $J$ such that $R/J$ is semisimple.
+    \end{enumerate}
+    the two-sided ideal is called the \textbf{Jacobson radical} of $R$ and is denoted by $J(R)$.
+\end{theorem}
+
+
+\begin{corollary}
+    \begin{enumerate}
+        \item
+              $J\left(\prod_{i \in I} R_i\right)=\prod_{i \in I} J\left(R_i\right)$.
+        \item
+              $J\left(J\left(R\right)\right)=J\left(R\right)$.
+        \item
+              $R/J(R)$ is semisimple.
+    \end{enumerate}
+\end{corollary}
+
+\begin{proposition}
+    If $R$ is a Artinian ring, then the radical $J(R)$ is a nilpotent ideal.
+    Thus $J(R)=\Rad\left( R \right)$
+    \begin{proof}
+        Since $R$ is Artinian, the descending chain of ideals
+        \begin{equation*}
+            J(R) \supseteq J(R)^2 \supseteq J(R)^3 \supseteq \cdots
+        \end{equation*}
+        stabilizes, say $J(R)^n=J(R)^{n+1}$ for some positive integer $n$.
+        On the other hand, ${}_R R$ is Noetherian thus $J(R)^n$ is finitely gengerated submodule of ${}_R R$ and $J(R)^n =0$ by Nakayama's lemma.
+    \end{proof}
+\end{proposition}
+
+
+
+
+\begin{proposition}
+    Let $R$ be a ring. $J\left(M_n R\right)=M_n \left(J(R)\right)$.
+    \begin{proof}
+        (a) If $A$ is a left $R$-module, consider the elements of $A^n=A \oplus A \oplus \cdots \oplus A$ ( $n$ summands) as column vectors; then $A^n$ is a left $\left(\operatorname{Mat}_n R\right)$-module (under ordinary matrix multiplication).
+
+        (b) If $A$ is a simple $R$-module, $A^n$ is a simple $\left(\operatorname{Mat}_n R\right)$-module.
+
+        (c) $J\left(\operatorname{Mat}_n R\right) \subset \operatorname{Mat}_n J(R)$.
+
+        (d) $\operatorname{Mat}_n J(R) \subset J\left(\operatorname{Mat}_n R\right)$. [Hint: prove that $\operatorname{Mat}_n J(R)$ is a left quasi-regular ideal of $\operatorname{Mat}_n R$ as follows. For each $k=1,2, \ldots, n$ let $K_k$ consist of all matrices $\left(a_{i j}\right)$ such that $a_{i j} \varepsilon J(R)$ and $a_{i j}=0$ if $j \neq k$. Show that $K_k$ is a left quasi-regular left ideal of $\operatorname{Mat}_n R$ and observe that $K_1+K_2+\cdots+K_n=\operatorname{Mat}_n J(R)$. $]$
+    \end{proof}
+\end{proposition}
+
+
+\begin{corollary}
+    Let $R$ be a ring. If matrix $A\in M_n\left(J( R)\right)$, then $I-A$ is invertible in $M_n(R)$.
+\end{corollary}
+
+
+\subsection{Nakayama's Lemma} % Noetherian Rings and Modules
+
+
+\begin{theorem}[Nakayama's lemma]
+    \label{pro: Nakayama's lemma}
+    Let $M$ be a finitely generated left $R$-module and a subset $X \subset J(R)$.
+    Then $\mathfrak{a} M=M$ implies $M=0$.
+\end{theorem}
+
+
+\begin{corollary}
+    Let $M$ be a finitely generated left $R$-module, $N$ a submodule of $M$, left ideal $\mathfrak{a} \subset J(R)$.
+    Then $M=\mathfrak{a} M+N \Rightarrow M=N$.
+\end{corollary}
+
+
+
+
+\begin{corollary}
+    If $R$ is a Noetherian local ring with maximal ideal $\mathfrak{m}$, then $\bigcap_{n=1}^{\infty} \mathfrak{m}^n=0$.
+\end{corollary}
+
+\begin{proposition}
+    If $R$ is a local ring, then every finitely generated projective $R$-module is free.
+    \begin{proof}
+        If $P$ is a finitely generated projective $R$-module, then by \ref{cor: Every left module $M$ over a ring $R$ is the homomorphic image of a free $R$-module $F$.}
+        there exists a free $R$-module $F$ with a finite basis and an epimorphism $\pi: F \rightarrow P$. Among all the free $R$-modules $F$ with this property choose one with a basis $\left\{x_1, x_2, \ldots, x_n\right\}$ that has a minimal number of elements. Since $\pi$ is an epimorphism $\left\{\pi\left(x_1\right), \ldots, \pi\left(x_n\right)\right\}$ necessarily generate $P$.
+
+        We shall first show that $K=\operatorname{Ker} \pi$ is contained in $\mathfrak{m} F$, where $\mathfrak{m}$ is the unique maximal ideal of $R$.
+
+        If $K \not \subset \mathfrak{m} F$, then there exists $k \in K$ with $k \notin \mathfrak{m} F$. Now $k=r_1 x_1+r_2 x_2+\cdots+r_n x_n$ with $r_i \in R$ uniquely determined. Since $k \notin \mathfrak{m} F$, some $r_i$, say $r_1$, is not an element of $\mathfrak{m}$, thus $r_1$ is a unit, whence $x_1-r_1^{-1} k=-r_1^{-1} r_2 x_2-\cdots-r_1^{-1} r_n x_n$.
+
+        Consequently, since $k \in \operatorname{Ker} \pi, \pi\left(x_1\right)
+            =
+            \pi\left(x_1-r_1^{-1} k\right)
+            =
+            \sum_{i=2}^n-r_1 r_i \pi\left(x_i\right)$. Therefore, $\left\{\pi\left(x_2\right), \ldots, \pi\left(x_n\right)\right\}$ generates $P$. Thus if $F^{\prime}$ is the free submodule of $F$ with basis $\left\{x_2, \ldots, x_n\right\}$ and $\pi^{\prime}: F^{\prime} \rightarrow P$ the restriction of $\pi$ to $F^{\prime}$, then $\pi^{\prime}$ is an epimorphism. This contradicts the choice of $F$ as having a basis of minimal cardinality. Hence $K \subset \mathfrak{m} F$.
+
+        Since $0 \rightarrow K \xrightarrow{\subset} F \xrightarrow{\pi} P \rightarrow 0$ is exact and $P$ is projective $K \oplus P \cong F$ by \ref{thm: Equivalent conditions of projective}.
+        Under this isomorphism $(k, 0) \mapsto k$ for all $k \in K$ (see the proof of Theorem IV.1.18), whence $F$ is the internal direct sum $F=K \oplus P^{\prime}$ with $P^{\prime} \cong P$. Thus $F=K+P^{\prime} \subset \mathfrak{m} F+P^{\prime}$. If $u \in F$, then $u=\sum_i m_i v_i+p_i$ with $m_i \in \mathfrak{m}, v_i \in F, p_i \in P^{\prime}$. Consequently, in the $R$-module $F / P^{\prime}$,
+        \begin{equation*}
+            u+P^{\prime}=\sum_i m_i v_i+P^{\prime}=\sum_i m_i\left(v_i+P^{\prime}\right) \in \mathfrak{m}\left(F / P^{\prime}\right)
+        \end{equation*}
+        whence $\mathfrak{m}\left(F / P^{\prime}\right)=F / P^{\prime}$. Since $F$ is finitely generated, so is $F / P^{\prime}$. Therefore $K \cong F / P^{\prime}=0$ by \ref{lem: Nakayama lemma}.
+        Thus $P \cong P^{\prime}=F$ and $P$ is free.
+    \end{proof}
+\end{proposition}
+
 
 
 
 
 \section{Characterizations of semisimple rings}
 \begin{theorem}
-    Let $R$ be a ring.
+    The following conditions on a ring $R$ are equivalent:
     \begin{enumerate}
         \item
-              If $R$ is primitive, then $R$ is semisimple.
+              $R$ is a semisimple ring.
         \item
-              If $R$ is simple and semisimple, then $R$ is primitive.
+              Every left $R$-module is a semisimple module.
         \item
-              If $R$ is simple, then $R$ is either a primitive semisimple or a radical ring.
+              Every left $R$-module is injective.
+        \item
+              Every left $R$-module is projective.
+        \item
+              Every short exact sequence of left $R$-modules splits.
+        \item
+              $R$ is Artinian and $J(R)=0$.
     \end{enumerate}
-    \begin{proof}
-        1.
-        $R$ has a faithful simple left $R$-module $M$, whence $J(R) \subset \Ann(M)=0$ by \ref{thm: Jacobson radical}.
-
-        2.
-        $R \neq 0$ by simplicity. There must exist a simple left $R$-module $A$; (otherwise by Theorem 2.3 (i) $J(R)=R \neq 0$, contradicting semisimplicity). The left annihilator $Q(A)$ is an ideal of $R$ by Theorem 1.4 and $Q(A) \neq R$ (since $R A \neq 0$ ). Consequently $Q(A)=0$ by simplicity, whence $A$ is a simple faithful $R$-module. Therefore $R$ is primitive.
-    \end{proof}
 \end{theorem}
 
 

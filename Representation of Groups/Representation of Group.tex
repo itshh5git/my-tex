@@ -17,43 +17,6 @@
 
 
 
-\chapter{Introduction}
-\section{}
-
-\begin{definition}
-    Suppose now $G$ is a finite group and $k$ is a field.
-    \begin{enumerate}
-        \item
-              A \textbf{$k$-linear representation} of $G$
-              is a group homomorphism
-              \begin{equation*}
-                  \rho : G \rightarrow\GL(V)
-              \end{equation*}
-              where $V$ is a $k$ vector space of dimension $n$.
-
-        \item
-              Let $\rho$ and $\rho^{\prime}$ be two representations of the same group $G$ in vector spaces $\mathbf{V}$ and $\mathbf{V}^{\prime}$.
-              These representations are said to be similar (or isomorphic) if there exists a linear isomorphism $\tau: \mathbf{V} \rightarrow \mathbf{V}^{\prime}$ which "transforms" $\rho$ into $\rho^{\prime}$, that is, which satisfies the identity
-
-              \begin{equation*}
-                  \tau \circ \rho(s)=\rho^{\prime}(s) \circ \tau \quad \text { for all } s \in \mathbf{G} .
-              \end{equation*}
-
-
-              When $\rho$ and $\rho^{\prime}$ are given in matrix form by $\mathrm{R}_s$ and $\mathrm{R}_s^{\prime}$ respectively, this means that there exists an invertible matrix $T$ such that
-
-              \begin{equation*}
-                  \mathrm{T} \cdot \mathrm{R}_s=\mathrm{R}_s^{\prime} \cdot \mathrm{T}, \quad \text { for all } s \in \mathrm{G},
-              \end{equation*}
-
-              which is also written $\mathrm{R}_s^{\prime}=\mathrm{T} \cdot \mathrm{R}_s \cdot \mathrm{~T}^{-1}$. We can identify two such representations (by having each $x \in \mathrm{~V}$ correspond to the element $\tau(x) \in \mathrm{V}^{\prime}$ ); in particular, $\rho$ and $\rho^{\prime}$ have the same degree.
-    \end{enumerate}
-    \begin{remark}
-        A $k$-linear representation of $G$ is equivalent to a finite dimension $k[G]$-module
-    \end{remark}
-\end{definition}
-
-
 
 \mainmatter
 \pagenumbering{arabic} % 正文编页码字体 
@@ -65,6 +28,323 @@
 
 
 
+\chapter{Introduction}
+\section{Basic Definitions}
+
+\begin{definition}
+    Suppose now $G$ is a finite group and $k$ is a field.
+    \begin{enumerate}
+        \item
+              A \textbf{$k$-linear representation} of $G$
+              is a group homomorphism
+              \begin{equation*}
+                  \rho : G \rightarrow\GL(V)
+              \end{equation*}
+              where $V$ is a $k$-vector space.
+              The space $V$ is called the \textbf{representation space} of $\rho$ and $\dim_k V$ (if finite) is called the \textbf{degree} of the representation.
+
+        \item
+              Let $\rho$ and $\rho^{\prime}$ be two representations of the same group $G$ in vector spaces $V$ and $V^{\prime}$.
+              The \textbf{transforms} of $V$ and $V^\prime$ is a $k$-linear map from $V$ to $V^{\prime}$ such that
+              \begin{equation*}
+                  \tau \circ \rho(s)=\rho^{\prime}(s) \circ \tau \quad \text { for all } s \in G .
+              \end{equation*}
+              These representations are said to be \textbf{similar} (or isomorphic) if $\tau$ is an isomorphism.
+    \end{enumerate}
+    \begin{remark}
+        A $k$-linear representation $\rho : G \rightarrow\GL(V)$ is equivalent to a left $k[G]$-module $V$.
+        In this case, the transforms between two representations are exactly the $k[G]$-module homomorphisms.
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    Let $\rho : G \rightarrow\GL(V)$ be a $k$-linear representation of a finite group $G$ in the vector space $V$.
+    A subspace $W$ of $V$ is called a \textbf{subrepresentation} if it is a $k[G]$-submodule of $V$.
+
+    A representation is called \textbf{irreducible} if it has no proper non-zero subrepresentation.
+\end{definition}
+
+
+\begin{definition}
+    Let $\rho_i : G \rightarrow\GL(V_i)$ be $k$-linear representation of a finite group $G$ in the vector space $V_i$ or $\char k=0$.
+    \begin{enumerate}
+        \item
+              The \textbf{sum representation} $\rho_1 \oplus \rho_2$ is defined on the vector space $V_1 \oplus V_2$ by
+              \begin{equation*}
+                  \left(\rho_1 \oplus \rho_2\right)(s)\left(v_1, v_2\right)=\left(\rho_1(s) v_1, \rho_2(s) v_2\right)
+              \end{equation*}
+              for all $s \in G, v_1 \in V_1, v_2 \in V_2$.
+              (the direct sum of $k[G]$-modules $V_1 \oplus V_2$).
+        \item
+              The \textbf{tensor product representation} $\rho_1 \otimes \rho_2$ is defined on the vector space $V_1 \otimes V_2$ by
+              \begin{equation*}
+                  \left(\rho_1 \otimes \rho_2\right)(s)\left(v_1 \otimes v_2\right)=\left(\rho_1(s) v_1\right) \otimes\left(\rho_2(s) v_2\right)
+              \end{equation*}
+              for all $s \in G, v_1 \in V_1, v_2 \in V_2$.
+    \end{enumerate}
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+\section{Maschke's Theorem}
+In this section, we always assume that $k$ be a field whose characteristic does not divide the order of the finite group $G$
+\begin{lemma}
+    Let $V_i$ be $k[G]$-module for $i=1,2$ and $f:V_1\rightarrow V_2$ be a $k$-linear map, then
+    \begin{equation*}
+        F(x):=
+        \frac{1}{\left|G\right|} \sum_{g \in G} g \cdot f\left( g^{-1}x\right)
+    \end{equation*}
+    is a $k[G]$-module homomorphism from $V_1$ to $V_2$.
+    \begin{remark}
+        Thus every $k$-linear map $h:V_1 \to V_2$ can be ``averaged'' to a transform.
+        \begin{equation*}
+            h^0=\frac{1}{\left|G\right|} \sum_{g \in G}\left(\rho_g^2\right)^{-1} h \rho_g^1 .
+        \end{equation*}
+    \end{remark}
+\end{lemma}
+
+\begin{theorem}[Maschke]
+    Then $k[G]$ is semisimple.
+    \begin{proof}
+        Let $V$ be a $k[G]$-module, $W$ be a submodule of $V$. And let $W^{\prime}$ be a $k$-complement of $W$ in $V$, and let $p$ be the corresponding projection of $V$ onto $V$.
+        Define a map $P: V \rightarrow W$ by
+        \begin{equation*}
+            P(v)
+            :=
+            \frac{1}{\left|G\right|} \sum_{g \in G} g \cdot p\left( g^{-1}v\right)
+        \end{equation*}
+        where $1/\left|G\right|$ is the inverse of the order of $G$ in the field $k$ (or say $\mathbb{F}_p$).
+        Then $P$ is a $k[G]$-projection from $V$ to $W$ (i.e. $P$ is a $k[G]$-module homomorphism with $P^2 = P$ and $W=\operatorname{Im}(P)$), so $\ker(P)$ is a $k[G]$-complement of $W$ in $V$.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    Every representation of $G$ over $k$ is a direct sum of irreducible representations and has finite number of irreducible components up to isomorphism.
+    \begin{remark}
+        Noted that every irreducible representation is finite degree. (Since it is a simple module over the finite dimensional algebra $k[G]$)
+    \end{remark}
+\end{corollary}
+
+\subsection{}
+
+\begin{corollary}
+    For a finite dimension $k[G]$, we have the following decomposition of the group algebra $k[G]$:
+    \begin{equation*}
+        k[G]\cong \bigoplus_{i=1}^r M_{n_i}(k)
+    \end{equation*}
+    and each $M_{n_i}(k)$ has only one simple module
+    $V_i=k^{n_i}$ up to isomorphism.
+\end{corollary}
+
+
+\begin{corollary}
+    Then $V$ decomposes as a direct sum :
+    \begin{equation*}
+        V\cong \bigoplus_{i=1}^r V_i^{\oplus n_i}
+    \end{equation*}
+    where $V_i$ are all non-isomorphic simple $k[G]$-modules and $n_i=\dim_k \Hom_{k[G]}(V_i, V)$.
+\end{corollary}
+
+
+
+\section{}
+\begin{proposition}
+    Let $z=\sum a_g g \in k[G]$ with coefficients $a_g$ in $k$.
+    Then $z \in Z\left(k[G]\right)$ if and only if $a_{h g h^{-1}}=a_g$ for all $g, t \in G$.
+\end{proposition}
+
+
+
+\begin{corollary}
+    For each conjugacy class $C$ of $G$,
+    The elements
+    \begin{equation*}
+        z_C:=\sum_{g \in C} g
+    \end{equation*}
+    where $C$ runs through the conjugacy classes of $G$, form a $k$-basis of $Z\left(k[G]\right)$.
+    Thus $\dim_k Z\left(k[G]\right)$ is equal to the number of conjugacy classes of $G$.
+\end{corollary}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Character Theory}
+
+
+\section{Characters of Representations}
+\begin{definition}
+    Let $V$ be a $k[G]$-module of finite dimension.
+    \begin{enumerate}
+        \item
+              The \textbf{character} $\chi$ of the representation is defined by
+              \begin{equation*}
+                  \chi(s)
+                  :=
+                  \operatorname{Tr}\left(\rho_s\right) .
+              \end{equation*}
+        \item
+              If $W$ be a submodule of $V$, the \textbf{subcharacter} $\chi_{W}$ of the is defined by
+              \begin{equation*}
+                  \chi_{W}(s)
+                  :=
+                  \operatorname{Tr}\left(\rho_s|_{W}\right) .
+              \end{equation*}
+        \item
+              A character $\chi$ is called \textbf{irreducible} if it is the character of an irreducible representation.
+    \end{enumerate}
+\end{definition}
+
+
+
+\begin{proposition}
+    If $\chi$ is the character of a representation $\rho$ of degree $n$, we have:
+    \begin{enumerate}
+        \item
+              $\chi(1)=n$,
+        \item
+              $\chi\left(s^{-1}\right)=\overline{\chi(s)}$ for $s \in G$,
+        \item
+              $\chi\left(t s t^{-1}\right)=\chi(s)$ for $s, t \in G$. $\chi(a b)=\chi(b a)$
+    \end{enumerate}
+\end{proposition}
+\begin{proposition}
+    Let $\rho^1: G \rightarrow \GL\left(V_1\right)$ and $\rho^2: G \rightarrow \GL\left(V_2\right)$ be two linear representations of $G$.
+    Then:
+    \begin{enumerate}
+        \item
+              $\chi_{\rho^1 \oplus \rho^2} = \chi_{\rho^1} + \chi_{\rho^2}$.
+        \item
+              $\chi_{\rho^1 \otimes \rho^2} = \chi_{\rho^1} \cdot \chi_{\rho^2}$.
+    \end{enumerate}
+\end{proposition}
+
+\section{Schur's lemma}% Schur's lemma
+We first give the general version of Schur's lemma in module theory.
+\begin{lemma}
+    Let $A$ be a ring and $M_1,M_2$ be simple left $A$-modules.
+    Then
+    \begin{equation*}
+        \Hom_{A}\left( M_1, M_2\right)
+        =
+        \begin{cases}
+            0                    & ,M_1 \not\cong M_2 \\
+            \text{division ring} & ,M_1 \cong M_2
+        \end{cases}
+    \end{equation*}
+
+\end{lemma}
+\begin{lemma}
+    Let $k$ be an algebraically closed field and $A$ be $k$-algebra.
+    If $V_i$ are simple left $A$-module of finite dimension and $V_1$ is $A$-isomorphic to $V_2$
+    Then
+    \begin{equation*}
+        \dim_k\Hom_{A}\left( V_1,V_2 \right)=1
+    \end{equation*}
+    Indeed, $\Hom_{A}\left( V_1,V_2 \right)=k\cdot \phi$ where $\phi$ is the $A$-isomorphism of $V_1$ and $V_2$.
+    \begin{remark}
+        Especially, for a simple left $A$-module $V$ of finite dimension, we have
+        \begin{equation*}
+            \operatorname{End}_{ A}(V) = k\cdot \id
+        \end{equation*}
+    \end{remark}
+\end{lemma}
+
+
+\begin{proposition}[Schur's lemma]
+    Let $k$ be a algebraically closed field and $G$ be a finite group.
+    Let $\rho^1: G \rightarrow \GL\left(V_1\right)$ and $\rho^2: G \rightarrow \GL\left(V_2\right)$ be two irreducible representations of $G$, and let $f:V_1 \rightarrow V_2$ be a transform.
+    Then:
+    \begin{enumerate}
+        \item
+              If $\rho^1$ and $\rho^2$ are not isomorphic, we have $f=0$.
+
+        \item
+              If $\rho^1 \cong \rho^2$ ($\rho^1= \rho^2$ and $V_1 =   V_2$ ) then
+              $f$ is a homothety (i.e., a scalar multiple of the identity).
+    \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+    Let $h$ be a linear mapping of $V_1$ into $V_2$, and put:
+    \begin{equation*}
+        h^0=\frac{1}{\left|G\right|} \sum_{g \in G}\left(\rho_g^2\right)^{-1} h \rho_g^1 .
+    \end{equation*}
+    Then:
+    \begin{enumerate}
+        \item
+              If $\rho^1$ and $\rho^2$ are not isomorphic, we have $h^0=0$.
+        \item
+              If $V_1=V_2$ and $\rho^1=\rho^2, h^0$ is a homothety of ratio $(1 / n) \operatorname{Tr}(h)$, with $n=\operatorname{dim}\left(V_1\right)$.
+    \end{enumerate}
+\end{corollary}
+
+\begin{corollary}
+
+\end{corollary}
+
+
+\section{Main }
+In this section, we will derive the character theory of finite degree representations over a algebraically closed field.
+
+\begin{definition}
+    Let $G$ be a finite group and $\varphi,\phi$ be complex valued functions on $G$.
+    The \textbf{inner product} of $\varphi$ and $\phi$ is defined by
+    \begin{equation*}
+        \left(\varphi ,\phi\right)
+        :=
+        \frac{1}{\left|G\right|} \sum_{g \in G} \varphi(g) \overline{\phi(g)}.
+    \end{equation*}
+\end{definition}
+
+
+
+
+\begin{definition}
+    For any $z\in Z\left(k[G]\right)$ acting on an irreducible representation $V$, by Schur's lemma, we know that $z$ acts as a homothety on $V$.
+    Thus one can define the $k$-algebra homomorphism
+    \begin{equation*}
+        \omega_V : Z\left(k[G]\right) \to k
+    \end{equation*}
+    called \textbf{central character} of irreducible representation $V$ over $k$
+\end{definition}
+
+\begin{proposition}
+    Let $V$ be an irreducible representation of $G$ over $k$ and $C$ be a conjugacy class of $G$. And let $z_C:=\sum_{g \in C} g\in Z\left(k[G]\right)$
+    \begin{equation*}
+        \omega_V\left( z_C \right)
+        =
+        \frac{\# C}{\dim V} \chi_V\left( c \right)
+    \end{equation*}
+
+\end{proposition}
 
 
 

@@ -282,69 +282,35 @@ Throught this section, $R$ be a commutative ring with identity
 
 \end{proposition}
 
+\section{Nil and nilpotent ideals} % Nil and nilpotent ideals
 
-\section{Nakayama's Lemma} % Noetherian Rings and Modules
+\begin{definition}
+    Let $R$ be a ring and $\mathfrak{a}$ be an (left, right, two-sided) ideal of $R$.
+    \begin{enumerate}
+        \item
+              $\mathfrak{a}$ of $R$ is \textbf{nil} if every element of $\mathfrak{a}$ is a nilpotent element;
+        \item
+              $\mathfrak{a}$ is \textbf{nilpotent} if $\mathfrak{a}^n=0$ for some integer $n$.
+    \end{enumerate}
+\end{definition}
 
 
-\begin{theorem}[Nakayama's lemma]
-    \label{pro: Nakayama's lemma}
-    Let $M$ be a finitely generated left $R$-module and an left ideal $\mathfrak{a} \subset J_l(R)$.
-    Then $\mathfrak{a} M=M$ implies $M=0$.
-    \begin{proof}
-        Since $\mathfrak{a}M +M$, we have
-        \begin{equation*}
-            \left(x_1,\ldots,x_n\right)^T
-            =
-            \left(a_{ij}\right)_{n\times n}\left(x_1,\ldots,x_n\right)^T
-        \end{equation*}
-        that is,
-        \begin{equation*}
-            \left(I-A\right)\left(x_1,\ldots,x_n\right)^T=0
-        \end{equation*}
-        where $A \in M_n(\mathfrak{a})\subset M_n\left(J(R)\right)$.
-        Thus $I-A$ is invertible in $M_n(R)$, whence $x_i$=0, $M=0$.
-    \end{proof}
+\begin{theorem}
+    \label{thm: nil ideal}
+    Let $R$ be a ring.
+    \begin{enumerate}
+        \item
+              If $a\in R$ is nilpotent, $a$ is both left and right quasiregula with quasi inverse $r=-a+a^2-a^3+\cdots+(-1)^{n-1} a^{n-1}$
+        \item
+              Every nil left ideal is contained in $J(R)$.
+        \item
+              Thus every nil ring is a radical ring.
+    \end{enumerate}
 \end{theorem}
 
-
-\begin{corollary}
-    Let $M$ be a finitely generated left $R$-module, $N$ a submodule of $M$, left ideal $\mathfrak{a} \subset J_l(R)$.
-    Then $M=\mathfrak{a} M+N \Rightarrow M=N$.
-\end{corollary}
-
-
-
-
-\begin{corollary}
-    If $R$ is a Noetherian local ring with maximal ideal $\mathfrak{m}$, then $\bigcap_{n=1}^{\infty} \mathfrak{m}^n=0$.
-\end{corollary}
-
 \begin{proposition}
-    If $R$ is a local ring, then every finitely generated projective $R$-module is free.
-    \begin{proof}
-        If $P$ is a finitely generated projective $R$-module, then by \ref{cor: Every left module $M$ over a ring $R$ is the homomorphic image of a free $R$-module $F$.}
-        there exists a free $R$-module $F$ with a finite basis and an epimorphism $\pi: F \rightarrow P$. Among all the free $R$-modules $F$ with this property choose one with a basis $\left\{x_1, x_2, \ldots, x_n\right\}$ that has a minimal number of elements. Since $\pi$ is an epimorphism $\left\{\pi\left(x_1\right), \ldots, \pi\left(x_n\right)\right\}$ necessarily generate $P$.
-
-        We shall first show that $K=\operatorname{Ker} \pi$ is contained in $\mathfrak{m} F$, where $\mathfrak{m}$ is the unique maximal ideal of $R$.
-
-        If $K \not \subset \mathfrak{m} F$, then there exists $k \in K$ with $k \notin \mathfrak{m} F$. Now $k=r_1 x_1+r_2 x_2+\cdots+r_n x_n$ with $r_i \in R$ uniquely determined. Since $k \notin \mathfrak{m} F$, some $r_i$, say $r_1$, is not an element of $\mathfrak{m}$, thus $r_1$ is a unit, whence $x_1-r_1^{-1} k=-r_1^{-1} r_2 x_2-\cdots-r_1^{-1} r_n x_n$.
-
-        Consequently, since $k \in \operatorname{Ker} \pi, \pi\left(x_1\right)
-            =
-            \pi\left(x_1-r_1^{-1} k\right)
-            =
-            \sum_{i=2}^n-r_1 r_i \pi\left(x_i\right)$. Therefore, $\left\{\pi\left(x_2\right), \ldots, \pi\left(x_n\right)\right\}$ generates $P$. Thus if $F^{\prime}$ is the free submodule of $F$ with basis $\left\{x_2, \ldots, x_n\right\}$ and $\pi^{\prime}: F^{\prime} \rightarrow P$ the restriction of $\pi$ to $F^{\prime}$, then $\pi^{\prime}$ is an epimorphism. This contradicts the choice of $F$ as having a basis of minimal cardinality. Hence $K \subset \mathfrak{m} F$.
-
-        Since $0 \rightarrow K \xrightarrow{\subset} F \xrightarrow{\pi} P \rightarrow 0$ is exact and $P$ is projective $K \oplus P \cong F$ by \ref{thm: Equivalent conditions of projective}.
-        Under this isomorphism $(k, 0) \mapsto k$ for all $k \in K$ (see the proof of Theorem IV.1.18), whence $F$ is the internal direct sum $F=K \oplus P^{\prime}$ with $P^{\prime} \cong P$. Thus $F=K+P^{\prime} \subset \mathfrak{m} F+P^{\prime}$. If $u \in F$, then $u=\sum_i m_i v_i+p_i$ with $m_i \in \mathfrak{m}, v_i \in F, p_i \in P^{\prime}$. Consequently, in the $R$-module $F / P^{\prime}$,
-        \begin{equation*}
-            u+P^{\prime}=\sum_i m_i v_i+P^{\prime}=\sum_i m_i\left(v_i+P^{\prime}\right) \in \mathfrak{m}\left(F / P^{\prime}\right)
-        \end{equation*}
-        whence $\mathfrak{m}\left(F / P^{\prime}\right)=F / P^{\prime}$. Since $F$ is finitely generated, so is $F / P^{\prime}$. Therefore $K \cong F / P^{\prime}=0$ by \ref{lem: Nakayama lemma}.
-        Thus $P \cong P^{\prime}=F$ and $P$ is free.
-    \end{proof}
+    If $R$ is a left [resp. right] Noetherian ring, then every nil ideal is nilpotent (Exercise 16).
 \end{proposition}
-
 
 
 
@@ -692,36 +658,15 @@ $A$ is a commutative ring with identity throughout this section unless otherwise
     Let $R$ be a ring, A module $M$ is said to satisfy the \textbf{maximum condition} [resp. minimum condition] on submodules if every nonempty set of submodules of $M$ contains a maximal [resp. minimal] element (with respect to set theoretic inclusion).
 \end{definition}
 
-\begin{proposition}
-    We have
-    \begin{enumerate}
-        \item
-              Division ring $D$ is both Noetherian and Artinian.
 
-        \item
-              Every commutative principal ideal
-              ring is Noetherian  special cases include $\mathbb{Z}$, $\mathbb{Z}_n$ and $F[x]$ with $F$ a field.
-        \item The matrix ring $R\left(D\right) $ over a division ring $D$ is both Noetherian and Artinian.
-    \end{enumerate}
-\end{proposition}
+
+
 
 \subsection{Equivalent Condition of Chain Condition}
 % Equivalent Condition of Chain Condition
 \begin{theorem}
     \label{thm: chain condition and m condition}
     A module $A$ satisfies the ascending [resp. descending] chain condition on submodules if and only if $A$ satisfies the maximal [resp. minimal] condition on submodules.
-    \begin{proof}
-        Suppose $A$ satisfies the minimal condition on submodules and $A_1 \supset A_2 \supset \cdots$ is a chain of submodules.
-        Then the set
-        $\left\{A_i \mid i \geq 1\right\}$
-        has a minimal element, say $A_n$. Consequently, for $i \geq n$ we have $A_n \supset A_i$ by hypothesis and $A_n \subset A_i$ by minimality, whence $A_i=A_n$ for each $i \geq n$. Therefore, $A$ satisfies the descending chain condition.
-
-        Conversely suppose $A$ satisfies the descending chain condition, and $S$ is a nonempty set of submodules of $A$. Then there exists $B_0 \in S$. If $S$ has no minimal element, then for each submodule $B$ in $S$ there exists at least one submodule $B^{\prime}$ in $S$ such that $B \varsupsetneq  B^{\prime}$.
-        Thus there is a sequence $B_0, B_1, \ldots$ such that $B_0 \varsupsetneq B_1 \varsupsetneq B_2 \varsupsetneq  \cdots $.
-        This contradicts the descending chain condition. Therefore, $S$ must have a minimal element, whence $A$ satisfies the minimum condition.
-
-        The proof for the ascending chain and maximum conditions is analogous.
-    \end{proof}
 \end{theorem}
 
 \begin{theorem}
@@ -774,76 +719,11 @@ $A$ is a commutative ring with identity throughout this section unless otherwise
         there is a free unitary $R$-module $F$ with a finite basis and an epimorphism $\pi: F \rightarrow M$. Since $F$ is a direct sum of a finite number of copies of $R$ by \ref{thm: Free unitary R-module}, $F$ is left Noetherian [resp. Artinian], whence $M \cong F / \Ker \pi$ is Noetherian [resp. Artinian] by \ref{cor: chain condition on submodules of direct sum }.
     \end{proof}
 \end{theorem}
-\begin{theorem}
-    \label{thm: equivalent conditions of Noetherian modules}
-    A module
-    $M$ is Noetherian if and only if every submodule of $M$ is finitely generated.
-    In particular, a commutative ring $R$ is Noetherian if and only if every ideal of $R$ is finitely generated.
-\end{theorem}
-\section{Properties of Noetherian Modules and Rings} % properties of Noetherian Modules and Rings
-\begin{theorem}
-    Recall that a module $M$ is Noetherian.
-
-    \ref{thm: chain condition and m condition}
-    A module $M$ satisfies the ascending [resp. descending] chain condition on submodules if and only if $M$ satisfies the maximal [resp. minimal] condition on submodules.
-
-    \ref{thm: equivalent conditions of Noetherian modules}
-    A module
-    $M$ satisfies the ACC on submodules if and only if every submodule of $M$ is finitely generated.
-    In particular, a commutative ring $R$ is Noetherian if and only if every ideal of $R$ is finitely generated.
-
-    \ref{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring}
-    If $R$ is a left [resp. right] Noetherian [resp. Artinian] ring with identity, then every finitely generated unitary left [resp. right]  $R$-module $A$ satisfies the ACC [resp. DCC] on submodules.
-\end{theorem}
-
-
-\begin{proposition}
-    If $A$ is Noetherian and $\phi$ is a homomorphism, then $B=\phi(A)$ is Noetherian.
-\end{proposition}
-
-\begin{proposition}
-    Let $A$ be a subring of $B$; suppose that $A$ is Noetherian and that $B$ is finitely generated as an $A$-module. Then $B$ is Noetherian (as a ring).
-\end{proposition}
 
 
 
 
-\begin{proposition}
-    If $A$ is Noetherian and $S$ is any multiplicatively closed subset of $A$, then $S^{-1} A$ is Noetherian.
-\end{proposition}
 
-
-
-\begin{theorem}
-    If $R$ is a commutative Noetherian ring with identity, then so is $R\left[x_1, \ldots, x_{n}\right]$ and $R\left[\left[x\right]\right]$
-\end{theorem}
-
-\begin{proposition}
-    If $R$ is a commutative ring with identity and $\mathfrak{p}$ is an ideal which is maximal in the set of all ideals of $R$ which are not finitely generated, then $\mathfrak{p}$ is prime.
-
-    \begin{proof}
-        Suppose $a b \in \mathfrak{p}$ but $a \notin \mathfrak{p}$ and $b \notin \mathfrak{p}$. Then $\mathfrak{p}+(a)$ and $\mathfrak{p}+(b)$ are ideals properly containing $\mathfrak{p}$ and therefore finitely generated by maximality of $\mathfrak{p}$. Consequently $\mathfrak{p}+(a)=\left(p_1+r_1 a, \ldots, p_n+r_n a\right)$
-        and
-        $\mathfrak{p}+(b)=\left(p_1^{\prime}+r_1^{\prime} b, \ldots p_m^{\prime}+r_m^{\prime} b\right)$ for some $p_i, p_i^{\prime} \in \mathfrak{p}$ and $r_i, r_i^{\prime} \in R$.
-
-        If $J=\left(\mathfrak{p}:a\right)=\{r \in R \mid r a \in \mathfrak{p}\}$, then $J$ is an ideal. Since $a b \in \mathfrak{p},\left(p_i{ }^{\prime}+r_i{ }^{\prime} b\right) a=p_i{ }^{\prime} a+r_i{ }^{\prime} a b \in \mathfrak{p}$ for all $i$, whence $\mathfrak{p} \subset\mathfrak{p}+(b) \subset J$. By maximality, $J$ is finitely generated, say $J=$ $\left(j_1, \ldots, j_k\right)$.
-
-        If $x \in \mathfrak{p}$, then $x \in \mathfrak{p}+(a)$ and hence for some $s_i \in R, x=\sum_{i=1}^n s_i\left(p_i+r_i a\right)$ $=\sum_{i=1}^n s_i p_i+\sum_{i=1}^n s_i r_i a$. Consequently, $\left(\sum_i s_i r_i\right) a=x-\sum_i s_i p_i \in \mathfrak{p}$, whence $\sum_i s_i r_i \in J$. Thus for some $t_i \in R, \sum_{i=1}^n s_i r_i=\sum_{i=1}^k t_i j_i$ and $x=\sum_{i=1}^n s_i p_i+\sum_{i=1}^k t_i j_i a$. Therefore, $\mathfrak{p}$ is generated by $p_1, \ldots, p_n, j_1 a, \ldots, j_k a$, which is a contradiction. Thus $a \in \mathfrak{p}$ or $b \in \mathfrak{p}$ and $\mathfrak{p}$ is prime by
-        \ref{thm: Prime ideal}
-    \end{proof}
-\end{proposition}
-
-
-\begin{theorem} [I.S.Cohen]
-    A commutative ring $R$ with identity is Noetherian if and only if every prime ideal of $R$ is finitely generated.
-
-    \begin{proof}
-        Let $\mathcal{S}$ be the set of all ideals of $R$ which are not finitely generated.
-        If $\mathcal{S}$ is nonempty, then use Zorn's Lemma to find a maximal element $P$ of $S . P$ is prime by Proposition 2.4 and hence finitely generated by hypothesis.
-
-        This is a contradiction unless $\delta=\varnothing$. Therefore, $R$ is Noetherian by Theorem 1.9.
-    \end{proof}
-\end{theorem}
 
 \section{Normal series and Composition Series of Modules} % Normal series and Composition Series of Modules
 \begin{definition}
@@ -898,9 +778,20 @@ $A$ is a commutative ring with identity throughout this section unless otherwise
 \minitoc
 
 \section{Artinian Rings} % Artinian Rings
-In this section we shall study commutative Artinian rings.
+
+\subsection{}
+\begin{theorem}[Hopkins-Levitzki]
+    Let $R$ be a ring.
+    Then
+    \begin{center}
+        left Artinian $\Leftrightarrow$ right Artinian $\Rightarrow$ left Noetherian $+$ right Noetherian
+    \end{center}.
+\end{theorem}
+
+\subsection{}
+In this subsection we shall study commutative Artinian rings.
 \begin{theorem}
-    Let $A$ be a commutative ring with identity.
+    Let $A$ be a commutative ring with identity. Then the following conditions are equivalent:
     \begin{enumerate}
         \item
               $A$ is Artinian
@@ -930,9 +821,84 @@ In this section we shall study commutative Artinian rings.
 \end{proposition}
 
 
+\section{Noetherian Modules and Rings} % properties of Noetherian Modules and Rings
+
+
+\begin{theorem}
+    \label{thm: equivalent conditions of Noetherian modules}
+    A module
+    $M$ is Noetherian if and only if every submodule of $M$ is finitely generated.
+    In particular, a commutative ring $R$ is Noetherian if and only if every ideal of $R$ is finitely generated.
+\end{theorem}
+
+\begin{theorem}
+    Recall that a module $M$ is Noetherian.
+
+    \ref{thm: chain condition and m condition}
+    A module $M$ satisfies the ascending [resp. descending] chain condition on submodules if and only if $M$ satisfies the maximal [resp. minimal] condition on submodules.
+
+    \ref{thm: equivalent conditions of Noetherian modules}
+    A module
+    $M$ satisfies the ACC on submodules if and only if every submodule of $M$ is finitely generated.
+    In particular, a commutative ring $R$ is Noetherian if and only if every ideal of $R$ is finitely generated.
+
+    \ref{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring}
+    If $R$ is a left [resp. right] Noetherian [resp. Artinian] ring with identity, then every finitely generated unitary left [resp. right]  $R$-module $A$ satisfies the ACC [resp. DCC] on submodules.
+\end{theorem}
+
+
+\begin{proposition}
+    Let $A$ be Noetherian ring
+\end{proposition}
+
+
+\begin{proposition}
+    If $A$ is Noetherian and $\phi$ is a homomorphism, then $B=\phi(A)$ is Noetherian.
+\end{proposition}
+
+\begin{proposition}
+    Let $A$ be a subring of $B$; suppose that $A$ is Noetherian and that $B$ is finitely generated as an $A$-module. Then $B$ is Noetherian (as a ring).
+\end{proposition}
 
 
 
+
+\begin{proposition}
+    If $A$ is Noetherian and $S$ is any multiplicatively closed subset of $A$, then $S^{-1} A$ is Noetherian.
+\end{proposition}
+
+
+
+\begin{theorem}
+    If $R$ is a commutative Noetherian ring with identity, then so is $R\left[x_1, \ldots, x_{n}\right]$ and $R\left[\left[x\right]\right]$
+\end{theorem}
+
+\begin{proposition}
+    If $R$ is a commutative ring with identity and $\mathfrak{p}$ is an ideal which is maximal in the set of all ideals of $R$ which are not finitely generated, then $\mathfrak{p}$ is prime.
+
+    \begin{proof}
+        Suppose $a b \in \mathfrak{p}$ but $a \notin \mathfrak{p}$ and $b \notin \mathfrak{p}$. Then $\mathfrak{p}+(a)$ and $\mathfrak{p}+(b)$ are ideals properly containing $\mathfrak{p}$ and therefore finitely generated by maximality of $\mathfrak{p}$. Consequently $\mathfrak{p}+(a)=\left(p_1+r_1 a, \ldots, p_n+r_n a\right)$
+        and
+        $\mathfrak{p}+(b)=\left(p_1^{\prime}+r_1^{\prime} b, \ldots p_m^{\prime}+r_m^{\prime} b\right)$ for some $p_i, p_i^{\prime} \in \mathfrak{p}$ and $r_i, r_i^{\prime} \in R$.
+
+        If $J=\left(\mathfrak{p}:a\right)=\{r \in R \mid r a \in \mathfrak{p}\}$, then $J$ is an ideal. Since $a b \in \mathfrak{p},\left(p_i{ }^{\prime}+r_i{ }^{\prime} b\right) a=p_i{ }^{\prime} a+r_i{ }^{\prime} a b \in \mathfrak{p}$ for all $i$, whence $\mathfrak{p} \subset\mathfrak{p}+(b) \subset J$. By maximality, $J$ is finitely generated, say $J=$ $\left(j_1, \ldots, j_k\right)$.
+
+        If $x \in \mathfrak{p}$, then $x \in \mathfrak{p}+(a)$ and hence for some $s_i \in R, x=\sum_{i=1}^n s_i\left(p_i+r_i a\right)$ $=\sum_{i=1}^n s_i p_i+\sum_{i=1}^n s_i r_i a$. Consequently, $\left(\sum_i s_i r_i\right) a=x-\sum_i s_i p_i \in \mathfrak{p}$, whence $\sum_i s_i r_i \in J$. Thus for some $t_i \in R, \sum_{i=1}^n s_i r_i=\sum_{i=1}^k t_i j_i$ and $x=\sum_{i=1}^n s_i p_i+\sum_{i=1}^k t_i j_i a$. Therefore, $\mathfrak{p}$ is generated by $p_1, \ldots, p_n, j_1 a, \ldots, j_k a$, which is a contradiction. Thus $a \in \mathfrak{p}$ or $b \in \mathfrak{p}$ and $\mathfrak{p}$ is prime by
+        \ref{thm: Prime ideal}
+    \end{proof}
+\end{proposition}
+
+
+\begin{theorem} [I.S.Cohen]
+    A commutative ring $R$ with identity is Noetherian if and only if every prime ideal of $R$ is finitely generated.
+
+    \begin{proof}
+        Let $\mathcal{S}$ be the set of all ideals of $R$ which are not finitely generated.
+        If $\mathcal{S}$ is nonempty, then use Zorn's Lemma to find a maximal element $P$ of $S . P$ is prime by Proposition 2.4 and hence finitely generated by hypothesis.
+
+        This is a contradiction unless $\delta=\varnothing$. Therefore, $R$ is Noetherian by Theorem 1.9.
+    \end{proof}
+\end{theorem}
 
 
 
