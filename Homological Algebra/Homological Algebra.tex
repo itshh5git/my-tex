@@ -1354,7 +1354,7 @@ In the category $R$-$\Mod$ of left $R$-modules, projective objects are called pr
 
 
 \chapter{Homological Dimension}
-\section{Dimension of Ringss and Modules}
+\section{Dimension of Rings and Modules}
 
 
 \begin{definition}
@@ -1370,6 +1370,36 @@ In the category $R$-$\Mod$ of left $R$-modules, projective objects are called pr
 
 
 
+\chapter{Sheaf}
+\section{}
+\begin{definition}
+    Let $X$ be a topological space and a category $\mathcal{C}$.
+    A \textbf{presheaf} $\mathscr{F}$ of $\mathcal{C}$-objects on $X$ is a contravariant functor $\mathbf{Open}(X)^{\op} \rightarrow \mathcal{C}$.
+
+    \begin{enumerate}
+        \item
+              Each $\mathscr{F}(U)$ is called the \textbf{sections} of $\mathscr{F}$ over $U$,
+        \item
+              The morphism $\rho_{U V}: \mathscr{F}(U) \rightarrow \mathscr{F}(V)$ is called the \textbf{restriction} map, and we often denote $\rho_{U V}(s)$ by $s|_{V}$, if $s\in \mathscr{F}(U)$.
+    \end{enumerate}
+\end{definition}
+
+
+
+\begin{definition}
+    If $\mathscr{F}$ is a presheaf on $X$, and if $P$ is a point of $X$, we define the \textbf{stalk} $\mathscr{F}_P$ of $\mathscr{F}$ at $P$ to be the direct limit of the groups $\mathscr{F}(U)$ for all open sets $U$ containing $P$, via the restriction maps $\rho$.
+\end{definition}
+
+\begin{definition}
+    If $\mathscr{F}$ and $\mathscr{G}$ are presheaves on $X$, a \textbf{morphism} $\varphi: \mathscr{F} \rightarrow \mathscr{G}$ consists of a morphism of abelian groups $\varphi(U): \mathscr{F}(U) \rightarrow \mathscr{G}(U)$ for each open set $U$, such that whenever $V \subseteq U$ is an inclusion, the diagram
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathscr{F}(U) \arrow{r}{\varphi(U)} \arrow{d}{\rho_{U V}} & \mathscr{G}(U) \arrow{d}{\rho^\prime_{U V}} \\
+            \mathscr{F}(V) \arrow{r}{\varphi(V)}                         & \mathscr{G}(V)
+        \end{tikzcd}
+    \end{equation*}
+    commutes.
+\end{definition}
 
 
 
@@ -1379,11 +1409,76 @@ In the category $R$-$\Mod$ of left $R$-modules, projective objects are called pr
 
 
 
+\begin{definition}
+    Suppose $C$ has finite limit.
+    A \textbf{sheaf} of $\mathcal{C}$-objects on $X$ is a presheaf satisfying the sheaf axiom:
+    If open set $U\subset X$ has an open cover $\left\{U_i\right\}_{i \in I}$, then the
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathscr{F}(U) \arrow[r,"\alpha"] & \prod_{i \in I} \mathscr{F}\left(U_i\right) \arrow[r,shift left=0.5ex] \arrow[r,shift right=0.5ex] & \prod_{i,j \in I} \mathscr{F}\left(U_i \cap U_j\right)
+        \end{tikzcd}
+    \end{equation*}
+    is an equalizer diagram in $\mathcal{C}$ where $\alpha$ is the morphism induced by $\rho_{U, U_i}$ and two morphisms from $\prod_{i \in I} \mathscr{F}\left(U_i\right)$ to $\prod_{i,j \in I} \mathscr{F}\left(U_i \cap U_j\right)$ are induced by $\rho_{U_i, U_i \cap U_j}$ and $\rho_{U_j, U_i \cap U_j}$ respectively.
+
+    \begin{remark}
+        The sheaf axiom is equivalent to the following two conditions:
+        \begin{enumerate}[label=(\roman*)]
+            \item (Locality axiom)
+                  For every open cover $\left\{U_i\right\}_{i \in I}$ of an open set $U$ in $X$, and for every section $s,t \in \mathscr{F}(U)$ such that for all $i,j \in I$,
+                  \begin{equation*}
+                      s|_{U_i \cap U_j}=t|_{U_i \cap U_j} ,
+                  \end{equation*}
+                  then $s=t$.
+            \item (Gluing axiom)
+                  For every open cover $\left\{U_i\right\}_{i \in I}$ of an open set $U$ in $X$, and for every family of sections $s_i \in \mathscr{F}\left(U_i\right)$ such that for all $i,j \in I$,
+                  \begin{equation*}
+                      s_i|_{U_i \cap U_j}=s_j|_{U_i \cap U_j} ,
+                  \end{equation*}
+                  there exists a unique section $s \in \mathscr{F}(U)$ such that for all $i \in I$,
+                  \begin{equation*}
+                      s|_{U_i}=s_i .
+                  \end{equation*}
+        \end{enumerate}
+    \end{remark}
+\end{definition}
+
+
+
+\begin{proposition}
+    Note that a morphism $\varphi: \mathscr{F} \rightarrow \mathscr{G}$ of presheaves on $X$ induces a morphism $\varphi_P: \mathscr{F}_P \rightarrow \mathscr{G}_P$ on the stalks, for any point $P \in X$.
+
+    Let $\varphi: \mathscr{F} \rightarrow \mathscr{G}$ be a morphism of sheaves on a topological space $X$. Then $\varphi$ is an isomorphism if and only if the induced map on the stalk $\varphi_P: \mathscr{F}_P \rightarrow \mathscr{G}_P$ is an isomorphism for every $P \in X$.
+\end{proposition}
 
 
 
 
+\begin{definition}
+    Let $f: X \rightarrow Y$ be a continuous map of topological spaces.
 
+    \begin{enumerate}
+        \item
+              For any sheaf $\mathscr{F}$ on $X$, we define the \textbf{direct image sheaf} $f_* \mathscr{F}$ on $Y$ by
+              \begin{equation*}
+                  \left(f_* \mathscr{F}\right)(V):=\mathscr{F}\left(f^{-1}(V)\right)
+              \end{equation*}
+              for any open set $V \subseteq Y$.
+
+        \item
+              For any sheaf $\mathscr{G}$ on $Y$, we define the \textbf{inverse image sheaf} $f^{-1} \mathscr{G}$ on $X$ to be the sheaf associated to the presheaf
+              \begin{equation*}
+                  f^{-1}(U)
+                  :=
+                  \lim _{V \supseteq f(U)} \mathscr{G}(V)
+              \end{equation*}
+              where $U$ is any open set in $X$, and the directlimit is taken over all open sets $V$ of $Y$ containing $f(U)$.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{definition}
+    If $Z$ is a subset of $X$, regarded as a topological subspace with the induced topology, if $i: Z \rightarrow X$ is the inclusion map, and if $\mathscr{F}$ is a sheaf on $X$, then we call $i^{-1} \mathscr{F}$ the restriction of $\mathscr{F}$ to $Z$, and we often denote it by $\left.\mathscr{F}\right|_Z$. Note that the stalk of $\left.\mathscr{F}\right|_Z$ at any point $P \in Z$ is just $\mathscr{F}_P$.
+\end{definition}
 
 
 

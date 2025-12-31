@@ -696,91 +696,62 @@ Let $A$ be a commutative ring with identity, $M$ be a $A$-module and $S$ be a mu
 \label{Chain Condition}
 \section{}
 \begin{definition}
-    Let $R$ be a ring.
+    Let $A$ be a ring.
     \begin{enumerate}
         \item
-              A $R$-module $M$ is said to satisfy the \textbf{ascending chain condition (ACC) on submodules} (or to be Noetherian) if for every chain $M_1 \subset M_2 \subset M_3 \subset \cdots$ of submodules of $M$, there is an integer n such that $M_{i}=M_{n}$ for all $i \geq n$.
+              A left $A$-module $M$ is said to satisfy the \textbf{ascending chain condition (ACC) on submodules} (or to be \textbf{Noetherian}) if for every chain $M_1 \subset M_2 \subset M_3 \subset \cdots$ of submodules of $M$, there is an integer n such that $M_{i}=M_{n}$ for all $i \geq n$.
 
         \item
-              The ring $R$ is \textbf{left [resp. right] Noetherian} if $R$ satisfies ACC on submodules as a left [resp. right] $R$-module.
-              It equivalent that $R$ satisfies the ascending chain condition on left [resp. right] ideals.
-              $R$ is said to be \textbf{Noetherian} if $R$ is both left and right Noetherian.
+              The ring $A$ is \textbf{left Noetherian} if left regular module ${}_AA$ is Noetherian.
+              $A$ is said to be \textbf{Noetherian} if $A$ is both left and right Noetherian.
 
         \item
-              A module $N$ is said to satisfy, the \textbf{descending chain condition (DCC) on submodules} (or to be Artinian) if for every chain $N_1 \supset N_2 \supset N_3 \supset \cdots$ of submodules of $N$, there is an integer $m$ such that $N_{i}=N_m$ for all $i \geq m$.
+              A left $A$-module $N$ is said to satisfy, the \textbf{descending chain condition (DCC) on submodules} (or to be \textbf{Artinian}) if for every chain $N_1 \supset N_2 \supset N_3 \supset \cdots$ of submodules of $N$, there is an integer $m$ such that $N_{i}=N_m$ for all $i \geq m$.
 
         \item
-              $R$ is \textbf{left [resp. right] Artinian } if $R$ satisfies DCC on submodules as a left [resp. right] $R$-module.
-              It equivalent that $R$ satisfies the descending chain condition on left [resp. right] ideals.
-              $R$ is said to be \textbf{Artinian} if $R$ is both left and right Artinian.
+              $A$ is \textbf{left Artinian } if ${}_A A$ is Artinian.
+
+              $A$ is said to be \textbf{Artinian} if $A$ is both left and right Artinian.
     \end{enumerate}
 \end{definition}
 
 \begin{definition}
-    Let $R$ be a ring, A module $M$ is said to satisfy the \textbf{maximum condition} [resp. minimum condition] on submodules if every nonempty set of submodules of $M$ contains a maximal [resp. minimal] element (with respect to set theoretic inclusion).
+    Let $A$ be a ring, a left $A$-module $M$ is said to satisfy the \textbf{maximum condition} [resp. minimum condition] on submodules if every nonempty set of submodules of $M$ contains a maximal [resp. minimal] element (with respect to set theoretic inclusion).
 \end{definition}
 
 
 
 
 
-\subsection{Equivalent Condition of Chain Condition}
-% Equivalent Condition of Chain Condition
+
 \begin{theorem}
     \label{thm: chain condition and m condition}
-    A module $A$ satisfies the ascending [resp. descending] chain condition on submodules if and only if $A$ satisfies the maximal [resp. minimal] condition on submodules.
+    A module satisfies the ascending [resp. descending] chain condition on submodules if and only if $A$ satisfies the maximal [resp. minimal] condition on submodules.
 \end{theorem}
 
 \begin{theorem}
-    Let $R$ be a ring and $0 \rightarrow A \xrightarrow{f} B \xrightarrow{g} C \rightarrow 0$ be a short exact sequence of $R$-modules.
-    Then $B$ satisfies the ACC [resp. DCC] on submodules if and only if $A$ and $C$ satisfy it.
-    \begin{proof}
-        Sufficiency.
-        If $B$ satisfies the ascending chain condition, then so does its submodule $f(A)$. By exactness $A$ is isomorphic to $f(A)$, whence $A$ satisfies the ascending chain condition. If $C_1 \subset C_2 \subset \cdots$ is a chain of submodules of $C$, then $g^{-1}\left(C_1\right) \subset g^{-1}\left(C_2\right) \subset \cdots$ is a chain of submodules of $B$. Therefore, there is an $n$ such that $g^{-1}\left(C_i\right)=g^{-1}\left(C_n\right)$ for all $i \geq n$. Since $g$ is an epimorphism by exactness, it follows that $C_i=C_n$ for all $i \geq n$. Therefore, $C$ satisfies the ascending chain condition.
-
-        Necessity.
-        Suppose $A$ and $C$ satisfy the ascending chain condition and $B_1 \subset B_2 \subset \cdots$ is a chain of submodules of $B$. For each $i$ let
-        \begin{equation*}
-            A_i=f^{-1}\left(f(A) \cap B_i\right) \quad \text { and } \quad C_i=g\left(B_i\right)
-        \end{equation*}
-        Let $f_i=\left.f\right|_{A_i}$ and $g_i=\left.g\right|_{B_i}$.
-        Verify that for each $i$ the following sequence is exact:
-        \begin{equation*}
-            0 \rightarrow A_i \xrightarrow{f_i} B_i \xrightarrow{g_i} C_i \rightarrow 0 .
-        \end{equation*}
-        Verify that $A_1 \subset A_2 \subset \cdots$ and $C_1 \subset C_2 \subset \cdots$. By hypothesis there exists an integer $n$ such that $A_i=A_n$ and $C_i=C_n$ for all $i \geq n$. For each $i \geq n$ there is a commutative diagram with exact rows:
-        \begin{equation*}
-            \begin{tikzcd}
-                0 \arrow[r,] & A_n\arrow[r,"f_n"] \arrow[dd,"\id"]& B_n \arrow[r,"g_n"]\arrow[dd,"i"]& C_n\arrow[r]\arrow[dd,"\id"]& 0\\
-                &&&&\\
-                0 \arrow[r,]& A_i\arrow[r,"f_i"] & B_i \arrow[r,"g_i"]& C_i\arrow[r,]& 0\\
-            \end{tikzcd}
-        \end{equation*}
-        The Short Five Lemma implies that the inclusion map $i$ is a isomorphism, thus be the identity map, whence $B$ satisfies the ascending chain condition.
-    \end{proof}
+    Let $A$ be a ring and $0 \rightarrow M^\prime \xrightarrow{} M \xrightarrow{} M^{\prime\prime} \rightarrow 0$ be a short exact sequence of left $A$-modules.
+    Then ${}_A M$ is Noetherian [resp. Artinian] if and only if ${}_A M^\prime$ and ${}_A M^{\prime\prime}$ are both Noetherian [resp. Artinian].
 \end{theorem}
 
 \begin{corollary}
     \label{cor: chain condition on submodules of direct sum }
-    Let $R$ be a ring, we have
+    Let $A$ be a ring, we have
     \begin{enumerate}
         \item
-              If $M_1$ is a submodule of a module $M$ , then $M$ satisfies the ascending [resp. descending] chain condition if and only if $M_1$ and $M / M_1$ satisfiy it.
+              If $M_1$ is a submodule of a module $M$ , then $M$ is Noetherian [resp. Artinian] if and only if $M_1$ and $M / M_1$ satisfiy it.
 
         \item
-              If $M_1, \ldots, M_n$ are modules, then the direct sum $M_1 \oplus M_2 \oplus \cdots \oplus M_n$ satisfies the ascending [resp. descending] chain condition on submodules if and only if each $A_i$ satisfies it.
+              If $M_1, \ldots, M_n$ are modules, then the direct sum $M_1 \oplus M_2 \oplus \cdots \oplus M_n$ is Noetherian [resp. Artinian] if and only if each $M_i$ is Noetherian [resp. Artinian].
+        \item
+              If $A$ is a left Noetherian [resp. Artinian] ring, then every finitely generated left $A$-module $M$ is Noetherian [resp. Artinian].
+        \item
+              the homomorphism image of a Noetherian [resp. Artinian] module is Noetherian [resp. Artinian].
     \end{enumerate}
 \end{corollary}
 
 
-\begin{theorem}
-    \label{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring}
-    If $R$ is a left [resp. right] Noetherian [resp. Artinian] ring, then every finitely generated left [resp. right]  $R$-module $M$ is Noetherian [resp. Artinian].
-    \begin{proof}
-        If $M$ is finitely generated, then by \ref{cor: Every unitary module $M$ over a ring $R$ with identity is the homomorphic image of a free unitary $R$-module $F$.}
-        there is a free unitary $R$-module $F$ with a finite basis and an epimorphism $\pi: F \rightarrow M$. Since $F$ is a direct sum of a finite number of copies of $R$ by \ref{thm: Free unitary R-module}, $F$ is left Noetherian [resp. Artinian], whence $M \cong F / \Ker \pi$ is Noetherian [resp. Artinian] by \ref{cor: chain condition on submodules of direct sum }.
-    \end{proof}
-\end{theorem}
+
 
 
 
@@ -789,17 +760,17 @@ Let $A$ be a commutative ring with identity, $M$ be a $A$-module and $S$ be a mu
 
 \section{Normal series and Composition Series of Modules} % Normal series and Composition Series of Modules
 \begin{definition}
-    Let $R$ be a ring and a $R$-module $A$.
+    Let $A$ be a ring and a left $A$-module $M$.
     \begin{enumerate}
         \item
-              A \textbf{normal series} for $A$ is a chain of submodules: $A=A_0 \supset A_1 \supset$ $A_2 \supset \cdots \supset A_n$. The factors of the series are the quotient modules
+              A \textbf{normal series} for $M$ is a chain of submodules: $M=M_0 \supset M_1 \supset$ $M_2 \supset \cdots \supset M_n$. The factors of the series are the quotient modules
               \begin{equation*}
-                  A_i / A_{i+1} \quad(i=0,1, \ldots, n-1) .
+                  M_i / M_{i+1} \quad(i=0,1, \ldots, n-1) .
               \end{equation*}
               The \textbf{length} of the normal series is the number of proper inclusions ( $=$ number of nontrivial factors).
 
         \item
-              A \textbf{refinement} of the normal series $A=A_0 \supset A_1 \supset \cdots \supset A_n$ is a normal series obtained by inserting a finite number of additional submodules between the given ones. A \textbf{proper refinement} is one which has length larger than the original series.
+              A \textbf{refinement} of the normal series $M=M_0 \supset M_1 \supset \cdots \supset M_n$ is a normal series obtained by inserting a finite number of additional submodules between the given ones. A \textbf{proper refinement} is one which has length larger than the original series.
 
         \item
               Two normal series are \textbf{equivalent} if there is a one-to-one correspondence between the nontrivial factors such that corresponding factors are isomorphic modules. Thus equivalent series necessarily have the same length.
@@ -816,7 +787,8 @@ Let $A$ be a commutative ring with identity, $M$ be a $A$-module and $S$ be a mu
 
 \begin{theorem}
     \label{thm: Existence of composition series of modules}
-    A nonzero module  $M$ has a composition series if and only if $M$ satisfies both the ACC and DCC on submodules.
+    Let $A$ be a ring.
+    A left $A$-module $M$ has a composition series if and only if $M$ satisfies both the ACC and DCC on submodules.
     \begin{proof}
         $(\Rightarrow)$ Suppose $A$ has a composition series $S$ of length $n$. If either chain condition fails to hold, one, can find submodules
         \begin{equation*}
@@ -833,92 +805,63 @@ Let $A$ be a commutative ring with identity, $M$ be a $A$-module and $S$ be a mu
     \end{proof}
 \end{theorem}
 
-
-
-
 \chapter{Noetherian Modules and Rings} % Noetherian Modules and Rings
 \minitoc
+\section{Noetherian Modules and Rings} % properties of Noetherian Modules and Rings
 
-\section{Artinian Rings} % Artinian Rings
+\begin{proposition}
 
-\subsection{}
-\begin{theorem}[Hopkins-Levitzki]
-    Let $R$ be a ring.
-    Then
-    \begin{center}
-        left Artinian $\Leftrightarrow$ right Artinian $\Rightarrow$ left Noetherian $+$ right Noetherian
-    \end{center}.
-\end{theorem}
+\end{proposition}
 
-\subsection{}
-In this subsection we shall study commutative Artinian rings.
+
+\section{Hilbert's Basis Theorem} % Hilbert's Basis Theorem
 \begin{theorem}
-    Let $A$ be a commutative ring with identity. Then the following conditions are equivalent:
-    \begin{enumerate}
-        \item
-              $A$ is Artinian
-        \item
-              $\Spec \left(A\right)$ is finite and $\dim A=0$
-        \item
-              $A$ is Noetherian and $\dim A=0$.
-        \item
-              $A$ is uniquely (up to isomorphism) a finite direct product of Artin local rings.
-    \end{enumerate}
+    Let $A$ be a left Noetherian ring, then $A[x_1,\ldots,x_n]$ is also left Noetherian.
+    \begin{proof}
+        We prove the case $n=1$; the general case follows by induction on $n$.
+
+        Let $\mathfrak{a}$ be an left ideal of $A[x]$.
+        For each nonnegative integer $d$, let $\mathfrak{a}_d$ be the set of all leading coefficients of polynomials in $\mathfrak{a}$ of degree $d$ together with 0.
+        Then $\mathfrak{a}_d$ is a left ideal of $A$ for each $d$ and $\mathfrak{a}_0 \subset \mathfrak{a}_1 \subset \mathfrak{a}_2 \subset \cdots$ is an ascending chain of left ideals of $A$.
+        Since $A$ is left Noetherian, there exists an integer $n$ such that $\mathfrak{a}_d=\mathfrak{a}_n$ for all $d \geq n$.
+
+        For each $d=0,1, \ldots, n$, let $a_{d 1}, a_{d 2}, \ldots, a_{d m_d}$ be generators of the left ideal $\mathfrak{a}_d$.
+        For each $a_{d i}$, choose a polynomial $f_{d i}(x) \in \mathfrak{a}$ of degree $d$ with leading coefficient $a_{d i}$.
+
+        We claim that the finite set of polynomials
+        \begin{equation*}
+            \left\{f_{d i}(x) \mid d=0,1, \ldots, n ; i=1,2, \ldots, m_d\right\}
+        \end{equation*}
+        generates the ideal $\mathfrak{a}$.
+
+        Let $f(x)$ be any polynomial in $\mathfrak{a}$.
+        If $\deg f(x)=d$, then the leading coefficient of $f(x)$ is in $\mathfrak{a}_d=\mathfrak{a}_n$, so there exist elements $b_i \in A$ such that
+        \begin{equation*}
+            \text { leading coefficient of } f(x)=\sum_{i=1}^{m_n} b_i a_{n i}
+        \end{equation*}
+        Let $g(x)=\sum_{i=1}^{m_n} b_i x^{d-n} f_{n i}(x)$.
+        Then $g(x) \in \mathfrak{a}$ and $\deg g(x)=d$ with leading coefficient equal to that of $f(x)$. Thus $\deg\left(f(x)-g(x)\right)<d$ and by repeating this process, we can express $f(x)$ as an $A[x]$-linear combination of the polynomials $f_{d i}(x)$. Therefore, $\mathfrak{a}$ is finitely generated and $A[x]$ is left Noetherian.
+    \end{proof}
 \end{theorem}
 
 \begin{corollary}
-    In a commutative Artin ring the nilradical is equal to the Jacobson radical.
+    The finitely generated algebra over a left Noetherian ring is left  Noetherian.
 \end{corollary}
 
 \begin{proposition}
-    Let $A$ be an Artin local ring. Then the following are equivalent:
-    \begin{enumerate}
-        \item
-              every ideal in $A$ is principal;
-        \item
-              the maximal ideal $\mathfrak{m}$ is principal;
-        \item
-              $\operatorname{dim}_k\left(\mathfrak{m} / \mathfrak{m}^2\right) \leqslant 1$.
-    \end{enumerate}
+    Let $A \subseteq B \subseteq C$ be rings. Suppose that $A$ is Noetherian, that $C$ is finitely generated as an $A$-algebra and that $C$
+    is either (i) finitely generated as a $B$-module or (ii) integral over $B$.
+    Then $B$ is finitely generated as an A-algebra.
 \end{proposition}
 
 
-\section{Noetherian Modules and Rings} % properties of Noetherian Modules and Rings
+\section{Commutative Noetherian Rings}
 
 
-\begin{theorem}
-    \label{thm: equivalent conditions of Noetherian modules}
-    A module
-    $M$ is Noetherian if and only if every submodule of $M$ is finitely generated.
-\end{theorem}
-
-\begin{theorem}
-    Recall that a module $M$ is Noetherian.
-
-    \ref{thm: chain condition and m condition}
-    A module $M$ satisfies the ascending [resp. descending] chain condition on submodules if and only if $M$ satisfies the maximal [resp. minimal] condition on submodules.
-
-    \ref{thm: equivalent conditions of Noetherian modules}
-    A module
-    $M$ satisfies the ACC on submodules if and only if every submodule of $M$ is finitely generated.
-    In particular, a commutative ring $R$ is Noetherian if and only if every ideal of $R$ is finitely generated.
-
-    \ref{thm: finitely generated left unitary R-module over left Noetherian [resp. Artinian] ring}
-    If $R$ is a left [resp. right] Noetherian [resp. Artinian] ring with identity, then every finitely generated unitary left [resp. right]  $R$-module $A$ satisfies the ACC [resp. DCC] on submodules.
-\end{theorem}
 
 
 \begin{proposition}
-    Let $A$ be Noetherian ring
-\end{proposition}
-
-
-\begin{proposition}
-    If $A$ is Noetherian and $\phi$ is a homomorphism, then $B=\phi(A)$ is Noetherian.
-\end{proposition}
-
-\begin{proposition}
-    Let $A$ be a subring of $B$; suppose that $A$ is Noetherian and that $B$ is finitely generated as an $A$-module. Then $B$ is Noetherian (as a ring).
+    Let $A$ be a subring of $B$; suppose that $A$ is Noetherian and that $B$ is finitely generated as an $A$-module. Then $B$ is a Noetherian ring.
 \end{proposition}
 
 
@@ -930,8 +873,8 @@ In this subsection we shall study commutative Artinian rings.
 
 
 
-\begin{theorem}
-    If $R$ is a commutative Noetherian ring with identity, then so is $R\left[x_1, \ldots, x_{n}\right]$ and $R\left[\left[x\right]\right]$
+\begin{theorem}[Hilbert's Basis Theorem]
+    If $A$ is a commutative Noetherian ring with identity, then so is $R\left[x_1, \ldots, x_{n}\right]$ and $R\left[\left[x\right]\right]$
 \end{theorem}
 
 \begin{proposition}
@@ -964,6 +907,744 @@ In this subsection we shall study commutative Artinian rings.
 
 
 
+\chapter{Artinian}
+\minitoc
+
+\section{Artinian Rings}
+
+\begin{lemma}
+    If $A$ is a left Artinian ring, then $J(A)$ is nilpotent.
+    \begin{proof}
+        Consider the descending chain of ideals
+        \begin{equation*}
+            J \supset J^2 \supset J^3 \supset \cdots
+        \end{equation*}
+        there exists an integer $n$ such that $J^n=J^{n+1}=\cdots$.
+        Denote $J^n$ by $I$, then $I=J  I$.
+        Assume $I \neq 0$ and let nonempty set $I^2=I\neq 0$
+        \begin{equation*}
+            \mathcal{S}
+            :=
+            \left\{\text{left ideal } L:IL\neq 0\right\}
+        \end{equation*}
+        Then there exists a minimal element $L_0$ in $\mathcal{S}$ by \ref{thm: chain condition and m condition}.
+        Furthermore, $L_0=Aa$ for some $a \in L_0$ and $IL_0=L_0$ by minimality.
+        Hence, there exists a nonzero $x \in I\subset J^n$ such that $x a=a$, that is, $1_A - x$ is a left zero divisor which contradicts the definition of $J$.
+        Therefore, $J^n=I=0$.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}
+    Let $A$ is simple left Artinian ring, then the following condition are equivalent for a left $A$-module $M$:
+    \begin{enumerate}
+        \item Noetherian
+        \item Artinian
+        \item has finite length.
+    \end{enumerate}
+\end{lemma}
+
+
+
+
+\begin{theorem}[Hopkins-Levitzki]
+    \label{thm:Hopkins-Levitzki}
+    Let $A$ be a left Artinian ring and a left $A$-modules $M$.
+    If $M$ is Artinian, then $M$ is Noetherian.
+    \begin{proof}
+        Consider the descending chain of submodules
+        \begin{equation*}
+            M \supset J M \supset J^2 M \supset \cdots \supset J^n M =0
+        \end{equation*}
+        where $J=J(A)$.
+        Then $J^kM$ and $J^k M / J^{k+1} M$ are Artinian for all $k$ by \ref{cor: chain condition on submodules of direct sum }.
+
+        On the other hand, $J^k M / J^{k+1} M$ is a module over the semisimple Artinian ring $A / J$, and is also Artinian. Thus each $J^k M / J^{k+1} M$ is Noetherian and thus $M$ is Noetherian by \ref{cor: chain condition on submodules of direct sum }.
+    \end{proof}
+\end{theorem}
+
+\begin{example}
+    Let ring $A=\left(\begin{matrix}
+                \mathbb{Q} & \mathbb{R} \\
+                0          & \mathbb{R}
+            \end{matrix}\right)$, $A$ is right Artinian but not left Artinian.
+    infinite descending chain of left ideals
+    \begin{equation*}
+        \left(\begin{matrix}
+            0 & V_n \\
+            0 & 0
+        \end{matrix}\right) \supsetneq \left(\begin{matrix}
+            0 & V_{n+1} \\
+            0 & 0
+        \end{matrix}\right) \supsetneq \cdots
+    \end{equation*}
+    where $\left\{V_n\right\}$ is a infinite descending chain of $\mathbb{Q}$-subspace of $\mathbb{R}$.
+
+    In generally, the ring of upper triangular matrices
+    \begin{equation*}
+        T
+        :=
+        \left(\begin{matrix}
+            D_1 & M   \\
+            0   & D_2
+        \end{matrix}\right)
+    \end{equation*}
+    where $D_1,D_2$ are rings and $M$ is a $\left(D_1,D_2\right)$-bimodule.
+    Then $T$ is left Artinian if and only if $D_1,D_2$ are left Artinian and $M_{D_2}$ has finite length.
+
+\end{example}
+
+
+\section{Commutative Artinian Rings} % Commutative Artinian Rings
+In this subsection we shall study commutative Artinian rings.
+
+
+\begin{theorem}
+    Let $A$ be a commutative ring with identity. Then the following conditions are equivalent:
+    \begin{enumerate}
+        \item
+              $A$ is Artinian
+        \item
+              $A$ is Noetherian and $\dim A=0$.
+        \item
+              $\Spec \left(A\right)$ is finite and Krull $\dim A=0$
+
+        \item
+              (Structure theorem) $A$ is isomorphic to a finite direct product of Artin local rings.
+    \end{enumerate}
+    \begin{proof}
+        1. $\Rightarrow$ 2.
+        By \ref{thm:Hopkins-Levitzki}, $A$ is Noetherian. If $\mathfrak{p}$ is a prime ideal in $A$, then $A / \mathfrak{p}$ is an integral domain and Artinian, whence a field. Thus $\dim A=0$.
+
+        2. $\Rightarrow$ 3.
+        Let $\mathcal{S}:=\left\{\mathfrak{p}_1\cap \mathfrak{p}_1\cdots \cap \mathfrak{p}_r:\mathfrak{p}_i \text{ maximal ideal}\right\}$, then $\mathcal{S}$ has a minimal element $\mathfrak{a}=\mathfrak{p}_1\cap \mathfrak{p}_1\cdots \cap \mathfrak{p}_n$ by \ref{thm: chain condition and m condition}.
+        Hence for any maximal ideal $\mathfrak{p}$, $\mathfrak{p}\supset \mathfrak{a}$ by minimality of $\mathfrak{a}$, whence $\mathfrak{m}=\mathfrak{m}_i$ for some $i$ by .
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    In a commutative Artin ring the
+    \begin{enumerate}
+        \item
+              nilradical is equal to the Jacobson radical.
+        \item
+              $A$ has finitely many maximal ideals
+    \end{enumerate}
+\end{corollary}
+
+\begin{proposition}
+    Let $A$ be an Artin local ring. Then the following are equivalent:
+    \begin{enumerate}
+        \item
+              every ideal in $A$ is principal;
+        \item
+              the maximal ideal $\mathfrak{m}$ is principal;
+        \item
+              $\operatorname{dim}_k\left(\mathfrak{m} / \mathfrak{m}^2\right) \leqslant 1$.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+
+
+
+
+\chapter{The Structure of Rings and Modules} % The Structure of Rings and Modules
+\minitoc
+
+\section{Simplicity} % Simplicity
+\begin{definition}
+    A ring $A$ is said to be \textbf{simple} if $A$ has no proper two-sided ideals.
+\end{definition}
+
+\begin{definition}
+    A left module $M$ over a ring $A$ is said to be \textbf{simple} (or \textbf{irreducible}) if $M$ has no proper submodules.
+    \begin{remark}
+        A left ideal $\mathfrak{a}$ of $A$ is a simple left $A$-module if and only if $\mathfrak{a}$ is a minimal left ideal of $A$.
+        In this case, we call $\mathfrak{a}$ the \textbf{simple left ideal} of $A$.
+    \end{remark}
+\end{definition}
+\begin{proposition}
+    \label{pro: Proposition of simple module}
+    Let $A$ be a ring and $M$ be a simple left $A$-module, then
+    \begin{enumerate}
+        \item
+              $M=Am$ for every $0 \neq m \in M$.
+        \item
+              If $0 \neq u \in M$, then $M \cong A / \Ann(u)$, thus $\Ann\left( u \right)$ is a left maximal ideal.
+
+              Conversely, if $\mathfrak{m}$ is left maximal in $A$, then $A/\mathfrak{m}$ is a simple $A$-module with $\Ann\left( A/\mathfrak{m} \right)=\mathfrak{m}$
+        \item
+              If $A$ is not a division ring, then $M$ is a torsion module.$m\in M$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{lemma}[Schur]
+    \label{lem: Schur's lemma}
+    Let $M$ be a simple left module over a ring $A$ and let $N_i$ be any $A$-module.
+    \begin{enumerate}
+        \item
+              Every nonzero $A$-module homomorphism $f: M \rightarrow N_1$ is a monomorphism;
+        \item
+              Every nonzero $A$-module homomorphism $g: N_2 \rightarrow M$ is an epimorphism;
+
+        \item
+              The endomorphism ring $D=\operatorname{Hom}_{A}(M,M)$ is a division ring,
+              then $M$ is a vector space over $\operatorname{Hom}_A(M,M)$ with $f a=f(a)$
+    \end{enumerate}
+\end{lemma}
+
+
+
+
+
+\subsection{Primitivity} % Primitivity
+\begin{definition}
+    Let $A$ be a ring.
+    \begin{enumerate}
+        \item
+              The ring $A$ is said to be \textbf{left primitive} if there exists a simple faithful left $A$-module.
+        \item
+              An two-sided ideal $\mathfrak{a}$ of a ring $A$ is said to be \textbf{left primitive} if the quotient ring $A / \mathfrak{a}$ is a left primitive ring.
+    \end{enumerate}
+    \begin{remark}
+        If $M$ is a simple left $A$-module, then $A/\Ann\left( M \right)$ is left primitive with faithful simple left $A/\Ann\left( M \right)$-module $M$.
+    \end{remark}
+\end{definition}
+
+
+\begin{proposition}
+    Let $A$ be a ring.
+    \begin{enumerate}
+        \item
+              A simple ring $A$ is left primitive with faithful simple left $A$-module $A/\mathfrak{m}$ for any left maximal ideal $\mathfrak{m}$ of $A$.
+
+        \item
+              A commutative ring $A$ is primitive if and only if $A$ is a field.
+    \end{enumerate}
+\end{proposition}
+
+\subsection{Jacobson Density Theorem} % Jacobson Density Theorem
+\begin{definition}
+    Let $V$ be a vector space over a division ring $D$.
+    A subring $A$ of $\End_D(V)$ is called a \textbf{dense ring of endomorphisms} of $V$ if for every positive integer $n$, every linearly independent subset $\left\{u_1, \ldots, u_{n}\right\}$ of $V$ and every arbitrary subset $\left\{v_1, \ldots, v_{n}\right\}$ of $V$ , there exists $f \in A$ such that $f\left(u_{i}\right)=v_{i}, (i=1,2, \ldots, n)$.
+\end{definition}
+
+
+
+
+\begin{lemma}
+    \label{lem: Lemma of Jacobson Density Theorem}
+    Let $M$ be a simple module over a ring $A$.
+    Consider $M$ as a vector space over the division ring $D=\End_A(M)$.
+    If $V$ is a finite dimensional $D$-subspace of $M$ and $a \in M-V$, then there exists $r \in A$ such that $ra \neq 0$ and $rV=0$.
+    \begin{remark}
+        In other words, the element $r\in \Ann_A\left( V \right)$ only annihilates $D$-subspace $V$.
+    \end{remark}
+    \begin{proof}
+        The proof is by induction on $n=\operatorname{dim}_D V$. If $n=0$, then $V=0$ and $a \neq 0$. Since $M$ is simple, $M=R a$. Consequently, there exists $r \in R$ such that $r a=a \neq 0$ and $r V=r 0=0$.
+
+        Suppose now $\operatorname{dim}_D V=n>0$ and the theorem is true for dimensions less than $n$.
+        Let $\left\{u_1, \ldots, u_{n-1}, u\right\}$ be a $D$-basis of $V$ and let $W=\span\left\{u_1, \ldots, u_{n-1}\right\}$ ( $W=0$ if $n=1$ ).
+        Then $V=W \oplus D u$ (vector space direct sum, $W$ may not be an $R$-submodule of $M$) the left annihilator $I=\Ann_R(W)$ is a left ideal of $R$.
+
+        Consequently, $I u$ is an $R$-submodule of $M$. Since $u \in M-W$, the induction hypothesis implies that there exists $r \in R$ such that $r u \neq 0$ and $r W=0$. Consequently $r\in I$ and $0 \neq r u \in I u$, whence $I u \neq 0$.
+        Therefore $M=I u$ by simplicity.
+
+        We must find $r \in R$ such that $r a \neq 0$ and $r V=0$. If no such $r$ exists, $\Ann\left( a \right)\subset\Ann\left( V\right)$, then we can define a map
+        $\theta: M \rightarrow M$
+        as follows.
+        For $r u \in I u=M$ let $\theta(r u)=r a \in M$.
+        We claim that $\theta$ is well defined.
+        If $r_1 u=r_2 u\left(r_i \in I\right)$, then $\left(r_1-r_2\right) u=0$, whence $\left(r_1-r_2\right) V$ $=\left(r_1-r_2\right)(W \oplus D u)=0$. Consequently by hypothesis $\left(r_1-r_2\right) a=0$.
+        Therefore, $\theta\left(r_1 u\right)=r_1 a=r_2 a=\theta\left(r_2 u\right)$.
+        Verify that $\theta \in \operatorname{Hom}_R(M, M)=D$.
+        Then for every $r \in I$,
+        \begin{equation*}
+            0=\theta(r u)-r a=r \theta(u)-r a=r(\theta(u)-a)
+        \end{equation*}
+        Therefore $\theta(u)-a \in W$ by induction hypothesis.
+        Consequently
+        \begin{equation*}
+            a=\theta u-(\theta u-a) \in D u+W=V,
+        \end{equation*}
+        which contradicts the fact that $a \not \in V$.
+        Therefore, there exists $r \in R$ such that $r a \neq 0$ and $r V=0$.
+    \end{proof}
+\end{lemma}
+
+\begin{theorem}[Classic Jacobson Density Theorem]
+    \label{thm: Jacobson Density Theorem}
+    Let $A$ be a left primitive ring with a faithful simple left $A$-module $M$ and division ring $D=\End_{A}(M)$.
+    Then $A$ is a dense ring of endomorphisms of the $D$-vector space $M$ (viewed $\alpha :A \hookrightarrow \End_D(M)$ by $ a\mapsto \alpha_a$ where left regular action $\alpha_a: m\mapsto am$ in $M$).
+    \begin{proof}
+        It clear that $\alpha: A \rightarrow \End_D(M)$ is a ring monomorphism since $M$ is faithful.
+        Let $\left\{u_1, u_2, \ldots, u_n\right\}$ be a $D$-linearly independent subset and $\left\{v_1, v_2, \ldots, v_n\right\}$ be an arbitrary subset.
+        For each $i$ let
+        \begin{equation*}
+            V_i
+            =
+            \span\left\{u_1, \ldots, u_{i-1}, u_{i+1}, \ldots, u_n\right\}.
+        \end{equation*}
+        Since $U$ is $D$-linearly independent, $u_i \notin V_i$. Consequently, by \ref{lem: Lemma of Jacobson Density Theorem} there exists $r_i \in R$ such that
+        \begin{center}
+            $r_i u_i \neq 0$ and $r_i V_i=0$
+        \end{center}
+        whence $R r_i u_i=M$ by simplicity. Therefore exists $t_i \in R$ such that $t_i r_i u_i=v_i$. Let
+        \begin{equation*}
+            r=t_1 r_1+t_2 r_2+\cdots+t_n r_n \in R .
+        \end{equation*}
+        Consequently for each $i=1,2, \ldots, n$
+        \begin{equation*}
+            \alpha_r\left(u_i\right)=\left(t_1 r_1+\cdots+t_n r_n\right) u_i
+            =
+            v_i
+        \end{equation*}
+        Therefore $\operatorname{Im} \alpha$ is a dense ring of endomorphisms of the $D$-vector space $M$.
+    \end{proof}
+\end{theorem}
+
+
+\begin{corollary}
+    If $M$ is a simple left $A$-module, then $A$ acts densely on $M$.
+    That is, for every positive integer $n$, every linearly independent subset $\left\{u_1, \ldots, u_n\right\}$ of $M$ and every arbitrary subset $\left\{v_1, \ldots, v_n\right\}$ of $M$, there exists $a \in A$ such that $a u_i=v_i, (i=1,2, \ldots, n)$.
+\end{corollary}
+
+
+
+\subsection{Artinian simple ring}% Artinian simple ring
+\begin{lemma}
+    \label{lem: Dense ring of endomorphisms of a finite dimensional vector space}
+    Let $A$ be a dense ring of endomorphisms of a vector space $V$ over a division ring $D$.
+    Then $A$ is left Artinian if and only if $\operatorname{dim}_{D} V$ is finite, in which case $A=\End_D(V) \cong M_n\left(D\right)$.
+
+    \begin{proof}
+        If $A$ is Artinian and $\operatorname{dim}_D V$ is infinite, then there exists an infinite linearly independent subset $\left\{u_1, u_2, \ldots\right\}$ of $V$.
+        The $V$ is a left simple $\End_D(V)$-module and hence a left simple $A$-module.
+
+        For each $n$, let $I_n=\Ann_{A}\left\{u_1, \ldots, u_n\right\}$.
+        Then $I_1\supsetneq I_2\supsetneq\cdots$ is a properly descending chain by \cref{lem: Lemma of Jacobson Density Theorem}, which is a contradiction. Hence $\dim_D V$ is finite.
+
+        Conversely if $\operatorname{dim}_D V$ is finite, then $V$ has a finite basis $\left\{v_1, \ldots, v_m\right\}$. Then $A= \operatorname{Hom}_D(V, V)\cong M_n\left(D\right) $ is Artinian.
+    \end{proof}
+\end{lemma}
+
+
+\begin{corollary}[Artin-Wedderburn]
+    If $A$ is a simple ring, then
+    \begin{enumerate}
+        \item
+              $A$ is left Artinian
+        \item
+              $A\cong M_n\left(D\right)$ for some positive integer $n$ and some division ring $D\cong \End_A(A/\mathfrak{m})$ for some maximal left ideal $\mathfrak{m}$ of $A$.
+        \item
+              $A$ is right Artinian
+    \end{enumerate}
+\end{corollary}
+
+
+
+
+\begin{lemma}[Schur's lemma]
+    \label{lem: Schur's lemma for endomorphism ring}
+    Let $V$ be a nonzero vector space over a division ring $D$.
+    If $g: V \rightarrow V$ is a homomorphism of additive groups such that $gf=fg$ for all $f \in \Hom_{D}\left( V,V \right)$,then there exists $\lambda \in D$ such that $g(x)=\lambda x$ for all $x\in V$.
+    \begin{remark}
+        That is, that is,
+        \begin{equation*}
+            g\in \End_{\End_D(V)}(V)\cong D
+        \end{equation*}
+        since $V$ is a simple $\End_D(V)$-module.
+    \end{remark}
+\end{lemma}
+
+\begin{lemma}
+    \label{lem:simple module over matrix ring}
+    The simple left $M_n(D)$-modules for some division ring $D$ is isomorphic to $D^n$ with the usual left matrix multiplication.
+\end{lemma}
+
+\begin{proposition}
+    If $M_{n_1}(D_1)\cong M_{n_2}(D_2)$ for some positive integers $n_1,n_2$ and some division rings $D_1,D_2$, then $n_1=n_2$ and $D_1\cong D_2$.
+    \begin{proof}
+        \begin{equation*}
+            D_1
+            \cong
+            \End_{M_{n_1}(D_1)}\left( D_1^{n_1} \right)
+            \cong
+            \End_{M_{n_2}(D_2)}\left( D_2^{n_2} \right)
+            \cong
+            D_2
+        \end{equation*}
+    \end{proof}
+\end{proposition}
+
+
+
+
+
+\section{Semisimplicity}
+
+\begin{theorem}
+    \label{thm: Semisimple modules}
+    Let $A$ be a ring and $M$ a left $A$-module.
+    The following conditions on $M$ are equivalent:
+    \begin{enumerate}
+        \item
+              $M$ is the sum of a family of simple submodules.
+        \item
+
+              $M$ is the direct sum of a family of simple submodules.
+        \item
+              Every submodule $N$ is a direct summand of $M$.
+    \end{enumerate}
+    \begin{proof}
+        (1) $\Rightarrow$ (2)
+        Let $\mathcal{S}$ be the set of all families $\mathcal{F}$ of simple submodules of $M$ such that the sum of the members of $\mathcal{F}$ is direct.
+        Since $M$ is the sum of a family of simple submodules, $\mathcal{S}$ is nonempty.
+        Partially order $\mathcal{S}$ by inclusion and let $\mathcal{C}$ be a chain in $\mathcal{S}$.
+        Then $\mathcal{U}=\bigcup_{\mathcal{F} \in \mathcal{C}} \mathcal{F}$ is an upper bound for $\mathcal{C}$ in $\mathcal{S}$.
+        By Zorn's lemma there exists a maximal element $\mathcal{F}_0$ in $\mathcal{S}$.
+        We claim that $M=\bigoplus_{N \in \mathcal{F}_0} N$.
+        If not, there exists a simple submodule $K$ of $M$ such that
+        \begin{equation*}
+            K \cap\left(\bigoplus_{N \in \mathcal{F}_0} N\right)=0 .
+        \end{equation*}
+        Consequently, $\mathcal{F}_0 \cup\{K\} \in S$, contradicting the maximality of $\mathcal{F}_0$.
+
+        (2) $\Rightarrow$ (3)
+        Let $M=\bigoplus_{i \in I} N_i$, where each $N_i$ is a simple submodule of $M$, and let $N$ be a submodule of $M$.
+        For each $i \in I$, either $N_i \subset N$ or $N_i \cap N=0$ by simplicity.
+        Let $J=\left\{i \in I \mid N_i \subset N\right\}$ and $K=I-J$. Then
+        \begin{equation*}
+            M=N \oplus\left(\bigoplus_{i \in K} N_i\right) .
+        \end{equation*}
+
+        (3) $\Rightarrow$ (1)
+        Let $N$ be the sum of all simple submodules of $M$. By hypothesis, $M=N \oplus P$ for some submodule
+    \end{proof}
+
+    \begin{remark}
+        A left $A$-module $M$ satisfying the three conditions is said to be \textbf{semisimple}.
+        Similarly one defines a right semisimple module.
+    \end{remark}
+\end{theorem}
+
+
+\begin{proposition}
+    Every submodule and every factor module of a left semisimple module is left semisimple.
+\end{proposition}
+
+
+\subsection{Structure of semisimple rings} % Structure of semisimple rings
+
+\begin{definition}
+    A ring $A$ is called \textbf{semisimple} if $1_A\neq 0$, and if ${}_A A$ is a semisimple module.
+\end{definition}
+
+
+
+
+\begin{proposition}
+    If $A$ is a semisimple ring, then $A$ is left Artinian.
+    \begin{proof}
+        Since ${}_A A $ is semisimple module, there exist simple left ideals $L_j$ of $A$ such that
+        \begin{equation*}
+            {}_A A
+            \cong
+            \bigoplus_{j \in J} L_j
+        \end{equation*}
+        with projection maps $\pi_j:{}_A A \rightarrow {}_A L_j$ for each $j \in J$.
+        Since the sum is direct, $\left\{j_k: \pi_{j_k}(1_A) \neq 0\right\}$ is finite.
+        Then
+        $J=\left\{j_k: \pi_{j_k}(1_A) \neq 0\right\}$ is finite and
+        \begin{equation*}
+            {}_A A
+            \cong
+            L_{1} \oplus L_{2} \oplus \cdots \oplus L_{n}
+        \end{equation*}
+        Therefore ring $A$ is left Artinian.
+    \end{proof}
+    \begin{remark}
+        It is clear that any simple left ideal $L$ of $A$ is isomorphic to some $L_j$, thus $A$ has finitely many minimal left ideals up to isomorphism.
+    \end{remark}
+\end{proposition}
+
+
+
+\begin{lemma}
+    \label{lem:lemma of Wedderburn}
+    If $L$ and $L^{\prime}$ are minimal left ideals in a ring $R$, then each of the following statements implies the one below it:
+    \begin{enumerate}
+        \item
+              $L L^{\prime} \neq(0)$.
+        \item
+              $\operatorname{Hom}_R\left(L, L^{\prime}\right) \neq\{0\}$ and there exists $b^{\prime} \in L^{\prime}$ with $L^{\prime}=L b^{\prime}$.
+        \item
+              $L \cong L^{\prime}$ as left $R$-modules.
+    \end{enumerate}
+    If also $L^2 \neq(0)$, then (iii) implies (i) and the three statements are equivalent.
+\end{lemma}
+\begin{theorem}[Wedderburn-Artin]
+    If $A$ is a semisimple ring, then we have ring isomorphisms
+    \begin{equation*}
+        A
+        \cong
+        \prod_{i=1}^t  A_i
+        \cong \prod_{i=1}^t M_{n_i}\left(D_i\right)
+    \end{equation*}
+    where $A_i\cong M_{n_i}\left(D_i\right)$ $i \in I$.
+    \begin{proof}
+        Let $\left\{L_{j_i}\right\}_{i=1}^t$ be all distinct simple left ideals of $A$ up to isomorphism and define $A_i$ be the sum
+        \begin{equation*}
+            {}_A A_i
+            :=
+            \bigoplus_{L_j \cong L_i} L_j
+        \end{equation*}
+        Thus, as left $A$-modules,
+        \[
+            {}_A A \cong \bigoplus_{i=1}^t {}_A A_i.
+        \]
+        Then $A_i$ is a two-sided ideal of $A$ by \cref{lem:lemma of Wedderburn} and hence a ring with identity element $e_i=\pi_i(1_A)$ ($\pi_i$ the projection from $A$ to $A_i$).
+        The projection from $A$ to $A_i$ induce a ring homomorphism
+        \begin{equation*}
+            A\cong \prod_{i=1}^t A_i
+        \end{equation*}
+        since $1_A=e_1+e_2+\cdots+e_t$ and $e_i e_j=\delta_{ij} 1_A$.
+
+        Finally, each $A_i$ is a simple ring since any nonzero two-sided ideal $\mathfrak{a}$ of $A_i$ contains a minimal left ideal $L$ of $A_i$ and hence a minimal left ideal of $A$ isomorphic to $L_i$. Then $Lb\subset L$ runs over all minimal left ideals of $A$ isomorphic to $L_i$ by \cref{lem:lemma of Wedderburn}, whence $A_i \subset L\subset \mathfrak{a}$.
+    \end{proof}
+\end{theorem}
+
+\subsection{Structure of modules over semisimple rings} % Structure of modules over semisimple rings
+
+
+
+
+\begin{theorem}
+    Let semisimple ring
+    \begin{equation*}
+        A\cong \prod_{i=1}^t A_i
+    \end{equation*}
+    where each $A_i\cong M_{n_i}(D_i)$.
+    Then every left $A$-module $M$ is isomorphic to
+    \begin{equation*}
+        \bigoplus_{i=1}^t e_iM
+        \cong
+        \bigoplus_{i=1}^t S_i^{\left(\kappa_i\right)}
+    \end{equation*}
+    where $e_iM\cong S_i\cong D_i^{n_i}$  and $\kappa_i$ is a cardinal number.
+
+    And the decomposition is unique in the sense that if
+    \begin{equation*}
+        M \cong \bigoplus_{i=1}^t S_i^{\left(\kappa_i\right)} \cong \bigoplus_{i=1}^t S_i^{\left(\kappa_i^{\prime}\right)}
+    \end{equation*}
+    then $\kappa_i=\kappa_i^{\prime}$ for each $i$
+    \begin{remark}
+        If $M$ is finitely generated, then each $\kappa_i$ is finite.
+    \end{remark}
+\end{theorem}
+
+
+\section{Jacobson Radical} % Jacobson Radical
+
+\begin{definition}
+    Let $R$ be a ring. A element $x \in R$ is said to be \textbf{right quasi-regular} if there exists $y \in R$ such that $x+y-xy=0$, $y$ is called a \textbf{right quasi-inverse} of $x$.
+    \begin{remark}
+        That is, $1-x$ has a right inverse $1-y$.
+    \end{remark}
+
+\end{definition}
+\begin{definition}
+    A element $a\in R$ is said \textbf{right quasi-nilpotent element} if for every $r \in R$, $r a$ is right quasi-regular.
+    \begin{remark}
+        That is, $1-ra$ has a right inverse for every $r \in R$.
+    \end{remark}
+\end{definition}
+
+\subsection{Jacobson radical}
+\begin{theorem}
+    \label{thm: Jacobson radical}
+    Let $R$ be a ring, then the following sets are equal:
+    \begin{enumerate}
+        \item
+              the intersection of all maximal left ideals of $R$
+        \item [1']
+              the intersection of all maximal right ideals of $R$
+
+        \item
+              the intersection of all the annihilators of simple left $R$-modules;
+        \item [2']
+              the intersection of all the annihilators of simple right $R$-modules;
+        \item
+              $\left\{x\in R: x \text{ is right quasi-nilpotent element}\right\}$
+        \item [3']
+              $\left\{x\in R: x \text{ is left quasi-nilpotent element}\right\}$
+        \item
+              Nakayama's
+              $\left\{x\in R: \text{ for any finitely generated module } M, xM=M\Rightarrow M=0\right\}$
+        \item
+              the ideal $J$ such that $R/J$ is semisimple.
+    \end{enumerate}
+    the two-sided ideal is called the \textbf{Jacobson radical} of $R$ and is denoted by $J(R)$.
+\end{theorem}
+
+
+\begin{corollary}
+    \begin{enumerate}
+        \item
+              $J\left(\prod_{i \in I} R_i\right)=\prod_{i \in I} J\left(R_i\right)$.
+        \item
+              $J\left(J\left(R\right)\right)=J\left(R\right)$.
+        \item
+              $R/J(R)$ is semisimple.
+    \end{enumerate}
+\end{corollary}
+
+\begin{proposition}
+    If $R$ is a Artinian ring, then the radical $J(R)$ is a nilpotent ideal.
+    Thus $J(R)=\Rad\left( R \right)$
+    \begin{proof}
+        Since $R$ is Artinian, the descending chain of ideals
+        \begin{equation*}
+            J(R) \supseteq J(R)^2 \supseteq J(R)^3 \supseteq \cdots
+        \end{equation*}
+        stabilizes, say $J(R)^n=J(R)^{n+1}$ for some positive integer $n$.
+        On the other hand, ${}_R R$ is Noetherian thus $J(R)^n$ is finitely gengerated submodule of ${}_R R$ and $J(R)^n =0$ by Nakayama's lemma.
+    \end{proof}
+\end{proposition}
+
+
+
+
+\begin{proposition}
+    Let $R$ be a ring. $J\left(M_n R\right)=M_n \left(J(R)\right)$.
+    \begin{proof}
+        (a) If $A$ is a left $R$-module, consider the elements of $A^n=A \oplus A \oplus \cdots \oplus A$ ( $n$ summands) as column vectors; then $A^n$ is a left $\left(\operatorname{Mat}_n R\right)$-module (under ordinary matrix multiplication).
+
+        (b) If $A$ is a simple $R$-module, $A^n$ is a simple $\left(\operatorname{Mat}_n R\right)$-module.
+
+        (c) $J\left(\operatorname{Mat}_n R\right) \subset \operatorname{Mat}_n J(R)$.
+
+        (d) $\operatorname{Mat}_n J(R) \subset J\left(\operatorname{Mat}_n R\right)$. [Hint: prove that $\operatorname{Mat}_n J(R)$ is a left quasi-regular ideal of $\operatorname{Mat}_n R$ as follows. For each $k=1,2, \ldots, n$ let $K_k$ consist of all matrices $\left(a_{i j}\right)$ such that $a_{i j} \varepsilon J(R)$ and $a_{i j}=0$ if $j \neq k$. Show that $K_k$ is a left quasi-regular left ideal of $\operatorname{Mat}_n R$ and observe that $K_1+K_2+\cdots+K_n=\operatorname{Mat}_n J(R)$. $]$
+    \end{proof}
+\end{proposition}
+
+
+\begin{corollary}
+    Let $R$ be a ring. If matrix $A\in M_n\left(J( R)\right)$, then $I-A$ is invertible in $M_n(R)$.
+\end{corollary}
+
+
+\subsection{Nakayama's Lemma} % Noetherian Rings and Modules
+
+
+\begin{theorem}[Nakayama's lemma]
+    \label{pro: Nakayama's lemma}
+    Let $M$ be a finitely generated left $R$-module and a subset $X \subset J(R)$.
+    Then $\mathfrak{a} M=M$ implies $M=0$.
+\end{theorem}
+
+
+\begin{corollary}
+    Let $M$ be a finitely generated left $R$-module, $N$ a submodule of $M$, left ideal $\mathfrak{a} \subset J(R)$.
+    Then $M=\mathfrak{a} M+N \Rightarrow M=N$.
+\end{corollary}
+
+
+
+
+\begin{corollary}
+    If $R$ is a Noetherian local ring with maximal ideal $\mathfrak{m}$, then $\bigcap_{n=1}^{\infty} \mathfrak{m}^n=0$.
+\end{corollary}
+
+
+
+
+
+
+\section{Characterizations of semisimple rings}
+\begin{theorem}
+    The following conditions on a ring $R$ are equivalent:
+    \begin{enumerate}
+        \item
+              $R$ is a semisimple ring.
+        \item
+              Every left $R$-module is a semisimple module.
+        \item
+              Every left $R$-module is injective.
+        \item
+              Every left $R$-module is projective.
+        \item
+              Every short exact sequence of left $R$-modules splits.
+        \item
+              $R$ is Artinian and $J(R)=0$.
+    \end{enumerate}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Algebra}
+\begin{definition}
+    Let $A$ be an algebra over a commutatuve ring $K$ with identity.
+    \begin{enumerate}
+        \item
+              A \textbf{left algebra $A$-module} is a left $K$-module $M$ such that $M$ is a left module over the ring A and $k(am)=(ka) m=a(km )$ for all $k \in K, a \in A, m \in M$.
+              Indeed,
+              \begin{equation*}
+                  \begin{cases*}
+                      \left(k_1a_1+k_2a_2\right)\left(m_1+m_2\right)
+                      =
+                      k_1a_1m_1+k_1a_1m_2+k_2a_2m_1+k_2a_2m_2 \\
+                      k(am)=(ka) m=a(km)                      \\
+                      1_K m=m ,1_K a=a
+                  \end{cases*}
+              \end{equation*}
+              for all $k \in K, a \in A, m \in M$
+
+        \item
+              A left algebra $A$-submodule of $M$ is a subset of $M$ which is itself an left algebra $A$-module.
+
+        \item
+              A left algebra $A$-module $M$ is \textbf{simple} (or \textbf{irreducible}) if $M$ has no proper $A$-submodules.
+
+        \item
+              A homomorphism $f: M \rightarrow N$ of algebra $A$-modules is a map that is both a $K$-module and an $A$-module homomorphism.
+    \end{enumerate}
+    \begin{remark}
+
+    \end{remark}
+\end{definition}
+
+\begin{theorem}
+    Let $A$ be a $K$-algebra.
+    The Jacobson radical of the ring $A$ coincides with the Jacobson radical of the algebra $A$.
+    In particular $A$ is a semisimple ring if and only if $A$ is a semisimple algebra.
+\end{theorem}
+
+
+
+\begin{theorem}
+    Let $A$ be a $K$-algebra.
+
+    (1)
+    Every simple algebra $A$-module is a simple module over the ring $A$.
+
+    (2)
+    Every simple module $M$ over the ring $A$ can be given a unique $K$-module structure in such a way that $M$ is a simple algebra $A$-module.
+\end{theorem}
 
 
 
@@ -1608,7 +2289,7 @@ We give a graded ring of particular importance in commutative algebra.
         \item
               If $N$ is a submodule of $M$, then the \textbf{induced filtration} on $N$ is a filtration $\Gamma^\prime=\left\{\Gamma_iN\right\}$ defined by
               \begin{equation*}
-                  \Gamma_i^\prime 
+                  \Gamma_i^\prime
                   :=
                   N \cap \Gamma_i .
               \end{equation*}
@@ -1789,14 +2470,14 @@ We give a graded ring of particular importance in commutative algebra.
 In the following, $\lambda(N)$ is a finitely generated abelian group and we always view $\lambda(N)$ as the rank of $\lambda(N)$.
 
 \begin{definition}% Hilbert Function
-    Let $A=\bigoplus_{n\geq 0} A_n$ be a commutative Noetherian graded ring, $M=\bigoplus_{n\geq 0} M_n$ a finitely generated graded $A$-module and assume that each $M_n$ is a finitely generated $A_0$-module with a additive function $\lambda$.
+    Let $A=\bigoplus_{n\geq 0} A_n$ be a commutative Noetherian graded ring and $M=\bigoplus_{n\geq 0} M_n$ a finitely generated graded $A$-module (It follows that each $M_n$ is a finitely generated $A_0$-module with a additive function $\lambda$).
     \begin{enumerate}
         \item
               The \textbf{Hilbert function} of $M$ with respect to $\lambda$ is the function defined by
               \begin{equation*}
                   h_M^\lambda(n)
                   :=
-                  \lambda\left(M_n\right):\mathbb{N} \rightarrow \mathbb{N}
+                  \lambda\left(M_n\right)
               \end{equation*}
         \item
               the \textbf{Hilbert-Poincare series} of $M$
@@ -1807,7 +2488,7 @@ In the following, $\lambda(N)$ is a finitely generated abelian group and we alwa
               \end{equation*}
     \end{enumerate}
     \begin{remark}
-        If $R_0$ is Artinian ring, $\lambda(N)=\ell_{R_0}(N)$. If $R_0$ is a field, $\lambda(N)=\dim_{R_0}(N)$.
+        If $A_0$ is Artinian ring, $\lambda(N)=\ell_{A_0}(N)$. If $A_0$ is a field, $\lambda(N)=\dim_{A_0}(N)$.
     \end{remark}
 \end{definition}
 
@@ -1816,9 +2497,10 @@ In the following, $\lambda(N)$ is a finitely generated abelian group and we alwa
 \begin{theorem}[Hilbert-Serre]
     The Poincare series $P_M^\lambda(t)$ is a rational function of the form
     \begin{equation*}
-        \frac{f(t)}{\prod_{i=1}^s\left(1-t^{k_i}\right)}
+        \frac{f(t)}{\prod_{i=1}^d\left(1-t^{k_i}\right)}
     \end{equation*}
-    , where $f(t) \in \mathbb{Z}[t]$ and $s$ be the number of generators of ${}_{R_0} R$  and $k_i$ are the degrees of the homomgeneous generators $x_i$ respectively.
+    where $f(t)\in \mathbb{Z}[t]$ and $k_1, \ldots, k_d$ are the degrees of the homogeneous generators of $A$ over $A_0$.
+    The order of the pole of $P_M^\lambda(t)$ at $t=1$ is called the \textbf{dimension} of $M$ with respect to $\lambda$, denoted by $\dim M$.
     \begin{proof}
         By induction on $s$, the number of generators of $R$ over $R_0$. Start with $s=0$; this means that $R_n=0$ for all $n>0$, so that $R=R_0$ and $M$ is a finitelygenerated $R_0$ module, hence $M_n=0$ for all large $n$. Thus $P_M^\lambda(t)$ is a polynomial in this case.
 
@@ -1853,7 +2535,7 @@ In the following, $\lambda(N)$ is a finitely generated abelian group and we alwa
 \end{corollary}
 
 \begin{corollary}
-    There exists a $\chi(t,A,M)\in \mathbb{Q}[t]$ of degree $\dim M$ such that
+    There exists a polynomial $\chi(t,A,M)\in \mathbb{Q}[t]$ such that
     \begin{equation*}
         \sum_{i=0}^n \lambda\left(M_{i}\right)
         =
@@ -1871,6 +2553,11 @@ In the following, $\lambda(N)$ is a finitely generated abelian group and we alwa
     \end{equation*}
     where $a_{d(M)}$ is the leading coefficient of the Hilbert polynomial $\chi(t)$.
 \end{definition}
+
+\section{}
+
+
+
 
 \section{Krull Dimension}
 In this section, all rings $A$ are commutative Noetherian ring with identity and modules $M$ are finitely generated $A$-module. Although some definitions and results hold in greater generality, the most of useful properties stay in this case.

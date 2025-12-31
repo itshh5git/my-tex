@@ -790,67 +790,6 @@ Jacobian conJecture. Let $F: K^n \rightarrow K^n$ be a polynomial map. If $\Delt
 \end{definition}
 
 
-
-\section{Direct Limit of Modules} % Direct Limit of Modules
-\begin{definition}
-
-    Let $I$ be a set with a relation $\leq$. We say that $I$ is \textbf{partially ordered} if $\leq$ is reflexive, antisymmetric, and transitive.
-
-    A partially ordered set $I$ is \textbf{directed} if, given $i, j \in I$, there exists $k \in I$ such that $i \leq k$ and $j \leq k$.
-
-\end{definition}
-
-\begin{definition}
-    Let $R$ be a ring and $I$ be a directed set. Suppose that to every $i \in I$ we associate a left $R$-module $M_i$.
-    A \textbf{directed family} of left $R$-modules consist of the data of
-    \begin{enumerate}[label=(\roman*)]
-        \item
-              For every $i\in I$, there exist a left $R$-module $M_i$
-        \item
-              given any $i, j \in I$, satisfying $i \leq j$, there exists a homomorphism of $R$-modules
-              \begin{equation*}
-                  f_{ij}: M_i \longrightarrow M_j,
-              \end{equation*}
-    \end{enumerate}
-    such that
-    \begin{enumerate}[resume,label=(\roman*)]
-        \item
-              For every $i\in I$, $f_{ii}=\mathrm{id}_{M_i}    $
-        \item
-              if $i \leq j \leq k$, then
-              \begin{equation*}
-                  f_{ij} \circ f_{jk}=f_{ik} .
-              \end{equation*}
-    \end{enumerate}
-\end{definition}
-
-\begin{definition}
-    Let $\left(M_i,f_{ij}\right)$ be a directed family of left $R$-modules.
-    Denote by $M$ the disjoint union of the modules $M_i$
-    \begin{equation*}
-        M=\bigsqcup_{i \in I} M_i .
-    \end{equation*}
-    We define an equivalence relation in $M$ as follows: $(u, i),(v, j) \in U$ are equivalent if and only if there exists $k \in I$ such that $i\leq k, j \leq k$ and $\pi_{i k}(u)=\pi_{j k}(v)$.
-    The \textbf{direct limit} of the family $\left\{M_i: i \in I\right\}$, denoted by $\underset{\longrightarrow}{\lim} M_i$, is the quotient set of $M$ by this equivalence relation.
-    \begin{remark}
-        The operation on $M$ is defined
-        \begin{equation*}
-            \overline{\left(a_i,i\right)} +\overline{\left(a_j,j\right)}
-            =
-            \overline{\left(f_{ik}(a_i)+f_{jk}(a_i),k\right)}
-        \end{equation*}
-        for some $k\in I$ such that $i\leq k$ and $j\leq k$,
-        \begin{equation*}
-            r\overline{\left(a_i,i\right)}
-            =
-            \overline{\left(ra_i,i\right)}
-        \end{equation*}
-        We sometimes simply write $\left[a_i\right]$ to replace $\overline{\left(a_i,i\right)}$ in $M$
-    \end{remark}
-
-
-\end{definition}
-
 \section{Microfunctions}
 Let $D(\epsilon)$ be the open disk of $\mathbb{C}$ of centre 0 and radius $\epsilon$, $D^{\prime}(\epsilon)=D(\epsilon) \backslash 0$ and $\mathcal{H}\left(\Omega\right)$ be the set of holomorphic functions in the open set $\Omega \subseteq \mathbb{C}$ viewed as an $A_1(\mathbb{C})$-module.
 
@@ -899,6 +838,85 @@ Let $D(\epsilon)$ be the open disk of $\mathbb{C}$ of centre 0 and radius $\epsi
 
 
 
+\section{Filtration and Associated Graded Rings and Modules} % Filtration and Associated Graded Rings and Modules
+\subsection{Increasing filtration} % Filtered and Graded Modules
+
+\begin{definition}
+    Let $A$ be a ring.
+    A \textbf{increasing filtration} of $A$ is a sequence of subgroups $\left\{F_iA\right\}$ of $A$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $F_0A \subset F_1A \subset F_2A \subset \cdots \subset F_nA \subset \cdots \subset A$
+        \item
+              $\bigcup_{i\geq 0} F_iA=A$.
+        \item
+              $F_iA \cdot F_jA \subseteq F_{i+j}A$ for all $i,j$.
+    \end{enumerate}
+    $A$ is called a \textbf{filtered ring} if it has an increasing filtration.
+\end{definition}
+
+\begin{proposition}
+    Let $A$ be a ring.
+    \begin{enumerate}
+        \item
+              If $A=\bigoplus_{i\geq 0} A_i $ is a graded ring, then the sequence of subgroups $\left\{F_kA:=\bigoplus_{i=0}^k A_i\right\}$ is an increasing filtration of $A$.
+        \item
+              If $\mathcal{F}=\left\{F_iA\right\}$ is a filtration of $A$, then
+              \begin{equation*}
+                  \operatorname{gr}_{\mathcal{F}}A
+                  :=
+                  \bigoplus_{i\geq 0} F_{i+1}A / F_iA
+              \end{equation*}
+              is a graded ring (multiplication follows from $A$), called the \textbf{associated graded ring of $A$ associated with the filtration $\mathcal{F}$} .
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{definition}
+    Let $A$ be a filtered ring with increasing filtration $\mathcal{F}=\left\{F_iA\right\}$. A left $A$-module $M$ is called a \textbf{filtered left $A$-module} if it has a sequence of subgroups $\Gamma=\left\{\Gamma_iM\right\}$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $\Gamma_0M \subset \Gamma_1M \subset \Gamma_2M \subset \cdots \subset \Gamma_nM \subset \cdots \subset M$
+        \item
+              $\bigcup_{i\geq 0} \Gamma_iM = M$
+        \item
+              $F_iA  \cdot \Gamma_jM \subseteq \Gamma_{i+j}M$ for all $i,j$.
+    \end{enumerate}
+\end{definition}
+
+
+
+\begin{proposition}
+    Let $M$ be a left $A$-module where $A$ is a filtered ring with increasing filtration $\mathcal{F}=\left\{F_iA\right\}$.
+    \begin{enumerate}
+        \item
+              If $M=\bigoplus_{i\geq 0} M_i$ is a graded $A$-module, then the sequence of subgroups $\Gamma_kM:=\bigoplus_{i=0}^k M_i$ is an increasing filtration of $M$.
+        \item
+              If $\Gamma=\left\{\Gamma_iM\right\}$ is a filtration of $M$, then
+              The \textbf{graded module of $M$ associated with the filtration $\Gamma$} is defined by
+              \begin{equation*}
+                  \operatorname{gr}_{\Gamma}M
+                  =
+                  \bigoplus_{i\geq 0} \Gamma_{i+1}M / \Gamma_i M
+              \end{equation*}
+              which is a graded $\operatorname{gr}_{\mathcal{F}}A$-module.
+    \end{enumerate}
+    \begin{remark}
+        In (1), the  $\operatorname{gr}_{\mathcal{F}}M\cong M$ (as graded modules).
+
+        But in (2), let $A=\mathbb{Z}$ with trivial filtration and $M=\mathbb{Z}_{p^2}$ with filtration $F_0M=0, F_1M=p \mathbb{Z}_{p^2}, F_2M=M,\ldots$, then $\operatorname{gr}_{\mathcal{F}}M \cong \mathbb{Z}_p^2\not \cong M$ in ${}_\mathbb{Z}\Mod$.
+
+        The functor $\operatorname{gr}(-):  {}_R \mathbf{FiltMod}\rightarrow {}_R\mathbf{GrMod}$ is not faithful
+    \end{remark}
+\end{proposition}
+
+\section{Good filtration}
+\begin{definition}
+    Let $A$ be a filtered ring with an increasing filtration $\left\{F_nA\right\}$, and $M$ a filtered $A$-module with an increasing filtration $\left\{F_nM\right\}$.
+    The filtration of $M$ is called a \textbf{good filtration} if $\operatorname{gr}(M)$ is finitely generated over $\operatorname{gr}(A)$.
+\end{definition}
+
+
 
 
 \section{Dimension}
@@ -906,14 +924,14 @@ Let $D(\epsilon)$ be the open disk of $\mathbb{C}$ of centre 0 and radius $\epsi
     Let $M$ be a finitely generated left $A_n$-module. Suppose that $\Gamma$ is a good filtration of $M$ with respect to the Bernstein filtration $\mathcal{B}$.
     \begin{enumerate}
         \item
-              Denote by $\chi(t, \Gamma, M)$ the Hilbert polynomial of the graded module $g r^{\Gamma} M$ over $S_n$.
+              Denote by $\chi(t, \Gamma, M)$ the \textbf{Hilbert polynomial} of the graded module $g r^{\Gamma} M$ over $S_n$.
               We have
               \begin{equation*}
                   \chi(t, \Gamma, M)=\sum_0^t \operatorname{dim}_k\left(\Gamma_i / \Gamma_{i-1}\right)=\operatorname{dim}_k\left(\Gamma_t\right) .
               \end{equation*}
               The dimension $d(M)$ of $M$ is defined the $\deg\chi(t, \Gamma, M)$.
         \item
-              Let $a_{d(M)}$ be the leading coefficient of $\chi(t, \Gamma, M)$. The multiplicity of $M$ is $m(M)=d!a_{d(M)}$.
+              Let $a_{d(M)}$ be the leading coefficient of $\chi(t, \Gamma, M)$. The \textbf{multiplicity} of $M$ is $m(M)=d!a_{d(M)}$.
     \end{enumerate}
     \begin{remark}
         The dimension and multiplicity of $M$ do not depend on the choice of the good filtration $\Gamma$.
@@ -923,18 +941,29 @@ Let $D(\epsilon)$ be the open disk of $\mathbb{C}$ of centre 0 and radius $\epsi
 
 \begin{example}
     First let $M$ be the left $A_n$-module $A_n$.
-    The Bernstein filtration $\mathcal{B}$ is a good filtration of $M$ and it is possible to calculate $\chi(t, \mathcal{B}, M)$ explicitly in this case. 
-    
-    By (2.1) we must determine the dimension of $B_t$. 
-     Hence $\chi(t, \mathcal{B}, M)=\binom{t+2 n}{2 n}$. As a polynomial in $t$ it has degree $2 n$ and leading coefficient $1 /(2 n)!$. Thus $d\left(A_n\right)=2 n$ and $m\left(A_n\right)=1$.
+    The Bernstein filtration $\mathcal{B}$ is a good filtration of $M$ and it is possible to calculate $\chi(t, \mathcal{B}, M)$ explicitly in this case.
+    \begin{equation*}
+        \chi(t, \mathcal{B}, M)=
+        \#\left\{x^\alpha \partial^\beta : \alpha,\beta \in \mathbb{N}^n, \left|\alpha\right|+\left|\beta\right| \leq t\right\}
+        =
+        \binom{t+2 n}{2 n}
+    \end{equation*}
+    that is
+    \begin{equation*}
+        \frac{(t+2n)(t+2n-1)\cdots (t+1)}{(2n)!}
+    \end{equation*}
+    Thus $d\left(A_n\right)=2 n$ and $m\left(A_n\right)=1$.
 \end{example}
 
 \begin{example}
-    Another $A_n$-module that we know very well is $K[X]=K\left[x_1, \ldots, x_n\right]$. 
-    
-    Since $B_i$ contains the polynomials in $x_1, \ldots, x_n$ of degree $i$, we have that $B_i \Gamma_t=\Gamma_{t+i}$. Hence $\Gamma$ is a good filtration. It is easy to show that $\operatorname{dim}_k \Gamma_t=\binom{n+t}{n}$. 
-    
-    Thus $\chi(t, \Gamma, M)=\binom{n+t}{n}$ is a polynomial of degree $n$ and leading coefficient $1 / n!$. Hence $d(K[X])=n$ and $m(K[X])=1$.
+    Another $A_n$-module that we know very well is $K[X]=K\left[x_1, \ldots, x_n\right]$ with good filtration $\Gamma_i:=\left\{f\left(x_1,\ldots,x_n\right):\deg f \leq i\right\}$.
+    It is easy to show that
+    \begin{equation*}
+        \chi(t, \mathcal{B}, k[X])
+        =
+        \operatorname{dim}_k \Gamma_t=\binom{n+t}{n}
+    \end{equation*}
+    Hence $d(K[X])=n$ and $m(K[X])=1$.
 \end{example}
 
 
@@ -950,18 +979,18 @@ Let $D(\epsilon)$ be the open disk of $\mathbb{C}$ of centre 0 and radius $\epsi
     \begin{proof}
         Let $M$ be a finitely generated left $A_n$-module and $\Gamma$ a good filtration of $M$ with respect to $\mathcal{B}$. Let $N$ be a submodule of $M$. Denote by $\Gamma^{\prime}$ and $\Gamma^{\prime \prime}$ the filtrations induced by $\Gamma$ in $N$ and $M / N$, we have an exact sequence of $S_n$-modules, namely
         \begin{equation*}
-            0 \rightarrow g r_{\Gamma^{\prime}} N \rightarrow g r^{\Gamma} M \rightarrow g r^{\Gamma^{\prime \prime}} M / N \rightarrow 0 .
+            0 \rightarrow g r_{\Gamma^{\prime}} N \rightarrow g r_{\Gamma} M \rightarrow g r_{\Gamma^{\prime \prime}} M / N \rightarrow 0 .
         \end{equation*}
-        Since $\Gamma$ is good, $g r^{\Gamma} M$ is finitely generated. But $S_n$ is a noetherian ring. Hence $g r^{\Gamma^{\prime}} N$ and $g r^{\Gamma^{\prime \prime}}(M / N)$ are also finitely generated. Therefore both $\Gamma^{\prime}$ and $\Gamma^{\prime \prime}$ are good filtrations.
+        Since $\Gamma$ is good, $g r_{\Gamma} M$ is finitely generated. But $S_n$ is a noetherian ring. Hence $g r_{\Gamma^{\prime}} N$ and $g r_{\Gamma^{\prime \prime}}(M / N)$ are also finitely generated. Therefore both $\Gamma^{\prime}$ and $\Gamma^{\prime \prime}$ are good filtrations.
         On the other hand, since the sequence of vector spaces
         \begin{equation*}
-            0 \rightarrow \Gamma_k^{\prime} / \Gamma_{k-1}^{\prime} \rightarrow \Gamma_k / \Gamma_{k-1} \rightarrow \Gamma_k^{\prime \prime} / \Gamma_{k-1}^{\prime \prime} \rightarrow 0
+            0 \rightarrow \Gamma_m^{\prime} / \Gamma_{m-1}^{\prime} \rightarrow \Gamma_m / \Gamma_{m-1} \rightarrow \Gamma_m^{\prime \prime} / \Gamma_{m-1}^{\prime \prime} \rightarrow 0
         \end{equation*}
         is exact, we have that
         \begin{equation*}
-            \operatorname{dim}_K \Gamma_k^{\prime} / \Gamma_{k-1}^{\prime}+\operatorname{dim} \Gamma_k^{\prime \prime} / \Gamma_{k-1}^{\prime \prime}=\operatorname{dim}_k \Gamma_k / \Gamma_{k-1} .
+            \operatorname{dim}_k \Gamma_m^{\prime} / \Gamma_{m-1}^{\prime}+\operatorname{dim}_k \Gamma_m^{\prime \prime} / \Gamma_{m-1}^{\prime \prime}=\operatorname{dim}_k \Gamma_m / \Gamma_{m-1} .
         \end{equation*}
-        Summing these terms for $k=0,1, \ldots, s$ and assuming that $s \gg 0$ one obtains
+        Summing these terms for $m=0,1, \ldots, s$ and assuming that $s \gg 0$ one obtains
         \begin{equation*}
             \chi\left(s, \Gamma^{\prime}, N\right)+\chi\left(s, \Gamma^{\prime \prime}, M / N\right)=\chi(s, \Gamma, M)
         \end{equation*}
@@ -970,10 +999,10 @@ Let $D(\epsilon)$ be the open disk of $\mathbb{C}$ of centre 0 and radius $\epsi
 \end{theorem}
 
 \begin{corollary}
-    Let $M_1, \ldots, M_k$ be finitely generated left $A_n$-modules, and $M=M_1 \oplus \cdots \oplus M_k$.
+    Let $M_1, \ldots, M_m$ be finitely generated left $A_n$-modules, and $M=M_1 \oplus \cdots \oplus M_m$.
     \begin{enumerate}
         \item
-              $d(M)=\max \left\{d\left(M_1\right), \ldots, d\left(M_k\right)\right\}$.
+              $d(M)=\max \left\{d\left(M_1\right), \ldots, d\left(M_m\right)\right\}$.
 
         \item
               If $d(M)=d\left(M_i\right)$ for $1 \leq i \leq k$, then $m(M)=\sum_1^k m\left(M_i\right)$.
@@ -984,7 +1013,7 @@ Let $D(\epsilon)$ be the open disk of $\mathbb{C}$ of centre 0 and radius $\epsi
     Let $M$ be a finitely generated $A_n$-module. Then $d(M) \leq 2 n$.
 
     \begin{proof}
-        Suppose that $M$ is generated by $r$ elements. Then there exists a surjective homomorphism $\phi: A_n^r \rightarrow M$. It follows from the theorem that $d\left(A_n^r\right)=\max \{d(M), d(\operatorname{ker} \phi)\}$. Since $d\left(A_n^r\right)=2 n$ by Corollary 3.3, we conclude that $d(M) \leq 2 n$.
+        Suppose that $M$ is generated by $r$ elements. Then there exists a surjective homomorphism $\phi: {A_n}^{\oplus r} \rightarrow M$. It follows from the theorem that $d\left({A_n}^{\oplus r}\right)=\max \{d(M), d(\operatorname{ker} \phi)\}$, thus $d(M) \leq d\left({A_n}^{\oplus r}\right) = 2 n$.
     \end{proof}
 \end{corollary}
 
@@ -1007,12 +1036,86 @@ Let $D(\epsilon)$ be the open disk of $\mathbb{C}$ of centre 0 and radius $\epsi
 \end{corollary}
 
 
-\subsection{}
+\subsection{Lower boundness}
 \begin{theorem}[Bernstein's Inequality]
     If $M$ is a finitely generated non-zero left $A_n$-module, then $d(M) \geq n$.
 \end{theorem}
 
 
+
+
+
+\chapter{Holonomic Modules} % Holonomic Modules
+\section{Definition}
+\begin{definition}
+    A finitely generated left $A_n$-module is \textbf{holonomic} if it is zero, or if it has dimension $n$.
+\end{definition}
+
+\begin{proposition}
+    Let $n$ be a positive integer.
+    \begin{enumerate}
+        \item
+              Submodules and quotients of holonomic $A_n$-modules are holonomic.
+        \item
+              Finite direct sums of holonomic $A_n$-modules are holonomic.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+
+
+
+
+
+\begin{corollary}
+    Finitely generated torsion $A_1$-modules are holonomic.
+\end{corollary}
+
+
+
+
+
+\begin{proposition}
+    Holonomic $A_n$-modules are torsion modules.
+\end{proposition}
+
+
+\section{Basic properties}
+
+
+\begin{theorem}
+    Holonomic modules are artinian.
+    \begin{proof}
+        Let $M$ be a holonomic left $A_n$-module. Suppose that $M$ has a descending chain of submodules
+
+        \begin{equation*}
+            M=N_0 \supseteq N_1 \supseteq N_2 \supseteq \cdots \supseteq N_r
+        \end{equation*}
+        it follows that $m\left(N_i\right)=m\left(N_{i+1}\right)+ m\left(N_i / N_{i+1}\right)$. Putting these together, we get that
+        \begin{equation*}
+            m(M)=\sum_0^{r-1} m\left(N_i / N_{i+1}\right)+m\left(N_r\right) \geq r
+        \end{equation*}
+        Hence $M$ cannot have a descending chain of more than $r$ submodules. In particular $M$ cannot have an infinite descending chain.
+    \end{proof}
+
+    \begin{remark}
+        Noted that the regular left module $A_n$ is not artinian (ring $A_n$ is not left Artinian).
+        It is easy to construct an infinite descending chain; take for instance
+        \begin{equation*}
+            A_n x_n \supseteq A_n x_n^2 \supseteq A_n x_n^3 \supseteq \ldots .
+        \end{equation*}
+    \end{remark}
+\end{theorem}
+
+\begin{corollary}
+    Every holonomic $A_n$-module has finite length that cannot exceed its multiplicity.
+\end{corollary}
+
+\begin{corollary}
+    Every irreducible holonomic $A_n$-module has multiplicity $1$.
+\end{corollary}
 
 
 
