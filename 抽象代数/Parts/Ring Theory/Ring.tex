@@ -3,29 +3,28 @@
 
 \section{Basic Definition} % Basic Definition
 \begin{definition}
-    A \textbf{ring} $R$ is a set together with two binary operations $+$ and $\times$ satisfying the following axioms:
+    A \textbf{ring} $A$ is a set together with two binary operations $+$ and $\times$ satisfying the following axioms:
     \begin{enumerate}[label=(\roman*)]
         \item
-              $(R,+)$ is an abelian group,
-
+              $(A,+)$ is an abelian group,
         \item
               $\times $ is associative
 
         \item
-              the distributive laws hold in $R$ : for all $a, b, c \in R$
+              the distributive laws hold in $A$ : for all $a, b, c \in A$
               \begin{equation*}
                   (a+b) \times c=(a \times c)+(b \times c) \quad \text { and } \quad a \times(b+c)=(a \times b)+(a \times c)
               \end{equation*}
     \end{enumerate}
-    The ring $R$ is \textbf{commutative} if
+    The ring $A$ is \textbf{commutative} if
     \begin{enumerate}[resume,label=(\roman*)]
         \item
               multiplication $\times$ is commutative.
     \end{enumerate}
-    The ring $R$ is called unital if it has an \textbf{identity} $1_R$  s.t.
+    The ring $A$ is called unital if it has an \textbf{identity} $1_A$  s.t.
     \begin{enumerate}[resume,label=(\roman*)]
         \item
-              $1_R \times a=a \times 1_R=a$ for all $a \in R$.
+              $1_A \times a=a \times 1_A=a$ for all $a \in A$.
     \end{enumerate}
     \begin{remark}
         In this book, we usually use the term "ring" to refer a unital ring.
@@ -33,13 +32,13 @@
 \end{definition}
 
 \begin{definition}
-    A \textbf{subring} of $R$ is a subgroup of $R$ that is closed under multiplication and contains the identity element $1_R$. .
+    A \textbf{subring} of $A$ is a subgroup of $A$ that is closed under multiplication and contains the identity element $1_A$.
 \end{definition}
 
 
 
 \begin{proposition}
-    Let $R$ be a ring. Then
+    Let $A$ be a ring. Then
     \begin{enumerate}
         \item
               $0 a=a 0=0$ for all $a \in R$.
@@ -53,13 +52,13 @@
 
 
 \begin{definition}
-    Let $R$ be a ring.
+    Let $A$ be a ring.
     \begin{enumerate}
         \item
-              A nonzero element $a$ of $R$ is called a \textbf{zero divisor} if there is a nonzero element $b$ in $R$ such that either $a b=0$ or $b a=0$.
+              A nonzero element $a$ of $A$ is called a \textbf{zero divisor} if there is a nonzero element $b$ in $A$ such that either $a b=0$ or $b a=0$.
 
         \item
-              An element $u$ of $R$ is called a \textbf{unit} in $R$ if there is some $v$ in $R$ such that $u v=v u=1$. The set of units in $R$ is denoted $R^{\times}$.
+              An element $u$ of $A$ is called a \textbf{unit} in $A$ if there is some $v$ in $A$ such that $u v=v u=1$. The set of units in $A$ is denoted $A^{\times}$.
     \end{enumerate}
 \end{definition}
 
@@ -80,15 +79,15 @@
     \end{enumerate}
 \end{proposition}
 
-
+\subsection{Characteristic} % Characteristic
 \begin{definition}
-    Let $R$ be a ring.
-    If there is a least positive integer $n$ such that $nr=0$ for all $r \in R$, then $R$ is said to have \textbf{characteristic} $n$ . If no such $n$ exists $R$ is said to have characteristic zero. (Notation: $\char{R}={n}$).
+    Let $A$ be a ring.
+    If there is a least positive integer $n$ such that $nr=0$ for all $r \in A$, then $A$ is said to have \textbf{characteristic} $n$ . If no such $n$ exists $A$ is said to have characteristic zero. (Notation: $\char{A}={n}$).
 \end{definition}
 
 
 \begin{theorem}
-    Let $R$ be a ring with identity $1_{R}$ and characteristic ${n}>0$.
+    Let $A$ be a ring with identity $1_{A}$ and characteristic ${n}>0$.
     \begin{enumerate}
         \item
               If $\varphi: \mathbb{Z} \rightarrow R$ is the map given by ${m} \mapsto m 1_{{R}}$, then $\varphi$ is a homomorphism of rings with kernel $\langle{n}\rangle=n\mathbb{Z}$.
@@ -237,26 +236,26 @@
 
 \subsection{Prime ideal} % Prime ideal
 \begin{definition}
-    Let $R$ be a ring.
-    An ideal $\mathfrak{p}$ in $R$ is said to be \textbf{prime} if
+    Let $A$ be a ring.
+    An ideal $\mathfrak{p}$ in $A$ is said to be \textbf{prime} if
     \begin{enumerate}[label=(\roman*)]
         \item
-              $\mathfrak{p} \neq {R}$
+              $\mathfrak{p} \neq {A}$
         \item
-              for any ideals $A, B$ in $R$,
+              for any ideals $A, B$ in $A$,
               $\mathfrak{a} \mathfrak{b} \subset \mathfrak{p}\Rightarrow \mathfrak{a} \subset\mathfrak{p} \text { or } \mathfrak{b} \subset \mathfrak{p}$
     \end{enumerate}
-    The set of all prime ideals in a ring $R$ is called the \textbf{spectrum} of $R$, denoted by $\operatorname{Spec}(R)$.
+    The set of all prime ideals in a ring $A$ is called the \textbf{spectrum} of $A$, denoted by $\operatorname{Spec}(A)$.
 \end{definition}
 
 \begin{theorem}
     \label{thm: Prime ideal}
-    Let $R$ be a ring and an ideal $\mathfrak{p} \neq R$.
+    Let $A$ be a ring and an ideal $\mathfrak{p} \neq A$.
     \begin{enumerate}
         \item
-              If $a b \in \mathfrak{p} \Rightarrow a \in \mathfrak{p}\text { or  } b \in \mathfrak{p}$ for all $a,b\in R$, then $\mathfrak{p}$ is prime.
+              If $a b \in \mathfrak{p} \Rightarrow a \in \mathfrak{p}\text { or  } b \in \mathfrak{p}$ for all $a,b\in A$, then $\mathfrak{p}$ is prime.
     \end{enumerate}
-    If $R$ is commutative,
+    If $A$ is commutative,
     \begin{enumerate}[resume]
         \item ideal $\mathfrak{p}$ is prime if and only if then $\mathfrak{p}$ satisfies the above condition.
     \end{enumerate}
@@ -276,7 +275,7 @@
 \end{corollary}
 
 
-\begin{theorem}
+\begin{proposition}
     \label{thm: lemma of primary decomposition}
     Let $K$ be a subring of a commutative ring $R$.
     If $\mathfrak{p}_1, \ldots, \mathfrak{p}_{\mathrm{n}}$ are prime ideals of R such that $K\subset \mathfrak{p}_1 \cup \mathfrak{p}_2 \cup \ldots \cup \mathfrak{p}_{\mathrm{n}}$, then $K \subset \mathfrak{p}_{i}$ for some $i$ .
@@ -285,7 +284,7 @@
         For each $i$ there exists $a_i \in K-\bigcup_{j \neq i} \mathfrak{p}_1$. Since $K \subset \bigcup_i \mathfrak{p}_i$, each $a_i \in \mathfrak{p}_i$. The element $a_1+a_2 a_3 \cdots a_n$ lies in $K$
         and hence in $\bigcup_i \mathfrak{p}_i$. Therefore $a_1+a_2 a_3 \cdots a_n=b_j$ with $b_j \in \mathfrak{p}_j$. If $j>1$, then $a_1 \in \mathfrak{p}_j$, which is a contradiction. If $j=1$, then $a_2 a_3 \cdots a_n \in \mathfrak{p}_1$, whence $a_i \in \mathfrak{p}_1$ for some $i>1$ by \ref{cor: Prime ideal}.
     \end{proof}
-\end{theorem}
+\end{proposition}
 
 
 
@@ -295,17 +294,19 @@
 \subsection{Maximal ideal} % Maximal ideal
 
 \begin{definition}
-    Let $R$ be a ring. An ideal $\mathfrak{m}$ is called a \textbf{maximal ideal} [resp. maximal left ideal]
+    Let $A$ be a ring. An ideal $\mathfrak{m}$ is called a \textbf{maximal ideal} [resp. maximal left ideal]
     if
     \begin{enumerate}[label=(\roman*)]
-        \item  $\mathfrak{m} \neq R$
-        \item the only ideals[resp. left ideal] containing $\mathfrak{m}$ are $R$ and $\mathfrak{m}$.
+        \item
+              $\mathfrak{m} \neq A$
+        \item
+              the only ideals[resp. left ideal] containing $\mathfrak{m}$ are $A$ and $\mathfrak{m}$.
     \end{enumerate}
 \end{definition}
 
 
 \begin{theorem}
-    In a ring $R$ with identity $1_R\neq 0$, every ideal [resp. left ideal] in $R$ (except $R$ itself) is contained in a [resp. left ideal] maximal ideal.
+    In a ring $A$ with identity $1_A\neq 0$, every ideal [resp. left ideal] in $A$ (except $A$ itself) is contained in a [resp. left ideal] maximal ideal.
     \label{thm: existence of maximal ideal}
     \begin{proof}
         It follows from Zorn's lemma and \cref{cor: ideal}
@@ -314,7 +315,7 @@
 
 \begin{theorem}
     \label{thm: maximal ideal is prime}
-    If $R$ is a commutative ring, then every maximal ideal $\mathfrak{m}$ is prime.
+    If $A$ is a commutative ring, then every maximal ideal $\mathfrak{m}$ is prime.
 \end{theorem}
 
 
@@ -356,18 +357,19 @@
 
 
 \subsection{Chinese Remainder Theorem}
+Assume that $A$ is a commutative ring with identity.
 \begin{definition}
-    The ideals $\mathfrak{a}$ and $\mathfrak{b}$ of the ring $R$ are said to be \textbf{comaximal} if $\mathfrak{a}+\mathfrak{b}=R$.
+    The ideals $\mathfrak{a}$ and $\mathfrak{b}$ of the ring $A$ are said to be \textbf{comaximal} if $\mathfrak{a}+\mathfrak{b}=A$.
 \end{definition}
 
 
 \begin{theorem}[Chinese Remainder Theorem]
-    Let $R$ be a commutative ring with $1_R\neq 0$ and $\mathfrak{a}_1, \mathfrak{a}_2, \ldots, \mathfrak{a}_k$ be ideals in $R$. Then
+    Let $A$ be a commutative ring with $1_A\neq 0$ and $\mathfrak{a}_1, \mathfrak{a}_2, \ldots, \mathfrak{a}_k$ be ideals in $A$. Then
     \begin{enumerate}
         \item
               The map
               \begin{equation*}
-                  R \rightarrow R / \mathfrak{a}_1 \times R / \mathfrak{a}_2 \times \cdots \times R / \mathfrak{a}_k
+                  A \rightarrow A / \mathfrak{a}_1 \times A / \mathfrak{a}_2 \times \cdots \times A / \mathfrak{a}_k
               \end{equation*}
               defined by
               \begin{equation*}

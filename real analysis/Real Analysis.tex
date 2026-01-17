@@ -740,21 +740,25 @@
 
 
 
-\section{Modes of Convergence}
-\subsection{Convergence in measure}
+\chapter{Modes of Convergence}
+
+
+
+\section{Convergence in measure}
 \begin{definition}
-    Let $\left(X,\mathcal{M},\mu\right)$ be a measure space.
-    We say that a sequence $\left\{f_n\right\}$ of measurable complex-valued functions on $\left(X, \mathcal{M}, \mu\right)$ is \textbf{Cauchy in measure} if for every $\varepsilon>0$,
-    \begin{equation*}
-        \mu\left(\left\{x:\left|f_n(x)-f_m(x)\right| \geq \varepsilon\right\}\right) \rightarrow 0 \text { as } m, n \rightarrow \infty,
-    \end{equation*}
-    and that $\left\{f_n\right\}$ converges in measure to $f$ if for every $\varepsilon>0$,
-    \begin{equation*}
-        \mu\left(\left\{x:\left|f_n(x)-f(x)\right| \geq \varepsilon\right\}\right) \rightarrow 0 \text { as } n \rightarrow \infty .
-    \end{equation*}
-    \begin{remark}
-        If we relax the condition so that the function $f_n$ and $f$ can take $\infty$, then this definition is not well-defined. Therefore, we only consider $\mathbb{R}$-valued functions here, and furthermore, $\mathbb{C}$-valued functions.
-    \end{remark}
+    Let $\left(X,\mathcal{M},\mu\right)$ be a measure space and $\left\{f_n\right\}$ be a sequence of measurable complex-valued functions on $\left(X, \mathcal{M}, \mu\right)$.
+    \begin{enumerate}
+        \item
+              We say that $\left\{f_n\right\}$ is \textbf{Cauchy in measure} if for every $\varepsilon>0$,
+              \begin{equation*}
+                  \mu\left(\left\{x:\left|f_n(x)-f_m(x)\right| \geq \varepsilon\right\}\right) \rightarrow 0 \text { as } m, n \rightarrow \infty,
+              \end{equation*}
+        \item
+              Say that $\left\{f_n\right\}$ \textbf{converges in measure} to $f$ if for every $\varepsilon>0$,
+              \begin{equation*}
+                  \mu\left(\left\{x:\left|f_n(x)-f(x)\right| \geq \varepsilon\right\}\right) \rightarrow 0 \text { as } n \rightarrow \infty .
+              \end{equation*}
+    \end{enumerate}
 \end{definition}
 
 \begin{theorem}
@@ -789,7 +793,7 @@
 
 
 
-\begin{proposition}
+\begin{proposition}[Riesz's]
     $f_n \rightarrow f$ in $L^1 \Rightarrow f_n \rightarrow f$ in measure $\Rightarrow f_{n_j}\rightarrow f$ a.e.
 \end{proposition}
 
@@ -844,7 +848,7 @@
 
 
 
-\subsection{Almost uniform convergence}
+\section{Almost uniform convergence}
 \begin{theorem}[Egoroff's Theorem]
     Let $\left(X,\mathcal{M},\mu\right)$ be a finite measure space, $f_1, f_2, \ldots$ and $f$ be measurable complex-valued functions on $X$ such that $f_n \rightarrow f$ a.e. Then for every $\varepsilon>0$ there exists $E \subset X$ such that $\mu(E)<\varepsilon$ and $f_n \rightarrow f$ uniformly on $E^c$.
     \begin{remark}
@@ -860,13 +864,13 @@
         Then, for fixed $k, E_n(k)$ decreases as $n$ increases, and $\bigcap_{n=1}^{\infty} E_n(k)=\varnothing$, so since $\mu(X)<\infty$ we conclude that $\mu\left(E_n(k)\right) \rightarrow 0$ as $n \rightarrow \infty$. Given $\varepsilon>0$ and $k \in \mathbb{N}$, choose $n_k$ so large that $\mu\left(E_{n_k}(k)\right)<\varepsilon 2^{-k}$ and let $E=\bigcup_{k=1}^{\infty} E_{n_k}(k)$. Then $\mu(E)<\varepsilon$, and we have $\left|f_n(x)-f(x)\right|<k^{-1}$ for $n>n_k$ and $x \notin E$. Thus $f_n \rightarrow f$ uniformly on $E^c$.
     \end{proof}
 
-
+ 
 \end{theorem}
 
 
 
-\subsection{Relation between different convergence modes}
-\subsubsection{}
+\section{Relation between different convergence modes}
+\subsection{$L^p$ and $\mu$}
 \begin{proposition}[The Vitali Convergence Theorem]
     Suppose $1 \leq p<\infty$ and $\left\{f_n\right\}_{1}^{\infty} \subset L^p$. Then $\left\{f_n\right\}$ is Cauchy in the $L^p$ iff
     \begin{enumerate}[label=(\roman*)]
@@ -877,22 +881,16 @@
         \item
               for every $\epsilon>0$ there exists $E \subset X$ such that $\mu(E)<\infty$ and $\int_{E^c}\left|f_n\right|^p<\epsilon$ for all $n$.
     \end{enumerate}
-    \begin{remark}
-        It follows that
-        \begin{equation*}
-            f_n \xrightarrow{L^p} f \Rightarrow f_n \xrightarrow{\mu} f
-        \end{equation*}
-        On the other hand,
-        \begin{equation*}
-            f_n\xrightarrow{\mu} f \text{ and } \left|f_n\right|\leq g \in L^p \Rightarrow f_n\xrightarrow{L^p}f
-        \end{equation*}
-    \end{remark}
 \end{proposition}
 
+\begin{corollary}[Dominated Convergence Theorem in \texorpdfstring{$L^p$}{}]
+    \begin{equation*}
+            f_n\xrightarrow{\mu} f \text{ and } \left|f_n\right|\leq g \in L^p \Rightarrow f_n\xrightarrow{L^p}f
+        \end{equation*}
+\end{corollary}
 
 
-
-
+\subsection{$L^p$ and a.e.}
 
 \begin{proposition}
     Suppose $1 \leq p<\infty$. If $f_n, f \in L^p$ and $f_n \rightarrow f$ a.e., then $\left\|f_n-f\right\|_p \rightarrow 0$ iff $\left\|f_n\right\|_p \rightarrow\|f\|_p$.

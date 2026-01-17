@@ -1,23 +1,12 @@
 \documentclass[12pt, oneside]{book}
-
 \usepackage{../mypackages}
-
-
-
-
-
 \begin{document}
 \frontmatter
 \title{{\Huge{\textbf{Representation of Groups}}}}
 \maketitle
-
-\dominitoc % 初始化minitoc
+\dominitoc
 \pagenumbering{Roman}
 \tableofcontents % 主目录
-
-
-
-
 \mainmatter
 \pagenumbering{arabic} % 正文编页码字体 
 
@@ -26,9 +15,8 @@
 
 
 
+\chapter{Representation of Groups and Group Algebras}
 
-
-\chapter{Introduction}
 \section{Basic Definitions}
 
 \begin{definition}
@@ -59,9 +47,13 @@
 
 \begin{definition}
     Let $\rho : G \rightarrow\GL(V)$ be a $k$-linear representation of a finite group $G$ in the vector space $V$.
-    A subspace $W$ of $V$ is called a \textbf{subrepresentation} if it is a $k[G]$-submodule of $V$.
+    \begin{enumerate}
+        \item
+              A subspace $W$ of $V$ is called a \textbf{subrepresentation} if it is a $k[G]$-submodule of $V$.
 
-    A representation is called \textbf{irreducible} if it has no proper non-zero subrepresentation.
+        \item
+              A representation is called \textbf{irreducible} if it has no proper non-zero subrepresentation.
+    \end{enumerate}
 \end{definition}
 
 
@@ -80,17 +72,9 @@
               \begin{equation*}
                   \left(\rho_1 \otimes \rho_2\right)(s)\left(v_1 \otimes v_2\right)=\left(\rho_1(s) v_1\right) \otimes\left(\rho_2(s) v_2\right)
               \end{equation*}
-              for all $s \in G, v_1 \in V_1, v_2 \in V_2$.
+              for all $s \in G, v_1 \in V_1, v_2 \in V_2$. (tensor product of $k[G]$ module $V_1\oplus V_2$)
     \end{enumerate}
 \end{definition}
-
-
-
-
-
-
-
-
 
 
 \section{Maschke's Theorem}
@@ -99,18 +83,13 @@ In this section, we always assume that $k$ be a field whose characteristic does 
     Let $V_i$ be $k[G]$-module for $i=1,2$ and $f:V_1\rightarrow V_2$ be a $k$-linear map, then
     \begin{equation*}
         F(x):=
-        \frac{1}{\left|G\right|} \sum_{g \in G} g \cdot f\left( g^{-1}x\right)
+        \frac{1}{\left|G\right|} \sum_{g \in G} \rho_g^2 f\left( \left(\rho_g^1\right)^{-1}x\right)
     \end{equation*}
-    is a $k[G]$-module homomorphism from $V_1$ to $V_2$.
-    \begin{remark}
-        Thus every $k$-linear map $h:V_1 \to V_2$ can be ``averaged'' to a transform.
-        \begin{equation*}
-            h^0=\frac{1}{\left|G\right|} \sum_{g \in G}\left(\rho_g^2\right)^{-1} h \rho_g^1 .
-        \end{equation*}
-    \end{remark}
+    is a $k[G]$-module homomorphism from $V_1$ to $V_2$, where $1/\left|G\right|$ is the inverse of the order of $G$ in the field $k$
 \end{lemma}
 
 \begin{theorem}[Maschke]
+    If the characteristic of the field $k$ does not divide the $\left|G\right|$, the order of the finite group $G$.
     Then $k[G]$ is semisimple.
     \begin{proof}
         Let $V$ be a $k[G]$-module, $W$ be a submodule of $V$. And let $W^{\prime}$ be a $k$-complement of $W$ in $V$, and let $p$ be the corresponding projection of $V$ onto $V$.
@@ -120,75 +99,13 @@ In this section, we always assume that $k$ be a field whose characteristic does 
             :=
             \frac{1}{\left|G\right|} \sum_{g \in G} g \cdot p\left( g^{-1}v\right)
         \end{equation*}
-        where $1/\left|G\right|$ is the inverse of the order of $G$ in the field $k$ (or say $\mathbb{F}_p$).
         Then $P$ is a $k[G]$-projection from $V$ to $W$ (i.e. $P$ is a $k[G]$-module homomorphism with $P^2 = P$ and $W=\operatorname{Im}(P)$), so $\ker(P)$ is a $k[G]$-complement of $W$ in $V$.
     \end{proof}
 \end{theorem}
 
 \begin{corollary}
     Every representation of $G$ over $k$ is a direct sum of irreducible representations and has finite number of irreducible components up to isomorphism.
-    \begin{remark}
-        Noted that every irreducible representation is finite degree. (Since it is a simple module over the finite dimensional algebra $k[G]$)
-    \end{remark}
 \end{corollary}
-
-\subsection{}
-
-\begin{corollary}
-    For a finite dimension $k[G]$, we have the following decomposition of the group algebra $k[G]$:
-    \begin{equation*}
-        k[G]\cong \bigoplus_{i=1}^r M_{n_i}(k)
-    \end{equation*}
-    and each $M_{n_i}(k)$ has only one simple module
-    $V_i=k^{n_i}$ up to isomorphism.
-\end{corollary}
-
-
-\begin{corollary}
-    Consider the regular representation of $G$ over $k$.
-    Then each irreducible representation $V_i$ appears in it with multiplicity equal to its degree $n_i=\dim V_i$.
-    \begin{equation*}
-        {}_{k[G]} k[G] \cong \bigoplus_{i=1}^h  V_i^{\oplus n_i} .
-    \end{equation*}
-\end{corollary}
-
-
-\section{}
-\begin{proposition}
-    Let $z=\sum a_g g \in k[G]$ with coefficients $a_g$ in $k$.
-    Then $z \in Z\left(k[G]\right)$ if and only if $a_{h g h^{-1}}=a_g$ for all $g, t \in G$.
-\end{proposition}
-
-
-
-\begin{corollary}
-    For each conjugacy class $C$ of $G$,
-    The elements
-    \begin{equation*}
-        z_C:=\sum_{g \in C} g
-    \end{equation*}
-    where $C$ runs through the conjugacy classes of $G$, form a $k$-basis of $Z\left(k[G]\right)$.
-    Thus $\dim_k Z\left(k[G]\right)$ is equal to the number of conjugacy classes of $G$.
-\end{corollary}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -196,7 +113,7 @@ In this section, we always assume that $k$ be a field whose characteristic does 
 
 
 \chapter{Character Theory}
-
+In this chapter, we will study the character theory of finite degree representations over a algebraically closed field.
 
 \section{Characters of Representations}
 \begin{definition}
@@ -210,7 +127,7 @@ In this section, we always assume that $k$ be a field whose characteristic does 
                   \operatorname{Tr}\left(\rho_s\right) .
               \end{equation*}
         \item
-              If $W$ be a submodule of $V$, the \textbf{subcharacter} $\chi_{W}$ of the is defined by
+              If $W$ be a submodule of $V$, the \textbf{subcharacter} $\chi_{W}$ of $W$ is defined by
               \begin{equation*}
                   \chi_{W}(s)
                   :=
@@ -245,37 +162,18 @@ In this section, we always assume that $k$ be a field whose characteristic does 
     \end{enumerate}
 \end{proposition}
 
-\section{Schur's lemma}% Schur's lemma
-We first give the general version of Schur's lemma in module theory.
-\begin{lemma}
-    Let $A$ be a ring and $M_1,M_2$ be simple left $A$-modules.
-    Then
-    \begin{equation*}
-        \Hom_{A}\left( M_1, M_2\right)
-        =
-        \begin{cases}
-            0                    & ,M_1 \not\cong M_2 \\
-            \text{division ring} & ,M_1 \cong M_2
-        \end{cases}
-    \end{equation*}
+\section{Schur's lemma and Orthogonality Relations}% Schur's lemma
 
-\end{lemma}
-\begin{lemma}
-    Let $k$ be an algebraically closed field and $A$ be $k$-algebra.
-    If $V_i$ are simple left $A$-module of finite dimension and $V_1$ is $A$-isomorphic to $V_2$
-    Then
+\begin{definition}
+    Let $f,g$ be $k$-valued functions on a finite group $G$.
+    The \textbf{inner product} of $f$ and $g$ is defined
+    by
     \begin{equation*}
-        \dim_k\Hom_{A}\left( V_1,V_2 \right)=1
+        \left\langle f ,g \right\rangle
+        :=
+        \frac{1}{\left|G\right|} \sum_{s \in G} f(s) g(s^{-1}).
     \end{equation*}
-    Indeed, $\Hom_{A}\left( V_1,V_2 \right)=k\cdot \phi$ where $\phi$ is the $A$-isomorphism of $V_1$ and $V_2$.
-    \begin{remark}
-        Especially, for a simple left $A$-module $V$ of finite dimension, we have
-        \begin{equation*}
-            \operatorname{End}_{ A}(V) = k\cdot \id
-        \end{equation*}
-    \end{remark}
-\end{lemma}
-
+\end{definition}
 
 \begin{proposition}[Schur's lemma]
     Let $k$ be a algebraically closed field and $G$ be a finite group.
@@ -299,50 +197,146 @@ We first give the general version of Schur's lemma in module theory.
     Then:
     \begin{enumerate}
         \item
-              If $\rho^1$ and $\rho^2$ are not isomorphic, we have $h^0=0$.
+              If $\rho^1$ and $\rho^2$ are not isomorphic, we have $h^0=0$. In this case,
+              \begin{equation*}
+                  \left\langle r_{i_2j_2},r_{i_2j_2}
+                  \right\rangle
+                  =
+                  \frac{1}{\left|G\right|}\sum_{g\in G} r_{i_2j_2}(g^{-1}) r_{i_1j_1}(g) =0
+              \end{equation*}
+              for arbitary $i_1,i_2,j_1,j_2$.
+
         \item
               If $V_1=V_2$ and $\rho^1=\rho^2, h^0$ is a homothety of ratio $(1 / n) \operatorname{Tr}(h)$, with $n=\operatorname{dim}\left(V_1\right)$.
+              In this case,
+              \begin{equation*}
+                  \left\langle r_{i_2j_2},r_{i_2j_2}
+                  \right\rangle
+                  =
+                  \frac{1}{\left|G\right|}\sum_{g\in G} r_{i_2j_2}(g^{-1}) r_{i_1j_1}(g)
+                  =
+                  \frac{1}{n} \delta_{i_1 i_2}\cdot \delta_{j_1 j_2}
+              \end{equation*}
     \end{enumerate}
 \end{corollary}
 
-\begin{corollary}
 
+
+
+\begin{theorem}
+    Let $k$ be a algebraically closed field and $G$ be a finite group.
+    \begin{enumerate}
+        \item
+              If $\chi$ is the character of an irreducible representation, we have $\left\langle \chi ,\chi \right\rangle=1$.
+        \item
+              If $\chi$ and $\chi^{\prime}$ are the characters of two nonisomorphic irreducible representations, we have $\left\langle \chi \mid \chi^{\prime} \right\rangle=0$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    Let $V$ be a linear representation of $G$ , with character $\chi$, and suppose $V$ decomposes into a direct sum of irreducible representations:
+    \begin{equation*}
+        V=W_1^{\oplus m_1} \oplus \cdots \oplus W_h^{\oplus m_h}
+    \end{equation*}
+    \begin{enumerate}
+        \item
+              $m_k=\langle\chi, \chi_{W_k}\rangle$.
+        \item
+              $\chi = \sum_{k=1}^h m_k \chi_{W_k}$
+        \item  $\left\langle \chi,\chi \right\rangle=\sum_{k=1}^h m_k^2$
+    \end{enumerate}
+\end{theorem}
+
+
+
+\section{Decomposition in regular representation}
+
+\subsection{$n_i$}
+\begin{proposition}
+    The character $r_G$ of the regular representation of $G$ is given by
+    \begin{equation*}
+        r_G(g)
+        =
+        \begin{cases}
+            \left|G\right| & ,g=e      \\
+            0              & ,g \neq e \\
+        \end{cases}
+    \end{equation*}
+\end{proposition}
+\begin{corollary}
+    Let the decomposition of the regular representation of $G$ into irreducible components be $V\cong \bigoplus_{i=1}^h W_i^{\oplus n_i}$, where $W_i$ are all irreducible representations non-isomorphic to each other.
+    Then:
+    \begin{enumerate}
+        \item
+              $\dim W_i=\left\langle r_G,\chi_i \right\rangle=n_i$
+        \item
+              $\sum n_i^2 = |G|$
+        \item
+              If $g\neq e$, then $\sum_{i=1}^{h}n_i\chi_i(g)=0$
+    \end{enumerate}
+\end{corollary}
+
+\subsection{$h$}
+
+\begin{lemma}
+    Let $f$ be a class function on $G$ with values in $k$ and $\rho$ be a representation. Then
+    \begin{equation*}
+        F(x)
+        :=
+        \sum_{g \in G} f(g) \rho_g \left(x\right)
+    \end{equation*}
+    is a transform of $\rho$.
+\end{lemma}
+\begin{corollary}
+    If $\rho:G \to \GL(V)$ is an irreducible representation with character $\chi$, then $F$ is a homothety of ratio
+    \begin{equation*}
+        \lambda=
+        \frac{1}{n}\sum_{g \in G} f(g) \chi(g)
+        =
+        \frac{\left|G\right|}{n} \left\langle f,\overline{\chi} \right\rangle
+    \end{equation*}
+    where $n=\dim V$.
 \end{corollary}
 
 
-\section{Main }
-In this section, we will derive the character theory of finite degree representations over a algebraically closed field.
+\begin{theorem}
+    The all characters $\chi_1,\chi_2,\cdots ,\chi_h$ form an orthonormal basis of the space $\mathcal{H}$ of class functions on $G$ with values in $k$.
 
-\begin{definition}
-    Let $G$ be a finite group and $\varphi,\phi$ be complex valued functions on $G$.
-    The \textbf{inner product} of $\varphi$ and $\phi$ is defined by
-    \begin{equation*}
-        \left(\varphi ,\phi\right)
-        :=
-        \frac{1}{\left|G\right|} \sum_{g \in G} \varphi(g) \overline{\phi(g)}.
-    \end{equation*}
-\end{definition}
-
-
-
-
-\begin{definition}
-    For any $z\in Z\left(k[G]\right)$ acting on an irreducible representation $V$, by Schur's lemma, we know that $z$ acts as a homothety on $V$.
-    Thus one can define the $k$-algebra homomorphism
-    \begin{equation*}
-        \omega_V : Z\left(k[G]\right) \to k
-    \end{equation*}
-    called \textbf{central character} of irreducible representation $V$ over $k$
-\end{definition}
+    The number of non-isomorphic irreducible representations of $G$ is equal to the number of conjugacy classes of $G$.
+\end{theorem}
 
 \begin{proposition}
-    Let $V$ be an irreducible representation of $G$ over $k$ and $C$ be a conjugacy class of $G$. And let $z_C:=\sum_{g \in C} g\in Z\left(k[G]\right)$
-    \begin{equation*}
-        \omega_V\left( z_C \right)
-        =
-        \frac{\# C}{\dim V} \chi_V\left( c \right)
-    \end{equation*}
+    Let $s \in G$, and let $c(s)$ be the number of elements in the conjugacy class of $s$. Then
+    \begin{enumerate}
+        \item
+              the class function equal to $1$ on the class of $s$ and equal to 0 elsewhere is given by
+              \begin{equation*}
+                  f_s(t)=\frac{c(s)}{|G| } \sum_{i=1}^{i=h} \chi_i(s^{-1}) \chi_i(t)
+              \end{equation*}
+        \item
+              We have $\sum_{i=1}^{i=h} \chi_i(s) \chi_i(s^{-1})=\left|G\right| / c(s)$.
+        \item
+              For $t \in G$ not conjugate to $s$, we have $\sum_{i=1}^{i=h} \chi_i(s) chi_i(t^{-1}) =0$.
+    \end{enumerate}
+    \begin{proof}
+        Since $f_s$ is a class function, it can be written
+        \begin{equation*}
+            f_s=\sum_{i=1}^{i=h} \lambda_i \chi_i, \quad \text { with } \lambda_i=\left\langle f_s ,\chi_i \right\rangle=\frac{c(s)}{|G|} \chi_i(s^{-1})
+        \end{equation*}
+        We have then, for each $t \in G$,
+        \begin{equation*}
+            f_s(t)=\frac{c(s)}{|G| } \sum_{i=1}^{i=h} \chi_i(s^{-1}) \chi_i(t)
+        \end{equation*}
+        This gives (a) if $t=s$, and (b) if $t$ is not conjugate to $s$.
+    \end{proof}
+\end{proposition}
 
+\subsection{Caonical projection formula }
+\begin{proposition}
+    The $k[G]$-projection $p_i$ of $V$ onto $V_i=W_i^{\oplus n_i}$ is given by the formula:
+    \begin{equation*}
+        p_i=\frac{n_i}{\left|G\right|} \sum_{g \in G} \chi_i(g^{-1}) \rho_g
+    \end{equation*}
 \end{proposition}
 
 
@@ -357,4 +351,285 @@ In this section, we will derive the character theory of finite degree representa
 
 
 
+\chapter{Induced representation}
+In this chapter, we always assume that $G$ is a finite group and $k$ is a field whose characteristic does not divide the order of $G$.
+And assume that all representations are of finite degree.
+
+\section{ }
+\begin{definition}
+    Let $H$ be a subgroup of a group $G$.
+    \begin{enumerate}
+        \item
+              If $\left(\rho,W\right)$ is a representation of $H$. Define the \textbf{induced representation} $\operatorname{Ind}_H^G W$ of $G$ by
+              \begin{equation*}
+                  \operatorname{Ind}_H^G W
+                  :=
+                  k[G] \otimes_{k[H]} W
+              \end{equation*}
+              as left $k[G]$-module.
+              \begin{remark}[Mackey's definition]
+                  Let $\left\{g_i \mid i \in I\right\}$ be a complete set of representatives of the left cosets of $H$ in $G$.
+                  Then as a $k$-vector space,
+                  \begin{equation*}
+                      \operatorname{Ind}_H^G W
+                      \cong
+                      \bigoplus_{i \in I} g_i \otimes W
+                  \end{equation*}
+                  and the action of $G$ is given by
+                  \begin{equation*}
+                      s \cdot\left(g_i \otimes w\right)
+                      =\left(s \cdot g_i\right) \otimes w
+                      =\left( g_j\cdot h\right) \otimes w
+                      =
+                      g_j \otimes \left(h \cdot w\right)
+                  \end{equation*}
+                  where $s g_i=g_j h$ with $h \in H$.
+              \end{remark}
+        \item
+              If $\left(\pi,V\right)$ is a representation of $G$. Define the \textbf{restricted representation} $\operatorname{Res}_H^G V$ of $H$ by
+              \begin{equation*}
+                  \operatorname{Res}_H^G V
+                  :=
+                  k[H] \otimes_{k[H]} V \quad
+                  \left(\cong {}_{k[H]} V\right)
+              \end{equation*}
+              as left $k[H]$-module.
+              \begin{remark}
+                  \begin{equation*}
+                      \pi|_H:H\rightarrow \GL(V)
+                  \end{equation*}
+              \end{remark}
+    \end{enumerate}
+    \begin{remark}
+        Two functors $\operatorname{Ind}_H^G$ and $\operatorname{Res}_H^G$ are defined between the category of $k[H]$-modules and the category of $k[G]$-modules.
+    \end{remark}
+\end{definition}
+
+\begin{proposition}
+
+\end{proposition}
+
+
+
+\begin{proposition}.
+    \begin{enumerate}
+        \item
+
+        \item \begin{equation*}
+                  \operatorname{Ind}_{G_2}^{G_1}\operatorname{Ind}_{G_3}^{G_2} W
+                  \cong
+                  \operatorname{Ind}_{G_3}^{G_1} W
+              \end{equation*}
+    \end{enumerate}
+\end{proposition}
+
+\section{Frobenius reciprocity}
+\begin{definition}
+    If $f$ is a class function on $H$ with values in $k$, consider the
+    \begin{equation*}
+        \operatorname{Ind}_H^G  f(s)
+        :=
+        \frac{1}{\left|H\right|}\sum_{\substack{g\in G\\g^{-1}sg \in H}} f\left(g^{-1}sg\right)
+    \end{equation*}
+    called the \textbf{induced class function} of $f$ from $H$ to $G$, denoted by $\operatorname{Ind}_H^G f$.
+    Then:
+    \begin{enumerate}
+        \item $\operatorname{Ind}_H^G f $ is a class function on $G$.
+        \item If $\chi$ is the character of a representation of $H$, then $\operatorname{Ind}_H^G \chi$ is the character of the induced representation $\operatorname{Ind}_H^G W$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    If $f$ is a class function on $G$ with values in $k$, consider the
+    \begin{equation*}
+        \operatorname{Res}_H^G  f(s)
+        :=
+        f(s)
+    \end{equation*}
+    called the \textbf{restricted class function} of $f$ from $G$ to $H$, denoted by $\operatorname{Res}_H^G f$.
+    Then:
+    \begin{enumerate}
+        \item $\operatorname{Res}_H^G f $ is a class function on $H$.
+        \item If $\chi$ is the character of a representation of $G$, then $\operatorname{Res}_H^G \chi$ is the character of the restricted representation $\operatorname{Res}_H^G V$.
+    \end{enumerate}
+\end{definition}
+
+
+
+\begin{lemma}
+    Let $G$ be a group and $\chi_i$ be the character of $V_i$,
+    \begin{equation*}
+        \left\langle \chi_2 , \chi_2 \right\rangle
+        =
+        \left\langle V_1,V_2 \right\rangle
+        :=
+        \dim_k \Hom_{k[G]}\left( V_1 ,V_2 \right)
+    \end{equation*}
+\end{lemma}
+
+
+\begin{theorem}[Frobenius reciprocity]
+    Given a $k[G]$-module $E$,
+    \begin{equation*}
+        \Hom_{k[H]}\left(W  ,E \right)
+        \cong \Hom_{k[G]}\left( \operatorname{Ind}_H^G W , E \right)
+    \end{equation*}
+    as $k$-vector spaces.
+\end{theorem}
+
+\begin{theorem}[Frobenius reciprocity]
+    Let $H$ be a subgroup of a finite group $G$.
+    If $\chi$ is the character of a representation of $H$ and $\psi$ is the character of a representation of $G$, then
+    \begin{equation*}
+        \left\langle \operatorname{Ind}_H^G \chi ,\psi \right\rangle_G
+        =
+        \left\langle \chi ,\operatorname{Res}_H^G \psi \right\rangle_H
+    \end{equation*}
+    Thus it is true for class functions.
+    \begin{proof}
+        Let $W$ be the representation space of $\chi$ and $V$ be the representation space of $\psi$.
+        By the definition of inner product and the previous lemma, we have
+        \begin{equation*}
+            \left\langle \operatorname{Ind}_H^G \chi ,\psi \right\rangle_G
+            =
+            \dim_k \Hom_{k[G]}\left( \operatorname{Ind}_H^G W ,V \right)
+            =
+            \dim_k \Hom_{k[H]}\left( W ,\operatorname{Res}_H^G V \right)
+            =
+            \left\langle \chi ,\operatorname{Res}_H^G \psi \right\rangle_H
+        \end{equation*}
+    \end{proof}
+\end{theorem}
+
+\section{Mackey's Decomposition and irreducibility criterion}
+
+Let $G=\bigsqcup_{g\in K\backslash G/H} KgH$ be a double coset decomposition of $G$.
+
+\begin{proposition}
+    \begin{equation*}
+        k[G]
+        \cong
+        \bigoplus_{g\in K\backslash G/H} k[KgH]
+    \end{equation*}
+    as $k[K]$-$k[H]$-bimodules.
+\end{proposition}
+
+\begin{proposition}
+    For a fixed $g \in G$, we have
+    \begin{equation*}
+        k[KgH]
+        \cong
+        k[K] \otimes_{k[K\cap gHg^{-1}]} k[gH]
+    \end{equation*}
+    as $k[K]$-$k[H]$-bimodules.
+\end{proposition}
+
+
+\begin{theorem}[Mackey's Decomposition Theorem]
+    Then
+    \begin{equation*}
+        \operatorname{Res}_K^G \circ \operatorname{Ind}_H^G
+        \cong
+        \bigoplus_{g\in K\backslash G/H} \operatorname{Ind}_{K\cap gHg^{-1}}^K \circ {}^g \operatorname{Res}^{H}_{H\cap gKg^{-1}}
+    \end{equation*}
+    where ${}^g W$ is the conjugate module $$
+    \begin{proof}
+        Given representation $W$ of $H$, we have
+        \begin{equation*}
+            \begin{aligned}
+                \operatorname{Res}_K^G \circ \operatorname{Ind}_H^G \left(W\right) &
+                = k[K]\otimes_{k[K]} k[G] \otimes_{k[H]} W                                                                                                                                             \\
+                                                                                   & \cong \bigoplus_{g\in K\backslash G/H} k[K]\otimes_{k[K]} k[K] \otimes_{k[K\cap gHg^{-1}]} k[gH] \otimes_{k[H]} W \\
+                                                                                      & \cong \bigoplus_{g\in K\backslash G/H} k[K] \otimes_{k[K\cap gHg^{-1}]} k[gH] \otimes_{k[H]} W                           \\
+            \end{aligned}
+        \end{equation*}
+        Noted that $k[gH]\otimes_{k[H]} W $ is $k[K\cap gHg^{-1}]$-module which is isomorphic to ${}^g \operatorname{Res}^{H}_{H\cap gKg^{-1}} W$ as $k[K\cap gHg^{-1}]$-module.
+    \end{proof}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+

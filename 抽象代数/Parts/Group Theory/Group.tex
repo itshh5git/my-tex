@@ -120,21 +120,24 @@
 \end{definition}
 
 
-\begin{theorem}[The subgroup criterion]
+\begin{proposition}[The subgroup criterion]
     Let $G$ be a group, then
-
-    (1) A subset $H$ of a group $G$ is a subgroup if and only if
-    \begin{enumerate}[label=(\roman*)]
-        \item $H \neq \varnothing $, and
-
-        \item for all $x, y \in H, x y^{-1} \in H$.
-              Furthermore, if $H$ is finite, then it suffices to check that $H$ is nonempty and closed under multiplication.
+    \begin{enumerate}
+        \item 
+         A subset $H$ of a group $G$ is a subgroup if and only if
+        \begin{enumerate}[label=(\roman*)]
+            \item $H \neq \varnothing $, and
+    
+            \item for all $x, y \in H, x y^{-1} \in H$.
+                  Furthermore, if $H$ is finite, then it suffices to check that $H$ is nonempty and closed under multiplication.
+        \end{enumerate}
+    
+        \item 
+         If $\mathcal{A}$ is any nonempty collection of subgroups of $G$, then the intersection of all members of $\mathcal{A}$ is also a subgroup of $G$.
+    \item 
+     If $\mathcal{B}$ is a chain (with respect to set inclusion) in the family of all subgroups of $G$, then the union of all members in $\mathcal{B}$ is also a subgroup of $G$
     \end{enumerate}
-
-    (2) If $\mathcal{A}$ is any nonempty collection of subgroups of $G$, then the intersection of all members of $\mathcal{A}$ is also a subgroup of $G$.
-
-    (3) If $\mathcal{B}$ is a chain (with respect to set inclusion) in the family of all subgroups of $G$, then the union of all members in $\mathcal{B}$ is also a subgroup of $G$
-\end{theorem}
+\end{proposition}
 \begin{proposition}
     Let $H$ and $K$ be subgroups of $G$. THen $H \cup K$ is a subgroup if and only if either $H \subseteq K$ or $K \subseteq H$.
 \end{proposition}

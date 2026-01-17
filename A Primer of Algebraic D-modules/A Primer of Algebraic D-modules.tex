@@ -916,6 +916,52 @@ Let $D(\epsilon)$ be the open disk of $\mathbb{C}$ of centre 0 and radius $\epsi
     The filtration of $M$ is called a \textbf{good filtration} if $\operatorname{gr}(M)$ is finitely generated over $\operatorname{gr}(A)$.
 \end{definition}
 
+\section{Induced filtrations}
+\begin{definition}
+    Let $A$ be a filtered ring with filtration $\mathcal{F}=\left\{F_iA\right\}$ and $M$ be a left filtered $A$-module with filtration $\Gamma=\left\{\Gamma_i\right\}$.
+    \begin{enumerate}
+        \item
+              If $N$ is a submodule of $M$, then the \textbf{induced filtration} on $N$ is a filtration $\Gamma^\prime=\left\{\Gamma_iN\right\}$ defined by
+              \begin{equation*}
+                  \Gamma_i^\prime
+                  :=
+                  N \cap \Gamma_i .
+              \end{equation*}
+              \begin{remark}
+                  associated graded module $\operatorname{gr}_{\Gamma^\prime}N$ of $N$ and graded module homomorphism $i_k:N \cap \Gamma_{k}/N \cap \Gamma_{k-1}\rightarrow \Gamma_k/\Gamma_{k-1}$
+              \end{remark}
+        \item
+              the \textbf{quotient filtration} $\Gamma^{\prime\prime}=\left\{\Gamma_i^{\prime\prime}\right\}$ on $M / N$ is defined by
+              \begin{equation*}
+                  \Gamma_i^{\prime\prime}
+                  :=
+                  \Gamma_i /(N \cap \Gamma_i) .
+              \end{equation*}
+              \begin{remark}
+                  associated graded module $\operatorname{gr}_{\Gamma^{\prime\prime}}(M / N)$ of $M / N$ and graded module homomorphism $\pi_k:\Gamma_kM/\Gamma_{k-1}M \rightarrow \left(\Gamma_kM /(N \cap \Gamma_kM)\right) /\left(\Gamma_{k-1}M /(N \cap \Gamma_{k-1}M)\right) $ (note that the right hand side is isomorphic to $\Gamma_kM /\left(\Gamma_{k-1}M+\Gamma_kM\cap N\right)$, $\left(A_1/B_1\right)/\left(A_2/B_2\right)\cong A_1/\left(B_1+A_2\right)$)
+              \end{remark}
+    \end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+    Then there exists a short exact sequence of graded $\operatorname{gr}_{\mathcal{F}}R$-modules
+    \begin{equation*}
+        0 \longrightarrow \operatorname{gr}_{\Gamma^\prime}N \xrightarrow{i} \operatorname{gr}_{\Gamma}M \xrightarrow{\pi} \operatorname{gr}_{\Gamma^{\prime\prime}}(M / N) \longrightarrow 0 .
+    \end{equation*}
+    is exact.
+    \begin{proof}
+        It is clear that the each
+        \begin{equation*}
+            \begin{tikzcd}
+                0 \arrow[r]&  \Gamma_k^\prime  \cap \Gamma_{k-1}^\prime \arrow[r,"i_k"] & \Gamma_k / \Gamma_{k-1} \arrow[r,"\pi_k"] & \Gamma_k^{\prime\prime} /\Gamma_{k-1}^{\prime\prime} \arrow[r]& 0
+            \end{tikzcd}
+        \end{equation*}
+        is exact in $\Ab$. Thus the proposition follows.
+    \end{proof}
+\end{proposition}
+
+
 
 
 
@@ -1116,6 +1162,333 @@ Let $D(\epsilon)$ be the open disk of $\mathbb{C}$ of centre 0 and radius $\epsi
 \begin{corollary}
     Every irreducible holonomic $A_n$-module has multiplicity $1$.
 \end{corollary}
+
+
+
+
+\chapter{}
+
+
+
+
+\begin{lemma}
+    Let $\Omega$ and $\Gamma$ be both good filtration of finitely generated left $A_n$-module $M$.
+    Then
+    \begin{equation*}
+        \Rad\left( \Ann\left( \operatorname{gr}_\Gamma M \right) \right)
+        =
+        \Rad\left( \Ann\left( \operatorname{gr}_\Omega M \right) \right)
+    \end{equation*}
+    in $S_n$.
+\end{lemma}
+
+\begin{definition}
+    The ideal
+    \begin{equation*}
+        \mathcal{I}(M)=\operatorname{rad}(\operatorname{ann}(M, F))
+    \end{equation*}
+    is called the \textbf{characteristic ideal} of $M$.
+    Thus the affine variety
+    \begin{equation*}
+        \operatorname{Ch}(M)=\mathcal{Z}(\mathcal{I}(M)) \subseteq \mathbb{C}^{2 n}
+    \end{equation*}
+    is called the \textbf{characteristic variety} of $M$.
+    \begin{remark}
+        Since $\mathcal{I}(M)$ is a homogeneous ideal, the variety $\operatorname{Ch}(M)$ is homogeneous. This means that if $p \in \operatorname{Ch}(M)$ and $\lambda \in \mathbb{C}$, then $\lambda p \in \operatorname{Ch}(M)$. Note that $\operatorname{Ch}(M)$ is a subvariety of $\mathbb{C}^{2 n}$, since $S_n$ is a polynomial ring in $2 n$ variables!
+    \end{remark}
+\end{definition}
+
+
+\begin{proposition}
+    Let $M$ be a finitely generated left $A_n$-module and $N$ a submodule of $M$. Then
+    \begin{equation*}
+        \operatorname{Ch}(M)=\operatorname{Ch}(N) \cup \operatorname{Ch}(M / N) .
+    \end{equation*}
+\end{proposition}
+
+
+\begin{definition}
+    Let $J$ be an ideal of $S_n=\mathbb{C}\left[y_1, \ldots, y_{2 n}\right]$ and put algebric set $V=\mathcal{Z}(J)$.
+    \begin{enumerate}
+        \item
+              If $p$ is a point of $V$ then the \textbf{Zariski tangent space} of $V$ at $p$ is the linear subspace of $\mathbb{C}^{2 n}$ defined by the equations
+
+              \begin{equation*}
+                  \sum_1^{2 n} \frac{\partial F}{\partial y_i}(p) y_i=0
+              \end{equation*}
+
+              for all $F \in J$. This space is denoted by $T_p(V)$; it is a complex vector subspace of $\mathbb{C}^{2 n}$.
+
+        \item
+              The \textbf{dimension} of $V$ equals $\inf \left\{\operatorname{dim}_{\mathbb{C}} T_p(V): p \in V\right\}$.
+              \begin{remark}
+                  Actually one need not look at every point of $V$. If $p$ is a non-singular point of $V$, then $\operatorname{dim}(V)=\operatorname{dim}_{\mathbb{C}} T_p(V)$. This is equivalent to the definition in terms of heights of prime ideals, see [Hartshorne 77, Ch. 1, Exercise 5.10].
+              \end{remark}
+    \end{enumerate}
+\end{definition}
+
+
+
+
+\begin{theorem}
+    Let $M$ be a finitely generated left module over $A_n$. Then $\operatorname{dim} \operatorname{Ch}(M)=d(M)$.
+\end{theorem}
+
+\chapter{}
+
+Recall that we have the notations $X=k^n,Y=k^m, k[X]=k[x_1, \ldots, x_n],Y=k[y_1, \ldots, y_m]$.
+Let $F: X \rightarrow Y$ be a polynomial map,
+its comorphism $F^{\sharp}: k[Y] \rightarrow k[X]$ is an algebra homomorphism defined by
+\begin{equation*}
+    F^{\sharp}(\varphi)
+    :=
+    \varphi \circ F
+    =
+    \varphi\left(F_1, \ldots, F_m\right)
+\end{equation*}
+
+
+\section{Tensor Product}
+\begin{proposition}
+    Let $A$ be a $k$-algebra and let $A_1$ and $A_2$ be subalgebras of $A$. Suppose that
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $A=A_1 A_2$,
+        \item     $[A_1, A_2]=0$,
+        \item
+              there exist $k$-bases $\left\{a_i\right\}$ and $\left\{b_j\right\}$ of $A_1$ and $A_2$, respectively, such that $\left\{a_i b_j\right\}$ is a $k$-basis of $A$.
+    \end{enumerate}
+    Then $A \cong A_1\otimes_k A_2:= A_1 \widehat{\otimes} A_2$ as $k$-algebras.
+\end{proposition}
+\begin{corollary}
+    The following isomorphisms are induced by the multiplication map:
+    \begin{enumerate}
+        \item
+              $k[X] \otimes_k k[Y] \cong k[X, Y]$.
+        \item
+              $A_m \otimes_k A_n \cong A_{m+n}$.
+    \end{enumerate}
+\end{corollary}
+
+\begin{definition}
+    Let $A, B$ be $k$-algebras. Suppose that $M$ is a left $A$-module and that $N$ is a left $B$-module.
+    Then $M\otimes_k N$ is a left $A \otimes_k B$-module with action defined by
+    \begin{equation*}
+        (a \otimes b)(u \otimes v)=a u \otimes b v .
+    \end{equation*}
+\end{definition}
+
+We use the notation $A\widehat{\otimes}B$ and $M \widehat{\otimes} N$ to denote the tensor products over $k$ when we want to stress the fact that we are considering the module structure defined above.
+
+\begin{proposition}
+    If $M$ and $N$ are finitely generated modules, then so is $M \widehat{\otimes} N$.
+\end{proposition}
+
+
+\begin{theorem}
+    Let $M$ be a finitely generated left $A_m$-module and $N$ a finitely generated left $A_n$-module. Then
+    \begin{enumerate}
+        \item
+              $d(M \widehat{\otimes} N)=d(M)+d(N)$,
+        \item
+              $m(M \widehat{\otimes} N) \leq m(M) m(N)$.
+    \end{enumerate}
+\end{theorem}
+
+
+
+
+
+\section{Inverse Image}
+\begin{definition}
+    Let polynomial map
+    \begin{equation*}
+        F:X\rightarrow Y
+    \end{equation*}
+    be given. Its comorphism is the algebra homomorphism
+    \begin{equation*}
+        F^{\sharp}: k[Y] \rightarrow k[X]
+    \end{equation*}
+    defined by $\varphi \mapsto \varphi \circ F$.
+    It may be used to make $k[Y]$-modules $M$ into $k[X]$-modules:
+    \begin{equation*}
+        F^\star : {}_{k[Y]}\Mod \rightarrow {}_{k[X]}\Mod
+    \end{equation*}
+    defined by $F^{\star}(M):=k[X] \otimes_{k[Y]} M$   called the \textbf{inverse image} of $M$ by the polynomial map $F$.
+
+
+\end{definition}
+
+\begin{definition}
+    If $M$ is a left $A_m$-module, it follows that $M$ is also a left $k[Y]$-module.
+    We now turn $k[X]$-module $F^{\star}(M)$ into a $A_n$-module
+    \begin{equation*}
+        F^{\star}={}_{A_m}\Mod \rightarrow {}_{A_n}\Mod
+    \end{equation*}
+    by giving the recipe for the action
+    \begin{equation*}
+        x_i\left(q\times u \right)   =  (x_iq)\otimes u
+    \end{equation*}
+    \begin{equation*}
+        \partial_{x_i}(q \otimes u)  =  \partial_{x_i}(q) \otimes u+\sum_{k=1}^m q \partial_{x_i}\left(F_k\right) \otimes \partial_{y_k} u
+    \end{equation*}
+    for $i=1, \ldots, n$.
+    \begin{remark}
+        It is well defined and satisfies the relations
+        \begin{equation*}
+            [\partial_{x_i}, x_j]w=\delta_{i j}w, \quad[\partial_{x_i}, \partial_{x_j}]w=0, \quad[x_i, x_j]w=0
+        \end{equation*}
+        for all $w \in F^{\star}(M)$.
+    \end{remark}
+\end{definition}
+
+
+\begin{theorem}
+    Let $F: X \rightarrow Y$ and $G: Y \rightarrow Z$ be polynomial maps and $M$ be an $A_r$-module. Then
+    \begin{equation*}
+        F^{\star} G^{\star} M \cong(G F)^{\star} M
+    \end{equation*}
+\end{theorem}
+
+\begin{corollary}
+    Let $F: X \rightarrow X$ be a polynomial isomorphism and $G$ its inverse. If $M$ is a left $A_n$-module, then $F^{\star} G^{\star} M \cong M$.
+\end{corollary}
+
+
+\begin{theorem}
+    Let $F: X \rightarrow Y$ be a polynomial map. If $M$ is a holonomic $A_m$-module, then $F^{\star} M$ is a holonomic $A_n$-module.
+\end{theorem}
+
+
+
+
+
+
+\subsection{Projections}
+
+
+
+
+
+
+
+\begin{example}
+    The second example is the projection $\pi: X \times Y \rightarrow Y$ onto the second coordinate.
+    The comorphism $\pi^{\sharp}$ maps a polynomial $p \in k[Y]$ to itself, but considered as an element of $k[X, Y]$.
+
+    Let $M$ be a module over $k[Y]$, then
+    \begin{equation*}
+        \pi^{\star} \left(M\right)=k[X, Y] \otimes_{k[Y]} M \cong k[X] \widehat{\otimes}  M
+    \end{equation*}
+    as $k[X, Y]$-modules by
+    \begin{equation*}
+        q_\alpha x^\alpha \otimes u \longmapsto q_\alpha \otimes q_\alpha u
+    \end{equation*}
+\end{example}
+
+
+
+
+\begin{theorem}
+    Let $M$ be a finitely generated left $A_m$-module and $\pi$ the projection defined above. Then:
+    \begin{enumerate}
+        \item  $\pi^{\star} M$ is a finitely generated $A_{m+n}$-module.
+        \item  $d\left(\pi^{\star} M\right)=n+d(M)$.
+        \item  $m\left(\pi^{\star} M\right) \leq m(M)$.
+    \end{enumerate}
+\end{theorem}
+
+
+
+\subsection{Embeddings}
+
+
+
+\begin{definition}
+    We begin by considering the standard embedding \begin{equation*}
+        \iota: X \rightarrow X \times Y
+    \end{equation*}
+    defined by $\iota(X)=(X, 0)$, where $0$ denotes the origin of $Y$.
+    The comorphism
+    \begin{equation*}
+        \iota^{\sharp}: K[X, Y] \rightarrow K[X]
+    \end{equation*}
+    is defined by $\iota^{\sharp}(g(X, Y))=g(X, 0)$ (gives a isomorpjism $k[X,Y]/(Y) \cong k[X]$ ).
+    It may be used to make $k[X, Y]$-modules $M$ into a $k[X]$-module:
+    \begin{equation*}
+        \iota^\star
+        :{}_{k[X,Y]}\Mod \rightarrow {}_{k[X]}\Mod
+    \end{equation*}
+    defined by $\iota^\star \left(M\right):= k[X] \otimes_{k[X,Y]} M$.
+
+    Now consider left $A_{n+m}$-module $M$, the $A_n$-modules $\iota^\star \left(M\right)$ is defined by the action
+    \begin{equation*}
+        \partial_{x_i}(q \otimes u)
+        =
+        \frac{\partial q}{\partial x_i} \otimes u+q \otimes \partial_{x_i} u
+    \end{equation*}
+\end{definition}
+
+\begin{proposition}
+    Let $M$ be a left $A_{n+m}$-module. Then
+    \begin{equation*}
+        k[X] \otimes_{k[X,Y]} M
+        \cong
+        {}_{A_n} M / \left(Y\right) {}_{A_n}M
+    \end{equation*}
+    as $A_n$-modules.
+    \begin{proof}
+        If $u \in M$, let $\bar{u}$ denote its image in $M /(Y) M$. Define the map
+        \begin{equation*}
+            \phi: \iota^{\star} M \rightarrow M /(Y) M
+        \end{equation*}
+        by $\phi(q \otimes u)=q \bar{u}$. It is a homomorphism of $K[X]$-modules.
+        It suffices to show that the action of the derivations $\partial_{x_1}, \ldots, \partial_{x_n}$ is compatible with $\phi$ and $\phi$ is injective.
+    \end{proof}
+\end{proposition}
+
+
+
+
+
+
+
+\section{Direct Image}
+
+\begin{definition}
+    Let $F: X \rightarrow Y$ be a polynomial map. Let $M$ be a left $A_m$-module.
+    \begin{enumerate}
+        \item The $A_n$-$A_m$ bimodule
+              \begin{equation*}
+                  D_{X\rightarrow Y}:=k[X] \otimes_{k[Y]} A_m
+              \end{equation*}
+              Noted that $F^\star M\cong D_{X\rightarrow Y}\otimes_{A_m} M$
+        \item
+              Let $N$ be a right $A_n$-module. The \textbf{direct image} of $N$ by $F$ is the right $A_m$-module defined by
+              \begin{equation*}
+                  N\otimes_{A_n} D_{X\rightarrow Y}
+              \end{equation*}
+    \end{enumerate}
+\end{definition}
+
+
+
+\begin{theorem}
+    Let $\iota: X \rightarrow X \times Y$ be the standard embedding. If $M$ is a finitely generated left $A_n$-module, then:
+    \begin{enumerate}
+        \item
+              $\iota_{\star} M$ is a finitely generated left $A_{m+n}$-module.
+
+        \item  $d\left(\iota_{\star} M\right)=m+d(M)$.
+
+        \item
+              $m\left(\iota_{\star} M\right) \leq m(M)$.
+    \end{enumerate}
+\end{theorem}
+
+
+2.3 Theorem. Let $F: X \rightarrow Y$ be a polynomial map. If $M$ is a holonomic $A_n$-module, then $F_{\star} M$ is a holonomic $A_m$-module.
+
 
 
 
