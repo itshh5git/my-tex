@@ -23,13 +23,16 @@
         \quad\left(x \in \mathbb{R}^n, t>0\right)
     \end{equation*}
     Then
+    \begin{enumerate}
+        \item
+              $u \in C^{\infty}\left(\mathbb{R}^n \times(0, \infty)\right)$,
 
-    (1) $u \in C^{\infty}\left(\mathbb{R}^n \times(0, \infty)\right)$,
+        \item
+              $u_t(x, t)-\Delta u(x, t)=0 \quad\left(x \in \mathbb{R}^n, t>0\right)$
 
-    (2) $u_t(x, t)-\Delta u(x, t)=0 \quad\left(x \in \mathbb{R}^n, t>0\right)$
-
-    (3) $\lim\limits_{\substack{(x, t) \rightarrow(x^0, 0) \\ x \in \mathbb{R}^n, t>0}} u(x, t)=g\left(x^0\right)$ for each point $x^0 \in \mathbb{R}^n$.
-
+        \item
+              $\lim\limits_{\substack{(x, t) \rightarrow(x^0, 0) \\ x \in \mathbb{R}^n, t>0}} u(x, t)=g\left(x^0\right)$ for each point $x^0 \in \mathbb{R}^n$.
+    \end{enumerate}
     \textbf{Remark} We sometimes write
     \begin{equation*}
         \left\{\begin{aligned}
@@ -39,6 +42,7 @@
     \end{equation*}
     $\delta_0$ denoting the Dirac measure on $\mathbb{R}^n$ giving unit mass to the point $0$.
 \end{theorem}
+
 \begin{theorem}[Solution of nonhomogeneous problem]
     Now let us turn our attention to the nonhomogeneous initial-value problem
     \begin{equation*}
@@ -57,62 +61,64 @@
         \end{aligned}
     \end{equation*}
     for $x \in \mathbb{R}^n, t>0$. Then
+    \begin{enumerate}
+        \item
+              $u \in C_1^2\left(\mathbb{R}^n \times(0, \infty)\right)$,
 
-    (1) $u \in C_1^2\left(\mathbb{R}^n \times(0, \infty)\right)$,
+        \item  $u_t(x, t)-\Delta u(x, t)=f(x, t) \quad\left(x \in \mathbb{R}^n, t>0\right)$,
 
-    (2) $u_t(x, t)-\Delta u(x, t)=f(x, t) \quad\left(x \in \mathbb{R}^n, t>0\right)$,
+        \item  $\lim\limits_{\substack{(x, t) \rightarrow\left(x^0, 0\right) \\ x \in \mathbb{R}^n, t>0}} u(x, t)=0 \quad$ for each point $x^0 \in \mathbb{R}^n$.
+    \end{enumerate}
+    \begin{proof}
+        1. First we change variables, to write
+        \begin{equation*}
+            u(x, t)=\int_0^t \int_{\mathbb{R}^n} \Phi(y, s) f(x-y, t-s) \d y \d s
+        \end{equation*}
+        As $f \in C_1^2\left(\mathbb{R}^n \times[0, \infty)\right)$ has compact support and $\Phi=\Phi(y, s)$ is smooth near $s=t>0$, we compute
+        \begin{equation*}
+            u_t(x, t)=  \int_0^t \int_{\mathbb{R}^n} \Phi(y, s) f_t(x-y, t-s)\d yds
+            +\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y
+        \end{equation*}
+        and
+        \begin{equation*}
+            u_{x_i x_j}(x, t)=\int_0^t \int_{\mathbb{R}^n} \Phi(y, s) f_{x_i x_j}(x-y, t-s) \d y \d s \quad(i, j=1, \ldots, n)
+        \end{equation*}
+        Thus $u_t, D_x^2 u$, and likewise $u, D_x u$, belong to $C\left(\mathbb{R}^n \times(0, \infty)\right)$.
 
-    (3) $\lim\limits_{\substack{(x, t) \rightarrow\left(x^0, 0\right) \\ x \in \mathbb{R}^n, t>0}} u(x, t)=0 \quad$ for each point $x^0 \in \mathbb{R}^n$.
-
-    Proof:
-    1. First we change variables, to write
-    \begin{equation*}
-        u(x, t)=\int_0^t \int_{\mathbb{R}^n} \Phi(y, s) f(x-y, t-s) \d y \d s
-    \end{equation*}
-    As $f \in C_1^2\left(\mathbb{R}^n \times[0, \infty)\right)$ has compact support and $\Phi=\Phi(y, s)$ is smooth near $s=t>0$, we compute
-    \begin{equation*}
-        u_t(x, t)=  \int_0^t \int_{\mathbb{R}^n} \Phi(y, s) f_t(x-y, t-s)\d yds
-        +\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y
-    \end{equation*}
-    and
-    \begin{equation*}
-        u_{x_i x_j}(x, t)=\int_0^t \int_{\mathbb{R}^n} \Phi(y, s) f_{x_i x_j}(x-y, t-s) \d y \d s \quad(i, j=1, \ldots, n)
-    \end{equation*}
-    Thus $u_t, D_x^2 u$, and likewise $u, D_x u$, belong to $C\left(\mathbb{R}^n \times(0, \infty)\right)$.
-
-    2. We then calculate
-    \begin{equation*}
-        \begin{aligned}
-            u_t(x, t)-\Delta u(x, t)= & \int_0^t \int_{\mathbb{R}^n} \Phi(y, s)\left[\left(\frac{\partial}{\partial t}-\Delta_x\right) f(x-y, t-s)\right] \d y \d s               \\
-                                      & +\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y                                                                                             \\
-            =                         & \int_{\varepsilon}^t \int_{\mathbb{R}^n} \Phi(y, s)\left[\left(-\frac{\partial}{\partial s}-\Delta_y\right) f(x-y, t-s)\right] \d y \d s  \\
-                                      & +\int_0^{\varepsilon} \int_{\mathbb{R}^n} \Phi(y, s)\left[\left(-\frac{\partial}{\partial s}-\Delta_y\right) f(x-y, t-s)\right] \d y \d s \\
-                                      & +\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y                                                                                             \\
-            =                         & I_{\varepsilon}+J_{\varepsilon}+K
-        \end{aligned}
-    \end{equation*}
-    Now
-    \begin{equation*}
-        \left|J_{\varepsilon}\right| \leq\left(\left\|f_t\right\|_{L^{\infty}}+\left\|D^2 f\right\|_{L^{\infty}}\right) \int_0^{\varepsilon} \int_{\mathbb{R}^n} \Phi(y, s) \d y \d s \leq \varepsilon C
-    \end{equation*}
-    Integrating by parts, we also find
-    \begin{equation*}
-        \begin{aligned}
-            I_{\varepsilon}= & \int_{\varepsilon}^t \int_{\mathbb{R}^n}\left[\left(\frac{\partial}{\partial s}-\Delta_y\right) \Phi(y, s)\right] f(x-y, t-s) \d y \d s \\
-                             & +\int_{\mathbb{R}^n} \Phi(y, \varepsilon) f(x-y, t-\varepsilon) d y                                                                     \\
-                             & -\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y                                                                                           \\
-            =                & \int_{\mathbb{R}^n} \Phi(y, \varepsilon) f(x-y, t-\varepsilon) d y-K
-        \end{aligned}
-    \end{equation*}
-    since $\Phi$ solves the heat equation we ascertain
-    \begin{equation*}
-        \begin{aligned}
-            u_t(x, t)-\Delta u(x, t) & =\lim _{\varepsilon \rightarrow 0} \int_{\mathbb{R}^n} \Phi(y, \varepsilon) f(x-y, t-\varepsilon) d y \\
-                                     & = \lim _{\varepsilon \rightarrow 0} f(x,t-\varepsilon)                                                \\
-                                     & = f(x, t) \quad\left(x \in \mathbb{R}^n, t>0\right)
-        \end{aligned}
-    \end{equation*}
-    the limit as $\varepsilon \rightarrow 0$ being computed. Finally note $\|u(\cdot, t)\|_{L^{\infty}} \leq t\|f\|_{L^{\infty}} \rightarrow 0$.
+        2. We then calculate
+        \begin{equation*}
+            \begin{aligned}
+                u_t(x, t)-\Delta u(x, t)= & \int_0^t \int_{\mathbb{R}^n} \Phi(y, s)\left[\left(\frac{\partial}{\partial t}-\Delta_x\right) f(x-y, t-s)\right] \d y \d s               \\
+                                          & +\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y                                                                                             \\
+                =                         & \int_{\varepsilon}^t \int_{\mathbb{R}^n} \Phi(y, s)\left[\left(-\frac{\partial}{\partial s}-\Delta_y\right) f(x-y, t-s)\right] \d y \d s  \\
+                                          & +\int_0^{\varepsilon} \int_{\mathbb{R}^n} \Phi(y, s)\left[\left(-\frac{\partial}{\partial s}-\Delta_y\right) f(x-y, t-s)\right] \d y \d s \\
+                                          & +\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y                                                                                             \\
+                =                         & I_{\varepsilon}+J_{\varepsilon}+K
+            \end{aligned}
+        \end{equation*}
+        Now
+        \begin{equation*}
+            \left|J_{\varepsilon}\right| \leq\left(\left\|f_t\right\|_{L^{\infty}}+\left\|D^2 f\right\|_{L^{\infty}}\right) \int_0^{\varepsilon} \int_{\mathbb{R}^n} \Phi(y, s) \d y \d s \leq \varepsilon C
+        \end{equation*}
+        Integrating by parts, we also find
+        \begin{equation*}
+            \begin{aligned}
+                I_{\varepsilon}= & \int_{\varepsilon}^t \int_{\mathbb{R}^n}\left[\left(\frac{\partial}{\partial s}-\Delta_y\right) \Phi(y, s)\right] f(x-y, t-s) \d y \d s \\
+                                 & +\int_{\mathbb{R}^n} \Phi(y, \varepsilon) f(x-y, t-\varepsilon) d y                                                                     \\
+                                 & -\int_{\mathbb{R}^n} \Phi(y, t) f(x-y, 0) d y                                                                                           \\
+                =                & \int_{\mathbb{R}^n} \Phi(y, \varepsilon) f(x-y, t-\varepsilon) d y-K
+            \end{aligned}
+        \end{equation*}
+        since $\Phi$ solves the heat equation we ascertain
+        \begin{equation*}
+            \begin{aligned}
+                u_t(x, t)-\Delta u(x, t) & =\lim _{\varepsilon \rightarrow 0} \int_{\mathbb{R}^n} \Phi(y, \varepsilon) f(x-y, t-\varepsilon) d y \\
+                                         & = \lim _{\varepsilon \rightarrow 0} f(x,t-\varepsilon)                                                \\
+                                         & = f(x, t) \quad\left(x \in \mathbb{R}^n, t>0\right)
+            \end{aligned}
+        \end{equation*}
+        the limit as $\varepsilon \rightarrow 0$ being computed. Finally note $\|u(\cdot, t)\|_{L^{\infty}} \leq t\|f\|_{L^{\infty}} \rightarrow 0$.
+    \end{proof}
 \end{theorem}
 
 \section{Mean-value formula}

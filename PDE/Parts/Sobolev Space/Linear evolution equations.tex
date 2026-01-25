@@ -5,26 +5,38 @@ For this chapter we assume domain $U$ to be an open, bounded subset of $\mathbb{
 
 \section{Second-order parabolic equations}
 % Second-order parabolic equations
+\subsection{Bochner space}
+\begin{definition}
+    \begin{equation*}
+        L^2\left(0, T ; H_0^1(U)\right)
+        :=
+        \left\{\mathbf{u}:[0, T] \rightarrow H_0^1(U) \mid \int_0^T\|\mathbf{u}(t)\|_{H_0^1(U)}^2 \d t<\infty\right\}
+    \end{equation*}
+    with norm $\left\|\mathbf{u}\right\|_{L^2(0,T;H_0^1(U))}=\left(\int_0^T\|\mathbf{u}(t)\|_{H_0^1(U)}^2 \d t\right)^{1/2}$
+
+    The derivatives of $\mathbf{u}$ are defined in the distributional sense. 
+\end{definition}
+
 
 \subsection{Weak solution} % Weak solution
 
 \begin{definition}
-    We will first study the initial/boundary-value problem
+    We will first study the initial Dirichlet problem
     \begin{equation*}
         \left\{\begin{aligned}
-            u_t+L u=f & \text { in } U_T                     \\
-            u=0       & \text { on } \partial U \times[0, T] \\
-            u=g       & \text { on } U \times\{t=0\}
+            u_t+\mathcal{L} u=f & \text { in } U_T                     \\
+            u=0                 & \text { on } \partial U \times[0, T] \\
+            u=g                 & \text { on } U \times\{t=0\}
         \end{aligned}\right.
     \end{equation*}
     where $f: U_T \rightarrow \mathbb{R}$ and $g: U \rightarrow \mathbb{R}$ are given and $u: \bar{U}_T \rightarrow \mathbb{R}$ is the unknown, $u=u(x, t)$.
-    The letter $L$ denotes for each time $t$ a second-order partial differential operator, having either the divergence form
+    The letter $\mathcal{L}$ denotes for each time $t$ a second-order partial differential operator, having either the divergence form
     \begin{equation*}
-        L u=-\sum_{i, j=1}^n\left(a^{i j}(x, t) u_{x_i}\right) x_j+\sum_{i=1}^n b^i(x, t) u_{x_i}+c(x, t) u
+        \mathcal{L} u=-\sum_{i, j=1}^n\left(a^{i j}(x, t) u_{x_i}\right) x_j+\sum_{i=1}^n b^i(x, t) u_{x_i}+c(x, t) u
     \end{equation*}
     or else the nondivergence form
     \begin{equation*}
-        L u=-\sum_{i, j=1}^n a^{i j}(x, t) u_{x_i x_j}+\sum_{i=1}^n b^i(x, t) u_{x_i}+c(x, t) u
+        \mathcal{L} u=-\sum_{i, j=1}^n a^{i j}(x, t) u_{x_i x_j}+\sum_{i=1}^n b^i(x, t) u_{x_i}+c(x, t) u
     \end{equation*}
     for given coefficients $a^{i j}, b^i, c(i, j=1, \ldots, n)$.
 \end{definition}
@@ -84,9 +96,9 @@ For this chapter we assume domain $U$ to be an open, bounded subset of $\mathbb{
     We intend to build a weak solution of the parabolic problem
     \begin{equation}
         \left\{\begin{aligned}
-            u_t+L u=f & \text { in } U_T                     \\
-            u=0       & \text { on } \partial U \times[0, T] \\
-            u=g       & \text { on } U \times\{t=0\}
+            u_t+\mathcal{L} u=f & \text { in } U_T                     \\
+            u=0                 & \text { on } \partial U \times[0, T] \\
+            u=u_0               & \text { on } U \times\{t=0\}
         \end{aligned}\right.
     \end{equation}
     by first constructing solutions of certain finite-dimensional approximations to (1) and then passing to limits. This is called \textbf{Galerkin's method}.
@@ -132,7 +144,7 @@ For this chapter we assume domain $U$ to be an open, bounded subset of $\mathbb{
         \begin{equation}
             \left\{\begin{aligned}
                 d_m^{k^{\prime}}(t)+\sum_{l=1}^m e^{k l}(t) d_m^l(t)=f^k(t) & (k=1, \ldots, m) \\
-                d_m^k(0)=\left(g, w_k\right)                                & (k=1, \ldots, m) 
+                d_m^k(0)=\left(g, w_k\right)                                & (k=1, \ldots, m)
             \end{aligned}\right.
         \end{equation}
         According to standard existence theory for ordinary differential equations, there exists a unique absolutely continuous function $\mathbf{d}_m(t)=\left(d_m^1(t), \ldots, d_m^m(t)\right)$ satisfying (4) for a.e. $0 \leq t \leq T$. And then $\mathbf{u}_m$ defined by (2) solves (3) for a.e. $0 \leq t \leq T$.
@@ -155,7 +167,7 @@ For this chapter we assume domain $U$ to be an open, bounded subset of $\mathbb{
 
 \subsubsection{Existence and uniqueness}
 
-\begin{theorem}[Existence of weak solution]  
+\begin{theorem}[Existence of weak solution]
     There exists a weak solution of (11).
 \end{theorem}
 
