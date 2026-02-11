@@ -1,202 +1,979 @@
-\documentclass[12pt]{article}
-\usepackage{amsmath, amssymb, amsthm, stmaryrd}
-\usepackage{mathrsfs}
-\usepackage{enumitem}
-\usepackage{hyperref}
+\documentclass[11pt]{article}
 
-\title{A Functorial and G-Set Theoretic Formulation of the Fundamental Theorem of Galois Theory}
-\author{}
-\date{}
+% ================= 宏包 =================
+\usepackage{ctex}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1.2in}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+% ================= 定理环境 =================
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{example}[theorem]{例}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{theorem}[definition]{Theorem}
-\newtheorem{proposition}[definition]{Proposition}
-\newtheorem{lemma}[definition]{Lemma}
-\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{definition}[theorem]{定义}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{注}
+% ========== 自定义数学命令 ==========
+\newcommand{\Int}{\operatorname{Int}}
+\newcommand{\loc}{\mathrm{loc}}
+\renewcommand{\d}{\, \mathrm{d}}
+\newcommand{\supp}{\operatorname{supp}}
+
+\newcommand{\rank}{\operatorname{rank}}
+\renewcommand{\char}{\operatorname{char}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\Coim}{\operatorname{Coim}}
+\newcommand{\Codim}{\operatorname{Codim}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\ord}{\operatorname{ord}}
+
+\newcommand{\Obj}{\operatorname{Obj}}
+\newcommand{\Mor}{\operatorname{Mor}}
+
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Nil}{\operatorname{Nil}}
+\newcommand{\lcm}{\operatorname{lcm}}
+
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\renewcommand{\det}{\operatorname{det}}
+
+\newcommand{\GL}{\operatorname{GL}}
+
+
+\renewcommand{\span}{\operatorname{span}}
+\newcommand{\ind}{\operatorname{ind}}
+
+
+\newcommand{\gr}{\operatorname{gr}}
+
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\Top}{\mathbf{Top}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\Grp}{\mathbf{Grp}}
+\newcommand{\Ab}{\mathbf{Ab}}
+\newcommand{\Rng}{\mathbf{Rng}}
+\newcommand{\CRing}{\mathbf{CRing}}
+\newcommand{\Mod}{\mathbf{Mod}}
+\newcommand{\Ring}{\mathbf{Ring}}
+\newcommand{\Vect}{\mathbf{Vect}}
+
+
+\newcommand{\Ext}{\operatorname{Ext}}
+
+\newcommand{\res}{\operatorname{res}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\disc}{\operatorname{disc}}
+\newcommand{\Nat}{\operatorname{Nat}}
+\newcommand{\Nm}{\operatorname{Nm}}
+
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Der}{\operatorname{Der}}
+% ================= 标题信息 =================
+\title{代数 $\mathcal{D}$-模的若干基础性质}
+
+
+
+
+
+
+
 
 \begin{document}
-
 \maketitle
+
+% --------------------
+% 摘要
+% --------------------
+\begin{abstract}
+
+\end{abstract}
+
 
 \tableofcontents
 
-\section{Introduction}
+% ============================================================
+\section{引言}
 
-This note formulates the classical Fundamental Theorem of Galois Theory in 
-a modern categorical language, and further describes the Galois correspondence 
-via $G$-sets.  
-We assume throughout that $L/K$ is a finite Galois extension with Galois group
+线性微分方程在数学的发展中占据着重要地位。传统上，人们主要利用分析方法研究其解的性质，例如解的存在性、唯一性以及渐近行为等。然而，除了分析视角之外，还可以从代数的角度理解微分方程，将其视为某种代数结构上的作用问题。这种观点为微分方程的研究提供了新的工具和思路。
+
+一个基本的观察是，线性微分方程可以通过微分算子来表达。例如，在一元情形下，微分算子
 \[
-G = \operatorname{Gal}(L/K).
+    \partial = \frac{d}{dx}
 \]
-
-The goal is to reinterpret:
+作用在函数空间上。方程
 \[
-\{ K \subseteq F \subseteq L \}
-\quad \longleftrightarrow \quad
-\{ H \le G \}
+    (\partial - \lambda)f = 0
 \]
-as an equivalence between two categories and then as a correspondence 
-between $G$-equivariant quotients of a canonical $G$-set.
+可以理解为一个微分算子对函数的作用结果为零。这启发我们将“微分方程”视为“算子作用的代数关系”。由此，自然地引出对“微分算子所构成的代数结构”的研究。
 
-\section{Intermediate Fields and Subgroups as Categories}
+$\mathcal{D}$-模理论正是在这一思想基础上发展起来的。简单来说，D-模是微分算子环上的模。通过研究这些模的结构，可以将关于微分方程的问题转化为模论问题。
+在仿射情形下，微分算子环可以具体描述为 Weyl 代数，它由乘法算子与微分算子生成，并满足一定的交换关系。对 Weyl 代数上的模进行研究，便构成了 D-模理论的基本内容。
 
-\subsection{The category of intermediate fields}
+完整的 $\mathcal{D}$-模理论涉及代数几何、同调代数等较为深刻的理论工具。具体来说，在$n$维光滑代数簇$X$上，$\mathcal{D}$为$X$上的微分算子层，$\mathcal{D}$-模则是$\mathcal{D}$-模层。通过研究$\mathcal{D}$-模的结构，可以揭示线性微分方程解空间的性质，例如解的维数、单值性以及解析延拓等问题。
 
+
+但其中的一些基本思想可以在较为初等的代数框架下加以理解。本文旨在从代数的角度出发，对 D-模的基本概念进行综述。我们将首先介绍相关的代数预备知识，然后构造 Weyl 代数并说明其与线性微分方程之间的联系，通过若干具体例子展示 D-模的基本结构。最后，简要介绍 holonomic D-模以及 Bernstein–Sato 多项式（$b$-函数）的基本思想，以说明该理论在更深入研究中的重要性。
+
+本文力求在保持数学严谨性的同时，将内容控制在本科阶段可理解的范围之内，侧重于基本概念和思想框架的介绍.
+
+
+
+
+\section{Preliminaries}
+
+
+\subsection{环与模}
 \begin{definition}
-Let $\mathbf{Int}(L/K)$ be the category whose objects are intermediate fields
-\[
-K \subseteq F \subseteq L,
-\]
-and where there is a unique morphism $F_1 \to F_2$ iff $F_1 \subseteq F_2$.
-Thus $\mathbf{Int}(L/K)$ is a poset category.
+    一个环 $A$ 是一个集合，配备两个二元运算 $+$ 和 $\cdot$，满足以下条件：
+    \begin{enumerate}[label=(\roman*)]
+        \item $(A,+)$ 是一个阿贝尔群，存在零元 $0$ 和加法逆元 $-a$；
+        \item  $(ab)c=a(bc)$ 对任意 $a,b,c\in A$ 成立；
+        \item  $a(b+c)=ab+ac$ 和 $(a+b)c=ac+bc$ 对任意 $a,b,c\in A$ 成立；
+        \item 存在乘法单位元 $1_A$，使得 $1_A a=a 1_A=a$ 对任意 $a\in A$ 成立.
+    \end{enumerate}
 \end{definition}
 
-\subsection{The category of subgroups}
 
 \begin{definition}
-Let $\mathbf{Sub}(G)$ be the category whose objects are subgroups $H \le G$
-and where there is a unique morphism $H_1 \to H_2$ iff $H_1 \subseteq H_2$.
-This is also a poset category.
+    设 $A$ 是一个环，一个\emph{左 $A$-模}是一个阿贝尔群 $M$，配备一个满足以下条件的标量乘法：
+    \begin{enumerate}[label=(\roman*)]
+        \item $r(m+n)=rm+rn$，对任意 $r\in A$ 和 $m,n\in M$；
+        \item $(r+s)m=rm+sm$，对任意 $r,s\in A$ 和 $m\in M$；
+        \item $(rs)m=r(sm)$，对任意 $r,s\in A$ 和 $m\in M$；
+        \item $1_A m=m$，对任意 $m\in M$.
+    \end{enumerate}
 \end{definition}
 
-\section{Two Fundamental Contravariant Functors}
 
-\subsection{The fixed field functor}
 
-\begin{definition}
-Define the functor
-\[
-\operatorname{Fix} : \mathbf{Sub}(G)^{op} \to \mathbf{Int}(L/K)
-\]
-by sending a subgroup $H \le G$ to its fixed field
-\[
-L^{H} = \{ x \in L : \sigma(x)=x \;\text{for all }\sigma\in H \}.
-\]
-If $H_1 \subseteq H_2$, then the morphism in $\mathbf{Sub}(G)$
-is reversed in $\mathbf{Sub}(G)^{op}$, yielding the inclusion
-\[
-L^{H_1} \subseteq L^{H_2}.
-\]
-\end{definition}
-
-\subsection{The Galois group functor}
-
-\begin{definition}
-Define the functor
-\[
-\operatorname{Gal} : \mathbf{Int}(L/K)^{op} \to \mathbf{Sub}(G)
-\]
-by
-\[
-\operatorname{Gal}(F) = \operatorname{Gal}(L/F).
-\]
-If $F_1 \subseteq F_2$, then restriction gives
-\[
-\operatorname{Gal}(L/F_1) \subseteq \operatorname{Gal}(L/F_2).
-\]
-\end{definition}
-
-\section{The Categorical Fundamental Theorem of Galois Theory}
-
-\begin{theorem}[Categorical Galois Correspondence]
-There is a contravariant equivalence of categories
-\[
-\operatorname{Fix} : \mathbf{Sub}(G)^{op}
-   \rightleftarrows 
-\mathbf{Int}(L/K) : \operatorname{Gal}.
-\]
-Moreover,
-\[
-\operatorname{Fix} \circ \operatorname{Gal}
-   \cong \mathrm{id}_{\mathbf{Int}(L/K)}, 
-\qquad
-\operatorname{Gal} \circ \operatorname{Fix}
-   \cong \mathrm{id}_{\mathbf{Sub}(G)}.
-\]
-\end{theorem}
-
-\section{Galois Correspondence via G-Sets}
-
-\subsection{The canonical $G$-set}
-
-Let
-\[
-X = \operatorname{Hom}_{K\text{-alg}}(L, \overline{K})
-\]
-where $\overline{K}$ is a fixed algebraic closure.
-
+我们首先回顾不可约模的一些基本结论，这些结论在表示论与
+$D$-模理论中反复出现.
 \begin{proposition}
-The group $G = \operatorname{Gal}(L/K)$ acts on $X$ by
-\[
-(\sigma \cdot \varphi) = \sigma \circ \varphi.
-\]
-This makes $X$ into a finite transitive $G$-set.
+    设 $A$ 是一个环，$M$ 是一个不可约的左 $A$-模，则：
+    \begin{enumerate}[label=(\arabic*)]
+        \item 对任意 $0 \neq m \in M$，均有
+              \[
+                  M = Am.
+              \]
+        \item 若 $0 \neq u \in M$，则存在同构
+              \[
+                  M \cong A / \operatorname{ann}_A(u),
+              \]
+              其中 $\operatorname{ann}_A(u)$ 表示 $u$ 在 $A$ 中的零化子.
+        \item 若 $A$ 不是除环，则 $M$ 为挠模.
+    \end{enumerate}
 \end{proposition}
 
-\subsection{Intermediate fields correspond to quotients of this $G$-set}
 
-For every intermediate field $F$, restriction gives a natural $G$-equivariant map:
-\[
-\operatorname{res}_{L/F} : X \to \operatorname{Hom}_K(F,\overline{K}).
-\]
+\subsection{微分算子环}
+微分算子环是$\mathcal{D}$-模理论的核心对象之一，
+它抽象了微分算子在函数空间上的作用. 我们在交换代数的背景下定义微分算子，并探讨其基本性质.
+\begin{definition}
+    设 $A$ 是一个交换的 $k$-代数.定义 $A$ 上的\emph{微分算子}如下：
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              将 $a \in A$ 视为 $\End_k(A)$ 中的乘法算子
+              \[
+                  r \longmapsto ar \quad (r \in A).
+              \]
+              若算子 $P \in \End_k(A)$ 满足
+              \[
+                  [a,P]=0 \quad \text{对任意 } a\in A,
+              \]
+              则称 $P$ 为零阶微分算子.
+
+        \item
+              假设已定义所有阶数小于 $n$ 的微分算子.
+              若 $P \in \End_k(A)$ 不具有小于 $n$ 的阶数，
+              且对任意 $a \in A$，
+              \[
+                  [a,P]
+              \]
+              的阶数小于 $n$，则称 $P$ 为 $n$ 阶微分算子.
+    \end{enumerate}
+    记 $\operatorname{Diff}^n(A)$ 为 $A$ 上所有阶数小于 $n$
+    的微分算子所成的 $k$-向量空间.
+    定义 $A$ 的\emph{微分算子环}为
+    \[
+        \operatorname{Diff}(A)
+        =
+        \bigcup_{n \geq 0} \operatorname{Diff}^n(A).
+    \]
+\end{definition}
+
+\begin{remark}
+    上述定义等价于
+    \[
+        \operatorname{Diff}^n(A)
+        =
+        \left\{
+        P \in \End_k(A)
+        :
+        [\cdots[[P,a_1],a_2],\ldots,a_{n+1}] = 0,
+        \ \forall a_i \in A
+        \right\}.
+    \]
+    阶数恰为 $n$ 的微分算子构成集合
+    $\operatorname{Diff}^n(A)\setminus \operatorname{Diff}^{n-1}(A)$.
+\end{remark}
+
+\subsubsection{导子与一阶微分算子}
+
+\begin{definition}
+    $k$-代数 $A$ 的一个\emph{导子}是指满足 Leibniz 法则的
+    $k$-线性算子 $D$：
+    \[
+        D(ab)=aD(b)+bD(a),
+        \quad \forall a,b\in A.
+    \]
+    所有导子构成的 $k$-向量空间记为 $\Der_k(A)$.
+    对 $a \in A$ 和 $D \in \Der_k(A)$，
+    定义新的导子 $aD$ 为
+    \[
+        (aD)(b)=aD(b),
+    \]
+    从而 $\Der_k(A)$ 自然成为一个左 $A$-模.
+\end{definition}
 
 \begin{proposition}
-There is a $G$-equivariant bijection
-\[
-\operatorname{Hom}_K(F,\overline{K}) 
-\;\cong\;
-X / H_F,
-\qquad
-H_F = \operatorname{Gal}(L/F).
-\]
+    设 $A$ 是一个交换的 $k$-代数，则：
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\operatorname{Diff}^0(A)=A$；
+        \item $\operatorname{Diff}^1(A)\subset \Der_k(A)+A$.
+    \end{enumerate}
+
+    \begin{proof}
+        我们证明第 (2) 条.
+        设 $Q \in \operatorname{Diff}^1(A)$，
+        令
+        \[
+            P = Q - Q(1).
+        \]
+        则 $P(1)=0$，且 $P$ 的阶数不超过 $1$.
+        因此对任意 $a\in A$，交换子 $[P,a]$ 为零阶算子.
+        进一步，对任意 $b\in A$ 有
+        \[
+            [[P,a],b]=0.
+        \]
+        展开可得
+        \[
+            (Pa)b-(aP)b-b(Pa)+b(aP)=0.
+        \]
+        作用于 $1\in A$，得到
+        \[
+            P(ab)=aP(b)+bP(a)，
+        \]
+        故 $P$ 是 $A$ 的一个导子.
+        从而
+        \[
+            Q=P+Q(1)\in \Der_k(A)+A，
+        \]
+        结论成立.
+    \end{proof}
 \end{proposition}
 
-Thus:
+\begin{proposition}
+    若 $P \in \operatorname{Diff}^n(A)$，
+    $Q \in \operatorname{Diff}^m(A)$，
+    则其复合满足
+    \[
+        PQ \in \operatorname{Diff}^{n+m}(A).
+    \]
+    \begin{proof}
+        对 $n+m$ 作归纳即可.
+    \end{proof}
+\end{proposition}
 
-\begin{theorem}[G-set formulation of Galois correspondence]
-The category of intermediate fields satisfies
-\[
-\mathbf{Int}(L/K)
-\;\simeq\;
-\mathbf{G\text{-}Set}_X,
-\]
-the category of $G$-equivariant quotient maps $X \to Y$.
-Every such quotient is isomorphic to $X/H$ for a unique subgroup $H \le G$.
+\subsection{模的扭曲}
+
+\begin{definition}
+    设 $A$ 是一个环，$M$ 是左 $A$-模，
+    $\sigma$ 是 $A$ 的一个自同构.
+    定义新的左 $A$-模 $M_\sigma$：
+    作为阿贝尔群，$M_\sigma=M$，
+    而其 $A$-作用由
+    \[
+        r\cdot m=\sigma(r)m
+    \]
+    给出.
+    称 $M_\sigma$ 为 $M$ 关于 $\sigma$ 的\emph{扭曲模}.
+\end{definition}
+
+\begin{proposition}
+    设 $A$ 是一个环，$M$ 是左 $A$-模，
+    $\sigma$ 是 $A$ 的自同构，则：
+    \begin{enumerate}[label=(\arabic*)]
+        \item $M_\sigma$ 不可约当且仅当 $M$ 不可约；
+        \item $M_\sigma$ 为挠模当且仅当 $M$ 为挠模；
+        \item $M_\sigma \oplus M'_\sigma \cong (M\oplus M')_\sigma$；
+        \item 若 $N\subset M$，则
+              \[
+                  (M/N)_\sigma \cong M_\sigma/N_\sigma；
+              \]
+        \item 若 $J$ 是 $A$ 的左理想，则
+              \[
+                  (A/J)_\sigma \cong A/\sigma^{-1}(J).
+              \]
+    \end{enumerate}
+\end{proposition}
+
+
+
+\subsection{链条件}
+\begin{definition}
+    设 $A$ 为一环, $M$ 为左 $A$-模，则：
+    \begin{enumerate}
+        \item
+              左 $A$-模 $M$ 称为满足\emph{升链条件}
+              （ascending chain condition, ACC），
+              或称为\emph{Noether 模}，
+              若对任意子模升链
+              \[
+                  M_1\subset M_2\subset M_3\subset\cdots
+              \]
+              存在整数 $n$，
+              使得当 $i\ge n$ 时
+              \[
+                  M_i=M_n。
+              \]
+
+        \item
+              若左正则模 ${}_A A$ 为 Noether 模，
+              则称 $A$ 为\emph{左 Noether 环}。
+              若同时为左、右 Noether，
+              则称 $A$ 为\emph{Noether 环}。
+
+        \item
+              左 $A$-模 $M$ 称为满足\emph{降链条件}
+              （descending chain condition, DCC），
+              或称为\emph{Artinian 模}，
+              若对任意子模降链
+              \[
+                  N_1\supset N_2\supset N_3\supset\cdots
+              \]
+              存在整数 $m$，
+              使得当 $i\ge m$ 时
+              \[
+                  N_i=N_m。
+              \]
+
+        \item
+              若左正则模 ${}_A A$ 为 Artinian，
+              则称 $A$ 为\emph{左 Artinian 环}。
+              若同时为左、右 Artinian，
+              则称 $A$ 为\emph{Artinian 环}。
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    设 $M$ 为左 $A$-模。
+    \begin{enumerate}
+        \item
+              若 $M$ 的任意非空子模集合(在集合包含意义下构成偏序集)均含有极大元，
+              则称 $M$ 满足\emph{极大条件}；
+        \item
+              若 $M$ 的任意非空子模集合均含有极小元，
+              则称 $M$ 满足\emph{极小条件}。
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}\label{thm:chain-max}
+    模满足升链条件
+    当且仅当满足极大条件；
+    模满足降链条件
+    当且仅当满足极小条件。
 \end{theorem}
 
-\subsection{Conclusion}
+\begin{corollary}[链条件的稳定性]\label{cor:chain-stability}
+    设 $A$ 为一环, $M$ 为左 $A$-模，则：
+    \begin{enumerate}
+        \item
+              设 $M$ 为 $A$-模，
+              $M_1\subseteq M$。
+              则
+              $M$ 为 Noether
+              当且仅当
+              $M$  与  $M/M_1 $均为 Noetherian。
 
-Because $X$ is a transitive $G$-set, all its equivariant quotients are of the form 
-$G/H$. Therefore,
 
-\[
-\mathbf{G\text{-}Set}_X
-\;\simeq\;
-\mathbf{Sub}(G)^{op}.
-\]
+        \item
+              有限直和  $M_1\oplus\cdots\oplus M_n$
+              为 Noether   当且仅当每个 $M_i$ 如此。
 
-Combining everything we obtain:
+        \item
+              Noether模的任意同态像
+              仍为 Noether。
 
-\begin{theorem}[Galois Correspondence via G-sets]
-\[
-\mathbf{Int}(L/K)
-\;\simeq\;
-\mathbf{Sub}(G)^{op}
-\;\simeq\;
-\mathbf{G\text{-}Set}_X.
-\]
-
-Each intermediate field $F$ corresponds to the subgroup
-\[
-H_F = \operatorname{Gal}(L/F)
-\]
-and to the $G$-set quotient
-\[
-\operatorname{Hom}_K(F,\overline{K})
-  \cong X/H_F.
-\]
+        \item
+              若 $A$ 为左 Noetherian环,则任意有限生成左 $A$-模
+              均为 Noether。
+    \end{enumerate}
+\end{corollary}
+\begin{remark}
+    上述结论同样适用于Artinian性质.
+\end{remark}
+\subsubsection{Noetherian}
+对于Noetherian性质，我们还有如下更强的结论.
+\begin{theorem}
+    设 $A$ 为一环, $M$ 为左 $A$-模.则$M$为 Noether 当且仅当 $M$ 的任意子模均为有限生成.
 \end{theorem}
+\begin{remark}
+    对环 $A$ 来说，$A$ 是左 Noether 当且仅当 $A$ 的任意左理想均为有限生成.
+\end{remark}
+
+\begin{theorem}[Hilbert基底定理]
+    设 $A$ 是一个左 Noether 环，则$n$元多项式环$A[x_1,\dots,x_n]$也是一个左 Noether 环.
+\end{theorem}
+\subsubsection{Artian}
+对于Artinian性质，我们有如下结论.
+\begin{theorem}[Akizuki-Hopkins-Levitzki定理]
+    \label{thm:Akizuki-Hopkins-Levitzki}
+    设 $A$ 是一个左 Artinian 环，则 $A$ 是一个左 Noether 环.
+\end{theorem}
+故对左 Artinian 环 $A$上的一个有限生成左 $A$-模 $M$，由\ref{cor:chain-stability}和 \ref{thm:Akizuki-Hopkins-Levitzki},$M$ 同时满足升链条件与降链条件.再由Jordan-Hölder定理，$M$ 的一个合成列的长度是一个不变量，称为 $M$ 的\emph{长度}，记为 $\ell_A(M)$.
+
+\subsection{滤过、分次与维数}
+\begin{definition}
+    设 $A$ 为一环.
+    称 $A$ 上的一族子群 $\{F_iA\}_{i\ge0}$ 为
+    $A$ 的一个\emph{递增滤过}，
+    若满足：
+    \begin{enumerate}
+        \item
+              $F_0A\subset F_1A\subset \cdots \subset F_iA\subset\cdots\subset A$；
+        \item
+              $\bigcup_{i\ge0}F_iA=A$；
+        \item
+              $F_iA\cdot F_jA\subseteq F_{i+j}A$，
+              对任意 $i,j\ge0$ 成立.
+    \end{enumerate}
+    带有递增滤过的环称为\emph{滤过环}.
+\end{definition}
+
+\begin{proposition}
+    \begin{enumerate}
+        \item
+              若 $A=\bigoplus_{i\ge0}A_i$ 为分次环，
+              则
+              \[
+                  F_kA:=\bigoplus_{i=0}^k A_i
+              \]
+              给出 $A$ 的一个递增滤过；
+        \item
+              若 $\mathcal{F}=\{F_iA\}$ 是 $A$ 的滤过，
+              则
+              \[
+                  \gr_{\mathcal{F}}A
+                  :=
+                  \bigoplus_{i\ge0}F_{i+1}A/F_iA
+              \]
+              在自然乘法下成为一个分次环，
+              称为 $A$ 关于滤过 $\mathcal{F}$ 的\emph{伴随分次环}.
+    \end{enumerate}
+\end{proposition}
+
+\subsubsection{滤过模与伴随分次模}
+
+\begin{definition}
+    设 $A$ 为滤过环，
+    $\mathcal{F}=\{F_iA\}$ 为其递增滤过.
+    左 $A$-模 $M$ 称为\emph{滤过模}，
+    若存在子群族 $\Gamma=\{\Gamma_iM\}$，
+    满足：
+    \begin{enumerate}
+        \item
+              $\Gamma_0M\subset \Gamma_1M\subset\cdots\subset M$；
+        \item
+              $\bigcup_{i\ge0}\Gamma_iM=M$；
+        \item
+              $F_iA\cdot\Gamma_jM\subseteq\Gamma_{i+j}M$.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    若 $\Gamma=\{\Gamma_iM\}$ 为滤过，
+    则
+    \[
+        \gr_\Gamma M
+        :=
+        \bigoplus_{i\ge0}\Gamma_{i+1}M/\Gamma_iM
+    \]
+    加法与 $A$-作用由 \[
+        (a+\Gamma_iA)(a^\prime+\Gamma_jM)
+        =
+        aa^\prime+\Gamma_{i+j}M
+    \]
+    给出，
+    自然地成为 $\gr_{\mathcal{F}}A$-模，
+    称为 $M$ 的\emph{伴随分次模}.
+\end{proposition}
+
+
+\begin{proposition}
+    设 $M$ 为滤过 $A$-模，
+    $N\subset M$ 为子模，
+    则存在正合列
+    \[
+        0\to
+        \gr N\longrightarrow
+        \gr M\longrightarrow
+        \gr(M/N)\to0
+    \]
+    作为分次 $\gr A$-模.
+\end{proposition}
+
+
+\subsection{维数与重数}
+
+
+\begin{definition}
+    \label{def:Hilbert 函数}
+    设
+    \[
+        A=\bigoplus_{n\ge0}A_n
+    \]
+    为交换 Noether 分次环，
+    \[
+        M=\bigoplus_{n\ge0}M_n
+    \]
+    为有限生成分次 $A$-模.
+    则每个 $M_n$ 为有限生成 $A_0$-模，
+    从而可施加加性函数 $\lambda$.
+    称函数
+    \[
+        h_M^\lambda(n)
+        :=
+        \lambda(M_n)
+    \]
+    为 $M$ 关于 $\lambda$ 的\emph{Hilbert 函数}；
+
+    \begin{remark}
+        \begin{enumerate}
+            \item 若 $A_0$ 为 Artinian 环，
+                  则 $\lambda(N)=\ell_{A_0}(N)$（模的长度）；
+            \item 若 $A_0$ 为域，
+                  则 $\lambda(N)=\dim_{A_0}(N)$.
+        \end{enumerate}
+    \end{remark}
+\end{definition}
+
+
+下面的定理告诉我们，Hilbert 函数在充分大 $n$ 时由一个多项式给出，所以我们可以用多项式来研究 $M$ 的渐近性质.
+\begin{theorem}
+    存在多项式$H(t)\in\mathbb{Q}[t]$，使得对充分大的整数 $n$，
+    有
+    \[
+        H(n)=h_M^\lambda(n).
+    \]
+\end{theorem}
+
+\begin{corollary}
+    存在多项式
+    \[
+        \chi(t,A,M)\in\mathbb{Q}[t]
+    \]
+    使得对充分大的整数 $n$，
+    \[
+        \sum_{i=0}^{n}
+        \lambda(M_i)
+        =
+        \chi(n)
+    \]
+\end{corollary}
+我们称 $\chi(t)$ 为 $M$ 关于 $\lambda$ 的\emph{Hilbert 多项式}。同时定义$\chi$的次数$\deg \chi=d$为 $M$ 的\emph{维数}，$\chi$ 的首项系数乘以$d!$为 $M$ 的\emph{重数}.
+
+
+
+
+
+
+
+% ============================================================
+\section{Weyl 代数}
+\subsection{定义}
+设 $k[X]=k[x_1,\dots,x_n]$ 是特征为零的域 $k$ 上
+$n$ 个可交换不定元的多项式环，
+记其所有 $k$-线性自同态所成的代数为 $\End_k(k[X])$.
+对每个 $i=1,\dots,n$，
+定义算子 $\hat{x}_i\in \End_k(k[X])$ 为
+\[
+    \hat{x}_i(f)=x_i f, \qquad f\in k[X].
+\]
+同时定义偏导算子
+\[
+    \partial_i(f)=\frac{\partial f}{\partial x_i}.
+\]
+\begin{definition}
+    由算子 $\hat{x}_1,\dots,\hat{x}_n$ 与
+    $\partial_1,\dots,\partial_n$
+    生成的 $\End_k(k[X])$ 的 $k$-子代数
+    称为\emph{$n$ 阶 Weyl 代数}，
+    记为 $A_n(k)$.
+    约定 $A_0(k)=k$.
+\end{definition}
+
+\begin{proposition}
+    在 $A_n(k)$ 中有交换关系
+    \[
+        [\partial_i,\hat{x}_j]=\delta_{ij}, \qquad
+    [\partial_i,\partial_j]=[\hat{x}_i,\hat{x}_j]=0，
+    \]
+    并且对任意 $f\in k[X]$，
+    \[
+        [\partial_i,f]=\frac{\partial f}{\partial x_i}.
+    \]
+\end{proposition}
+
+\begin{proposition}\label{prop:weyl-basis}
+    \begin{enumerate}
+        \item 对任意多重指标 $\alpha,\beta\in\mathbb{N}^n$，
+              有
+              \[
+                  \partial^\beta x^\alpha
+                  =
+                  \sum_{\beta_1+\beta_2=\beta}
+                  \binom{\beta}{\beta_1}
+                  \frac{\partial x^\alpha}{\partial x^{\beta_1}}
+                  \partial^{\beta_2}.
+              \]
+              因此
+              \[
+                  \partial^\beta x^\alpha
+                  =
+                  x^\alpha\partial^\beta+D',
+                  \quad
+                  \deg D'\le |\alpha|+|\beta|-2.
+              \]
+
+        \item 集合
+              \[
+                  \mathcal{B}=\{x^\alpha\partial^\beta:
+                  \alpha,\beta\in\mathbb{N}^n\}
+              \]
+              构成 $A_n(k)$ 作为 $k$-向量空间的一组基.
+    \end{enumerate}
+\end{proposition}
+
+\begin{theorem}
+    设 $k\langle z_1,\dots,z_{2n}\rangle$
+    为自由结合代数，
+    $J$ 为由关系
+    \[
+        [z_{i+n},z_i]-1,\quad
+        [z_i,z_j]\ (j\neq i+n)
+    \]
+    生成的双边理想，则存在 $k$-代数同构
+    \[
+        A_n(k)\cong k\langle z_1,\dots,z_{2n}\rangle/J.
+    \]
+\end{theorem}
+
+\begin{proof}
+    定义满同态
+    $\phi(z_i)=x_i,\ \phi(z_{i+n})=\partial_i$.
+    由 Weyl 关系知 $J\subset\ker\phi$，
+    从而诱导同态
+    $\bar\phi$.
+    由命题 \ref{prop:weyl-basis}，
+    标准单项式在商代数中线性无关，
+    故 $\bar\phi$ 为同构.
+\end{proof}
+
+\subsection{次数与阶}
+
+\begin{definition}
+    设
+    \[
+        D=\sum_{\alpha,\beta}
+        a_{\alpha\beta}x^\alpha\partial^\beta\in A_n.
+    \]
+    定义 $D$ 的\emph{次数}为
+    \[
+        \deg(D)=\max\{|\alpha|+|\beta|:
+        a_{\alpha\beta}\neq0\}，
+    \]
+    并约定零元的次数为 $-\infty$.
+\end{definition}
+
+\begin{theorem}
+    对任意 $D,D'\in A_n$，有：
+    \begin{enumerate}
+        \item
+              \[
+                  \deg(D+D')\le\max\{\deg D,\deg D'\}，
+              \]
+              且当 $\deg D\neq\deg D'$ 时取等号；
+        \item
+              \[
+                  \deg(DD')=\deg D+\deg D'；
+              \]
+        \item
+              \[
+                  \deg([D,D'])\le\deg D+\deg D'-2.
+              \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    Weyl 代数 $A_n$ 是整环.
+\end{corollary}
+
+\begin{definition}
+    若
+    \[
+        D=\sum_{\alpha,\beta}
+        a_{\alpha\beta}x^\alpha\partial^\beta，
+    \]
+    则定义 $D$ 的\emph{阶}为
+    \[
+        \ord(D)=\max\{|\beta|:a_{\alpha\beta}\neq0\}.
+    \]
+\end{definition}
+
+\begin{proposition}
+    阶函数满足：
+    \begin{enumerate}
+        \item
+              $\ord(P+Q)\le\max\{\ord P,\ord Q\}$；
+        \item
+              $\ord(PQ)=\ord P+\ord Q$；
+        \item
+              $\ord([P,Q])\le\ord P+\ord Q-1$.
+    \end{enumerate}
+\end{proposition}
+
+\subsection{理想结构}
+
+\begin{theorem}
+    Weyl 代数 $A_n$ 是单代数.
+\end{theorem}
+
+\begin{proof}
+    设 $I$ 为非零双边理想，
+    取次数最小的非零元 $D\in I$.
+    通过对 $[x_i,D]$ 与 $[\partial_i,D]$
+    的次数估计可推出矛盾，
+    故 $I=A_n$.
+\end{proof}
+
+\begin{corollary}
+    $A_n$ 的任意环自同态都是单射.
+\end{corollary}
+
+\subsection{$A_n$-模}
+
+\begin{proposition}
+    左 $A_n$-模 $k[X]$ 是不可约挠模，
+    且
+    \[
+        {}_{A_n}k[X]\cong
+        A_n/\sum_{i=1}^n A_n\partial_i.
+    \]
+\end{proposition}
+
+\begin{proposition}
+    商模
+    $A_n/\sum_i A_n x_i$
+    同构于 $k[\partial_1,\dots,\partial_n]$，
+    其中 $\partial_i$ 作用为乘法，
+    $x_i$ 的作用为 $-\partial/\partial\partial_i$.
+\end{proposition}
+
+\begin{theorem}
+    对任意正整数 $r$，
+    由
+    \[
+        \sigma_r(\partial_i)=\partial_i-x_i^r
+    \]
+    定义的扭曲模 $k[X]_{\sigma_r}$
+    构成一族两两不同构的不可约 $A_n$-模.
+\end{theorem}
+
+
+
+\section{维数、全纯$A_n$-模与特征簇}
+给定一个左 $A_n$-模 $M$，由于$A_n$的非交换性，$M$ 的结构可能非常复杂。
+我们可以通过选择一个良好滤过来定义 $M$ 的维数与重数，这些数值反映了 $M$ 的渐近性质和复杂度。Bernstein 不等式为我们提供了一个下界，说明非零有限生成的 $A_n$-模至少具有维数 $n$。全纯（holonomic）模是那些维数恰好为 $n$ 的模，它们具有许多优良的性质，例如 Artinian 性和有限长度。
+
+
+\subsection{维数的定义}
+我们首先定义$A_n$上的一个依度数的滤过
+对于每个 $t\ge0$，定义$A_n$上的 $k$-子空间
+\begin{equation*}
+    B_t:=\left\{D\in A_n\mid \deg D\leq t\right\}
+\end{equation*}
+容易验证 $\mathcal{B}:=\{B_t\}_{t=0}^\infty$ 是 $A_n$ 的一个递增滤过，称为\emph{Bernstein 滤过}.
+且有下面
+\begin{proposition}
+    \begin{equation*}
+        \gr_{\mathcal{B}}A_n\cong k[x_1,\dots,x_n,\xi_1,\dots,\xi_n],
+    \end{equation*}
+    即$2n$元多项式代数。
+\end{proposition}
+有了这个滤过，我们就可以对一些性质较好的$A_n$-模$M$定义维数与重数了，也是通过滤过来定义的。
+
+
+\begin{definition}
+    设$\Gamma$为$M$关于Bernstein滤过的一个滤过，
+    若伴随分次模 $\gr_\Gamma M$
+    在 $\gr_{\mathcal{B}}A_n$ 上有限生成，
+    则称$\Gamma$为\emph{良好滤过}.
+\end{definition}
+$\gr_{\Gamma}M$的有限生成性保证了Hilbert多项式存在，从而可以定义维数与重数，同时也保证了$M$的结构不会过于复杂。
+
+有了$M$的良好过滤，取\ref{def:Hilbert 函数}中的$A=\gr_{\mathcal{B}}A_n$, $M=\gr_\Gamma M$，以及加性函数$\lambda(N)=\dim_k N$(容易验证这是有限的)，我们可以定义$M$的Hilbert多项式
+\begin{equation*}
+    \chi(t,\Gamma,M)=\sum_{i=0}^t \dim_k \Gamma_i M/\Gamma_{i-1} M
+    =
+    \dim_k \Gamma_t M
+\end{equation*}
+($\Gamma_{-1}=0$)从而定义$M$的维数和重数，也就是
+\begin{equation*}
+    d=\deg \chi(t,\Gamma,M)
+\end{equation*}
+\begin{equation*}
+    m=d!\cdot \text{首项系数}
+\end{equation*}
+对于不同的良好滤过$\Gamma$，定义的Hilbert多项式可能不同，但它们的次数和首项系数是相同的，因此维数和重数是良定义的，不依赖于具体的良好滤过。这是由下面这个命题保证
+\begin{proposition}
+    设$\Gamma$和$\Omega$为$M$的两个良好滤过，则存在常数$n_0$使得
+    $\Omega_{j-n_0}\subset\Gamma_j\subset \Omega_{j+n_0}$。
+\end{proposition}
+与此同时，具有良好滤过的$A_n$-模并不罕见，例如$A_n$的任意有限生成模都具有良好滤过(这也是我们接下来主要研究的对象).
+
+\subsubsection{例子}
+下面几个例子中，我们分别取了对应的良好滤过来计算维数和重数，展示了这些概念的具体应用。同时用$\chi(t)$来表示Hilbert多项式，计算得到的维数和重数也反映了这些模的复杂度和结构特征。
+\begin{example}
+    对正则模 ${}_{A_n}A_n$,取${}_{A_n}A_n$的良好滤过也为$\mathcal{B}$，有
+    \begin{equation*}
+        \chi(t)
+        =\dim_k B_t
+        =\binom{t+2n}{2n}
+    \end{equation*}
+    所以
+    \begin{equation*}
+        d(A_n)=2n,
+        \quad
+        m(A_n)=1.
+    \end{equation*}
+\end{example}
+
+\begin{example}
+    对$A_n$-模$k[X]$(标准作用下)，取$k[X]$的良好滤过为$\Gamma_t=k[X]_{\le t}$，即多项式的次数不超过$t$的子空间，
+    有
+    \begin{equation*}
+        \chi(t)=\binom{n+t}{n},
+    \end{equation*}
+    从而
+    \begin{equation*}
+        d(k[X])=n,
+        \quad
+        m(k[X])=1.
+    \end{equation*}
+\end{example}
+
+\subsubsection{维数的界限}
+\begin{theorem}
+    设 $M$是一个有限生成左 $A_n$-模，$N$是 $M$ 的一个子模，则
+    \begin{enumerate}
+        \item
+              $ d(M)=\max\left\{d(N),d(M/N)\right\}$
+        \item
+              如果$d(N)=d(M/N)$，则 $m(M)=m(N)+m(M/N)$
+    \end{enumerate}
+\end{theorem}
+利用上述定理，我们可以得到一些关于维数和重数的有用结论，例如有限生成模的维数不超过 $2n$，以及维数为 $n$ 的模（全纯模）的特殊性质。
+\begin{corollary}
+    设$M_1,\dots,M_s$为有限生成左 $A_n$-模，$M=\bigoplus_{i=1}^s M_i$，则
+    \begin{enumerate}
+        \item $d(M)=\max\left\{d(M_1),\dots,d(M_s)\right\}$
+        \item 如果$d(M)=d(M_j)$对任意$j$成立，则$m(M)=\sum_{i=1}^s m(M_i)$
+    \end{enumerate}
+\end{corollary}
+\begin{corollary}
+    任意有限生成左 $A_n$-模的维数不超过 $2n$.
+\end{corollary}
+
+
+\begin{theorem}[Bernstein 不等式]
+    若 $M$ 为非零有限生成左 $A_n$-模，
+    则
+    \[
+        d(M)\ge n.
+    \]
+\end{theorem}
+
+
+\subsection{全纯模}
+维数为 $n$ 的有限生成左 $A_n$-模具有许多优良的性质，我们将它们称为\emph{全纯}（Holonomic）模。这些模在 $\mathcal{D}$-模理论中扮演着重要角色，具有丰富的结构和应用。
+\begin{definition}
+    有限生成左 $A_n$-模 $M$
+    称为 \emph{Holonomic}，
+    若 $M=0$ 或 $d(M)=n$.
+\end{definition}
+
+\begin{proposition}
+    \begin{enumerate}
+        \item
+              Holonomic 模的子模与商模仍为 Holonomic；
+        \item
+              有限直和保持 Holonomic 性.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    任意 Holonomic $A_n$-模都是挠模.
+\end{proposition}
+
+\subsubsection{Artinian 性}
+
+\begin{theorem}
+    Holonomic $A_n$-模是 Artinian 的.
+\end{theorem}
+
+\begin{proof}
+    若存在严格下降链
+    \[
+        M=N_0\supsetneq N_1\supsetneq\cdots,
+    \]
+    则由重数加性得
+    \[
+        m(M)\ge\sum m(N_i/N_{i+1})\ge\text{链长},
+    \]
+    矛盾.
+\end{proof}
+
+\begin{corollary}
+    holonomic 模具有有限长度，
+    且长度不超过其重数.
+\end{corollary}
+
+\begin{corollary}
+    任意不可约 holonomic 模的重数为 $1$.
+\end{corollary}
+
+
+
+
+
+
 
 \end{document}

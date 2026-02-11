@@ -24,22 +24,22 @@
 \chapter{Ring Extensions} % Extensions
 \section{Integral Extensions} % Integral Extensions
 \begin{definition}
-    Let $S$ be a commutative ring with identity and $R$ a subring of $S$ containing $1_S$. Then $S$ is said to be an \textbf{extension ring} of $R$.
+    Let $B$ be a commutative ring with identity and $A$ a subring of $B$( containing $1_B$ ). Then $B$ is said to be an \textbf{extension ring} of $A$.
     \begin{enumerate}
         \item
-              An element $s\in S$ is said to be \textbf{integral} over $R$ if
-              $s$ is a root of  a monic polynomial in $R[x]$.
+              An element $b\in B$ is said to be \textbf{integral} over $A$ if
+              $b$ is a root of  a monic polynomial in $A[x]$.
         \item
-              If every element of $S$ is integral over $R$, $S$ is said to be an \textbf{integral extension} of $R$.
+              If every element of $B$ is integral over $A$, $B$ is said to be an \textbf{integral extension} of $A$.
         \item
-              The \textbf{integral closure} of $R$ in $S$ is the set of elements of $S$ that are integral over $R$.
+              The \textbf{integral closure} of $A$ in $B$ is the set of elements of $B$ that are integral over $A$.
         \item
-              The ring $R$ is said to be \textbf{integrally closed} in $S$ if $R$ is equal to its integral closure in $S$.
+              The ring $A$ is said to be \textbf{integrally closed} in $B$ if $A$ is equal to its integral closure in $B$.
 
-              The integral closure of an integral domain $R$ in its field of fractions is called the \textbf{normalization} of $R$. An integral domain is called integrally closed or normal if it is integrally closed in its field of fractions.
+              The integral closure of an integral domain $A$ in its field of fractions is called the \textbf{normalization} of $A$. An integral domain is called integrally closed or normal if it is integrally closed in its field of fractions.
     \end{enumerate}
     \begin{remark}
-        If follows from \cref{cor: integral extensions} that the integral closure of $R$ in $S$ is a subring of $S$ containing $R$.
+        If follows from \cref{cor: integral extensions} that the integral closure of $A$ in $B$ is a subring of $B$ containing $A$.
     \end{remark}
 \end{definition}
 
@@ -47,30 +47,30 @@
 
 \begin{theorem}
     \label{thm: integral}
-    Let $S$ be an extension ring of $R$ and $s \in S$. Then the following conditions are equivalent.
+    Let $B$ be an extension ring of $A$ and $b \in B$. Then the following conditions are equivalent.
     \begin{enumerate}
         \item
-              $s$ is integral over $R$
+              $b$ is integral over $A$
         \item
-              Subring $R[s]$ is a finitely generated $R$-module
+              Subring $A[b]$ is a finitely generated $A$-module
         \item
-              There is a subring $T$ that $R[s]\subset T\subset S$, which is finitely generated as an $R$-module;
+              There is a subring $T$ that $A[b]\subset T\subset B$, which is finitely generated as an $A$-module;
         \item
-              There is a faithful $R[s]$-submodule $M$ which is finitely generated as an $R$-module.
+              There is a faithful $A[b]$-submodule $M$ which is finitely generated as an $A$-module.
     \end{enumerate}
 \end{theorem}
 
 
 \begin{corollary}
     \label{cor: integral extensions}
-    Let $S$ be an extension ring of $R$. Then
+    Let $B$ be an extension ring of $A$. Then
     \begin{enumerate}
         \item
-              If $S$ is finitely generated as an $R$-module, then $S$ is an integral extension of $R$.
+              If $B$ is finitely generated as an $A$-module, then $B$ is an integral extension of $A$.
         \item
-              If $s_1, \ldots, s_{t} \in S$ are integral over $R$, then $R\left[s_1, \ldots, s_{t}\right]$ is a finitely generated $R$-module and an integral extension ring of $R$.
+              If $b_1, \ldots, b_{t} \in B$ are integral over $A$, then $A\left[b_1, \ldots, b_{t}\right]$ is a finitely generated $A$-module and an integral extension ring of $A$.
         \item
-              If $T$ is an integral extension ring of $S$ and $S$ is an integral extension ring of $R$, then $T$ is an integral extension ring of $R$ .
+              If $C$ is an integral extension ring of $B$ and $B$ is an integral extension ring of $A$, then $C$ is an integral extension ring of $A$ .
     \end{enumerate}
 \end{corollary}
 
@@ -82,21 +82,21 @@
         \item
               Every unique factorization domain is integrally closed.
         \item
-              In particular, the polynomial ring $F\left[x_1, \ldots, x_n\right]$ ( $F$ a field) is integrally closed in its quotient field $F\left(x_1, \ldots, x_n\right)$.
+              In particular, the polynomial ring $k\left[x_1, \ldots, x_n\right]$ over field $k$ is integrally closed in its quotient field $k\left(x_1, \ldots, x_n\right)$.
     \end{enumerate}
 \end{proposition}
 
 
 \begin{theorem}
-    Let $S$ be a multiplicative subset of an integral domain $R$ such that $0 \notin S$.
-    If $R$ is integrally closed, then $S^{-1} R$ is an integrally closed integral domain.
+    Let $S$ be a multiplicative subset of an integral domain $A$ (such that $0 \notin S$).
+    If $A$ is integrally closed, then $S^{-1} A$ is an integrally closed integral domain.
     \begin{proof}
-        $S^{-1} R$ is an integral domain and $R$ may be identified with a subring of $S^{-1} R$ by \ref{thm: ring of quotients }.
-        Extending this identification, the quotient field $Q(R)$ of $R$ may be considered as a subfield of the quotient field $Q\left(S^{-1} R\right)$ of $S^{-1} R$. Verify that $Q(R)=Q\left(S^{-1} R\right)$.
+        $S^{-1} A$ is an integral domain and $A$ may be identified with a subring of $S^{-1} A$ by \ref{thm: ring of quotients }.
+        Extending this identification, the quotient field $Q(A)$ of $A$ may be considered as a subfield of the quotient field $Q\left(S^{-1} A\right)$ of $S^{-1} A$. Verify that $Q(A)=Q\left(S^{-1} A\right)$.
 
-        Let $u \in Q\left(S^{-1} R\right)$ be integral over $S^{-1} R$; then for some $r_i \in R$ and $s_i \in S$,
+        Let $u \in Q\left(S^{-1} A\right)$ be integral over $S^{-1} A$; then for some $a_i \in A$ and $s_i \in S$,
         \begin{equation*}
-            u^n+\left(r_{n-1} / s_{n-1}\right) u^{n-1}+\cdots+\left(r_1 / s_1\right) u+\left(r_0 / s_0\right)=0 .
+            u^n+\left(a_{n-1} / s_{n-1}\right) u^{n-1}+\cdots+\left(a_1 / s_1\right) u+\left(a_0 / s_0\right)=0 .
         \end{equation*}
         Multiply through this equation by $s^n$, where $s=s_0 s_1 \cdots s_{n-1} \in S$, and conclude that $su$ is integral over $R$. Since $s u \in Q\left(S^{-1} R\right)=Q(R)$ and $R$ is integrally closed, $s u \in R$. Therefore, $u=s u / s \in S^{-1} R$, whence $S^{-1} R$ is integrally closed.
     \end{proof}
@@ -105,17 +105,17 @@
 
 
 \begin{theorem}
-    Let $S$ be an integral extension ring of $R$. Then the following statements hold.
+    Let $B$ be an integral extension ring of $A$. Then the following statements hold.
     \begin{enumerate}
         \item
-              Assume that $S$ is an integral domain. Then $R$ is a field if and only if $S$ is a field.
+              Assume that $A$ is an integral domain. Then $A$ is a field if and only if $B$ is a field.
         \item
-              Let $\mathfrak{p}$ be a prime ideal in $R$. Then there is a prime ideal $\mathfrak{q}$ in $S$ with $\mathfrak{p}=\mathfrak{q} \cap R$.
+              Let $\mathfrak{p}$ be a prime ideal in $A$. Then there is a prime ideal $\mathfrak{q}$ in $B$ with $\mathfrak{p}=\mathfrak{q} \cap A$.
 
               Moreover, $\mathfrak{p}$ is maximal if and only if $\mathfrak{q}$ is maximal.
         \item
               (The Going-up Theorem)
-              Let $\mathfrak{p}_1 \subseteq \mathfrak{p}_2 \subseteq \cdots \subseteq \mathfrak{p}_n$ be a chain of prime ideals in $R$ and suppose there are prime ideals $\mathfrak{q}_1 \subseteq \mathfrak{q}_2 \subseteq \cdots \subseteq \mathfrak{q}_m$ of $S$ with $\mathfrak{p}_i=\mathfrak{q}_i \cap R, 1 \leq i \leq m$ and $m<n$. Then the ascending chain of ideals can be completed: there are prime ideals $\mathfrak{q}_{m+1} \subseteq \cdots \subseteq \mathfrak{q}_n$ in $S$ such that $\mathfrak{p}_i=\mathfrak{q}_i \cap R$ for all $i$.
+              Let $\mathfrak{p}_1 \subseteq \mathfrak{p}_2 \subseteq \cdots \subseteq \mathfrak{p}_n$ be a chain of prime ideals in $A$ and suppose there are prime ideals $\mathfrak{q}_1 \subseteq \mathfrak{q}_2 \subseteq \cdots \subseteq \mathfrak{q}_m$ of $B$ with $\mathfrak{p}_i=\mathfrak{q}_i \cap A, 1 \leq i \leq m$ and $m<n$. Then the ascending chain of ideals can be completed: there are prime ideals $\mathfrak{q}_{m+1} \subseteq \cdots \subseteq \mathfrak{q}_n$ in $B$ such that $\mathfrak{p}_i=\mathfrak{q}_i \cap A$ for all $i$.
     \end{enumerate}
 \end{theorem}
 
@@ -538,13 +538,8 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
 
 
 
-
-
-
-
-\chapter{}
-
-\section{Number Fields and Rings of Integers} % Number Fields and Rings of Integers
+\chapter{Number Fields and Rings of Integers}
+\section{Basic Definitions}
 \begin{definition}
     A \textbf{number field} $K$ is a finite extension of the field of rational numbers $\mathbb{Q}$.
     \begin{remark}
@@ -557,17 +552,6 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
     The \textbf{ring of integers} of $K$ is the integral closure of $\mathbb{Z}$ in $K$, denoted by $\mathcal{O}_K$ or $\mathbb{Z}_K$; its elements are called the \textbf{algebraic integers} in $K$.
 \end{definition}
 
-\section{}
-
-\begin{definition}
-    Let $A=\mathbb{Z}$ and $M$ be a free $A$-module of rank $n$, the \textbf{index} of $N := \mathbb{Z} f_1+\mathbb{Z} f_2+\cdots+\mathbb{Z} f_n$ in $M$ is
-    \begin{equation*}
-        (M: N):=\left|\operatorname{det}\left(a_{i j}\right)\right|
-    \end{equation*}
-    where $\left(f_k\right)=\left(a_{ij}\right)\left(e_k\right)$ for some $A$-basis $\left\{e_k\right\}$.
-\end{definition}
-
-
 
 \section{Trace and Norm} % Trace and Norm
 \begin{definition}
@@ -576,7 +560,7 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
         T_\beta : B \rightarrow B,\quad x \mapsto \beta x
     \end{equation*}
     and the trace and determinant of this map are well-defined.
-    We call them the \textbf{trace} $\operatorname{Tr}_{B / A} \beta$ and \textbf{norm} $\operatorname{N}_{B / A} \beta$ of $\beta$ in the extension $B / A$.
+    We call them the \textbf{trace} $\operatorname{Tr}_{B / A} \beta$ and \textbf{norm} $\operatorname{Nm}_{B / A} \beta$ of $\beta$ in the extension $B / A$.
 \end{definition}
 
 
@@ -589,15 +573,15 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
         =
         \Hom_{K}\left( L, \overline{K}\right)
     \end{equation*}
-    Then the following statements hold for any $a \in L$:
+    Then the following statements hold for any $\beta \in L$:
     \begin{enumerate}
         \item
-              $\chi_a=m_a^e$ where $e=[L: K(a)]=n/\deg m_a$.
+              $\chi_\beta=m_\beta^e$ where $e=[L: K(\beta)]=n/\deg m_\beta$.
         \item
-              $\chi_a(X)=\prod_{\sigma \in \operatorname{Hom}_K(L, \overline{K})}(X-\sigma(a))$,
+              $\chi_\beta(X)=\prod_{\sigma \in \operatorname{Hom}_K(L, \overline{K})}(X-\sigma(\beta))$,
         \item
-              $\operatorname{Tr}_{L / K}(a)=\sum_{\sigma} \sigma(a)$, and
-              $\operatorname{N}_{L / K}(a)=\prod_{\sigma} \sigma(a)$.
+              $\operatorname{Tr}_{L / K}(\beta)=\sum_{\sigma} \sigma(\beta)=e\sum \beta_i $, and
+              $\operatorname{Nm}_{L / K}(\beta)=\prod_{\sigma} \sigma(\beta)=\prod \beta_i^e$.
     \end{enumerate}
     \begin{proof}
         Let $F=K(a)$, then $\overline{K}/F$ is Galois thus separable
@@ -622,122 +606,72 @@ We prove the theorem in several steps. Assume that $A$ is a commutative ring thr
     \begin{equation*}
         \operatorname{Tr}_{L / K}=\operatorname{Tr}_{F / K} \circ \operatorname{Tr}_{L / F} \text { and } \operatorname{Norm}_{L / K}=\operatorname{Norm}_{F / K} \circ \operatorname{Norm}_{L / F}
     \end{equation*}
-
 \end{corollary}
 
 
 
 
 
+
+
+
 \section{Discriminant} % Discriminant
-\subsection{}
-Let $A$ be an integral domain with fraction field $K=\operatorname{Frac}(A)$ and $L/K$ be finite separable field extension. Let $B:=A_L$ be the integral closure of $A$ in $L$.
-\begin{proposition}
-    \label{pro: pro of integral closure}
-    Then the following statements hold:
-    \begin{enumerate}
-        \item
-              Every $a \in L$ can be written as $a=\frac{s}{r}$ with $s \in B$ and $0 \neq r \in A$.
-        \item
-              $L=\operatorname{Frac}(B)$ and $B$ is integrally closed.
-    \end{enumerate}
-    If $A$ is integrally closed
-    \begin{enumerate}[resume]
-        \item
-              For any $K$-basis $\alpha_1, \ldots, \alpha_n$ of $L$, there is an element $r \in A \backslash\{0\}$ such that $r \alpha_i \in B$ for all $i=1, \ldots, n$.
-              Clearly, $\left\{r\alpha_i\right\}_{i=1}^n\subset B$ is also a $K$-basis of $L$.
-        \item
-              $B \cap K=A$.
-    \end{enumerate}
-\end{proposition}
 
-\begin{lemma}
-    Let $\alpha_1, \ldots, \alpha_n$ be a basis of $L/K$ which is contained in $B$, of discriminant $d=d\left(\alpha_1, \ldots, \alpha_n\right)$. Then one has
-    \begin{equation*}
-        d B \subseteq A \alpha_1+\cdots+A \alpha_n
-    \end{equation*}
-\end{lemma}
-
-\begin{proposition}
-    ,
-    \begin{enumerate}
-        \item
-              There exists free $A$-submodules $M$ and $M^{\prime}$ of $L$ such that
-              \begin{equation*}
-                  M \subset B \subset M^{\prime} .
-              \end{equation*}
-        \item
-              Therefore $B$ is a finitely generated $A$-module if $A$ is noetherian,
-        \item
-              If $A$ is a principal ideal domain, then every finitely generated $B$-submodule $M \neq 0$ of $L$ is a free $A$-module of rank $n$.
-              In particular, $B$ admits an integral basis over $A$.
-    \end{enumerate}
-    \begin{remark}
-        When $A$ is a principal ideal domain, a basis for $B$ as an $A$-module is called an \textbf{integral basis} of $B$ over $A$ (is also a $K$-basis of $L$).
-    \end{remark}
-    \begin{proof}
-        Let $\left\{\alpha_1, \ldots, \alpha_n\right\}\subset B$ be a basis for $L$ over $K$.
-        Because the trace pairing is nondegenerate, there is a dual basis $\left\{\alpha_1^{\prime}, \ldots, \alpha_n^{\prime}\right\}$ of $L$ over $K$ such that $\operatorname{Tr}\left(\alpha_i \cdot \alpha_j^{\prime}\right)=\delta_{i j}$.
-        We shall show that
-        \begin{equation*}
-            A \alpha_1+A \alpha_2+\cdots+A \alpha_n \subset B \subset A \alpha_1^{\prime}+A \alpha_2^{\prime}+\cdots+A \alpha_n^{\prime} .
-        \end{equation*}
-        The first inclusion is clear because the $\alpha_i$ are in $B$.
-
-        To show the second inclusion, let $b \in B$ and $b$ can be written uniquely as a linear combination $b=\sum k_j \alpha_j^{\prime}$ of the $\alpha_j^{\prime}$ with coefficients $k_j \in K$.
-        As $\alpha_i$ and $b$ are in $B$, so also is $b \cdot \alpha_i$, and so $\operatorname{Tr}\left(b \cdot \alpha_i\right) \in A$.
-        But
-        \begin{equation*}
-            \operatorname{Tr}\left(b \cdot \alpha_i\right)=\operatorname{Tr}\left(\sum_j k_j \alpha_j^{\prime} \cdot \alpha_i\right)=\sum_j k_j \operatorname{Tr}\left(\alpha_j^{\prime} \cdot \alpha_i\right)=\sum_j k_j \cdot \delta_{i j}=k_i .
-        \end{equation*}
-        Hence $k_i \in A\cap K= A$, proving the second inclusion.
-    \end{proof}
-\end{proposition}
-
-
-
-
-
-
-\subsection{Discriminant} % Discriminant
 
 \begin{definition}
-    Let $B/A$ be a ring extension, and assume that $B$ is free of rank $n$ as an $A$-module.
-
+    Let $B/A$ be a ring extension, and assume that $B$ is free of rank $n$ as an $A$-module with basis $\beta_1, \ldots, \beta_n$.
     \begin{enumerate}
         \item
-              Let $\alpha_1, \ldots, \alpha_n$ be $A$-basis of $B$.
-              We define their \textbf{discriminant} to be
-              \begin{equation*}
-                  \disc_{B/A}\left(\alpha_1, \ldots, \alpha_n\right)
-                  :=
-                  \operatorname{det}\left(\operatorname{Tr}_{B / A}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq n} .
-              \end{equation*}
-        \item
-              The \textbf{trace pairing} on $B/A$ is the bilinear pairing
+              The \textbf{trace pairing} on $B/A$ is the bilinear form defined by
               \begin{equation*}
                   B \times B \rightarrow A, \quad(x, y) \mapsto \operatorname{Tr}_{B / A}(x y)
               \end{equation*}
-              with Gram matrix $\left(\operatorname{Tr}_{B / A}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq n}$ with respect to the basis $\left\{\alpha_1, \ldots, \alpha_n\right\}$ of $B$.
         \item
-              If two basis $\left(\beta_1,\ldots,\beta_n\right)=\left(\alpha_1,\ldots,\alpha_n\right)\left(a_{ij}\right)_{1 \leq i,j \leq n}$ where $\left(a_{ij}\right)\in M_n(A)$, then
+              We define its \textbf{discriminant} to be the Gram matrix $\left(\operatorname{Tr}_{B / A}\left(\beta_i \beta_j\right)\right)_{1 \leq i, j \leq n}$ with respect to the basis $\left\{\beta_1, \ldots, \beta_n\right\}$.
               \begin{equation*}
-                  \operatorname{disc}\left(\beta_1, \ldots, \beta_n\right)=\operatorname{det}(a_{ij})^2 \operatorname{disc}\left(\alpha_1, \ldots, \alpha_n\right) .
+                  \disc_{B/A}\left(\beta_1, \ldots, \beta_n\right)
+                  :=
+                  \operatorname{det}\left(\operatorname{Tr}_{B / A}\left(\beta_i \beta_j\right)\right)_{1 \leq i, j \leq n} .
               \end{equation*}
-              Thus the discriminant of a basis of $B$ is well-defined up to multiplication by the square of a unit in $A$.
-              The ideal generated by the discriminant, or $\disc\left(\alpha_1, \ldots, \alpha_n\right)$ itself regarded as an element of $A / A^{\times 2}$, is called the \textbf{discriminant} of $B$ over $A$, denoted $\operatorname{disc}(B / A)$.
-              \begin{remark}
-                  Then elements $\gamma_1, \ldots, \gamma_n$ form a basis for $B$ as an $A$-module if and only if
-                  \begin{equation*}
-                      \left(\disc\left(\gamma_1, \ldots, \gamma_n\right)\right)=(\disc(B / A)) \quad(\text { as ideals in } A) .
-                  \end{equation*}
-              \end{remark}
     \end{enumerate}
+    \begin{remark}
+        If two basis $\left(\gamma_1,\ldots,\gamma_n\right)=\left(\beta_1,\ldots,\beta_n\right)\left(a_{ij}\right)_{1 \leq i,j \leq n}$ where $\left(a_{ij}\right)\in M_n(A)$, then
+        \begin{equation*}
+            \operatorname{disc}\left(\gamma_1, \ldots, \gamma_n\right)=\operatorname{det}(a_{ij})^2 \operatorname{disc}\left(\beta_1, \ldots, \beta_n\right) .
+        \end{equation*}
+        Thus we regarded $\disc\left(\beta_1, \ldots, \beta_n\right)$ as an element of $A / A^{\times 2}$, is called the \textbf{discriminant} of $B$ over $A$, denoted $\operatorname{disc}(B / A)$.
+    \end{remark}
 \end{definition}
 
 
+\begin{proposition}
+    Let $L / K$ be a finite separable field extension of degree $n$, $\left\{\beta_i\right\}$ a $K$-basis of $L$ and $\operatorname{Hom}_K(L, \overline{K})=\left\{\sigma_1, \ldots, \sigma_n\right\}$.
+    Then let matrix $D=D\left(\beta_1,\ldots,\beta_n\right):=\left(\sigma_i\left(\beta_j\right)\right)_{1 \leq i, j \leq n}$, the following statements hold:
+    \begin{enumerate}
+        \item
+              Then $D^{\operatorname{tr}} D$ is the Gram matrix of the $\operatorname{Tr}_{L / K}(- \cdot -)$ with respect to $\left\{\beta_i\right\}$.
+              That is,
+              \begin{equation*}
+                  D^{\operatorname{tr}} D=\left(\operatorname{Tr}_{L / K}\left(\beta_i \beta_j\right)\right)_{1 \leq i, j \leq n}
+              \end{equation*}
+              Consequently, $\operatorname{disc}_{L/K}\left(\beta_1, \ldots, \beta_n\right)=\left(\operatorname{det} D\left(\beta_1, \ldots, \beta_n\right)\right)^2$.
+
+        \item
+              Let $L=K(\beta)$ for some primitive element $\beta$, then
+              \begin{equation*}
+                  \operatorname{disc}\left(1, \beta, \ldots, \beta^{n-1}\right)
+                  =
+                  \det\left(\beta_i^{k-1}\right)_{1 \leq i, k \leq n}
+                  =
+                  \prod_{1 \leq i<j \leq n}\left(\beta_j-\beta_i\right)^2\neq 0 .
+              \end{equation*}
+              where $\beta_i=\sigma_i(\beta)$ are the conjugates of $\beta$.
 
 
+        \item
+              Therefore $\operatorname{disc}\left(L/K\right)$ is non-zero and the trace pairing on $L / K$ is non-degenerate.
+    \end{enumerate}
+\end{proposition}
 
 
 \begin{definition}
@@ -770,33 +704,6 @@ Let $A$ be an integral domain with fraction field $K=\operatorname{Frac}(A)$ and
 
 
 
-\begin{proposition}
-    Let $L / K$ be a finite separable field extension of degree $n$, $\left\{\alpha_i\right\}$ a $K$-basis of $L$ and $\operatorname{Hom}_K(L, \overline{K})=\left\{\sigma_1, \ldots, \sigma_n\right\}$.
-    Then let matrix $D=D\left(\alpha_1,\ldots,\alpha_n\right):=\left(\sigma_i\left(\alpha_j\right)\right)_{1 \leq i, j \leq n}$, the following statements hold:
-    \begin{enumerate}
-        \item
-              Then $D^{\operatorname{tr}} D$ is the Gram matrix of the $\operatorname{Tr}_{L / K}(- \cdot -)$ with respect to $\left\{\alpha_i\right\}$.
-              That is,
-              \begin{equation*}
-                  D^{\operatorname{tr}} D=\left(\operatorname{Tr}_{L / K}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq n}
-              \end{equation*}
-              Consequently, $\operatorname{det}\left(\operatorname{Tr}_{L / K}\left(\alpha_i \alpha_j\right)\right)_{1 \leq i, j \leq n}=\left(\operatorname{det} D\left(\alpha_1, \ldots, \alpha_n\right)\right)^2$.
-
-        \item
-              Let $L=K(a)$ for some primitive element $a$, then
-              \begin{equation*}
-                  \operatorname{disc}\left(1, a, \ldots, a^{n-1}\right)
-                  =
-                  \det\left(\sigma_i(a)^{k-1}\right)_{1 \leq i, k \leq n}
-                  =
-                  \prod_{1 \leq i<j \leq n}\left(\sigma_j(a)-\sigma_i(a)\right)^2\neq 0 .
-              \end{equation*}
-
-
-        \item
-              Therefore $\operatorname{disc}\left(L/K\right)$ is non-zero and the trace pairing on $L / K$ is non-degenerate.
-    \end{enumerate}
-\end{proposition}
 
 
 
@@ -807,6 +714,106 @@ Let $A$ be an integral domain with fraction field $K=\operatorname{Frac}(A)$ and
 
 
 
+\section{Rings of integers are finitely generated}
+Let $A$ be an integral domain with fraction field $K=\operatorname{Frac}(A)$ and $L/K$ be finite separable field extension of degree $n$.
+Let $B:=A_L$ be the integral closure of $A$ in $L$.
+\begin{proposition}
+    \label{pro: pro of integral closure}
+    Then the following statements hold:
+    \begin{enumerate}
+        \item
+              Every $l \in L$ can be written as $l=\frac{b}{a}$ with $b \in B$ and $0 \neq a \in A$.
+        \item
+              $L=\operatorname{Frac}(B)$ and $B$ is integrally closed.
+        \item
+              For any $K$-basis $\beta_1, \ldots, \beta_n$ of $L$, there is an element $a \in A \backslash\{0\}$ such that $a \beta_i \in B$ for all $i=1, \ldots, n$.
+              Clearly, $\left\{a\beta_i\right\}_{i=1}^n\subset B$ is also a $K$-basis of $L$.
+    \end{enumerate}
+    If $A$ is integrally closed
+    \begin{enumerate}[resume]
+
+        \item
+              $B \cap K=A$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+    \begin{equation*}
+        \disc\left(B/A\right)\neq 0
+    \end{equation*}
+\end{corollary}
+\begin{lemma}
+    Let $\beta_1, \ldots, \beta_n$ be a basis of $L/K$ which is contained in $B$, of discriminant $d=\disc_{L/K}\left(\beta_1, \ldots, \beta_n\right)$. Then one has
+    \begin{equation*}
+        d B \subseteq A \beta_1+\cdots+A \beta_n
+    \end{equation*}
+    \begin{proof}
+        If $\beta=k_1 \beta_1+\cdots+k_n \beta_n \in B, k_j \in K$, then the $k_j$ are a solution of the system of linear equations
+        \begin{equation*}
+            \operatorname{Tr}_{L \mid K}\left(\beta_i \beta\right)=\sum_j \operatorname{Tr}_{L \mid K}\left(\beta_i \beta_j\right) k_j,
+        \end{equation*}
+        and, as $\operatorname{Tr}_{L \mid K}\left(\beta_i \beta\right), d=\det \left(\operatorname{Tr}_{L \mid K}\left(\beta_i \beta_j\right)\right)\in A$.
+        Therefore $d k_j \in A$, and thus
+
+        \begin{equation*}
+            d \beta \in A \beta_1+\cdots+A \beta_n .
+        \end{equation*}
+    \end{proof}
+\end{lemma}
+
+\begin{proposition}
+    ,\label{pro:Rings of integers are finitely generated}
+    \begin{enumerate}
+        \item
+              There exists free $A$-submodules $M$ and $M^{\prime}$ of $L$ such that
+              \begin{equation*}
+                  M \subset B \subset M^{\prime} .
+              \end{equation*}
+        \item
+              Therefore $B$ is a finitely generated $A$-module if $A$ is noetherian,
+        \item
+              If $A$ is a principal ideal domain, then every finitely generated $B$-submodule $M \neq 0$ of $L$ is a free $A$-module of rank $n$.
+              In particular, $B$ admits an integral basis over $A$.
+    \end{enumerate}
+    \begin{remark}
+        When $A$ is a principal ideal domain, a basis for $B$ as an $A$-module is called an \textbf{integral basis} of $B$ over $A$ (is also a $K$-basis of $L$).
+    \end{remark}
+    \begin{proof}
+        Let $\left\{\beta_1, \ldots, \beta_n\right\}\subset B$ be a basis for $L$ over $K$.
+        Because the trace pairing is nondegenerate, there is a dual basis $\left\{\beta_1^{\prime}, \ldots, \beta_n^{\prime}\right\}$ of $L$ over $K$ such that $\operatorname{Tr}\left(\beta_i \cdot \beta_j^{\prime}\right)=\delta_{i j}$.
+        We shall show that
+        \begin{equation*}
+            A \beta_1+A \beta_2+\cdots+A \beta_n \subset B \subset A \beta_1^{\prime}+A \beta_2^{\prime}+\cdots+A \beta_n^{\prime} .
+        \end{equation*}
+        The first inclusion is clear because the $\beta_i$ are in $B$.
+
+        To show the second inclusion, let $b \in B$ and $b$ can be written uniquely as a linear combination $b=\sum k_j \beta_j^{\prime}$ of the $\beta_j^{\prime}$ with coefficients $k_j \in K$.
+        As $\beta_i$ and $b$ are in $B$, so also is $b \cdot \beta_i$, and so $\operatorname{Tr}\left(b \cdot \beta_i\right) \in A$.
+        But
+        \begin{equation*}
+            \operatorname{Tr}\left(b \cdot \beta_i\right)=k_i .
+        \end{equation*}
+        Hence $k_i \in A\cap K= A$, proving the second inclusion.
+    \end{proof}
+\end{proposition}
+
+
+
+\begin{corollary}
+    The ring of integers $\mathcal{O}_L$ is the largest subring of $L$ that is finitely generated as a $\mathbb{Z}$-module.
+
+    By \cref{pro:Rings of integers are finitely generated},  every finitely generated $\mathcal{O}_L$-submodule $\mathfrak{a}$ of $L$ admits a $\mathbb{Z}$-basis $\alpha_1, \ldots, \alpha_n$,
+
+    \begin{equation*}
+        \mathfrak{a}=\mathbb{Z} \alpha_1+\cdots+\mathbb{Z} \alpha_n .
+    \end{equation*}
+    The discriminant
+    \begin{equation*}
+        d\left(\alpha_1, \ldots, \alpha_n\right)=\operatorname{det}\left(\left(\sigma_i \alpha_j\right)\right)^2
+    \end{equation*}
+    is independent of the choice of a $\mathbb{Z}$-basis.
+\end{corollary}
+
 
 
 
@@ -814,7 +821,7 @@ Let $A$ be an integral domain with fraction field $K=\operatorname{Frac}(A)$ and
 \section{Ramification}
 In this section, let $A$ be a Dedekind domain with field of fractions $K$, and let $B$ be the integral closure of $A$ in a finite separable extension $L$ of $K$.
 \begin{theorem}
-    $B$ is also a Dedekind domain.
+    The $B$ is also a Dedekind domain and is a free $A$-module of rank $[L: K]$.
 \end{theorem}
 
 
@@ -828,16 +835,21 @@ In this section, let $A$ be a Dedekind domain with field of fractions $K$, and l
     wher $\mathfrak{P}$ are distinct prime ideals in $B$ and $e_i\geq 1$,
     \begin{enumerate}
         \item
-              We say $\mathfrak{P}$ divides $\mathfrak{p}$,written $\mathfrak{P} \mid \mathfrak{p}$, if $\mathfrak{P}$ occurs in the factorization of $\mathfrak{p}$ in $B$.
+              We say $\mathfrak{P}$ divides $\mathfrak{p}$,written $\mathfrak{P} \mid \mathfrak{p}$, if $\mathfrak{P}$ occurs in the factorization of $\mathfrak{p}$ in $B$ (i.e.$\mathfrak{p}=\mathfrak{P}\cap A$).
               The number $e_i$ is called the \textbf{ramification index} of $\mathfrak{P}_i$ over $\mathfrak{p}$.
         \item
-              If any of the numbers is $>1$, then we say that $\mathfrak{p}$ is \textbf{ramified}.
+              If $e_i >1$ for some $i$, then we say that $\mathfrak{p}$ is \textbf{ramified}.
+        \item
+              If $e_i=1$ for all $i$, then we say that $\mathfrak{p}$ is \textbf{unramified}.
+        \item If $g=1$, then we say that $\mathfrak{p}$ is \textbf{totally ramified}.
+        \item If $g=n$, then we say that $\mathfrak{p}$ is \textbf{split}.
+        \item If $g=1=e$, then we say that $\mathfrak{p}$ is \textbf{inert}.
 
     \end{enumerate}
     We then write $e(\mathfrak{P} / \mathfrak{p})$ for the ramification index and $f(\mathfrak{P} / \mathfrak{p})$ for the degree of the field extension $[B / \mathfrak{P}: A / \mathfrak{p}]$ (called the \textbf{residue class degree}).
     \begin{enumerate}[resume]
         \item
-              $\mathfrak{p}$ is said to \textbf{split} (or split completely) in $L$ if $e_i=f_i=1$ for all $i$
+              $\mathfrak{p}$ is said to \textbf{split} (or split completely) in $L$ if $e_i=f_i=1$ for all $i$ (so $g=m$).
 
         \item
               $\mathfrak{p}$ is said to be \textbf{inert} in $L$ if $\mathfrak{p}$ is a prime ideal in $B$ (so $g=1=e$ ).
@@ -846,9 +858,8 @@ In this section, let $A$ be a Dedekind domain with field of fractions $K$, and l
 
 
 \begin{theorem}
-    Let $m$ be the degree of $L$ over $K$, and let $\mathfrak{P}_1, \ldots, \mathfrak{P}_g$ be the prime ideals dividing $\mathfrak{p}$; then
     \begin{equation*}
-        \sum_{i=1}^g e_i f_i=m
+        \sum_{i=1}^g e_i f_i= [L: K]
     \end{equation*}
     where $e_i=e\left(\mathfrak{P}_i / \mathfrak{p}\right)$ and $f_i=f\left(\mathfrak{P}_i / \mathfrak{p}\right)$. If $L$ is Galois over $K$, then all the ramification numbers are equal, and all the residue class degrees are equal, and so
 
@@ -861,7 +872,7 @@ In this section, let $A$ be a Dedekind domain with field of fractions $K$, and l
 Again $A$ is a Dedekind domain with field of fractions $K$, and $B$ is the integral closure of $A$ in a finite separable extension $L$ of $K$.
 \begin{theorem}
     Assume that $B$ is a free $A$-module.
-    Then a prime $\mathfrak{p}$ ramifies in $L$ if and only if $\mathfrak{p} \mid \operatorname{disc}(B / A)$. In particular, only finitely many prime ideals ramify.
+    Then a prime $\mathfrak{p}$ ramifies in $L$ if and only if $\mathfrak{p} \mid \operatorname{disc}( L/ K)$. In particular, only finitely many prime ideals ramify.
 \end{theorem}
 
 
@@ -875,29 +886,92 @@ Again $A$ is a Dedekind domain with field of fractions $K$, and $B$ is the integ
     Moreover, the residue field $B /\left(\mathfrak{p}, g_i(\alpha)\right) \simeq(A / \mathfrak{p})[X] /\left(\bar{g}_i\right)$, and so the residue class degree $f_i$ is equal to the degree of $g_i$.
 \end{theorem}
 
+\subsection{Hilbert's Ramification Theory}
+In this subsection, let $A$ be a Dedekind domain with field of fractions $K$, and let $B$ be the integral closure of $A$ in a finite Galois extension $L$ of $K$ with Galois group $G$.
 
 
 
+\begin{proposition}
+    Given a prime ideal $\mathfrak{p}$ in $A$.
+    The Galois group $G$ acts transitively on the set of all prime ideals $\mathfrak{P}$ of $B$ lying above $\mathfrak{p}$.
+    \begin{proof}
+        Suppose that $\mathfrak{P} \neq \sigma \mathfrak{Q}$ for any $\sigma \in G$. There exists an element $x \in B$ such that
+        \begin{equation*}
+            \begin{cases}
+                 & x \equiv 0(\bmod \mathfrak{P})                                          \\
+                 & x \equiv 1(\bmod \sigma \mathfrak{Q}), \quad \text { all } \sigma \in G
+            \end{cases}
+        \end{equation*}
+        by the Chinese remainder theorem.
+        The norm
+        \begin{equation*}
+            \Nm_{L/K}(x)=\prod_{\sigma \in G} \sigma x
+        \end{equation*}
+        lies in $B \cap K=A$ (because $A$ is integrally closed), and lies in $\mathfrak{P} \cap A=\mathfrak{p}$.
+        But $x \notin \sigma \mathfrak{Q}$ for all $\sigma \in G$, so that $\sigma x \notin \mathfrak{Q}$ for all $\sigma \in G$. This contradicts the fact that the norm of $x$ lies in $\mathfrak{p}=\mathfrak{O} \cap A$.
+    \end{proof}
+\end{proposition}
+
+\begin{definition}
+    If $\mathfrak{P}$ is a prime ideal of $B$,
+    \begin{enumerate}
+        \item
+              The subgroup
+              \begin{equation*}
+                  G_{\mathfrak{P}}=\{\sigma \in G \mid \sigma \mathfrak{P}=\mathfrak{P}\}
+              \end{equation*}
+              is called the \textbf{decomposition group} of $\mathfrak{P}$ over $K$.
+        \item
+              The fixed field
+              \begin{equation*}
+                  Z_{\mathfrak{P}}=\left\{x \in L \mid \sigma x=x \quad \text { for all } \sigma \in G_{\mathfrak{P}}\right\}
+              \end{equation*}
+              is called the \textbf{decomposition field} of $\mathfrak{P}$ over $K$.
+    \end{enumerate}
+    \begin{remark}
+        $G_{\mathfrak{P}}$ is the stabilizer of $\mathfrak{P}$ under the action and $Z_{\mathfrak{P}}$ is the fixed field of $G_{\mathfrak{P}}$ in $L/K$.
+    \end{remark}
+\end{definition}
 
 
-
-
-
-
-
-
-
-
-
-
-\chapter{Dirichlet Unit Theorem}
-\begin{theorem} [Dirichlet]
-    Let $K$ be a number field of degree $n=r_1+2 r_2$. Then there is a group isomorphism
+\begin{proposition}
+    The inertia degrees $f_1, \ldots, f_g$ and the ramification indices $e_1, \ldots, e_g$ in the prime decomposition
     \begin{equation*}
-        \mathcal{O}_K^{\times} \simeq \mu_K \times \mathbb{Z}^{r_1+r_2-1},
+        \mathfrak{p}=\mathfrak{P}_1^{e_1} \ldots \mathfrak{P}_r^{e_r}
     \end{equation*}
-    where $\mu_K$ is the torsion subgroup of $\mathcal{O}_K^{\times}$ (the finite cyclic subgroup consisting of roots of unity)
-\end{theorem}
+    of a prime ideal $\mathfrak{p}$ of $K$ are both independent of $i$,
+    \begin{equation*}
+        f_1=\cdots=f_r=f, \quad e_1=\cdots=e_r=e .
+    \end{equation*}
+
+    \begin{proof}
+        In fact, writing $\mathfrak{P}=\mathfrak{P}_1$, we find $\mathfrak{P}_i=\sigma_i \mathfrak{P}$ for suitable $\sigma_i \in G$, and the isomorphism $\sigma_i:B \rightarrow B$ induces an isomorphism
+        \begin{equation*}
+            B / \mathfrak{P} \xrightarrow{\sim} B / \sigma_i \mathfrak{P}, \quad a \bmod \mathfrak{P} \longmapsto \sigma_i a \bmod \sigma_i \mathfrak{P},
+        \end{equation*}
+        so that
+        \begin{equation*}
+            f_i=\left[B / \sigma_i \mathfrak{P}: B / \mathfrak{p}\right]=[B / \mathfrak{P}: B / \mathfrak{p}], \quad i=1, \ldots, r .
+        \end{equation*}
+        Furthermore, since $\sigma_i(\mathfrak{p} B)=\mathfrak{p} B$, we deduce from
+        \begin{equation*}
+            \mathfrak{P}^v\left|\mathfrak{p} B \Longleftrightarrow \sigma_i\left(\mathfrak{P}^v\right)\right| \sigma_i(\mathfrak{p} B) \Longleftrightarrow\left(\sigma_i \mathfrak{P}\right)^v \mid \mathfrak{p} B
+        \end{equation*}
+        the equality of the $e_i, i=1, \ldots, r$.
+    \end{proof}
+    \begin{remark}
+        Thus the prime decomposition of $\mathfrak{p}$ in $B$ takes on the following simple form in the Galois case:
+        \begin{equation*}
+            \mathfrak{p}=\left(\prod_\sigma \sigma \mathfrak{P}\right)^e,
+        \end{equation*}
+        where $\sigma$ varies over a system of representatives of $G / G_{\mathfrak{P}}$. The decomposition field $Z_{\mathfrak{P}}$ of $\mathfrak{P}$ over $K$ has the following significance for the decomposition of $\mathfrak{p}$ and the invariants $e$ and $f$.
+    \end{remark}
+\end{proposition}
+
+
+
+
+
 
 
 

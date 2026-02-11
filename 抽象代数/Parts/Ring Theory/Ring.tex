@@ -79,7 +79,6 @@
     \end{enumerate}
 \end{proposition}
 
-\subsection{Characteristic} % Characteristic
 \begin{definition}
     Let $A$ be a ring.
     If there is a least positive integer $n$ such that $nr=0$ for all $r \in A$, then $A$ is said to have \textbf{characteristic} $n$ . If no such $n$ exists $A$ is said to have characteristic zero. (Notation: $\char{A}={n}$).
@@ -90,13 +89,13 @@
     Let $A$ be a ring with identity $1_{A}$ and characteristic ${n}>0$.
     \begin{enumerate}
         \item
-              If $\varphi: \mathbb{Z} \rightarrow R$ is the map given by ${m} \mapsto m 1_{{R}}$, then $\varphi$ is a homomorphism of rings with kernel $\langle{n}\rangle=n\mathbb{Z}$.
+              If $\varphi: \mathbb{Z} \rightarrow A$ is the map given by ${m} \mapsto m 1_{{A}}$, then $\varphi$ is a homomorphism of rings with kernel $\langle{n}\rangle=n\mathbb{Z}$.
 
         \item
-              $n$ is the least positive integer such that ${n} 1_{{R}}=0$.
+              $n$ is the least positive integer such that ${n} 1_{{A}}=0$.
 
         \item
-              If $R$ has no zero divisors (in particular if $R$ is an integral domain), then $n$ is prime.
+              If $A$ has no zero divisors (in particular if $A$ is an integral domain), then $n$ is prime.
     \end{enumerate}
 \end{theorem}
 
@@ -104,26 +103,26 @@
 \section{Ideal} % Ideal
 \subsection{Definition and Quotient Ring} % Definition and Quotient Ring
 \begin{definition}
-    Let $R$ be a ring.
-    A subset $\mathfrak{a}$ of $R$ is a \textbf{left ideal} of $R$ if
+    Let $A$ be a ring.
+    A subset $\mathfrak{a}$ of $A$ is a \textbf{left ideal} of $A$ if
     \begin{enumerate}[label=(\roman*)]
         \item
-              $\mathfrak{a}$ is an additive subgroup of $R$,
+              $\mathfrak{a}$ is an additive subgroup of $A$,
         \item
-              $\mathfrak{a}$ is closed under left multiplication by elements from $R$, i.e., $r \mathfrak{a} \subseteq \mathfrak{a}$ for all $r \in R$.
+              $\mathfrak{a}$ is closed under left multiplication by elements from $A$, i.e., $r \mathfrak{a} \subseteq \mathfrak{a}$ for all $r \in A$.
     \end{enumerate}
-    A subset $\mathfrak{b}$ that is both a left ideal and a right ideal is called an \textbf{ideal} (or a \textbf{two-sided ideal}) of $R$.
-    An ideal $\mathfrak{b}$ is \textbf{proper} if $\mathfrak{b} \neq R$ and $\mathfrak{b} \neq 0$. The ideal $\{0\}$ is called the \textbf{trivial ideal} and is denoted by $0$.
+    A subset $\mathfrak{b}$ that is both a left ideal and a right ideal is called an \textbf{ideal} (or a \textbf{two-sided ideal}) of $A$.
+    An ideal $\mathfrak{b}$ is \textbf{proper} if $\mathfrak{b} \neq A$ and $\mathfrak{b} \neq 0$. The ideal $\{0\}$ is called the \textbf{trivial ideal} and is denoted by $0$.
 \end{definition}
 
 \begin{theorem}
-    Let $R$ be a ring.
-    A nonempty subset $\mathfrak{a}$ of a ring $R$ is a left [resp. right] ideal if and only if for all $a,{b} \in {\mathfrak{a}}$ and ${r} \in R$ :
+    Let $A$ be a ring.
+    A nonempty subset $\mathfrak{a}$ of a ring $A$ is a left [resp. right] ideal if and only if for all $a,{b} \in {\mathfrak{a}}$ and ${r} \in A$ :
     \begin{enumerate}[label=(\roman*)]
         \item
               $a, {b} \in {\mathfrak{a}} \quad \Rightarrow \quad a-{b} \in {\mathfrak{a}}$
         \item
-              $a \in {\mathfrak{a}}, {r} \in {R} \quad \Rightarrow \quad {ra} \in {\mathfrak{a}}$
+              $a \in {\mathfrak{a}}, {r} \in {A} \quad \Rightarrow \quad {ra} \in {\mathfrak{a}}$
               $[$resp. ${ar} \in {\mathfrak{a}}$$]$
     \end{enumerate}
 \end{theorem}
@@ -149,15 +148,14 @@
 \end{corollary}
 
 \begin{definition}
-    Let $R$ be a ring and let $\mathfrak{a}$ be an ideal of $R$. Then the (additive) quotient group $R / \mathfrak{a}$ is a ring called the \textbf{quotient ring of $R$ by $\mathfrak{a}$} under the binary operations:
+    Let $A$ be a ring and let $\mathfrak{a}$ be an ideal of $A$. Then the (additive) quotient group $A / \mathfrak{a}$ is a ring called the \textbf{quotient ring of $A$ by $\mathfrak{a}$} under the binary operations:
     \begin{equation*}
         (r+\mathfrak{a})+(s+\mathfrak{a})=(r+s)+\mathfrak{a} \quad \text { and } \quad(r+\mathfrak{a}) \times(s+\mathfrak{a})=(r s)+\mathfrak{a}
     \end{equation*}
-    for all $r, s \in R$.
-
-    Conversely, if $\mathfrak{b}$ is any subgroup such that the above operations are well defined, then $\mathfrak{b}$ is an ideal of $R$.
+    for all $r, s \in A$.
+    Conversely, if $\mathfrak{b}$ is any subgroup such that the above operations are well defined, then $\mathfrak{b}$ is an ideal of $A$.
     \begin{remark}
-        If $\mathfrak{a}$ is a left [resp. right] ideal of $R$, then the quotient group $R / \mathfrak{a}$ is left [resp. right] $R$-module under the operation
+        If $\mathfrak{a}$ is a left [resp. right] ideal of $A$, then the quotient group $A / \mathfrak{a}$ is left [resp. right] $A$-module under the operation
     \end{remark}
 \end{definition}
 
@@ -165,25 +163,26 @@
 \subsection{Ideals generated by a set}
 % Ideals generated by a set
 \begin{definition}
-    Let $A_1, A_2, \ldots, A_n$ be nonempty subsets of a rng $R$.
+    Let $X_1, X_2, \ldots, X_n$ be nonempty subsets of a ring $A$.
     Then
     \begin{enumerate}
-        \item Denote by $A_1+A_2+\cdots+A_n$ the set
+        \item
+              Denote by $X_1+X_2+\cdots+X_n$ the set
               \begin{equation*}
-                  \left\{a_1+a_2+\cdots+a_n : a_i \in A_i, i=1,2, \ldots, n\right\}
+                  \left\{x_1+x_2+\cdots+x_n : x_i \in X_i, i=1,2, \ldots, n\right\}
               \end{equation*}
 
         \item
-              If $A$ and $B$ are nonempty subsets of $R$ let $A B$ denote the set of all finite sums
+              If $X$ and $Y$ are nonempty subsets of $A$ let $X Y$ denote the set of all finite sums
               \begin{equation*}
-                  \left\{a_1 b_1+\cdots+a_n b_n : n \in \mathbb{Z}_{\geq 1} ; a_i \in A , b_i \in B \right\}
+                  \left\{x_1 y_1+\cdots+x_n y_n : n \in \mathbb{Z}_{\geq 1} ; x_i \in X , y_i \in Y \right\}
               \end{equation*}
-              If $A$ consists of a single element $a$, we write $a B$ for $A B$. Similarly if $B=\{b\}$, we write $A b$ for $A B$.
+              If $X$ consists of a single element $x$, we write $x Y$ for $X Y$. Similarly if $Y=\{y\}$, we write $X y$ for $X Y$.
     \end{enumerate}
 \end{definition}
 
 \begin{theorem}
-    Let $A, A_1, A_2, \ldots, A_{{n}}, {B}$ and $C$ be subsets of ring $R$.
+    Let $A, A_1, A_2, \ldots, A_{{n}}, {B}$ and $C$ be subsets of ring $A$.
     Then
     \begin{enumerate}
         \item  $(A+{B})+{C}=A+({B}+{C})$; $A+B=B+A$
@@ -203,9 +202,8 @@
     An ideal $(x)$  generated by a single element is called a \textbf{principal ideal}. A principal ideal ring is a ring in which every ideal is principal. A principal ideal ring which is an integral domain is called a \textbf{principal ideal domain}.
 \end{definition}
 
-\begin{theorem}
-    \label{thm: Ideals generated by a set}
-    Let $R$ be a rng and $X \subset R$,
+\begin{proposition}
+    Let $A$ be a ring and $X \subset A$,
     then
     \begin{enumerate}
         \item
@@ -213,22 +211,20 @@
               \begin{equation*}
                   \left(X\right)_l
                   =
-                  RX
+                  AX
                   \quad  \text{  [resp.] }
-                  \left(X\right)_r= +XR
+                  \left(X\right)_r= XA
               \end{equation*}
               the (two-sided) ideal generated by $X$ is
               \begin{equation*}
                   \left(X\right)
                   =
-                  RX+XR +RXR
+                  AX+XA +AXA
               \end{equation*}
         \item
-              if $R$ has identity, we have $\left(X\right)_l=RX$,$\left(X\right)_r=RX$ and $\left(X\right)=RX+XR+RXR$
-        \item
-              if $R$ is commutative, $\left(X\right)_l=\left(X\right)_r=\left(X\right)=RX$
+              if $A$ is commutative, $\left(X\right)_l=\left(X\right)_r=\left(X\right)=AX$
     \end{enumerate}
-\end{theorem}
+\end{proposition}
 
 
 
@@ -263,14 +259,14 @@
 
 \begin{corollary}
     \label{cor: Prime ideal}
-    Let $R$ be a commutative ring and $\mathfrak{p}$ be an ideal in $R$. The following conditions are equivalent.
+    Let $A$ be a commutative ring and $\mathfrak{p}$ be an ideal in $A$. The following conditions are equivalent.
     \begin{enumerate}
         \item
               Ideal $\mathfrak{p}$ is prime
         \item
-              $R-\mathfrak{p}$ is a multiplicative set.
+              $A-\mathfrak{p}$ is a multiplicative set of $A$.
         \item
-              ${R} / \mathfrak{p} $ is an integral domain.
+              ${A} / \mathfrak{p} $ is an integral domain.
     \end{enumerate}
 \end{corollary}
 
@@ -321,38 +317,15 @@
 
 \begin{theorem}
     \label{thm: maximal ideal}
-    Let $\mathfrak{m}$ be an ideal in a ring $R$ with identity $1_R \neq 0$.
+    Let $\mathfrak{m}$ be an ideal in a ring $A$ with identity $1_A \neq 0$.
     \begin{enumerate}
         \item
-              If $\mathfrak{m}$ is maximal and $R$ is commutative, then the quotient ring $R / M$ is a field.
+              If $\mathfrak{m}$ is maximal and $A$ is commutative, then the quotient ring $A / \mathfrak{m}$ is a field.
 
         \item
-              If the quotient ring $R / \mathfrak{m}$ is a division ring, then $\mathfrak{m}$ is maximal.
+              If the quotient ring $A / \mathfrak{m}$ is a division ring, then $\mathfrak{m}$ is maximal.
     \end{enumerate}
-    \begin{remark}
-
-    \end{remark}
 \end{theorem}
-
-\begin{corollary}
-    \label{cor: equivalent conditions of field}
-    The following conditions on a commutative ring $R$ with identity $1_R \neq 0$ are equivalent.
-    \begin{enumerate}
-        \item
-              $R$ is a field.
-
-        \item
-              $R$ has only trivial ideals.
-
-        \item
-              $0$ is a maximal ideal in $R$.
-
-        \item
-              $R$ is simple.
-        \item
-              every nonzero homomorphism of rings $R \rightarrow {S}$ is a monomorphism.
-    \end{enumerate}
-\end{corollary}
 
 
 
@@ -362,6 +335,9 @@ Assume that $A$ is a commutative ring with identity.
     The ideals $\mathfrak{a}$ and $\mathfrak{b}$ of the ring $A$ are said to be \textbf{comaximal} if $\mathfrak{a}+\mathfrak{b}=A$.
 \end{definition}
 
+\begin{lemma}
+    If $\mathfrak{a}_1$ and $\mathfrak{a}_2$ are comaximal ideals in $A$, then $\mathfrak{a}_1 \mathfrak{a}_2=\mathfrak{a}_1 \cap \mathfrak{a}_2$.
+\end{lemma}
 
 \begin{theorem}[Chinese Remainder Theorem]
     Let $A$ be a commutative ring with $1_A\neq 0$ and $\mathfrak{a}_1, \mathfrak{a}_2, \ldots, \mathfrak{a}_k$ be ideals in $A$. Then
@@ -378,9 +354,9 @@ Assume that $A$ is a commutative ring with identity.
               is a ring homomorphism with kernel $\mathfrak{a}_1 \cap \mathfrak{a}_2 \cap \cdots \cap \mathfrak{a}_k$.
 
         \item
-              If for each $i, j \in\{1,2, \ldots, k\}$ with $i \neq j$ the ideals $\mathfrak{a}_i$ and $\mathfrak{a}_j$ are comaximal, then this map is surjective and
+              If $\mathfrak{a}_i$ are comaximal in pairs, then this map is surjective and
               \begin{equation*}
-                  \quad R /\left(\mathfrak{a}_1 \mathfrak{a}_2 \cdots \mathfrak{a}_k\right)=R /\left(\mathfrak{a}_1 \cap \mathfrak{a}_2 \cap \cdots \cap \mathfrak{a}_k\right) \cong R / \mathfrak{a}_1 \times R / \mathfrak{a}_2 \times \cdots \times R / \mathfrak{a}_k
+                  \quad A /\left(\mathfrak{a}_1 \mathfrak{a}_2 \cdots \mathfrak{a}_k\right)=A /\left(\mathfrak{a}_1 \cap \mathfrak{a}_2 \cap \cdots \cap \mathfrak{a}_k\right) \cong A / \mathfrak{a}_1 \times A / \mathfrak{a}_2 \times \cdots \times A / \mathfrak{a}_k
               \end{equation*}
     \end{enumerate}
 \end{theorem}
@@ -473,30 +449,21 @@ Assume that $A$ is a commutative ring with identity.
 
 
 \section{Rings of Polynomial and Formal Power Series}
-We only consider $R\left[x\right]$ where $R$ is a commutative ring with identity.
+We only consider $A\left[x\right]$ where $A$ is a commutative ring with identity.
 
 \begin{proposition}
-    Let $R$ be a ring with identity and $f=\sum_{i=0}^{\infty} a_{i} x^{i} \in R[[x]]$.
+    Let $A$ be a ring with identity and $f=\sum_{i=0}^{\infty} a_{i} x^{i} \in A[[x]]$.
     \begin{enumerate}
         \item
-              $f$ is a unit in $R[[x]]$ if and only if its constant term $a_0$ is a unit in $R$
+              $f$ is a unit in $A[[x]]$ if and only if its constant term $a_0$ is a unit in $A$
         \item
-              If $a_0$ is irreducible in $R$, then $f$ is irreducible in $R[[x]]$.
+              If $a_0$ is irreducible in $A$, then $f$ is irreducible in $A[[x]]$.
     \end{enumerate}
 \end{proposition}
 
 
 \begin{corollary}
-    If $R$ is a division ring, then
-    \begin{enumerate}
-        \item
-              $R[[x]]^\times$ are precisely those power series with nonzero constant term.
-        \item
-              The principal ideal $(x)$ consists precisely of the nonunits in $R[[x]]$ and is the unique maximal ideal of $R[[x]]$.
-
-        \item
-              Thus if $R$ is a field, $R[[x]]$ is a local ring.
-    \end{enumerate}
+    If $A$ is a field, then $A[[x]]$ is a local ring with unique maximal ideal $\left(x\right)]]$
 \end{corollary}
 
 

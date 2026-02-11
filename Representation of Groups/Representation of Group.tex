@@ -72,7 +72,7 @@
               \begin{equation*}
                   \left(\rho_1 \otimes \rho_2\right)(s)\left(v_1 \otimes v_2\right)=\left(\rho_1(s) v_1\right) \otimes\left(\rho_2(s) v_2\right)
               \end{equation*}
-              for all $s \in G, v_1 \in V_1, v_2 \in V_2$. (tensor product of $k[G]$ module $V_1\oplus V_2$)
+              for all $s \in G, v_1 \in V_1, v_2 \in V_2$. (inner tensor product of $k[G]$ module $V_1\oplus V_2$)
     \end{enumerate}
 \end{definition}
 
@@ -82,8 +82,9 @@ In this section, we always assume that $k$ be a field whose characteristic does 
 \begin{lemma}
     Let $V_i$ be $k[G]$-module for $i=1,2$ and $f:V_1\rightarrow V_2$ be a $k$-linear map, then
     \begin{equation*}
-        F(x):=
-        \frac{1}{\left|G\right|} \sum_{g \in G} \rho_g^2 f\left( \left(\rho_g^1\right)^{-1}x\right)
+        F
+        :=
+        \frac{1}{\left|G\right|} \sum_{g \in G} \rho_g^2 \cdot f \cdot \left(\rho_g^1\right)^{-1}
     \end{equation*}
     is a $k[G]$-module homomorphism from $V_1$ to $V_2$, where $1/\left|G\right|$ is the inverse of the order of $G$ in the field $k$
 \end{lemma}
@@ -162,14 +163,14 @@ In this chapter, we will study the character theory of finite degree representat
     \end{enumerate}
 \end{proposition}
 
-\section{Schur's lemma and Orthogonality Relations}% Schur's lemma
+\section{Schur's lemma and }% Schur's lemma
 
 \begin{definition}
     Let $f,g$ be $k$-valued functions on a finite group $G$.
     The \textbf{inner product} of $f$ and $g$ is defined
     by
     \begin{equation*}
-        \left\langle f ,g \right\rangle
+        \left(f ,g \right)
         :=
         \frac{1}{\left|G\right|} \sum_{s \in G} f(s) g(s^{-1}).
     \end{equation*}
@@ -199,8 +200,8 @@ In this chapter, we will study the character theory of finite degree representat
         \item
               If $\rho^1$ and $\rho^2$ are not isomorphic, we have $h^0=0$. In this case,
               \begin{equation*}
-                  \left\langle r_{i_2j_2},r_{i_2j_2}
-                  \right\rangle
+                  \left(r_{i_2j_2},r_{i_2j_2}
+                  \right)
                   =
                   \frac{1}{\left|G\right|}\sum_{g\in G} r_{i_2j_2}(g^{-1}) r_{i_1j_1}(g) =0
               \end{equation*}
@@ -210,8 +211,8 @@ In this chapter, we will study the character theory of finite degree representat
               If $V_1=V_2$ and $\rho^1=\rho^2, h^0$ is a homothety of ratio $(1 / n) \operatorname{Tr}(h)$, with $n=\operatorname{dim}\left(V_1\right)$.
               In this case,
               \begin{equation*}
-                  \left\langle r_{i_2j_2},r_{i_2j_2}
-                  \right\rangle
+                  \left(r_{i_2j_2},r_{i_2j_2}
+                  \right)
                   =
                   \frac{1}{\left|G\right|}\sum_{g\in G} r_{i_2j_2}(g^{-1}) r_{i_1j_1}(g)
                   =
@@ -221,16 +222,18 @@ In this chapter, we will study the character theory of finite degree representat
 \end{corollary}
 
 
-
+\section{Orthogonality Relations}
 
 \begin{theorem}
-    Let $k$ be a algebraically closed field and $G$ be a finite group.
-    \begin{enumerate}
-        \item
-              If $\chi$ is the character of an irreducible representation, we have $\left\langle \chi ,\chi \right\rangle=1$.
-        \item
-              If $\chi$ and $\chi^{\prime}$ are the characters of two nonisomorphic irreducible representations, we have $\left\langle \chi \mid \chi^{\prime} \right\rangle=0$.
-    \end{enumerate}
+    Let $V$ and $W$ be two irreducible representations of $G$. Then 
+    \begin{equation*}
+        \left(\chi_V ,\chi_W \right)
+        =
+        \begin{cases}
+            1 &, \text{ if } V\cong W \\
+            0 &, \text { otherwise }
+        \end{cases}
+    \end{equation*}
 \end{theorem}
 
 \begin{theorem}
@@ -240,16 +243,14 @@ In this chapter, we will study the character theory of finite degree representat
     \end{equation*}
     \begin{enumerate}
         \item
-              $m_k=\langle\chi, \chi_{W_k}\rangle$.
+              $m_k=(\chi, \chi_{W_k})$.
         \item
               $\chi = \sum_{k=1}^h m_k \chi_{W_k}$
-        \item  $\left\langle \chi,\chi \right\rangle=\sum_{k=1}^h m_k^2$
+        \item  $\left(\chi,\chi \right)=\sum_{k=1}^h m_k^2$
     \end{enumerate}
 \end{theorem}
 
 
-
-\section{Decomposition in regular representation}
 
 \subsection{$n_i$}
 \begin{proposition}
@@ -268,24 +269,24 @@ In this chapter, we will study the character theory of finite degree representat
     Then:
     \begin{enumerate}
         \item
-              $\dim W_i=\left\langle r_G,\chi_i \right\rangle=n_i$
+              $\dim W_i=\left(r_G,\chi_i \right)=n_i$
         \item
               $\sum n_i^2 = |G|$
         \item
-              If $g\neq e$, then $\sum_{i=1}^{h}n_i\chi_i(g)=0$
+              If $g\neq e$, then $r_G(g)=\sum_{i=1}^{h}n_i\chi_i(g)=0$
     \end{enumerate}
 \end{corollary}
 
 \subsection{$h$}
 
 \begin{lemma}
-    Let $f$ be a class function on $G$ with values in $k$ and $\rho$ be a representation. Then
+    Let $f:G\rightarrow k$ be any function on $G$, and for a representation $V$ of $G$ set
     \begin{equation*}
-        F(x)
+        F
         :=
-        \sum_{g \in G} f(g) \rho_g \left(x\right)
+        \sum_{g \in G} f(g) \cdot \rho_g 
     \end{equation*}
-    is a transform of $\rho$.
+    Then $F$ is a $k[G]$-module homomorphism for all $V$ if and only if $f$ is a class function on $G$.
 \end{lemma}
 \begin{corollary}
     If $\rho:G \to \GL(V)$ is an irreducible representation with character $\chi$, then $F$ is a homothety of ratio
@@ -293,7 +294,7 @@ In this chapter, we will study the character theory of finite degree representat
         \lambda=
         \frac{1}{n}\sum_{g \in G} f(g) \chi(g)
         =
-        \frac{\left|G\right|}{n} \left\langle f,\overline{\chi} \right\rangle
+        \frac{\left|G\right|}{n} \left(f,\overline{\chi} \right)
     \end{equation*}
     where $n=\dim V$.
 \end{corollary}
@@ -314,21 +315,14 @@ In this chapter, we will study the character theory of finite degree representat
                   f_s(t)=\frac{c(s)}{|G| } \sum_{i=1}^{i=h} \chi_i(s^{-1}) \chi_i(t)
               \end{equation*}
         \item
-              We have $\sum_{i=1}^{i=h} \chi_i(s) \chi_i(s^{-1})=\left|G\right| / c(s)$.
-        \item
-              For $t \in G$ not conjugate to $s$, we have $\sum_{i=1}^{i=h} \chi_i(s) chi_i(t^{-1}) =0$.
+              For $t \in G$ not conjugate to $s$, we have
+              \begin{equation*}
+                 \sum_{i=1}^{i=h} \chi_i(s) \chi_i(t^{-1}) =\begin{cases}
+                  \left|G\right| / c(s) & ,t \text{ is conjugate to } s      \\
+                  0                      & ,t \text{ is not conjugate to } s \\
+                \end{cases}
+              \end{equation*}
     \end{enumerate}
-    \begin{proof}
-        Since $f_s$ is a class function, it can be written
-        \begin{equation*}
-            f_s=\sum_{i=1}^{i=h} \lambda_i \chi_i, \quad \text { with } \lambda_i=\left\langle f_s ,\chi_i \right\rangle=\frac{c(s)}{|G|} \chi_i(s^{-1})
-        \end{equation*}
-        We have then, for each $t \in G$,
-        \begin{equation*}
-            f_s(t)=\frac{c(s)}{|G| } \sum_{i=1}^{i=h} \chi_i(s^{-1}) \chi_i(t)
-        \end{equation*}
-        This gives (a) if $t=s$, and (b) if $t$ is not conjugate to $s$.
-    \end{proof}
 \end{proposition}
 
 \subsection{Caonical projection formula }
@@ -459,9 +453,9 @@ And assume that all representations are of finite degree.
 \begin{lemma}
     Let $G$ be a group and $\chi_i$ be the character of $V_i$,
     \begin{equation*}
-        \left\langle \chi_2 , \chi_2 \right\rangle
+        \left(\chi_2 , \chi_2 \right)
         =
-        \left\langle V_1,V_2 \right\rangle
+        \left(V_1,V_2 \right)
         :=
         \dim_k \Hom_{k[G]}\left( V_1 ,V_2 \right)
     \end{equation*}
@@ -481,22 +475,22 @@ And assume that all representations are of finite degree.
     Let $H$ be a subgroup of a finite group $G$.
     If $\chi$ is the character of a representation of $H$ and $\psi$ is the character of a representation of $G$, then
     \begin{equation*}
-        \left\langle \operatorname{Ind}_H^G \chi ,\psi \right\rangle_G
+        \left(\operatorname{Ind}_H^G \chi ,\psi \right)_G
         =
-        \left\langle \chi ,\operatorname{Res}_H^G \psi \right\rangle_H
+        \left(\chi ,\operatorname{Res}_H^G \psi \right)_H
     \end{equation*}
     Thus it is true for class functions.
     \begin{proof}
         Let $W$ be the representation space of $\chi$ and $V$ be the representation space of $\psi$.
         By the definition of inner product and the previous lemma, we have
         \begin{equation*}
-            \left\langle \operatorname{Ind}_H^G \chi ,\psi \right\rangle_G
+            \left(\operatorname{Ind}_H^G \chi ,\psi \right)_G
             =
             \dim_k \Hom_{k[G]}\left( \operatorname{Ind}_H^G W ,V \right)
             =
             \dim_k \Hom_{k[H]}\left( W ,\operatorname{Res}_H^G V \right)
             =
-            \left\langle \chi ,\operatorname{Res}_H^G \psi \right\rangle_H
+            \left(\chi ,\operatorname{Res}_H^G \psi \right)_H
         \end{equation*}
     \end{proof}
 \end{theorem}
@@ -532,7 +526,7 @@ Let $G=\bigsqcup_{g\in K\backslash G/H} KgH$ be a double coset decomposition of 
         \cong
         \bigoplus_{g\in K\backslash G/H} \operatorname{Ind}_{K\cap gHg^{-1}}^K \circ {}^g \operatorname{Res}^{H}_{H\cap gKg^{-1}}
     \end{equation*}
-    where ${}^g W$ is the conjugate module $$
+    where ${}^g W$ is the conjugate module of $W$ by $g$.
     \begin{proof}
         Given representation $W$ of $H$, we have
         \begin{equation*}
@@ -540,9 +534,10 @@ Let $G=\bigsqcup_{g\in K\backslash G/H} KgH$ be a double coset decomposition of 
                 \operatorname{Res}_K^G \circ \operatorname{Ind}_H^G \left(W\right) &
                 = k[K]\otimes_{k[K]} k[G] \otimes_{k[H]} W                                                                                                                                             \\
                                                                                    & \cong \bigoplus_{g\in K\backslash G/H} k[K]\otimes_{k[K]} k[K] \otimes_{k[K\cap gHg^{-1}]} k[gH] \otimes_{k[H]} W \\
-                                                                                      & \cong \bigoplus_{g\in K\backslash G/H} k[K] \otimes_{k[K\cap gHg^{-1}]} k[gH] \otimes_{k[H]} W                           \\
+                                                                                   & \cong \bigoplus_{g\in K\backslash G/H} k[K] \otimes_{k[K\cap gHg^{-1}]} k[gH] \otimes_{k[H]} W                    \\
             \end{aligned}
         \end{equation*}
+
         Noted that $k[gH]\otimes_{k[H]} W $ is $k[K\cap gHg^{-1}]$-module which is isomorphic to ${}^g \operatorname{Res}^{H}_{H\cap gKg^{-1}} W$ as $k[K\cap gHg^{-1}]$-module.
     \end{proof}
 \end{theorem}

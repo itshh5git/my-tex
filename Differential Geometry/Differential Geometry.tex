@@ -1,0 +1,143 @@
+\documentclass[12pt, oneside]{book}
+
+\usepackage{../mypackages}
+
+
+
+
+
+\begin{document}
+\frontmatter
+\dominitoc % 初始化minitoc
+\pagenumbering{Roman}
+\tableofcontents % 主目录
+
+
+\mainmatter
+\pagenumbering{arabic} % 正文编页码字体 
+
+\chapter{}
+
+\begin{definition}
+    Let $X$ be topological space.
+    A \textbf{curve} in $X$ is an continuous map $\alpha: \mathrm{I} \rightarrow X$ of an open interval $\mathrm{I}=(a, b)$ of the real line $\mathbb{R}$ into $X$
+\end{definition}
+
+\begin{definition}
+    A \textbf{parametrized differentiable curve} is a differentiable map $\alpha: \mathrm{I} \rightarrow \mathbb{R}^3$
+\end{definition}
+
+\begin{definition}
+    A parametrized differentiable curve $\alpha: \mathrm{I} \rightarrow \mathbb{R}^3$ is said to be \textbf{regular} if $\alpha^{\prime}(t) \neq 0$ for all $t \in \mathrm{I}$.
+\end{definition}
+
+
+\section{}
+
+\begin{definition}
+    Let $\alpha: \mathrm{I} \rightarrow \mathbb{R}^3$ be a curve parametrized by arc length $s \in \mathrm{I}$ without singular points of order $<2$ (i.e., $\alpha^{\prime}(s) \neq 0$ and $\alpha^{\prime \prime}(s) \neq 0$ for all $s \in \mathrm{I}$). Then we define:
+    \begin{enumerate}
+        \item the unit vector $\mathbf{t}(s):=\alpha^{\prime}(s)$ is called the \textbf{tangent vector} of $\alpha$ at $s$.
+        \item
+              The number $\kappa(s):=\left|\alpha^{\prime \prime}(s)\right|$ is called the \textbf{curvature} of $\alpha$ at $s$.
+              The unit vector $\mathbf{n}(s):=\frac{\alpha^{\prime \prime}(s)}{\kappa(s)}$ is called the \textbf{principal normal vector} of $\alpha$ at $s$.
+        \item
+              the unit vector $\mathbf{b}(s):=\mathbf{t}(s) \times \mathbf{n}(s)$ is called the \textbf{binormal vector} of $\alpha$ at $s$.
+              The number $\tau(s):=\mathbf{b}^{\prime}(s) \cdot \mathbf{n}(s)$ is called the \textbf{torsion} of $\alpha$ at $s$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    \begin{enumerate}
+        \item
+              The plane determined by $\alpha^{\prime}(s)$ and $n(s)$, is called the \textbf{osculating plane} at $s$.
+        \item
+              The plane determined by $\mathbf{n}(s)$ and $\mathbf{b}(s)$ is called the \textbf{normal plane} at $s$.
+        \item
+              The plane determined by $\alpha^{\prime}(s)$ and $\mathbf{b}(s)$ is called the \textbf{rectifying plane} at $s$.
+    \end{enumerate}
+\end{definition}
+\begin{theorem}
+    [Frenet-Serret Formulas]
+    Let $\alpha: \mathrm{I} \rightarrow \mathbb{R}^3$ be a curve parametrized by arc length $s \in \mathrm{I}$ without singular points of order $<2$. Then the following formulas hold:
+    \begin{equation*}
+        \left(\begin{matrix}
+            \mathbf{t}^\prime \\
+            \mathbf{n}^\prime \\
+            \mathbf{b}^\prime \\
+        \end{matrix}\right)
+        =
+        \left(\begin{matrix}
+                     & \kappa &       \\
+            - \kappa &        & -\tau \\
+                     & \tau   &       \\
+        \end{matrix}\right)
+        \left(\begin{matrix}
+            \mathbf{t} \\
+            \mathbf{n} \\
+            \mathbf{b} \\
+        \end{matrix}\right)
+    \end{equation*}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{}
+\section{}
+\begin{definition}
+    A \textbf{surface} $S$ in $\mathbb{R}^3$ is called \textbf{regular} if it satisfies the following conditions:
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $S$ is a smooth manifold of dimension $2$
+        \item
+              inclusion map $i: S \rightarrow \mathbb{R}^3$ is an smooth embedding
+    \end{enumerate}
+    \begin{remark}
+        
+    \end{remark}
+\end{definition}
+
+\begin{proposition}
+    If $f: U \rightarrow \mathbb{R}$ is a differentiable function in an open set $U$ of $\mathbb{R}^2$, then the graph of $f$ , that is, the subset of $\mathbb{R}^3$ given by ( $\mathrm{x}, \mathrm{y}, \mathrm{f}(\mathrm{x}, \mathrm{y})$ ) for $(\mathrm{x}, \mathrm{y}) \in \mathrm{U}$, is a regular surface.
+\end{proposition}
+
+
+
+
+
+
+\begin{proposition}
+    If $f: U \subset \mathbb{R}^3 \rightarrow \mathbb{R}$ is a differentiable function and $a\in f(U)$ is a regular value of $f$, then $f^{-1}(a)$ is a regular surface in $\mathbb{R}^3$.
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

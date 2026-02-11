@@ -21,14 +21,148 @@
 
 Throughout this book, $K$ denotes a field of characteristic zero and $k[X]$ the ring of polynomials $K\left[x_1, \ldots, x_n\right]$ in $n$ commuting indeterminates over $K$.
 
+
+
+
+\chapter{}
+\section{}
+
+
+\begin{proposition}
+    Let $A$ be a ring and $M$ an irreducible left $A$-module.
+    \begin{enumerate}
+        \item
+              $M=Am$ for every $0 \neq m \in M$.
+        \item
+              If $0 \neq u \in M$, then $M \cong A / a n n_A(u)$.
+        \item
+              If $A$ is not a division ring, then $M$ is a torsion module.
+    \end{enumerate}
+\end{proposition}
+
+
+\section{Algebra}
+
+
+\section{Rings of Differential Operators}
+Let $A$ be a commutative $k$-algebra.
+
+\begin{definition}
+    Let $A$ be a commutative $k$-algebra.
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              We will identify an element $a \in A$ with the operator of $\End_k(A)$
+              defined by the rule $ r \mapsto ar$, for every $r \in A$.
+              An operator $P \in \End_k(A)$ has order zero if $[a, P] = 0$, for every $a \in A$.
+
+        \item
+              Suppose we have defined operators of order $< n$.
+              An operator $P \in \End_k(A)$ has order $n$ if
+              it does not have order less than $n$ and $[a, P]$ has order less than $n$ for every
+              $a \in A$.
+    \end{enumerate}
+    Let $\operatorname{Diff}^n(A)$ denote the $k$-vector space of all operators of $\End_k(A)$ of order $<n$.
+    The \textbf{ring of differential operators} of $A$ is defined as the subring $\operatorname{Diff}(A)=\bigcup_{n\geq 0} \operatorname{Diff}^n(A)$.
+    \begin{remark}
+        It follows that $\operatorname{Diff}^n\left(A\right)=\left\{P\in \End_k A :[\cdots[[P,a_1],a_2],\cdots,a_{n+1}]=0 \text{ for any } a_i \in A \right\}$ and the set of order $n$ is $\operatorname{Diff}^n-\operatorname{Diff}^{n-1}$.
+    \end{remark}
+\end{definition}
+
+
+
+
+
+\begin{definition}
+    A \textbf{derivation} of the $k$-algebra $A$ is a $k$-linear operator $D$ of $A$
+    which satisfies Leibniz's rule:
+    \begin{equation*}
+        D(ab) = aD(b) + bD(a)\quad \text{ for every } a, b \in A
+    \end{equation*}
+    Let $\mathrm{Der}_k (A)$ denote the $k$-vector space of all derivations of $A$.
+    If $D\in  \mathrm{Der}_k (A)$ and $a \in A$, we define a new derivation $aD$ by $(aD)(b) = aD(b)$ for every $b\in A$.
+    The $k$-vector space $\mathrm{Der}_k (A)$
+    is a left $A$-module for this action.
+\end{definition}
+
+
+
+\begin{proposition}
+    Let $A$ be a commutative $k$-algebra.
+    \begin{enumerate}
+        \item
+              The elements of order zero are the elements of $A$ i.e. $\operatorname{Diff}^0\left(A\right)=A$
+        \item
+              The operators of order $\leq 1$ correspond to the elements of $\operatorname{Der}_k(A)+A$ .i.e. \begin{equation*}
+                  \operatorname{Diff}^1\left(A\right)
+                  \subset \operatorname{Der}_k(A)+A
+              \end{equation*}
+    \end{enumerate}
+    \begin{proof}
+        2.
+        Let $Q \in \operatorname{Diff}^1(A)$ and put $P=Q-Q(1)$. Note that $P(1)=0$ and that $P$ has order $\leq 1$. Hence $[P, a]$ has order zero for every $a \in A$. Thus for every $b \in A$, we have that $[[P, a], b]=0$.
+        Writing the commutators explicitly, one obtains the equality
+        \begin{equation*}
+            (P a) b-(a P) b-b(P a)+b(a P)=0
+        \end{equation*}
+        Applying this operator to $1 \in R$, we end up with $P(a b)=a P(b)+b P(a)$, it follows that $P$ is a derivation of $R$. But $Q= P+Q(1) \in \operatorname{Der}_k(R)+R$, as required.
+    \end{proof}
+\end{proposition}
+
+
+
+\begin{proposition}
+    Let $P \in \operatorname{Diff}^n(A)$ and $Q \in \operatorname{Diff}^m(A)$, then $P \cdot Q \in \operatorname{Diff}^{n+m}(A)$.
+    \begin{proof}
+        The proof is by induction on $m+n$. If $m+n=0$ the result is obvious. Suppose the result true whenever $m+n<k$. If $m+n=k$ and $a \in A$, we have that
+        \begin{equation*}
+            [P Q, a]=P[Q, a]+[P, a] Q
+        \end{equation*}
+        The definition of order implies that $[Q, a] \in \operatorname{Diff}^{m-1}(A)$ and $[P, a] \in \operatorname{Diff}^{n-1}(A)$. Thus, by the induction hypothesis $P[Q, a],[P, a] Q \in \operatorname{Diff}^{n+m-1}(A)$. Hence $[P Q, a]$ belongs to $\operatorname{Diff}^{n+m-1}(A)$, as required.
+    \end{proof}
+\end{proposition}
+
+\section{Twisting} % Twisting
+
+\begin{definition}
+    Let $A$ be a ring and $M$ a left $A$ module. Suppose that $\sigma$ is an automorphism of $A$. We shall define a new left module $M_\sigma$, as follows. As an abelian group, $M_\sigma=M$. Let $a \in A$ and $u \in M$, define
+    \begin{equation*}
+        r \cdot m=\sigma(r) m
+    \end{equation*}
+    It is called the \textbf{twisted module of $M$ by $\sigma$}.
+\end{definition}
+
+\begin{proposition}
+    \label{pro: Twisting module}
+    Let $A$ be a ring, $M$ a left $A$-module and $\sigma$ an automorphism of $A$. Then:
+    \begin{enumerate}
+        \item
+              $M_\sigma$ is irreducible if and only if $M$ is irreducible.
+        \item
+              $M_\sigma$ is a torsion module if and only if $M$ is a torsion module.
+        \item  $M_\sigma\oplus M^\prime_\sigma \cong (M \oplus M^\prime)_\sigma$.
+        \item
+              If $N$ is a submodule of $M$ then $(M / N)_\sigma \cong M_\sigma / N_\sigma$.
+        \item
+              Let $J$ be a left ideal of $R$. Set $\sigma(J)=\{\sigma(r): r \in J\}$. Then $\sigma(J)$ is a left ideal of $J$ and $(R / J)_\sigma \cong R / \sigma^{-1}(J)$.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
 \chapter{Weyl Algebra} % Weyl Algebra
 \section{Definition}
 
-The polynominal algebra $k[X]$ is a vector space of infinite dimension over $k$.
+Let $k[X]$ be the polynomial ring $k\left[x_1, \ldots, x_n\right]$ in $n$ commuting indeterminates over a field $k$ of characteristic zero.
 Its algebra of $k$-linear operators is denoted by $\End_k (k[X])$.
 Let $\hat{x}_1, \ldots, \hat{x}_n$ be the operators of $k[X]$ which are defined on a polynomial $f \in k[X]$ by the formulae $\hat{x}_i(f)=x_i \cdot f$.
 Similarly, $\partial_1, \ldots, \partial_n$ are the operators defined by $\partial_i(f)=\partial f / \partial x_i$.
-These are linear operators of $k[X]$.
 
 
 \begin{definition}
@@ -69,21 +203,25 @@ These are linear operators of $k[X]$.
 
 
 \begin{theorem}
-    Let the free $k$-algebra $k\left\{z_1, \ldots, z_{2 n}\right\}$ and $J$ be the two-sided ideal generated by $\left[z_{i+n}, z_i\right]-1$ for $i=1,2, \ldots, n$ and $\left[z_i, z_j\right]$ for $j \neq i+n$ and $1 \leq i, j \leq 2 n$.
-    We may define a surjective homomorphism $\phi: k\left\{z_1, \ldots, z_{2 n}\right\} \rightarrow A_n$ by $\phi\left(z_i\right)=x_i$ and $\phi\left(z_{i+n}\right)=\partial_i$, for $i=1,2, \ldots, n$.
+    Let the free $k$-algebra $k\left\langle z_1, \ldots, z_{2 n} \right\rangle$ and $J$ be the two-sided ideal generated by $\left[z_{i+n}, z_i\right]-1$ for $i=1,2, \ldots, n$ and $\left[z_i, z_j\right]$ for $j \neq i+n$ and $1 \leq i, j \leq 2 n$.
     \begin{equation*}
-        \begin{tikzcd}
-            \left\{z_1,\ldots,z_n\right\} \arrow[r,""]\arrow[d,"\iota"]& A_n \\
-            k\left\{z_1,\ldots,z_n\right\} \arrow[ru,"\phi"]&
-        \end{tikzcd}
+        A_n(k)\cong k\left\langle z_1, \ldots, z_{2 n}\right\rangle / J
     \end{equation*}
-    It follows that $J \subseteq \operatorname{ker} \phi$. Thus $\phi$ induces a homomorphism $\bar{\phi}: k\left\{z_1, \ldots, z_{2 n}\right\} / J \longrightarrow A_n$.
+    as $k$-algebras.
     \begin{proof}
-        We may use the relations to show that every element of $k\left\{z_1, \ldots, z_{2 n}\right\} / J$ may be written as a linear combination of monomials of the form
+        We may define a surjective homomorphism $\phi: k\left\langle z_1, \ldots, z_{2 n}\right\rangle \rightarrow A_n$ by $\phi\left(z_i\right)=x_i$ and $\phi\left(z_{i+n}\right)=\partial_i$, for $i=1,2, \ldots, n$.
+        \begin{equation*}
+            \begin{tikzcd}
+                \left\{z_1,\ldots,z_n\right\} \arrow[r,""]\arrow[d,"\iota"]& A_n \\
+                k\left\langle z_1,\ldots,z_n\right\rangle \arrow[ru,"\phi"]&
+            \end{tikzcd}
+        \end{equation*}
+        It follows that $J \subseteq \operatorname{ker} \phi$. Thus $\phi$ induces a homomorphism $\bar{\phi}: k\left\langle z_1, \ldots, z_{2 n}\right\rangle / J \longrightarrow A_n$.
+        We may use the relations to show that every element of $k\left\langle z_1, \ldots, z_{2 n}\right\rangle / J$ may be written as a linear combination of monomials of the form
         \begin{equation*}
             z_1^{m_1} \ldots z_{2 n}^{m_{2 n}}+J
         \end{equation*}
-        by \ref{pro: proposition of Weyl algebra} the images of these monomials under $\bar{\phi}$ form a basis of $A_n$ as a vector space over $k$. In particular, the monomials must be linearly independent in $k\left\{z_1, \ldots, z_{2 n}\right\} / J$. Hence $\bar{\phi}$ is an isomorphism of vector spaces and, a fortiori, an isomorphism of rings.
+        by \ref{pro: proposition of Weyl algebra} the images of these monomials under $\bar{\phi}$ form a basis of $A_n$ as a vector space over $k$. In particular, the monomials must be linearly independent in $k\left\langle z_1, \ldots, z_{2 n}\right\rangle / J$. Hence $\bar{\phi}$ is an isomorphism of vector spaces and, a fortiori, an isomorphism of rings.
     \end{proof}
 \end{theorem}
 
@@ -101,38 +239,10 @@ These are linear operators of $k[X]$.
         \end{aligned}
     \end{equation*}
     induce an automorphism of $A_n$.
-    \begin{proof}
-        Define a homomorphism $\phi$ of $K\left\{z_1, \ldots, z_{2 n}\right\}$ to $A_n$ by $\phi\left(z_i\right)=x_i+f_i$ and
-        \begin{equation*}
-            \phi\left(z_{i+n}\right)=\partial_i-\sum_1^n \frac{\partial f_k}{\partial x_i} \partial_k
-        \end{equation*}
-        Choose $i, j$ such that $1 \leq i, j \leq n$.
-        It is clear that $\phi\left(\left[z_i, z_j\right]\right)=0$.
-
-        Let us calculate $\phi\left(\left[z_{i+n}, z_j\right]\right)$. Since $\phi$ is a ring homomorphism, this is the same as $\left[\phi\left(z_{i+n}\right), \phi\left(z_j\right)\right]$, which equals
-        \begin{equation*}
-            \begin{aligned}
-                \phi\left(\left[z_{i+n}, z_j\right]\right) & =\left[\phi\left(z_{i+n}\right), \phi\left(z_j\right)\right]                                                                                                          \\
-                                                           & =\left[\partial_i-\sum_1^n \frac{\partial f_k}{\partial x_i} \partial_k, x_j+f_j\right]                                                                               \\
-                                                           & = \delta_{i j}+\frac{\partial f_j}{\partial x_i}-\frac{\partial f_j}{\partial x_i}-\sum_1^n \frac{\partial f_k}{\partial x_i} \cdot \frac{\partial f_j}{\partial x_k} \\
-                                                           & = \delta_{ij}
-            \end{aligned}
-        \end{equation*}
-        A similar calculation shows that $\phi\left(\left[z_{i+n}, z_{j+n}\right]\right)=0$. Thus $\phi$ induces an endomorphism $\sigma=\bar{\phi}$ of $A_n$.
-
-        A similar argument shows that the map $\tau$ defined by the formulae
-        \begin{equation*}
-            \begin{aligned}
-                 & \tau\left(x_i\right)=x_i-f_i                                                                 \\
-                 & \tau\left(\partial_i\right)=\partial_i+\sum_1^n \frac{\partial f_k}{\partial x_i} \partial_k
-            \end{aligned}
-        \end{equation*}
-        is an endomorphism of $A_n$. It is now easy to check that $\tau$ is the inverse of $\sigma$. Thus $\sigma$ is an automorphism of $A_n$.
-    \end{proof}
 \end{corollary}
 
 
-\section{Degree}
+\section{Degree and order}
 
 
 \begin{definition}
@@ -140,15 +250,6 @@ These are linear operators of $k[X]$.
     The \textbf{degree} of $D$ is the largest length of the multi-indices $(\alpha, \beta) \in \mathbb{N}^n \times \mathbb{N}^n$ for which $x^\alpha \partial^\beta$ appears with non-zero coefficient in the canonical form of $D$. It is denoted by $\operatorname{deg}(D)$. As with the degree of a polynomial, we use the convention that the zero polynomial has degree $-\infty$.
 \end{definition}
 
-\begin{lemma}
-    We have
-    \begin{equation*}
-        \partial^\beta x^\alpha
-        =
-        \sum_{\substack{\beta_1+\beta_2=\beta\\ \beta_i\in \mathbb{N}^n}}\partial^{\beta_1}(x^\alpha)\partial^{\beta_2}
-    \end{equation*}
-    thus $\partial^\beta x^\alpha =  x^\alpha\partial^\beta+ D^\prime$ where $\deg D^\prime \leq \left|\alpha\right|+\left|\beta\right|-2$
-\end{lemma}
 
 \begin{theorem}
     The degree satisfies the following properties; for $D, D^{\prime} \in A_n$ :
@@ -167,7 +268,28 @@ These are linear operators of $k[X]$.
     The algebra $A_n$ is a domain.
 \end{corollary}
 
-\section{Ideal Structure}
+
+\begin{definition}
+    Let $D \in A_n$. If we write $D$ in its canonical form
+    \begin{equation*}
+        D=\sum_{\alpha, \beta} a_{\alpha, \beta} x^\alpha \partial^\beta
+    \end{equation*}
+    then the \textbf{order} of $D$ is defined to be $\operatorname{ord}(D)=\max \{|\beta|: a_{\alpha, \beta} \neq 0\}$.
+\end{definition}
+\begin{proposition}
+    The order satisfies the following property; for $P, Q \in A_n$ :
+    \begin{enumerate}
+        \item   $\ord(P+Q) \leq \max\{\ord(P),\ord(Q)\}$, with equality if $\ord(P) \neq \ord(Q)$.
+        \item $\ord (PQ)= \ord(P)+\ord(Q)$
+        \item $\ord([P,Q]) \leq \ord(P)+\ord(Q)-1$
+
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+\section{Ideal Structure of $A_n$} % Ideal Structure of A_n
 
 \begin{theorem}
     The algebra $A_n$ is simple.
@@ -186,109 +308,23 @@ These are linear operators of $k[X]$.
 \begin{theorem}
     Every left ideal of $A_n$ is generated by two elements.
 \end{theorem}
-
-
-\chapter{Rings of Differential Operators} % Rings of Differential Operators
-
-Let $R$ be a commutative $k$-algebra.
-\section{Definition} % Definition
-
-\begin{definition}
-    Let $R$ be a commutative $k$-algebra.
-    \begin{enumerate}[label=(\roman*)]
-        \item
-              We will identify an element $a \in R$ with the operator of $\End_k(R)$
-              defined by the rule $ r \mapsto ar$, for every $r \in R$.
-              An operator $P \in \End_k(R)$ has order zero if $[a, P] = 0$, for every $a \in R$.
-
-        \item
-              Suppose we have defined operators of order $< n$.
-              An operator $P \in \End_k(R)$ has order $n$ if
-              it does not have order less than $n$ and $[a, P]$ has order less than $n$ for every
-              $a \in R$.
-    \end{enumerate}
-    Let $D_n(R)$ denote the $k$-vector space of all operators of $\End_k(R)$ of order $<n$.
-    The \textbf{ring of differential operators} of $R$ is defined as the subring $D(R)=\bigcup_{n\geq 0} D_n(R)$.
-    \begin{remark}
-        It follows that $D_n\left(R\right)=\left\{P\in \End_k R :[\cdots[[P,a_1],a_2],\cdots,a_{n+1}]=0 \text{ for any } a_i \in R \right\}$ and the set of order $n$ is $D_n-D_{n-1}$.
-    \end{remark}
-\end{definition}
-
-
-
-
-
-\begin{definition}
-    A \textbf{derivation} of the $k$-algebra $R$ is a $k$-linear operator $D$ of $R$
-    which satisfies Leibniz's rule:
-    \begin{equation*}
-        D(ab) = aD(b) + bD(a)\quad \text{ for every } a, b \in R
-    \end{equation*}
-    Let $\mathrm{Der}_k (R)$ denote the $k$-vector space of all derivations of $R$.
-    If $D\in  \mathrm{Der}_k (R)$ and $a \in R$, we define a new derivation $aD$ by $(aD)(b) = aD(b)$ for every $b\in R$.
-    The $k$-vector space $\mathrm{Der}_k (R)$
-    is a left $R$-module for this action.
-\end{definition}
-
-
-
-\begin{proposition}
-    Let $R$ be a commutative $k$-algebra.
-    \begin{enumerate}
-        \item
-              The elements of order zero are the elements of $R$ i.e. $D^0\left(R\right)=R$
-        \item
-              The operators of order $\leq 1$ correspond to the elements of $\operatorname{Der}_k(R)+R$ .i.e. \begin{equation*}
-                  D^1\left(R\right)
-                  \subset \operatorname{Der}_k(R)+R
-              \end{equation*}
-    \end{enumerate}
-    \begin{proof}
-        2.
-        Let $Q \in D^1(R)$ and put $P=Q-Q(1)$. Note that $P(1)=0$ and that $P$ has order $\leq 1$. Hence $[P, a]$ has order zero for every $a \in R$. Thus for every $b \in R$, we have that $[[P, a], b]=0$.
-        Writing the commutators explicitly, one obtains the equality
-        \begin{equation*}
-            (P a) b-(a P) b-b(P a)+b(a P)=0
-        \end{equation*}
-        Applying this operator to $1 \in R$, we end up with $P(a b)=a P(b)+b P(a)$, it follows that $P$ is a derivation of $R$. But $Q= P+Q(1) \in \operatorname{Der}_k(R)+R$, as required.
-    \end{proof}
-\end{proposition}
-
-
-
-\begin{proposition}
-    Let $P \in D^n(R)$ and $Q \in D^m(R)$, then $P \cdot Q \in D^{n+m}(R)$.
-    \begin{proof}
-        The proof is by induction on $m+n$. If $m+n=0$ the result is obvious. Suppose the result true whenever $m+n<k$. If $m+n=k$ and $a \in R$, we have that
-        \begin{equation*}
-            [P Q, a]=P[Q, a]+[P, a] Q
-        \end{equation*}
-        The definition of order implies that $[Q, a] \in D^{m-1}(R)$ and $[P, a] \in D^{n-1}(R)$. Thus, by the induction hypothesis $P[Q, a],[P, a] Q \in D^{n+m-1}$. Hence $[P Q, a]$ belongs to $D^{n+m-1}$, as required.
-    \end{proof}
-\end{proposition}
-
-
-
-
-\section{The Weyl Algebra}
-
+\section{The Rings of Differential Operators of $k[X]$} % The Rings of Differential Operators of k[X]
+We denote the set of element of $A_n$ with order less than or equal to $r$ by $C^r(k[X])$, simplified as $C^r$.
 \begin{proposition}
     Every derivation of $k[X]$ is of the form $\sum_1^n f_i \partial_i$, for some $f_1, \ldots, f_n \in k[X]$.
 \end{proposition}
 
 \begin{lemma}
-    Let $P \in D(k[X])$. If $\left[P, x_i\right]=0$ for every $i=1, \ldots, n$, then $P \in k[X]$.
+    Let $P \in \operatorname{Diff}(k[X])$. If $\left[P, x_i\right]=0$ for every $i=1, \ldots, n$, then $P \in k[X]$.
 \end{lemma}
 
 
-\begin{definition}
-    Define $C_r$ to be the set of operators in $A_n$ which can be written in the form $\sum_\alpha f_\alpha \partial^\alpha$ with $|\alpha| \leq r$. A simple calculation shows that
-    \begin{equation*}
-        C_r=C_{r+1} \cap D^r(k[X])
-    \end{equation*}
-    By Proposition 1.3, we have that $C_1=\operatorname{Der}_K(k[X])+k[X]$ and that $C_0= k[X]$. We will use the convention that if $k<n$ then $\mathbb{N}^k$ is embedded in $\mathbb{N}^n$ as the set of $n$-tuples whose last $n-k$ components are zero.
 
-\end{definition}
+\begin{lemma}
+    $ C_r=C_{r+1} \cap \operatorname{Diff}^r(k[X])$
+\end{lemma}
+
+
 
 \begin{lemma}
     It follows from the identity $\left[\partial^\beta, x_n\right]=\beta_n \partial^{\beta-e_n}$
@@ -324,25 +360,128 @@ Let $R$ be a commutative $k$-algebra.
     Besides this, .
     \begin{enumerate}
         \item
-              $D^k(k[X])=C_k$
+              $\operatorname{Diff}^k(k[X])=C_k$
         \item
-              $D(k[X])=A_n(K)$
+              $\operatorname{Diff}(k[X])=A_n(K)$
 
     \end{enumerate}
     \begin{proof}
-        It is enough to prove that $D^k(k[X]) \subseteq C_k$. Let $P \in D(k[X])$. If $P \in D^1(k[X])$ then by Lemma 1.1, $P \in \operatorname{Der}_K(k[X])+k[X]$. Thus $P \in C_1$ by Proposition 1.3.
+        It is enough to prove that $\operatorname{Diff}^k(k[X]) \subseteq C_k$. Let $P \in \operatorname{Diff}(k[X])$. If $P \in \operatorname{Diff}^1(k[X])$ then by Lemma 1.1, $P \in \operatorname{Der}_k(k[X])+k[X]$. Thus $P \in C_1$ by Proposition 1.3.
 
-        Suppose, by induction, that $D^k(k[X])=C_k$ for $k \leq m-1$. Let $P \in D^m(k[X])$. Write $P_i=\left[P, x_i\right]$. Since $P_i$ has order $k \leq m-1$, it follows that $P_i \in C_{n-1}$. But, for all $1 \leq i, j \leq n$,
+        Suppose, by induction, that $\operatorname{Diff}^k(k[X])=C_k$ for $k \leq m-1$. Let $P \in \operatorname{Diff}^m(k[X])$. Write $P_i=\left[P, x_i\right]$. Since $P_i$ has order $k \leq m-1$, it follows that $P_i \in C_{n-1}$. But, for all $1 \leq i, j \leq n$,
         \begin{equation*}
             \left[P_i, x_j\right]=\left[\left[P, x_i\right], x_j\right]=\left[\left[P, x_j\right], x_i\right]=\left[P_j, x_i\right] .
         \end{equation*}
-        Thus by Lemma 2.2 there exists $Q \in C_m$ such that $\left[Q, x_i\right]=P_i, 1 \leq i \leq n$. Hence $\left[Q-P, x_i\right]=0$ in $D(k[X])$. Since this holds whenever $1 \leq i \leq n$, we conclude by Lemma 2.1 that $Q-P \in k[X]=C_0$. Therefore $P \in C_m$. Hence $D^m(k[X]) \subseteq C^m$, as we wanted to prove.
+        Thus by Lemma 2.2 there exists $Q \in C_m$ such that $\left[Q, x_i\right]=P_i, 1 \leq i \leq n$. Hence $\left[Q-P, x_i\right]=0$ in $\operatorname{Diff}(k[X])$. Since this holds whenever $1 \leq i \leq n$, we conclude by Lemma 2.1 that $Q-P \in k[X]=C_0$. Therefore $P \in C_m$. Hence $\operatorname{Diff}^m(k[X]) \subseteq C^m$, as we wanted to prove.
     \end{proof}
 \end{theorem}
 
+
+
+
+\section{Modules Over $A_n$}
+
+Noted that a $A_n$-module $M$ satisfies the following relation:
+\begin{equation*}
+    \begin{aligned}
+        \left[\partial_i, x_j\right] m & =\delta_{ij}m                                   \\
+        \left[x_i, x_j\right]m         & =\left[\partial_{x_i}, \partial_{x_j}\right]m=0
+    \end{aligned}
+\end{equation*}
+
+
+\begin{proposition}
+    The left $A_n$-module $k[X]$ is an irreducible, torsion $A_n$-module. Besides this, we have isomorphism of $A_n$-module
+    \begin{equation*}
+        {}_{A_n}k[X] \cong A_n / \sum_1^n A_n \partial_i .
+    \end{equation*}
+    \begin{proof}
+        First of all $1$ is clearly a generator of ${}_{A_n}k[X]$ and the annihilator of $1$ is the left ideal generated by $\partial_1,\ldots,\partial_n$.
+        \begin{equation*}
+            \begin{tikzcd}
+                A_n\arrow[r,""]\arrow[d,""]&k[X] \\
+                A_n / \sum_1^n A_n \partial_i \arrow[ru,""]&
+            \end{tikzcd}
+        \end{equation*}
+    \end{proof}
+    \begin{remark}
+        Choose $g_1, \ldots, g_n \in k[X]$ and consider the left ideal $J$ of $A_n$ generated by $\partial_1-g_1, \ldots, \partial_n-g_n$.
+        It is easy to check that
+        the map \begin{equation*}
+            \psi: A_n / J \longrightarrow k[X] \text{ defined by } \psi(f+J)=f
+        \end{equation*}
+        is an isomorphism of $A_n$-modules.
+    \end{remark}
+\end{proposition}
+
+\begin{proposition}
+    Another $A_n$-module is $A_n / \sum_1^n A_n \cdot x_i$.
+    \begin{equation*}
+        \overline{x^\alpha \partial^\beta}
+        =
+        \left(-1\right)^{\left|\alpha\right|}\overline{\partial^{\beta-\alpha}}
+    \end{equation*}
+    As a $k$-vector space it is isomorphic to $K[\partial]=K\left[\partial_1, \ldots, \partial_n\right]$, the set of polynomials in $\partial_1, \ldots, \partial_n$. Using this isomorphism, we may identify the action of $A_n$
+    directly on $K[\partial]$ : the $\partial$ 's act by multiplication, whilst $x_i$ acting on $\partial_j$ gives $-\delta_{i j} \cdot 1$.
+
+\end{proposition}
+\begin{proposition}
+    The Fourier transform of $k[X]$ is $K[\partial]$.
+    \begin{proof}
+        Let $\mathcal{F}$ be the Fourier transform automorphism of $A_n$. By \cref{pro: Twisting module}, the twisted module $\left(k[X]\right)_{\mathcal{F}}$ is isomorphic to
+        \begin{equation*}
+            A_n / \sum_1^n A_n \cdot \mathcal{F}^{-1}\left(\partial_i\right)
+            =
+            A_n / \sum_1^n A_n \cdot x_i\cong K[\partial]
+        \end{equation*}
+    \end{proof}
+\end{proposition}
+
 \begin{theorem}
-    $\ord\left(PQ\right)=\ord(P)+\ord(Q)$
+    For every positive integer $r$ let $\sigma_r$ be the automorphism of $A_n$ which satisfies $\sigma_r\left(x_i\right)=x_i$ and $\sigma_r\left(\partial_i\right)=\partial_i-x_i^r$.
+    The modules $k[X]_{\sigma_r}$ form an infinite family of pairwise nonisomorphic irreducible modules over $A_n$.
+    \begin{proof}
+        Let $r<t$, and suppose that there exists an isomorphism, $\phi$ : $k[X]_{\sigma_r} \longrightarrow k[X]_{\sigma_t}$. Since $k[X]_{\sigma_r}$ is irreducible, it is generated by 1 . Thus $\phi$ is completely determined by the image of 1 ; say $\phi(1)=f \neq 0$. Now the equation $\phi\left(\partial_i \bullet 1\right)=\partial_i \bullet \phi(1)$ translates as the differential equation
+        \begin{center}
+            $\phi(\partial_i \bullet 1)=\phi\left(\left(\partial_i-x_i^r\right)\left(1\right)\right)=\phi(-x_i^r)=-\phi(x_i^r)$
+            and
+            $\partial_i \bullet \phi(1)=\left(\partial_i-x^r\right)(f)$
+        \end{center}
+        thus
+        \begin{equation*}
+            \frac{\partial f}{\partial x_i}=\left(x_i^t-x_i^r\right) f .
+        \end{equation*}
+        The left hand side of the equation has degree $\leq \operatorname{deg} f-1$. Since $f \neq 0$ and $r<t$, the right hand side has degree $\operatorname{deg} f+t$. This is a contradiction, so the theorem is proved.
+    \end{proof}
 \end{theorem}
+
+
+
+
+\begin{proposition}
+    The function $h(z)=\exp (\exp (z))$ is not a torsion element of the $A_1(\mathbb{C})$-module $\mathcal{H}(U)$.
+    \begin{proof}
+        Suppose that there exists a non-zero operator $P \in A_1(\mathbb{C})$ such that $P \cdot h=0$. Write
+        \begin{equation*}
+            P=\sum_{i=0}^m f_i(z) \partial^i
+        \end{equation*}
+        with $f_m(z) \neq 0$. By Lemma 6.1, we have
+        \begin{equation*}
+            0=P \cdot h=\sum_{i=0}^m f_i(z) F_i\left(e^z\right) h(z) .
+        \end{equation*}
+        Since $h(z) \neq 0$, we conclude that
+        \begin{equation*}
+            \sum_{i=0}^m f_i(z) F_i\left(e^z\right)=0 .
+        \end{equation*}
+        But this is impossible since $F_m$ has degree $m$ and $f_m(z) \neq 0$.
+    \end{proof}
+\end{proposition}
+
+
+
+
+
+
 
 
 
@@ -350,6 +489,7 @@ Let $R$ be a commutative $k$-algebra.
 
 
 \chapter{Jacobian Conjecture}
+For the rest of the section we shall write $X, Y$ for the vector spaces $k^n$ and $k^m$; and $k[X], k[Y]$ for the polynomial rings $k\left[x_1, \ldots, x_n\right]$ and $k\left[y_1, \ldots, y_m\right]$.
 \section{Polynomial Maps}
 \begin{definition}
     Let $F: k^n \rightarrow k^m$.
@@ -357,7 +497,7 @@ Let $R$ be a commutative $k$-algebra.
 
     A polynomial map is called an isomorphism or a \textbf{polynomial isomorphism} if it has an inverse which is also a polynomial map.
 
-    For the rest of the section we shall write $X, Y$ for the spaces $k^n$ and $k^m$; and $k[X], k[Y]$ for the polynomial rings $k\left[x_1, \ldots, x_n\right]$ and $k\left[y_1, \ldots, y_m\right]$.
+
 \end{definition}
 
 \begin{definition}
@@ -434,7 +574,7 @@ Jacobian conJecture. Let $F: K^n \rightarrow K^n$ be a polynomial map. If $\Delt
 \section{Derivation} % Derivation
 
 \begin{definition}
-    Let $D$ be a derivation of a $K$-algebra $S$.
+    Let $D$ be a derivation of a $k$-algebra $S$.
     \begin{enumerate}
         \item
               It follows from Leibniz's rule that the kernel of $D$ is a subring (subalgebra) of $S$, it is called the \textbf{ring of constants of $D$}.
@@ -445,7 +585,7 @@ Jacobian conJecture. Let $F: K^n \rightarrow K^n$ be a polynomial map. If $\Delt
         \item
               Let $S$ be a ring and $D$ a locally nilpotent derivation. Define a map $\phi$ : $S \longrightarrow S[x]$ by the rule
               \begin{equation*}
-                  \phi(a)=\sum_0^{\infty} \frac{D^n(a)}{n!} x^n
+                  \phi(a)=\sum \frac{D^n(a)}{n!} x^n
               \end{equation*}
               for every $a \in S$.
               It is easy to check that $\phi$ is a ring homomorphism which satisfies
@@ -456,7 +596,7 @@ Jacobian conJecture. Let $F: K^n \rightarrow K^n$ be a polynomial map. If $\Delt
 \end{definition}
 
 \begin{proposition}
-    Let $S$ be a $K$-algebra and $D_1, \ldots, D_n$ be commuting locally nilpotent derivations of $S$. Suppose that there exist $t_1, \ldots, t_n \in S$ such that $D_i\left(t_j\right)=\delta_{i j}$.
+    Let $S$ be a $k$-algebra and $D_1, \ldots, D_n$ be commuting locally nilpotent derivations of $S$. Suppose that there exist $t_1, \ldots, t_n \in S$ such that $D_i\left(t_j\right)=\delta_{i j}$.
     Then
     \begin{enumerate}
         \item
@@ -585,178 +725,30 @@ Jacobian conJecture. Let $F: K^n \rightarrow K^n$ be a polynomial map. If $\Delt
 
 
 
-\chapter{Modules Over The Weyl Algebra} % Modules Over The Weyl Algebra
-\section{The Polynomial Ring} % The Polynomial Ring     
-\begin{proposition}
-    Let $R$ be a ring and $M$ an irreducible left $R$-module.
-    \begin{enumerate}
-        \item $M=Rm$ for every $0 \neq m \in M$.
-        \item If $0 \neq u \in M$, then $M \cong R / a n n_R(u)$.
-        \item If $R$ is not a division ring, then $M$ is a torsion module.
-    \end{enumerate}
-\end{proposition}
-\begin{proposition}
-    The $A_n$-module $k[X]$ is an irreducible, torsion $A_n$-module. Besides this, we have isomorphism of $A_n$-module
-    \begin{equation*}
-        k[X] \cong A_n / \sum_1^n A_n \partial_i .
-    \end{equation*}
-    \begin{proof}
-        First of all $1$ is clearly a generator of $A_n$-module $k[X]$ and the annihilator of $1$ is the left ideal generated by $\partial_1,\ldots,\partial_n$.
-        \begin{equation*}
-            \begin{tikzcd}
-                A_n\arrow[r,""]\arrow[d,""]&k[X] \\
-                A_n / \sum_1^n A_n \partial_i \arrow[ru,""]&
-            \end{tikzcd}
-        \end{equation*}
-    \end{proof}
-    \begin{remark}
-        Choose $g_1, \ldots, g_n \in k[X]$ and consider the left ideal $J$ of $A_n$ generated by $\partial_1-g_1, \ldots, \partial_n-g_n$.
-        It is easy to check that
-        the map \begin{equation*}
-            \psi: A_n / J \longrightarrow k[X] \text{ defined by } \psi(f+J)=f
-        \end{equation*}
-        is an isomorphism of $A_n$-modules.
-    \end{remark}
-\end{proposition}
-
-\begin{proposition}
-    Another $A_n$-module is $A_n / \sum_1^n A_n \cdot x_i$.
-    \begin{equation*}
-        \overline{x^\alpha \partial^\beta}
-        =
-        \left(-1\right)^{\left|\alpha\right|}\overline{\partial^{\beta-\alpha}}
-    \end{equation*}
-    As a $K$-vector space it is isomorphic to $K[\partial]=K\left[\partial_1, \ldots, \partial_n\right]$, the set of polynomials in $\partial_1, \ldots, \partial_n$. Using this isomorphism, we may identify the action of $A_n$
-    directly on $K[\partial]$ : the $\partial$ 's act by multiplication, whilst $x_i$ acting on $\partial_j$ gives $-\delta_{i j} \cdot 1$.
-
-\end{proposition}
-
-
-\section{Twisting} % Twisting
-
-\begin{definition}
-    Let $R$ be a ring and $M$ a left $R$ module. Suppose that $\sigma$ is an automorphism of $R$. We shall define a new left module $M_\sigma$, as follows. As an abelian group, $M_\sigma=M$. Let $a \in R$ and $u \in M$, define
-    \begin{equation*}
-        r \cdot m=\sigma(r) m
-    \end{equation*}
-    It is called the \textbf{twisted module of $M$ by $\sigma$}.
-\end{definition}
-
-\begin{proposition}
-    \label{pro: Twisting module}
-    Let $R$ be a ring, $M$ a left $R$-module and $\sigma$ an automorphism of $R$. Then:
-    \begin{enumerate}
-        \item
-              $M_\sigma$ is irreducible if and only if $M$ is irreducible.
-        \item
-              $M_\sigma$ is a torsion module if and only if $M$ is a torsion module.
-        \item  $M_\sigma\oplus M^\prime_\sigma \cong (M \oplus M^\prime)_\sigma$.
-        \item
-              If $N$ is a submodule of $M$ then $(M / N)_\sigma \cong M_\sigma / N_\sigma$.
-        \item
-              Let $J$ be a left ideal of $R$. Set $\sigma(J)=\{\sigma(r): r \in J\}$. Then $\sigma(J)$ is a left ideal of $J$ and $(R / J)_\sigma \cong R / \sigma^{-1}(J)$.
-    \end{enumerate}
-\end{proposition}
-
-
-\begin{proposition}
-    The Fourier transform of $k[X]$ is $K[\partial]$.
-    \begin{proof}
-        Let $\mathcal{F}$ be the Fourier transform automorphism of $A_n$. By Proposition 5.2, the twisted module $\left(k[X]\right)_{\mathcal{F}}$ is isomorphic to
-        \begin{equation*}
-            A_n / \sum_1^n A_n \cdot \mathcal{F}^{-1}\left(\partial_i\right)
-            =
-            A_n / \sum_1^n A_n \cdot x_i\cong K[\partial]
-        \end{equation*}
-    \end{proof}
-\end{proposition}
-
-\begin{theorem}
-    For every positive integer $r$ let $\sigma_r$ be the automorphism of $A_n$ which satisfies $\sigma_r\left(x_i\right)=x_i$ and $\sigma_r\left(\partial_i\right)=\partial_i-x_i^r$.
-    The modules $k[X]_{\sigma_r}$ form an infinite family of pairwise nonisomorphic irreducible modules over $A_n$.
-    \begin{proof}
-        Let $r<t$, and suppose that there exists an isomorphism, $\phi$ : $k[X]_{\sigma_r} \longrightarrow k[X]_{\sigma_t}$. Since $k[X]_{\sigma_r}$ is irreducible, it is generated by 1 . Thus $\phi$ is completely determined by the image of 1 ; say $\phi(1)=f \neq 0$. Now the equation $\phi\left(\partial_i \bullet 1\right)=\partial_i \bullet \phi(1)$ translates as the differential equation
-        \begin{center}
-            $\phi(\partial_i \bullet 1)=\phi\left(\left(\partial_i-x_i^r\right)\left(1\right)\right)=\phi(-x_i^r)=-\phi(x_i^r)$
-            and
-            $\partial_i \bullet \phi(1)=\left(\partial_i-x^r\right)(f)$
-        \end{center}
-        thus
-        \begin{equation*}
-            \frac{\partial f}{\partial x_i}=\left(x_i^t-x_i^r\right) f .
-        \end{equation*}
-        The left hand side of the equation has degree $\leq \operatorname{deg} f-1$. Since $f \neq 0$ and $r<t$, the right hand side has degree $\operatorname{deg} f+t$. This is a contradiction, so the theorem is proved.
-    \end{proof}
-\end{theorem}
-
-
-
-\section{Holomorphic Functions} % Holomorphic Functions
-
-\begin{lemma}
-    \label{lem: }
-    Let $h(z)$ be the holomorphic function $\exp (\exp (z))$. For every positive integer $m$ there exists a polynomial $F_m(x) \in \mathbb{C}[x]$ of degree $m$ such that
-    \begin{equation*}
-        d^m h / d z^m=F_m\left(e^z\right) h(z) .
-    \end{equation*}
-    \begin{proof}
-        The proof is by induction on $m$. If $m=1$ then $d h / d z=e^z h(z)$, so we may take $F_1(x)=x$. Suppose that the result is true for $m=k$. Then
-        \begin{equation*}
-            d^{k+1} h / d z^{k+1}=d / d z\left(F_k\left(e^z\right) h(z)\right)=\left(e^z F_k^{\prime}\left(e^z\right)+e^z F_k\left(e^z\right)\right) h(z) .
-        \end{equation*}
-        Thus we may take
-        \begin{equation*}
-            F_{k+1}(x)=x F_k^{\prime}(x)+x F_k(x)
-        \end{equation*}
-        which is a polynomial of degree $k+1$.
-    \end{proof}
-\end{lemma}
-
-\begin{proposition}
-    The function $h(z)=\exp (\exp (z))$ is not a torsion element of the $A_1(\mathbb{C})$-module $\mathcal{H}(U)$.
-    \begin{proof}
-        Suppose that there exists a non-zero operator $P \in A_1(\mathbb{C})$ such that $P \cdot h=0$. Write
-        \begin{equation*}
-            P=\sum_{i=0}^m f_i(z) \partial^i
-        \end{equation*}
-        with $f_m(z) \neq 0$. By Lemma 6.1, we have
-        \begin{equation*}
-            0=P \cdot h=\sum_{i=0}^m f_i(z) F_i\left(e^z\right) h(z) .
-        \end{equation*}
-        Since $h(z) \neq 0$, we conclude that
-        \begin{equation*}
-            \sum_{i=0}^m f_i(z) F_i\left(e^z\right)=0 .
-        \end{equation*}
-        But this is impossible since $F_m$ has degree $m$ and $f_m(z) \neq 0$.
-    \end{proof}
-\end{proposition}
-
 
 \chapter{Differential Equations}
 \section{The D-Modules of Equations} % The D-Modules of Equations
+
+
+
 \begin{definition}
-    Let $P$ be an operator in $A_n$.
-    This differential operator gives rise to the equation
+    Let $\mathcal{S}$ be a left $A_n$-module and $P_1,P_2,\ldots ,P_m\in A_n$;
+    consider the system of differential equations
     \begin{equation*}
-        P(f)=\sum_\alpha g_\alpha \partial_\alpha(f)=0 \text{ in } k[X],
+        P_i \left(f\right)=0 \text{ in } \mathcal{S} , \quad i=1, \ldots, m .
     \end{equation*}
-    where $f\in k[X]$.
-    More generally, if $P_1, \ldots, P_m$ are differential operators in $A_n$, then we have a system of differential equations
-    \begin{equation}
-        P_i(f)=0 , \quad i=1, \ldots, m .
-    \end{equation}
-    The \textbf{$A_n$-module associated to the system (1)} is $A_n / \sum_1^m A_n P_i$.
-    A polynomial solution of (1) is a polynomial $f \in k[X]$ which satisfies $P_i(f)=0$, for $i=1, \ldots, m$. The set of all polynomial solutions of (1) forms a $K$-vector space.
+    And let $M:=\left(P_i\right)$ be a finitely generated left $A_n$-module called \textbf{$A_n$-module associated to the system}.
+    We will call $\operatorname{Hom}_{A_n}(M, \mathcal{S})$ the \textbf{solution space} of $M$ in $\mathcal{S}$
+    \begin{remark}
+        The set of all solutions of the system is a $k$-vector space.
+    \end{remark}
 \end{definition}
-
-
-
 \begin{theorem}
     Let $M$ be the $A_n$-module associated with the system (1).
-    The $K$-vector space of polynomial solutions of the system (1) is isomorphic to $\operatorname{Hom}_{A_n}(M, k[X])$.
+    The $k$-vector space of solutions of the system (1) is isomorphic to $\operatorname{Hom}_{A_n}(M, \mathcal{S})$.
     \begin{proof}
         Step1.
-        Let $f$ be a polynomial solution of (1). Define a map $\phi_f: A_n \rightarrow k[X]$ by the rule
+        Let $f$ be a solution of (1). Define a map $\phi_f: A_n \rightarrow \mathcal{S}$ by the rule
         \begin{equation*}
             \phi_f(D)=D(f)
         \end{equation*}
@@ -764,31 +756,24 @@ Jacobian conJecture. Let $F: K^n \rightarrow K^n$ be a polynomial map. If $\Delt
         \begin{equation*}
             \phi_f(D)=D(f)=\sum_1^m D_i P_i(f)=0 .
         \end{equation*}
-        that is $\sum_{1}^{m}A_n P_i \subseteq \ker \phi_f $. Thus $\phi_f$ induces an $A_n$-module homomorphism $\bar{\phi}_f: M \rightarrow k[X]$.
+        that is $\sum_{1}^{m}A_n P_i \subseteq \ker \phi_f $. Thus $\phi_f$ induces an $A_n$-module homomorphism $\bar{\phi}_f: M \rightarrow \mathcal{S}$.
         \begin{equation*}
             \begin{tikzcd}
-                A_n \arrow[r,"\phi_f"] \arrow[d,"\pi"] & k[X] \\
+                A_n \arrow[r,"\phi_f"] \arrow[d,"\pi"] & \mathcal{S} \\
                 M \arrow[ru,"\bar{\phi}_f"] &
             \end{tikzcd}
         \end{equation*}
 
         Step 2.
-        Conversely, let $\psi: M \rightarrow k[X]$ be an $A_n$-module homomorphism. Define $f=\psi(\overline{1})$, where $\overline{1}$ is the image of $1$ in $M$. Then for $i=1, \ldots, m$,
+        Conversely, let $\psi: M \rightarrow \mathcal{S}$ be an $A_n$-module homomorphism. Define $f=\psi(\overline{1})$, where $\overline{1}$ is the image of $1$ in $M$. Then for $i=1, \ldots, m$,
         \begin{equation*}
             P_i(f)=P_i(\psi(\overline{1}))=\psi(P_i(\overline{1}))=0 .
         \end{equation*}
-        Thus $f$ is a polynomial solution of (1).
+        Thus $f$ is a solution of (1).
 
         It is easy to check that the maps $f \mapsto \bar{\phi}_f$ and $\psi \mapsto \psi(\overline{1})$ are inverse to each other. Hence we have established the required isomorphism.
     \end{proof}
 \end{theorem}
-
-\begin{definition}
-    Let $\mathcal{S}$ be a left $A_n$-module; and let $M=\left(P_i\right)$ be a finitely generated left $A_n$-module. We will call $\operatorname{Hom}_{A_n}(M, \mathcal{S})$ the solution space of $M$ in $\mathcal{S}$ which isomorphic to $K$-vector space of solutions  of
-    \begin{equation*}
-        P_i \left(f\right)=0 \text{ in } \mathcal{S} , \quad i=1, \ldots, m .
-    \end{equation*}
-\end{definition}
 
 
 \section{Microfunctions}
@@ -1318,7 +1303,7 @@ its comorphism $F^{\sharp}: k[Y] \rightarrow k[X]$ is an algebra homomorphism de
 \begin{lemma}
     \begin{equation*}
         \Gamma_t(M \boxtimes N)/\Gamma_{t-1}(M \boxtimes N)
-        \cong 
+        \cong
         \bigoplus_{p+q=t} \left(\Gamma_p(M)/\Gamma_{p-1}(M)\right) \otimes_k \left(\Gamma_q(N)/\Gamma_{q-1}(N)\right)
     \end{equation*}
     \begin{remark}
@@ -1328,11 +1313,11 @@ its comorphism $F^{\sharp}: k[Y] \rightarrow k[X]$ is an algebra homomorphism de
             \cong
             \operatorname{gr}_t(M) \boxtimes \operatorname{gr}_t(N)
         \end{equation*}
-         where $\operatorname{gr}_t(M):=\Gamma_t(M)/\Gamma_{t-1}(M)$ 
+        where $\operatorname{gr}_t(M):=\Gamma_t(M)/\Gamma_{t-1}(M)$
     \end{remark}
 \end{lemma}
 
-
+\chapter{}
 
 \section{Inverse Image}
 \begin{definition}
@@ -1362,18 +1347,14 @@ its comorphism $F^{\sharp}: k[Y] \rightarrow k[X]$ is an algebra homomorphism de
     \end{equation*}
     by giving the recipe for the action
     \begin{equation*}
-        x_i\left(q\times u \right)   =  (x_iq)\otimes u
+        x_i\left(q\otimes u \right)   =  (x_iq)\otimes u
     \end{equation*}
     \begin{equation*}
         \partial_{x_i}(q \otimes u)  =  \partial_{x_i}(q) \otimes u+\sum_{k=1}^m q \partial_{x_i}\left(F_k\right) \otimes \partial_{y_k} u
     \end{equation*}
     for $i=1, \ldots, n$.
     \begin{remark}
-        It is well defined and satisfies the relations
-        \begin{equation*}
-            [\partial_{x_i}, x_j]w=\delta_{i j}w, \quad[\partial_{x_i}, \partial_{x_j}]w=0, \quad[x_i, x_j]w=0
-        \end{equation*}
-        for all $w \in F^{\star}(M)$.
+        The inverse image functor $F^* \cong \mathcal{D}_{X\rightarrow Y}\otimes_{A_m}$, where $\mathcal{D}_{X\rightarrow Y}:=F^* A_m=k[X]\otimes_{k[Y]} A_m$ is a $A_n$-$A_m$ bimodule.
     \end{remark}
 \end{definition}
 
@@ -1390,7 +1371,7 @@ its comorphism $F^{\sharp}: k[Y] \rightarrow k[X]$ is an algebra homomorphism de
 \end{corollary}
 
 
-\begin{theorem}
+\begin{theorem}[Preservation of holonomy]
     Let $F: X \rightarrow Y$ be a polynomial map. If $M$ is a holonomic $A_m$-module, then $F^{\star} M$ is a holonomic $A_n$-module.
 \end{theorem}
 
@@ -1492,22 +1473,34 @@ its comorphism $F^{\sharp}: k[Y] \rightarrow k[X]$ is an algebra homomorphism de
 
 \begin{definition}
     Let $F: X \rightarrow Y$ be a polynomial map. Let $M$ be a left $A_m$-module.
-    \begin{enumerate}
-        \item The $A_n$-$A_m$ bimodule
-              \begin{equation*}
-                  D_{X\rightarrow Y}:=k[X] \otimes_{k[Y]} A_m
-              \end{equation*}
-              Noted that $F^\star M\cong D_{X\rightarrow Y}\otimes_{A_m} M$
-        \item
-              Let $N$ be a right $A_n$-module. The \textbf{direct image} of $N$ by $F$ is the right $A_m$-module defined by
-              \begin{equation*}
-                  N\otimes_{A_n} D_{X\rightarrow Y}
-              \end{equation*}
-    \end{enumerate}
+    The \textbf{direct image} of $N$ by $F$ is the right $A_m$-module defined by
+    \begin{equation*}
+        F_\star M
+        :=
+        M\otimes_{A_n} D_{X\rightarrow Y}
+    \end{equation*}
+
 \end{definition}
 
+\begin{theorem}
+    Let $F: X \rightarrow Y$ and $G: Y \rightarrow Z$ be two polynomial maps. Let $M$ be a left $A_n$-module. Then
+    \begin{equation*}
+        (G F)_{\star} M \cong G_{\star} F_{\star} M .
+    \end{equation*}
+\end{theorem}
 
 
+
+
+\begin{theorem}
+    Let $F: X \rightarrow Y$ be a polynomial map.
+    If $M$ is a holonomic $A_n$-module, then $F_{\star} M$ is a holonomic $A_m$-module.
+\end{theorem}
+
+
+
+
+\subsection{}
 \begin{theorem}
     Let $\iota: X \rightarrow X \times Y$ be the standard embedding. If $M$ is a finitely generated left $A_n$-module, then:
     \begin{enumerate}
@@ -1520,15 +1513,6 @@ its comorphism $F^{\sharp}: k[Y] \rightarrow k[X]$ is an algebra homomorphism de
               $m\left(\iota_{\star} M\right) \leq m(M)$.
     \end{enumerate}
 \end{theorem}
-
-
-2.3 Theorem. Let $F: X \rightarrow Y$ be a polynomial map. If $M$ is a holonomic $A_n$-module, then $F_{\star} M$ is a holonomic $A_m$-module.
-
-
-
-
-
-
 
 
 \end{document}
