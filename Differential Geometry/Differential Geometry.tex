@@ -105,7 +105,7 @@
               inclusion map $i: S \rightarrow \mathbb{R}^3$ is an smooth embedding
     \end{enumerate}
     \begin{remark}
-        
+
     \end{remark}
 \end{definition}
 
@@ -126,8 +126,42 @@
 
 
 
+\section{First Fundamental Form}
+\begin{definition}
+    Let $S$ be a regular surface in $\mathbb{R}^3$ and $p \in S$.
+    The natural inner product of $R^3 \supset S$ induces on each tangent plane $T_p(S)$ of a regular surface $S$ an inner product, to be denoted by $\langle,\rangle_p$ : If $w_1, w_2 \in T_p(S) \subset R^3$, then $\left\langle w_1, w_2\right\rangle_p$ is equal to the inner product of $w_1$ and $w_2$ as vectors in $R^3$. To this inner product, which is a symmetric bilinear form
 
 
+    (i.e., $\left\langle w_1, w_2\right\rangle=\left\langle w_2, w_1\right\rangle$ and $\left\langle w_1, w_2\right\rangle$ is linear in both $w_1$ and $w_2$ ), there corresponds a quadratic form $I_p: T_p(S) \rightarrow R$ given by
+
+    \begin{equation*}
+        I_p(w)=\langle w, w\rangle_p=|w|^2 \geq 0 .
+    \end{equation*}
+
+    The quadratic form $\mathrm{I}_{\mathrm{p}}$ on $\mathrm{T}_{\mathrm{p}}(\mathrm{S})$, defined by Eq. (1), is called the \textbf{first fundamental form} of $S$ at $\mathrm{p} \in S$.
+    \begin{remark}
+        We shall now express the first fundamental form in the basis $\left\{\mathbf{x}_u, \mathbf{x}_v\right\}$ associated to a parametrization $\mathbf{x}(u, v)$ at $p$. Since a tangent vector $w \in T_p(S)$ is the tangent vector to a parametrized curve $\alpha(t)=\mathbf{x}(u(t), v(t)), t \in(-\epsilon, \epsilon)$, with $p=\alpha(0)=\mathbf{x}\left(u_0, v_0\right)$, we obtain
+
+        \begin{equation*}
+            \begin{aligned}
+                I_p\left(\alpha^{\prime}(0)\right) & =\left\langle\alpha^{\prime}(0), \alpha^{\prime}(0)\right\rangle_p                                                                                                                                                                          \\
+                                                   & =\left\langle\mathbf{x}_u u^{\prime}+\mathbf{x}_v v^{\prime}, \mathbf{x}_u u^{\prime}+\mathbf{x}_v v^{\prime}\right\rangle_p                                                                                                                \\
+                                                   & =E\left(u^{\prime}\right)^2+2 F u^{\prime} v^{\prime}+G\left(v^{\prime}\right)^2
+            \end{aligned}
+        \end{equation*}
+        where the values of the functions involved are computed for $t=0$, and
+        \begin{equation*}
+            \begin{aligned}
+                 & E\left(u_0, v_0\right)=\left\langle\mathbf{x}_u, \mathbf{x}_u\right\rangle_p, \\
+                 & F\left(u_0, v_0\right)=\left\langle\mathbf{x}_u, \mathbf{x}_v\right\rangle_p, \\
+                 & G\left(u_0, v_0\right)=\left\langle\mathbf{x}_v, \mathbf{x}_v\right\rangle_p
+            \end{aligned}
+        \end{equation*}
+        are the coefficients of the first fundamental form in the basis $\left\{\mathbf{x}_u, \mathbf{x}_v\right\}$ of $T_p(S)$.
+        
+         By letting $p$ run in the coordinate neighborhood corresponding to $\mathbf{x}(u, v)$ we obtain functions $E(u, v), F(u, v), G(u, v)$ which are differentiable in that neighborhood.
+    \end{remark}
+\end{definition}
 
 
 

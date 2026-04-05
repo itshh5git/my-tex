@@ -15,6 +15,348 @@
 
 \mainmatter
 
+\chapter{}
+
+\section{Some topology Preliminaries}
+\begin{definition}
+    Let $X$ be a topological space.
+
+    $X$ is \textbf{locally compact} if every point of $X$ has a neighborbood whose closure is compact.
+
+    If $X$ is itself compact, then $X$ is called a compact space.
+\end{definition}
+\begin{theorem}
+    Suppose $K$ is compact and $F$ is closed, in a topological space $X$. If $F \subset K$, then $F$ is compact.
+\end{theorem}
+\begin{corollary}
+    If $A \subset B$ and if $B$ has compact closure, so does $A$.
+\end{corollary}
+\begin{theorem}
+    Suppose $X$ is a Hausdorff space, a compact $K\subset X$ and $p \notin K$. Then there are open sets $p \in U$ and $K\subset V$ such that $U \cap V=\varnothing$.
+\end{theorem}
+\begin{corollary}
+    Let $X$ be a Hausdorff space.
+
+    (1) Compact subsets are closed.
+
+    (2) If $F$ is closed and $K$ is compact, then $F \cap K$ is compact.
+\end{corollary}
+\begin{theorem}\
+    If $\left\{K_\alpha\right\}$ is a collection of compact subsets of a Hausdorff space and if $\bigcap_a K_\alpha=\varnothing$, then some finite subcollection of $\left\{K_{p_k}\right\}_{k=1}^n$ also has empty intersection.
+
+    Proof:
+    Fix a member $K_1$ of $\left\{K_a\right\}$. Since no point of $K_1$ belongs to every $K_a$, then $\left\{K_\alpha^c\right\}$ is an open cover of $K_1$. Hence $K_1 \subset K_{\alpha_1}^c \cup \cdots \cup K_{\alpha_{n}}$ for some finite collection $\left\{K_{\alpha_i}\right\}$. This implies that
+    $$
+        K_1 \cap K_{\alpha_1} \cap \cdots \cap K_{\alpha_n}=\varnothing
+    $$
+\end{theorem}
+\begin{theorem}\
+    Suppose $X$ is a locally compact Hausdorff space $X$, $K \subset U$, $U$ is open, and $K$ is compact. Then there is an open set $V$ with compact closure such that
+    $$K \subset V \subset \overline{V} \subset U$$
+
+    Proof:
+    Since every point of $K$ has a neighborhood with compact closure, and since $K$ is covered by the union of finitely many of these neighborhoods, $K$ lies in an open set $G$ with compact closure. If $U=X$, take $V=G$.
+
+    Otherwise, theorem 2.1.4 shows that to each $p \in U^c\subset K^c$ there corresponds an open set $W_p$ such that $K \subset W_p$ and $p \notin \overline{W}_p$ (). Hence $\left\{U^c \cap \overline{G} \cap \overline{W}_p\right\}_{p\in U^c}$ is a collection of compact sets with empty intersection. By Theorem 2.6 there are points $p_1, \ldots, p_n \in C$ such that
+    $$U^c \cap \overline{G} \cap \overline{W}_{p_1} \cap \ldots \cap \overline{W}_{p_n}=\varnothing$$
+    then
+    $$\overline{G} \cap \overline{W}_{p_1} \cap \ldots \cap \overline{W}_{p_n}\subset U $$
+    The set $V=G \cap W_{p_1} \cap \ldots \cap W_{p_n}$
+\end{theorem}
+\section{Convex Function and Inequalities}
+\begin{definition}
+    A real function $\varphi$ defined on a segment $( a, b )$, where $-\infty \leq a<b \leq \infty$, is called convex if the inequality
+    $$
+        \varphi((1-\lambda) x+\lambda y) \leq(1-\lambda) \varphi(x)+\lambda \varphi(y)
+    $$
+    holds whenever $a<x<b, a<y<b$, and $0 \leq \lambda \leq 1$.
+
+    Also, it is equivalent to the requirement that
+    $$
+        \frac{\varphi(t)-\varphi(s)}{t-s}
+        \leq
+        \frac{\varphi(u)-\varphi(t)}{u-t}
+    $$
+    whenever $a<s<t<u<b$.
+\end{definition}
+\begin{theorem}
+    If $\varphi$ is convex on $(a, b)$ then $\varphi$ is continuous on $(a, b)$
+\end{theorem}
+\begin{theorem}
+    Let $\left\{ \varphi_\alpha\right\}$ be a collection of convex function on $(a,b)$, then
+
+    (1) $ f(x) = \sup\limits_\alpha \varphi_\alpha (x)$
+    , assume that it is finite, is convex (and lower semicontinuous).
+
+    (2) $g(x) = \overline{\lim} \psi_n (x)$ is convex (and lower semicontinuous)
+
+    Proof: (i)Suppose that $x,y \in (a,b)$ and $0 \leq \lambda \leq 1$. Since $f_\alpha$ is convex
+    $$
+        \varphi_\alpha ((1-\lambda) x+\lambda y)
+        \leq (1-\lambda) \varphi_\alpha (x)+\lambda \varphi_\alpha (y)
+        \leq (1-\lambda) f (x)+\lambda f(y)
+    $$
+    for all $\alpha$. We have
+    $$
+        f((1-\lambda) x+\lambda y) \leq (1-\lambda) f (x)+\lambda f(y)
+    $$
+
+    As for (ii)
+    $$
+        \psi_n ((1-\lambda) x+\lambda y)
+        \leq (1-\lambda) \psi_n (x)+\lambda \psi_n (y)
+    $$
+    and let $b$
+\end{theorem}
+\begin{corollary}
+
+\end{corollary}
+
+\subsection{Inequality}
+
+\begin{theorem}[Jensen's Inequality]
+    Let $(\Omega,\mu,\mathcal{M})$ be a positive measure space with $\mu(\Omega)=1$. If $f(x)$ is a real function in $L^1(\mu)$, if $a<f(x)<b$ for all $x\in \Omega$, and if $\varphi$ is convex on $(a,b)$, then
+    $$\varphi\left(\int_{\Omega}f\d \mu\right)\leq
+        \int_{\Omega} \varphi \circ f \d \mu$$
+
+    Note: The cases $a=-\infty$ and $b=\infty$ are not excluded. It may happen that $\varphi \circ f$ is not in $L^{1}(\mu)$; in that case, the integral of $\varphi \circ f$ exists in the extended sense, and its value is $+\infty$.
+
+    Proof:
+    Put $t=\int_{\Omega} f \d  \mu$, then $a<t<b$. Since $\varphi$ is convex on $(a,b)$, there is a $\beta \in \mathbb{R}$ that
+
+    \begin{equation}
+        \varphi(s) \geq \varphi(t)+\beta(s-t) \quad(a<s<b)  \tag{2}
+    \end{equation}
+    Hence
+    \begin{equation}
+        \varphi(f(x))-\varphi(t)-\beta[f(x)-t] \geq 0 \tag{3}
+    \end{equation}
+    for every $x \in \Omega$. Since $\varphi$ is continuous, $\varphi \circ f$ is measurable. If we integrate both sides with respect to $\mu$, then we get the inequality.
+\end{theorem}
+\begin{definition}
+    If $p$ and $q$ are positive real number such that
+    $$\frac{1}{p} + \frac{1}{q} = 1$$
+    then we call $p$ and $q$ a pair of conjugate exponents. $1$ and $\infty$ are also regarded as a pair of conjugate exponents.
+\end{definition}
+\begin{theorem}[Hölder's inequality]
+    Let $p$ and $q$ be conjugate exponents, $1<p<\infty$. Let $X$ be a measure space, with measure $\mu$. Let $f$ and $g$ be measurable functions on $X$, with range in $[0, \infty]$. Then
+
+    \begin{equation}
+        \int_{X} f g \d  \mu \leq\left\{\int_{X} f^{p} \d  \mu\right\}^{1 / p}\left\{\int_{X} g^{q} \d  \mu\right\}^{1 / q} \tag{1}
+    \end{equation}
+
+    Proof:
+    Let $A$ and $B$ be the two factors on the right of (1). If $A=0$, then $f=0$ a.e. ; hence $f g=0$ a.e. , so (1) holds. If $A>0$ and $B=\infty$, (1) is again trivial. So we need consider only the case $0<A<\infty, 0<B<\infty$. Put
+    \begin{equation}
+        F=\frac{f}{A}, \quad G=\frac{g}{B} \tag{3}
+    \end{equation}
+    This gives
+    \begin{equation}
+        \int_{X} F^{p} \d  \mu=\int_{X} G^{q} \d  \mu=1 \tag{4}
+    \end{equation}
+
+    Since $1 / p+1 / q=1$, the convexity of the exponential function implies that
+    \begin{equation}
+        F(x) G(x) \leq \frac{F(x)^{p}}{p}+ \frac{G(x)^{q}}{q}  \tag{6}
+    \end{equation}
+    for every $x \in X$. Integration of (6) yields
+
+    \begin{equation}
+        \int_{X} F G \d  \mu \leq p^{-1}+q^{-1}=1 \tag{7}
+    \end{equation}
+    by (4); inserting (3) into (7), we obtain (1).
+\end{theorem}
+\begin{theorem}\
+    \begin{equation}
+        \left\{\int_{X}(f+g)^{p} \d  \mu\right\}^{1 / p} \leq\left\{\int_{X} f^{p} \d  \mu\right\}^{1 / p}+\left\{\int_{X} g^{p} \d  \mu\right\}^{1 / p} \tag{2}
+    \end{equation}
+
+    Proof:
+    We write
+    \begin{equation}
+        (f+g)^{p}=f \cdot(f+g)^{p-1}+g \cdot(f+g)^{p-1} \tag{8}
+    \end{equation}
+    Hölder's inequality gives
+    \begin{equation}
+        \int f \cdot(f+g)^{p-1} \leq\left\{\int f^{p}\right\}^{1 / p}\left\{\int(f+g)^{(p-1) q}\right\}^{1 / q} \tag{9}
+    \end{equation}
+    and
+    \begin{equation}
+        \int g \cdot(f+g)^{p-1} \leq \left\{\int g^{p}\right\}^{1 / p}\left\{\int(f+g)^{(p-1) q}\right\}^{1 / q} \tag{9'}
+    \end{equation}
+    Since $(p-1) q=p$, addition of (9) and (9') gives
+    \begin{equation}
+        \int(f+g)^{p} \leq\left\{\int(f+g)^{p}\right\}^{1 / q}\left[\left\{\int f^{p}\right\}^{1 / p}+\left\{\int g^{p}\right\}^{1 / p}\right] \tag{10}
+    \end{equation}
+
+
+    Clearly, it is enough to prove (2) in the case that the left side is greater than 0 and the right side is less than $\infty$. The convexity of the function $t^{p}$ for $0<t<\infty$ shows that
+    $$
+        \left(\frac{f+g}{2}\right)^{p} \leq \frac{1}{2}\left(f^{p}+g^{p}\right)
+    $$
+    Hence the left side of (2) is less than $\infty$, and (2) follows from (10) if we divide by the first factor on the right of ( 10 ), bearing in mind that $1-1 / q=1 / p$. This completes the proof.
+\end{theorem}
+
+
+
+
+\section{Semicontinwous}
+\begin{definition}
+    Let $f$ be a real (or extended-real) function on a topological space. If
+    $$\left\{x: f(x)>\alpha\right\}$$
+    is open for every real $\alpha, f$ is said to be \textbf{lower semicontinuous}. If
+    $$\left\{x: f(x)<\alpha\right\}$$
+    is open for every real $\alpha, f$ is said to be upper semicontinuous
+\end{definition}
+
+\begin{theorem}
+    Let $X$ be topology space.
+
+    (1) $\chi_V (x)$ is lower semicontinuous iff $V$ is open.
+
+    (2) $\chi_F (x)$ is uper semicontinuous iff $F$ is closed.
+
+    (3) The supremum of any collection of lower semicontinuous functions is lower semicontinuous.
+
+    (4) The infimum of any collection of upper semicontinuous
+    functions is upper semicontinwous.
+\end{theorem}
+
+\begin{theorem}
+    Let $X$ be a topological space and $f: X \rightarrow \mathbb{R}$
+
+    (1) $f$ is lower semicontinuous if and only if given $x \in X$, for every $\left\{x_n\right\} \subseteq X \backslash\left\{x\right\}$ converging to $x$
+    $$\underset{n\to \infty}{\lim\inf} f(x_n)\geq f(x)$$
+
+
+    (2) $f$ is upper semicontinuous if and only if given $x \in X$, for every $\left\{x_n\right\} \subseteq X \backslash\left\{x\right\}$ converging to $x$
+    $$\underset{n\to \infty}{\lim\sup} f(x_n)\leq f(x)$$
+\end{theorem}
+
+\begin{theorem}\
+    Let $\left\{f_{n}\right\}$ be a sequence of real functions on $\mathbb{R}$, and consider the following four statements:
+
+    (1) If $f_{1}$ and $f_{2}$ are upper semicontinuous, then $f_{1}+f_{2}$ is upper semicontinuous.
+
+    (2) If $f_{1}$ and $f_{2}$ are lower semicontinuous, then $f_{1}+f_{2}$ is lower semicontinuous.
+
+    (3) If each $f_{n}$ is lower semicontinuous and nonnegative, then $\sum\limits_{1}^{\infty} f_{n}$ is lower semicontinuous.
+
+    Proof:
+    Noticed that
+    $$\left\{f_1+f_2 > \alpha\right\}= \bigcup_{\beta_1 +\beta_2 > \alpha} \left(\left\{ f_1 > \beta_1\right\}\cap \left\{ f_2 > \beta_2\right\}\right)$$
+    is open if $f_1$ and $f_2$ are lower semicontinuous. Then $g_n=\sum\limits_{1}^n f_k$ is lower semicontinuous and
+    $$f=\sum\limits_{1}^{\infty} f_{n} = \sup\limits_n g_n$$
+    is lower semicontinuous.
+\end{theorem}
+\begin{theorem}[Extreme Value Theorem for semicontinuous function]
+    If $X$ is compact and $f: X \longrightarrow R$ is upper (lower) semicontinuous, then $f$ attains its maximum (minimum) at some point of $X$.
+\end{theorem}
+
+\begin{theorem}
+    Suppose that $X$ is a metric space with metric $d$, and let $f: X \longrightarrow[0, \infty]$ that $f(p)<\infty$ for at least one $p \in X$
+    (or $f : X\longrightarrow \mathbb{R}$). Then $f(x)$ is lower semicontinuous if and only if there is real nonnegative continuous function sequence
+    $\left\{f_n\right\}$ that
+    $$\lim_{n \to \infty} f_n (x) \rightarrow f(x) \quad \text{ for all } x \in X$$
+
+    Proof:
+    For $n=1,2,3, \ldots, x \in X$, define
+    $$f_{n}(x)=\inf \left\{f(p)+n d(x, p): p \in X\right\}$$
+    and prove that
+    $$\left|f_{n}(x)-f_{n}(y)\right| \leq n d(x, y)$$
+    and
+    $$0 \leq f_{1} \leq f_{2} \leq \cdots \leq f$$
+
+    (iii) $f_{n}(x) \rightarrow f(x)$ as $n \rightarrow \infty$, for all $x \in X$.
+\end{theorem}
+
+\section{Urysohn's Lemma (LCH's version)}
+\begin{definition}
+    Let $X$ be a topological space.
+
+    (1) The notation
+    $$ K \prec f$$
+    will mean that $K$ is a compact subset of $X$, that $f \in C_c(X)$, that $0 \leq f(x) \leq 1$ for all $x \in X$, and that $f(x)=1$ for all $x \in K$.
+
+    (2) The notation
+    $$f \prec V$$
+    will mean that $V$ is open, that $f \in C_c(X), 0 \leq f \leq 1$, and that the support of $f$ lies in $V$.
+
+    (3) The notation
+    $$K \prec f \prec V$$
+    will be used to indicate that the both hold.
+\end{definition}
+
+\begin{theorem}[Urysohn's Lemma]
+    \label{thm: Urysohn's Lemma}
+    Suppose $X$ is a locally compact Hausdorff space, $F$ is closed, $K$ is compact in $X$, and $K \cap V\neq \varnothing$. Then there exists an $f \in C_c(X)$ maps $X$ into $[0,1]$, such that
+    \begin{equation*}
+        f(K)=1 ,\quad f(F) =0
+    \end{equation*}
+\end{theorem}
+
+\begin{corollary}
+    Suppose $X$ is a locally compact Hausdorff space, $V$ is open, $K$ is compact in $X$, and $K \subset V$. Then there exists an $f \in C_c(X)$, such that
+    \begin{equation*}
+        K \prec f\prec V
+    \end{equation*}
+\end{corollary}
+\begin{theorem}
+    Suppose $V_1, \ldots, V_n$ are open subsets of a locally compact Hausdorff space $X$, $K$ is compact, and
+    $$
+        K \subset V_1 \cup \cdots \cup V_n
+    $$
+    Then there exist functions $h_i \prec V_i \quad (i=1, \ldots, n)$ such that
+    $$
+        h_1(x)+\cdots+h_n(x)=1 \quad(x \in K)
+    $$
+    The collection $\left\{h_1, \ldots, h_n\right\}$ is called a \textbf{partition of unity on $K$}, subordinate to the cover $\left\{V_1, \ldots, V_n\right\}$.
+
+
+    Proof:
+    Each $x \in K$ has a neighborhood $W_x$ with compact closure $\overline{W}_x \subset V_i$ for some $i_x$. There are points $x_1, \ldots, x_m$ such that $W_{x_1} \cup \cdots \cup W_{x_m} \supset K$. If $1 \leq i \leq n$, let $H_1$ be the union of those $\overline{W}_x$ which lie in $V_i$. By Urysohn's lemma, there are functions $g_i$ such that $H_i \prec g_i \prec V_i$. Define
+    \begin{equation*}
+        \begin{aligned}
+             & h_1=g_1                                                                     \\
+             & h_2=\left(1-g_1\right) g_2                                                  \\
+             & \cdots \cdots \cdots                                                        \\
+             & h_n=\left(1-g_1\right)\left(1-g_2\right) \cdots\left(1-g_{n-1}\right) g_n .
+        \end{aligned}
+    \end{equation*}
+    Then $h_i \prec V_i$. It is easily verified, by induction, that
+    \begin{equation*}
+        h_1+h_2+\cdots+h_n=1-\left(1-g_1\right)\left(1-g_2\right) \cdots\left(1-g_n\right) .
+    \end{equation*}
+    Since $K \subset H_1 \cup \cdots \cup H_n$, at least one $g_(x)=1$ at each point $x \in K$; hence (3) shows that (1) holds.
+\end{theorem}
+
+
+\section{The completion of \texorpdfstring{$C_0(X)$}{}}
+\begin{definition}
+    A complex function $f$ on a locally compact Hausdorff space $X$ is said to \textbf{vanish at infinity} if to every $\varepsilon>0$ there exists a compact set $K \subset X$ such that $|f(x)| < \varepsilon$ for all $x \in X \backslash K $. The class of all continuous $f$ on $X$ which vanish at infinity is called $C_{0}(X)$.
+
+    It is clear that $C_{c}(X) \subset C_{0}(X)$, and that the two classes coincide if $X$ is compact. In that case we write $C(X)$ for either of them.
+\end{definition}
+\begin{theorem}
+    Let $X$ be locally compact Hausdorff space, then $C_0(X)$ is Banach space with norm $\cdot_\infty$
+\end{theorem}
+\begin{theorem}
+    If $X$ is a locally compact Hausdorff space, then $C_{0}(X)$ is the completion of $C_{c}(X)$, relative to the metric defined by the supremum norm
+    $$
+        \left\| f \right\|=\sup _{x \in X} |f(x)|
+    $$
+
+    Proof:
+    An elementary verification shows that $C_{0}(X)$ satisfies the axioms of a metric space if the distance between $f$ and $g$ is taken to be $\|f-g\|$. We have to show that (a) $C_{c}(X)$ is dense in $C_{0}(X)$ and (b) $ C_{0}(X)$ is a complete metric space.
+
+    Given $f \in C_{0}(X)$ and $\varepsilon > 0$, there is a compact set $K$ so that $|f(x)| < \varepsilon$ outside $K$. Urysohn's lemma gives us a function $g \in C_{c}(X)$ such that $0 \leq g \leq 1$ and $g(x)=1$ on $K$. Put $h=f g$. Then $h \in C_{c}(X)$ and $\|f-h\|<\varepsilon$. This proves (a).
+
+    To prove $(b)$, let $\left\{f_{n}\right\}$ be a Cauchy sequence in $C_{0}(X)$, i.e, assume that $\left\{f_{n}\right\}$ converges uniformly. Then its pointwise limit function $f$ is continuous. Given $\varepsilon>0$, there exists an $n$ so that $\left\|f_{n}-f\right\|<\varepsilon / 2$ and there is a compact set $K$ so that $\left|f_{n}(x)\right|<\varepsilon / 2$ outside $K$. Hence $|f(x)|<\varepsilon$ outside $K$, and we have proved that $f$ vanishes at infinity. Thus $C_{0}(X)$ is complete.
+\end{theorem}
+
+Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Borel measure on $X$.
+
+
 \chapter{Measure} % Measure
 \section{Measurable space} % Measurable space
 \subsection{Definition}
@@ -159,7 +501,7 @@
 
 
 
-\section{Measure} % Measure 
+\subsection{Measure} % Measure 
 \begin{definition}
     Let $(X,\mathcal{M})$ be a measurable space. \begin{enumerate}
         \item
@@ -337,13 +679,14 @@
 \subsection{Basic Definition}
 \begin{definition}
     Let $\left(X, \mathcal{M}\right)$ and $\left(Y, \mathcal{N}\right)$ be measurable spaces, a mapping $f: X \rightarrow Y$ is called $(\mathcal{M}, \mathcal{N})$-\textbf{measurable} if $f^{-1}(E) \in \mathcal{M}$ for all $E \in \mathcal{N}$.
-
-    If $X$ and $Y$ are topological spaces, $f: X \rightarrow Y$ is called \textbf{Borel measurable} if it is $\left(\mathcal{B}_X, \mathcal{B}_Y\right)$-measurable.
 \end{definition}
 
+\begin{definition}
+    Let $X$ and $Y$ be topological spaces, $f: X \rightarrow Y$ is called \textbf{Borel measurable} if it is $\left(\mathcal{B}_X, \mathcal{B}_Y\right)$-measurable.
+\end{definition}
 
 \begin{lemma}
-    Let $f: X \rightarrow Y$ be a map inducing a mapping $f^{-1}: \mathcal{P}(Y) \rightarrow \mathcal{P}(X)$, defined by $f^{-1}(E)=\{x \in X: f(x) \in E\}$, which preserves countable unions, intersections, and complements.
+    Let $f: X \rightarrow Y$ be a map inducing a mapping $f^{-1}: \mathcal{P}(Y) \rightarrow \mathcal{P}(X)$, defined by $f^{-1}(E)=\{x \in X: f(x) \in E\}$, which preserves arbitrary unions, intersections, and complements.
     Thus, if $\mathcal{N}$ is a $\sigma$-algebra on $Y$, $\left\{f^{-1}(E): E \in \mathcal{N}\right\}$ is a $\sigma$-algebra on $X$.
 \end{lemma}
 
@@ -365,11 +708,15 @@
 \end{definition}
 
 
+\begin{definition}
+    Let $\left(Y_\alpha,\mathcal{N}_\alpha\right)$ be an indexed collection of measurable space.
+    The \textbf{product measurable space} is the  $Y= \prod_{\alpha \in A} Y_\alpha$ with \textbf{product $\sigma$-algebra} $\mathcal{N}=\otimes_{\alpha \in A} \mathcal{N}_\alpha$ which is the $\sigma$-algebra generated by $\left\{\pi_\alpha^{-1}\left(E_\alpha\right): E_\alpha \in \mathcal{N}_\alpha, \alpha \in A\right\}$
+    \begin{remark}
+        The product $\sigma$-algebra is the smallest $\sigma$-algebra on $Y$ such that all the coordinate maps $\pi_\alpha: Y \rightarrow Y_\alpha$ are measurable.
+        It follows that $f: X \rightarrow Y$ is $(\mathcal{M}, \mathcal{N})$-measurable iff $\pi_\alpha \circ f$ is $\left(\mathcal{M}, \mathcal{N}_\alpha\right)$-measurable for all $\alpha$.
+    \end{remark}
+\end{definition}
 
-
-\begin{proposition}
-    Let $(X, \mathcal{M})$ and $\left(Y_\alpha, \mathcal{N}_\alpha\right)(\alpha \in A)$ be measurable spaces, $Y= \prod_{\alpha \in A} Y_\alpha, \mathcal{N}=\otimes_{\alpha \in A} \mathcal{N}_\alpha$, and $\pi_\alpha: Y \rightarrow Y_\alpha$ the coordinate maps. Then $f: X \rightarrow Y$ is $(\mathcal{M}, \mathcal{N})$-measurable iff $f_\alpha=\pi_\alpha \circ f$ is $\left(\mathcal{M}, \mathcal{N}_\alpha\right)$-measurable for all $\alpha$.
-\end{proposition}
 
 
 \subsection{Complex-valued measurable function}
@@ -486,6 +833,9 @@
 
 
 \subsection{Completion}
+\begin{definition}
+    A measure space $\left(X, \mathcal{M}, \mu\right)$ is called \textbf{complete} if every subset of every null set is measurable.
+\end{definition}
 \begin{proposition}
     Let $\left(X,\mathcal{M},\mu\right)$ be a measure space. Then the following proposition are equivalent
     \begin{enumerate}
@@ -525,13 +875,11 @@
                   \int_Ef\d \mu=\int_Ef^+\d \mu-\int_Ef^-\d \mu
               \end{equation*}
               provided that at least one of the integrals on the right is finite. The left side is then a number in $[-\infty,\infty]$ called the \textbf{Lebesgue integral} of $f$ over $E$,  with respect to the measure $\mu$.
-              We say $f$ is integrablr if both $\int_Ef^+\d \mu$ and $\int_Ef^-\d \mu$ are finite.
+              We say $f$ is \textbf{integrable} if both $\int_Ef^+\d \mu$ and $\int_Ef^-\d \mu$ are finite.
     \end{enumerate}
 \end{definition}
 
-\begin{proposition}
-    Let $(X, \mathcal{M}, \mu)$ be a measure space and let $(X, \overline{\mathcal{M}}, \bar{\mu})$ be its completion. If $f$ is an $\overline{\mathcal{M}}$-measurable function on $X$, there is an $\mathcal{M}$-measurable function $g$ such that $f=g$ $\bar{\mu}$-almost everywhere.
-\end{proposition}
+
 
 
 \subsection{Convergence Theorem}
@@ -864,7 +1212,7 @@
         Then, for fixed $k, E_n(k)$ decreases as $n$ increases, and $\bigcap_{n=1}^{\infty} E_n(k)=\varnothing$, so since $\mu(X)<\infty$ we conclude that $\mu\left(E_n(k)\right) \rightarrow 0$ as $n \rightarrow \infty$. Given $\varepsilon>0$ and $k \in \mathbb{N}$, choose $n_k$ so large that $\mu\left(E_{n_k}(k)\right)<\varepsilon 2^{-k}$ and let $E=\bigcup_{k=1}^{\infty} E_{n_k}(k)$. Then $\mu(E)<\varepsilon$, and we have $\left|f_n(x)-f(x)\right|<k^{-1}$ for $n>n_k$ and $x \notin E$. Thus $f_n \rightarrow f$ uniformly on $E^c$.
     \end{proof}
 
- 
+
 \end{theorem}
 
 
@@ -885,8 +1233,8 @@
 
 \begin{corollary}[Dominated Convergence Theorem in \texorpdfstring{$L^p$}{}]
     \begin{equation*}
-            f_n\xrightarrow{\mu} f \text{ and } \left|f_n\right|\leq g \in L^p \Rightarrow f_n\xrightarrow{L^p}f
-        \end{equation*}
+        f_n\xrightarrow{\mu} f \text{ and } \left|f_n\right|\leq g \in L^p \Rightarrow f_n\xrightarrow{L^p}f
+    \end{equation*}
 \end{corollary}
 
 
@@ -909,350 +1257,12 @@
 
 
 \chapter{Radon measure} % Radon measure
-
-\section{Some topology Preliminaries}
-\begin{definition}
-    Let $X$ be a topological space.
-
-    $X$ is \textbf{locally compact} if every point of $X$ has a neighborbood whose closure is compact.
-
-    If $X$ is itself compact, then $X$ is called a compact space.
-\end{definition}
-\begin{theorem}
-    Suppose $K$ is compact and $F$ is closed, in a topological space $X$. If $F \subset K$, then $F$ is compact.
-\end{theorem}
-\begin{corollary}
-    If $A \subset B$ and if $B$ has compact closure, so does $A$.
-\end{corollary}
-\begin{theorem}
-    Suppose $X$ is a Hausdorff space, a compact $K\subset X$ and $p \notin K$. Then there are open sets $p \in U$ and $K\subset V$ such that $U \cap V=\varnothing$.
-\end{theorem}
-\begin{corollary}
-    Let $X$ be a Hausdorff space.
-
-    (1) Compact subsets are closed.
-
-    (2) If $F$ is closed and $K$ is compact, then $F \cap K$ is compact.
-\end{corollary}
-\begin{theorem}\
-    If $\left\{K_\alpha\right\}$ is a collection of compact subsets of a Hausdorff space and if $\bigcap_a K_\alpha=\varnothing$, then some finite subcollection of $\left\{K_{p_k}\right\}_{k=1}^n$ also has empty intersection.
-
-    Proof:
-    Fix a member $K_1$ of $\left\{K_a\right\}$. Since no point of $K_1$ belongs to every $K_a$, then $\left\{K_\alpha^c\right\}$ is an open cover of $K_1$. Hence $K_1 \subset K_{\alpha_1}^c \cup \cdots \cup K_{\alpha_{n}}$ for some finite collection $\left\{K_{\alpha_i}\right\}$. This implies that
-    $$
-        K_1 \cap K_{\alpha_1} \cap \cdots \cap K_{\alpha_n}=\varnothing
-    $$
-\end{theorem}
-\begin{theorem}\
-    Suppose $X$ is a locally compact Hausdorff space $X$, $K \subset U$, $U$ is open, and $K$ is compact. Then there is an open set $V$ with compact closure such that
-    $$K \subset V \subset \overline{V} \subset U$$
-
-    Proof:
-    Since every point of $K$ has a neighborhood with compact closure, and since $K$ is covered by the union of finitely many of these neighborhoods, $K$ lies in an open set $G$ with compact closure. If $U=X$, take $V=G$.
-
-    Otherwise, theorem 2.1.4 shows that to each $p \in U^c\subset K^c$ there corresponds an open set $W_p$ such that $K \subset W_p$ and $p \notin \overline{W}_p$ (). Hence $\left\{U^c \cap \overline{G} \cap \overline{W}_p\right\}_{p\in U^c}$ is a collection of compact sets with empty intersection. By Theorem 2.6 there are points $p_1, \ldots, p_n \in C$ such that
-    $$U^c \cap \overline{G} \cap \overline{W}_{p_1} \cap \ldots \cap \overline{W}_{p_n}=\varnothing$$
-    then
-    $$\overline{G} \cap \overline{W}_{p_1} \cap \ldots \cap \overline{W}_{p_n}\subset U $$
-    The set $V=G \cap W_{p_1} \cap \ldots \cap W_{p_n}$
-\end{theorem}
-\section{Convex Function and Inequalities}
-\begin{definition}
-    A real function $\varphi$ defined on a segment $( a, b )$, where $-\infty \leq a<b \leq \infty$, is called convex if the inequality
-    $$
-        \varphi((1-\lambda) x+\lambda y) \leq(1-\lambda) \varphi(x)+\lambda \varphi(y)
-    $$
-    holds whenever $a<x<b, a<y<b$, and $0 \leq \lambda \leq 1$.
-
-    Also, it is equivalent to the requirement that
-    $$
-        \frac{\varphi(t)-\varphi(s)}{t-s}
-        \leq
-        \frac{\varphi(u)-\varphi(t)}{u-t}
-    $$
-    whenever $a<s<t<u<b$.
-\end{definition}
-\begin{theorem}
-    If $\varphi$ is convex on $(a, b)$ then $\varphi$ is continuous on $(a, b)$
-\end{theorem}
-\begin{theorem}
-    Let $\left\{ \varphi_\alpha\right\}$ be a collection of convex function on $(a,b)$, then
-
-    (1) $ f(x) = \sup\limits_\alpha \varphi_\alpha (x)$
-    , assume that it is finite, is convex (and lower semicontinuous).
-
-    (2) $g(x) = \overline{\lim} \psi_n (x)$ is convex (and lower semicontinuous)
-
-    Proof: (i)Suppose that $x,y \in (a,b)$ and $0 \leq \lambda \leq 1$. Since $f_\alpha$ is convex
-    $$
-        \varphi_\alpha ((1-\lambda) x+\lambda y)
-        \leq (1-\lambda) \varphi_\alpha (x)+\lambda \varphi_\alpha (y)
-        \leq (1-\lambda) f (x)+\lambda f(y)
-    $$
-    for all $\alpha$. We have
-    $$
-        f((1-\lambda) x+\lambda y) \leq (1-\lambda) f (x)+\lambda f(y)
-    $$
-
-    As for (ii)
-    $$
-        \psi_n ((1-\lambda) x+\lambda y)
-        \leq (1-\lambda) \psi_n (x)+\lambda \psi_n (y)
-    $$
-    and let $b$
-\end{theorem}
-\begin{corollary}
-
-\end{corollary}
-
-\subsection{Inequality}
-
-\begin{theorem}[Jensen's Inequality]
-    Let $(\Omega,\mu,\mathcal{M})$ be a positive measure space with $\mu(\Omega)=1$. If $f(x)$ is a real function in $L^1(\mu)$, if $a<f(x)<b$ for all $x\in \Omega$, and if $\varphi$ is convex on $(a,b)$, then
-    $$\varphi\left(\int_{\Omega}f\d \mu\right)\leq
-        \int_{\Omega} \varphi \circ f \d \mu$$
-
-    Note: The cases $a=-\infty$ and $b=\infty$ are not excluded. It may happen that $\varphi \circ f$ is not in $L^{1}(\mu)$; in that case, the integral of $\varphi \circ f$ exists in the extended sense, and its value is $+\infty$.
-
-    Proof:
-    Put $t=\int_{\Omega} f \d  \mu$, then $a<t<b$. Since $\varphi$ is convex on $(a,b)$, there is a $\beta \in \mathbb{R}$ that
-
-    \begin{equation}
-        \varphi(s) \geq \varphi(t)+\beta(s-t) \quad(a<s<b)  \tag{2}
-    \end{equation}
-    Hence
-    \begin{equation}
-        \varphi(f(x))-\varphi(t)-\beta[f(x)-t] \geq 0 \tag{3}
-    \end{equation}
-    for every $x \in \Omega$. Since $\varphi$ is continuous, $\varphi \circ f$ is measurable. If we integrate both sides with respect to $\mu$, then we get the inequality.
-\end{theorem}
-\begin{definition}
-    If $p$ and $q$ are positive real number such that
-    $$\frac{1}{p} + \frac{1}{q} = 1$$
-    then we call $p$ and $q$ a pair of conjugate exponents. $1$ and $\infty$ are also regarded as a pair of conjugate exponents.
-\end{definition}
-\begin{theorem}[Hölder's inequality]
-    Let $p$ and $q$ be conjugate exponents, $1<p<\infty$. Let $X$ be a measure space, with measure $\mu$. Let $f$ and $g$ be measurable functions on $X$, with range in $[0, \infty]$. Then
-
-    \begin{equation}
-        \int_{X} f g \d  \mu \leq\left\{\int_{X} f^{p} \d  \mu\right\}^{1 / p}\left\{\int_{X} g^{q} \d  \mu\right\}^{1 / q} \tag{1}
-    \end{equation}
-
-    Proof:
-    Let $A$ and $B$ be the two factors on the right of (1). If $A=0$, then $f=0$ a.e. ; hence $f g=0$ a.e. , so (1) holds. If $A>0$ and $B=\infty$, (1) is again trivial. So we need consider only the case $0<A<\infty, 0<B<\infty$. Put
-    \begin{equation}
-        F=\frac{f}{A}, \quad G=\frac{g}{B} \tag{3}
-    \end{equation}
-    This gives
-    \begin{equation}
-        \int_{X} F^{p} \d  \mu=\int_{X} G^{q} \d  \mu=1 \tag{4}
-    \end{equation}
-
-    Since $1 / p+1 / q=1$, the convexity of the exponential function implies that
-    \begin{equation}
-        F(x) G(x) \leq \frac{F(x)^{p}}{p}+ \frac{G(x)^{q}}{q}  \tag{6}
-    \end{equation}
-    for every $x \in X$. Integration of (6) yields
-
-    \begin{equation}
-        \int_{X} F G \d  \mu \leq p^{-1}+q^{-1}=1 \tag{7}
-    \end{equation}
-    by (4); inserting (3) into (7), we obtain (1).
-\end{theorem}
-\begin{theorem}\
-    \begin{equation}
-        \left\{\int_{X}(f+g)^{p} \d  \mu\right\}^{1 / p} \leq\left\{\int_{X} f^{p} \d  \mu\right\}^{1 / p}+\left\{\int_{X} g^{p} \d  \mu\right\}^{1 / p} \tag{2}
-    \end{equation}
-
-    Proof:
-    We write
-    \begin{equation}
-        (f+g)^{p}=f \cdot(f+g)^{p-1}+g \cdot(f+g)^{p-1} \tag{8}
-    \end{equation}
-    Hölder's inequality gives
-    \begin{equation}
-        \int f \cdot(f+g)^{p-1} \leq\left\{\int f^{p}\right\}^{1 / p}\left\{\int(f+g)^{(p-1) q}\right\}^{1 / q} \tag{9}
-    \end{equation}
-    and
-    \begin{equation}
-        \int g \cdot(f+g)^{p-1} \leq \left\{\int g^{p}\right\}^{1 / p}\left\{\int(f+g)^{(p-1) q}\right\}^{1 / q} \tag{9'}
-    \end{equation}
-    Since $(p-1) q=p$, addition of (9) and (9') gives
-    \begin{equation}
-        \int(f+g)^{p} \leq\left\{\int(f+g)^{p}\right\}^{1 / q}\left[\left\{\int f^{p}\right\}^{1 / p}+\left\{\int g^{p}\right\}^{1 / p}\right] \tag{10}
-    \end{equation}
-
-
-    Clearly, it is enough to prove (2) in the case that the left side is greater than 0 and the right side is less than $\infty$. The convexity of the function $t^{p}$ for $0<t<\infty$ shows that
-    $$
-        \left(\frac{f+g}{2}\right)^{p} \leq \frac{1}{2}\left(f^{p}+g^{p}\right)
-    $$
-    Hence the left side of (2) is less than $\infty$, and (2) follows from (10) if we divide by the first factor on the right of ( 10 ), bearing in mind that $1-1 / q=1 / p$. This completes the proof.
-\end{theorem}
-
-
-
-
-\section{Semicontinwous}
-\begin{definition}
-    Let $f$ be a real (or extended-real) function on a topological space. If
-    $$\left\{x: f(x)>\alpha\right\}$$
-    is open for every real $\alpha, f$ is said to be \textbf{lower semicontinuous}. If
-    $$\left\{x: f(x)<\alpha\right\}$$
-    is open for every real $\alpha, f$ is said to be upper semicontinuous
-\end{definition}
-
-\begin{theorem}
-    Let $X$ be topology space.
-
-    (1) $\chi_V (x)$ is lower semicontinuous iff $V$ is open.
-
-    (2) $\chi_F (x)$ is uper semicontinuous iff $F$ is closed.
-
-    (3) The supremum of any collection of lower semicontinuous functions is lower semicontinuous.
-
-    (4) The infimum of any collection of upper semicontinuous
-    functions is upper semicontinwous.
-\end{theorem}
-
-\begin{theorem}
-    Let $X$ be a topological space and $f: X \rightarrow \mathbb{R}$
-
-    (1) $f$ is lower semicontinuous if and only if given $x \in X$, for every $\left\{x_n\right\} \subseteq X \backslash\left\{x\right\}$ converging to $x$
-    $$\underset{n\to \infty}{\lim\inf} f(x_n)\geq f(x)$$
-
-
-    (2) $f$ is upper semicontinuous if and only if given $x \in X$, for every $\left\{x_n\right\} \subseteq X \backslash\left\{x\right\}$ converging to $x$
-    $$\underset{n\to \infty}{\lim\sup} f(x_n)\leq f(x)$$
-\end{theorem}
-
-\begin{theorem}\
-    Let $\left\{f_{n}\right\}$ be a sequence of real functions on $\mathbb{R}$, and consider the following four statements:
-
-    (1) If $f_{1}$ and $f_{2}$ are upper semicontinuous, then $f_{1}+f_{2}$ is upper semicontinuous.
-
-    (2) If $f_{1}$ and $f_{2}$ are lower semicontinuous, then $f_{1}+f_{2}$ is lower semicontinuous.
-
-    (3) If each $f_{n}$ is lower semicontinuous and nonnegative, then $\sum\limits_{1}^{\infty} f_{n}$ is lower semicontinuous.
-
-    Proof:
-    Noticed that
-    $$\left\{f_1+f_2 > \alpha\right\}= \bigcup_{\beta_1 +\beta_2 > \alpha} \left(\left\{ f_1 > \beta_1\right\}\cap \left\{ f_2 > \beta_2\right\}\right)$$
-    is open if $f_1$ and $f_2$ are lower semicontinuous. Then $g_n=\sum\limits_{1}^n f_k$ is lower semicontinuous and
-    $$f=\sum\limits_{1}^{\infty} f_{n} = \sup\limits_n g_n$$
-    is lower semicontinuous.
-\end{theorem}
-\begin{theorem}[Extreme Value Theorem for semicontinuous function]
-    If $X$ is compact and $f: X \longrightarrow R$ is upper (lower) semicontinuous, then $f$ attains its maximum (minimum) at some point of $X$.
-\end{theorem}
-
-\begin{theorem}
-    Suppose that $X$ is a metric space with metric $d$, and let $f: X \longrightarrow[0, \infty]$ that $f(p)<\infty$ for at least one $p \in X$
-    (or $f : X\longrightarrow \mathbb{R}$). Then $f(x)$ is lower semicontinuous if and only if there is real nonnegative continuous function sequence
-    $\left\{f_n\right\}$ that
-    $$\lim_{n \to \infty} f_n (x) \rightarrow f(x) \quad \text{ for all } x \in X$$
-
-    Proof:
-    For $n=1,2,3, \ldots, x \in X$, define
-    $$f_{n}(x)=\inf \left\{f(p)+n d(x, p): p \in X\right\}$$
-    and prove that
-    $$\left|f_{n}(x)-f_{n}(y)\right| \leq n d(x, y)$$
-    and
-    $$0 \leq f_{1} \leq f_{2} \leq \cdots \leq f$$
-
-    (iii) $f_{n}(x) \rightarrow f(x)$ as $n \rightarrow \infty$, for all $x \in X$.
-\end{theorem}
-
-\section{The completion of \texorpdfstring{$C_0(X)$}{}}
-\begin{definition}
-    A complex function $f$ on a locally compact Hausdorff space $X$ is said to \textbf{vanish at infinity} if to every $\varepsilon>0$ there exists a compact set $K \subset X$ such that $|f(x)| < \varepsilon$ for all $x \in X \backslash K $. The class of all continuous $f$ on $X$ which vanish at infinity is called $C_{0}(X)$.
-
-    It is clear that $C_{c}(X) \subset C_{0}(X)$, and that the two classes coincide if $X$ is compact. In that case we write $C(X)$ for either of them.
-\end{definition}
-\begin{theorem}
-    Let $X$ be locally compact Hausdorff space, then $C_0(X)$ is Banach space with norm $\cdot_\infty$
-\end{theorem}
-\begin{theorem}
-    If $X$ is a locally compact Hausdorff space, then $C_{0}(X)$ is the completion of $C_{c}(X)$, relative to the metric defined by the supremum norm
-    $$
-        \left\| f \right\|=\sup _{x \in X} |f(x)|
-    $$
-
-    Proof:
-    An elementary verification shows that $C_{0}(X)$ satisfies the axioms of a metric space if the distance between $f$ and $g$ is taken to be $\|f-g\|$. We have to show that (a) $C_{c}(X)$ is dense in $C_{0}(X)$ and (b) $ C_{0}(X)$ is a complete metric space.
-
-    Given $f \in C_{0}(X)$ and $\varepsilon > 0$, there is a compact set $K$ so that $|f(x)| < \varepsilon$ outside $K$. Urysohn's lemma gives us a function $g \in C_{c}(X)$ such that $0 \leq g \leq 1$ and $g(x)=1$ on $K$. Put $h=f g$. Then $h \in C_{c}(X)$ and $\|f-h\|<\varepsilon$. This proves (a).
-
-    To prove $(b)$, let $\left\{f_{n}\right\}$ be a Cauchy sequence in $C_{0}(X)$, i.e, assume that $\left\{f_{n}\right\}$ converges uniformly. Then its pointwise limit function $f$ is continuous. Given $\varepsilon>0$, there exists an $n$ so that $\left\|f_{n}-f\right\|<\varepsilon / 2$ and there is a compact set $K$ so that $\left|f_{n}(x)\right|<\varepsilon / 2$ outside $K$. Hence $|f(x)|<\varepsilon$ outside $K$, and we have proved that $f$ vanishes at infinity. Thus $C_{0}(X)$ is complete.
-\end{theorem}
-
-\section{Urysohn's Lemma (LCH's version)}
-\begin{definition}
-    Let $X$ be a topological space.
-
-    (1) The notation
-    $$ K \prec f$$
-    will mean that $K$ is a compact subset of $X$, that $f \in C_c(X)$, that $0 \leq f(x) \leq 1$ for all $x \in X$, and that $f(x)=1$ for all $x \in K$.
-
-    (2) The notation
-    $$f \prec V$$
-    will mean that $V$ is open, that $f \in C_c(X), 0 \leq f \leq 1$, and that the support of $f$ lies in $V$.
-
-    (3) The notation
-    $$K \prec f \prec V$$
-    will be used to indicate that the both hold.
-\end{definition}
-
-\begin{theorem}[Urysohn's Lemma]
-    \label{thm: Urysohn's Lemma}
-    Suppose $X$ is a locally compact Hausdorff space, $F$ is closed, $K$ is compact in $X$, and $K \cap V\neq \varnothing$. Then there exists an $f \in C_c(X)$ maps $X$ into $[0,1]$, such that
-    \begin{equation*}
-        f(K)=1 ,\quad f(F) =0
-    \end{equation*}
-\end{theorem}
-
-\begin{corollary}
-    Suppose $X$ is a locally compact Hausdorff space, $V$ is open, $K$ is compact in $X$, and $K \subset V$. Then there exists an $f \in C_c(X)$, such that
-    \begin{equation*}
-        K \prec f\prec V
-    \end{equation*}
-\end{corollary}
-\begin{theorem}
-    Suppose $V_1, \ldots, V_n$ are open subsets of a locally compact Hausdorff space $X$, $K$ is compact, and
-    $$
-        K \subset V_1 \cup \cdots \cup V_n
-    $$
-    Then there exist functions $h_i \prec V_i \quad (i=1, \ldots, n)$ such that
-    $$
-        h_1(x)+\cdots+h_n(x)=1 \quad(x \in K)
-    $$
-    The collection $\left\{h_1, \ldots, h_n\right\}$ is called a \textbf{partition of unity on $K$}, subordinate to the cover $\left\{V_1, \ldots, V_n\right\}$.
-
-
-    Proof:
-    Each $x \in K$ has a neighborhood $W_x$ with compact closure $\overline{W}_x \subset V_i$ for some $i_x$. There are points $x_1, \ldots, x_m$ such that $W_{x_1} \cup \cdots \cup W_{x_m} \supset K$. If $1 \leq i \leq n$, let $H_1$ be the union of those $\overline{W}_x$ which lie in $V_i$. By Urysohn's lemma, there are functions $g_i$ such that $H_i \prec g_i \prec V_i$. Define
-    \begin{equation*}
-        \begin{aligned}
-             & h_1=g_1                                                                     \\
-             & h_2=\left(1-g_1\right) g_2                                                  \\
-             & \cdots \cdots \cdots                                                        \\
-             & h_n=\left(1-g_1\right)\left(1-g_2\right) \cdots\left(1-g_{n-1}\right) g_n .
-        \end{aligned}
-    \end{equation*}
-    Then $h_i \prec V_i$. It is easily verified, by induction, that
-    \begin{equation*}
-        h_1+h_2+\cdots+h_n=1-\left(1-g_1\right)\left(1-g_2\right) \cdots\left(1-g_n\right) .
-    \end{equation*}
-    Since $K \subset H_1 \cup \cdots \cup H_n$, at least one $g_(x)=1$ at each point $x \in K$; hence (3) shows that (1) holds.
-\end{theorem}
-
-
-Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Borel measure on $X$.
+Throughout this chapter, $X$ will denote an LCH space.
 
 \section{Basic Definition} % Basic Definition
 \begin{definition}
     Let $\mu$ be a Borel measure on locally compact
-    Hausdorff space $\left(X,\tau,\mathcal{B}\right)$ and $E$ a Borel set of $X$.
+    Hausdorff space $X$ and $E$ a Borel set of $X$.
     \begin{enumerate}
         \item
               The measure $\mu$ is called \textbf{outter regular} on $E$ if
@@ -1260,18 +1270,19 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
                   \mu(E)=\inf\left\{\mu(V): E \subset V,\: V \text{ open}\right\}
               \end{equation*}
         \item
-              is called \textbf{inner regular} on $E$ if
+              The $\mu$ is called \textbf{inner regular} on $E$ if
               \begin{equation*}
                   \mu(E)=\sup\left\{\mu(K):K\subset E,\: K \text{ compact}\right\}
               \end{equation*}
         \item
+              The $\mu$ is called \textbf{regular} on $E$ if $\mu$ is both outer and inner regular on $E$.
               If $\mu$ is outer and inner regular on all Borel sets, $\mu$ is called \textbf{regular}.
     \end{enumerate}
 \end{definition}
 
 \begin{definition}
     A \textbf{Radon measure} $\mu$ on $X$ is a Borel measure that
-    \begin{enumerate}
+    \begin{enumerate}[label=(\roman*)]
         \item
               is finite on all compact sets,
         \item
@@ -1306,9 +1317,20 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
 
 
 \section{Riesz Representation Theorem}
+\begin{lemma}
+    If $\Lambda$ is a positive linear functional on $C_c(X)$, for each compact $K \subset X$ there is a constant $C_K$ such that $|\Lambda(f)| \leq C_K\|f\|_u$ for all $f \in C_c(X)$ such that $\operatorname{supp}(f) \subset K$.
+\end{lemma}
 \begin{theorem}[Riesz Representation Theorem]
-    Let $\left(X,\tau\right)$ be a locally compact Hausdorff space, and let $\Lambda$ be a positive linear functional on $C_c(X)$.
+    Let $X$ be a locally compact Hausdorff space, and let $\Lambda$ be a positive linear functional on $C_c(X)$.
     Then there is a unique Radon measure $\mu$ on $X$ such that $\Lambda(f)=\int_X f \d \mu$ for all $f \in C_c(X)$.
+    Moreover, $\mu$ satisfies the following properties:
+    \begin{equation*}
+        \mu(U)=\sup \left\{\Lambda f: f \prec U\right\} \text { for every open set } U
+    \end{equation*}
+    and
+    \begin{equation*}
+        \mu(K)=\inf \left\{\Lambda f: f \succ K\right\} \text { for every compact set } K
+    \end{equation*}
     \begin{proof}
         Step 1. Construction of $\mu$ and $\mathcal{M}$
         For every open set $V$ in $X$, define
@@ -1491,9 +1513,10 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
 
 
 \section{Approximation} % Approximation
+
 \begin{proposition}
     \label{pro: C_c(X) is dense in L^p(mu)}
-    If $\mu$ is a Radon measure on $X$, $C_c(X)$ is dense in $L^p(\mu)$ for $1 \leq p<\infty$.
+    $C_c(X)$ is dense in $L^p(\mu)$ for $1 \leq p<\infty$.
     \begin{proof}
         Since the $L^p$ simple functions are dense in $L^p$, it suffices to show that for any Borel set $E$ with $\mu(E)<\infty, \chi_E$ can be approximated in
         the $L^p$ norm by elements of $C_c(X)$. Given $\varepsilon>0$, by Proposition 7.5 we can choose a compact $K \subset E$ and an open $U \supset E$ such that $\mu(U \backslash K)<\varepsilon$, and by Urysohn's lemma we can choose $f \in C_c(X)$ such that $\chi_K \leq f \leq \chi_U$. Then $\left\|\chi_E-f\right\|_p \leq \mu(U \backslash K)^{1 / p}<\varepsilon^{1 / p}$, so we are done.
@@ -1809,9 +1832,11 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
 
 
 \section{Approximation in \texorpdfstring{$L^p$}{}}
+Let $L^p\left(\right)$
+
 \begin{theorem}[Simple function]
     For $1\leq p < \infty$, the set
-    $S=\left\{f=\sum_1^n a_j \chi_{E_j}: \mu\left(E_j\right)<\infty \right\}$  is dense in $L^{p}(\mu)$.
+    $\mathcal{S}=\left\{f=\sum_1^n a_j \chi_{E_j}: \mu\left(E_j\right)<\infty \right\}$  is dense in $L^{p}$.
 \end{theorem}
 
 \begin{theorem}[$C_c(X)$ on local compact Hausdorff space $X$]
@@ -1842,7 +1867,7 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
 \begin{definition}
     If $f$ is a measurable function on $(X, \mathcal{M}, \mu)$, we define its \textbf{distribution function} $\lambda_f:(0, \infty) \rightarrow[0, \infty]$ by
     \begin{equation*}
-        \lambda_f(\alpha)=\mu(\{x:|f(x)|>\alpha\}) .
+        \lambda_f(\alpha):=\mu(\{x:|f(x)|>\alpha\}) .
     \end{equation*}
 \end{definition}
 
@@ -1865,6 +1890,13 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
         \int_X \phi \circ|f| d \mu=-\int_0^{\infty} \phi(\alpha) d \lambda_f(\alpha)
     \end{equation*}
 \end{theorem}
+\begin{corollary}
+    \begin{equation*}
+        \int \left|f\right|^p d \mu=-\int_0^{\infty} \alpha^p d \lambda_f(\alpha)
+        =
+        p \int_0^{\infty} \alpha^{p-1} \lambda_f(\alpha) d \alpha
+    \end{equation*}
+\end{corollary}
 
 \begin{definition}
     Let $\left(X,\mathcal{M},\mu\right)$ be measure space.
@@ -1992,36 +2024,46 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
 \end{theorem}
 
 
-\chapter{Signed Measures}
-\section{}
+\chapter{}
+\section{Signed Measures and complex measures}
+\subsection{Signed Measures}
 \begin{definition}
     Let $\left(X, \mathcal{M}\right)$ be a measurable space.
     A \textbf{signed measure} $\nu$ on $\left(X, \mathcal{M}\right)$ is a function  such that
     \begin{enumerate}[label=(\roman*)]
         \item
-              $\nu: \mathcal{M} \rightarrow[-\infty, \infty]$ and $\nu$ assumes at most one of the values $\pm \infty$;
+              $\nu: \mathcal{M} \rightarrow[-\infty, \infty]$ and $\nu$ assumes at most one of the values $\pm \infty$
         \item
               $\nu(\varnothing)=0$;
         \item
-              if $\left\{E_j\right\}$ is a sequence of disjoint sets in $\mathcal{M}$, then $\nu\left(\bigcup_1^{\infty} E_j\right)=\sum_1^{\infty} \nu\left(E_j\right)$, where the latter sum converges absolutely if $\nu\left(\bigcup_1^{\infty} E_j\right)$ is finite.
+              if $\left\{E_j\right\}$ is a sequence of disjoint sets in $\mathcal{M}$, then $\nu\left(\bigcup_1^{\infty} E_j\right)=\sum_1^{\infty} \nu\left(E_j\right)$
     \end{enumerate}
-    Thus every measure is a signed measure; for emphasis we shall sometimes refer to measures as \textbf{positive measures}.
+    \begin{remark}
+        It follows that the sum converges absolutely if $\nu\left(\bigcup_1^{\infty} E_j\right)$ is finite.
+    \end{remark}
 \end{definition}
+Thus every measure is a signed measure; for emphasis we shall sometimes refer to measures as \textbf{positive measures}.
+
 
 \begin{proposition}
     Let $\left(X, \mathcal{M}\right)$ be a measurable space.
     \begin{enumerate}
         \item
-              First, if $\mu_1, \mu_2$ are measures on $\mathcal{M}$ and at least one of them is finite, then $\nu=\mu_1-\mu_2$ is a signed measure.
+              if $\mu_1, \mu_2$ are measures on $\mathcal{M}$ and at least one of them is finite, then $\nu=\mu_1-\mu_2$ is a signed measure.
         \item
-              Second, if $\mu$ is a measure on $\mathcal{M}$ and $f: X \rightarrow[-\infty, \infty]$ is a measurable function such that at least one of $\int f^{+} d \mu$ and $\int f^{-} d \mu$ is finite (in which case we shall call $f$ an extended $\mu$-integrable function), then the set function $\nu$ defined by $\nu(E)=\int_E f d \mu$ is a signed measure.
+              if $\mu$ is a measure on $\mathcal{M}$ and $f: X \rightarrow[-\infty, \infty]$ is a measurable function such that at least one of $\int f^{+} d \mu$ and $\int f^{-} d \mu$ is finite (in which case we shall call $f$ an \textbf{extended $\mu$-integrable} function), then the set function $\nu$ defined by $\nu(E):=\int_E f d \mu$ is a signed measure.
     \end{enumerate}
-
-    In fact, we shall see shortly that these are really the only examples: Every signed measure can be represented in either of these two forms.
 \end{proposition}
+\begin{definition}
+    Let $\nu$ be a signed measure on $(X, \mathcal{M})$, a set $E \in \mathcal{M}$ is called \textbf{positive} (resp. \textbf{negative}, \textbf{null}) for $\nu$ if $\nu(F) \geq 0($ resp. $\nu(F) \leq 0, \nu(F)=0)$ for all $F \in \mathcal{M}$ such that $F \subset E$.
+\end{definition}
 
-
-
+\begin{definition}
+    We say that two signed measures $\mu$ and $\nu$ on $(X, \mathcal{M})$ are \textbf{mutually singular}, if there exist $E, F \in \mathcal{M}$ such that $E \cap F=\varnothing, E \cup F=X, E$ is null for $\mu$, and $F$ is null for $\nu$. In this case, we write
+    \begin{equation*}
+        \mu \perp \nu .
+    \end{equation*}
+\end{definition}
 
 \begin{theorem}[The Hahn Decomposition Theorem]
     Let $\nu$ be a signed measure on $(X, \mathcal{M})$, there exist a positive set $P$ and a negative set $N$ for $\nu$ such that $P \cup N=X$ and $P \cap N=\varnothing$. If $P^{\prime}, N^{\prime}$ is another such pair, then $P \Delta P^{\prime}\left(=N \Delta N^{\prime}\right)$ is null for $\nu$.
@@ -2030,50 +2072,241 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
 
 
 
-\begin{definition}[The Jordan Decomposition Theorem]
-    Let $\nu$ be a signed measure on $(X, \mathcal{M})$, there exist unique positive measures $\nu^{+}$and $\nu^{-}$such that $\nu=\nu^{+}-\nu^{-}$and $\nu^{+} \perp \nu^{-}$.
-
-    Proof. Let $X=P \cup N$ be a Hahn decomposition for $\nu$, and define $\nu^{+}(E)= \nu(E \cap P)$ and $\nu^{-}(E)=-\nu(E \cap N)$. Then clearly $\nu=\nu^{+}-\nu^{-}$and $\nu^{+} \perp \nu^{-}$. If also $\nu=\mu^{+}-\mu^{-}$and $\mu^{+} \perp \mu^{-}$, let $E, F \in \mathcal{M}$ be such that $E \cap F=\varnothing, E \cup F=X$, and $\mu^{+}(F)=\mu^{-}(E)=0$. Then $X=E \cup F$ is another Hahn decomposition for $\nu$, so $P \Delta E$ is $\nu$-null. Therefore, for any $A \in \mathcal{M}, \mu^{+}(A)=\mu^{+}(A \cap E)=\nu(A \cap E)= \nu(A \cap P)=\nu^{+}(A)$, and likewise $\nu^{-}=\mu^{-}$.
-
-    The measures $\nu^{+}$and $\nu^{-}$ are called the \textbf{positive and negative variations} of $\nu$, and $\nu=\nu^{+}-\nu^{-}$is called the \textbf{Jordan decomposition} of $\nu$. Furthermore, we define the \textbf{total variation} of $\nu$ to be the measure $|\nu|$ defined by
-    \begin{equation*}
-        |\nu|=\nu^{+}+\nu^{-} .
-    \end{equation*}
-\end{definition}
+\begin{theorem}[The Jordan Decomposition Theorem]
+    Let $\nu$ be a signed measure on $(X, \mathcal{M})$, there exist unique positive measures $\nu^{+}$ and $\nu^{-}:=\nu(N\cap \ )$ such that $\nu=\nu^{+}-\nu^{-}$and $\nu^{+} \perp \nu^{-}$.
+    \begin{remark}
+        Indeed, $\nu^+=\nu\left(P\cap \ \right)$ and $\nu^-=\nu\left(N\cap \ \right)$,
+        \begin{equation*}
+            \nu\left(E\right)
+            =
+            \int_E \chi_P-\chi_N \d |\nu|
+        \end{equation*}
+        The measures $\nu^{+}$and $\nu^{-}$are called the \textbf{positive and negative variations} of $\nu$, and $\nu=\nu^{+}-\nu^{-}$is called the \textbf{Jordan decomposition} of $\nu$. Furthermore, we define the \textbf{total variation} of $\nu$ to be the measure $|\nu|$ defined by
+        \begin{equation*}
+            \left|\nu\right|:=\nu^{+}+\nu^{-} .
+        \end{equation*}
+    \end{remark}
+\end{theorem}
 
 
 \begin{proposition}
     Let $\nu$ be a signed measure on $(X, \mathcal{M})$
 
-    It is easily verified that $E \in \mathcal{M}$ is $\nu$-null iff $|\nu|(E)=0$, and $\nu \perp \mu$ iff $|\nu| \perp \mu$ iff $\nu^{+} \perp \mu$ and $\nu^{-} \perp \mu$ (Exercise 2.)
+    \begin{enumerate}
+        \item
+              $E \in \mathcal{M}$ is $\nu$-null iff $|\nu|(E)=0$,
+        \item
+              $\nu \perp \mu \Leftrightarrow \left|\nu\right| \perp \mu \Leftrightarrow \nu^{+} \perp \mu$ and $\nu^{-} \perp \mu$
 
-    We observe that if $\nu$ omits the value $\infty$ then $\nu^{+}(X)=\nu(P)<\infty$, so that $\nu^{+}$is a finite measure and $\nu$ is bounded above by $\nu^{+}(X)$; similarly if $\nu$ omits the value $-\infty$. In particular, if the range of $\nu$ is contained in $\mathbb{R}$, then $\nu$ is bounded.
+        \item
+              If $\nu$ omits the value $+\infty$ then $\nu^{+}(X)=\nu(P)<\infty$, so that $\nu^{+}$is a finite measure and $\nu$ is bounded above by $\nu^{+}(X)$;
 
-
-
-    Integration with respect to a signed measure $\nu$ is defined in the obvious way: We set
+              similarly if $\nu$ omits the value $-\infty$.
+    \end{enumerate}
+\end{proposition}
+\begin{definition}
+    Let $\nu$ be a signed measure on $(X, \mathcal{M})$.
+    The integration of a measurable function $f$ with respect to $\nu$ is defined by
     \begin{equation*}
-        \begin{gathered}
-            L^1(\nu)=L^1\left(\nu^{+}\right) \cap L^1\left(\nu^{-}\right) \\
-            \int f d \nu=\int f d \nu^{+}-\int f d \nu^{-} \quad\left(f \in L^1(\nu)\right)
-        \end{gathered}
+        \int f \d \nu:=\int f \d \nu^{+}-\int f \d \nu^{-}
     \end{equation*}
+    (provided that at least one of the two integrals on the right is finite).
+    Thus
+    \begin{equation*}
+        L^1(\nu):=L^1\left(\nu^{+}\right) \cap L^1\left(\nu^{-}\right)=L^1\left(\left|\nu\right|\right)
+    \end{equation*}
+\end{definition}
 
-    One more piece of terminology: a signed measure $\nu$ is called finite (resp. $\sigma$-finite) if $|\nu|$ is finite (resp. $\sigma$-finite).
+\begin{definition}
+    A signed measure $\nu$ is called finite (resp. $\sigma$-finite) if $|\nu|$ is finite (resp. $\sigma$-finite).
+\end{definition}
+
+\subsection{Complex Measures}
+\begin{definition}
+    A \textbf{complex measure} on a measurable space $(X, \mathcal{M})$ is a map $\nu$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item $\nu: \mathcal{M} \rightarrow \mathbb{C}$
+        \item
+              $\nu(\varnothing)=0$;
+        \item
+              if $\left\{E_j\right\}$ is a sequence of disjoint sets in $\mathcal{M}$, then $\nu\left(\bigcup_1^{\infty} E_j\right)=\sum_1^{\infty} \nu\left(E_j\right)$, where the series converges absolutely.
+    \end{enumerate}
+    \begin{remark}
+        If $\nu$ is a complex measure, we shall write $\nu_r$ and $\nu_i$ for the real and imaginary parts of $\nu$. Thus $\nu_r$ and $\nu_i$ are finite signed measures.
+        Conversely, if $\nu_r$ and $\nu_i$ are finite signed measures, then $\nu=\nu_r+i \nu_i$ is a complex measure.
+    \end{remark}
+\end{definition}
+
+
+
+
+\section{The Radon-Nikodym Theorem} % Absolute Continuity and Mutual Singularity
+\begin{definition}
+    Let $\mu$ be a positive measure on $\left(X,\mathcal{M}\right)$, and let $\lambda$ be a signed or complex measure.
+    \begin{enumerate}
+        \item
+              We say that \textbf{$\lambda$ is absolutely continuous with respect to $\mu$}, and write
+              \begin{equation*}
+                  \lambda \ll \mu
+              \end{equation*}
+              if $\lambda(E)=0$ for every $E \in \mathcal{M}$ for which $\mu(E)=0$.
+
+        \item
+              If there is a set $A \in \mathcal{M}$ such that $\lambda(E)=\lambda(A \cap E)$ for every $E \in \mathcal{M}$, we say that \textbf{$\lambda$ is concentrated on $A$}.
+
+        \item
+              Suppose $\lambda_1$ and $\lambda_2$ are measures on $\mathcal{M}$, and suppose there exists a pair of disjoint sets $A$ and $B$ such that $\lambda_1$ is concentrated on $A$ and $\lambda_2$ is concentrated on $B$. Then we say that \textbf{$\lambda_1$ and $\lambda_2$ are mutually singular}, and write
+              $$
+                  \lambda_1 \perp \lambda_2
+              $$
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    Suppose, $\mu, \lambda, \lambda_1$ and $\lambda_2$ are measures on a $\sigma$-algebra $\mathcal{M}$, and $\mu$ is positive.
+    \begin{enumerate}
+        \item
+              If $\lambda$ is concentrated on $A$, so is $|\lambda|$.
+
+        \item
+              If $\lambda_1 \perp \lambda_2$, then $\left|\lambda_1\right| \perp\left|\lambda_2\right|$.
+
+        \item
+              If $\lambda_1 \perp \mu$ and $\lambda_2 \perp \mu$, then $\lambda_1+\lambda_2 \perp \mu$.
+
+        \item
+              If $\lambda_1 \ll \mu$ and $\lambda_2 \ll \mu$, then $\lambda_1+\lambda_2<\mu$.
+
+        \item
+              $\lambda \ll \mu \Leftrightarrow \left|\lambda\right| \ll \mu $.
+
+        \item
+              If $\lambda_1 \ll \mu$ and $\lambda_2 \perp \mu$, then $\lambda_1 \perp \lambda_2$.
+
+        \item
+              If $\lambda \ll \mu$ and $\lambda \perp \mu$, then $\lambda=0$.
+    \end{enumerate}
 \end{proposition}
 
+\begin{lemma}[Borel-Cantelli Lemma]
+    Suppose $E_k$ is a countable family of measurable sets on $(X, \mathcal{M}, \mu)$. Let
+    \begin{equation*}
+        \begin{aligned}
+            E & =\left\{x\in X: x\in E_k, \text{ for infinitely many } k\right\} \\
+              & =\bigcap_{n=1}^{\infty} \bigcup_{i=n}^{\infty} E_i
+        \end{aligned}
+    \end{equation*}
+    and
+    \begin{equation*}
+        \mu(E)= \lim_{n\to \infty} \mu(\bigcup_{i=n}^{\infty} E_i)
+    \end{equation*}
+\end{lemma}
+
+\begin{theorem}
+    Let $\mu$ be a positive measure on $\left(X,\mathcal{M}\right)$, and let $\lambda$ be a complex measure on $\mathcal{M}$.
+    Then the following two conditions are equivalent:
+    \begin{enumerate}[]
+        \item $\lambda \ll \mu$.
+        \item To every $\varepsilon>0$ corresponds a $\delta>0$ such that $ |\lambda(E)| <\varepsilon$ for all $E \in \mathcal{M}$ with $\mu(E)<\delta$.
+    \end{enumerate}
+    \begin{proof}
+        Suppose (ii) holds. If $\mu(E)=0$, then $\mu(E)<\delta$ for every $\delta>0$, hence $|\lambda(E)|<\varepsilon$ for every $\varepsilon>0$, so $\lambda(E)=0$. Thus (ii) implies (i).
+
+        Suppose (ii) is false. Then there exists an $\varepsilon>0$ and there exist sets $E_n \in$ $\mathcal{M}(n=1,2,3, \ldots)$ such that $\mu\left(E_n\right)<2^{-n}$ but $\left|\lambda\left(E_n\right)\right| \geq \varepsilon$. Hence $|\lambda|\left(E_n\right) \geq \varepsilon$. Put
+        $$
+            A=\bigcap_{n=1}^{\infty} \bigcup_{i=n}^{\infty} E_i
+        $$
+        Then $\mu(A)=0$ and
+        $$
+            |\lambda|(A) = \lim _{n \rightarrow \infty} |\lambda|\left(\bigcup_{i=n}^{\infty} E_i\right) \geq \varepsilon
+            >0,
+        $$
+        It follows that we do not have $|\lambda| \ll \mu$, hence (ii) is false.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[The Lebesgue-Radon-Nikodym Theorem]
+    Let $\lambda$ be a $\sigma$-finite signed measure and $\mu$ a $\sigma$-finite positive measure on $(X, \mathcal{M})$.
+    \begin{enumerate}
+        \item
+              There exist unique $\sigma$-finite signed measures $\lambda_a, \lambda_s$ on $(X, \mathcal{M})$ such that
+              \begin{equation*}
+                  \lambda = \lambda_a + \lambda_s, \quad \lambda_a \perp \mu, \quad \lambda_s \ll \mu.
+              \end{equation*}
+        \item
+              There is an unique (in the sense of equality $\mu$-a.e.) extended $\mu$-integrable function $f: X \rightarrow \mathbb{R}$ such that
+              \begin{equation*}
+                  \d \lambda_s=f \d \mu
+              \end{equation*}
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    If $\nu$ is a complex measure and $\mu$ is a $\sigma$-finite positive measure on $(X, \mathcal{M})$, there exist a complex measure $\lambda$ and an $f \in L^1(\mu)$ such that $\lambda \perp \mu$ and $d \nu=d \lambda+f d \mu$. If also $\lambda^{\prime} \perp \mu$ and $d \nu=d \lambda^{\prime}+f^{\prime} d \mu$, then $\lambda=\lambda^{\prime}$ and $f=f^{\prime} \mu$-a.e.
+\end{theorem}
 
 
+\section{Consequence Radon-Nikodym Theorem}
+
+\begin{theorem}[Polar Representation of Complex Measure]
+    Let $\mu$ be a complex measure on $\left(X,\mathcal{M}\right)$. Then there is a measurable function $h\in L^1 (\left|\mu\right|)$ such that $\left|h(x)\right|=1$ for all $x \in X$ and such that
+    \begin{equation*}
+        \d \mu
+        =
+        h \d \left|\mu\right|
+    \end{equation*}
+    \begin{proof}
+        It is trivial that $\mu \ll|\mu|$ and $\left|\mu\right|$ is finite, therefore the Radon-Nikodym theorem guarantees the existence of some $h \in L^1(|\mu|)$ which satisfies $d \mu=h \d |\mu|$ .
+
+        Let $A_r=\left\{x:|h(x)|<r\right\}$, where $r$ is some positive number, and let $\left\{E_j\right\}$ be a partition of $A_r$.
+        Then
+        \begin{equation*}
+            \sum_j \left|\mu\left(E_j\right)\right|
+            =\sum_j \left|\int_{E_j} h \d | \mu| \right|
+            \leq \sum_j r|\mu|\left(E_j\right)=r|\mu|\left(A_r\right)
+        \end{equation*}
+        for all partition of $A_r$, so that $|\mu|\left(A_r\right) \leq r|\mu|\left(A_r\right)$. If $r<1$, this forces $|\mu|\left(A_r\right)=0$. Thus $|h| \geq 1$ a.e. $\left|\mu\right|$
+        On the other hand, if $|\mu|(E)>0$
+        \begin{equation*}
+            \left| \frac{1}{\left|\mu\right| (E)}  \int_E h \d  \left| \mu\right| \right| =\frac{|\mu(E)|}{|\mu|(E)} \leq 1
+        \end{equation*}
+        We now apply Theorem 1.40 (with the closed unit disc in place of $S$ ) and conclude that $|h| \leq 1$ a.e. $\left|\mu\right|$
+
+        Let $B=\left\{x \in X:|h(x)| \neq 1\right\}$. We have shown that $|\mu|(B)=0$, and if we redefine $h$ on $B$ so that $h(x)=1$ on $B$, we obtain a function with the desired properties.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    Let $\mu$ be a real measure on $\mathcal{M}$. If $\mu=\lambda_1-\lambda_2$, where $\lambda_1$ and $\lambda_2$ are positive measures, then $\lambda_1 \geq \mu^{+}$ and $\lambda_2 \geq \mu^{-}$.
+
+    Proof:
+    Since $\mu \leq \lambda_1$, we have
+
+    \begin{equation*}
+        \mu^{+}(E)=\mu(E \cap A) \leq \lambda_1(E \cap A) \leq \lambda_1(E) .
+    \end{equation*}
 
 
-
-
-
-
-
-
-
-
+    \noindent\textbf{Remark} This is the minimum property of the Jordan decomposition.
+\end{corollary}
+\begin{corollary}
+    Suppose $\mu$ is a positive measure on $\mathcal{M}, g \in L^1(\mu)$, and
+    \begin{equation*}
+        \lambda(E)=\int_{E} g \d  \mu \quad(E \in \mathcal{M})
+    \end{equation*}
+    Then
+    \begin{equation*}
+        |\lambda|(E)=\int_{E} |g| \:  d \mu \quad(E \in \mathcal{M})
+    \end{equation*}
+    \begin{proof}
+        By previous Theorem , there is a function $h$, of absolute value $1$ , such that $d \lambda=h \d |\lambda|$. By hypothesis, $d \lambda=g \d  \mu$. Hence
+        $$
+            h \d |\lambda|=g \d  \mu
+        $$
+        This gives $d|\lambda|=\overline{h} g \d  \mu$.
+        Since $|\lambda| \geq 0$ and $\mu \geq 0$, it follows that $\overline{h} g \geq 0$ a.e. $[\mu]$, so that $\overline{h} g=|g|$ a.e. $[\mu]$.
+    \end{proof}
+\end{corollary}
 
 
 
@@ -2208,44 +2441,10 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
 \end{theorem}
 
 \subsubsection{}
-\begin{lemma}[Borel-Cantelli Lemma]
-    Suppose $E_k$ is a countable family of measurable sets on $(X, \mathcal{M}, \mu)$. Let
-    \begin{equation*}
-        \begin{aligned}
-            E & =\left\{x\in X: x\in E_k, \text{ for infinitely many } k\right\} \\
-              & =\bigcap_{n=1}^{\infty} \bigcup_{i=n}^{\infty} E_i
-        \end{aligned}
-    \end{equation*}
-    and
-    \begin{equation*}
-        \mu(E)= \lim_{n\to \infty} \mu(\bigcup_{i=n}^{\infty} E_i)
-    \end{equation*}
-\end{lemma}
-\begin{theorem}
-    Suppose $\mu$ and $\lambda$ are measures on a $\sigma$-algebra $\mathcal{M}$, $\mu$ is positive, and $\lambda$ is complex. Then the following two conditions are equivalent:
-    \begin{enumerate}[]
-        \item $\lambda \ll \mu$.
-        \item To every $\varepsilon>0$ corresponds a $\delta>0$ such that $ |\lambda(E)| <\varepsilon$ for all $E \in \mathcal{M}$ with $\mu(E)<\delta$.
-    \end{enumerate}
-
-    Proof:
-    Suppose (ii) holds. If $\mu(E)=0$, then $\mu(E)<\delta$ for every $\delta>0$, hence $|\lambda(E)|<\varepsilon$ for every $\varepsilon>0$, so $\lambda(E)=0$. Thus (ii) implies (i).
-
-    Suppose (ii) is false. Then there exists an $\varepsilon>0$ and there exist sets $E_n \in$ $\mathcal{M}(n=1,2,3, \ldots)$ such that $\mu\left(E_n\right)<2^{-n}$ but $\left|\lambda\left(E_n\right)\right| \geq \varepsilon$. Hence $|\lambda|\left(E_n\right) \geq \varepsilon$. Put
-    $$
-        A=\bigcap_{n=1}^{\infty} \bigcup_{i=n}^{\infty} E_i
-    $$
-    Then $\mu(A)=0$ and
-    $$
-        |\lambda|(A) = \lim _{n \rightarrow \infty} |\lambda|\left(\bigcup_{i=n}^{\infty} E_i\right) \geq \varepsilon
-        >0,
-    $$
-    It follows that we do not have $|\lambda| \ll \mu$, hence (ii) is false.
-\end{theorem}
 
 
 \section{Lebesgue-Radon-Nikodym}
-\begin{theorem}
+\begin{lemma}
     If $\mu$ is a positive $\sigma$-finite measure on a $\sigma$-algebra $\mathcal{M}$ in a set $X$, then there is a function $w \in L^1(\mu)$ such that $0<w(x)<1$ for every $x \in X$.
 
     Proof:
@@ -2256,92 +2455,98 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
     Then $w=\sum\limits_1^{\infty} w_n$ has the required properties.
 
     \textbf{Remark} The point of the theorem is that $\mu$ can be replaced by a finite measure $\tilde{\mu}$ (namely, $d \tilde{\mu}=w d \mu$ ) which, because of the strict positivity of $w$, has precisely the same sets of measure 0 as $\mu$.
-\end{theorem}
+\end{lemma}
+
 \begin{theorem}[Lebesgue-Radon-Nikodym]
-    Let $\mu$ be a positive $\sigma$-finite measure on a $\sigma$-algebra $\mathcal{M}$ in a set $X$, and let $\lambda$ be a complex measure on $\mathcal{M}$.
+    Let $\mu$ be a positive $\sigma$-finite measure, and let $\lambda$ be a complex measure on $\mathcal{M}$.
+    \begin{enumerate}
+        \item
+              There is then a unique pair of complex measures $\lambda_{a}$ and $\lambda_s$ on $\left(X,\mathcal{M}\right)$ such that
+              \begin{equation*}
+                  \lambda=\lambda_a+\lambda_s, \quad \lambda_a \ll \mu, \quad \lambda_s \perp \mu
+              \end{equation*}
+              If $\lambda$ is positive and finite, then so are $\lambda_a$ and $\lambda_b$.
 
-    (1) There is then a unique pair of complex measures $\lambda_{a}$ and $\lambda_s$ on $\mathcal{M}$ such that
-    \begin{equation*}
-        \lambda=\lambda_a+\lambda_s, \quad \lambda_a \ll \mu, \quad \lambda_s \perp \mu
-    \end{equation*}
-    If $\lambda$ is positive and finite, then so are $\lambda_a$ and $\lambda_b$.
+        \item
+              There is a unique $h \in L^1(\mu)$ such that
+              \begin{equation*}
+                  \lambda_a(E)=\int_E h \d  \mu
+              \end{equation*}
+              for every set $E \in \mathcal{M}$. We may express this in the form $\d \lambda_{a}=h \d \mu$, or even in the form $h=\d \lambda_{a} / \d \mu$.
+    \end{enumerate}
 
-    (2) There is a unique $h \in L^1(\mu)$ such that
-    $$
-        \lambda_a(E)=\int_E h \d  \mu
-    $$
-    for every set $E \in \mathcal{M}$. We may express this in the form $d \lambda_{\mathrm{a}}=h d \mu$, or even in the form $h=d \lambda_{\mathrm{a}} / d \mu$.
+    \begin{remark}
+        The pair $\left(\lambda_a, \lambda_b\right)$ is called the \textbf{Lebesgue decomposition of $\lambda$ relative to $\mu$}.
+        The function $h$ is called the \textbf{Radon-Nikodym derivative of $\lambda_a$ with respect to $\mu$}.
+    \end{remark}
+    \begin{proof}
+        The uniqueness of (a) and (b) is easily seen.
 
-    The pair $\left(\lambda_a, \lambda_b\right)$ is called the \textbf{Lebesgue decomposition of $\lambda$ relative to $\mu$}.
-    The function $h$ which occurs in (2) is called the \textbf{Radon-Nikodym derivative of $\lambda_a$ with respect to $\mu$}.
+        Assume first that $\lambda$ is a positive bounded measure on $M$. Associate $w$ to $\mu$ as in previous theorem. Then
+        $$
+            d \varphi=d \lambda+w \d  \mu
+        $$
+        defines a positive bounded measure $\varphi$ on $\mathcal{M}$.
 
-    Proof:
-    The uniqueness of (a) and (b) is easily seen.
+        The definition of the sum of two measures shows that
+        $$
+            \int_X f d \varphi=\int_X f d \lambda+\int_X f w \d  \mu
+        $$
+        for $f=\chi_E$, hence for simple $f$, hence for any nonnegative measurable $f$. If $f \in L^2(\varphi)$, the Schwarz inequality gives
+        $$
+            \left|\int_X f \d  \lambda\right| \leq \int_X|f| \d  \lambda \leq \int_X|f| \d  \varphi \leq\left\{\int_X |f|^2 \d  \varphi\right\}^{1 / 2}\left\{\varphi(X)\right\}^{1 / 2}
+        $$
+        Since $\varphi(X)<\infty$, we see that
+        $$
+            f \rightarrow \int_X f \d  \lambda
+        $$
+        is a bounded linear functional on $L^2(\varphi)$. Hence there exists a $g \in L^2(\varphi)$ such that
+        \begin{equation}
+            \int_X f \d  \lambda=\int_X f g \d  \varphi \tag{1}
+        \end{equation}
+        for every $f \in L^2(\varphi)$.
+        Observe also that although $g$ is defined uniquely as an element of $L^2(\varphi), g$ is determined only a.e. $[\varphi]$ as a point function on $X$.
 
-    Assume first that $\lambda$ is a positive bounded measure on $M$. Associate $w$ to $\mu$ as in previous theorem. Then
-    $$
-        d \varphi=d \lambda+w \d  \mu
-    $$
-    defines a positive bounded measure $\varphi$ on $\mathcal{M}$.
+        Put $f=\chi_{E}$ in (1), for any $E \in \mathcal{M}$ with $\varphi(E)>0$, and since $0 \leq \lambda \leq \varphi$, we have
 
-    The definition of the sum of two measures shows that
-    $$
-        \int_X f d \varphi=\int_X f d \lambda+\int_X f w \d  \mu
-    $$
-    for $f=\chi_E$, hence for simple $f$, hence for any nonnegative measurable $f$. If $f \in L^2(\varphi)$, the Schwarz inequality gives
-    $$
-        \left|\int_X f \d  \lambda\right| \leq \int_X|f| \d  \lambda \leq \int_X|f| \d  \varphi \leq\left\{\int_X |f|^2 \d  \varphi\right\}^{1 / 2}\left\{\varphi(X)\right\}^{1 / 2}
-    $$
-    Since $\varphi(X)<\infty$, we see that
-    $$
-        f \rightarrow \int_X f \d  \lambda
-    $$
-    is a bounded linear functional on $L^2(\varphi)$. Hence there exists a $g \in L^2(\varphi)$ such that
-    \begin{equation}
-        \int_X f \d  \lambda=\int_X f g \d  \varphi \tag{1}
-    \end{equation}
-    for every $f \in L^2(\varphi)$.
-    Observe also that although $g$ is defined uniquely as an element of $L^2(\varphi), g$ is determined only a.e. $[\varphi]$ as a point function on $X$.
+        $$
+            \varphi (E) \geq \lambda(E) =  \int_E g \d  \varphi
+        $$
+        $$
+            0 \leq \frac{1}{\varphi(E)} \int_E g \d  \varphi=\frac{\lambda(E)}{\varphi(E)} \leq 1
+        $$
+        Hence $g(x) \in[0,1]$ for almost all $x$ with respect to $\varphi$. We may therefore assume that $0 \leq g(x) \leq 1$ for every $x \in X$, without affecting (1), and we rewrite (1) in the form
+        \begin{equation}
+            \int_X (1-g) f \d  \lambda=\int_X f g w \d  \mu \tag{2}
+        \end{equation}
 
-    Put $f=\chi_{E}$ in (1), for any $E \in \mathcal{M}$ with $\varphi(E)>0$, and since $0 \leq \lambda \leq \varphi$, we have
+        Put
+        $$
+            A=\left\{x: 0 \leq g(x)<1\right\}, \quad B=\left\{x: g(x)=1\right\}
+        $$
+        and define measures $\lambda_a$ and $\lambda_s$ by
+        $$
+            \lambda_a (E)=\lambda(A \cap E), \quad \lambda_{s}(E)=\lambda(B \cap E),
+        $$
+        for all $E \in \mathcal{M}$.
+        If $f=\chi_B$ in (2), the left side is 0 , the right side is $\int_B w \d  \mu$. Since $w(x)>0$ for all $x$, we conclude that $\mu(B)=0$. Thus $\lambda_s \perp \mu$.
 
-    $$
-        \varphi (E) \geq \lambda(E) =  \int_E g \d  \varphi
-    $$
-    $$
-        0 \leq \frac{1}{\varphi(E)} \int_E g \d  \varphi=\frac{\lambda(E)}{\varphi(E)} \leq 1
-    $$
-    Hence $g(x) \in[0,1]$ for almost all $x$ with respect to $\varphi$. We may therefore assume that $0 \leq g(x) \leq 1$ for every $x \in X$, without affecting (1), and we rewrite (1) in the form
-    \begin{equation}
-        \int_X (1-g) f \d  \lambda=\int_X f g w \d  \mu \tag{2}
-    \end{equation}
+        Since $g$ is bounded, (2) holds if $f$ is replaced by
+        $$
+            \left(1+g+\cdots+g^n\right) \chi_E
+        $$
+        for $n=1,2,3, \ldots, E \in \mathcal{M}$. For such $f$, (2) becomes
+        \begin{equation}
+            \int_E\left(1-g^{n+1}\right) \d  \lambda=\int_E g\left(1+g+\cdots+g^n\right) w \d  \mu \tag{3}
+        \end{equation}
+        Note that $1- g^{n+1}(x) < \chi_{A}(x)$ and $\lambda(A) < \lambda (X) < \infty$; $\chi_A(x) \in L^1 (\lambda)$. The Dominated Convergence Theorem shows that the left side of (3) converges therefore to $\lambda(A \cap E)=\lambda_a(E)$ as $n \rightarrow \infty$. The monotone convergence theorem shows that the right side of (2) tends to $\int_E h \d  \mu$ as $n \rightarrow \infty$ ,where $h=\frac{g}{1-g}$.
+        \begin{equation}
+            \lambda_a(E)=\int_E h \d  \mu \tag{4}
+        \end{equation}
+        Taking $E=X$, we see that $h \in L^1(\mu)$, since $\lambda_a (X)<\infty$. Finally, (4) shows that $\lambda_a \ll \mu$, and the proof is complete for positive $\lambda$.
 
-    Put
-    $$
-        A=\left\{x: 0 \leq g(x)<1\right\}, \quad B=\left\{x: g(x)=1\right\}
-    $$
-    and define measures $\lambda_a$ and $\lambda_s$ by
-    $$
-        \lambda_a (E)=\lambda(A \cap E), \quad \lambda_{s}(E)=\lambda(B \cap E),
-    $$
-    for all $E \in \mathcal{M}$.
-    If $f=\chi_B$ in (2), the left side is 0 , the right side is $\int_B w \d  \mu$. Since $w(x)>0$ for all $x$, we conclude that $\mu(B)=0$. Thus $\lambda_s \perp \mu$.
-
-    Since $g$ is bounded, (2) holds if $f$ is replaced by
-    $$
-        \left(1+g+\cdots+g^n\right) \chi_E
-    $$
-    for $n=1,2,3, \ldots, E \in \mathcal{M}$. For such $f$, (2) becomes
-    \begin{equation}
-        \int_E\left(1-g^{n+1}\right) \d  \lambda=\int_E g\left(1+g+\cdots+g^n\right) w \d  \mu \tag{3}
-    \end{equation}
-    Note that $1- g^{n+1}(x) < \chi_{A}(x)$ and $\lambda(A) < \lambda (X) < \infty$; $\chi_A(x) \in L^1 (\lambda)$. The Dominated Convergence Theorem shows that the left side of (3) converges therefore to $\lambda(A \cap E)=\lambda_a(E)$ as $n \rightarrow \infty$. The monotone convergence theorem shows that the right side of (2) tends to $\int_E h \d  \mu$ as $n \rightarrow \infty$ ,where $h=\frac{g}{1-g}$.
-    \begin{equation}
-        \lambda_a(E)=\int_E h \d  \mu \tag{4}
-    \end{equation}
-    Taking $E=X$, we see that $h \in L^1(\mu)$, since $\lambda_a (X)<\infty$. Finally, (4) shows that $\lambda_a \ll \mu$, and the proof is complete for positive $\lambda$.
-
-    If $\lambda$ is a complex measure on $\mathcal{M}$, then $\lambda=\lambda_1+i \lambda_2$, with $\lambda_1$ and $\lambda_2$ real, and we can apply the preceding case to the positive and negative variations of $\lambda_1$ and $\lambda_2$.
+        If $\lambda$ is a complex measure on $\mathcal{M}$, then $\lambda=\lambda_1+i \lambda_2$, with $\lambda_1$ and $\lambda_2$ real, and we can apply the preceding case to the positive and negative variations of $\lambda_1$ and $\lambda_2$.
+    \end{proof}
 
     \textbf{Remark} If $\lambda$ (and $\mu$) are positive and $\sigma$-finite, we can now write
     $$
@@ -2362,87 +2567,6 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
     If we go beyond $\sigma$-finiteness of $\lambda$, we meet situations where the two theorems under consideration actually fail. For example, let $\mu$ be Lebesgue measure on $(0,1)$, and let $\lambda$ be the counting measure on the $\sigma$-algebra of all Lebesgue
 \end{theorem}
 
-
-\section{Consequence Radon-Nikodym Theorem}
-
-\begin{theorem}[Polar Representation of Complex Measure $\mu$]
-    Let $\mu$ be a complex measure on a $\sigma$-algebra $\mathcal{M}$ in $X$. Then there is a measurable function $h\in L^1 (\left|\mu\right|)$ such that $\left|h(x)\right|=1$ for all $x \in X$ and such that
-    \begin{equation*}
-        d \mu
-        =
-        h \d \left|\mu\right|
-    \end{equation*}
-
-    Proof:
-    It is trivial that $\mu \ll|\mu|$ and $\left|\mu\right|$ is finite, therefore the Radon-Nikodym theorem guarantees the existence of some $h \in L^1(|\mu|)$ which satisfies $d \mu=h \d |\mu|$ .
-
-    Let $A_r=\left\{x:|h(x)|<r\right\}$, where $r$ is some positive number, and let $\left\{E_j\right\}$ be a partition of $A_r$.
-    Then
-    $$
-        \sum_j \left|\mu\left(E_j\right)\right|
-        =\sum_j \left|\int_{E_j} h \d | \mu| \right|
-        \leq \sum_j r|\mu|\left(E_j\right)=r|\mu|\left(A_r\right)
-    $$
-    for all partition of $A_r$, so that $|\mu|\left(A_r\right) \leq r|\mu|\left(A_r\right)$. If $r<1$, this forces $|\mu|\left(A_r\right)=0$. Thus $|h| \geq 1$ a.e. $\left|\mu\right|$
-
-    On the other hand, if $|\mu|(E)>0$
-    $$
-        \left| \frac{1}{\left|\mu\right| (E)}  \int_E h \d  \left| \mu\right| \right| =\frac{|\mu(E)|}{|\mu|(E)} \leq 1
-    $$
-
-    We now apply Theorem 1.40 (with the closed unit disc in place of $S$ ) and conclude that $|h| \leq 1$ a.e. $\left|\mu\right|$
-
-    Let $B=\left\{x \in X:|h(x)| \neq 1\right\}$. We have shown that $|\mu|(B)=0$, and if we redefine $h$ on $B$ so that $h(x)=1$ on $B$, we obtain a function with the desired properties.
-\end{theorem}
-\begin{theorem}[The Hahn Decomposition Theorem]
-    Let $\mu$ be a real measure on a $\sigma$ algebra $\mathcal{M}$ in a set $X$. Then there exist sets $A$ and $B \in \mathcal{M}$ such that
-    $A \cup B=X, A \cap B=\varnothing$, and such that the positive and negative variations $\mu^{+}$and $\mu^{-}$of $\mu$ satisfy
-    $$
-        \mu^{+}(E)=\mu(A \cap E), \quad \mu^{-}(E)=-\mu(B \cap E) \quad(E \in \mathcal{M})
-    $$
-    The pair $(A, B)$ is called a \textbf{Hahn decomposition} of $X$, induced by $\mu$.
-
-    Proof:
-    By previous theorem, $d \mu=h \d |\mu|$, where $|h|=1$. Since $\mu$ is real, it follows that $h$ is real (a.e. $\left|\mu\right|$), hence $h= \pm 1$. Put
-    $$
-        A=\left\{x: h(x)=1\right\}, \quad B=\left\{x: h(x)=-1\right\} .
-    $$
-    Since $\mu^{+}=\frac{1}{2}(|\mu|+\mu)$,
-    we have, for any $E \in \mathcal{M}$,
-    $$
-        \mu^{+}(E)=\frac{1}{2} \int_E(1+h) \d |\mu|=\int_{E \cap A} h \d |\mu|=\mu(E \cap A)
-    $$
-    Since $\mu(E)=\mu(E \cap A)+\mu(E \cap B)$ and since $\mu=\mu^{+}-\mu^{-}$, the second half follows from the first.
-\end{theorem}
-\begin{corollary}
-    Let $\mu$ be a real measure on $\mathcal{M}$. If $\mu=\lambda_1-\lambda_2$, where $\lambda_1$ and $\lambda_2$ are positive measures, then $\lambda_1 \geq \mu^{+}$ and $\lambda_2 \geq \mu^{-}$.
-
-    Proof:
-    Since $\mu \leq \lambda_1$, we have
-    $$
-        \mu^{+}(E)=\mu(E \cap A) \leq \lambda_1(E \cap A) \leq \lambda_1(E) .
-    $$
-
-    \noindent\textbf{Remark} This is the minimum property of the Jordan decomposition.
-\end{corollary}
-\begin{corollary}
-    Suppose $\mu$ is a positive measure on $\mathcal{M}, g \in L^1(\mu)$, and
-    $$
-        \lambda(E)=\int_{E} g \d  \mu \quad(E \in \mathcal{M})
-    $$
-    Then
-    $$
-        |\lambda|(E)=\int_{E} |g| \:  d \mu \quad(E \in \mathcal{M})
-    $$
-
-    Proof:
-    By previous Theorem , there is a function $h$, of absolute value $1$ , such that $d \lambda=h \d |\lambda|$. By hypothesis, $d \lambda=g \d  \mu$. Hence
-    $$
-        h \d |\lambda|=g \d  \mu
-    $$
-    This gives $d|\lambda|=\overline{h} g \d  \mu$.
-    Since $|\lambda| \geq 0$ and $\mu \geq 0$, it follows that $\overline{h} g \geq 0$ a.e. $[\mu]$, so that $\overline{h} g=|g|$ a.e. $[\mu]$.
-\end{corollary}
 
 \section{Riesz Theorem}
 \begin{theorem}
@@ -2491,60 +2615,60 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
     $$
 
     We also know that $\lambda(X) \leq 1$ and $|g| \leq 1$. These facts are compatible only if $\lambda(X)=1$ and $|g|=1$ a.e. [ $\lambda]$. Thus $d|\mu|=|g| d \lambda=d \lambda$, by Theorem 6.13, and
-    $$
-        |\mu|(X)=\lambda(X)=1=\|\Phi\|
-    $$
-    which proves (2).
-    So all depends on finding a positive linear functional $\Lambda$ that satisfies (4). If $f \in C_c^{+}(X)$ [the class of all nonnegative real members of $C_c(X)$ ], define
-    $$
-        \Lambda f=\sup \left\{|\Phi(h)|: h \in C_c(X),|h| \leq f\right\}
-    $$
+        $$
+            |\mu|(X)=\lambda(X)=1=\|\Phi\|
+        $$
+        which proves (2).
+        So all depends on finding a positive linear functional $\Lambda$ that satisfies (4). If $f \in C_c^{+}(X)$ [the class of all nonnegative real members of $C_c(X)$ ], define
+        $$
+            \Lambda f=\sup \left\{|\Phi(h)|: h \in C_c(X),|h| \leq f\right\}
+        $$
 
-    Then $\Lambda f \geq 0, \Lambda$ satisfies (4), $0 \leq f_1 \leq f_2$ implies $\Delta f_1 \leq \Delta f_2$, and $\Lambda(c f)=c \Delta f$ if $c$ is a positive constant. We have to show that
-    $$
-        \Lambda(f+g)=\Lambda f+\Lambda g \quad\left(f \text { and } g \in C_c^{+}(X)\right)
-    $$
-    and we then have to extend $\Lambda$ to a linear functional on $C_c(X)$.
-    Fix $f$ and $g \in C_c^{+}(X)$. If $\varepsilon>0$, there exist $h_1$ and $h_2 \in C_c(X)$ such that $\left|h_1\right| \leq f,\left|h_2\right| \leq g$, and
-    $$
-        \Lambda f \leq\left|\Phi\left(h_1\right)\right|+\varepsilon, \quad \Lambda g \leq\left|\Phi\left(h_2\right)\right|+\varepsilon
-    $$
-    There are complex numbers $\alpha_i,\left|\alpha_i\right|=1$, so that $\alpha_i \Phi\left(h_i\right)=\left|\Phi\left(h_i\right)\right|, i=1,2$. Then
-    $$
-        \begin{aligned}
-            \Lambda f+\Lambda g & \leq\left|\Phi\left(h_1\right)\right|+\left|\Phi\left(h_2\right)\right|+2 \varepsilon \\
-                                & =\Phi\left(\alpha_1 h_1+\alpha_2 h_2\right)+2 \varepsilon                             \\
-                                & \leq \Lambda\left(\left|h_1\right|+\left|h_2\right|\right)+2 \varepsilon              \\
-                                & \leq \Lambda(f+g)+2 \varepsilon
-        \end{aligned}
-    $$
-    so that the inequality $\geq$ holds in (10).
-    Next, choose $h \in C_c(X)$, subject only to the condition $|h| \leq f+g$, let $V=\left\{x: f(x)+g(x)>0\right\}$, and define
-    $$
-        \begin{aligned}
-             & h_1(x)=\frac{f(x) h(x)}{f(x)+g(x)}, \quad h_2(x)=\frac{g(x) h(x)}{f(x)+g(x)} \quad(x \in V), \\
-             & h_1(x)=h_2(x)=0 \quad(x \notin V) .
-        \end{aligned}
-    $$
+        Then $\Lambda f \geq 0, \Lambda$ satisfies (4), $0 \leq f_1 \leq f_2$ implies $\Delta f_1 \leq \Delta f_2$, and $\Lambda(c f)=c \Delta f$ if $c$ is a positive constant. We have to show that
+        $$
+            \Lambda(f+g)=\Lambda f+\Lambda g \quad\left(f \text { and } g \in C_c^{+}(X)\right)
+        $$
+        and we then have to extend $\Lambda$ to a linear functional on $C_c(X)$.
+        Fix $f$ and $g \in C_c^{+}(X)$. If $\varepsilon>0$, there exist $h_1$ and $h_2 \in C_c(X)$ such that $\left|h_1\right| \leq f,\left|h_2\right| \leq g$, and
+        $$
+            \Lambda f \leq\left|\Phi\left(h_1\right)\right|+\varepsilon, \quad \Lambda g \leq\left|\Phi\left(h_2\right)\right|+\varepsilon
+        $$
+        There are complex numbers $\alpha_i,\left|\alpha_i\right|=1$, so that $\alpha_i \Phi\left(h_i\right)=\left|\Phi\left(h_i\right)\right|, i=1,2$. Then
+        $$
+            \begin{aligned}
+                \Lambda f+\Lambda g & \leq\left|\Phi\left(h_1\right)\right|+\left|\Phi\left(h_2\right)\right|+2 \varepsilon \\
+                                    & =\Phi\left(\alpha_1 h_1+\alpha_2 h_2\right)+2 \varepsilon                             \\
+                                    & \leq \Lambda\left(\left|h_1\right|+\left|h_2\right|\right)+2 \varepsilon              \\
+                                    & \leq \Lambda(f+g)+2 \varepsilon
+            \end{aligned}
+        $$
+        so that the inequality $\geq$ holds in (10).
+        Next, choose $h \in C_c(X)$, subject only to the condition $|h| \leq f+g$, let $V=\left\{x: f(x)+g(x)>0\right\}$, and define
+        $$
+            \begin{aligned}
+                 & h_1(x)=\frac{f(x) h(x)}{f(x)+g(x)}, \quad h_2(x)=\frac{g(x) h(x)}{f(x)+g(x)} \quad(x \in V), \\
+                 & h_1(x)=h_2(x)=0 \quad(x \notin V) .
+            \end{aligned}
+        $$
 
-    It is clear that $h_1$ is continuous at every point of $V$. If $x_0 \notin V$, then $h\left(x_0\right)=0$; since $h$ is continuous and since $\left|h_1(x)\right| \leq|h(x)|$ for all $x \in X$, it follows that $x_0$ is a point of continuity of $h_1$. Thus $h_1 \in C_c(X)$, and the same holds for $h_2$.
+        It is clear that $h_1$ is continuous at every point of $V$. If $x_0 \notin V$, then $h\left(x_0\right)=0$; since $h$ is continuous and since $\left|h_1(x)\right| \leq|h(x)|$ for all $x \in X$, it follows that $x_0$ is a point of continuity of $h_1$. Thus $h_1 \in C_c(X)$, and the same holds for $h_2$.
 
-    Since $h_1+h_2=h$ and $\left|h_1\right| \leq f,\left|h_2\right| \leq g$, we have
-    $$
-        |\Phi(h)|=\left|\Phi\left(h_1\right)+\Phi\left(h_2\right)\right| \leq\left|\Phi\left(h_1\right)\right|+\left|\Phi\left(h_2\right)\right| \leq \Lambda f+\Lambda g .
-    $$
+        Since $h_1+h_2=h$ and $\left|h_1\right| \leq f,\left|h_2\right| \leq g$, we have
+        $$
+            |\Phi(h)|=\left|\Phi\left(h_1\right)+\Phi\left(h_2\right)\right| \leq\left|\Phi\left(h_1\right)\right|+\left|\Phi\left(h_2\right)\right| \leq \Lambda f+\Lambda g .
+        $$
 
-    Hence $\Lambda(f+g) \leq \Lambda f+\Lambda g$, and we have proved (10).
-    If $f$ is now a real function, $f \in C_c(X)$, then $2 f^{+}=|f|+f$, so that $f^{+} \in$ $C_c^{+}(X)$; likewise, $f^{-} \in C_c^{+}(X)$; and since $f=f^{+}-f^{-}$, it is natural to define
-    $$
-        \Lambda f=\Lambda f^{+}-\Lambda f^{-} \quad\left(f \in C_{\mathrm{r}}(X), f \text { real }\right)
-    $$
-    and
-    $$
-        \Lambda(u+i v)=\Lambda u+i \Lambda v .
-    $$
+        Hence $\Lambda(f+g) \leq \Lambda f+\Lambda g$, and we have proved (10).
+        If $f$ is now a real function, $f \in C_c(X)$, then $2 f^{+}=|f|+f$, so that $f^{+} \in$ $C_c^{+}(X)$; likewise, $f^{-} \in C_c^{+}(X)$; and since $f=f^{+}-f^{-}$, it is natural to define
+        $$
+            \Lambda f=\Lambda f^{+}-\Lambda f^{-} \quad\left(f \in C_{\mathrm{r}}(X), f \text { real }\right)
+        $$
+        and
+        $$
+            \Lambda(u+i v)=\Lambda u+i \Lambda v .
+        $$
 
-    Simple algebraic manipulations, just like those which occur in the proof of Theorem 1.32, show now that our extended functional $\Lambda$ is linear on $C_c(X)$.
+        Simple algebraic manipulations, just like those which occur in the proof of Theorem 1.32, show now that our extended functional $\Lambda$ is linear on $C_c(X)$.
 
     This completes the proof.
 \end{theorem}
@@ -2600,31 +2724,31 @@ Throughout this chapter, $X$ will denote an $LCH$ space and $\mu$ a positive Bor
 \begin{theorem}[Hardy's Inequality]
     Suppose $f\geq 0$ on $(0, \infty)$, $f\in L^p$, $1\leq p \leq \infty$, and
     \begin{equation*}F(x) = \frac{1}{x} \int_0^x f(t) \d t\end{equation*}
-
-
-    Proof. Since $f(t) t^\alpha$ and $t^{-\alpha}$ are nonnegative, we have estimate by Holder's
-    $$
-        \begin{aligned}
-            x F(x) & =\int_0^x f(t) t^\alpha t^{-\alpha} \d  t                                                                                       \\
-                   & \leq\left(\int_0^x f^p t^{\alpha p} \d t\right)^{\frac{1}{p}}\left(\int_0^x t^{\alpha q} \d t\right)^{\frac{1}{q}}              \\
-                   & =\left(\int_0^x f^p t^{\alpha p} \d t\right)^{\frac{1}{p}} \times\left(\frac{x^{-\alpha q+1}}{-\alpha q+1}\right)^{\frac{1}{q}}
-        \end{aligned}
-    $$
-    which gives
-    $$
-        F^p(x) \leq(1-\alpha q)^{1-p} x^{-1-\alpha p} \int_0^x f^p t^{\alpha p} \d t
-    $$
-    and then
-    $$
-        \begin{aligned}
-            \int_0^{\infty} F^p(x) \d  x & \leq(1-\alpha q)^{1-p} \int_0^{\infty} x^{-1-\alpha p} \int_0^x f^p t^{\alpha p} \d  t \d x                        \\
-                                         & = (1-\alpha q)^{1-p} \int_0^{\infty} f^p t^{\alpha p} \int_0^{\infty} \chi_{(0, x)}(t) x^{-1-\alpha p} \d  x \d  t \\
-                                         & =(1-\alpha q)^{1-p} \int_0^{\infty} f^p t^{\alpha p} \times \frac{t^{-\alpha p}}{\alpha p} \d  t                   \\
-                                         & =(1-\alpha q)^{1-p}(\alpha p)^{-1} \int_0^{\infty} f^p \d  t                                                       \\
-                                         & = \left(\frac{p}{p-1}\right)^p \int_0^{\infty} f^p \d  t \quad \quad (\text{if we choose } \alpha=\frac{1}{pq})
-        \end{aligned}
-    $$
-    as the space $(0, \infty)$ is $\sigma$-finite, $\chi_{(0, x)} x^{-1-\alpha p} f^p t^{\alpha p} \geq 0$ and measurable on $(0, \infty) \times(0, \infty)$.
+    \begin{proof}
+        Since $f(t) t^\alpha$ and $t^{-\alpha}$ are nonnegative, we have estimate by Holder's
+        $$
+            \begin{aligned}
+                x F(x) & =\int_0^x f(t) t^\alpha t^{-\alpha} \d  t                                                                                       \\
+                       & \leq\left(\int_0^x f^p t^{\alpha p} \d t\right)^{\frac{1}{p}}\left(\int_0^x t^{\alpha q} \d t\right)^{\frac{1}{q}}              \\
+                       & =\left(\int_0^x f^p t^{\alpha p} \d t\right)^{\frac{1}{p}} \times\left(\frac{x^{-\alpha q+1}}{-\alpha q+1}\right)^{\frac{1}{q}}
+            \end{aligned}
+        $$
+        which gives
+        $$
+            F^p(x) \leq(1-\alpha q)^{1-p} x^{-1-\alpha p} \int_0^x f^p t^{\alpha p} \d t
+        $$
+        and then
+        $$
+            \begin{aligned}
+                \int_0^{\infty} F^p(x) \d  x & \leq(1-\alpha q)^{1-p} \int_0^{\infty} x^{-1-\alpha p} \int_0^x f^p t^{\alpha p} \d  t \d x                        \\
+                                             & = (1-\alpha q)^{1-p} \int_0^{\infty} f^p t^{\alpha p} \int_0^{\infty} \chi_{(0, x)}(t) x^{-1-\alpha p} \d  x \d  t \\
+                                             & =(1-\alpha q)^{1-p} \int_0^{\infty} f^p t^{\alpha p} \times \frac{t^{-\alpha p}}{\alpha p} \d  t                   \\
+                                             & =(1-\alpha q)^{1-p}(\alpha p)^{-1} \int_0^{\infty} f^p \d  t                                                       \\
+                                             & = \left(\frac{p}{p-1}\right)^p \int_0^{\infty} f^p \d  t \quad \quad (\text{if we choose } \alpha=\frac{1}{pq})
+            \end{aligned}
+        $$
+        as the space $(0, \infty)$ is $\sigma$-finite, $\chi_{(0, x)} x^{-1-\alpha p} f^p t^{\alpha p} \geq 0$ and measurable on $(0, \infty) \times(0, \infty)$.
+    \end{proof}
 \end{theorem}
 
 \begin{lemma}

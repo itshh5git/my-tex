@@ -58,23 +58,45 @@
 
 
 \begin{definition}
-    Let $\rho_i : G \rightarrow\GL(V_i)$ be $k$-linear representation of a finite group $G$ in the vector space $V_i$ or $\char k=0$.
+    Let $V_i$ be $k$-linear representation of a finite group $G$ .
     \begin{enumerate}
         \item
-              The \textbf{sum representation} $\rho_1 \oplus \rho_2$ is defined on the vector space $V_1 \oplus V_2$ by
+              The \textbf{sum representation} $V_1 \oplus V_2$ is defined on the vector space $V_1 \oplus V_2$ by
               \begin{equation*}
-                  \left(\rho_1 \oplus \rho_2\right)(s)\left(v_1, v_2\right)=\left(\rho_1(s) v_1, \rho_2(s) v_2\right)
+                  g\left(v_1, v_2\right)=\left(g v_1, g v_2\right)
               \end{equation*}
-              for all $s \in G, v_1 \in V_1, v_2 \in V_2$.
+              for all $g \in G, v_1 \in V_1, v_2 \in V_2$.
               (the direct sum of $k[G]$-modules $V_1 \oplus V_2$).
         \item
-              The \textbf{tensor product representation} $\rho_1 \otimes \rho_2$ is defined on the vector space $V_1 \otimes V_2$ by
+              The \textbf{tensor product representation} $V_1 \otimes V_2$ is defined on the vector space $V_1 \otimes V_2$ by
               \begin{equation*}
-                  \left(\rho_1 \otimes \rho_2\right)(s)\left(v_1 \otimes v_2\right)=\left(\rho_1(s) v_1\right) \otimes\left(\rho_2(s) v_2\right)
+                  g\left(v_1 \otimes v_2\right)=\left(g v_1\right) \otimes\left(g v_2\right)
               \end{equation*}
-              for all $s \in G, v_1 \in V_1, v_2 \in V_2$. (inner tensor product of $k[G]$ module $V_1\oplus V_2$)
+              for all $g \in G, v_1 \in V_1, v_2 \in V_2$. (inner tensor product of $k[G]$ module $V_1 V_2$)
+        \item
+              The $n$-th tensor power $V^{\otimes n}$ is again a representation of $G$ by this rule, and the exterior powers $\bigwedge^n(V)$ and symmetric powers $\operatorname{Sym}^n(V)$ are subrepresentations of it.
+
+        \item
+              The dual $V^*=\operatorname{Hom}_k(V, k)$ of $V$ is also a representation of $G$ by the rule
+              \begin{equation*}
+                  \left\langle g\cdot f, \square \right\rangle
+                  =
+                  \left\langle f,g^{-1}\square \right\rangle
+              \end{equation*}
     \end{enumerate}
 \end{definition}
+
+\begin{proposition}
+    For representations $V,U,W$ of $G$, we have
+    \begin{equation*}
+        \begin{aligned}
+            V \otimes(U \oplus W)       & =(V \otimes U) \oplus(V \otimes W),                     \\
+            \bigwedge^k(V \oplus W)     & =\bigoplus_{a+b=k} \bigwedge^a V \otimes \bigwedge^b W, \\
+            \bigwedge^k\left(V^*\right) & =\bigwedge^k(V)^*,
+        \end{aligned}
+    \end{equation*}
+\end{proposition}
+
 
 
 \section{Maschke's Theorem}
@@ -90,8 +112,7 @@ In this section, we always assume that $k$ be a field whose characteristic does 
 \end{lemma}
 
 \begin{theorem}[Maschke]
-    If the characteristic of the field $k$ does not divide the $\left|G\right|$, the order of the finite group $G$.
-    Then $k[G]$ is semisimple.
+    If the characteristic of the field $k$ does not divide the $\left|G\right|$, then $k[G]$ is semisimple.
     \begin{proof}
         Let $V$ be a $k[G]$-module, $W$ be a submodule of $V$. And let $W^{\prime}$ be a $k$-complement of $W$ in $V$, and let $p$ be the corresponding projection of $V$ onto $V$.
         Define a map $P: V \rightarrow W$ by
@@ -105,20 +126,30 @@ In this section, we always assume that $k$ be a field whose characteristic does 
 \end{theorem}
 
 \begin{corollary}
-    Every representation of $G$ over $k$ is a direct sum of irreducible representations and has finite number of irreducible components up to isomorphism.
+    It follows from $\left|G\right|\leq \infty$ that $k[G]$ is a semi-simple Artinian algebra. Thus the regular representation $R_G:={}_{k[G]} k[G]$ has a unique decomposition
+    \begin{equation*}
+        R_G\cong \bigoplus_{i=1}^m V_i^{\oplus n_i}
+    \end{equation*}
+    where $V_i$ are all irreducible representations of $G$ non-isomorphic to each other, and $n_i$ is the multiplicity of $V_i$ in $R_G$. ($n_i=\# \Hom_{k[G]}\left( R_G,V_i \right)$)
+
+    Every representation of $G$ is a direct sum of $V_i$'s.(that is why we only need to study irreducible representations of finite degree)
+\end{corollary}
+
+
+\begin{corollary}
+    The dimension of an irreducible representation of $G$ divides the order of $G$.
 \end{corollary}
 
 
 
 
 
-
 \chapter{Character Theory}
-In this chapter, we will study the character theory of finite degree representations over a algebraically closed field.
+In this chapter, we will study the character theory of finite degree representations over a algebraically closed field (especially $\mathbb{C}$).
 
 \section{Characters of Representations}
 \begin{definition}
-    Let $V$ be a $k[G]$-module of finite dimension.
+    Let $G$ be a group and $V$ be a $k[G]$-module of finite dimension (or say $V$ is a representation of $G$).
     \begin{enumerate}
         \item
               The \textbf{character} $\chi$ of the representation is defined by
@@ -142,7 +173,7 @@ In this chapter, we will study the character theory of finite degree representat
 
 
 \begin{proposition}
-    If $\chi$ is the character of a representation $\rho$ of degree $n$, we have:
+    If $\chi$ is the character of a representation $V$ of degree $n$, we have:
     \begin{enumerate}
         \item
               $\chi(1)=n$,
@@ -153,13 +184,17 @@ In this chapter, we will study the character theory of finite degree representat
     \end{enumerate}
 \end{proposition}
 \begin{proposition}
-    Let $\rho^1: G \rightarrow \GL\left(V_1\right)$ and $\rho^2: G \rightarrow \GL\left(V_2\right)$ be two linear representations of $G$.
+    Let $V_1,V_2$ be two linear representations of $G$.
     Then:
     \begin{enumerate}
         \item
-              $\chi_{\rho^1 \oplus \rho^2} = \chi_{\rho^1} + \chi_{\rho^2}$.
+              $\chi_{V_1 \oplus V_2} = \chi_{V_1} + \chi_{V_2}$.
         \item
-              $\chi_{\rho^1 \otimes \rho^2} = \chi_{\rho^1} \cdot \chi_{\rho^2}$.
+              $\chi_{V_1\otimes V_2} = \chi_{V_1} \cdot \chi_{V_2}$.
+        \item
+              $\chi_{\bigwedge^2 V}\left(g\right) = \frac{1}{2}\left(\chi_V(g)^2 - \chi_(g^2)\right)$.
+        \item
+              $\chi_{\operatorname{Sym}^2 V}\left(g\right) = \frac{1}{2}\left(\chi_V(g)^2 + \chi_(g^2)\right)$.
     \end{enumerate}
 \end{proposition}
 
@@ -225,13 +260,13 @@ In this chapter, we will study the character theory of finite degree representat
 \section{Orthogonality Relations}
 
 \begin{theorem}
-    Let $V$ and $W$ be two irreducible representations of $G$. Then 
+    Let $V$ and $W$ be two irreducible representations of $G$. Then
     \begin{equation*}
         \left(\chi_V ,\chi_W \right)
         =
         \begin{cases}
-            1 &, \text{ if } V\cong W \\
-            0 &, \text { otherwise }
+            1 & , \text{ if } V\cong W \\
+            0 & , \text { otherwise }
         \end{cases}
     \end{equation*}
 \end{theorem}
@@ -265,7 +300,7 @@ In this chapter, we will study the character theory of finite degree representat
     \end{equation*}
 \end{proposition}
 \begin{corollary}
-    Let the decomposition of the regular representation of $G$ into irreducible components be $V\cong \bigoplus_{i=1}^h W_i^{\oplus n_i}$, where $W_i$ are all irreducible representations non-isomorphic to each other.
+    Let the decomposition of the regular representation of $G$ into irreducible components be $R_G\cong \bigoplus_{i=1}^h W_i^{\oplus n_i}$, where $W_i$ are all irreducible representations non-isomorphic to each other.
     Then:
     \begin{enumerate}
         \item
@@ -284,7 +319,7 @@ In this chapter, we will study the character theory of finite degree representat
     \begin{equation*}
         F
         :=
-        \sum_{g \in G} f(g) \cdot \rho_g 
+        \sum_{g \in G} f(g) \cdot \rho_g
     \end{equation*}
     Then $F$ is a $k[G]$-module homomorphism for all $V$ if and only if $f$ is a class function on $G$.
 \end{lemma}
@@ -317,13 +352,18 @@ In this chapter, we will study the character theory of finite degree representat
         \item
               For $t \in G$ not conjugate to $s$, we have
               \begin{equation*}
-                 \sum_{i=1}^{i=h} \chi_i(s) \chi_i(t^{-1}) =\begin{cases}
-                  \left|G\right| / c(s) & ,t \text{ is conjugate to } s      \\
-                  0                      & ,t \text{ is not conjugate to } s \\
-                \end{cases}
+                  \sum_{i=1}^{i=h} \chi_i(s) \chi_i(t^{-1}) =\begin{cases}
+                      \left|G\right| / c(s) & ,t \text{ is conjugate to } s     \\
+                      0                     & ,t \text{ is not conjugate to } s \\
+                  \end{cases}
               \end{equation*}
     \end{enumerate}
 \end{proposition}
+
+\begin{proposition}
+    The character of any irreducible representation of dimension greater than $1$ assumes the value $0$ on some conjugacy class of the group.
+\end{proposition}
+
 
 \subsection{Caonical projection formula }
 \begin{proposition}
@@ -333,10 +373,11 @@ In this chapter, we will study the character theory of finite degree representat
     \end{equation*}
 \end{proposition}
 
+\section{}
 
-
-
-
+\begin{proposition}
+    The dimension of an irreducible representation of $G$ divides the order of $G$.
+\end{proposition}
 
 
 
@@ -463,10 +504,10 @@ And assume that all representations are of finite degree.
 
 
 \begin{theorem}[Frobenius reciprocity]
-    Given a $k[G]$-module $E$,
+    Given a $k[G]$-module $V$, and a $k[H]$-module $W$, we have
     \begin{equation*}
-        \Hom_{k[H]}\left(W  ,E \right)
-        \cong \Hom_{k[G]}\left( \operatorname{Ind}_H^G W , E \right)
+        \Hom_{k[H]}\left(W  ,\Res_H^G V \right)
+        \cong \Hom_{k[G]}\left( \operatorname{Ind}_H^G W , V \right)
     \end{equation*}
     as $k$-vector spaces.
 \end{theorem}
@@ -544,16 +585,66 @@ Let $G=\bigsqcup_{g\in K\backslash G/H} KgH$ be a double coset decomposition of 
 
 
 
+\chapter{}
+\begin{example}
+    \begin{equation*}
+        \begin{array}{r|ccc}
+                           & 1 & 3    & 2     \\
+            \mathfrak{S}_3 & 1 & (12) & (123) \\
+            \hline  U      & 1 & 1    & 1     \\
+            U^{\prime}     & 1 & -1   & 1     \\
+            V              & 2 & 0    & -1
+        \end{array}
+    \end{equation*}
+\end{example}
+
+\begin{example}
+    \begin{equation*}
+        \begin{array}{r|ccccc}
+                                             & 1 & 6    & 8     & 6      & 3        \\
+            \mathfrak{S}_4                   & 1 & (12) & (123) & (1234) & (12)(34) \\
+            \hline
+            \text { trivial } U              & 1 & 1    & 1     & 1      & 1        \\
+            \text { alternating } U^{\prime} & 1 & -1   & 1     & -1     & 1        \\
+            \text { standard } V             & 3 & 1    & 0     & -1     & -1       \\
+            V^{\prime}=V \otimes U^{\prime}  & 3 & -1   & 0     & 1      & -1       \\
+            \text { Another } W              & 2 & 0    & -1    & 0      & 2
+        \end{array}
+    \end{equation*}
+\end{example}
+
+
+\begin{example}
+    \begin{equation*}
+        \begin{array}{c|cccc}
+                              & 1 & 4         & 4         & 3        \\
+            \mathfrak{A}_4    & 1 & (123)     & (132)     & (12)(34) \\
+            \hline U          & 1 & 1         & 1         & 1        \\
+            U^{\prime}        & 1 & \zeta_3   & \zeta_3^2 & 1        \\
+            U^{\prime \prime} & 1 & \zeta_3^2 & \zeta_3   & 1        \\
+            V                 & 3 & 0         & 0         & -1
+        \end{array}
+    \end{equation*}
+\end{example}
 
 
 
-
-
-
-
-
-
-
+\begin{example}
+    \begin{equation*}
+        \begin{array}{l|ccccccc}
+                             & 1 & 10   & 20    & 30     & 24      & 15       & 20        \\
+            \mathfrak{S}_{5} & 1 & (12) & (123) & (1234) & (12345) & (12)(34) & (12)(345) \\
+            \hline
+            U                & 1 & 1    & 1     & 1      & 1       & 1        & 1         \\
+            U^{\prime}       & 1 & -1   & 1     & -1     & 1       & 1        & -1        \\
+            V                & 4 & 2    & 1     & 0      & -1      & 0        & -1        \\
+            V^{\prime}       & 4 & -2   & 1     & 0      & -1      & 0        & 1         \\
+            \wedge^2 V       & 6 & 0    & 0     & 0      & 1       & -2       & 0         \\
+            W                & 5 & 1    & -1    & -1     & 0       & 1        & 1         \\
+            W^{\prime}       & 5 & -1   & -1    & 1      & 0       & 1        & -1        \\
+        \end{array}
+    \end{equation*}
+\end{example}
 
 
 
