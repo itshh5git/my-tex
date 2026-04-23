@@ -56,8 +56,8 @@
 \setmainfont{Times New Roman}
 
 % ========== 自定义计数器格式 ======
-\renewcommand{\thechapter}{\Roman{chapter}}
-\renewcommand{\thesection}{\S \arabic{section}}
+\renewcommand{\thechapter}{\Roman{chapter}} % 章节编号使用大写罗马数字
+\renewcommand{\thesection}{\S \arabic{section}} % 小节编号使用阿拉伯数字，并在前面加上 § 符号
 
 % ========== 自定义命令 ==========
 \newtheorem{theorem}{Theorem}[section]  % 定理环境，按section计数
@@ -68,7 +68,7 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{question}[theorem]{Question}
 \newtheorem*{remark}{Remark}
-\renewcommand{\thetheorem}{\arabic{section}.\arabic{theorem}} % 定理编号格式为 节号.定理序号
+\renewcommand{\thetheorem}{\arabic{section}.\arabic{theorem}} % 定理编号格式为  节号.定理序号
 
 
 
@@ -108,8 +108,8 @@
 % ========== 超链接与参考文献 ==========
 \usepackage{xstring}
 \newcommand{\CharAt}[2]{%
-  \StrChar{#1}{#2}[\Result]%
-  \Result%
+    \StrChar{#1}{#2}[\Result]%
+    \Result%
 } % 获取字符串中指定位置的字符
 
 
@@ -128,6 +128,12 @@
 \DeclareTrackedEnvironment{proposition}
 
 
+% ========================================
+\usepackage[colorlinks,linkcolor=blue]{hyperref}       % 超链接支持
+
+
+
+
 
 \usepackage[user,titleref,abspage]{zref}
 \zref@newprop{envname}{\CurrentEnvName}                            % 定义envname属性，其值为当前环境名称
@@ -135,7 +141,6 @@
 \zref@newprop{thechapter}{\textrm{\thechapter}} % 定义chapter属性，其值为当前章号
 \zref@addprops{main}{thechapter,envname,thetheorem}                              % 加入主属性集
 
-\usepackage[colorlinks,linkcolor=blue]{hyperref}       % 超链接支持
 
 \usepackage{letltxmacro}
 \LetLtxMacro\originalLabel\label % 保存原始的 \label 命令
@@ -145,13 +150,13 @@
 \renewcommand{\label}[1]{
     \zlabel{#1}
     \originalLabel{#1}
-}
+} % 重定义 \label 命令，在调用原始 \label 的同时使用 \zlabel 记录环境信息
 \newcommand{\cref}[1]{
-    \hyperref[#1]{\zref[envname]{#1} \zref[thetheorem]{#1}} 
-}
+    \zref[envname]{#1} \ref{#1}
+} % 定义 \cref 命令，输出格式为 "环境名称 定理编号" 
 \newcommand{\dref}[1]{
-    \hyperref[#1]{Cha \zref[thechapter]{#1} \zref[envname]{#1} \zref[thetheorem]{#1}}
-}
+    Chap \zref[thechapter]{#1} \ref{#1}
+} % 定义 \dref 命令，输出格式为 "Chap 章号.定理编号"
 
 
 

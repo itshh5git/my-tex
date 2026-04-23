@@ -4,8 +4,6 @@
 *.toc
 *.lof
 *.lot
-*.bbl
-*.blg
 *.synctex.gz
 *.fdb_latexmk
 *.fls
@@ -15,7 +13,11 @@
 *.dvi
 *.mtc*
 *.maf
+*.git
+*.bcf
+*.run.xml
+*.bbl
+*.blg
+*.bbl-SAVE-ERROR
 
-
-# 如果不想上传PDF，取消下一行的注释
-# *.pdf
+# *.pdf 上传到 GitHub 时会被自动渲染

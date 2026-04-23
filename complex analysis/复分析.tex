@@ -146,7 +146,7 @@ The letter $\Omega$ will from now on denote a plane open set.
 \section{Integration along curve}
 
 \begin{definition}
-    Let 
+    Let
 \end{definition}
 
 
@@ -934,32 +934,35 @@ The letter $\Omega$ will from now on denote a plane open set.
 \end{lemma}
 \begin{theorem}
     If $f$ is an entire function that has an order of growth $\lambda$, then for every $\varepsilon >0$
-
-    (i) $\mathfrak{n}(r)=o(r^{\lambda+\varepsilon})$
-
-    (ii) If $a_1, a_2,\ldots$ denote the zeros of $f$, with $a_k\neq 0$, then we have
+    \begin{enumerate}
+        \item 
+         $\mathfrak{n}(r)=o(r^{\lambda+\varepsilon})$
+        \item 
+         If $a_1, a_2,\ldots$ denote the zeros of $f$, with $a_k\neq 0$, then we have
+    \end{enumerate}
     $$
         \sum_{k=1}^\infty\frac1{\left|a_k\right|^{\lambda+\varepsilon}}<\infty
     $$
+    \begin{proof}
+        It suffices to prove the estimate for $\mathfrak{n}(r)$ when $f(0)\neq0$. Indeed, consider the function $F(z)=f(z)/z^\ell$ where $\ell$ is the order of the zero of $f$ at the origin. Then $\mathfrak{n} _f( r)$ and $\mathfrak{n}_F(r)$ differ only by a constant, and $F$ also has an of order of growth $\leq\rho$.
 
-    Proof: It suffices to prove the estimate for $\mathfrak{n}(r)$ when $f(0)\neq0$. Indeed, consider the function $F(z)=f(z)/z^\ell$ where $\ell$ is the order of the zero of $f$ at the origin. Then $\mathfrak{n} _f( r)$ and $\mathfrak{n}_F(r)$ differ only by a constant, and $F$ also has an of order of growth $\leq\rho$.
+        1. If $f(0)\neq0$, then for $R=2r>0$ that $f$ vanish nowhere on $\partial B(0,R)$
+        $$
+            \begin{aligned}
+                \mathfrak{n}(r)\log2\leq\int_r^{2r}\frac{\mathfrak{n}(x)}{x}\d x & \leq\int_0^R\frac{\mathfrak{n}(x)}{x}\d x                                                 \\
+                                                                                 & =\frac1{2\pi}\int_0^{2\pi}\log\left|f(Re^{i\theta})\right|\d \theta-\log\left|f(0)\right| \\
+                                                                                 & \leq\log\left|M(2r)\right|-\log\left|f(0)\right|                                          \\
+                                                                                 & \leq (2r)^{\lambda+\varepsilon}-\log\left|f(0)\right|
+            \end{aligned}$$
+        Consequently, $\lim\mathfrak{n}(r)r^{-\lambda-\varepsilon}=0$
 
-    1. If $f(0)\neq0$, then for $R=2r>0$ that $f$ vanish nowhere on $\partial B(0,R)$
-    $$
-        \begin{aligned}
-            \mathfrak{n}(r)\log2\leq\int_r^{2r}\frac{\mathfrak{n}(x)}{x}\d x & \leq\int_0^R\frac{\mathfrak{n}(x)}{x}\d x                                                 \\
-                                                                             & =\frac1{2\pi}\int_0^{2\pi}\log\left|f(Re^{i\theta})\right|\d \theta-\log\left|f(0)\right| \\
-                                                                             & \leq\log\left|M(2r)\right|-\log\left|f(0)\right|                                          \\
-                                                                             & \leq (2r)^{\lambda+\varepsilon}-\log\left|f(0)\right|
-        \end{aligned}$$
-    Consequently, $\lim\mathfrak{n}(r)r^{-\lambda-\varepsilon}=0$
-
-    2. Since $\mathfrak{n}(x)$ vanish near the $0$ and $\mathfrak{n}(x)=o(x^{\lambda+\frac{1}{2}\varepsilon})$, we have
-    $$
-        \sum\frac{1}{\left|a_n\right|^{\lambda+\varepsilon}}
-        =
-        \frac{1}{\lambda+\varepsilon}
-        \int^\infty_0\frac{\mathfrak{n}(x)}{x^{\lambda+\varepsilon + 1}}\d x<\infty$$
+        2. Since $\mathfrak{n}(x)$ vanish near the $0$ and $\mathfrak{n}(x)=o(x^{\lambda+\frac{1}{2}\varepsilon})$, we have
+        $$
+            \sum\frac{1}{\left|a_n\right|^{\lambda+\varepsilon}}
+            =
+            \frac{1}{\lambda+\varepsilon}
+            \int^\infty_0\frac{\mathfrak{n}(x)}{x^{\lambda+\varepsilon + 1}}\d x<\infty$$
+    \end{proof}
 
 \end{theorem}
 \begin{theorem}[Hadamard Theorem]

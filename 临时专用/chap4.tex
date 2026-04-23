@@ -1,0 +1,247 @@
+\subsection{全纯$A_n$-模}
+给定一个左 $A_n$-模 $M$，由于$A_n$的非交换性，$M$ 的结构可能非常复杂。
+我们可以通过选择一个良好滤过来定义 $M$ 的维数与重数，这些数值反映了 $M$ 的渐近性质和复杂度。Bernstein 不等式为我们提供了一个下界，说明非零有限生成的 $A_n$-模至少具有维数 $n$。全纯（holonomic）模是那些维数恰好为 $n$ 的模，它们具有许多优良的性质，例如 Artinian 性和有限长度。
+
+
+\subsubsection{维数的定义}
+
+我们首先定义$A_n$上的一个依度数的滤过
+对于每个 $t\ge0$，定义$A_n$上的 $k$-子空间
+\begin{equation*}
+    B_t:=\left\{D\in A_n\mid \deg D\leq t\right\}
+\end{equation*}
+容易验证 $\mathcal{B}:=\{B_t\}_{t=0}^\infty$ 是 $A_n$ 的一个递增滤过，称为\emph{Bernstein 滤过}.
+且有下面
+\begin{proposition}
+    \begin{equation*}
+        \gr_{\mathcal{B}}A_n\cong k[x_1,\dots,x_n,\xi_1,\dots,\xi_n],
+    \end{equation*}
+    即$2n$元多项式代数。
+\end{proposition}
+有了这个滤过，我们就可以对一些性质较好的$A_n$-模$M$定义维数与重数了，也是通过滤过来定义的。
+
+
+\begin{definition}
+    设$\Gamma$为$M$关于Bernstein滤过的一个滤过，
+    若伴随分次模 $\gr_\Gamma M$
+    在 $\gr_{\mathcal{B}}A_n=k[x_1,\dots,x_n,\xi_1,\dots,\xi_n]$ 上有限生成，
+    则称$\Gamma$为\emph{良好滤过}.
+\end{definition}
+$\gr_{\Gamma}M$的有限生成性保证了Hilbert多项式存在，从而可以定义维数与重数，同时也保证了$M$的结构不会过于复杂。
+
+有了$M$的良好过滤，取\ref{def:Hilbert 函数}中的$A=\gr_{\mathcal{B}}A_n$, $M=\gr_\Gamma M$，以及加性函数$\lambda(N)=\dim_k N$（容易验证这是有限的），我们可以定义$M$的Hilbert多项式
+\begin{equation*}
+    \chi(t,\Gamma,M)=\sum_{i=0}^t \dim_k \Gamma_i M/\Gamma_{i-1} M
+    =
+    \dim_k \Gamma_t M
+\end{equation*}
+($\Gamma_{-1}=0$）从而定义$M$的维数和重数，也就是
+\begin{equation*}
+    d=\deg \chi(t,\Gamma,M)
+\end{equation*}
+\begin{equation*}
+    m=d!\cdot \text{首项系数}
+\end{equation*}
+对于不同的良好滤过$\Gamma$，定义的Hilbert多项式可能不同，但它们的次数和首项系数是相同的，因此维数和重数是良定义的，不依赖于具体的良好滤过。这是由下面这个命题保证
+\begin{proposition}[见\cite{coutinho1995primer}]
+    设$\Gamma$和$\Omega$为$M$的两个良好滤过，则存在常数$n_0$使得
+    $\Omega_{j-n_0}\subset\Gamma_j\subset \Omega_{j+n_0}$。
+\end{proposition}
+对于我们主要研究的有限生成$A_n$-模，良好滤过总是存在的：设$M$的生成元为$a_1,\dots,a_r$，取$\Gamma_i=B_i\left\{a_1,\ldots,a_r\right\}$，即生成元在$B_i$上生成的子空间，则$\Gamma$是$M$的一个良好滤过。
+
+
+\subsubsection{例子}
+下面几个例子中，我们分别取了对应的良好滤过来计算维数和重数，展示了这些概念的具体应用。同时用$\chi(t)$来表示Hilbert多项式，计算得到的维数和重数也反映了这些模的复杂度和结构特征。
+\begin{example}
+    对左正则$A_n$-模$A_n$，取$A_n$的良好滤过也为$\mathcal{B}$，有
+    \begin{equation*}
+        \chi(t) =\dim_k B_t
+        =
+        \sum_{\substack{\alpha_1+\cdots+\alpha_n\leq t \\ \alpha_i \in \mathbb{Z}_{\geq 0}}} 1
+        =
+        \binom{t+2n}{2n}
+    \end{equation*}
+    即为多项式
+    \begin{equation*}
+        \frac{(t+2n)(t+2n-1)\cdots(t+1)}{(2n)!}
+    \end{equation*}
+    次数为$2n$，首项系数为$\frac{1}{(2n)!}$，所以
+    \begin{equation*}
+        d(A_n)=2n,
+        \quad
+        m(A_n)=1.
+    \end{equation*}
+\end{example}
+
+\begin{example}
+    对$A_n$-模$k[X]$（标准作用下），取$k[X]$的良好滤过为$\Gamma_t=k[X]_{\le t}$，即多项式的次数不超过$t$的子空间，
+    有
+    \begin{equation*}
+        \chi(t)=\binom{n+t}{n},
+    \end{equation*}
+    从而
+    \begin{equation*}
+        d(k[X])=n,
+        \quad
+        m(k[X])=1.
+    \end{equation*}
+\end{example}
+
+\begin{example}
+    对\ref{exm:k[x,f^{-1}]}中的模$k[x,f^{-1}]=k[x]_{f}$
+    考虑$k[x,f^{-1}]$上的滤过
+    \begin{equation*}
+        \Gamma_t=\left\{\frac{g}{f^t}:\deg g \leq (\deg f +1)t\right\}
+    \end{equation*}
+    是一个良好滤过。
+    计算得到
+    \begin{equation*}
+        \chi(t)=\binom{n+(\deg f +1)t}{n},
+    \end{equation*}
+    从而 \begin{equation*}
+        d(k[x,f^{-1}])=n,
+        \quad
+        m(k[x,f^{-1}])=(\deg f +1)^n.
+    \end{equation*}
+\end{example}
+
+\subsubsection{维数的界限}
+\begin{theorem}
+    \label{thm:Dimension}
+    设 $M$是一个有限生成左 $A_n$-模，$N$是 $M$ 的一个子模，则
+    \begin{enumerate}
+        \item
+              $ d(M)=\max\left\{d(N),d(M/N)\right\}$
+        \item
+              如果$d(N)=d(M/N)$，则 $m(M)=m(N)+m(M/N)$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    详见\cite{coutinho1995primer}.
+\end{proof}
+利用上述定理，我们可以得到一些关于维数和重数的有用结论，例如有限生成模的维数不超过 $2n$，以及维数为 $n$ 的模（全纯模）的特殊性质。
+\begin{corollary}
+    设$M_1,\dots,M_s$为有限生成左 $A_n$-模，$M=\bigoplus_{i=1}^s M_i$，则
+    \begin{enumerate}
+        \item $d(M)=\max\left\{d(M_1),\dots,d(M_s)\right\}$
+        \item 如果$d(M)=d(M_j)$对任意$j$成立，则$m(M)=\sum_{i=1}^s m(M_i)$
+    \end{enumerate}
+\end{corollary}
+\begin{corollary}
+    任意有限生成左 $A_n$-模的维数不超过 $2n$.
+    \begin{proof}
+        注意有限生成的$M$都是某个自由模$A_n^r$的商模（$r$为$M$的生成元个数），而$A_n^r$的维数为$2n$，因此$M$的维数不超过$2n$.
+    \end{proof}
+\end{corollary}
+
+
+\begin{theorem}[Bernstein 不等式]
+    若 $M$ 为非零有限生成左 $A_n$-模，
+    则
+    \[
+        d(M)\ge n.
+    \]
+    \begin{proof}
+
+    \end{proof}
+\end{theorem}
+这是 Bernstein 在 1971 年证明的一个重要结果，表明了 $A_n$-模的维数至少为 $n$，这为全纯模的定义提供了理论基础，是本文的核心结果之一。它的证明需要下述引理
+\begin{lemma}[见\cite{coutinho1995primer}]
+    \label{lem:Bernstein-inequality}
+    设$M$是一个非零有限生成左$A_n$-模具有良好过滤$\Gamma$，假定$\Gamma_0\neq 0$。设$k$线性映射
+    \begin{equation*}
+        \phi:B_i \to \Hom_{k}\left( \Gamma_i,\Gamma_{2i} \right)
+    \end{equation*}
+    其中$\phi$把元素$a$映到主态射$\phi_a(u)=au$。则$\phi$是单射。
+    \begin{proof}
+        只需证明对任意非零$a\in B_i$，$a\Gamma_i\neq 0$。对$i$进行归纳，$i=0$时，$B_0=k$,结论显然。
+        假设对任意的$0\neq b\in B_{i-1}$，$b\Gamma_{i-1}\neq 0$。取非零元素$a\in \Gamma_i$，如果$a\Gamma_i=0$，则$a\notin k$，所以$a$的典范形式具有项$cx^\alpha\partial^\beta$，其中$c\neq 0$，$\left|\alpha\right|+\left|\beta\right|>0$。
+        如果$\alpha$的某个分量（不妨设为第一个分量$\alpha_1$）非零，则$[a,\partial_1]\in B_{i-1}$非零，有
+        \begin{equation*}
+            0\neq [a,\partial_1]\Gamma_{i-1}=a\partial_1\Gamma_{i-1}\subset a\Gamma_i=0,
+        \end{equation*}
+        矛盾。同样的推理也适用于$\beta$的分量，因此$a\Gamma_i\neq 0$，归纳完成。
+    \end{proof}
+\end{lemma}
+\begin{proof}
+    [Bernstein 不等式的证明]设$M$的良好过滤$\Gamma$以及Hilbert多项式$\chi(t)$。当$t$充分大时，由引理\ref{lem:Bernstein-inequality}得
+    \begin{equation*}
+        \chi(2t)\chi(t)
+        =
+        \dim_k \Gamma_{2i} \cdot \dim_k \Gamma_i
+        = \dim_k \Hom_k(\Gamma_i,\Gamma_{2i})
+        \geq \dim_k B_i
+        = \binom{i+2n}{2n}.
+    \end{equation*}
+    从而$\chi$的次数至少为$n$，即$d(M)\geq n$.
+\end{proof}
+
+
+\subsection{全纯$A_n$-模}
+维数达到下界 $n$ 的有限生成左 $A_n$-模具有许多优良的性质，我们将它们称为\emph{全纯}（Holonomic）模。这些模在 $\mathcal{D}$-模理论中扮演着重要角色，具有丰富的结构和应用。
+\begin{definition}
+    有限生成左 $A_n$-模 $M$
+    称为\textbf{全纯的} (Holonomic),
+    如果 $M=0$ 或 $d(M)=n$.
+\end{definition}
+\begin{example}
+    \ref{exm:k[x]}与\ref{exm:k[x,f^{-1}]} 中的模都是全纯的。
+\end{example}
+
+由\ref{thm:Dimension}可以立即得到全纯模的如下性质
+\begin{proposition}
+    \begin{enumerate}
+        \item
+              全纯 模的子模与商模仍为 全纯；
+        \item
+              有限直和保持 全纯 性；
+        \item
+              全纯 $A_n$-模都是挠模。
+    \end{enumerate}
+    \begin{proof}
+
+    \end{proof}
+\end{proposition}
+
+
+
+利用重数的加性，我们可以证明 全纯模具有Artinian性（而$A_n$本不具有Artinian性），这也是全纯模的一个重要特征。
+\begin{theorem}
+    全纯$A_n$-模是 Artinian 的。
+\end{theorem}
+
+\begin{proof}
+    若存在严格下降链
+    \[
+        M=N_0\supsetneq N_1\supsetneq\cdots,
+    \]
+    则由重数加性得
+    \[
+        m(M)\ge\sum m(N_i/N_{i+1})\ge\text{链长},
+    \]
+    矛盾。
+\end{proof}
+
+\begin{corollary}
+    全纯模具有有限长度，
+    且长度不超过其重数。
+\end{corollary}
+
+\begin{corollary}
+    任意不可约全纯模的重数为 $1$.
+\end{corollary}
+
+下述定理与\ref{thm:Kashiwara等价定理}一起构成了整个$\mathcal{D}$-模理论的基石，说明了全纯模在 $\mathcal{D}$-模范畴中的重要地位和特殊性质。
+\begin{theorem}[Kashiwara构造性定理]
+    反像函子和直像函子保持模的全纯性
+    \begin{proof}
+        仿射版本的证明见\cite{coutinho1995primer}，一般情形的证明可以参见\cite{hotta2007d}.
+    \end{proof}
+\end{theorem}
+
+
+
+
+
+\newpage
+

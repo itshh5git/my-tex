@@ -1,0 +1,428 @@
+\section{Weyl 代数$A_n$与 $A_n$-模}
+Weyl代数$A_n$是指仿射空间$\left(\mathbb{A}^n_k,\mathcal{O}\right)$上的微分算子层（$k$为特征零域），是$\mathcal{D}$-模理论中的最简单、基本对象。许多定理命题的证明以及具体的计算都要现在Weyl代数$A_n$上进行。因此在本节中我们将系统地讨论Weyl代数$A_n$的定义、基本性质以及$A_n$-模的结构，为后续章节中$\mathcal{D}$-模理论中的特征簇、$b$-函数等问题的研究奠定基础。
+
+
+\subsection{定义和基本性质}
+设 $k[X]=k[x_1,\dots,x_n]$ 是特征为零的域 $k$ 上
+$n$ 个可交换不定元的多项式环，
+记其所有 $k$-线性自同态所成的代数为 $\End_k(k[X])$.
+对每个 $i=1,\dots,n$,
+定义算子 $\hat{x}_i\in \End_k(k[X])$ 为
+\[
+    \hat{x}_i(f)=x_i f, \qquad f\in k[X].
+\]
+同时定义偏导算子
+\[
+    \partial_i(f)=\frac{\partial f}{\partial x_i}.
+\]
+\begin{definition}
+    由算子 $\hat{x}_1,\dots,\hat{x}_n$ 与
+    $\partial_1,\dots,\partial_n$
+    生成的 $\End_k(k[X])$的$k$-子代数
+    称为\emph{$n$阶Weyl代数},
+    记为 $A_n(k)$.
+    约定 $A_0(k)=k$.
+\end{definition}
+
+
+
+\begin{proposition}
+    在 $A_n(k)$ 中有交换关系
+    \[
+        [\partial_i,\hat{x}_j]=\delta_{ij}, \qquad
+    [\partial_i,\partial_j]=[\hat{x}_i,\hat{x}_j]=0,
+    \]
+    并且对任意 $f\in k[X]$,
+    \[
+        [\partial_i,f]=\frac{\partial f}{\partial x_i}.
+    \]
+\end{proposition}
+
+\begin{proposition}\label{prop:weyl-basis}
+    给定域$k$，与$k$上的Weyl代数$A_n(k)$。
+    \begin{enumerate}
+        \item 对任意多重指标 $\alpha,\beta\in\mathbb{N}^n$,
+              有
+              \[
+                  \partial^\beta x^\alpha
+                  =
+                  \sum_{\beta_1+\beta_2=\beta}
+                  \binom{\beta}{\beta_1}
+                  \frac{\partial x^\alpha}{\partial x^{\beta_1}}
+                  \partial^{\beta_2}.
+              \]
+              因此
+              \[
+                  \partial^\beta x^\alpha
+                  =
+                  x^\alpha\partial^\beta+D',
+                  \quad
+                  \deg D'\le |\alpha|+|\beta|-2.
+              \]
+
+        \item 集合
+              \[
+                  \{x^\alpha\partial^\beta:
+                  \alpha,\beta\in\mathbb{N}^n\}
+              \]
+              构成 $A_n(k)$ 作为 $k$-向量空间的一组基。
+    \end{enumerate}
+    \begin{proof}
+        （1）即为 Leibniz 公式的特殊情形，直接验证即可。
+
+        （2）注意到$A_n(k)$中元素的交换性，$A_n(k)$中的任意元素都可以表示为有限和
+        \begin{equation*}
+            \sum c x_1^{\alpha_1}\partial_1^{\beta_1}\cdots x_n^{\alpha_n}\partial_n^{\beta_n}
+        \end{equation*}
+        对每个分量$i$，利用（1）中的公式可以将$x_i^{\alpha_i}\partial_i^{\beta_i}$表示$\left\{x_i^s\partial_i^t\right\}$的线性组合。代入上式 中，得到$x^\alpha\partial^\beta$的线性组合。线性无关性容易验证，因此$\{x^\alpha\partial^\beta\}$是$A_n(k)$的一组基。
+    \end{proof}
+\end{proposition}
+
+Weyl代数$A_n(k)$的结构可以通过自由代数的商来描述。
+
+\begin{theorem}
+    \label{thm:A}
+    设 $k\langle z_1,\dots,z_{2n}\rangle$
+    为自由结合代数，
+    $J$ 为由关系
+    \[
+        [z_{i+n},z_i]-1,\quad
+        [z_i,z_j]\quad (j\neq i+n)
+    \]
+    生成的双边理想，则存在 $k$-代数同构
+    \[
+        A_n(k)\cong k\langle z_1,\dots,z_{2n}\rangle/J.
+    \]
+\end{theorem}
+
+\begin{proof}
+    定义满同态
+    $\phi(z_i)=x_i,\ \phi(z_{i+n})=\partial_i$.
+    由 Weyl 关系知 $J\subset\ker\phi$,
+    从而诱导同态
+    $\bar\phi$.
+    由命题 \ref{prop:weyl-basis},
+    标准单项式在商代数中线性无关，
+    故 $\bar\phi$ 为同构。
+\end{proof}
+
+\subsection{次数与阶}
+
+\begin{definition}
+    由\ref{prop:weyl-basis}，每个元素 $D\in A_n$ 都可以唯一表示为
+    \begin{equation*}
+        D=\sum_{\alpha,\beta}
+        a_{\alpha\beta}x^\alpha\partial^\beta\in A_n.
+    \end{equation*}
+    称为$D$的\emph{典范形式}。
+    定义 $D$ 的\emph{次数}为
+    \[
+        \deg(D)=\max\{|\alpha|+|\beta|:
+        a_{\alpha\beta}\neq0\},
+    \]
+    并约定零元的次数为 $-\infty$.
+\end{definition}
+
+\begin{theorem}
+    对任意 $D,D'\in A_n$，有：
+    \begin{enumerate}
+        \item
+              \[
+                  \deg(D+D')\le\max\{\deg D,\deg D'\},
+              \]
+              且当 $\deg D\neq\deg D'$ 时取等号；
+        \item
+              \[
+                  \deg(DD')=\deg D+\deg D'；
+              \]
+        \item
+              \[
+                  \deg([D,D'])\le\deg D+\deg D'-2.
+              \]
+    \end{enumerate}
+    \begin{proof}
+        利用\ref{prop:weyl-basis}和定义，直接验证即可。
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    Weyl 代数 $A_n$ 是整环。
+\end{corollary}
+
+\begin{definition}
+    若考虑典范形式
+    \[
+        D=\sum_{\alpha,\beta}
+        a_{\alpha\beta}x^\alpha\partial^\beta,
+    \]
+    则定义 $D$ 的\emph{阶}为
+    \[
+        \ord(D)=\max\{|\beta|:a_{\alpha\beta}\neq0\}.
+    \]
+\end{definition}
+与次数函数类似，阶函数也满足一些基本性质。
+\begin{proposition}
+    阶函数满足：
+    \begin{enumerate}
+        \item
+              $\ord(P+Q)\le\max\{\ord P,\ord Q\}$；
+        \item
+              $\ord(PQ)=\ord P+\ord Q$；
+        \item
+              $\ord([P,Q])\le\ord P+\ord Q-1$.
+    \end{enumerate}
+\end{proposition}
+
+利用$A_n$上的度数函数，我们可以证明$A_n$的单性。
+
+\begin{theorem}
+    \label{thm:simple}
+    Weyl 代数 $A_n$ 是单代数。
+\end{theorem}
+\section{Jacobian 猜想}
+给定特征为零的域$k$和正整数$n$。设仿射空间$\mathbb{A}_n$上的多项式映射
+\begin{equation*}
+    f:\mathbb{A}_n\to \mathbb{A}_n
+\end{equation*}
+用$J(f)$表示其Jacobian矩阵。如果$f$可逆（在多项式映射意义下，下述同理），则$\Delta f:=\det J(f)$必须是一个非零常数。
+Jacobian猜想断言，反过来，如果$\Delta f$是一个非零常数（不失一般性地假设$\Delta f=1$)，那么$f$必定是可逆的。
+\begin{example}
+    设
+    \begin{equation*}
+        f(x_1,x_2)=(x_1+x_2^2,x_2)
+    \end{equation*}
+    ，则$\Delta f=1$，且$f^{-1}(y_1,y_2)=(y_1-y_2^2,y_2)$.
+\end{example}
+
+通过下述命题\ref{lem:Bernstein-inequality}和\ref{lem:Jacobian}，我们可以将Jacobian猜想等价地表述为一个的代数问题。
+\begin{proposition}
+    \label{pro:Jacobian}
+    多项式映射$f:\mathbb{A}_n\to \mathbb{A}_n$，当且仅当其余态射$f^\sharp$为$\mathcal{O}_{\mathbb{A}_n}=k[x_1,\dots,x_n]$上的环同构。
+\end{proposition}
+
+
+
+\begin{lemma}
+    \label{lem:Jacobian}
+    设 $f: \mathbb{A}_n \to \mathbb{A}_n$ 为多项式映射，$f_1,\dots,f_n$ 为其分量函数，且$\Delta f\neq 0$   处处成立。
+    则余态射 $f^\sharp$ 为单射。
+\end{lemma}
+
+\begin{proof}
+    假设引理不成立，则存在最低次数非零多项式
+    $\varphi$
+    满足
+
+    \begin{equation*}
+        f^\sharp(\varphi)=\varphi\circ f=0
+    \end{equation*}
+    由链式法则得
+    \begin{equation*}
+        \nabla (\varphi\circ f)
+        =
+        (\nabla \varphi)(f)\cdot J(f)=0。
+    \end{equation*}
+    由于 $J(f)$可逆，
+    推出
+    \begin{equation*}
+        \nabla (\varphi\circ f)=0。
+    \end{equation*}
+    但存在某个$i$ 使得 $\frac{\partial \varphi}{\partial x_i}$ 非零，且次数严格小于 $\varphi$，与极小性矛盾。
+\end{proof}
+考虑\ref{lem:Jacobian}中$f^{\sharp}$的像$k[F_1,\dots,F_n]\subset k[x_1,\dots,x_n]$，我们可以将Jacobian猜想等价地表述为：当$\Delta f=1$时，$k[F_1,\dots,F_n]=k[x_1,\dots,x_n]$。
+
+\subsection{Jacobian猜想在特定情况下的证明}
+
+\begin{definition}
+    设 $D$ 为 $k$-代数 $A$ 的导子。
+    \begin{enumerate}
+        \item
+              $\ker D$ 称为 $D$ 的\emph{常数环}；
+
+        \item
+              若对任意 $a\in A$
+              存在 $k$ 使
+              \[
+                  D^k(a)=0,
+              \]
+              则称 $D$ 为\emph{局部幂零导子}；
+
+        \item
+              若 $D$ 局部幂零，
+              定义映射
+              \[
+                  \phi(a)=
+                  \sum_{n\ge0}
+                  \frac{D^n(a)}{n!}x^n,
+              \]
+              则 $\phi:A\to A[x]$
+              为环同态，
+              并满足  $\phi\circ D=\partial_x\circ\phi$
+    \end{enumerate}
+\end{definition}
+\begin{example}
+    设 $A=k[x_1,\dots,x_n]$，则 $A$ 上的导子 $D_i=\frac{\partial}{\partial x_i}$，$i=1,\dots,n$ 是局部幂零的。只关于$x_2,x_3$的多项式$x_2+x_3^5$自然是 $\partial_{x_1}$ 的常数，但不是 $\partial_{x_2}$ 的常数。
+\end{example}
+\begin{proposition}[见\cite{wright1981jacobian}]
+    \label{pro:wright1981jacobia}
+    设
+    $D_1,\dots,D_n$
+    为两两可交换的局部幂零导子，
+    且存在
+    $t_1,\dots,t_n\in A$
+    满足
+    \[
+        D_i(t_j)=\delta_{ij}。
+    \]
+    则：
+
+    \begin{enumerate}
+        \item  $A=R[t_1,\dots,t_n],$
+              其中 $R$ 为$D_1,\dots,D_n$的常数环；
+
+        \item
+              $t_i$ 在 $R$ 上代数无关；
+
+        \item
+              $ D_i=\frac{\partial}{\partial t_i}$
+    \end{enumerate}
+\end{proposition}
+
+为了利用\ref{pro:wright1981jacobia}证明Jacobian猜想，我们需要定义适当的导子应用在$f_1,\dots,f_n$上，所需要的导子由下述引理给出。
+
+\begin{lemma}
+    $k$-代数$k[x_1,\dots,x_n,\Delta^{-1}]$上的线性映射
+    \begin{equation*}
+        D_i(\varphi)
+        =
+        \Delta^{-1}
+        \det
+        J(f_1,\dots,f_{i-1},\varphi,f_{i+1},\dots,f_n)
+    \end{equation*}
+    是两两可交换的导子，且满足 $D_i(f_j)=\delta_{ij}$.
+\end{lemma}
+
+\begin{theorem}
+    若 域$k$上的Weyl 代数 $A_n$ 的每个代数自同态均为自同构，
+    则 $k$上的Jacobian 猜想成立。
+    \begin{proof}
+        只需证明$D_i$作为$k[x_1,\dots,x_n]$上的导子是局部幂零的（注意$k[x_1,\dots,x_n]$上的导子一定含在$A_n$中），然后利用\ref{pro:wright1981jacobia}即可得证。
+        存在同态$\psi : A_n \to A_n$使得
+        \begin{equation*}
+            \psi(x_i)=f_i, \quad \psi(\partial_{x_i})=D_i, \quad i=1,\dots,n.
+        \end{equation*}
+        根据假设，这$A_n$间的同构。对任意的$D_i\in A_n$和多项式，存在$N$使得
+        \begin{equation*}
+            \operatorname{ad}_{D_i}^N(x)
+            =
+            \psi^{-1}\left(\operatorname{ad}_{\psi(D_i)}^N(\psi(x))\right)
+            =
+            \psi^{-1}\left(\operatorname{ad}_{\partial_{x_i}}^N(\psi(x))\right)
+            =
+            0
+        \end{equation*}
+        因为$\partial_{x_i}$是局部幂零的。
+    \end{proof}
+\end{theorem}
+
+
+
+\subsection{$A_n$-模}
+$A_n$-模是指 $A_n$ 上的代数模，可以是左模或右模。一般左$A_n$模是我们所需研究的函数空间（即微分算子作用在函数上），而右$A_n$一般是微分形式、分布等对象的模（即微分算子作用在函数的对偶上）。参见\ref{exm:k[x,f^{-1}]}和\cite{bernshtein1972analytic}.
+\begin{example}
+    \label{exm:k[x]}
+    左 $A_n$-模 $k[X]$ 是不可约挠模，进而是一个循环模，由 单位元$1$ 生成。
+    且
+    \[
+        {}_{A_n}k[X]\cong
+        A_n/\sum_{i=1}^n A_n\partial_i.
+    \]
+\end{example}
+
+\begin{proposition}
+    商模
+    $A_n/\sum_i A_n x_i$
+    同构于 $k[\partial_1,\dots,\partial_n]$,
+    其中 $\partial_i$ 作用为乘法，
+    $x_i$ 的作用为 $-\partial/\partial_i$.
+\end{proposition}
+
+\begin{theorem}
+    对任意正整数 $r$,
+    由
+    \[
+        \sigma_r(x_i)=x_i,\quad \sigma_r(\partial_i)=\partial_i-x_i^r
+    \]
+    定义的扭曲模 $k[X]_{\sigma_r}$
+    构成一族两两不同构的不可约 $A_n$-模。
+    \begin{proof}
+        由\ref{thm:A}可得，$\sigma_r$ 定义了一个 $A_n$自同态，因为
+        \begin{equation*}
+            [\sigma_r(\partial_i),\sigma_r(\partial_j)]
+            =[\partial_i-x_i^r,\partial_j-x_j^r]
+            =0,
+        \end{equation*}
+        \begin{equation*}
+            [\sigma_r(x_i),\sigma_r(x_j)]
+            =[x_i,x_j]
+            =0,
+        \end{equation*}
+        \begin{equation*}
+            [\sigma_r(\partial_i),\sigma_r(x_j)]
+            =[\partial_i-x_i^r,x_j]
+            =\delta_{ij}.
+        \end{equation*}
+        同时容易看出$\sigma_r$满，结合\ref{thm:simple}，$\sigma_r$是一个自同构。
+
+        由此 $k[X]_{\sigma_r}$ 是良定义的，且由\ref{pro:twisting}可知$k[X]_{\sigma_r}$是一个不可约模，可被$1$生成。
+        假设$\phi:k[X]_{\sigma_r}\to k[X]_{\sigma_s}$是一个$A_n$-模同构，则$\phi$完全由$\phi(1)\neq 0$决定。考虑等式
+        \begin{equation*}
+            -x_i^r\phi(1)
+            =
+            \phi(-x_i^r)
+            =
+            \phi(\partial_i\cdot 1)
+            =
+            (\partial_i-x^s)\phi(1)
+        \end{equation*}
+        整理得到
+        \begin{equation*}
+            \partial_i\phi(1)=(x_i^s-x_i^r)\phi(1).
+        \end{equation*}
+        比较两边的次数，得到矛盾。
+    \end{proof}
+
+\end{theorem}
+
+
+\begin{example}
+    对$\mathbb{R}^n$上的光滑函数环$C^\infty(\mathbb{R}^n)$，定义$\partial_i$的作用为$\frac{\partial}{\partial x_i}$，则$C^\infty(\mathbb{R}^n)$是一个左$A_n$-模。而对全体$n$阶微分形式$\Omega^n$，定义$A_n$的右作用为
+    \begin{equation*}
+        \begin{aligned}
+            \omega \cdot x_i        & =  x_i \omega,                    \\
+            \omega \cdot \partial_i & =  \mathcal{L}_{\partial_i}\omega
+        \end{aligned}
+    \end{equation*}
+    其中$\mathcal{L}_{\partial_i}$是向量场$\partial_i$对应的Lie导数，则$\Omega^n$是一个右$A_n$-模。
+\end{example}
+\begin{remark}
+    $\left(\mathbb{R}^n,\mathcal{O}_{\mathbb{R}^n}\right)$上的开集$U$对应的微分算子层为$C^\infty(U)\left\langle \partial_1,\ldots,\partial_n \right\rangle$
+\end{remark}
+
+\begin{example}
+    \label{exm:k[x,f^{-1}]}
+    设非零多项式$f\in k[x]$，则在$f$处局部化所得到的模$k[x,f^{-1}]$也是一个左$A_n$-模，其中$\partial_i$的作用为
+    \begin{equation*}
+        \partial_i\cdot \frac{g}{f^k}=\frac{\partial g}{\partial x_i}\cdot \frac{1}{f^k}-k\cdot \frac{g}{f^{k+1}}\cdot \frac{\partial f}{\partial x_i}.
+    \end{equation*}
+    $k \in \mathbb{Z}_{\geq 0},\ g \in k[x].$
+\end{example}
+
+\begin{example}
+    设$U$是$\mathbb{C}$中的一个开集，$\mathcal{H}(U)$表示$U$上所有全纯函数构成的集合，则$\mathcal{H}(U)$是一个左$A_1(\mathbb{C})$-模，$\partial$的作用为$\frac{d}{dx}$。其中$h(z)=e^{e^z}\in \mathcal{H}(U)$不是一个一个挠元素，且$\mathcal{H}(U)$不是循环的：对任意的$p\in \mathcal{H}(U)$, $e^p\notin \mathcal{H}(U)\cdot h$.
+    对比 \ref{exm:k[x]}中的例子。
+\end{example}
+
+
+
+\newpage

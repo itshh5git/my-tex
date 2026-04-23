@@ -1,0 +1,100 @@
+\subsection{Bernstein 多项式、D-模与奇点单值性的关系}
+\cite{malgrange2006polynome}
+Bernstein--Sato 多项式是奇点理论与代数分析中的核心不变量之一。考虑在空间$\mathbb{C}^n$上，设 $f \in \mathcal{O}_{\mathbb{C}^n,0}$ 为在原点具有孤立奇点的解析函数，则存在非零多项式 $b(s) \in \mathbb{C}[s]$ 以及微分算子 $P(s) \in \mathcal{D}[s]$，使得
+\begin{equation*}
+    P(s) f^s = b(s) f^{s-1}.
+\end{equation*}
+该多项式 $b(s)$ 称为$f \in \mathcal{O}_{\mathbb{C}^n,0}$的 Bernstein 多项式，其零点反映了奇点的局部结构。
+
+与前面的章节类似，为了系统研究这一对象，引入 D-模框架。设 $\mathcal{D}$ 为解析微分算子环，考虑由 $f^s$ 生成的 D-模
+\begin{equation*}
+    M = \mathcal{D}[s]\cdot f^s,
+\end{equation*}
+该模包含所有形如 $P(s)f^s$ 的表达式，从而编码了微分算子对 $f^s$ 的全部作用。通过研究 $M$ 的结构，可以将关于 $b(s)$ 的问题转化为 D-模的代数问题。
+
+进一步地，引入 de Rham 上同调。对于 D-模 $M$，定义其 de Rham 复形
+\begin{equation}
+    DR(M): \quad 0 \to M \to \Omega^1 \otimes M \to \cdots \to \Omega^n \otimes M \to 0,
+\end{equation}
+其上同调记为 $H^p(M)$。Malgrange 证明了如下基本同构：
+\begin{equation*}
+    H^p(M) \simeq \mathrm{Ext}^p_{\mathcal{D}}(\mathcal{O}, M) \simeq \mathrm{Tor}_{n-p}^{\mathcal{D}}(\Omega^n, M),
+\end{equation*}
+从而将几何上的微分问题转化为同调代数问题。
+
+
+另一方面，从几何角度考虑映射
+\[
+    f: \mathbb{C}^n \to \mathbb{C},
+\]
+其纤维 $X_t = f^{-1}(t)$ 的奇异上同调在参数 $t$ 绕原点一周时会发生线性变换
+\begin{equation}
+    T: H^{n-1}(X_t) \to H^{n-1}(X_t),
+\end{equation}
+该算子称为单值性（monodromy）。其特征值具有形式
+\begin{equation*}
+    \lambda = e^{2\pi i \alpha}.
+\end{equation*}
+
+
+
+
+
+Gauss--Manin 联络描述了纤维上同调随参数变化的微分结构。Malgrange 证明了相对 de Rham 上同调与 D-模上同调之间的同构：
+\begin{equation*}
+    H^p(\Omega^\bullet_{\mathrm{rel}}) \simeq H^{p+1}(M[t^{-1}]),
+\end{equation*}
+从而建立了 D-模与几何纤维结构之间的桥梁。
+
+在上述框架下，可以得到关于 Bernstein 多项式的核心结论：当 $f$ 具有孤立奇点时，$b(s)$ 的零点均为有理数，且满足 $\mathrm{Re}(s) < 1$；同时，模 $M$ 为有限生成的 D-模。更为重要的是，Bernstein 多项式的零点与单值性的特征值之间存在如下关系：
+\begin{equation*}
+    \lambda = e^{-2\pi i s},
+\end{equation*}
+即 $b(s)$ 的零点决定了 monodromy 的特征值。
+
+
+\begin{example}
+    $n=1$,$f=x^m$的情况，对应$b$-函数$b(s) =\prod_{k=1}^m (s+\frac{k}{m})$
+    纤维$X_t=f^{-1}(t)=\left\{t^{1/m}e^{2\pi i k/m}|k=0,1,\ldots,m-1\right\}$是$m$个点的离散空间，$t$绕原点一周时，单值性算子 $T$ 将这些点进行循环置换，特征值为 $e^{2\pi i k/m}$ ($k=0,1,\ldots,m-1$)，与$b$-函数的零点$s=-\frac{k}{m}$ ($k=1,2,\ldots,m$）对应。
+\end{example}
+
+\begin{example}
+    设 \(f(x_1,\dots,x_n) = \sum_{i=1}^n x_i^2\),其Bernstein-Sato 多项式：
+    \[
+        b(s) = (s+1)\left(s + \frac{n}{2}\right),
+    \]
+    零点 \(s = -1, -n/2\).
+    几何单值性：
+    \[
+        T(x) = -x.
+    \]
+    只需验证 \(f(T(x)) = f(-x) = f(x) = t \mapsto t e^{2\pi i}\)。
+    同调上的作用（\(H_{n-1}(X_t, \mathbb{C})\) 秩 $1$）：
+    \[
+        T_* = (-1)^n \cdot \mathrm{Id}.
+    \]
+    特征值 \(\lambda = (-1)^n\)，与 \(b(s)\) 的零点通过 $\lambda = e^{-2\pi i
+                \frac{n}{2}}$ 对应。
+
+\end{example}
+
+
+综上，Malgrange 的理论建立了如下对应关系：
+\[
+    \text{Bernstein 多项式}
+    \Longleftrightarrow
+    \text{D-模结构}
+    \Longleftrightarrow
+    \text{de Rham 上同调}
+    \Longleftrightarrow
+    \text{Gauss--Manin 联络}
+    \Longleftrightarrow
+    \text{单值性}.
+\]
+这一结果将奇点问题从解析与几何范畴转化为代数与同调问题，为后续 D-模理论及奇点理论的发展奠定了基础。
+
+
+
+
+
+

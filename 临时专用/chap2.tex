@@ -1,0 +1,901 @@
+
+\section{预备知识}
+
+
+\subsection{环、模与代数}
+\begin{definition}
+    一个环 $A$ 是一个集合，配备两个二元运算 $+$ 和 $\cdot$，满足以下条件：
+    \begin{enumerate}[label=(\roman*)]
+        \item $(A，+)$ 是一个阿贝尔群，存在零元 $0$ 和加法逆元 $-a$；
+        \item  $(ab)c=a(bc)$ 对任意 $a，b，c\in A$ 成立；
+        \item  $a(b+c)=ab+ac$ 和 $(a+b)c=ac+bc$ 对任意 $a，b，c\in A$ 成立；
+        \item 存在乘法单位元 $1_A$，使得 $1_A a=a 1_A=a$ 对任意 $a\in A$ 成立。
+    \end{enumerate}
+\end{definition}
+
+
+\begin{definition}
+    设 $A$ 是一个环，一个\emph{左 $A$-模}是一个阿贝尔群 $M$，配备一个满足以下条件的标量乘法：
+    \begin{enumerate}[label=(\roman*)]
+        \item $r(m+n)=rm+rn$，对任意 $r\in A$ 和 $m，n\in M$；
+        \item $(r+s)m=rm+sm$，对任意 $r，s\in A$ 和 $m\in M$；
+        \item $(rs)m=r(sm)$，对任意 $r，s\in A$ 和 $m\in M$；
+        \item $1_A m=m$，对任意 $m\in M$.
+    \end{enumerate}
+\end{definition}
+\begin{definition}
+    设$k$是一个域，一个$k$-代数 $A$ 是一个环，同时也是一个 $k$-向量空间，使得乘法与 $k$-线性结构兼容，即对任意 $r，s\in A$ 和 $\lambda\in k$，满足 $\lambda(rs)=(\lambda r)s=r(\lambda s)$。
+\end{definition}
+\begin{example}
+    设 $k$ 是一个域，则全体$n$元多项式$k[x_1,\ldots,x_n]$所构成的集合是一个 $k$-代数，乘法由多项式的乘法给出，$k$-线性结构由多项式的系数给出。
+\end{example}
+
+\begin{example}
+    自由$k$-代数$k\langle x_1,\ldots,x_n\rangle$由非交换的$n$个变量生成，乘法由变量的串联给出，$k$-线性结构由系数给出。
+\end{example}
+\begin{remark}
+    自由$k$代数的自由性体现在下面这个交换图中
+    \begin{equation*}
+        \begin{tikzcd}
+            k\langle x_1,\ldots,x_n\rangle \arrow[r,"\exists!\bar{f}"] & A \\
+            \{x_1,\ldots,x_n\} \arrow[u, "i"] \arrow[ur, "f"']
+        \end{tikzcd}
+    \end{equation*}
+    其中$f:\left\{x_1,\ldots,x_n\right\}\to A$是任意的映射， $i:\left\{x_1,\ldots,x_n\right\}\rightarrow k\langle x_1,\ldots,x_n\rangle$ 是自然嵌入。这是研究非交换代数的一个重要工具。
+\end{remark}
+
+\subsubsection{单模}
+\begin{definition}
+    一个左$A$-模 $M$ 称为\emph{不可约的}（或\emph{单模}），如果 $M$子模只有 $0$ 和 $M$ 本身。
+\end{definition}
+我们首先回顾不可约模的一些基本结论，这些结论在表示论与
+$D$-模理论中反复出现。
+\begin{proposition}
+    设 $A$ 是一个环，$M$ 是一个不可约的左 $A$-模，则：
+    \begin{enumerate}[label=(\arabic*)]
+        \item 对任意 $0 \neq m \in M$，均有
+              \[
+                  M = Am.
+              \]
+        \item 若 $0 \neq u \in M$，则存在同构
+              \[
+                  M \cong A / \operatorname{ann}_A(u)，
+              \]
+              其中 $\operatorname{ann}_A(u):=\left\{a\in A\mid au=0\right\}$ 表示 $u$ 在 $A$ 中的零化子。
+        \item 若 $A$ 不是除环，则 $M$ 为挠模。
+    \end{enumerate}
+\end{proposition}
+
+
+\subsection{链条件}
+\begin{definition}
+    设 $A$ 为一环，$M$ 为左 $A$-模，则：
+    \begin{enumerate}
+        \item
+              左 $A$-模 $M$ 称为满足\emph{升链条件}
+              （ascending chain condition， ACC），
+              或称为\emph{Noether 模}，
+              若对任意子模升链
+              \[
+                  M_1\subset M_2\subset M_3\subset\cdots
+              \]
+              存在整数 $n$，
+              使得当 $i\ge n$ 时
+              \[
+                  M_i=M_n。
+              \]
+
+        \item
+              若左正则模 ${}_A A$ 为 Noether 模，
+              则称 $A$ 为\emph{左 Noether 环}。
+              若同时为左、右 Noether，
+              则称 $A$ 为\emph{Noether 环}。
+
+        \item
+              左 $A$-模 $M$ 称为满足\emph{降链条件}
+              （descending chain condition， DCC），
+              或称为\emph{Artinian 模}，
+              若对任意子模降链
+              \[
+                  N_1\supset N_2\supset N_3\supset\cdots
+              \]
+              存在整数 $m$，
+              使得当 $i\ge m$ 时
+              \[
+                  N_i=N_m。
+              \]
+
+        \item
+              若左正则模 ${}_A A$ 为 Artinian，
+              则称 $A$ 为\emph{左 Artinian 环}。
+              若同时为左、右 Artinian，
+              则称 $A$ 为\emph{Artinian 环}。
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    设 $M$ 为左 $A$-模。
+    \begin{enumerate}
+        \item
+              若 $M$ 的任意非空子模集合（在集合包含意义下构成偏序集）均含有极大元，
+              则称 $M$ 满足\emph{极大条件}；
+        \item
+              若 $M$ 的任意非空子模集合均含有极小元，
+              则称 $M$ 满足\emph{极小条件}。
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}\label{thm:chain-max}
+    模满足升链条件
+    当且仅当满足极大条件；
+    模满足降链条件
+    当且仅当满足极小条件。
+\end{theorem}
+
+\begin{corollary}[链条件的稳定性]\label{cor:chain-stability}
+    设 $A$ 为一环， $M$ 为左 $A$-模，则：
+    \begin{enumerate}
+        \item
+              设 $M$ 为 $A$-模，
+              $M_1\subseteq M$。
+              则
+              $M$ 为 Noether
+              当且仅当
+              $M$  与  $M/M_1 $均为 Noetherian。
+
+
+        \item
+              有限直和  $M_1\oplus\cdots\oplus M_n$
+              为 Noether   当且仅当每个 $M_i$ 如此。
+
+        \item
+              Noether模的任意同态像
+              仍为 Noether。
+
+        \item
+              若 $A$ 为左 Noetherian环，则任意有限生成左 $A$-模
+              均为 Noether。
+    \end{enumerate}
+\end{corollary}
+\begin{remark}
+    上述结论同样适用于Artinian性质。
+\end{remark}
+\subsubsection{Noetherian}
+对于Noetherian性质，我们还有如下更强的结论。
+\begin{theorem}
+    \label{thm:Noetherian}
+    设 $A$ 为一环， $M$ 为左 $A$-模。则$M$为 Noether 当且仅当 $M$ 的任意子模均为有限生成。
+    \begin{proof}
+        （$\Rightarrow$）
+        设 $M$ 满足升链条件，任取 $M$ 的子模 $N$。假设模$N$不是有限生成的，则存在集合$\left\{a_i\right\}_{i=1}^\infty\subset N$使得 $$a_{i+1}\notin Aa_1+\cdots+Aa_i$$对任意$i\in \mathbb{N}$成立。由此得到严格的子模升链
+        \begin{equation*}
+            Aa_1\subseteq Aa_1+Aa_2\subseteq \cdots \subseteq Aa_1+\cdots+Aa_i\subseteq \cdots
+        \end{equation*}
+        与$M$的Noether性质矛盾。
+
+        （$\Leftarrow$）反之，设 $M$ 的任意子模均为有限生成，任取 $M$ 的子模升链$N_1\subseteq N_2\subseteq \cdots$，取子模$N = \bigcup_{i=1}^\infty N_i$也是有限生成的，设$N$的生成元集合为$\left\{b_1,\ldots,b_m\right\}$，则存在整数$n$使得$a_1,\ldots,a_m\in N_n$，从而$N_n=N_{n+1}=\cdots=N$，升链稳定。
+    \end{proof}
+\end{theorem}
+\begin{remark}
+    对环 $A$ 来说，$A$ 是左 Noether 当且仅当 $A$ 的任意左理想均为有限生成。
+\end{remark}
+
+\begin{theorem}[Hilbert基底定理]
+    设 $A$ 是一个左 Noether 环，则$n$元多项式环$A[x_1,\dots，x_n]$也是一个左 Noether 环。
+\end{theorem}
+\subsubsection{Artinian}
+对于Artinian性质，我们有如下结论。
+\begin{theorem}[Akizuki-Hopkins-Levitzki定理]
+    \label{thm:Akizuki-Hopkins-Levitzki}
+    设 $A$是一个左 Artinian 环，则 $A$ 是一个左 Noether 环。
+    \begin{proof}
+        设 $A$ 是一个左 Artinian 环，任取 $A$ 的一个左理想 $I$，则 $I$ 也是一个左 $A$-模。由 Artinian 性，存在 $n\in \mathbb{N}$ 使得 $I^n=I^{n+1}$，从而 $I^n=I^n I$，即 $I^n$ 是 $I$ 的有限生成子模，因此 $I$ 也是有限生成的。由$\ref{thm:Noetherian}$，定理得证。
+    \end{proof}
+\end{theorem}
+\begin{remark}
+    上述定理的逆并不成立。例如整数环 $\mathbb{Z}$ 是一个 Noether 环，但不是 Artinian 环。
+    同时,上述定理对一般的Artinian模不成立，例如Prüfer$p$-群视为$\mathbb{Z}$-模 $\mathbb{Z}(p^\infty) = \mathbb{Q}/\mathbb{Z}[p^{-1}]$是一个 Artinian $\mathbb{Z}$-模，但不是 Noether 模。
+\end{remark}
+\begin{remark}[广义版本]
+    如果将条件改为$A$是左Artinian环且左$A$-模$M$是Artinian的，那么$M$是Noether模。
+\end{remark}
+同时环的左右Artinian并不一定等价：
+\begin{example}
+    定义$A=\left(\begin{matrix}
+                \mathbb{Q} & \mathbb{R} \\
+                0          & \mathbb{R}
+            \end{matrix}\right)$，为二阶矩阵构成集合，其中每个位置的元素来自其对应位置的域，在一般矩阵加法和乘法下构成一个环。容易验证$A$是一个右Artinian环，但不是左Artinian环，考虑其严格左理想降链
+    \begin{equation*}
+        \left(\begin{matrix}
+            0 & V_1 \\
+            0 & 0
+        \end{matrix}\right) \supsetneq \left(\begin{matrix}
+            0 & V_{2} \\
+            0 & 0
+        \end{matrix}\right) \supsetneq \cdots
+    \end{equation*}
+    其中$V_i$是$\mathbb{R}$的严格$\mathbb{Q}$-子空间降链（注意$\dim_\mathbb{Q} \mathbb{R} = \infty$）。
+\end{example}
+
+
+
+故对左 Artinian 环 $A$上的一个有限生成左 $A$-模 $M$，由\ref{cor:chain-stability}和 \ref{thm:Akizuki-Hopkins-Levitzki}，$M$ 同时满足升链条件与降链条件。再由Jordan-Hölder定理，$M$ 的一个合成列的长度是一个不变量，称为 $M$ 的\emph{长度}，记为 $\ell_A(M)$.
+
+
+\subsection{张量积}
+张量积 是模论中的一个重要构造，它提供了一种将两个模结合起来形成新模的方法。其中一个重要的应用是改变模的基环，在表示论中经常使用张量积来构造新的表示（群代数上的模），如诱导表示、限制表示等，参见\cite{serre1977linear}。
+应用在$\mathcal{D}$-模理论中，张量积可以用于构造新的$\mathcal{D}$-模，将一个空间上的$\mathcal{D}$-模对象转移到另一个空间上，或者将两个$\mathcal{D}$-模结合起来研究它们的交互作用。
+
+
+
+\begin{definition}
+    设 $A$ 是一个环， $M$ 是一个右 $A$-模， $N$ 是一个左 $A$-模，则张量积$M\otimes_A N$ 是一个阿贝尔群，定义为Abel群的直积$M\times N$商掉如下元素构成的子群 $J$ 后的商群：
+    \begin{equation*}
+        (m+m',n)-(m,n)-(m',n),\quad (m,n+n')-(m,n)-(m,n'),\quad (ma,n)-(m,an)
+    \end{equation*}
+\end{definition}
+\begin{remark}
+    如果$M$同时是一个左$B$-模，且与$A$-模结构兼容，即满足$b(ma)=(bm)a$对任意$b\in B$，$m\in M$，$a\in A$（此时称$M$为$B$-$A$双模），则张量积$M\otimes_A N$自然成为一个左$B$-模。
+\end{remark}
+
+\begin{example}
+    给定环$A$和右$A$-模$M$，则$M\otimes_A A\cong M$，同样地，给定环$A$和左$A$-模$N$，则$A\otimes_A N\cong N$。
+\end{example}
+
+
+
+\subsection{扭曲模}
+
+\begin{definition}
+    设 $A$ 是一个环，$M$ 是左 $A$-模，
+    $\sigma$ 是 $A$ 的一个自同构。
+    定义新的左 $A$-模 $M_\sigma$：
+    作为阿贝尔群，$M_\sigma=M$，
+    而其 $A$-作用由
+    \[
+        r\cdot m=\sigma(r)m
+    \]
+    给出。
+    称 $M_\sigma$ 为 $M$ 关于 $\sigma$ 的\emph{扭曲模}（Twisted Module）.
+\end{definition}
+
+\begin{proposition}
+    \label{pro:twisting}
+    设 $A$ 是一个环，$M$ 是左 $A$-模，
+    $\sigma$ 是 $A$ 的自同构，则：
+    \begin{enumerate}[label=(\arabic*)]
+        \item $M_\sigma$ 不可约当且仅当 $M$ 不可约；
+        \item $M_\sigma$ 为挠模当且仅当 $M$ 为挠模；
+        \item $M_\sigma \oplus M'_\sigma \cong (M\oplus M')_\sigma$；
+        \item 若 $N\subset M$，则
+              \[
+                  (M/N)_\sigma \cong M_\sigma/N_\sigma；
+              \]
+        \item 若 $J$ 是 $A$ 的左理想，则
+              \[
+                  (A/J)_\sigma \cong A/\sigma^{-1}(J).
+              \]
+    \end{enumerate}
+    \begin{proof}
+        （1）、（2）、（3）由定义直接验证即可。至于
+        （4），定义“扭曲”后的投射
+        \begin{equation*}
+            \pi_\sigma : M_\sigma \to \left(M/N\right)_\sigma
+        \end{equation*}
+        映射法则与典范投射$\pi:M\to M/N$相同。可以得到$\pi _\sigma$是模同态，且$\ker \pi_\sigma=N_\sigma$，由同构定理得证。
+        （5）同理。
+    \end{proof}
+\end{proposition}
+
+\subsection{微分算子环}
+微分算子环是$\mathcal{D}$-模理论的核心对象之一，
+它抽象了微分算子在函数空间上的作用。 我们在交换代数的背景下定义微分算子，并探讨其基本性质。
+\begin{definition}
+    设 $A$ 是一个交换的 $k$-代数。定义 $A$ 上的\emph{微分算子}如下：
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              将 $a \in A$ 视为 $\End_k(A)$ 中的乘法算子
+              \[
+                  r \longmapsto ar \quad (r \in A).
+              \]
+              若算子 $P \in \End_k(A)$ 满足
+              \[
+                  [a，P]=0 \quad \text{对任意 } a\in A，
+              \]
+              则称 $P$ 为零阶微分算子。
+
+        \item
+              假设已定义所有阶数小于 $n$ 的微分算子。
+              若 $P \in \End_k(A)$ 不具有小于 $n$ 的阶数，
+              且对任意 $a \in A$，
+              \[
+                  [a，P]
+              \]
+              的阶数小于 $n$，则称 $P$ 为 $n$ 阶微分算子。
+    \end{enumerate}
+    记 $\operatorname{Diff}^n(A)$ 为 $A$ 上所有阶数小于 $n$
+    的微分算子所成的 $k$-向量空间。
+    定义 $A$ 的\emph{微分算子环}为
+    \[
+        \operatorname{Diff}(A)
+        =
+        \bigcup_{n \geq 0} \operatorname{Diff}^n(A).
+    \]
+\end{definition}
+
+\begin{remark}
+    上述定义等价于
+    \[
+        \operatorname{Diff}^n(A)
+        =
+        \left\{
+        P \in \End_k(A)
+        :
+        [\cdots[[P，a_1]，a_2]，\ldots,a_{n+1}] = 0，
+        \ \forall a_i \in A
+        \right\}.
+    \]
+    阶数恰为 $n$ 的微分算子构成集合
+    $\operatorname{Diff}^n(A)\setminus \operatorname{Diff}^{n-1}(A)$.
+\end{remark}
+
+
+\begin{definition}
+    $k$-代数 $A$ 的一个\emph{导子}是指满足 Leibniz 法则的
+    $k$-线性算子 $D$：
+    \[
+        D(ab)=aD(b)+bD(a)，
+        \quad \forall a，b\in A.
+    \]
+    所有导子构成的 $k$-向量空间记为 $\Der_k(A)$.
+    对 $a \in A$ 和 $D \in \Der_k(A)$，
+    定义新的导子 $aD$ 为
+    \[
+        (aD)(b)=aD(b)，
+    \]
+    从而 $\Der_k(A)$ 自然成为一个左 $A$-模。
+\end{definition}
+
+\begin{proposition}
+    设 $A$ 是一个交换的 $k$-代数，则：
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\operatorname{Diff}^0(A)=A$；
+        \item $\operatorname{Diff}^1(A)\subset \Der_k(A)+A$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    若 $P \in \operatorname{Diff}^n(A)$，
+    $Q \in \operatorname{Diff}^m(A)$，
+    则其复合满足
+    \[
+        PQ \in \operatorname{Diff}^{n+m}(A).
+    \]
+    \begin{proof}
+        对 $n+m$ 作归纳即可。
+    \end{proof}
+\end{proposition}
+
+\begin{example}
+    考虑$\mathbb{R}^n$上的全体光滑函数$C^\infty(\mathbb{R}^n)$，其导子由向量场（$\partial_1,\ldots,\partial_n$的$C^\infty(\mathbb{R}^n)$-线性组合）给出（参见\cite{boothby2003introduction}），全体微分算子由高阶代数的$C^\infty(\mathbb{R}^n)$-线性组合给出，构成一个非交换的代数。
+\end{example}
+与$\mathbb{R}^n$上的光滑函数环类似，多项式代数$A=k[x_1,\ldots,x_n]$上的微分算子环也具有类似的结构，即由$x_i$和$\partial_i$生成。这就是我们后续研究的重点——Weyl代数。
+
+
+
+\subsection{滤过、分次与维数}
+代数几何中，研究一个射影簇$X\subset \mathbb{P}^n$的结构性质可以通过研究其坐标环的分次结构来实现，其截面空间就是齐次坐标环的$d$ 次部分，进而可以从分次结构中提取出维数等重要不变量。
+
+\begin{definition}
+    设 $A$ 为一环。 称 $A$ 上的一族子群 $\{A_i\}_{i\ge0}$ 为
+    $A$ 的一个\emph{分次}，
+    若满足：
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $A\cong \bigoplus_{i\ge0}A_i$ 作为阿贝尔群；
+        \item
+              $A_i\cdot A_j\subseteq A_{i+j}$，
+              对任意 $i，j\ge0$ 成立。
+    \end{enumerate}
+    带有分次的环称为\emph{分次环}.
+\end{definition}
+
+
+\begin{definition}
+    设 $A$ 为一环。
+    称 $A$ 上的一族子群 $\{F_iA\}_{i\ge0}$ 为
+    $A$ 的一个\emph{递增滤过}，
+    若满足：
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $F_0A\subset F_1A\subset \cdots \subset F_iA\subset\cdots\subset A$；
+        \item
+              $\bigcup_{i\ge0}F_iA=A$；
+        \item
+              $F_iA\cdot F_jA\subseteq F_{i+j}A$，
+              对任意 $i，j\ge0$ 成立。
+    \end{enumerate}
+    带有递增滤过的环称为\emph{滤过环}.
+\end{definition}
+由定义可知，分次环$A=\bigoplus_{i\ge0}A_i$自然带有滤过$F_iA=\bigoplus_{j=0}^i A_j$。
+反之，一个滤过环上的滤过也可以诱导出一个分次结构，这也是构造分次环的重要方法之一：
+\begin{proposition}
+    若 $\mathcal{F}=\{F_iA\}$ 是 $A$ 的滤过，
+    则定义abelian群
+    \[
+        \gr_{\mathcal{F}}A
+        :=
+        \bigoplus_{i\ge0}F_{i+1}A/F_iA
+    \]
+    配以加法与乘法，由
+    \[
+        (a+\mathcal{F}_iA)\cdot (a^\prime+\mathcal{F}_jA)
+        =
+        aa^\prime+\mathcal{F}_{i+j}A
+    \]
+    给出，自然地成为一个分次环，称为 $A$ 关于滤过 $\mathcal{F}$ 的\emph{伴随分次环}
+\end{proposition}
+
+\subsubsection{滤过模与伴随分次模}
+
+\begin{definition}
+    设$A=\bigoplus_{i\ge0}A_i$为分次环（不要求交换性），则左$A$-模$M$称为\emph{分次模}，如果存在子群族$\{M_i\}$满足：
+    \begin{enumerate}[label=(\roman*)]
+        \item $M_0\subset M_1\subset\cdots\subset M$；
+        \item $\bigcup_{i\ge0}M_i=M$；
+        \item $A_i\cdot M_j\subseteq M_{i+j}$.
+    \end{enumerate}
+    即$M$的分次结构与$A$的分次结构兼容。
+\end{definition}
+
+
+\begin{definition}
+    设 $A$ 为滤过环，
+    $\mathcal{F}=\{F_iA\}$ 为其递增滤过。
+    左 $A$-模 $M$ 称为\emph{滤过模}，
+    若存在子群族 $\Gamma=\{\Gamma_iM\}$，
+    满足：
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              $\Gamma_0M\subset \Gamma_1M\subset\cdots\subset M$；
+        \item
+              $\bigcup_{i\ge0}\Gamma_iM=M$；
+        \item
+              $F_iA\cdot\Gamma_jM\subseteq\Gamma_{i+j}M$.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    若 $\Gamma=\{\Gamma_iM\}$ 为滤过，
+    则
+    \[
+        \gr_\Gamma M
+        :=
+        \bigoplus_{i\ge0}\Gamma_{i+1}M/\Gamma_iM
+    \]
+    加法与 $A$-作用由 \[
+        (a+\Gamma_iA)(a^\prime+\Gamma_jM)
+        =
+        aa^\prime+\Gamma_{i+j}M
+    \]
+    给出，
+    自然地成为 $\gr_{\mathcal{F}}A$-模，
+    称为 $M$ 的\emph{伴随分次模}.
+\end{proposition}
+
+
+
+
+\subsubsection{维数与重数}
+
+
+\begin{definition}
+    \label{def:Hilbert 函数}
+    设
+    $A=\bigoplus_{i\ge0}A_i$
+    为交换 Noether 分次环，
+    $ M=\bigoplus_{i\ge0}M_i$
+    为有限生成分次 $A$-模。
+    则每个 $M_i$ 为有限生成 $A_0$-模，
+    从而可施加加性函数 $\lambda$.
+    称函数
+    \[
+        h_M^\lambda(n)
+        :=
+        \lambda(M_n)
+    \]
+    为 $M$ 关于 $\lambda$ 的\emph{Hilbert 函数}；
+
+    \begin{remark}
+        若 $A_0$为Artinian环， 则可取$\lambda(N)=\ell_{A_0}(N)$（模的长度）；若 $A_0$ 为域， 则 $\lambda(N)=\dim_{A_0}(N)$.
+    \end{remark}
+\end{definition}
+
+
+下面的定理告诉我们，Hilbert 函数在充分大 $n$ 时由一个多项式给出，所以我们可以用多项式来研究 $M$ 的渐近性质。
+\begin{theorem}
+    存在多项式$H(t)\in\mathbb{Q}[t]$，使得对充分大的整数 $n$，
+    有
+    \begin{equation*}
+        H(n)=h_M^\lambda(n).
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    我们仅对标准分次环$A=k[x_1, \dots, x_n]$情形证明，通过对变量个数 \( n \) 进行归纳。
+
+    当$n = 0 $时，\( R = k \)，\( M \) 是有限维 \( k \)-向量空间，故 \( M_t = 0 \) 对 \( t \neq 0 \) 且 \( M_0 \) 有限维。因此 \( H_M(t) \) 仅在 \( t = 0 \) 非零，对充分大的 \( t \) 恒为零，可视为零多项式。结论成立。
+
+    假设对少于 \( n \) 个变量的多项式环上的有限生成分次模结论成立。考虑 \( R = k[x_1, \dots, x_n] \)，令 \( M \) 为有限生成分次 \( R \)-模。将 \( x_n \) 视为次数为 \( 1 \) 的元素，考虑主同态
+    \[
+        \cdot x_n : M \to M, \quad m \mapsto x_n m.
+    \]
+    这是一个分次模同态，次数为 \( 1 \)，即将 \( M_t \) 映到 \( M_{t+1} \)。定义核与余核：
+    \[
+        K = \ker(\cdot x_n), \quad C = \operatorname{coker}(\cdot x_n).
+    \]
+    则我们有分次模的正合列
+    \[
+        0 \to K \to M(-1) \xrightarrow{\cdot x_n} M \to C \to 0,
+    \]
+    其中 \( M(-1) \) 表示次数平移：\( M(-1)_t = M_{t-1} \)。由于 \( M \) 是有限生成的，\( K \) 和 \( C \) 也是有限生成分次 \( R \)-模（\( K \) 是子模，\( C \) 是商模）。进一步，\( K \) 和 \( C \) 被 \( x_n \) 零化，因为 \( x_n K = 0 \) 且 \( x_n C = 0 \)。因此它们可以视为 \( k[x_1, \dots, x_{n-1}] \)-模。于是由归纳假设，存在多项式 \( P_K(t), P_C(t) \in \mathbb{Q}[t] \)，使得对于充分大的 \( t \)，
+    \[
+        \dim_k K_t = P_K(t), \quad \dim_k C_t = P_C(t).
+    \]
+    从正合列中取出各次数的维数信息。对每个整数 \( t \)，考虑正合列在次数 \( t \) 的分量：
+    \[
+        0 \to K_t \to M_{t-1} \xrightarrow{\cdot x_n} M_t \to C_t \to 0.
+    \]
+    取维数可得：
+    \[
+        \dim_k K_t - \dim_k M_{t-1} + \dim_k M_t - \dim_k C_t = 0.
+    \]
+    即
+    \[
+        H_M(t) - H_M(t-1) = \dim_k C_t - \dim_k K_t.
+    \]
+    对于充分大的 \( t \)，右边等于 \( P_C(t) - P_K(t) \)，这是一个多项式，故$h_M(t)$在$t$充分大时是多项式。
+\end{proof}
+
+
+
+\begin{corollary}
+    存在多项式
+    \[
+        \chi(t,A,M)\in\mathbb{Q}[t]
+    \]
+    使得对充分大的整数 $n$，
+    \[
+        \sum_{i=0}^{m}
+        \lambda(M_i)
+        =
+        \chi(m)
+    \]
+\end{corollary}
+我们称 $\chi(t)$ 为 $M$ 关于 $\lambda$ 的\emph{Hilbert 多项式}。同时定义$\chi$的次数$\deg \chi=d$为 $M$ 的\emph{维数}，$\chi$ 的首项系数乘以$d!$为 $M$ 的\emph{重数}.
+
+\subsection{同调与层}
+同调（homology）是代数拓扑中的一个重要工具，用于研究空间的拓扑性质。层（sheaf）是现代几何学中的一个基本概念，用于系统地处理局部数据并将其粘合成全局对象。在$\mathcal{D}$-模理论中，同调和层的概念被广泛应用于研究微分算子和函数之间的关系。
+本文中所用到的同调代数的结果，均可以在\cite{陈志杰2024代数基础}中找到。
+\begin{definition}
+    一个范畴$\mathcal{C}$由以下数据组成：
+    \begin{itemize}
+        \item 一个族对象 $\operatorname{Ob}(\mathcal{C})$；
+        \item 对每对对象 $X,Y\in \operatorname{Ob}(\mathcal{C})$，一族从$A$到$B$的态射 $\operatorname{Hom}_{\mathcal{C}}(X，Y)$；且对每个对象 $X$，有一个恒等态射 $\operatorname{id}_X\in \operatorname{Hom}_{\mathcal{C}}(X，X)$；
+        \item 一个态射复合运算，使得对于任意 $f\in \operatorname{Hom}_{\mathcal{C}}(X，Y)$ 和 $g\in \operatorname{Hom}_{\mathcal{C}}(Y，Z)$，存在复合态射 $g\circ f\in \operatorname{Hom}_{\mathcal{C}}(X，Z)$。
+    \end{itemize}
+    满足以下公理：
+    \begin{itemize}
+        \item 对任意 $f\in \operatorname{Hom}_{\mathcal{C}}(X,Y)$，有 $\operatorname{id}_Y\circ f=f$ 和 $f\circ \operatorname{id}_X=f$；
+        \item 对任意 $f\in \operatorname{Hom}_{\mathcal{C}}(X，Y)$，$g\in \operatorname{Hom}_{\mathcal{C}}(Y,Z)$ 和 $h\in \operatorname{Hom}_{\mathcal{C}}(Z,W)$，有 $h\circ (g\circ f)=(h\circ g)\circ f$。
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    设$X$是一个拓扑空间，则$X$上的所有开集构成一个范畴，记位$\operatorname{Open}(X)$，其中对象是$X$的开集，态射是开集间的包含映射。
+\end{example}
+\begin{example}
+    全体Abel群构成一个范畴，记为$\mathbf{Ab}$，其中对象是Abel群，态射是群同态。
+\end{example}
+\begin{example}
+    全体环构成一个范畴，记为$\mathbf{Ring}$，其中对象是环，态射是环同态。
+\end{example}
+\begin{example}
+    给定环$A$，全体左$A$-模构成一个范畴，记为$A\text{-}\mathbf{Mod}$，其中对象是左$A$-模，态射是$A$-模同态。
+\end{example}
+
+\begin{definition}
+    设$\mathcal{C},\mathcal{C}^\prime$是两个范畴，则一个（协变）\emph{函子} $F:\mathcal{C}\to \mathcal{C}^\prime$由以下数据给出：
+
+    \begin{itemize}
+        \item
+              对每个对象 $X\in \operatorname{Ob}(\mathcal{C})$，一个对象 $F(X)\in \operatorname{Ob}(\mathcal{C}^\prime)$；
+        \item
+              对每对对象 $X,Y\in \operatorname{Ob}(\mathcal{C})$，一个映射
+              \[
+                  F:\operatorname{Hom}_{\mathcal{C}}(X,Y)\to \operatorname{Hom}_{\mathcal{C}^\prime}(F(X),F(Y))
+              \]
+    \end{itemize}
+    满足以下条件：
+    \begin{itemize}
+        \item 对任意 $X\in \operatorname{Ob}(\mathcal{C})$，有 $F(\operatorname{id}_X)=\operatorname{id}_{F(X)}$；
+        \item 对任意 $f\in \operatorname{Hom}_{\mathcal{C}}(X,Y)$ 和 $g\in \operatorname{Hom}_{\mathcal{C}}(Y,Z)$，有 $F(g\circ f)=F(g)\circ F(f)$。
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    拓扑空间$X$上的一个（Abel群的）预层就是反变函子$\rho :\Open(X)^{\op} \to \mathbf{Ab}$。一般要求$\rho(\left\{0\right\})=0$
+\end{example}
+\begin{remark}
+    还可以取值在其他范畴，例如$\mathbf{Ring}$或$A\text{-}\mathbf{Mod}$，得到环的预层或模的预层。
+\end{remark}
+
+\begin{definition}
+    拓扑空间$X$上的一个\emph{层}是一个预层$\mathcal{F}:\Open(X)^{\op}\to \mathbf{Ab}$，满足以下条件：
+    \begin{itemize}
+        \item
+              （分离条件）对任意开集 $U$ 和任意开覆盖 $\{U_i\}$，如果 $s,t\in \mathcal{F}(U)$ 满足 $s|_{U_i}=t|_{U_i}$ 对任意 $i$ 成立，则 $s=t$；
+
+        \item
+              （粘合条件）对任意开集 $U$ 和任意开覆盖 $\{U_i\}$，如果存在 $s_i\in \mathcal{F}(U_i)$ 使得 $s_i|_{U_i\cap U_j}=s_j|_{U_i\cap U_j}$ 对任意 $i,j$ 成立，则存在 $s\in \mathcal{F}(U)$ 使得 $s|_{U_i}=s_i$ 对任意 $i$ 成立。
+    \end{itemize}
+\end{definition}
+现代几何学中，层的概念被广泛应用于各种几何对象的研究，例如代数簇、复解析空间和光滑流形等。通过层，我们可以系统地处理局部数据，并将其粘合成全局对象，从而更深入地理解几何结构的性质。
+后续我们将看到，$\mathcal{D}$-模理论中的许多重要结果都依赖于层这一概念。
+
+\subsubsection{Grothendieck 六函子}
+格罗滕迪克六函子（Grothendieck's six operations）是格罗滕迪克为统一和深化代数几何中的上同调理论而提出的一个宏大框架。描述了在不同空间之间如何通过六种基本操作（函子）来传递和处理对象层的结构、信息。
+
+\begin{definition}
+    设$f:X\to Y$是两个拓扑空间之间的连续映射，以及对$X$上的Abel群层$\mathcal{F}$，$Y$上的层$\mathcal{G}$。
+    在适当条件下（$X,Y$是有限维局部紧的Hausdorrf空间），存在以下6个基本函子：
+    \begin{enumerate}
+        \item 直像（direct image） $f_*:\Sh(X)\to \Sh(Y) $，定义为
+              \begin{equation*}
+                  f_*\mathcal{F}(V)=\mathcal{F}(f^{-1}(V))
+              \end{equation*}
+        \item 逆像（inverse image） $f^{*}:\Sh(Y)\to \Sh(X)$，定义为预层
+              \begin{equation*}
+                  f^{*}\mathcal{G}(U)=\lim_{\substack{\longrightarrow\\f(U)\subset V}} \mathcal{G}(V)
+              \end{equation*}
+              再进行层化。
+        \item 直接像伴随（direct image with proper support） $f_!:\Sh(X)\to \Sh(Y)$，定义为
+              \begin{equation*}
+                  f_!\mathcal{F}(V)=\left\{s\in \mathcal{F}(f^{-1}(V)):\text{supp}(s)\text{在}f^{-1}(V)\text{中是紧的}\right\}
+              \end{equation*}
+        \item 逆像伴随（inverse image with proper support） $f^!:\Sh(Y)\to \Sh(X)$，定义为
+              \begin{equation*}
+                  f^!\mathcal{G}(U)=\left\{s\in \mathcal{G}(f(U)):\text{supp}(s)\text{在}f(U)\text{中是紧的}\right\}
+              \end{equation*}
+        \item 内部Hom（internal Hom） $\mathcal{H}om(-,-):\Sh
+                  (X)^{\op}\times \Sh(X)\to \Sh(X)$，定义为
+              \begin{equation*}
+                  \mathcal{H}om(\mathcal{F}_1,\mathcal{F}_2)(U)=\operatorname{Hom}_{\Sh(U)}(\mathcal{F}_1|_U,\mathcal{F}_2|_U)
+              \end{equation*}
+        \item 张量积（tensor product） $-\otimes-:\Sh(X)\times \Sh(X)\to \Sh(X)$，定义为
+              \begin{equation*}
+                  (\mathcal{F}_1\otimes \mathcal{F}_2)(U)=\mathcal{F}_1(U)\otimes_{\mathbb{Z}}\mathcal{F}_2(U)
+              \end{equation*}
+    \end{enumerate}
+\end{definition}
+前四个函子$f_*,f^*,f_!,f^!$作用在层范畴$\Sh(X)$和$\Sh(Y)$上，可以简单地建立不同空间上的层之间的联系。但它们本身太"严格"，失去了同调信息，不具有正合性。
+我们将从经典的层范畴$\Sh(X)$ 提升到导出范畴$D(X)$，用$Rf_*, Lf^*, Rf_!$替换$f_*,f^!,f_!$，通过Verdier对偶定义为$Rf_!$的右伴随为新的$f^!$。此时有导出范畴间函子的伴随关系
+\begin{equation*}
+    f_! \dashv f^!，\quad f^* \dashv f_*,\quad -\otimes  \mathcal{F}\dashv \mathcal{H}om(\mathcal{F},-).
+\end{equation*}
+具体可参见\cite{gallauer2021introduction}。
+
+
+
+
+\subsection{环层空间与$\mathcal{D}$-模}
+环层空间（ringed space）是 现代几何学中的一个基本概念，它将拓扑空间与定义在其上的函数层结合起来，为研究几何对象提供了一个统一的框架。为$\mathcal{D}$-模理论提供了简洁语言来描述微分算子与函数之间的关系。
+
+
+\begin{definition}
+    一个 环层空间（ringed space） 是一个二元组 $(X,\mathcal{O}_X)$，其中：
+    \begin{itemize}
+        \item $X$ 是一个拓扑空间；
+        \item $\mathcal{O}_X$ 是定义在 $X$ 上的一个环的层（sheaf of rings），一般要求是交换的。
+    \end{itemize}
+\end{definition}
+
+
+\begin{definition}
+    两个 环层空间 $(X,\mathcal{O}_X)$ 与 $(Y,\mathcal{O}_Y)$ 之间的态射
+    \begin{equation*}
+        f: (X,\mathcal{O}_X) \to (Y,\mathcal{O}_Y)
+    \end{equation*}
+    由以下数据给出：
+    \begin{itemize}
+        \item 一个连续映射 $f: X \to Y$；
+        \item 一个$Y$上的层态射
+              \[
+                  f^\#: \mathcal{O}_Y \to f_* \mathcal{O}_X
+              \]
+              使得对 $Y$ 上的任意开集 $U$，诱导出一个环态射
+              \[
+                  f^\#: \mathcal{O}_Y(U) \to \mathcal{O}_X(f^{-1}(U)).
+              \]
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    $\mathcal{O}_X$-模层 $\mathcal{F}$ 是定义在 $X$ 上的一个层 $\mathcal{F}$，使得对 $X$ 上的任意开集 $U$，$\mathcal{F}(U)$ 是 $\mathcal{O}_X(U)$-模，并且对于任意包含关系 $V\subseteq U$，限制映射 $\rho_{UV}:\mathcal{F}(U)\to \mathcal{F}(V)$ 是 $\mathcal{O}_X(U)$-模同态。
+\end{definition}
+
+
+以仿射空间为例。 给定域$k$和仿射空间$X=\left(\mathbb{A}_k^n,k[x_1,\ldots,x_n]\right)$，$Y=\left(\mathbb{A}_k^m,k[y_1,\ldots,y_m]\right)$
+态射$f:\mathbb{A}^n_k \rightarrow \mathbb{A}^m_k$由一个多项式映射$f:\mathbb{A}^n_k\rightarrow \mathbb{A}^m_k$给出，即存在多项式$f_1,\ldots,f_m\in k[x_1,\ldots,x_n]$使得
+\begin{equation*}
+    f(x_1,\ldots,x_n)=(f_1(x),\ldots,f_m(x)) \quad i=1,\ldots,m.
+\end{equation*}
+同时函数层态射$f^\#:\mathcal{O}_Y\rightarrow f_*\mathcal{O}_X$为
+\begin{equation*}
+    f^\#(\varphi)=\varphi\circ f , \quad \varphi \in k[y_1,\ldots,y_m].
+\end{equation*}
+反之，给定函数环态射$g:\mathcal{O}_Y\rightarrow \mathcal{O}_X$，其唯一对应一个态射$g_{\#}:X\rightarrow Y$使得$g=(g_{\#})^\#$。
+\begin{remark}
+    由于多项式的“刚性”，仿射空间上的多项式映射局部和整体是等价的，因此不需要区分局部态射和全局态射。但在一般的环层空间中，局部态射和全局态射是不同的概念。
+\end{remark}
+
+
+
+\begin{example}
+    设 $X$ 是一个光滑流形，$\mathcal{O}_X$ 是 $X$ 上的光滑函数层，则 $(X,\mathcal{O}_X)$ 是一个环层空间。
+\end{example}
+\begin{example}
+    设 $X$ 是一个复解析空间，$\mathcal{O}_X$ 是 $X$ 上的全纯函数层，则 $(X,\mathcal{O}_X)$ 是一个环层空间。
+\end{example}
+
+\begin{example}
+    设 $X$ 是一个代数簇，$\mathcal{O}_X$ 是 $X$ 上的正则函数层，则 $(X,\mathcal{O}_X)$ 是一个环层空间，
+\end{example}
+
+
+
+
+
+
+
+
+\subsubsection{$\mathcal{D}$-模}
+\begin{definition}
+    设 $(X,\mathcal{O}_X)$ 是一个 ringed space（通常假设光滑，这里可以只考虑光滑复流形）。
+    $\mathcal{D}_X$ 定义为 $X$ 上的微分算子层，即：
+    \[
+        \mathcal{D}_X(U) = \{ \text{作用在 } \mathcal{O}_X(U) \text{ 上的微分算子} \}.
+    \]
+\end{definition}
+容易验证$\mathcal{D}_X$是$X$上的层。
+且$\mathcal{D}_X$一般是$X$上的函数和向量场（导子）生成的非交换环层。
+在局部坐标 $x_1,\dots，x_n$ 下，有：
+\[
+    \mathcal{D}_X(U) \cong \mathcal{O}_X(U)\langle \partial_{x_1}，\dots，\partial_{x_n} \rangle，
+\]
+满足关系：
+\[
+    [\partial_{x_i}， x_j] = \delta_{ij}.
+\]
+这即使本文的核心对象Weyl代数的原型。
+
+
+
+\begin{definition}
+    空间$X$上的一个 $\mathcal{D}_X$-模是一个层 $\mathcal{M}$，使其成为 $\mathcal{D}_X$ 的模层。
+\end{definition}
+\begin{remark}
+    一般要求$\mathcal{D}_X$-模$\mathcal{M}$是凝聚的（coherent），即局部有限生成且生成关系有限。即在每个点$x\in X$，存在邻域$U$，有如下正合列
+    \begin{equation*}
+        \mathcal{D}_X^{\oplus m}\to \mathcal{D}_X^{\oplus n}\to \mathcal{M}\to 0
+    \end{equation*}
+    同时记这样的 $\mathcal{D}_X$-模构成的范畴为$\Mod(\mathcal{D}_X)_\text{coh}$.
+\end{remark}
+当$X$光滑时，$\mathcal{D}_X$通常是左Noetherian的，由\ref{cor:chain-stability}可知$\mathcal{D}_X$-模的凝聚性等价于局部有限生成。并且此时kernel和cokernel也是凝聚的，构成一个良好的Abel范畴。
+
+仿射空间$\left(\mathbb{A}_{\mathbb{C}}^n,\mathbb{C}[x_1,\ldots,x_n]\right)$上的典型例子包括：
+\begin{example}
+    $\mathcal{O}_X=\mathbb{C}[x_1,\ldots,x_n]$ 本身是一个 $\mathcal{D}_X=\mathbb{C}[x_1,\ldots,x_n]\left\langle \partial_1,\ldots,\partial_n \right\rangle$-模，可以由$1$生成，故是凝聚的。
+\end{example}
+\begin{example}
+    给定微分算子$P\in \mathcal{D}_X$，形如 $\mathcal{D}_X / \mathcal{D}_X \cdot P$ 的模，对应$X$上的微分方程 $P\cdot f=0$。由\ref{cor:chain-stability}可知$\mathcal{D}_X$-模$\mathcal{D}_X / \mathcal{D}_X \cdot P$是有限生成的的，因此是凝聚的。
+\end{example}
+
+
+
+
+\subsubsection{六函子在 $\mathcal{D}$-模理论中的提升}
+
+为了对各类$\mathcal{D}$-模对象进行合理操作，如通过映射$f:X\to Y$把$Y$上的微分方程（对应一个$\mathcal{D}_Y$-模）传递到$X$上，需要对拉回和推前等操作进行适当的定义和提升。
+
+给定层环空间间的映射 $\left(f,f^\sharp \right):\left(X,\mathcal{O}_X\right) \to \left(Y,\mathcal{O}_Y\right)$。
+给定$Y$上的$\mathcal{D}_Y$模$\mathcal{N}$，由于$f^{-1}\mathcal{G}$只是$f^{-1}\mathcal{O}_Y$-模，需要考虑转移双模
+\begin{equation*}
+    \mathcal{D}_{X\to Y}
+    :=
+    \mathcal{O}_X\otimes_{f^{-1}\mathcal{O}_Y} f^{-1}\mathcal{D}_Y
+\end{equation*}
+并定义
+\begin{equation*}
+    f^!\mathcal{N}
+    :=
+    \mathcal{D}_{X\to Y}\otimes_{f^{-1}\mathcal{D}_Y}^L f^{-1}\mathcal{N}
+\end{equation*}
+就是$X$上的$\mathcal{D}_X$模，称为$\mathcal{N}$的\emph{逆像}.
+
+反之，给定$X$上的$\mathcal{D}_X$模$\mathcal{M}$，通过转移双模
+\begin{equation*}
+    \mathcal{D}_{Y\leftarrow X}
+    :=
+    f^{-1}\mathcal{D}_Y\otimes_{f^{-1}\mathcal{O}_Y}\omega_{X/Y}
+\end{equation*}
+可以将$\mathcal{M}$提升为$Y$上的$\mathcal{D}_Y$模
+\begin{equation*}
+    f_+\mathcal{M}
+    :=
+    Rf_*(\mathcal{D}_{Y\leftarrow X}\otimes^L_{\mathcal{D}_X}\mathcal{M})
+\end{equation*}
+称为$\mathcal{M}$的\emph{直像}.
+
+这两个操作是$\mathcal{D}$-模理论中的基本工具，可以视为空间上的$\mathcal{D}$模-对象层的“拉回”和“推前”函子。 它们在研究微分方程的解、特征类以及$\mathcal{D}$-模的各种性质时起着关键作用。更全面的内容可以参见\cite{gallauer2021introduction}、\cite{kashiwara2013sheaves}。
+下面只给出一些简单的例子来说明这些操作的具体形式。
+
+\begin{example}
+    对于仿射空间上的映射$f:\mathbb{A}_k^n \to \mathbb{A}_k^m$ 给定$\mathcal{D}_Y=A_m$-模$N$，反像
+    \begin{equation*}
+        f^!N= k[x]\otimes_{k[y]}N
+    \end{equation*}
+    具体的$A_n$作用为
+    \begin{equation*}
+        x_i\cdot (\varphi\otimes u)
+        =
+        x_i\varphi\otimes u
+    \end{equation*}
+    \begin{equation*}
+        \partial_{x_i}\cdot (\varphi\otimes u)
+        =
+        \sum_{j=1}^m \frac{\partial f_j}{\partial x_i} \varphi\otimes \partial_{y_j}\cdot u
+        +
+        \frac{\partial \varphi}{\partial x_i}\otimes u
+    \end{equation*}
+
+\end{example}
+
+
+有了上述的强有力的工具，我们有如下重要而又直观的定理，
+\begin{theorem}[Kashiwara等价定理，见\cite{hotta2007d}]
+    \label{thm:Kashiwara等价定理}
+    设$X$是给定的空间，以及闭嵌入$i:Y\rightarrow X$，则直像函子$i_+$给出了范畴等价
+    \begin{equation*}
+        i_+:\Mod (\mathcal{D}_Y)\simeq \Mod_Y(\mathcal{D}_X)
+    \end{equation*}
+    其中$\Mod_Y(\mathcal{D}_X)$表示$X$上支持在$Y$上的$\mathcal{D}_X$-模。
+\end{theorem}
+利用等价性定理，我们可以得到一些非常有用的结果（仿射空间上的情况），
+1
+\begin{corollary}
+    设有限生成$A_n$-模$M$支撑在原点，则$M$同构于
+    \begin{equation*}
+        ( k[\partial_{x_1}，\ldots,\partial_{x_n}])^r
+    \end{equation*}
+    其中$r\in \mathbb{Z}_{\geq 0}$
+    \begin{proof}
+        注意到在标准嵌入$\iota :\left\{0\right\}\rightarrow \mathbb{A}^n$， $\iota(0)=0$下，
+        \begin{equation*}
+            \iota_+(k) \cong k[\partial_{x_1}，\ldots,\partial_{x_n}]
+        \end{equation*}
+        支撑在原点。
+        由Kashiwara等价定理，
+        \begin{equation*}
+            M\cong \iota_+(\iota^!(M))\cong \iota_+(k^r)\cong ( k[\partial_{x_1}，\ldots,\partial_{x_n}])^r
+        \end{equation*}
+    \end{proof}
+\end{corollary}
+
+\begin{remark}
+    这里的$k[\partial_{x_1}，\ldots,\partial_{x_n}]$被称为$\delta$-模，通常是右$A_n$模表示分布等对象的工具。在证明Kashiwara等价定理时，$\delta$-模的构造是一个重要步骤。
+    这里的$r$即为该模$M$的在原点的“纤维维数”，由多少独立解生成。
+\end{remark}
+
+
+
