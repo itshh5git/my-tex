@@ -2,176 +2,1353 @@
 
 \usepackage{../mypackages}
 
-
-
-
-
 \begin{document}
-\frontmatter
-\dominitoc % 初始化minitoc
-\pagenumbering{Roman}
-\tableofcontents % 主目录
 
+\frontmatter
+\dominitoc
+\pagenumbering{Roman}
+\tableofcontents
 
 \mainmatter
-\pagenumbering{arabic} % 正文编页码字体 
+\pagenumbering{arabic}
 
-\chapter{}
+\chapter{Curves}
+\minitoc
+
+
+\section{Parametrized Curves}
 
 \begin{definition}
-    Let $X$ be topological space.
-    A \textbf{curve} in $X$ is an continuous map $\alpha: \mathrm{I} \rightarrow X$ of an open interval $\mathrm{I}=(a, b)$ of the real line $\mathbb{R}$ into $X$
+    A \textbf{parametrized differentiable curve} is a differentiable map
+    \[
+        \alpha:I\rightarrow \mathbb{R}^3
+    \]
+    from an open interval $I=(a,b)\subset \mathbb{R}$ into $\mathbb{R}^3$.
+    If $\alpha(t)=(x(t),y(t),z(t))$, differentiability means that $x,y,z$ are
+    differentiable functions.
 \end{definition}
 
 \begin{definition}
-    A \textbf{parametrized differentiable curve} is a differentiable map $\alpha: \mathrm{I} \rightarrow \mathbb{R}^3$
+    The vector
+    \[
+        \alpha'(t)=(x'(t),y'(t),z'(t))
+    \]
+    is called the \textbf{tangent vector}, or \textbf{velocity vector}, of
+    $\alpha$ at $t$.  The image set $\alpha(I)\subset \mathbb{R}^3$ is called
+    the \textbf{trace} of $\alpha$.
+\end{definition}
+
+\begin{example}
+    The curve
+    \[
+        \alpha(t)=(a\cos t,a\sin t,bt), \qquad t\in \mathbb{R},
+    \]
+    has as its trace a helix of pitch $2\pi b$ on the cylinder
+    $x^2+y^2=a^2$.
+\end{example}
+
+
+\begin{definition}
+    A parametrized differentiable curve
+    $\alpha:I\rightarrow \mathbb{R}^3$ is said to be \textbf{regular} if
+    \[
+        \alpha'(t)\neq 0
+    \]
+    for every $t\in I$.
 \end{definition}
 
 \begin{definition}
-    A parametrized differentiable curve $\alpha: \mathrm{I} \rightarrow \mathbb{R}^3$ is said to be \textbf{regular} if $\alpha^{\prime}(t) \neq 0$ for all $t \in \mathrm{I}$.
+    Let $\alpha:I\rightarrow \mathbb{R}^3$ be a regular parametrized curve.
+    The \textbf{arc length} of $\alpha$ from $t_0\in I$ to $t\in I$ is
+    \[
+        s(t)=\int_{t_0}^{t}|\alpha'(u)|\,du .
+    \]
+    If $|\alpha'(s)|=1$, the curve is said to be \textbf{parametrized by arc
+        length}.
 \end{definition}
 
+\begin{remark}
+    Since $ds/dt=|\alpha'(t)|>0$, the arc length function has a differentiable
+    inverse locally.  Thus every regular curve may be reparametrized by arc
+    length.
+\end{remark}
 
-\section{}
+
+\section{The Local Theory of Curves Parametrized by Arc Length}
 
 \begin{definition}
-    Let $\alpha: \mathrm{I} \rightarrow \mathbb{R}^3$ be a curve parametrized by arc length $s \in \mathrm{I}$ without singular points of order $<2$ (i.e., $\alpha^{\prime}(s) \neq 0$ and $\alpha^{\prime \prime}(s) \neq 0$ for all $s \in \mathrm{I}$). Then we define:
+    Let $\alpha:I\rightarrow \mathbb{R}^3$ be a curve parametrized by arc
+    length $s$.  The number
+    \[
+        \kappa(s):=|\alpha''(s)|
+    \]
+    is called the \textbf{curvature} of $\alpha$ at $s$.
+\end{definition}
+
+\begin{definition}
+    Let $\alpha:I\rightarrow \mathbb{R}^3$ be a curve parametrized by arc
+    length, with $\alpha''(s)\neq 0$ for all $s\in I$.  Define
+    \[
+        \mathbf{t}(s):=\alpha'(s),\qquad
+        \mathbf{n}(s):=\frac{\alpha''(s)}{\kappa(s)},\qquad
+        \mathbf{b}(s):=\mathbf{t}(s)\times \mathbf{n}(s).
+    \]
+    These are called the \textbf{unit tangent vector}, \textbf{principal normal
+        vector}, and \textbf{binormal vector}, respectively.
+\end{definition}
+
+\begin{definition}
+    The \textbf{torsion} $\tau(s)$ is defined by
+    \[
+        \mathbf{b}'(s)=\tau(s)\mathbf{n}(s).
+    \]
+\end{definition}
+
+\begin{definition}
+    Let $\alpha$ be as above.
     \begin{enumerate}
-        \item the unit vector $\mathbf{t}(s):=\alpha^{\prime}(s)$ is called the \textbf{tangent vector} of $\alpha$ at $s$.
-        \item
-              The number $\kappa(s):=\left|\alpha^{\prime \prime}(s)\right|$ is called the \textbf{curvature} of $\alpha$ at $s$.
-              The unit vector $\mathbf{n}(s):=\frac{\alpha^{\prime \prime}(s)}{\kappa(s)}$ is called the \textbf{principal normal vector} of $\alpha$ at $s$.
-        \item
-              the unit vector $\mathbf{b}(s):=\mathbf{t}(s) \times \mathbf{n}(s)$ is called the \textbf{binormal vector} of $\alpha$ at $s$.
-              The number $\tau(s):=\mathbf{b}^{\prime}(s) \cdot \mathbf{n}(s)$ is called the \textbf{torsion} of $\alpha$ at $s$.
+        \item The plane determined by $\mathbf{t}(s)$ and $\mathbf{n}(s)$ is
+              called the \textbf{osculating plane} at $s$.
+        \item The plane determined by $\mathbf{n}(s)$ and $\mathbf{b}(s)$ is
+              called the \textbf{normal plane} at $s$.
+        \item The plane determined by $\mathbf{t}(s)$ and $\mathbf{b}(s)$ is
+              called the \textbf{rectifying plane} at $s$.
     \end{enumerate}
 \end{definition}
 
-\begin{definition}
-    \begin{enumerate}
-        \item
-              The plane determined by $\alpha^{\prime}(s)$ and $n(s)$, is called the \textbf{osculating plane} at $s$.
-        \item
-              The plane determined by $\mathbf{n}(s)$ and $\mathbf{b}(s)$ is called the \textbf{normal plane} at $s$.
-        \item
-              The plane determined by $\alpha^{\prime}(s)$ and $\mathbf{b}(s)$ is called the \textbf{rectifying plane} at $s$.
-    \end{enumerate}
-\end{definition}
-\begin{theorem}
-    [Frenet-Serret Formulas]
-    Let $\alpha: \mathrm{I} \rightarrow \mathbb{R}^3$ be a curve parametrized by arc length $s \in \mathrm{I}$ without singular points of order $<2$. Then the following formulas hold:
-    \begin{equation*}
-        \left(\begin{matrix}
-            \mathbf{t}^\prime \\
-            \mathbf{n}^\prime \\
-            \mathbf{b}^\prime \\
-        \end{matrix}\right)
+\begin{theorem}[Frenet Formulas]
+    Let $\alpha:I\rightarrow \mathbb{R}^3$ be a curve parametrized by arc
+    length and assume $\alpha''(s)\neq 0$ for all $s\in I$.  Then
+    \[
+        \begin{aligned}
+            \mathbf{t}' & = \kappa \mathbf{n},                  \\
+            \mathbf{n}' & = -\kappa \mathbf{t}-\tau \mathbf{b}, \\
+            \mathbf{b}' & = \tau \mathbf{n}.
+        \end{aligned}
+    \]
+    Equivalently,
+    \[
+        \begin{pmatrix}
+            \mathbf{t}' \\
+            \mathbf{n}' \\
+            \mathbf{b}'
+        \end{pmatrix}
         =
-        \left(\begin{matrix}
-                     & \kappa &       \\
-            - \kappa &        & -\tau \\
-                     & \tau   &       \\
-        \end{matrix}\right)
-        \left(\begin{matrix}
+        \begin{pmatrix}
+            0       & \kappa & 0     \\
+            -\kappa & 0      & -\tau \\
+            0       & \tau   & 0
+        \end{pmatrix}
+        \begin{pmatrix}
             \mathbf{t} \\
             \mathbf{n} \\
-            \mathbf{b} \\
-        \end{matrix}\right)
-    \end{equation*}
+            \mathbf{b}
+        \end{pmatrix}.
+    \]
 \end{theorem}
 
+\begin{theorem}[Fundamental Theorem of the Local Theory of Curves]
+    Given differentiable functions $\kappa(s)>0$ and $\tau(s)$ on an interval
+    $I$, there exists a regular parametrized curve
+    $\alpha:I\rightarrow \mathbb{R}^3$ such that $s$ is arc length,
+    $\kappa(s)$ is its curvature, and $\tau(s)$ is its torsion.  Moreover, any
+    other such curve differs from $\alpha$ by a rigid motion.
+\end{theorem}
 
+\section{The Local Canonical Form}
 
+\begin{remark}
+    This section expresses a curve near a point in the coordinates determined by
+    its Frenet trihedron.  It gives a local Taylor expansion whose coefficients
+    are written in terms of curvature and torsion.
+\end{remark}
 
+\section{Global Properties of Plane Curves}
 
+\begin{remark}
+    This section studies global restrictions on plane curves, including results
+    such as the isoperimetric inequality and the four-vertex theorem.
+\end{remark}
 
+\chapter{Regular Surfaces}
+\minitoc
 
+\section{Introduction}
 
+The central object of this chapter is a regular surface in $\mathbb{R}^3$.
+The goal is to develop a workable local model for surfaces using
+parametrizations, tangent planes, differentials, and the first fundamental form.
+The guiding idea is that a surface is a set which can be described locally by
+two independent parameters.
 
+\section{Regular Surfaces; Inverse Images of Regular Values}
 
-
-
-
-
-
-\chapter{}
-\section{}
 \begin{definition}
-    A \textbf{surface} $S$ in $\mathbb{R}^3$ is called \textbf{regular} if it satisfies the following conditions:
+    A subset $S\subset \mathbb{R}^3$ is a \textbf{regular surface} if, for each
+    $p\in S$, there exist an open set $V\subset \mathbb{R}^3$ containing $p$,
+    an open set $U\subset \mathbb{R}^2$, and a map
+    $\mathbf{x}:U\rightarrow V\cap S$ such that
     \begin{enumerate}[label=(\roman*)]
-        \item
-              $S$ is a smooth manifold of dimension $2$
-        \item
-              inclusion map $i: S \rightarrow \mathbb{R}^3$ is an smooth embedding
+        \item $\mathbf{x}$ is differentiable;
+        \item $\mathbf{x}$ is a homeomorphism;
+        \item for each $q\in U$, the differential $d\mathbf{x}_q$ is injective.
     \end{enumerate}
-    \begin{remark}
-
-    \end{remark}
+    Such a map $\mathbf{x}$ is called a \textbf{parametrization} of $S$.
 \end{definition}
 
 \begin{proposition}
-    If $f: U \rightarrow \mathbb{R}$ is a differentiable function in an open set $U$ of $\mathbb{R}^2$, then the graph of $f$ , that is, the subset of $\mathbb{R}^3$ given by ( $\mathrm{x}, \mathrm{y}, \mathrm{f}(\mathrm{x}, \mathrm{y})$ ) for $(\mathrm{x}, \mathrm{y}) \in \mathrm{U}$, is a regular surface.
+    If $f:U\rightarrow \mathbb{R}$ is a differentiable function on an open set
+    $U\subset \mathbb{R}^2$, then the graph
+    \[
+        \{(x,y,f(x,y)):(x,y)\in U\}
+    \]
+    is a regular surface.
 \end{proposition}
-
-
-
-
-
 
 \begin{proposition}
-    If $f: U \subset \mathbb{R}^3 \rightarrow \mathbb{R}$ is a differentiable function and $a\in f(U)$ is a regular value of $f$, then $f^{-1}(a)$ is a regular surface in $\mathbb{R}^3$.
+    If $f:U\subset \mathbb{R}^3\rightarrow \mathbb{R}$ is differentiable and
+    $a\in f(U)$ is a regular value of $f$, then $f^{-1}(a)$ is a regular
+    surface in $\mathbb{R}^3$.
 \end{proposition}
 
+\begin{example}
+    The unit sphere
+    \[
+        S^2=\{(x,y,z)\in \mathbb{R}^3:x^2+y^2+z^2=1\}
+    \]
+    is a regular surface, since it is the inverse image of the regular value
+    $1$ of $f(x,y,z)=x^2+y^2+z^2$.
+\end{example}
 
+\begin{example}
+    A torus with radii $a>r>0$ can be written as the inverse image of $r^2$
+    by
+    \[
+        f(x,y,z)=z^2+\left(\sqrt{x^2+y^2}-a\right)^2 .
+    \]
+    A useful parametrization is
+    \[
+        \mathbf{x}(u,v)=((a+r\cos u)\cos v,(a+r\cos u)\sin v,r\sin u),
+    \]
+    where the parameters are taken in suitable open intervals.
+\end{example}
 
+\begin{proposition}
+    Let $S\subset \mathbb{R}^3$ be a regular surface and let $p\in S$.  Then
+    some neighborhood of $p$ in $S$ is the graph of a differentiable function
+    of one of the following forms:
+    \[
+        z=f(x,y),\qquad y=g(x,z),\qquad x=h(y,z).
+    \]
+\end{proposition}
 
+\begin{proof}
+    Let $\mathbf{x}(u,v)=(x(u,v),y(u,v),z(u,v))$ be a parametrization at
+    $p$, and set $q=\mathbf{x}^{-1}(p)$.  Since $d\mathbf{x}_q$ is injective,
+    at least one of
+    \[
+        \frac{\partial(x,y)}{\partial(u,v)},\qquad
+        \frac{\partial(y,z)}{\partial(u,v)},\qquad
+        \frac{\partial(z,x)}{\partial(u,v)}
+    \]
+    is nonzero at $q$.  If, for instance,
+    $\partial(x,y)/\partial(u,v)\neq 0$, the inverse function theorem applies
+    to $(u,v)\mapsto (x(u,v),y(u,v))$.  Locally one may solve
+    $(u,v)=(u(x,y),v(x,y))$, and the surface is given by
+    $z=z(u(x,y),v(x,y))$.  The other cases are the same after changing the
+    projected coordinates.
+\end{proof}
 
-\section{First Fundamental Form}
+\begin{proposition}
+    Let $S$ be a regular surface and let
+    $\mathbf{x}:U\subset \mathbb{R}^2\rightarrow \mathbb{R}^3$ satisfy
+    $\mathbf{x}(U)\subset S$.  If $\mathbf{x}$ is differentiable, one-to-one,
+    and $d\mathbf{x}_q$ is injective for all $q\in U$, then
+    $\mathbf{x}^{-1}$ is continuous.  Hence $\mathbf{x}$ is a parametrization
+    of its image.
+\end{proposition}
+
+\begin{remark}
+    The cone $z=\sqrt{x^2+y^2}$ is not a regular surface at the origin.  If it
+    were regular there, it would locally be the graph of a differentiable
+    function over one of the coordinate planes; the only possible graph over the
+    $xy$-plane is not differentiable at $(0,0)$.
+\end{remark}
+
+\section{Change of Parameters; Differentiable Functions on Surfaces}
+
+\begin{proposition}[Change of Parameters]
+    Let $\mathbf{x}:U\subset \mathbb{R}^2\rightarrow S$ and
+    $\mathbf{y}:V\subset \mathbb{R}^2\rightarrow S$ be parametrizations of a
+    regular surface $S$.  If
+    \[
+        W=\mathbf{x}(U)\cap \mathbf{y}(V)\neq \varnothing,
+    \]
+    then the change of coordinates
+    \[
+        h=\mathbf{x}^{-1}\circ \mathbf{y}:
+        \mathbf{y}^{-1}(W)\rightarrow \mathbf{x}^{-1}(W)
+    \]
+    is a diffeomorphism.
+\end{proposition}
+
+\begin{proof}
+    Continuity follows from the fact that parametrizations are
+    homeomorphisms.  For differentiability, fix a point in the overlap and
+    choose coordinates so that
+    $\partial(x,y)/\partial(u,v)\neq 0$ for the parametrization
+    $\mathbf{x}(u,v)=(x(u,v),y(u,v),z(u,v))$.  Extend $\mathbf{x}$ to
+    \[
+        F(u,v,t)=(x(u,v),y(u,v),z(u,v)+t).
+    \]
+    The differential of $F$ has nonzero determinant at the point, so $F$ has a
+    local differentiable inverse.  Locally, $h=F^{-1}\circ \mathbf{y}$ followed
+    by projection to the first two coordinates.  The same argument applied to
+    $h^{-1}$ proves that $h$ is a diffeomorphism.
+\end{proof}
+
 \begin{definition}
-    Let $S$ be a regular surface in $\mathbb{R}^3$ and $p \in S$.
-    The natural inner product of $R^3 \supset S$ induces on each tangent plane $T_p(S)$ of a regular surface $S$ an inner product, to be denoted by $\langle,\rangle_p$ : If $w_1, w_2 \in T_p(S) \subset R^3$, then $\left\langle w_1, w_2\right\rangle_p$ is equal to the inner product of $w_1$ and $w_2$ as vectors in $R^3$. To this inner product, which is a symmetric bilinear form
-
-
-    (i.e., $\left\langle w_1, w_2\right\rangle=\left\langle w_2, w_1\right\rangle$ and $\left\langle w_1, w_2\right\rangle$ is linear in both $w_1$ and $w_2$ ), there corresponds a quadratic form $I_p: T_p(S) \rightarrow R$ given by
-
-    \begin{equation*}
-        I_p(w)=\langle w, w\rangle_p=|w|^2 \geq 0 .
-    \end{equation*}
-
-    The quadratic form $\mathrm{I}_{\mathrm{p}}$ on $\mathrm{T}_{\mathrm{p}}(\mathrm{S})$, defined by Eq. (1), is called the \textbf{first fundamental form} of $S$ at $\mathrm{p} \in S$.
-    \begin{remark}
-        We shall now express the first fundamental form in the basis $\left\{\mathbf{x}_u, \mathbf{x}_v\right\}$ associated to a parametrization $\mathbf{x}(u, v)$ at $p$. Since a tangent vector $w \in T_p(S)$ is the tangent vector to a parametrized curve $\alpha(t)=\mathbf{x}(u(t), v(t)), t \in(-\epsilon, \epsilon)$, with $p=\alpha(0)=\mathbf{x}\left(u_0, v_0\right)$, we obtain
-
-        \begin{equation*}
-            \begin{aligned}
-                I_p\left(\alpha^{\prime}(0)\right) & =\left\langle\alpha^{\prime}(0), \alpha^{\prime}(0)\right\rangle_p                                                                                                                                                                          \\
-                                                   & =\left\langle\mathbf{x}_u u^{\prime}+\mathbf{x}_v v^{\prime}, \mathbf{x}_u u^{\prime}+\mathbf{x}_v v^{\prime}\right\rangle_p                                                                                                                \\
-                                                   & =E\left(u^{\prime}\right)^2+2 F u^{\prime} v^{\prime}+G\left(v^{\prime}\right)^2
-            \end{aligned}
-        \end{equation*}
-        where the values of the functions involved are computed for $t=0$, and
-        \begin{equation*}
-            \begin{aligned}
-                 & E\left(u_0, v_0\right)=\left\langle\mathbf{x}_u, \mathbf{x}_u\right\rangle_p, \\
-                 & F\left(u_0, v_0\right)=\left\langle\mathbf{x}_u, \mathbf{x}_v\right\rangle_p, \\
-                 & G\left(u_0, v_0\right)=\left\langle\mathbf{x}_v, \mathbf{x}_v\right\rangle_p
-            \end{aligned}
-        \end{equation*}
-        are the coefficients of the first fundamental form in the basis $\left\{\mathbf{x}_u, \mathbf{x}_v\right\}$ of $T_p(S)$.
-        
-         By letting $p$ run in the coordinate neighborhood corresponding to $\mathbf{x}(u, v)$ we obtain functions $E(u, v), F(u, v), G(u, v)$ which are differentiable in that neighborhood.
-    \end{remark}
+    Let $V\subset S$ be open and let $f:V\rightarrow \mathbb{R}$.  We say
+    that $f$ is \textbf{differentiable at} $p\in V$ if, for some
+    parametrization $\mathbf{x}:U\rightarrow S$ with $p\in \mathbf{x}(U)$,
+    the function
+    \[
+        f\circ \mathbf{x}:U\rightarrow \mathbb{R}
+    \]
+    is differentiable at $\mathbf{x}^{-1}(p)$.
 \end{definition}
 
+\begin{remark}
+    The change of parameters proposition shows that the definition does not
+    depend on the parametrization.  If two coordinate systems are related by a
+    diffeomorphism, differentiability in one system is equivalent to
+    differentiability in the other.
+\end{remark}
 
+\begin{definition}
+    A map $\varphi:S_1\rightarrow S_2$ between regular surfaces is
+    \textbf{differentiable at} $p\in S_1$ if, for parametrizations
+    $\mathbf{x}:U\rightarrow S_1$ and $\mathbf{y}:V\rightarrow S_2$ with
+    $p\in \mathbf{x}(U)$ and $\varphi(p)\in \mathbf{y}(V)$, the local
+    expression
+    \[
+        \mathbf{y}^{-1}\circ \varphi\circ \mathbf{x}
+    \]
+    is differentiable near $\mathbf{x}^{-1}(p)$.
+\end{definition}
 
+\begin{definition}
+    A differentiable map $\varphi:S_1\rightarrow S_2$ is a
+    \textbf{diffeomorphism} if it is one-to-one, onto, and its inverse is also
+    differentiable.  In this case $S_1$ and $S_2$ are \textbf{diffeomorphic}.
+\end{definition}
 
+\section{The Tangent Plane; The Differential of a Map}
 
+\begin{definition}
+    Let $S$ be a regular surface and $p\in S$.  The \textbf{tangent plane}
+    $T_pS$ is the set of tangent vectors at $p$ of differentiable curves on
+    $S$ passing through $p$.
+\end{definition}
 
+\begin{proposition}
+    If $\mathbf{x}:U\rightarrow S$ is a parametrization and
+    $p=\mathbf{x}(u_0,v_0)$, then
+    \[
+        T_pS=d\mathbf{x}_{(u_0,v_0)}(\mathbb{R}^2)
+        =
+        \operatorname{span}\{\mathbf{x}_u(u_0,v_0),
+        \mathbf{x}_v(u_0,v_0)\}.
+    \]
+    In particular $\{\mathbf{x}_u,\mathbf{x}_v\}$ is a basis of $T_pS$.
+\end{proposition}
 
+\begin{definition}
+    Let $\varphi:S_1\rightarrow S_2$ be differentiable and let $p\in S_1$.
+    The \textbf{differential} of $\varphi$ at $p$ is the linear map
+    \[
+        d\varphi_p:T_pS_1\rightarrow T_{\varphi(p)}S_2
+    \]
+    defined as follows: if $w=\alpha'(0)$ for a curve
+    $\alpha:(-\epsilon,\epsilon)\rightarrow S_1$ with $\alpha(0)=p$, then
+    \[
+        d\varphi_p(w)=(\varphi\circ \alpha)'(0).
+    \]
+\end{definition}
 
+\begin{remark}
+    If $\mathbf{x}$ and $\mathbf{y}$ are local parametrizations of $S_1$ and
+    $S_2$, and
+    \[
+        \Phi=\mathbf{y}^{-1}\circ \varphi\circ \mathbf{x},
+    \]
+    then $d\varphi_p$ is represented in the bases
+    $\{\mathbf{x}_u,\mathbf{x}_v\}$ and $\{\mathbf{y}_\xi,\mathbf{y}_\eta\}$
+    by the Jacobian matrix of $\Phi$.
+\end{remark}
 
+\begin{definition}
+    A differentiable map $\varphi:S_1\rightarrow S_2$ is a
+    \textbf{local diffeomorphism at} $p$ if there are neighborhoods
+    $U_1$ of $p$ and $U_2$ of $\varphi(p)$ such that
+    $\varphi:U_1\rightarrow U_2$ is a diffeomorphism.
+\end{definition}
 
+\begin{proposition}
+    If $\varphi:S_1\rightarrow S_2$ is differentiable and
+    $d\varphi_p:T_pS_1\rightarrow T_{\varphi(p)}S_2$ is an isomorphism, then
+    $\varphi$ is a local diffeomorphism at $p$.
+\end{proposition}
 
+\section{The First Fundamental Form; Area}
+
+\begin{definition}
+    Let $S$ be a regular surface in $\mathbb{R}^3$ and $p\in S$.  The natural
+    inner product of $\mathbb{R}^3$ induces on $T_pS$ an inner product
+    $\langle,\rangle_p$.  The corresponding quadratic form
+    \[
+        I_p(w)=\langle w,w\rangle_p=|w|^2,\qquad w\in T_pS,
+    \]
+    is called the \textbf{first fundamental form} of $S$ at $p$.
+\end{definition}
+
+\begin{remark}
+    If $\mathbf{x}(u,v)$ is a parametrization and
+    $\alpha(t)=\mathbf{x}(u(t),v(t))$, then
+    \[
+        \begin{aligned}
+            I_p(\alpha'(0))
+             & =
+            \left\langle
+            \mathbf{x}_u u' + \mathbf{x}_v v',
+            \mathbf{x}_u u' + \mathbf{x}_v v'
+            \right\rangle_p              \\
+             & = E(u')^2+2Fu'v'+G(v')^2,
+        \end{aligned}
+    \]
+    where
+    \[
+        E=\langle \mathbf{x}_u,\mathbf{x}_u\rangle,\qquad
+        F=\langle \mathbf{x}_u,\mathbf{x}_v\rangle,\qquad
+        G=\langle \mathbf{x}_v,\mathbf{x}_v\rangle .
+    \]
+\end{remark}
+
+\begin{definition}
+    Let $w_1=a\mathbf{x}_u+b\mathbf{x}_v$ and
+    $w_2=c\mathbf{x}_u+d\mathbf{x}_v$.  Their inner product is
+    \[
+        \langle w_1,w_2\rangle
+        =Eac+F(ad+bc)+Gbd .
+    \]
+    Thus the first fundamental form is locally represented by the matrix
+    \[
+        \begin{pmatrix}
+            E & F \\
+            F & G
+        \end{pmatrix}.
+    \]
+\end{definition}
+
+\begin{proposition}
+    Let $\alpha(t)=\mathbf{x}(u(t),v(t))$ be a regular curve on $S$.  Its
+    arc length between $t=a$ and $t=b$ is
+    \[
+        L(\alpha)=\int_a^b
+        \sqrt{
+            E(u')^2+2Fu'v'+G(v')^2
+        }\,dt.
+    \]
+\end{proposition}
+
+\begin{proposition}
+    If two regular curves on $S$ meet at $p$ with tangent vectors
+    $w_1,w_2\in T_pS$, then their angle $\theta$ is determined by
+    \[
+        \cos \theta=
+        \frac{\langle w_1,w_2\rangle_p}
+        {\sqrt{\langle w_1,w_1\rangle_p}\sqrt{\langle w_2,w_2\rangle_p}}.
+    \]
+    In particular, the coordinate curves of $\mathbf{x}$ are orthogonal exactly
+    when $F=0$.
+\end{proposition}
+
+\begin{definition}
+    A bounded region $R\subset S$ contained in a coordinate neighborhood
+    $\mathbf{x}(U)$ has \textbf{area}
+    \[
+        A(R)=\iint_{\mathbf{x}^{-1}(R)}
+        |\mathbf{x}_u\times \mathbf{x}_v|\,du\,dv
+        =
+        \iint_{\mathbf{x}^{-1}(R)}\sqrt{EG-F^2}\,du\,dv.
+    \]
+\end{definition}
+
+\begin{example}
+    For a graph $\mathbf{x}(u,v)=(u,v,f(u,v))$ one has
+    \[
+        E=1+f_u^2,\qquad F=f_uf_v,\qquad G=1+f_v^2,
+    \]
+    hence
+    \[
+        dA=\sqrt{1+f_u^2+f_v^2}\,du\,dv.
+    \]
+\end{example}
+
+\begin{example}
+    For the sphere of radius $r$ parametrized by
+    \[
+        \mathbf{x}(u,v)=(r\sin u\cos v,r\sin u\sin v,r\cos u),
+    \]
+    where $0<u<\pi$, one obtains
+    \[
+        E=r^2,\qquad F=0,\qquad G=r^2\sin^2 u,
+    \]
+    and therefore $dA=r^2\sin u\,du\,dv$.
+\end{example}
+
+\section{Orientation of Surfaces}
+
+\begin{definition}
+    A regular surface $S$ is \textbf{orientable} if it can be covered by
+    coordinate neighborhoods in such a way that every change of coordinates
+    between overlapping charts has positive Jacobian.  Such a choice of charts
+    is an \textbf{orientation} of $S$.
+\end{definition}
+
+\begin{definition}
+    For a parametrization $\mathbf{x}(u,v)$, the associated unit normal field is
+    \[
+        N=
+        \frac{\mathbf{x}_u\times \mathbf{x}_v}
+        {|\mathbf{x}_u\times \mathbf{x}_v|}.
+    \]
+\end{definition}
+
+\begin{proposition}
+    A regular surface $S\subset \mathbb{R}^3$ is orientable if and only if
+    there exists a differentiable field of unit normal vectors
+    $N:S\rightarrow \mathbb{R}^3$.
+\end{proposition}
+
+\begin{proof}
+    If the coordinate changes have positive Jacobian, the local normals
+    $\mathbf{x}_u\times \mathbf{x}_v/|\mathbf{x}_u\times \mathbf{x}_v|$
+    agree on overlaps and define a global unit normal field.  Conversely, if a
+    global unit normal field $N$ is given, choose the order of the parameters in
+    each connected coordinate neighborhood so that the local normal equals
+    $N$.  On an overlap, a negative Jacobian would reverse the local normal,
+    contradicting the choice.
+\end{proof}
+
+\begin{example}
+    Graphs and level surfaces $f^{-1}(a)$, where $a$ is a regular value, are
+    orientable.  For a level surface one may take
+    \[
+        N=\frac{\nabla f}{|\nabla f|}.
+    \]
+\end{example}
+
+\begin{example}
+    The Mobius strip is nonorientable.  When a unit normal is transported once
+    around its central circle, it returns with the opposite sign, so no global
+    continuous choice of unit normal can exist.
+\end{example}
+
+\section{A Characterization of Compact Orientable Surfaces}
+
+\begin{definition}
+    A regular surface $S\subset \mathbb{R}^3$ is \textbf{compact} if it is
+    compact as a subset of $\mathbb{R}^3$.
+\end{definition}
+
+\begin{definition}
+    Let $S\subset \mathbb{R}^3$ be a compact connected regular surface.  A
+    point $p\in \mathbb{R}^3\setminus S$ is said to lie in an
+    \textbf{inside component} if it belongs to a bounded connected component
+    of $\mathbb{R}^3\setminus S$.  The unbounded component is called the
+    \textbf{outside}.
+\end{definition}
+
+\begin{theorem}[Jordan-Brouwer Separation for Regular Surfaces]
+    A compact connected regular surface
+    $S\subset \mathbb{R}^3$ separates $\mathbb{R}^3$ into exactly two
+    connected components: one bounded and one unbounded.  The surface $S$ is
+    the common boundary of both components.
+\end{theorem}
+
+\begin{remark}
+    In this book the separation theorem is used as a topological input.  It
+    matches the geometric intuition that a closed surface has an inside and an
+    outside.
+\end{remark}
+
+\begin{theorem}
+    Every compact connected regular surface in $\mathbb{R}^3$ is orientable.
+\end{theorem}
+
+\begin{proof}
+    Let $\Omega$ be the bounded component of
+    $\mathbb{R}^3\setminus S$.  Near each point of $S$, the surface is a graph,
+    and one can choose the unit normal pointing away from $\Omega$.  These
+    local outward normals agree on overlaps and therefore define a global unit
+    normal field.  By the previous characterization, $S$ is orientable.
+\end{proof}
+
+\section{A Geometric Definition of Area}
+
+\begin{remark}
+    The area formula
+    \[
+        A(R)=\iint_D|\mathbf{x}_u\times \mathbf{x}_v|\,du\,dv
+    \]
+    is not merely a formal definition.  It is the limit of areas of small
+    parallelograms approximating the image of small rectangles in the parameter
+    domain.
+\end{remark}
+
+\begin{proposition}
+    Let $R=\mathbf{x}(D)$ be a region contained in a coordinate neighborhood,
+    where $D\subset \mathbb{R}^2$ is a bounded domain.  If $D$ is divided into
+    small rectangles and each image patch is approximated by the tangent
+    parallelogram generated by $\mathbf{x}_u\Delta u$ and
+    $\mathbf{x}_v\Delta v$, then the limiting sum of parallelogram areas is
+    \[
+        \iint_D|\mathbf{x}_u\times \mathbf{x}_v|\,du\,dv.
+    \]
+\end{proposition}
+
+\begin{remark}
+    Since
+    \[
+        |\mathbf{x}_u\times \mathbf{x}_v|^2
+        =
+        |\mathbf{x}_u|^2|\mathbf{x}_v|^2
+        -
+        \langle \mathbf{x}_u,\mathbf{x}_v\rangle^2
+        =
+        EG-F^2,
+    \]
+    the geometric area element agrees with the expression obtained from the
+    first fundamental form.
+\end{remark}
+
+\section*{Appendix: A Brief Review of Continuity and Differentiability}
+\addcontentsline{toc}{section}{Appendix: A Brief Review of Continuity and Differentiability}
+
+\subsection*{Continuity}
+
+\begin{definition}
+    A ball in $\mathbb{R}^n$ with center $p$ and radius $\epsilon>0$ is
+    \[
+        B_\epsilon(p)=\{q\in \mathbb{R}^n:|q-p|<\epsilon\}.
+    \]
+    A set $U\subset \mathbb{R}^n$ is \textbf{open} if every point of $U$ is
+    contained in some ball contained in $U$.
+\end{definition}
+
+\begin{definition}
+    A map $F:U\subset \mathbb{R}^n\rightarrow \mathbb{R}^m$ is
+    \textbf{continuous at} $p\in U$ if for every $\epsilon>0$ there exists
+    $\delta>0$ such that
+    \[
+        F(B_\delta(p))\subset B_\epsilon(F(p)).
+    \]
+\end{definition}
+
+\begin{proposition}
+    A map $F=(f_1,\ldots,f_m):U\subset \mathbb{R}^n\rightarrow
+        \mathbb{R}^m$ is continuous if and only if each component function
+    $f_i:U\rightarrow \mathbb{R}$ is continuous.
+\end{proposition}
+
+\begin{proposition}
+    The composition of continuous maps is continuous.
+\end{proposition}
+
+\begin{definition}
+    A continuous one-to-one map $F:A\subset \mathbb{R}^n\rightarrow
+        \mathbb{R}^m$ is a \textbf{homeomorphism onto its image} if
+    $F^{-1}:F(A)\rightarrow A$ is continuous.
+\end{definition}
+
+\begin{theorem}[Intermediate Value Theorem]
+    If $f:[a,b]\rightarrow \mathbb{R}$ is continuous and
+    $f(a)f(b)<0$, then there exists $c\in(a,b)$ such that $f(c)=0$.
+\end{theorem}
+
+\begin{theorem}[Extreme Value Theorem]
+    A continuous real-valued function on a closed interval $[a,b]$ attains its
+    maximum and minimum.
+\end{theorem}
+
+\begin{theorem}[Heine-Borel]
+    Every open cover of a closed interval $[a,b]$ admits a finite subcover.
+\end{theorem}
+
+\subsection*{Differentiability in \texorpdfstring{$\mathbb{R}^n$}{Rn}}
+
+\begin{definition}
+    In this book, \textbf{differentiable} means having continuous partial
+    derivatives of all orders.
+\end{definition}
+
+\begin{definition}
+    A map $F=(f_1,\ldots,f_m):U\subset \mathbb{R}^n\rightarrow
+        \mathbb{R}^m$ is differentiable if each component function $f_i$ is
+    differentiable.
+\end{definition}
+
+\begin{definition}
+    Let $F:U\subset \mathbb{R}^n\rightarrow \mathbb{R}^m$ be differentiable.
+    The \textbf{differential} of $F$ at $p$ is the linear map
+    \[
+        dF_p:\mathbb{R}^n\rightarrow \mathbb{R}^m
+    \]
+    defined by
+    \[
+        dF_p(w)=(F\circ \alpha)'(0),
+    \]
+    where $\alpha(0)=p$ and $\alpha'(0)=w$.
+\end{definition}
+
+\begin{remark}
+    In coordinates, if $F=(f_1,\ldots,f_m)$, then $dF_p$ is represented by the
+    Jacobian matrix
+    \[
+        \left(\frac{\partial f_i}{\partial x_j}(p)\right).
+    \]
+\end{remark}
+
+\begin{theorem}[Chain Rule]
+    If $F:U\subset \mathbb{R}^n\rightarrow \mathbb{R}^m$ and
+    $G:V\subset \mathbb{R}^m\rightarrow \mathbb{R}^k$ are differentiable and
+    $F(U)\subset V$, then
+    \[
+        d(G\circ F)_p=dG_{F(p)}\circ dF_p .
+    \]
+\end{theorem}
+
+\begin{theorem}[Inverse Function Theorem]
+    Let $F:U\subset \mathbb{R}^n\rightarrow \mathbb{R}^n$ be differentiable.
+    If $dF_p$ is an isomorphism, then there are neighborhoods $U_0$ of $p$
+    and $V_0$ of $F(p)$ such that
+    $F:U_0\rightarrow V_0$ is a diffeomorphism.
+\end{theorem}
+
+\begin{definition}
+    A value $a\in \mathbb{R}^m$ is a \textbf{regular value} of
+    $F:U\subset \mathbb{R}^n\rightarrow \mathbb{R}^m$ if, for every
+    $p\in F^{-1}(a)$, the differential $dF_p$ is onto.
+\end{definition}
+
+\chapter{The Geometry of the Gauss Map}
+\minitoc
+
+\section{Introduction}
+\section{The Definition of the Gauss Map and Its Fundamental Properties}
+\section{The Gauss Map in Local Coordinates}
+\section{Vector Fields}
+\section{Ruled Surfaces and Minimal Surfaces}
+\section*{Appendix: Self-Adjoint Linear Maps and Quadratic Forms}
+\addcontentsline{toc}{section}{Appendix: Self-Adjoint Linear Maps and Quadratic Forms}
+
+\chapter{The Intrinsic Geometry of Surfaces}
+\minitoc
+
+\section{Introduction}
+
+The intrinsic geometry of a surface is the part of its geometry which can be
+read from the first fundamental form alone.  Thus notions such as length, angle,
+area, covariant derivative, geodesic curvature, and Gaussian curvature are
+intrinsic.  The main point of this chapter is that many quantities which are
+defined by using the immersion in $\mathbb{R}^3$ actually depend only on the
+metric of the surface.
+
+The central results are Gauss' Theorema Egregium, the theory of geodesics and
+parallel transport, and the Gauss-Bonnet theorem.  Together they show how local
+curvature controls global topological information.
+
+\section{Isometries; Conformal Maps}
+
+\begin{definition}
+    Let $S,\bar S$ be regular surfaces.  A diffeomorphism
+    $\varphi:S\rightarrow \bar S$ is an \textbf{isometry} if, for every
+    $p\in S$ and every $v,w\in T_pS$,
+    \[
+        \langle v,w\rangle_p
+        =
+        \langle d\varphi_p(v),d\varphi_p(w)\rangle_{\varphi(p)} .
+    \]
+    If this condition holds only in a neighborhood of each point, $\varphi$ is
+    called a \textbf{local isometry}.
+\end{definition}
+
+\begin{proposition}
+    Let $x:U\rightarrow S$ and $\bar x:U\rightarrow \bar S$ be parametrizations
+    with the same parameter domain.  The map
+    $\varphi=\bar x\circ x^{-1}$ is a local isometry if and only if the
+    coefficients of the first fundamental forms agree:
+    \[
+        E=\bar E,\qquad F=\bar F,\qquad G=\bar G .
+    \]
+\end{proposition}
+
+\begin{remark}
+    Isometries preserve lengths of curves, angles between tangent vectors, and
+    areas of regions.  They need not preserve quantities depending on the second
+    fundamental form.  For example, a plane and a circular cylinder are locally
+    isometric although their normal curvatures are different.
+\end{remark}
+
+\begin{definition}
+    A diffeomorphism $\varphi:S\rightarrow\bar S$ is \textbf{conformal} if
+    there is a positive differentiable function $\lambda:S\rightarrow\mathbb{R}$
+    such that
+    \[
+        \langle d\varphi_p(v),d\varphi_p(w)\rangle_{\varphi(p)}
+        =
+        \lambda(p)^2\langle v,w\rangle_p
+    \]
+    for all $p\in S$ and all $v,w\in T_pS$.
+\end{definition}
+
+\begin{proposition}
+    In local coordinates, $\varphi=\bar x\circ x^{-1}$ is conformal if and only
+    if
+    \[
+        \bar E=\lambda^2E,\qquad
+        \bar F=\lambda^2F,\qquad
+        \bar G=\lambda^2G
+    \]
+    for some positive function $\lambda$.
+\end{proposition}
+
+\begin{remark}
+    A conformal map preserves angles, but in general it changes lengths and
+    areas by scale factors.  Isometries are the special conformal maps with
+    $\lambda=1$.
+\end{remark}
+
+\section{The Gauss Theorem and the Equations of Compatibility}
+
+Let $x(u,v)$ be a parametrization of an oriented regular surface and let
+$N$ be its unit normal.  Write
+\[
+    E=\langle x_u,x_u\rangle,\qquad
+    F=\langle x_u,x_v\rangle,\qquad
+    G=\langle x_v,x_v\rangle
+\]
+and
+\[
+    e=\langle x_{uu},N\rangle,\qquad
+    f=\langle x_{uv},N\rangle,\qquad
+    g=\langle x_{vv},N\rangle .
+\]
+
+\begin{definition}
+    The \textbf{Christoffel symbols} $\Gamma_{ij}^k$ are defined by the
+    tangential parts of the second derivatives of $x$:
+    \[
+        \begin{aligned}
+            x_{uu} & = \Gamma_{11}^1x_u+\Gamma_{11}^2x_v+eN,\\
+            x_{uv} & = \Gamma_{12}^1x_u+\Gamma_{12}^2x_v+fN,\\
+            x_{vv} & = \Gamma_{22}^1x_u+\Gamma_{22}^2x_v+gN .
+        \end{aligned}
+    \]
+\end{definition}
+
+\begin{remark}
+    The Christoffel symbols are determined only by $E,F,G$ and their first
+    derivatives.  They are therefore intrinsic coefficients of the metric.
+\end{remark}
+
+\begin{proposition}
+    The Weingarten equations may be written as
+    \[
+        \begin{aligned}
+            N_u & = a_{11}x_u+a_{21}x_v,\\
+            N_v & = a_{12}x_u+a_{22}x_v,
+        \end{aligned}
+    \]
+    where the coefficients are determined by
+    \[
+        \begin{pmatrix}
+            a_{11} & a_{12}\\
+            a_{21} & a_{22}
+        \end{pmatrix}
+        =
+        -\begin{pmatrix}
+            E & F\\
+            F & G
+        \end{pmatrix}^{-1}
+        \begin{pmatrix}
+            e & f\\
+            f & g
+        \end{pmatrix}.
+    \]
+\end{proposition}
+
+\begin{theorem}[Gauss Equation]
+    The coefficients of the first and second fundamental forms satisfy
+    \[
+        K=\frac{eg-f^2}{EG-F^2}.
+    \]
+    Moreover, the same function $K$ can be expressed entirely in terms of
+    $E,F,G$ and their first and second derivatives.
+\end{theorem}
+
+\begin{theorem}[Theorema Egregium]
+    The Gaussian curvature of a regular surface is invariant under local
+    isometries.  Equivalently, $K$ is determined by the first fundamental form.
+\end{theorem}
+
+\begin{remark}
+    Although the definition of $K$ uses the Gauss map and the second fundamental
+    form, Gauss' theorem says that $K$ is an intrinsic quantity.  This explains
+    why a plane and a cylinder are locally isometric: both have $K=0$.
+\end{remark}
+
+\begin{theorem}[Compatibility Equations]
+    The Gauss equation together with the Mainardi-Codazzi equations gives the
+    compatibility conditions for the six functions
+    \[
+        E,\ F,\ G,\ e,\ f,\ g
+    \]
+    to arise as the first and second fundamental forms of a surface.
+\end{theorem}
+
+\begin{remark}
+    The fundamental theorem of local surface theory says that, under the
+    compatibility equations and the positivity condition $EG-F^2>0$, these
+    data determine a surface locally up to a rigid motion.
+\end{remark}
+
+\section{Parallel Transport. Geodesics}
+
+\begin{definition}
+    Let $w(t)$ be a differentiable vector field along a curve
+    $\alpha:I\rightarrow S$.  The \textbf{covariant derivative} of $w$ along
+    $\alpha$ is
+    \[
+        \frac{Dw}{dt}
+        =
+        \left(\frac{dw}{dt}\right)^T,
+    \]
+    the tangential component of the ordinary derivative in $\mathbb{R}^3$.
+\end{definition}
+
+\begin{remark}
+    If $\alpha(t)=x(u(t),v(t))$ and
+    \[
+        w(t)=a(t)x_u+b(t)x_v,
+    \]
+    then
+    \[
+        \frac{Dw}{dt}
+        =
+        A x_u+B x_v,
+    \]
+    where
+    \[
+        \begin{aligned}
+            A & = a'
+            +\Gamma_{11}^1au'
+            +\Gamma_{12}^1(av'+bu')
+            +\Gamma_{22}^1bv',\\
+            B & = b'
+            +\Gamma_{11}^2au'
+            +\Gamma_{12}^2(av'+bu')
+            +\Gamma_{22}^2bv'.
+        \end{aligned}
+    \]
+    Hence covariant differentiation depends only on the first fundamental form.
+\end{remark}
+
+\begin{definition}
+    A vector field $w$ along $\alpha$ is \textbf{parallel} if
+    \[
+        \frac{Dw}{dt}=0.
+    \]
+\end{definition}
+
+\begin{proposition}
+    Given $w(t_0)\in T_{\alpha(t_0)}S$, there exists a unique parallel vector
+    field along $\alpha$ with this initial value.
+\end{proposition}
+
+\begin{proposition}
+    Parallel transport preserves inner products.  In particular, if $v$ and $w$
+    are parallel along $\alpha$, then
+    \[
+        \frac{d}{dt}\langle v,w\rangle=0.
+    \]
+\end{proposition}
+
+\begin{definition}
+    A parametrized curve $\alpha:I\rightarrow S$ is a \textbf{geodesic} if its
+    tangent field is parallel:
+    \[
+        \frac{D\alpha'}{dt}=0.
+    \]
+    If $\alpha$ is parametrized by arc length, this is equivalent to saying that
+    its acceleration is normal to the surface.
+\end{definition}
+
+\begin{remark}
+    In local coordinates $\alpha(t)=x(u(t),v(t))$, the geodesic equations are
+    \[
+        \begin{aligned}
+            u''+\Gamma_{11}^1(u')^2
+            +2\Gamma_{12}^1u'v'
+            +\Gamma_{22}^1(v')^2 &=0,\\
+            v''+\Gamma_{11}^2(u')^2
+            +2\Gamma_{12}^2u'v'
+            +\Gamma_{22}^2(v')^2 &=0 .
+        \end{aligned}
+    \]
+\end{remark}
+
+\begin{definition}
+    Let $\alpha(s)$ be a regular curve on an oriented surface, parametrized by
+    arc length.  Put
+    \[
+        t=\alpha'(s),\qquad n=N\times t .
+    \]
+    The \textbf{geodesic curvature} of $\alpha$ is
+    \[
+        k_g(s)=\left\langle \frac{Dt}{ds},n\right\rangle .
+    \]
+\end{definition}
+
+\begin{proposition}
+    A curve parametrized by arc length is a geodesic if and only if
+    $k_g=0$.
+\end{proposition}
+
+\begin{example}
+    The straight lines on a plane and the great circles on a sphere are
+    geodesics.  On a circular cylinder, the geodesics are the images of straight
+    lines under the local isometry from the plane to the cylinder.
+\end{example}
+
+\begin{example}[Clairaut Relation]
+    Let a surface of revolution be parametrized by
+    \[
+        x(u,v)=(f(v)\cos u,f(v)\sin u,g(v)).
+    \]
+    If $\alpha$ is a geodesic and $\theta$ is the angle between $\alpha'$ and a
+    meridian, then
+    \[
+        f(v)\sin\theta=\text{constant}.
+    \]
+\end{example}
+
+\section{The Gauss-Bonnet Theorem and Its Applications}
+
+\begin{definition}
+    A \textbf{regular region} $R\subset S$ is a compact connected region whose
+    boundary is a finite union of piecewise regular simple closed curves.
+\end{definition}
+
+\begin{definition}
+    Let $\alpha$ be a positively oriented piecewise regular curve and let
+    $\theta_i$ be the exterior angle at its vertices.  The sign of $\theta_i$ is
+    chosen according to the orientation of the surface.
+\end{definition}
+
+\begin{theorem}[Local Gauss-Bonnet Theorem]
+    Let $R$ be a simple region contained in a coordinate neighborhood of an
+    oriented surface.  Suppose that $\partial R$ is a positively oriented
+    piecewise regular curve, parametrized by arc length on each smooth arc.
+    Then
+    \[
+        \sum_i\int_{\alpha_i}k_g\,ds+\sum_i\theta_i+\iint_R K\,d\sigma
+        =
+        2\pi .
+    \]
+\end{theorem}
+
+\begin{corollary}
+    For a geodesic triangle with interior angles $\varphi_1,\varphi_2,\varphi_3$,
+    \[
+        \varphi_1+\varphi_2+\varphi_3-\pi
+        =
+        \iint_R K\,d\sigma .
+    \]
+\end{corollary}
+
+\begin{remark}
+    On a surface of positive curvature, small geodesic triangles have angle sum
+    greater than $\pi$; on a surface of negative curvature, the angle sum is
+    less than $\pi$.
+\end{remark}
+
+\begin{definition}
+    A \textbf{triangulation} of a regular region $R$ is a finite decomposition
+    of $R$ into triangles whose intersections are either empty, a common vertex,
+    or a common edge.
+\end{definition}
+
+\begin{definition}
+    If a triangulation has $F$ faces, $E$ edges, and $V$ vertices, the
+    \textbf{Euler-Poincare characteristic} is
+    \[
+        \chi(R)=F-E+V .
+    \]
+\end{definition}
+
+\begin{theorem}[Global Gauss-Bonnet Theorem]
+    Let $R$ be a regular region of an oriented surface and suppose that
+    $\partial R$ is piecewise regular and positively oriented.  Then
+    \[
+        \sum_i\int_{\alpha_i}k_g\,ds+\sum_i\theta_i+\iint_R K\,d\sigma
+        =
+        2\pi\chi(R).
+    \]
+\end{theorem}
+
+\begin{corollary}
+    If $S$ is a compact oriented surface without boundary, then
+    \[
+        \iint_S K\,d\sigma=2\pi\chi(S).
+    \]
+\end{corollary}
+
+\begin{remark}
+    The integral of the Gaussian curvature over a compact oriented surface is a
+    topological invariant.  This is the main bridge between local differential
+    geometry and topology in this course.
+\end{remark}
+
+\begin{example}
+    For the unit sphere, $K=1$ and $\operatorname{area}(S^2)=4\pi$, hence
+    \[
+        \iint_{S^2}K\,d\sigma=4\pi=2\pi\chi(S^2).
+    \]
+    Thus $\chi(S^2)=2$.
+\end{example}
+
+\begin{proposition}
+    A compact oriented surface with positive Gaussian curvature has positive
+    Euler characteristic.  In particular, a compact surface of genus $g$ satisfies
+    \[
+        \chi=2-2g.
+    \]
+\end{proposition}
+
+\begin{definition}
+    Let $v$ be a vector field with an isolated singularity at $p$.  The
+    \textbf{index} of $v$ at $p$ is the winding number of the direction of $v$
+    along a small positively oriented curve surrounding $p$.
+\end{definition}
+
+\begin{theorem}[Poincare-Hopf Formula for Surfaces]
+    If $S$ is compact and oriented and $v$ has only isolated singularities, then
+    \[
+        \sum_p I_p(v)=\chi(S).
+    \]
+\end{theorem}
+
+\section{The Exponential Map. Geodesic Polar Coordinates}
+
+\begin{definition}
+    Let $p\in S$ and $v\in T_pS$.  Let $\gamma_v$ be the geodesic with
+    \[
+        \gamma_v(0)=p,\qquad \gamma_v'(0)=v.
+    \]
+    When $\gamma_v(1)$ is defined, the \textbf{exponential map} at $p$ is
+    \[
+        \exp_p(v)=\gamma_v(1).
+    \]
+\end{definition}
+
+\begin{remark}
+    For small $v$, the exponential map is defined and differentiable.  Moreover,
+    \[
+        d(\exp_p)_0=\id_{T_pS}.
+    \]
+    Hence $\exp_p$ is a diffeomorphism from a neighborhood of $0\in T_pS$ onto
+    a neighborhood of $p$ in $S$.
+\end{remark}
+
+\begin{definition}
+    A neighborhood obtained as the image of a disk around $0\in T_pS$ under
+    $\exp_p$ is called a \textbf{normal neighborhood} of $p$.
+\end{definition}
+
+\begin{proposition}
+    In a sufficiently small normal neighborhood, every point $q$ is joined to
+    $p$ by a unique geodesic segment, namely the radial geodesic
+    \[
+        t\longmapsto \exp_p(tv),\qquad 0\leq t\leq 1,
+    \]
+    where $\exp_p(v)=q$.
+\end{proposition}
+
+\begin{definition}
+    Choose polar coordinates $(\rho,\theta)$ in $T_pS$.  The map
+    \[
+        x(\rho,\theta)=\exp_p(\rho e_\theta)
+    \]
+    gives \textbf{geodesic polar coordinates} on a punctured normal
+    neighborhood.
+\end{definition}
+
+\begin{proposition}
+    In geodesic polar coordinates the first fundamental form has the form
+    \[
+        d\rho^2+G(\rho,\theta)d\theta^2 .
+    \]
+    Thus the radial curves $\theta=\text{constant}$ are unit speed geodesics
+    and are orthogonal to the geodesic circles $\rho=\text{constant}$.
+\end{proposition}
+
+\begin{remark}
+    The behavior of $G(\rho,\theta)$ near $\rho=0$ measures the spreading of
+    geodesics issuing from $p$.  Curvature controls this spreading: positive
+    curvature makes nearby geodesics converge faster, while negative curvature
+    makes them separate faster.
+\end{remark}
+
+\begin{theorem}[Gauss Lemma]
+    In a normal neighborhood of $p$, the radial direction is orthogonal to the
+    directions tangent to the geodesic spheres centered at $p$.
+\end{theorem}
+
+\begin{proposition}
+    Let $q$ be sufficiently close to $p$.  Among all piecewise regular curves
+    joining $p$ to $q$ inside a normal neighborhood, the radial geodesic segment
+    has minimal length.
+\end{proposition}
+
+\begin{definition}
+    The \textbf{geodesic distance} between two points is
+    \[
+        d(p,q)=\inf L(\alpha),
+    \]
+    where the infimum is taken over all piecewise regular curves joining $p$ to
+    $q$.
+\end{definition}
+
+\begin{remark}
+    Locally, the geodesic distance agrees with the length of the unique radial
+    geodesic in a normal neighborhood.
+\end{remark}
+
+\section{Further Properties of Geodesics; Convex Neighborhoods}
+
+\begin{theorem}[Existence and Uniqueness of Geodesics]
+    Given $p\in S$ and $v\in T_pS$, there exists a unique geodesic
+    $\gamma(t)$ defined for $t$ in some interval around $0$ such that
+    \[
+        \gamma(0)=p,\qquad \gamma'(0)=v.
+    \]
+    Moreover, $\gamma$ depends differentiably on the initial data $(p,v)$.
+\end{theorem}
+
+\begin{remark}
+    This follows from the local geodesic equations, which form a system of
+    ordinary differential equations with differentiable coefficients.
+\end{remark}
+
+\begin{definition}
+    A neighborhood $W\subset S$ is \textbf{convex} if any two points of $W$ can
+    be joined by a unique geodesic segment contained in $W$, and this segment
+    depends differentiably on the two endpoints.
+\end{definition}
+
+\begin{proposition}
+    Every point of a regular surface has a convex neighborhood.
+\end{proposition}
+
+\begin{proposition}
+    If $\alpha:[a,b]\rightarrow S$ is a minimizing curve parametrized by arc
+    length, then $\alpha$ is a geodesic.
+\end{proposition}
+
+\begin{remark}
+    Thus geodesics are local candidates for shortest paths.  The converse is
+    only local: a geodesic segment need not remain minimizing after it is
+    extended far enough.
+\end{remark}
+
+\begin{definition}
+    A geodesic $\gamma$ is \textbf{closed} if it is periodic as a parametrized
+    curve.  It is \textbf{simple closed} if its trace is a simple closed curve.
+\end{definition}
+
+\begin{example}
+    Great circles on the sphere are closed geodesics.  On a circular cylinder,
+    the closed geodesics are the parallels obtained from horizontal lines in
+    the plane.  Helices are also geodesics, but they are not closed.
+\end{example}
+
+\begin{remark}
+    Convex neighborhoods are used to compare local and global behavior.  They
+    allow one to replace short pieces of arbitrary curves by unique minimizing
+    geodesic segments.
+\end{remark}
+
+\section*{Appendix: Proofs of the Fundamental Theorems of the Local Theory of Curves and Surfaces}
+\addcontentsline{toc}{section}{Appendix: Proofs of the Fundamental Theorems of the Local Theory of Curves and Surfaces}
+
+\begin{remark}
+    The fundamental theorem for curves is proved by solving the Frenet system.
+    Given functions $\kappa>0$ and $\tau$, one first constructs an orthonormal
+    moving frame satisfying the Frenet equations and then obtains the curve by
+    integrating its tangent vector.  Uniqueness follows from uniqueness for
+    ordinary differential equations and from the fact that two initial
+    orthonormal frames differ by a rigid motion.
+\end{remark}
+
+\begin{remark}
+    The fundamental theorem for surfaces is analogous but technically richer.
+    The prescribed functions $E,F,G,e,f,g$ must satisfy the Gauss and
+    Mainardi-Codazzi equations.  These are precisely the integrability
+    conditions for the first-order system which reconstructs the frame
+    $x_u,x_v,N$.  Once the frame is recovered, the surface is obtained by
+    integrating $x_u$ and $x_v$.
+\end{remark}
+
+\begin{theorem}[Fundamental Theorem of Local Surface Theory]
+    Let $E,F,G,e,f,g$ be differentiable functions on a domain
+    $U\subset\mathbb{R}^2$ with
+    \[
+        E>0,\qquad EG-F^2>0.
+    \]
+    If the Gauss and Mainardi-Codazzi equations hold, then for each point of
+    $U$ there is a neighborhood on which these functions are the coefficients
+    of the first and second fundamental forms of a regular surface.  The surface
+    is unique up to a rigid motion of $\mathbb{R}^3$.
+\end{theorem}
+
+\chapter{Global Differential Geometry}
+\minitoc
+
+\section{Introduction}
+\section{The Rigidity of the Sphere}
+\section{Complete Surfaces. Theorem of Hopf-Rinow}
+\section{First and Second Variations of Arc Length; Bonnet's Theorem}
+\section{Jacobi Fields and Conjugate Points}
+\section{Covering Spaces; The Theorems of Hadamard}
+\section{Global Theorems for Curves: The Fary-Milnor Theorem}
+\section{Surfaces of Zero Gaussian Curvature}
+\section{Jacobi's Theorems}
+\section{Abstract Surfaces; Further Generalizations}
+\section{Hilbert's Theorem}
+\section*{Appendix: Point-Set Topology of Euclidean Spaces}
+\addcontentsline{toc}{section}{Appendix: Point-Set Topology of Euclidean Spaces}
+
+\backmatter
+
+\chapter*{Bibliography and Comments}
+\addcontentsline{toc}{chapter}{Bibliography and Comments}
+
+\chapter*{Hints and Answers}
+\addcontentsline{toc}{chapter}{Hints and Answers}
+
+\chapter*{Index}
+\addcontentsline{toc}{chapter}{Index}
 
 \end{document}

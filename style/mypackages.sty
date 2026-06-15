@@ -1,0 +1,179 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mypackages}[2026/06/01 v1.0 Custom package for mathematical documents]
+
+
+% ========== 数学相关宏包 ==========
+\RequirePackage{amsmath}    % 增强的数学公式
+\RequirePackage{amsthm}     % 定理环境
+\RequirePackage{amssymb}    % 数学符号
+\RequirePackage{bm}         % 粗体数学符号
+\RequirePackage{mathrsfs}   % 花体字母
+\RequirePackage{esint}      % 积分符号扩展
+\RequirePackage{mathtools}  % 数学工具（amsmath的增强）
+\RequirePackage{tensor}     % 张量符号
+
+
+% ========== 图形与图表 ==========
+\RequirePackage{graphicx}   % 图形插入
+\RequirePackage{tikz-cd}    % 交换图
+
+
+
+
+
+% ========== 列表与枚举环境 ==========
+\RequirePackage{enumitem} % 增强列表环境（包括 enumerate、itemize 和 description）的功能
+
+
+% ========== 章节标题与目录样式 ==========
+\RequirePackage{titlesec}       % 自定义章节标题样式
+\RequirePackage{titletoc}       % 自定义目录样式
+\setcounter{tocdepth}{3}    % 目录显示到 subsection
+\setcounter{secnumdepth}{2} % 编号深度subsection
+
+\RequirePackage{minitoc}        % 每章的迷你目录
+\setcounter{minitocdepth}{3}
+
+
+
+
+
+% ========== 颜色与文本装饰 ==========
+\RequirePackage{xcolor}         % 颜色支持
+\RequirePackage{ulem}           % 标记线
+
+% ========== 注释与调试 ==========
+\RequirePackage{comment}        % 块注释
+
+% ========== 编程工具与高级命令定义 ==========
+\RequirePackage{environ}        % 环境重定义
+\RequirePackage{etoolbox}       % 提供强大的钩子功能
+\RequirePackage{xparse}         % 提供强大的命令定义功能
+\RequirePackage{import}         % 路径感知的\import命令
+\RequirePackage{standalone}     % 支持子文件独立编译
+
+
+
+
+% ========== 基础设置与字体 ==========
+\RequirePackage{fontspec}       % 字体设置
+\setmainfont{Times New Roman}
+
+% ========== 自定义计数器格式 ======
+\renewcommand{\thechapter}{\Roman{chapter}} % 章节编号使用大写罗马数字
+\renewcommand{\thesection}{\S \arabic{section}} % 小节编号使用阿拉伯数字，并在前面加上 § 符号
+
+% ========== 自定义命令 ==========
+\newtheorem{theorem}{Theorem}[section]  % 定理环境，按section计数
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{remark}{Remark}
+\renewcommand{\thetheorem}{\arabic{section}.\arabic{theorem}} % 定理编号格式为  节号.定理序号
+
+
+
+% 设置公式编号格式为 章号.节号.公式序号
+\numberwithin{equation}{section} % 让公式编号在每节重置
+\renewcommand{\theequation}{\arabic{equation}} % 将默认”公式编号“\theequation 替换为 “公式计数器” \arabic{equation}
+
+
+% ========== 页面布局与几何设置 ==========
+\RequirePackage{geometry}   % 页面边距设置
+\geometry{
+    a4paper,
+    inner=25mm,   % 内侧边距（装订边）
+    outer=20mm,   % 外侧边距
+    top=25mm,     % 顶部边距
+    bottom=20mm,  % 底部边距
+    headheight=15pt,
+    headsep=8mm,  % 页眉与正文间距
+    footskip=10mm, % 正文基线到页脚基线的距离
+    marginparsep=5mm,
+    marginparwidth=15mm % 旁注宽度
+}
+
+\RequirePackage{setspace}       % 行间距设置
+\onehalfspacing             % 1.5倍行距
+
+\RequirePackage{fancyhdr}       % 自定义页眉页脚
+\pagestyle{fancy}           % 启用 fancy 页面样式
+\fancyhf{}                  % 清空页眉和页脚的默认设置
+\fancyhead[L]{\thechapter,\ \thesection}
+\fancyhead[R]{\thepage}
+
+
+
+
+
+% ========== 超链接与参考文献 ==========
+\RequirePackage{xstring}
+\newcommand{\CharAt}[2]{%
+    \StrChar{#1}{#2}[\Result]%
+    \Result%
+} % 获取字符串中指定位置的字符
+
+
+\newcommand{\CurrentEnvName}{} % 用于存储当前环境名称的命令
+\newcommand{\RecordEnvName}[1]{\renewcommand{\CurrentEnvName}{#1}} % 记录环境名称的命令
+\makeatletter
+\newcommand{\DeclareTrackedEnvironment}[1]{
+    \AtBeginEnvironment{#1}{\RecordEnvName{#1}}
+} % 在环境开始时记录环境名称
+\DeclareTrackedEnvironment{theorem} % 声明需要跟踪的环境
+\DeclareTrackedEnvironment{corollary}
+\DeclareTrackedEnvironment{lemma}
+\DeclareTrackedEnvironment{proof}
+\DeclareTrackedEnvironment{definition}
+\DeclareTrackedEnvironment{example}
+\DeclareTrackedEnvironment{proposition}
+
+
+% ========================================
+\RequirePackage[colorlinks,linkcolor=blue]{hyperref}       % 超链接支持
+
+
+
+
+
+\RequirePackage[user,titleref,abspage]{zref}
+\zref@newprop{envname}{\CurrentEnvName}                            % 定义envname属性，其值为当前环境名称
+\zref@newprop{thetheorem}{\textrm{\thetheorem}}
+\zref@newprop{thechapter}{\textrm{\thechapter}} % 定义chapter属性，其值为当前章号
+\zref@addprops{main}{thechapter,envname,thetheorem}                              % 加入主属性集
+
+
+\RequirePackage{letltxmacro}
+\LetLtxMacro\originalLabel\label % 保存原始的 \label 命令
+
+
+
+\renewcommand{\label}[1]{
+    \zlabel{#1}
+    \originalLabel{#1}
+} % 重定义 \label 命令，在调用原始 \label 的同时使用 \zlabel 记录环境信息
+\newcommand{\cref}[1]{
+    \zref[envname]{#1} \ref{#1}
+} % 定义 \cref 命令，输出格式为 "环境名称 定理编号" 
+\newcommand{\dref}[1]{
+    Chap \zref[thechapter]{#1} \ref{#1}
+} % 定义 \dref 命令，输出格式为 "Chap 章号.定理编号"
+
+
+
+
+% ========== 封面信息 ==========
+\author{HHH}
+\date{\today}
+
+
+
+% 绝对值用\left| \right|，范数（||-||）用\left\| \right\| 括号用\left( \right) 或者 \left[ \right] \left\{ \right\} \left\langle \right\rangle
+% 行间公式用\begin{equation*} \end*{equation*}
+% 撇号用 ^{\prime}
+% 单面打印oneside
+% 不允许添加新的宏包和定义新的命令
+% 公式中的上下标内容用{}括起来

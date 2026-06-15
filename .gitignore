@@ -19,5 +19,6 @@
 *.bbl
 *.blg
 *.bbl-SAVE-ERROR
+*.fls
 
 # *.pdf 上传到 GitHub 时会被自动渲染

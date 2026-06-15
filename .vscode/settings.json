@@ -16,6 +16,9 @@
         "**/*.run.xml": true,
         "**/*.bbl": true,
         "**/*.blg": true,
+        "**/*.fls": true,
+        "**/*.nav": true,
+        "**/*.snm": true,
         "**/*.bbl-SAVE-ERROR": true,
     }, // 配置文件资源管理器中要隐藏的文件和文件夹
     "latex-workshop.showContextMenu": true,

@@ -1,0 +1,68 @@
+% ========== 页面布局与几何 ==========
+\RequirePackage{geometry}   % 页面边距设置
+\geometry{
+    a4paper,
+    inner=25mm,   % 内侧边距（装订边）
+    outer=20mm,   % 外侧边距
+    top=25mm,     % 顶部边距
+    bottom=20mm,  % 底部边距
+    headheight=15pt,
+    headsep=8mm,  % 页眉与正文间距
+    footskip=10mm, % 正文基线到页脚基线的距离
+    marginparsep=5mm,
+    marginparwidth=15mm % 旁注宽度
+}
+% ========== 行间距 ==========
+\RequirePackage{setspace}      
+\onehalfspacing             % 1.5x
+
+
+% ========== 页眉页脚 ==========
+\RequirePackage{fancyhdr}       % 自定义页眉页脚
+\pagestyle{fancy}           % 启用 fancy 页面样式
+\fancyhf{}                  % 清空页眉和页脚的默认设置
+\fancyhead[L]{\thechapter,\ \thesection}
+\fancyhead[R]{\thepage}
+
+
+
+
+
+
+% ========== 目录 ==========
+
+\RequirePackage{titlesec}       % 自定义章节标题样式
+\RequirePackage{titletoc}       % 自定义目录样式
+\setcounter{tocdepth}{3}    % 目录显示到 subsection
+\setcounter{secnumdepth}{2} % 编号深度subsection
+
+\RequirePackage{minitoc}        % 每章的迷你目录
+\setcounter{minitocdepth}{3}
+
+
+
+
+
+
+
+% ========== 基础设置与字体 ==========
+\RequirePackage{fontspec}       % 字体设置
+\setmainfont{Times New Roman}
+
+% ========== 自定义计数器格式 ======
+\renewcommand{\thechapter}{\Roman{chapter}} % 章节编号使用大写罗马数字
+\renewcommand{\thesection}{\S \arabic{section}} % 小节编号使用阿拉伯数字，并在前面加上 § 符号
+
+
+
+
+% ========== 定理环境 ==========
+\newtheorem{theorem}{Theorem}[section]  % 定理环境，按section计数
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{remark}{Remark}
+\renewcommand{\thetheorem}{\arabic{section}.\arabic{theorem}} % 定理编号格式为  节号.定理序号
