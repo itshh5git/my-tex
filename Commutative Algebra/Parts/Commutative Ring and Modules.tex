@@ -141,7 +141,7 @@ Throughout this chapter, let $A$ be a commutative ring.
     If $\mathfrak{a}$ is any ideal of $A$, the ideal
     \begin{equation*}
         \Rad(\mathfrak{a})
-        =
+        :=
         \left\{x \in A: x^n \in \mathfrak{a} \text { for some } n \in \mathbb{Z}_{\geq 1}\right\}
     \end{equation*}
     is called \textbf{radical} of $\mathfrak{a}$, sometimes denoted by $\sqrt{\mathfrak{a}}$.
@@ -253,12 +253,8 @@ Throughout this chapter, let $A$ be a commutative ring.
 
 
 
-\chapter{Fractions and Localization}% Fractions and Localization
-
-\minitoc
-
-
-\section{Rings of Quotient} % Rings of Quotient
+\chapter{Fractions and Localization}
+\section{Rings of Quotient}
 $A$ is a commutative ring with identity throughout this section unless otherwise stated.
 
 \begin{definition}
@@ -1107,7 +1103,7 @@ In this subsection we shall study commutative Artinian rings.
         The proof is by induction on $n=\operatorname{dim}_D V$. If $n=0$, then $V=0$ and $a \neq 0$. Since $M$ is simple, $M=R a$. Consequently, there exists $r \in R$ such that $r a=a \neq 0$ and $r V=r 0=0$.
 
         Suppose now $\operatorname{dim}_D V=n>0$ and the theorem is true for dimensions less than $n$.
-        Let $\left\{u_1, \ldots, u_{n-1}, u\right\}$ be a $D$-basis of $V$ and let $W=\span\left\{u_1, \ldots, u_{n-1}\right\}$ ( $W=0$ if $n=1$ ).
+        Let $\left\{u_1, \ldots, u_{n-1}, u\right\}$ be a $D$-basis of $V$ and let $W=\operatorname{span}\left\{u_1, \ldots, u_{n-1}\right\}$ ( $W=0$ if $n=1$ ).
         Then $V=W \oplus D u$ (vector space direct sum, $W$ may not be an $R$-submodule of $M$) the left annihilator $I=\Ann_R(W)$ is a left ideal of $R$.
 
         Consequently, $I u$ is an $R$-submodule of $M$. Since $u \in M-W$, the induction hypothesis implies that there exists $r \in R$ such that $r u \neq 0$ and $r W=0$. Consequently $r\in I$ and $0 \neq r u \in I u$, whence $I u \neq 0$.
@@ -1146,7 +1142,7 @@ In this subsection we shall study commutative Artinian rings.
         \begin{equation*}
             V_i
             =
-            \span\left\{u_1, \ldots, u_{i-1}, u_{i+1}, \ldots, u_n\right\}.
+            \operatorname{span}\left\{u_1, \ldots, u_{i-1}, u_{i+1}, \ldots, u_n\right\}.
         \end{equation*}
         Since $U$ is $D$-linearly independent, $u_i \notin V_i$. Consequently, by \ref{lem: Lemma of Jacobson Density Theorem} there exists $r_i \in R$ such that
         \begin{center}
@@ -1622,20 +1618,20 @@ In this subsection we shall study commutative Artinian rings.
 \chapter{Integral}
 \section{Rings Extensions} % Rings Extensions
 \begin{definition}
-    Let $S$ be a commutative ring with identity and $R$ a subring of $S$ containing $1_S$.
+    Let $B$ be a commutative ring with identity and $A$ a subring of $B$ containing $1_B$.
 
     \begin{enumerate}
         \item
-              Then $S$ is said to be an \textbf{extension ring} of $R$.
+              Then $B$ is said to be an \textbf{extension ring} of $A$.
         \item
-              An element $s\in S$ is said to be \textbf{integral} over $R$ if
-              $s$ is a root of  a monic polynomial in $R[x]$.
+              An element $s\in B$ is said to be \textbf{integral} over $A$ if
+              $s$ is a root of  a monic polynomial in $A[x]$.
         \item
-              If every element of $S$ is integral over $R$, $S$ is said to be an \textbf{integral extension} of $R$.
+              If every element of $B$ is integral over $A$, $B$ is said to be an \textbf{integral extension} of $A$.
         \item
-              The \textbf{integral closure} of $R$ in $S$ is the set of elements of $S$ that are integral over $R$.
+              The \textbf{integral closure} of $A$ in $B$ is the set of elements of $B$ that are integral over $A$.
         \item
-              The ring $R$ is said to be \textbf{integrally closed} in $S$ if $R$ is equal to its integral closure in $S$.
+              The ring $A$ is said to be \textbf{integrally closed} in $B$ if $A$ is equal to its integral closure in $B$.
 
               The integral closure of an integral domain $R$ in its field of fractions is called the \textbf{normalization} of $R$. An integral domain is called integrally closed or normal if it is integrally closed in its field of fractions.
     \end{enumerate}
@@ -1648,30 +1644,30 @@ In this subsection we shall study commutative Artinian rings.
 
 \begin{theorem}
     \label{thm: integral}
-    Let $S$ be an extension ring of $R$ and $s \in S$. Then the following conditions are equivalent.
+    Let $B$ be an extension ring of $A$ and $s \in B$. Then the following conditions are equivalent.
     \begin{enumerate}
         \item
-              $s$ is integral over $R$
+              $s$ is integral over $A$
         \item
-              Subring $R[s]$ is a finitely generated $R$-module
+              Subring $A[s]$ is a finitely generated $A$-module
         \item
-              There is a subring $T$ that $R[s]\subset T\subset S$, which is finitely generated as an $R$-module;
+              There is a subring $T$ that $A[s]\subset T\subset B$, which is finitely generated as an $A$-module;
         \item
-              There is a faithful $R[s]$-submodule $M$ which is finitely generated as an $R$-module.
+              There is a faithful $A[s]$-submodule $M$ which is finitely generated as an $A$-module.
     \end{enumerate}
 \end{theorem}
 
 
 \begin{corollary}
     \label{cor: integral extensions}
-    Let $S$ be an extension ring of $R$. Then
+    Let $B$ be an extension ring of $A$. Then
     \begin{enumerate}
         \item
-              If $S$ is finitely generated as an $R$-module, then $S$ is an integral extension of $R$.
+              If $B$ is finitely generated as an $A$-module, then $B$ is an integral extension of $A$.
         \item
-              If $s_1, \ldots, s_{t} \in S$ are integral over $R$, then $R\left[s_1, \ldots, s_{t}\right]$ is a finitely generated $R$-module and an integral extension ring of $R$.
+              If $s_1, \ldots, s_{t} \in B$ are integral over $A$, then $A\left[s_1, \ldots, s_{t}\right]$ is a finitely generated $A$-module and an integral extension ring of $A$.
         \item
-              If $T$ is an integral extension ring of $S$ and $S$ is an integral extension ring of $R$, then $T$ is an integral extension ring of $R$ .
+              If $T$ is an integral extension ring of $B$ and $B$ is an integral extension ring of $A$, then $T$ is an integral extension ring of $A$ .
     \end{enumerate}
     \begin{proof}
         It immediately follows from \ref{thm: integral}
@@ -1710,7 +1706,8 @@ In this subsection we shall study commutative Artinian rings.
     \end{enumerate}
 \end{proposition}
 
-\subsection{integral extension} % integral extension
+\subsection{Integral extension}
+
 \begin{theorem}
     Let $T$ be a multiplicative subset of an integral domain $R$ such that $0 \notin T$.
     If $R$ is integrally closed, then $T^{-1} R$ is an integrally closed integral domain.
@@ -2443,10 +2440,69 @@ In this section, all rings $A$ are commutative Noetherian ring with identity and
 \end{theorem}
 
 
+\chapter{}
+\section{}
+
+\begin{definition}
+    The space $X$ is called \textbf{Noetherian} if it satisfies the descending chain condition for closed subsets, i.e., every descending chain of closed subsets eventually stabilizes.
+\end{definition}
+
+\begin{definition}
+    The space $X$ is called \textbf{irreducible} if it cannot be expressed as the union of two proper closed subsets.
+    The subset $Y$ of $X$ is called \textbf{irreducible} if it is irreducible as a subspace of $X$, and empty set is irreducible.
+    \begin{remark}
+        It is easy to see that $X$ is irreducible if and only if
+        \begin{enumerate}
+            \item
+                  Any two non-empty open subsets of $X$ intersect.
+                  Any two non-empty closed subsets of $X$ intersect.
+            \item
+                  Every non-empty open subset of $X$ is dense in $X$.
+                  Every non-empty closed subset of $X$ has empty interior.
+        \end{enumerate}
+    \end{remark}
+\end{definition}
+
+
+\section{Spectrum of a Ring}
+\begin{definition}
+    Let $A$ be a commutative ring with identity. The \textbf{spectrum} of $A$, denoted by
+    \begin{equation*}
+        \Spec A:=\left\{\mathfrak{p} : \mathfrak{p} \text{ is a prime ideal of } A\right\}
+    \end{equation*}
+    , is the set of all prime ideals of $A$.
+    If $\mathfrak{a}$ is an ideal of $A$, then the \textbf{vanishing (zeros) set} of $\mathfrak{a}$ is defined to be
+    \begin{equation*}
+        V(\mathfrak{a}) := \left\{\mathfrak{p} \in \Spec A : \mathfrak{a} \subset \mathfrak{p}\right\}
+        \subset
+        \Spec A
+    \end{equation*}
+    The \textbf{Zariski topology} on $\Spec A$ is defined by taking the collection of all vanishing sets $V(\mathfrak{a})$ as the closed sets.
+\end{definition}
+
+\begin{definition}
+    Defing a sheaf $\mathcal{O}$ on $X=\Spec A$, for each open set $U\subseteq X$, we define $\mathcal{O}(X)$ be the set of functions
+    \begin{equation*}
+        s:U\to \coprod_{\mathfrak{p}\in U} A_{\mathfrak{p}}, \quad \text{ or simplified} \left(s_\mathfrak{p}\right)_{\mathfrak{p}\in U}
+    \end{equation*}
+    such that $s(\mathfrak{p})\in A_{\mathfrak{p}}$ for all $\mathfrak{p}\in U$, and such that $s$ is locally a quotient of elements of $A$, i.e., for each $\mathfrak{p}\in U$, there exists an open neighborhood $p\in V\subseteq U$ and elements $a,f\in A$ such that $f\notin \mathfrak{q}$ for all $\mathfrak{q}\in V$ and $\left.s\right|_{V}=a/f$. 
+\end{definition}
+
+\begin{definition}
+    Let $A$ be a commutative ring with identity. The \textbf{spectrum} of $A$ is the pair consisting of the topological space $\Spec A$ and the sheaf of rings $\mathcal{O}$ defined above. 
+\end{definition}
 
 
 
 
+\begin{definition}
+    Let $f\in A$, the \textbf{distinguished open set} of $f$ is defined to be
+    \begin{equation*}
+        D(f):=\left\{\mathfrak{p} \in \Spec A : f \notin \mathfrak{p}\right\}
+        =
+        \Spec A - V(f)
+    \end{equation*}
+\end{definition}
 
 
 

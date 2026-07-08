@@ -1,8 +1,9 @@
 \documentclass[12pt, oneside]{book}
 \usepackage{../style/mypackages}
-\usepackage{../style/abbr}
-
-
+\usepackage{../style/macro}
+\usepackage{../style/font}
+\usepackage{../style/theorem}
+\usepackage{../style/format}
 
 
 
@@ -1171,9 +1172,22 @@ where $d /\left.d t\right|_{t_0}$ is the standard coordinate basis vector in $T_
 \chapter{Tensors}
 \section{}
 Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes k}$.
+And view the $T^k(V^*)\cong T^k(V)^*:=\Hom_{\mathbb{R}}\left(V^{\otimes k} ,\mathbb{R} \right)$ as the space of multilinear maps from $V^k$ to $\mathbb{R}$ (with the convention that $T^0(V^*)=\mathbb{R}$).
 
 
+\begin{definition}
+    \begin{enumerate}
+        \item The \textbf{tensor algebra} of $V^*$ is the direct sum of all tensor powers of $V^*$:
+              \begin{equation*}
+                  T(V^*)
+                  :=
+                  \bigoplus_{k=0}^\infty T^k(V^*)
+              \end{equation*}
+              with the
 
+    \end{enumerate}
+
+\end{definition}
 
 
 
@@ -1210,14 +1224,17 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
         \frac{(k+l)!}{k!l!} \operatorname{Sym}(\omega \otimes \eta)
     \end{equation*}
 \end{definition}
-
-
-
-
 \begin{proposition}
     The wedge product has the following properties:
     \begin{enumerate}
         \item associative
+              \begin{equation*}
+                  (\omega \wedge \eta) \wedge \xi
+                  =
+                  \omega \wedge(\eta \wedge \xi)
+                  =
+                  \frac{(k+l+m)!}{k!l!m!} \operatorname{Alt}(\omega \otimes \eta \otimes \xi)
+              \end{equation*}
         \item bilinear
         \item  Anti-commutative relation: $\omega \wedge \eta=(-1)^{k l} \eta \wedge \omega$
         \item For any $f^i \in V^*$ and $v^i \in V$, we have
@@ -1229,6 +1246,38 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
               \end{equation*}
     \end{enumerate}
 \end{proposition}
+
+\begin{corollary}
+    Given a basis $\left\{f^1, \ldots, f^n\right\}$ for $V^*$, the set $\left\{f^{i_1}\wedge \cdots \wedge f^{i_k}  | 1 \leq i_1 < \cdots < i_k \leq n\right\}$ is a basis for $\Lambda^k(V^*)$ .
+\end{corollary}
+
+
+\begin{definition}
+    \begin{enumerate}
+        \item
+              The \textbf{exterior algebra} of $V^*$ is the graded algebra
+              \begin{equation*}
+                  \Lambda(V^*)
+                  :=
+                  \bigoplus_{k=0}^\infty \Lambda^k(V^*)
+              \end{equation*}
+              with the wedge product as multiplication.
+
+        \item
+              The \textbf{symmetric algebra} is the graded algebra
+              \begin{equation*}
+                  \operatorname{Sym}(V^*)
+                  :=
+                  \bigoplus_{k=0}^\infty \operatorname{Sym}^k(V^*)
+              \end{equation*}
+              with the symmetric product as multiplication.
+    \end{enumerate}
+\end{definition}
+
+
+
+
+
 
 \begin{definition}
     Let $V$ be a vector space. A $(k,l)$-tensor $T$ on $V$ is a element of the vector space
@@ -1248,7 +1297,35 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
 
 
 
-\section{Pullbacks of Tensor Fields}
+\section{Tensor Fields}
+\begin{definition}
+    The tnesor space of type $(k,l)$ at $p$ is the vector space
+    \begin{equation*}
+        T^{(k,l)}_p M
+        :=
+        T^k(T_p M) \otimes T^l\left(T_p^* M\right)
+    \end{equation*}
+    The \textbf{tensor bundle} of type $(k,l)$ over $M$ is the vector bundle
+    \begin{equation*}
+        T^{(k,l)}M
+        :=
+        \coprod_{p\in M} T^{(k,l)}_p M
+        =
+    \end{equation*}
+    The \textbf{tensor fields} of type $(k,l)$ on $M$ are the smooth sections of $T^{(k,l)}M\to M$.
+    \begin{remark}
+        Given a smooth chart $\left(U,x^i\right)$, we can write the $(k,l)$-tensor fields $A$ (omit the base point) in coordinates locally as
+        \begin{equation*}
+            A
+            =
+            A^{i_1\ldots i_k}_{j_1\ldots j_l} \cdot \frac{\partial}{\partial x^{i_1}}\otimes \cdots \otimes \frac{\partial}{\partial x^{i_k}} \otimes dx^{j_1} \otimes \cdots \otimes dx^{j_l}
+        \end{equation*}
+    \end{remark}
+\end{definition}
+
+
+\subsubsection{Pullback and Lie Derivative of Tensor Fields}
+
 
 \begin{definition}
     Suppose $f: M \rightarrow N$ is a smooth map and $B$ is $k$-covariant tensor field on $N$.
@@ -1278,9 +1355,9 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
     The pullback is a contravariant functor from the category of smooth manifolds to the category of graded algebras:
     \begin{equation*}
         \begin{tikzcd}
-            M \arrow[dd,"f"']& \mapsto &  T^{(*,0)}M\\
+            M \arrow[dd,"f"']& \mapsto &  T^{(0,*)}M\\
             &\mapsto& \\
-            N & \mapsto & T^{(*,0)}N \arrow[uu,"f^*"']
+            N & \mapsto & T^{(0,*)}N \arrow[uu,"f^*"']
         \end{tikzcd}
     \end{equation*}
     where $f^*$ is a graded algebra homomorphism, i.e.
@@ -1293,7 +1370,7 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
 
 \begin{corollary}
     \begin{enumerate}
-        \item $F^*(fB)=f\circ F \cdot F^*B$ 
+        \item $F^*(fB)=f\circ F \cdot F^*B$
         \item The pullbak also commutes with the symmetrization, antisymmetrization, wedge product and symmetric product operations.
     \end{enumerate}
 \end{corollary}
@@ -1311,12 +1388,7 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
 
 
 
-
-
-
-
-\chapter{Differential Forms}
-\section{The Algebra of Alternating Tensors}
+\section{Differential Forms}
 \begin{proposition}
     If $\omega\in \Lambda^n(V^*)$ and $T:V\rightarrow V$ is linear, then
     \[
@@ -1341,7 +1413,7 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
 \end{definition}
 
 \begin{proposition}
-    Interior multiplication is an antiderivation of degree $-1$:
+    Interior multiplication is an antiderivation of degree $-1$ on the exterior algebra:
     \[
         \iota_X(\omega\wedge\eta)
         =
@@ -1352,7 +1424,7 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
     \]
 \end{proposition}
 
-\section{Differential Forms on Manifolds}
+
 
 \begin{definition}
     Let $M$ be a smooth manifold, possibly with boundary.
@@ -1365,103 +1437,40 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
                   \coprod_{p\in M}\Lambda^k(T_p^*M).
               \]
         \item
-              A \textbf{differential $k$-form} on $M$ is a smooth section of $\Lambda^kT^*M$. The space of all smooth $k$-forms is denoted by
+              A \textbf{differential $k$-form} on $M$ is a smooth section of $\Lambda^k(T^*M) \to M$. The space of all smooth $k$-forms is denoted by
               \[
                   \Omega^k(M)=\Gamma(\Lambda^kT^*M).
               \]
-              By convention, $\Omega^0(M)=C^\infty(M)$.
+              By convention, $\Omega^0(M)=\Gamma(M\times \mathbb{R})=C^\infty(M)$.
+        \item
+              If $\omega\in\Omega^k(M)$ and $\eta\in\Omega^l(M)$, their wedge product is defined pointwise:
+              \[
+                  (\omega\wedge\eta)_p
+                  =
+                  \omega_p\wedge\eta_p.
+              \]
+              Thus $\omega\wedge\eta\in\Omega^{k+l}(M)$.
     \end{enumerate}
-
+    \begin{remark}
+        In a smooth chart $(U,x^1,\ldots,x^n)$, every $k$-form $\omega$ can be written uniquely as
+        \[
+            \omega
+            =
+            \sum_{i_1<\cdots<i_k}
+            \omega_{i_1\cdots i_k}
+            dx^{i_1}\wedge\cdots\wedge dx^{i_k}=
+            \sum_I \omega_I\,dx^{i_1}\wedge\cdots\wedge dx^{i_k},
+        \]
+        where the coefficient functions $\omega_{i_1\cdots i_k}$ are smooth on $U$ and multiindex $I=(i_1,\ldots,i_k)$.
+    \end{remark}
 \end{definition}
 
-\begin{definition}
-    If $\omega\in\Omega^k(M)$ and $\eta\in\Omega^l(M)$, their wedge product is defined pointwise:
-    \[
-        (\omega\wedge\eta)_p
-        =
-        \omega_p\wedge\eta_p.
-    \]
-    Thus $\omega\wedge\eta\in\Omega^{k+l}(M)$.
-\end{definition}
 
-\begin{proposition}
-    In a smooth chart $(U,x^1,\ldots,x^n)$, every $k$-form $\omega$ can be written uniquely as
-    \[
-        \omega
-        =
-        \sum_{i_1<\cdots<i_k}
-        \omega_{i_1\cdots i_k}
-        dx^{i_1}\wedge\cdots\wedge dx^{i_k},
-    \]
-    where the coefficient functions $\omega_{i_1\cdots i_k}$ are smooth on $U$.
-\end{proposition}
 
-\begin{example}
-    On $\mathbb{R}^3$ with coordinates $(x,y,z)$,
-    \[
-        \Omega^1(\mathbb{R}^3)
-        =
-        \left\{
-        P\,dx+Q\,dy+R\,dz
-        \right\},
-    \]
-    and
-    \[
-        \Omega^2(\mathbb{R}^3)
-        =
-        \left\{
-        A\,dy\wedge dz+B\,dz\wedge dx+C\,dx\wedge dy
-        \right\}.
-    \]
-    The signs in the second expression are chosen to match the usual orientation conventions from vector calculus.
-\end{example}
 
-\begin{definition}
-    Let $F:M\rightarrow N$ be a smooth map. The \textbf{pullback} of a $k$-form $\omega\in\Omega^k(N)$ is the $k$-form $F^*\omega\in\Omega^k(M)$ given by
-    \[
-        (F^*\omega)_p(v_1,\ldots,v_k)
-        =
-        \omega_{F(p)}(dF_p(v_1),\ldots,dF_p(v_k)).
-    \]
-\end{definition}
 
-\begin{proposition}
-    Pullbacks of forms satisfy
-    \[
-        F^*(\omega\wedge\eta)
-        =
-        F^*\omega\wedge F^*\eta,
-        \qquad
-        (G\circ F)^*
-        =
-        F^*\circ G^*,
-        \qquad
-        \id_M^*
-        =
-        \id.
-    \]
-    For a smooth function $f$ on $N$, this agrees with ordinary composition:
-    \[
-        F^*f=f\circ F.
-    \]
-\end{proposition}
 
-\begin{proposition}
-    Let $F:M\rightarrow N$ be smooth, and let $(y^1,\ldots,y^n)$ be local coordinates on $N$. If
-    \[
-        \omega
-        =
-        \sum_I \omega_I\,dy^{i_1}\wedge\cdots\wedge dy^{i_k},
-    \]
-    then
-    \[
-        F^*\omega
-        =
-        \sum_I
-        (\omega_I\circ F)\,
-        d(y^{i_1}\circ F)\wedge\cdots\wedge d(y^{i_k}\circ F).
-    \]
-\end{proposition}
+\section{Inner Products, Lie Derivatives and Exterior Derivatives}
 
 \begin{definition}
     If $X$ is a smooth vector field on $M$ and $\omega\in\Omega^k(M)$, the interior product
@@ -1473,14 +1482,11 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
         (\iota_X\omega)_p=\iota_{X_p}(\omega_p).
     \]
 \end{definition}
-
-\section{Exterior Derivatives}
-
 \begin{definition}
-    The \textbf{exterior derivative} is the unique family of maps
-    \[
-        d:\Omega^k(M)\rightarrow \Omega^{k+1}(M)
-    \]
+    The \textbf{exterior derivative} is the unique map
+    \begin{equation*}
+        d:\Omega^*(M)\rightarrow \Omega^{*}(M)
+    \end{equation*}
     characterized by the following properties:
     \begin{enumerate}[label=(\arabic*)]
         \item if $f\in C^\infty(M)$, then $df$ is the ordinary differential of $f$;
@@ -1513,20 +1519,13 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
 
 
 \begin{definition}
-    A form $\omega$ is called \textbf{closed} if $d\omega=0$. It is called \textbf{exact} if there exists a form $\eta$ such that
-    \[
-        \omega=d\eta.
-    \]
-    Since $d^2=0$, every exact form is closed.
+    A form $\omega$ is called \textbf{closed} if $d\omega=0$. It is called \textbf{exact} if there exists a form $\eta$ such that $\omega=d\eta$
+    \begin{remark}
+        Since $d^2=0$, every exact form is closed.
+    \end{remark}
 \end{definition}
 
-\begin{proposition}
-    Exterior differentiation commutes with pullback:
-    \[
-        F^*(d\omega)=d(F^*\omega)
-    \]
-    for every smooth map $F:M\rightarrow N$ and every $\omega\in\Omega^k(N)$.
-\end{proposition}
+
 
 \begin{proposition}[Invariant Formula for $d$]
     Let $\omega\in\Omega^k(M)$ and let $X_0,\ldots,X_k$ be smooth vector fields. Then
@@ -1544,37 +1543,39 @@ Given a vector space $V$, denote by $T^k(V)$ the $k$-th tensor power $V^{\otimes
     Here a hat means that the indicated argument is omitted.
 \end{proposition}
 
-\begin{corollary}
-    For a $1$-form $\omega$ and vector fields $X,Y$,
-    \[
-        d\omega(X,Y)
-        =
-        X(\omega(Y))-Y(\omega(X))-\omega([X,Y]).
-    \]
-\end{corollary}
 
 
 
-\subsubsection{Lie derivation of forms}
+
 
 
 
 
 \begin{theorem}[Cartan's Magic Formula]
-    On a smooth manifold, for every smooth vector field $V$ and every differential form $\omega$,
+    On a smooth manifold, for every smooth vector field $X$ and every differential form $\omega$,
     \[
-        \mathcal{L}_V\omega
+        \mathcal{L}_X\omega
         =
-        \iota_V(d\omega)+d(\iota_V\omega).
+        \iota_X(d\omega)+d(\iota_X\omega).
     \]
 \end{theorem}
 
-\begin{corollary}
-    The Lie derivative commutes with the exterior derivative:
-    \[
-        \mathcal{L}_V(d\omega)=d(\mathcal{L}_V\omega).
-    \]
-\end{corollary}
+\begin{proposition}
+    \begin{enumerate}
+        \item
+              The Lie derivative commutes with the exterior derivative:
+              \[
+                  \mathcal{L}_X(d\omega)=d(\mathcal{L}_X\omega).
+              \]
+        \item
+              Exterior differentiation commutes with pullback
+              \[
+                  f^*(d\omega)=d(f^*\omega)
+              \]
+        \item The Lie derivative commutes with pullback:
+    \end{enumerate}
+
+\end{proposition}
 
 
 

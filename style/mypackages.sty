@@ -42,8 +42,6 @@
 \RequirePackage{xcolor}         % 颜色支持
 \RequirePackage{ulem}           % 标记线
 
-% ========== 注释与调试 ==========
-\RequirePackage{comment}        % 块注释
 
 % ========== 编程工具与高级命令定义 ==========
 \RequirePackage{environ}        % 环境重定义
@@ -55,24 +53,6 @@
 
 
 
-% ========== 基础设置与字体 ==========
-\RequirePackage{fontspec}       % 字体设置
-\setmainfont{Times New Roman}
-
-% ========== 自定义计数器格式 ======
-\renewcommand{\thechapter}{\Roman{chapter}} % 章节编号使用大写罗马数字
-\renewcommand{\thesection}{\S \arabic{section}} % 小节编号使用阿拉伯数字，并在前面加上 § 符号
-
-% ========== 自定义命令 ==========
-\newtheorem{theorem}{Theorem}[section]  % 定理环境，按section计数
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{question}[theorem]{Question}
-\newtheorem*{remark}{Remark}
-\renewcommand{\thetheorem}{\arabic{section}.\arabic{theorem}} % 定理编号格式为  节号.定理序号
 
 
 
@@ -81,29 +61,14 @@
 \renewcommand{\theequation}{\arabic{equation}} % 将默认”公式编号“\theequation 替换为 “公式计数器” \arabic{equation}
 
 
-% ========== 页面布局与几何设置 ==========
-\RequirePackage{geometry}   % 页面边距设置
-\geometry{
-    a4paper,
-    inner=25mm,   % 内侧边距（装订边）
-    outer=20mm,   % 外侧边距
-    top=25mm,     % 顶部边距
-    bottom=20mm,  % 底部边距
-    headheight=15pt,
-    headsep=8mm,  % 页眉与正文间距
-    footskip=10mm, % 正文基线到页脚基线的距离
-    marginparsep=5mm,
-    marginparwidth=15mm % 旁注宽度
-}
 
-\RequirePackage{setspace}       % 行间距设置
-\onehalfspacing             % 1.5倍行距
 
-\RequirePackage{fancyhdr}       % 自定义页眉页脚
-\pagestyle{fancy}           % 启用 fancy 页面样式
-\fancyhf{}                  % 清空页眉和页脚的默认设置
-\fancyhead[L]{\thechapter,\ \thesection}
-\fancyhead[R]{\thepage}
+
+
+
+
+
+
 
 
 
@@ -170,10 +135,3 @@
 \date{\today}
 
 
-
-% 绝对值用\left| \right|，范数（||-||）用\left\| \right\| 括号用\left( \right) 或者 \left[ \right] \left\{ \right\} \left\langle \right\rangle
-% 行间公式用\begin{equation*} \end*{equation*}
-% 撇号用 ^{\prime}
-% 单面打印oneside
-% 不允许添加新的宏包和定义新的命令
-% 公式中的上下标内容用{}括起来

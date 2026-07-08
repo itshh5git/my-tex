@@ -1,7 +1,6 @@
-\documentclass[12pt, a4paper, oneside]{book}
-
-
-\usepackage{../mypackages}
+\documentclass[12pt, oneside]{book}
+\usepackage{../style/mypackages}
+\usepackage{../style/abbr}
 
 
 \begin{document}
@@ -375,16 +374,16 @@ The letter $\Omega$ will from now on denote a plane open set.
         Since $\Omega$ is connected and $f$ is not identically zero, we conclude that $f$ is not identically zero in a neighborhood of $z_0$. (If not, then $f^{-1}(0)$ is open and closed)
 
         In a small disc centered at $z_0$ the function $f$ has a power series expansion by Taylor's theorem
-        $$f(z)=\sum_{k=0}^\infty a_k(z-z_0)^k$$
-        Since $f$ is not identically zero near $z_0$, there exists a smallest integer $n$ such that $a_n\neq 0$. Then, we can write
-        $$f(z)=(z-z_0)^n[a_n+a_{n+1}(z-z_0)+\cdots]=(z-z_0)^ng(z)\:,$$
-        where $g$ is defned by the series in brackets, and hence is holomorphic in this small disk, and is nowhere vanishing for all $z$ close to $z_0$.
+    $$f(z)=\sum_{k=0}^\infty a_k(z-z_0)^k$$
+    Since $f$ is not identically zero near $z_0$, there exists a smallest integer $n$ such that $a_n\neq 0$. Then, we can write
+    $$f(z)=(z-z_0)^n[a_n+a_{n+1}(z-z_0)+\cdots]=(z-z_0)^ng(z)\:,$$
+    where $g$ is defned by the series in brackets, and hence is holomorphic in this small disk, and is nowhere vanishing for all $z$ close to $z_0$.
 
-        To prove the uniqueness of the integer $n$, suppose that we can also write
-        $$f(z)=(z-z_0)^ng(z)=(z-z_0)^mh(z)$$
-        where $h(z_0)\neq0.$ If $m>n$, then we may divide by $(z-z_0)^n$ to see that
-        $$g(z)=(z-z_0)^{m-n}h(z)$$
-        and letting $z\to z_0$ yields $g(z_0)=0$, a contradiction. If $m<n$ a similar argument gives $h(z_0)=0$, which is also a contradiction. We conclude that $m=n$, thus $h=g$, and the theorem is proved.
+    To prove the uniqueness of the integer $n$, suppose that we can also write
+    $$f(z)=(z-z_0)^ng(z)=(z-z_0)^mh(z)$$
+    where $h(z_0)\neq0.$ If $m>n$, then we may divide by $(z-z_0)^n$ to see that
+    $$g(z)=(z-z_0)^{m-n}h(z)$$
+    and letting $z\to z_0$ yields $g(z_0)=0$, a contradiction. If $m<n$ a similar argument gives $h(z_0)=0$, which is also a contradiction. We conclude that $m=n$, thus $h=g$, and the theorem is proved.
 \end{theorem}
 
 \begin{corollary}
@@ -935,10 +934,10 @@ The letter $\Omega$ will from now on denote a plane open set.
 \begin{theorem}
     If $f$ is an entire function that has an order of growth $\lambda$, then for every $\varepsilon >0$
     \begin{enumerate}
-        \item 
-         $\mathfrak{n}(r)=o(r^{\lambda+\varepsilon})$
-        \item 
-         If $a_1, a_2,\ldots$ denote the zeros of $f$, with $a_k\neq 0$, then we have
+        \item
+              $\mathfrak{n}(r)=o(r^{\lambda+\varepsilon})$
+        \item
+              If $a_1, a_2,\ldots$ denote the zeros of $f$, with $a_k\neq 0$, then we have
     \end{enumerate}
     $$
         \sum_{k=1}^\infty\frac1{\left|a_k\right|^{\lambda+\varepsilon}}<\infty

@@ -1,9 +1,9 @@
 \documentclass[12pt, oneside]{book}
-
 \usepackage{../style/mypackages}
-\usepackage{../style/abbr}
-\usepackage{../style/book}
-
+\usepackage{../style/macro}
+\usepackage{../style/font}
+\usepackage{../style/theorem}
+\usepackage{../style/format}
 
 
 
@@ -1387,7 +1387,14 @@ In the category $R$-$\Mod$ of left $R$-modules, projective objects are called pr
 
 
 \begin{definition}
-    If $\mathscr{F}$ is a presheaf on $X$, and if $P$ is a point of $X$, we define the \textbf{stalk} $\mathscr{F}_P$ of $\mathscr{F}$ at $P$ to be the direct limit of the groups $\mathscr{F}(U)$ for all open sets $U$ containing $P$, via the restriction maps $\rho$.
+    If $\mathscr{F}$ is a presheaf on $X$, and if $P$ is a point of $X$, we define the \textbf{stalk} $\mathscr{F}_P$ of $\mathscr{F}$ at $P$
+    \begin{equation*}
+        \mathscr{F}_P
+        :=
+        \lim_{\substack{\longrightarrow \\ P \in U}} \mathscr{F}(U)
+    \end{equation*}
+    to be the direct limit of the groups $\mathscr{F}(U)$ for all open sets $U$ containing $P$, via the restriction maps $\rho$.
+
 \end{definition}
 
 \begin{definition}

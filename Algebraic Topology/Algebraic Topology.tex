@@ -1,0 +1,437 @@
+\documentclass[12pt, oneside]{book}
+\usepackage{../style/mypackages}
+\usepackage{../style/macro}
+\usepackage{../style/font}
+\usepackage{../style/theorem}
+\usepackage{../style/format}
+
+
+
+\begin{document}
+\frontmatter
+\title{{\Huge{\textbf{Algebraic Topology}}}}
+\maketitle
+
+\dominitoc % 初始化minitoc
+\pagenumbering{Roman}
+\tableofcontents % 生成内容目录 
+
+
+\mainmatter
+
+\chapter{Homotopy}
+
+\section{Homotopy and homotopy equivalence}
+
+\begin{definition}
+    Given a topological space $X$,
+    \begin{enumerate}
+        \item
+              A \textbf{path} in $X$ is a continuous map $\gamma: I \to X$ where $I = [0,1]$ is the unit interval.
+        \item
+              The points $\gamma(0)$ and $\gamma(1)$ are called the \textbf{initial point} and \textbf{terminal point} of the path, respectively. And $\gamma(0)$ and $\gamma(1)$ are also called the \textbf{endpoints} of the path.
+        \item
+              A \textbf{loop} is a path $\gamma$ such that $\gamma(0) = \gamma(1)$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Two continuous maps $f,g: X \to Y$ are said to be \textbf{homotopic} if there exists a continuous map $H: X \times I \to Y$ such that $H(x,0) = f(x)$ and $H(x,1) = g(x)$ for all $x \in X$. The map $H$ is called a \textbf{homotopy} between $f$ and $g$, and we write $f \simeq g$.
+    \begin{remark}
+        The relation of homotopy on paths with fixed endpoints in any space
+        is an equivalence relation.
+    \end{remark}
+\end{definition}
+
+
+\begin{definition}
+    The set of all homotopy classes of loops at the base point $x_0$, denoted by
+    \begin{equation*}
+        \pi_1(X,x_0)
+    \end{equation*}
+    is a group with respect to the product $[f][g]:=\left[f * g\right]$. It is called the \textbf{fundamental group} of $X$ at $x_0$.
+\end{definition}
+
+
+
+\begin{proposition}
+    If there is a path $h$ from $x_0$ to $x_1$, then there is an isomorphism
+    $\pi_1(X,x_0) \to \pi_1(X,x_1)$
+    given by conjugation with $[f]\mapsto [h]^{-1}[f][h]$.
+\end{proposition}
+
+\begin{corollary}
+    If $X$ is path-connected, then the fundamental group $\pi_1(X,x_0)$ is independent of the base point $x_0$ up to isomorphism.
+\end{corollary}
+
+
+
+
+
+\subsection{}
+
+\begin{proposition}
+    The fundamental group $\pi_1: \mathbf{hTop}_* \to \Grp$ is a covariant functor from the homotopy category of pointed topological spaces to the category of groups.
+\end{proposition}
+
+
+\begin{corollary}
+    If $X$ retracts onto a subspace $A$, then $i_*: \pi_1(A,x_0) \to \pi_1(X,x_0)$ is injective.
+\end{corollary}
+
+\chapter{Homology}
+\section{}
+
+\begin{definition}
+    Given a sufficiently large $N$ and consider the $N$-dimensional Euclidean space $\mathbb{R}^N$ and $v_0,v_1,\ldots,v_n \in \mathbb{R}^N$.
+
+    \begin{enumerate}
+        \item
+              A \textbf{$n$-simplex} is the convex hull of $n+1$ points $v_0,v_1,\ldots,v_n$ in $\mathbb{R}^N$ that do not lie in any $(n-1)$-dimensional hyperplane. It is denoted by
+              \begin{equation*}
+                  \left[v_0,v_1,\ldots,v_n\right]
+                  :=
+                  \left\{\sum_{i=0}^{n}t_iv_i \mid t_i \geq 0, \sum  t_i=1\right\}
+              \end{equation*}
+              $v_i$ are called the \textbf{vertices} of the simplex.
+        \item
+              A \textbf{subsimplex} of $\left[v_0,v_1,\ldots,v_n\right]$ is a simplex of the form
+              \begin{equation*}
+                  \left[v_{i_0},v_{i_1},\ldots,v_{i_k}\right],\quad 0\leq i_0< i_1<\cdots<i_k\leq n
+              \end{equation*}
+
+
+              For any $k<n$ and $k$-subsimplex, there exists canonical linear homeomorphism
+              \begin{equation*}
+                  [v_0,v_1,\ldots,v_k]
+                  \to
+                  \left[v_{i_0},v_{i_1},\ldots,v_{i_k}\right],\quad
+                  t^jv_j \mapsto t^jv_{i_j}
+              \end{equation*}
+        \item
+              The subsimplex $\left[v_0,\ldots,\hat{v_i},\ldots,v_n\right]$ is called the \textbf{$i$-th face} of $\left[v_0,v_1,\ldots,v_n\right]$.
+    \end{enumerate}
+    \begin{remark}
+        Without loss of generality, we can assume that $v_0=0$ and $v_i=e_i$ for $i=1,\ldots,n$, where $e_i$ is the standard basis of $\mathbb{R}^n$.
+        In this case, we denote the simplex by $\Delta^n$ and its $i$-th face by $\delta_i: \Delta^{n-1}\to \Delta^n$.
+    \end{remark}
+
+
+
+
+
+\end{definition}
+
+
+
+\begin{definition}
+    A $\Delta$-complex structure on a space $X$ is a collection of maps $\sigma_\alpha:\Delta^{n}\to X$ with $n$ depending on $\alpha$, such that
+    \begin{enumerate}[label=(\roman*)]
+        \item
+              Each restriction $\sigma_\alpha|_{\Int \Delta^{n}}$ is injective and $X= \bigsqcup_{\alpha} \sigma_\alpha(\Int \Delta^{n})$
+        \item
+              Each restriction of $\sigma$ to a face of $\Delta^{n}$ is equal to some $\sigma_\beta$, that is, for each $i$, there exists $\beta$ such that $\sigma_\alpha \circ d^i = \sigma_\beta$.
+        \item
+              A set $A \subset X$ is open if and only if $\sigma_\alpha^{-1}(A)$ is open in $\Delta^{n}$ for each $\alpha$.
+    \end{enumerate}
+\end{definition}
+
+
+
+\section{}
+\begin{definition}
+    A CW complex is a space $X$ together with a filtration
+    \begin{equation*}
+        \varnothing = X^{-1} \subset X^0 \subset X^1 \subset \cdots \subset X^n \subset \cdots \subset X
+    \end{equation*}
+    such that for each $n\geq 0$, there is a pushout diagram
+    \begin{equation*}
+        \begin{tikzcd}
+            \coprod_{\alpha \in \mathcal{A}_n} S^{n-1}_\alpha \arrow[r] \arrow[d,hook] & X^{n-1} \arrow[d]\\
+            \coprod_{\alpha \in \mathcal{A}_n} D^{n}_\alpha \arrow[r,""] & X^n \\
+        \end{tikzcd}
+    \end{equation*}
+    A CW-complex is finite-dimensional if $X^n = X$ for some $n$; of finite type if each $\mathcal{A}_n$ is finite; and finite if it is finite-dimensional and of finite type.
+\end{definition}
+
+
+
+
+
+\section{}
+\begin{definition}
+    A \textbf{singular n-simplex} in $X$ is a continuous map $\sigma: \Delta^n \to X$. The set of all singular n-simplices in $X$ is denoted by $\mathrm{Sin}_n(X)$.
+    The \textbf{boundary operator} $\partial_n: \mathrm{Sin}_n(X) \to \mathrm{Sin}_{n-1}(X)$ is defined by
+    \begin{equation*}
+        \partial_n(\sigma) := \sum_{i=0}^{n}(-1)^i\sigma\circ \delta_i
+    \end{equation*}
+
+
+
+
+\end{definition}
+
+
+\begin{definition}
+    The abelian group of \textbf{singular n-chains} in $X$ is the free abelian group $C_n(X):= \mathbb{Z}\mathrm{Sin}_n(X)$.
+    The complex of singular chains is the sequence of abelian groups
+    \begin{equation*}
+        \cdots \xrightarrow{\partial_{n+1}} C_n(X) \xrightarrow{\partial_n} C_{n-1}(X) \xrightarrow{\partial_{n-1}} \cdots \xrightarrow{\partial_1} C_0(X) \xrightarrow{\partial_0} 0
+    \end{equation*}
+    The $n$-dimensional boundary $B_n(X):= \mathrm{Im}(\partial_{n+1})$ and the $n$-dimensional cycle $Z_n(X):= \ker(\partial_n)$ are subgroups of $C_n(X)$.
+    The $n$-th singular homology group of $X$ is defined as the quotient group $H_n(X):= Z_n(X)/B_n(X)$.
+\end{definition}
+
+
+
+The singular simplex, singular chain, and singular homology are functorial. That is,
+\begin{equation*}
+    \begin{tikzcd}
+        \Top & & & \Ab \\
+        X \arrow[dd,"f"']&  \mathrm{Sin}(X)\arrow[dd,""] & C_{*}(X)\arrow[dd,""] & H_{*}(X)\arrow[dd,""]\\
+        &  & &\\
+        Y &\mathrm{Sin}(Y)& C_{*}(Y)& H_{*}(Y)\\
+    \end{tikzcd}
+\end{equation*}
+where the map $f: X \to Y$ induces the maps.
+\begin{equation*}
+    \begin{tikzcd}
+        \mathrm{Sin}_n(X) \arrow[r,"\partial_n"] \arrow[d,"f\circ -"'] & \mathrm{Sin}_{n-1}(X) \arrow[d,"f\circ -"]\\
+        \mathrm{Sin}_n(Y) \arrow[r,"\partial_n"] & \mathrm{Sin}_{n-1}(Y)
+    \end{tikzcd}
+    \mapsto
+    \begin{tikzcd}
+        C_n(X) \arrow[r,"\partial_n"] \arrow[d,"f_{\#}"'] & C_{n-1}(X) \arrow[d,"f_{\#}"]\\
+        C_n(Y) \arrow[r,"\partial_n"] & C_{n-1}(Y)
+    \end{tikzcd}
+    \mapsto
+    \begin{tikzcd}
+        H_n(X) \arrow[r,"\partial_n"] \arrow[d,"f_{*}"'] & H_{n-1}(X) \arrow[d,"f_{*}"]\\
+        H_n(Y) \arrow[r,"\partial_n"] & H_{n-1}(Y)
+    \end{tikzcd}
+\end{equation*}
+
+
+In particular, $\mathrm{Sin}_n$, $C_n$ and $H_n$ are also functors
+from $\Top$ to $\Ab$ or $\Set$.
+And the natural transformations between $H_n$ and $H_{n-1}$ is the boundary operators $\partial_n$.
+
+
+
+\begin{theorem}
+    If two maps $f,g : X\to Y$ are homotopic, then they induce the homotopic chain maps, and same homomorphism.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+\begin{proposition}
+    If decomposition $X = \coprod_{\alpha} X_\alpha$ is a disjoint union of open subsets(especially its path components), then $H_n(X) \cong \prod_{\alpha} H_n(X_\alpha)$ for each $n \geq 0$.
+\end{proposition}
+
+
+\begin{proposition}
+    If $X$ is nonempty and path-connected, then $H_0(X) \cong \mathbb{Z}$.
+    Hence for any space $X$, $H_0(X)$ is a free abelian group.
+\end{proposition}
+
+
+
+\section{Axioms of Singular Homology Theory}
+Let $X$ be a topological space and $A \subset X$ be a subspace. The pair $(X,A)$ is called a \textbf{topological space pair}. A map of space pairs $f: (X,A) \to (Y,B)$ is a continuous map $f: X \to Y$ such that $f(A) \subset B$.
+A continuous map $f:X \to Y$ can be viewed as a map of pairs $f: (X,\varnothing) \to (Y,\varnothing)$.
+This is the category of space pair $\Top^2$ whose objects are topological pairs and morphisms are maps of space pairs.
+The maps $f,g: (X,A) \to (Y,B)$ are said to be \textbf{homotopic} if there is a homotopy $H: X \times I \to Y$ such that $H(A \times I) \subset B$ and $H(x,0) = f(x)$, $H(x,1) = g(x)$ for all $x \in X$.
+
+
+For every $n$, there is a abelian group
+\begin{equation*}
+    H_n(X,A)
+\end{equation*}
+defined as $H_n(X)/H_n(A)$ (The notation $H_n(X)$ denotes $H_n(X,\varnothing)$).
+The continuous map $f: (X,A) \to (Y,B)$ induces a homomorphism \begin{equation*}
+    f_*: H_n(X,A) \to H_n(Y,B)
+\end{equation*}
+for each $n$ and satisfies the functoriality.
+In oter words, we define functor
+\begin{equation*}
+    H_n: \Top^2 \to \Ab
+\end{equation*}
+for each $n$.
+
+
+For each $n$, there is a natural transformation $\partial$ such that the following diagram commutes
+\begin{equation*}
+    \begin{tikzcd}
+        H_n(X,A) \arrow[r,"\partial"] \arrow[d,"f_*"'] & H_{n-1}(A) \arrow[d,"f_*"]\\
+        H_n(Y,B) \arrow[r,"\partial"] & H_{n-1}(B)
+    \end{tikzcd}
+\end{equation*}
+
+
+
+\begin{theorem}[Long exact sequence]
+    Given a space pair $(X,A)$, there is a exact sequence of chain complexes
+    $0 \to C_*(A) \xrightarrow{i} C_*(X) \xrightarrow{j} C_*(X,A) \to 0$
+    where $C_n(X,A):= C_n(X)/C_n(A)$.
+    Thus there is a long exact sequence of homology groups
+    \begin{equation*}
+        \cdots \to H_n(A) \xrightarrow{i_*} H_n(X) \xrightarrow{j_*} H_n(X,A) \xrightarrow{\partial} H_{n-1}(A) \to \cdots
+    \end{equation*}
+\end{theorem}
+
+\begin{proposition}
+    If $f,g: (X,A) \to (Y,B)$ are homotopic maps, then they induce the same homomorphism on homology: $f_* = g_*$.
+\end{proposition}
+
+
+\begin{theorem}[Excision]
+    Given subspaces $Z \subset A \subset X$ such that $\overline{Z} \subset \Int(A)$, then the inclusion $(X- Z, A- Z) \hookrightarrow (X,A)$ induces an isomorphism $H_n(X-Z,A-Z) \cong H_n(X,A)$ for all $n$.
+\end{theorem}
+
+
+
+
+\section{The universal coefficient theorem}
+
+\begin{theorem}
+    \begin{equation*}
+        \begin{tikzcd}
+            0 \arrow[r] & H_n(X) \otimes G \arrow[r] & H_n(X;G) \arrow[r] & \Tor(H_{n-1}(X),G) \arrow[r] & 0
+        \end{tikzcd}
+    \end{equation*}
+\end{theorem}
+
+\section{Mayer-Vietoris sequence}
+\begin{theorem}
+    If $X = A \cup B$ where the interiors of $A$ and $B$ cover $X$, then there is a long exact sequence
+    \begin{equation*}
+        \begin{tikzcd}
+            \cdots \arrow[r] & H_n(A\cap B) \arrow[r] & H_n(A)\oplus H_n(B) \arrow[r] & H_n(X) \arrow[r] & H_{n-1}(A\cap B) \arrow[r] & \cdots
+        \end{tikzcd}
+    \end{equation*}
+\end{theorem}
+
+\section{Kunneth formula}
+
+\begin{theorem}[Eilenberg-Zilber]
+    \begin{equation*}
+        C_*(X\times Y) \cong  C_*(X)\otimes C_*(Y)
+    \end{equation*}
+    is a chain homotopy equivalence.
+\end{theorem}
+
+
+\begin{theorem}[Kunneth formula]
+    \begin{equation*}
+        \begin{tikzcd}
+            0 \arrow[r] & \bigoplus\limits_{p+q=n} H_p(X)\otimes H_q(Y) \arrow[r] & H_n(X\times Y) \arrow[r] & \bigoplus\limits_{p+q=n-1} \Tor(H_p(X),H_q(Y)) \arrow[r] & 0
+        \end{tikzcd}
+    \end{equation*}
+\end{theorem}
+
+
+
+\chapter{Cohomology}
+\section{Singular cohomology}
+\begin{definition}
+    Consider the $R$-coefficient chain complex $C_n(X;R)$, the $R$-coefficient cochain complex is defined as
+    $C^n(X;R) := \Hom_R(C_n(X;R),R)$
+    \begin{equation*}
+        \begin{tikzcd}
+            C_{n+1}\arrow[r,"\partial"] &  C_{n}\arrow[r,"\partial"]  &  C_{n-1} \\
+            C^{n+1}  &   \arrow[l,"\delta"']   C^{n}&\arrow[l,"\delta"']   C^{n-1}
+        \end{tikzcd}
+    \end{equation*}
+    The singular cohomology group is defined as
+    \begin{equation*}
+        \begin{tikzcd}
+            H^n(X;R) := \Ker\left(  \right)
+        \end{tikzcd}
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}
+
+\end{theorem}
+\subsection{Cup product and cohomology ring}
+
+
+\begin{definition}
+    For cochains $\phi \in C^p(X;R)$ and $\psi \in C^q(X;R)$, the \textbf{cup product} $\phi \smile \psi$ is defined as
+    \begin{equation*}
+        \phi \smile \psi (\sigma) := \phi(\sigma|_{[v_0,\ldots,v_p]}) \cdot \psi(\sigma|_{[v_p,\ldots,v_{p+q}]})
+    \end{equation*}
+\end{definition}
+
+\begin{lemma}
+    For cochains $\phi \in C^p(X;R)$,$\psi \in C^q(X;R)$ and $\varphi \in C^r(X;R)$, the following properties hold:
+    \begin{enumerate}
+        \item Bilinearity
+        \item Associativity: $(\phi \smile \psi) \smile \varphi = \phi \smile (\psi \smile \varphi)$
+        \item The identity element: $1 \in C^0(X;R)$ is the identity element for the cup product.
+    \end{enumerate}
+\end{lemma}
+
+
+\begin{definition}
+    The \textbf{cohomology ring} $H^*(X;R)$ is the graded ring defined as
+    \begin{equation*}
+        H^*(X;R) := \bigoplus_{n=0}^{\infty} H^n(X;R)
+    \end{equation*}
+    with the cup product as the multiplication.
+    \begin{remark}
+        It has a natural $R$-module structure.
+    \end{remark}
+\end{definition}
+
+
+
+\begin{definition}
+    The \textbf{cross product} or \textbf{external cup product}
+    \begin{equation*}
+        \times: H^p(X;R) \times H^q(Y;R) \longrightarrow H^{p+q}(X\times Y;R)
+    \end{equation*}
+    is defined as
+    \begin{equation*}
+        \phi \times \psi := p_1^*\phi \smile p_2^*\psi
+    \end{equation*}
+    where $p_1: X\times Y \to X$ and $p_2: X\times Y \to Y$ are the projection maps.
+\end{definition}
+
+
+
+
+
+
+\begin{proposition}
+    \begin{enumerate}
+        \item $\delta (\phi \smile \psi) = \delta \phi \smile \psi + (-1)^p \phi \smile \delta \psi$
+        \item $\delta (\phi \smile \psi) = (-1)^{p+q} \delta (\psi\smile \phi )$
+        \item $\delta$ has naturity: $f^*(\phi \smile \psi) = f^*\phi \smile f^*\psi$
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

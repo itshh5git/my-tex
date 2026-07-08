@@ -1,4 +1,4 @@
-% ========== 页面布局与几何 ==========
+% ========== Page Layout ==========
 \RequirePackage{geometry}   % 页面边距设置
 \geometry{
     a4paper,
@@ -12,8 +12,10 @@
     marginparsep=5mm,
     marginparwidth=15mm % 旁注宽度
 }
+
+
 % ========== 行间距 ==========
-\RequirePackage{setspace}      
+\RequirePackage{setspace}
 \onehalfspacing             % 1.5x
 
 
@@ -29,9 +31,25 @@
 
 
 
-% ========== 目录 ==========
 
+
+% ========== chapter, section ========== 
 \RequirePackage{titlesec}       % 自定义章节标题样式
+\titleformat{\section}
+{\Large\bfseries}
+{\thesection}
+{1em}
+{}
+
+\renewcommand{\thechapter}{\Roman{chapter}} % 章节编号使用大写罗马数字
+\renewcommand{\thesection}{\S \arabic{section}} % 小节编号使用阿拉伯数字，并在前面加上 § 符号
+
+
+
+
+
+
+% ========== content ==========
 \RequirePackage{titletoc}       % 自定义目录样式
 \setcounter{tocdepth}{3}    % 目录显示到 subsection
 \setcounter{secnumdepth}{2} % 编号深度subsection
@@ -45,24 +63,7 @@
 
 
 
-% ========== 基础设置与字体 ==========
-\RequirePackage{fontspec}       % 字体设置
-\setmainfont{Times New Roman}
-
-% ========== 自定义计数器格式 ======
-\renewcommand{\thechapter}{\Roman{chapter}} % 章节编号使用大写罗马数字
-\renewcommand{\thesection}{\S \arabic{section}} % 小节编号使用阿拉伯数字，并在前面加上 § 符号
 
 
 
 
-% ========== 定理环境 ==========
-\newtheorem{theorem}{Theorem}[section]  % 定理环境，按section计数
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{question}[theorem]{Question}
-\newtheorem*{remark}{Remark}
-\renewcommand{\thetheorem}{\arabic{section}.\arabic{theorem}} % 定理编号格式为  节号.定理序号
