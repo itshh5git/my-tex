@@ -1,0 +1,56 @@
+\documentclass[12pt, oneside]{book}
+\usepackage{../style/mypackages}
+\usepackage{../style/macro}
+\usepackage{../style/font}
+\usepackage{../style/theorem}
+\usepackage{../style/format}
+
+\begin{document}
+\frontmatter
+\title{{\Huge{\textbf{Differential Manifolds}}}}
+\maketitle
+\pagenumbering{Roman}
+\tableofcontents
+\mainmatter
+
+\chapter{}
+\section{}
+Given a funtion $f(x,y)$ defined on a deleted neighborhood of $(x_0,y_0)$
+\begin{proposition}
+    If $\lim\limits_{(x,y)\to (x_0,y_0)} f(x,y) = A$
+    \begin{enumerate}
+        \item 
+        if $\lim\limits_{x\to x_0} f(x,y) $ exists for all $y\neq y_0$, then $\lim\limits_{y\to y_0}\lim\limits_{x\to x_0} f(x,y) = A$.
+        \item 
+        if $\lim\limits_{y\to y_0} f(x,y) $ exists for all $x\neq x_0$, then $\lim\limits_{x\to x_0}\lim\limits_{y\to y_0} f(x,y) = A$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{example}
+    \begin{equation*}
+        f(x,y)=
+        \begin{cases}
+            x\sin \frac{1}{y}& ,y\neq 0\\  
+            0& ,y=0
+        \end{cases}
+    \end{equation*}
+    $\lim\limits_{(x,y)\to (0,0)} f(x,y) =\lim\limits_{y\to 0}\lim\limits_{x\to 0} f(x,y)=0 $, but $\lim\limits_{x\to 0}\lim\limits_{y\to 0} f(x,y)$ does not exist.
+\end{example}
+\begin{example}
+    \begin{equation*}
+        f(x,y)=\frac{x^2-y^2}{x^2+y^2}
+    \end{equation*}
+\end{example}
+
+
+\begin{proposition}
+    If
+    \begin{enumerate}[label=(\roman*)]
+        \item $\lim\limits_{y\to y_0} f(x,y) =g(x)$ exists for all $x\neq x_0$ 
+        \item $\lim\limits_{x\to x_0} f(x,y)=h(y) $  uniformly for all $y\neq y_0$
+    \end{enumerate}
+    then $\lim g(x)=\lim h(y)$ exists and $ \lim g(x)=\lim h(y)$.
+\end{proposition}
+
+
+\end{document}

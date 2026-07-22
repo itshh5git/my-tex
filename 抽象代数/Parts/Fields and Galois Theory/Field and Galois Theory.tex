@@ -552,7 +552,7 @@ In this section, we always assume that all extension $L_i/K$ encountered in a pr
     \end{enumerate}
     \begin{remark}
         Thus separable polynomial has distinct roots in its splitting field.
-        If $\char K =0$, every irreducible polynomial in $K[x]$ is separable and every algebraic extension $L/K$ is separable.
+        If $\operatorname{char} K =0$, every irreducible polynomial in $K[x]$ is separable and every algebraic extension $L/K$ is separable.
     \end{remark}
 \end{definition}
 
@@ -638,8 +638,8 @@ $\Hom_{K}\left( L,L \right)$
     \label{thm:decompositon of algebraic extension}
     Let $L/K$ be an algebraic extension, then there exists a unique intermediate field $M$ ( actually $L_{sep}$ ) such that $L_{sep}/K$ is separable and $L/L_{sep}$ is purely inseparable.
     \begin{proof}
-        If $\char K = 0$, then let $M=L$.
-        In the case $\char K = p \neq 0$, let $u \in L$ and $m_u$ be the minimal polynomial of $u$ over $K$.
+        If $\operatorname{char} K = 0$, then let $M=L$.
+        In the case $\operatorname{char} K = p \neq 0$, let $u \in L$ and $m_u$ be the minimal polynomial of $u$ over $K$.
         We can write $m_u(x)=f\left(x^{p^n}\right)$ for some  irreducible separable polynomial $f \in K[x]$ and integer $n \geq 0$. Thus $f$ is the minimal polynomial of $u^{p^n}$ over $K$ and $u^{p^n}\in L_{sep}$ is separable over $K$.
         Then $u$ is purely inseparable over $L_{sep}$ since its minimal polynomial in $L_{sep}[x]$ divides $X^{p^n}-u^{p^n}=(X-u)^{p^n}$.
     \end{proof}
@@ -888,7 +888,7 @@ $\Hom_{K}\left( L,L \right)$
         [L: K]=|G|
     \end{equation*}
     \begin{proof}
-        
+
     \end{proof}
 \end{theorem}
 
@@ -1232,7 +1232,7 @@ $\Hom_{K}\left( L,L \right)$
 
 
 \begin{definition}
-    Let $K$ be a field with $\char  K  \neq 2$ and $ f  \in  K [ x ]$ a polynomial of degree n with n distinct roots $ u _1, \ldots, u_n $ in some splitting field $F$ of $f$ over $K$.
+    Let $K$ be a field with $\operatorname{char}  K  \neq 2$ and $ f  \in  K [ x ]$ a polynomial of degree n with n distinct roots $ u _1, \ldots, u_n $ in some splitting field $F$ of $f$ over $K$.
     Let
     \begin{equation*}
         \Delta=\prod_{i<j}\left( u _{{i}}- u _{{j}}\right)=\left( u _1- u _2\right)\left( u _1- u _3\right) \cdots\left( u _{{n}-1}- u _{{n}}\right) \in F
@@ -1254,11 +1254,11 @@ $\Hom_{K}\left( L,L \right)$
 
     (1)
     let $P$ be the intersection of all subfields of $F$.
-    Then $P$ is a field with no proper subfields. If  $\char F=p$ (prime), then $\mathrm{P} \cong \mathbb{Z}_{p}$. If char $F=0$, then $P\cong \mathbb{Q}$, the field of rational numbers.
+    Then $P$ is a field with no proper subfields. If  $\operatorname{char} F=p$ (prime), then $\mathrm{P} \cong \mathbb{Z}_{p}$. If char $F=0$, then $P\cong \mathbb{Q}$, the field of rational numbers.
     The field $P$ is called the \textbf{prime subfield} of $F$.
 
     (2)
-    If $F$ is a finite field, then  $\char F=p \neq 0$ for some prime p and $|F|=p^{n}$ with $n=\left[F:P\right] \geq 1$, we have $\mathbb{Z}_p$-module isomorphism
+    If $F$ is a finite field, then  $\operatorname{char} F=p \neq 0$ for some prime p and $|F|=p^{n}$ with $n=\left[F:P\right] \geq 1$, we have $\mathbb{Z}_p$-module isomorphism
     \begin{equation*}
         F\cong  \left(\mathbb{Z}_p\right)^n
     \end{equation*}
@@ -1281,7 +1281,7 @@ $\Hom_{K}\left( L,L \right)$
 \end{theorem}
 
 \begin{corollary}
-    If $F$ is a finite field with $\char F =p$. Then
+    If $F$ is a finite field with $\operatorname{char} F =p$. Then
 
     (1) $F = \mathbb{Z}_p\left(u\right)$ where $u$ is a generator of $F^\times$
 
