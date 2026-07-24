@@ -744,14 +744,592 @@ two independent parameters.
 \end{definition}
 
 \chapter{The Geometry of the Gauss Map}
-
-\section{Introduction}
 \section{The Definition of the Gauss Map and Its Fundamental Properties}
+
+\begin{definition}
+    An \textbf{orientation} of a regular surface $S$ is a differentiable choice
+    of a unit normal vector $N(p)$ at every $p\in S$.  A surface admitting such
+    a choice is \textbf{orientable}.  For an oriented parametrization
+    $x:U\rightarrow S$,
+    \[
+        N=\frac{x_u\wedge x_v}{|x_u\wedge x_v|}.
+    \]
+\end{definition}
+
+Every regular surface is locally orientable, although it need not be globally
+orientable; the M\"obius strip is the standard example.  An orientation of
+$S$ determines an orientation of $T_pS$: a basis $\{v,w\}$ is positive when
+$\langle v\wedge w,N(p)\rangle>0$.
+
+\begin{definition}
+    The \textbf{Gauss map} of the oriented surface $S$ is
+    \[
+        N:S\longrightarrow\mathbb{S}^2,
+        \qquad p\longmapsto N(p).
+    \]
+    Its differential may be regarded as an endomorphism
+    \[
+        dN_p:T_pS\longrightarrow T_pS,
+    \]
+    since $T_{N(p)}\mathbb{S}^2$ and $T_pS$ are the same vector subspace of
+    $\mathbb{R}^3$.
+\end{definition}
+
+
+
+
+\begin{proposition}
+    The linear map $dN_p:T_pS\rightarrow T_pS$ defined by
+    \begin{equation*}
+        dN_p(x_u)=N_u,\qquad dN_p(x_v)=N_v
+    \end{equation*}
+    is self-adjoint with respect to the inner product of $\mathbb{R}^3$.
+\end{proposition}
+
+\begin{proof}
+    In a parametrization $x(u,v)$, $dN_p(x_u)=N_u$ and
+    $dN_p(x_v)=N_v$.  Differentiating
+    $\langle N,x_u\rangle=\langle N,x_v\rangle=0$ gives
+    \[
+        \langle N_u,x_v\rangle=-\langle N,x_{uv}\rangle
+        =\langle x_u,N_v\rangle.
+    \]
+    This proves the assertion on the basis $\{x_u,x_v\}$.
+\end{proof}
+
+\begin{definition}
+    The \textbf{shape operator} (or \textbf{Weingarten map}) is
+    \[
+        W_p:=-dN_p:T_pS\longrightarrow T_pS.
+    \]
+    \begin{enumerate}
+
+        \item
+              The \textbf{Gaussian curvature} $K:= \det (W_p) $ and the mean curvature
+              $H:=\frac12\operatorname{tr}(W_p)$ .
+        \item
+              The \textbf{principal curvatures} $k_1, k_2$ are the eigenvalues of $W_p$, and the corresponding orthonormal  eigenvectors are called \textbf{principal directions}.
+        \item The \textbf{second fundamental form} is the quadratic form
+              \[
+                  \mathrm{II}_p(v)
+                  :=
+                  \langle W_p v,v\rangle
+                  =-\langle dN_p(v),v\rangle.
+              \]
+              with representation in the basis $\{x_u,x_v\}$ given by the matrix
+              \[
+                  \begin{pmatrix}
+                      e & f \\
+                      f & g
+                  \end{pmatrix},
+              \]
+              where $e=\langle x_{uu},N\rangle$, $f=\langle x_{uv},N\rangle$, and $g=\langle x_{vv},N\rangle$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    A point $p\in S$ is
+    \begin{enumerate}
+        \item \textbf{elliptic} if $K(p)>0$;
+        \item \textbf{hyperbolic} if $K(p)<0$;
+        \item \textbf{parabolic} if $K(p)=0$ and $dN_p\neq0$;
+        \item \textbf{planar} if $dN_p=0$.
+        \item \textbf{umbilical} if $k_1(p)=k_2(p)$.
+    \end{enumerate}
+\end{definition}
+
+\section{Curve Theory on Surfaces}
+
+\begin{definition}
+    Let $C\subset S$ be a regular curve through $p$,, with curvature $k$ and principal normal $n$(or say curvature vecotr ).
+    The \textbf{normal curvature} of $C$ in $S$ at $p$ is
+    \[
+        k_n:=k\langle n,N\rangle=\langle\alpha''(0),N(p)\rangle.
+    \]
+    \begin{remark}
+        Changing the orientation of the curve does not change $k_n$, while changing
+        the orientation of the surface changes its sign.
+    \end{remark}
+\end{definition}
+
+
+
+
+
+The intersection of $S$ with the plane spanned by $v$ and $N(p)$ is the
+\textbf{normal section} along $v$.  Its curvature at $p$ is $|k_n(v)|$.
+
+
+
+\begin{proposition}[Olinde Rodrigues]
+    A connected regular curve $\alpha(t)$ on $S$ is a line of curvature if
+    and only if
+    \[
+        N'(t)=\lambda(t)\alpha'(t).
+    \]
+    In that case the principal curvature along $\alpha'(t)$ is
+    $-\lambda(t)$.
+\end{proposition}
+
+If a unit vector $v$ makes an angle $\theta$ with $e_1$, then
+\[
+    v=e_1\cos\theta+e_2\sin\theta.
+\]
+Consequently one obtains Euler's formula
+\begin{equation}
+    k_n(v)=k_1\cos^2\theta+k_2\sin^2\theta.
+    \label{eq:euler-normal-curvature}
+\end{equation}
+
+
+
+The value of $K$ is independent of the orientation of $S$, whereas the signs
+of $H,k_1,k_2$ change when $N$ is replaced by $-N$.
+
+
+
+Planes and spheres consist entirely of umbilical points.  On a cylinder every
+point is parabolic; its principal curvatures are $0$ and the reciprocal of the
+radius, up to the chosen orientation.
+
+\begin{proposition}
+    If every point of a connected regular surface $S$ is umbilical, then $S$
+    is contained in a plane or in a sphere.
+\end{proposition}
+
+\begin{proof}
+    Locally $dN=\lambda I$.  From $N_u=\lambda x_u$ and
+    $N_v=\lambda x_v$, equality of mixed derivatives yields
+    $\lambda_u=\lambda_v=0$.  If $\lambda=0$, $N$ is constant and the patch
+    lies in a plane.  If $\lambda\neq0$, then
+    $x-\lambda^{-1}N$ is constant, so the patch lies in a sphere of radius
+    $|\lambda|^{-1}$.  Connectedness extends the conclusion to all of $S$.
+\end{proof}
+
+\begin{definition}
+    A nonzero direction $v\in T_pS$ is an \textbf{asymptotic direction} if
+    $\mathrm{II}_p(v)=0$.  A curve tangent everywhere to asymptotic directions
+    is an \textbf{asymptotic curve}.
+\end{definition}
+
+There are no asymptotic directions at an elliptic point, exactly two at a
+hyperbolic point, and one at a parabolic point.  At a planar point every
+direction is asymptotic.
+
+\begin{definition}
+    The \textbf{Dupin indicatrix} at $p$ is the set of vectors $w\in T_pS$
+    satisfying $\mathrm{II}_p(w)=\pm1$.  In principal coordinates
+    $w=\xi e_1+\eta e_2$, its equation is
+    \[
+        k_1\xi^2+k_2\eta^2=\pm1.
+    \]
+\end{definition}
+
+It is an ellipse at an elliptic point and a pair of hyperbolas with common
+asymptotes at a hyperbolic point.  At a parabolic point it degenerates into a
+pair of parallel lines.  These pictures encode the asymptotic directions and
+the variation of normal curvature.
+
+\begin{definition}
+    Nonzero vectors $v,w\in T_pS$ are \textbf{conjugate} if
+    \[
+        \langle dN_p(v),w\rangle=0,
+    \]
+    equivalently $\langle A_pv,w\rangle=0$.
+\end{definition}
+
+Principal directions are conjugate; an asymptotic direction is conjugate to
+itself.  If $v$ and $w$ make angles $\theta$ and $\varphi$ with $e_1$, then
+they are conjugate precisely when
+\[
+    k_1\cos\theta\cos\varphi
+    +k_2\sin\theta\sin\varphi=0.
+\]
+
 \section{The Gauss Map in Local Coordinates}
+
+Let $x(u,v)$ be a positively oriented parametrization.  Write
+\[
+    E=\langle x_u,x_u\rangle,
+    \qquad F=\langle x_u,x_v\rangle,
+    \qquad G=\langle x_v,x_v\rangle
+\]
+for the coefficients of the first fundamental form.  The coefficients of the
+second fundamental form are
+\[
+    e=\langle N,x_{uu}\rangle=-\langle N_u,x_u\rangle,
+    \quad
+    f=\langle N,x_{uv}\rangle=-\langle N_u,x_v\rangle,
+    \quad
+    g=\langle N,x_{vv}\rangle=-\langle N_v,x_v\rangle.
+\]
+Thus, for $w=x_u u'+x_v v'$,
+\begin{equation}
+    \mathrm{I}(w)=E(u')^2+2Fu'v'+G(v')^2,
+    \qquad
+    \mathrm{II}(w)=e(u')^2+2fu'v'+g(v')^2.
+    \label{eq:fundamental-forms}
+\end{equation}
+
+Writing
+\[
+    N_u=a_{11}x_u+a_{21}x_v,
+    \qquad
+    N_v=a_{12}x_u+a_{22}x_v,
+\]
+the matrix of $dN$ in the basis $\{x_u,x_v\}$ is
+\begin{equation}
+    [dN]=\frac{1}{EG-F^2}
+    \begin{pmatrix}
+        fF-eG & gF-fG \\
+        eF-fE & fF-gE
+    \end{pmatrix}.
+    \label{eq:weingarten-matrix}
+\end{equation}
+Equivalently, the Weingarten equations are obtained from
+\[
+    [A]=[\mathrm{I}]^{-1}[\mathrm{II}],
+    \qquad A=-dN.
+\]
+
+It follows immediately that
+\begin{equation}
+    K=\frac{eg-f^2}{EG-F^2},
+    \qquad
+    H=\frac{eG-2fF+gE}{2(EG-F^2)}.
+    \label{eq:KH-local}
+\end{equation}
+The principal curvatures are the roots of
+\[
+    k^2-2Hk+K=0,
+    \qquad
+    k_{1,2}=H\pm\sqrt{H^2-K}.
+\]
+
+
+\begin{proposition}
+    The representation of $W_p$ in the basis $\{x_u,x_v\}$ is
+    \begin{equation*}
+        [W]=[\mathrm{I}]^{-1}[\mathrm{II}]
+    \end{equation*}
+\end{proposition}
+
+
+
+\begin{proposition}
+    Near an elliptic point the surface lies on one side of its tangent plane.
+    Every neighborhood of a hyperbolic point contains points on both sides of
+    its tangent plane.
+\end{proposition}
+
+\begin{proof}
+    Choose $x(0,0)=p$ and let
+    $d(u,v)=\langle x(u,v)-x(0,0),N(p)\rangle$.  Taylor's formula gives
+    \[
+        d(u,v)=\frac12(eu^2+2fuv+gv^2)+R,
+        \qquad \frac{R}{u^2+v^2}\longrightarrow0.
+    \]
+    At an elliptic point the quadratic part has a fixed sign; at a hyperbolic
+    point it takes both signs.
+\end{proof}
+
+The differential equation of the asymptotic curves is
+\begin{equation}
+    e(du)^2+2f\,du\,dv+g(dv)^2=0.
+    \label{eq:asymptotic-curves}
+\end{equation}
+Near a hyperbolic point, the coordinate curves are asymptotic precisely when
+$e=g=0$.
+
+The differential equation of the lines of curvature is
+\begin{equation}
+    (fE-eF)(du)^2+(gE-eG)du\,dv+(gF-fG)(dv)^2=0.
+    \label{eq:curvature-lines}
+\end{equation}
+Near a nonumbilical point, the coordinate curves are lines of curvature if and
+only if $f=F=0$.
+
+\begin{proposition}
+    Let $K(p)\neq0$.  For sufficiently small regions $B\subset S$ containing
+    $p$, let $A(B)$ be their area and let $A(N(B))$ be the signed area of their
+    spherical images.  Then
+    \[
+        K(p)=\lim_{B\to p}\frac{A(N(B))}{A(B)}.
+    \]
+    The Gauss map preserves orientation where $K>0$ and reverses orientation
+    where $K<0$.
+\end{proposition}
+
 \section{Vector Fields}
+
+\begin{definition}
+    A differentiable \textbf{vector field} on an open set
+    $U\subset\mathbb{R}^2$ is a map
+    \[
+        w(x,y)=(a(x,y),b(x,y)).
+    \]
+    A curve $\alpha(t)$ is a \textbf{trajectory} of $w$ if
+    $\alpha'(t)=w(\alpha(t))$, or equivalently
+    \[
+        \frac{dx}{dt}=a(x,y),
+        \qquad
+        \frac{dy}{dt}=b(x,y).
+    \]
+\end{definition}
+
+\begin{theorem}[Local existence and uniqueness]
+    Given $p\in U$, there is a trajectory $\alpha:I\rightarrow U$ with
+    $\alpha(0)=p$.  Any two such trajectories agree wherever both are
+    defined.
+\end{theorem}
+
+\begin{theorem}[Differentiable dependence]
+    Near each $p\in U$ there are a neighborhood $V$, an interval $I$, and a
+    differentiable map $\Phi:V\times I\rightarrow U$ such that
+    \[
+        \Phi(q,0)=q,
+        \qquad
+        \frac{\partial\Phi}{\partial t}(q,t)=w(\Phi(q,t)).
+    \]
+    The map $\Phi$ is the local flow of $w$.
+\end{theorem}
+
+\begin{lemma}
+    If $w(p)\neq0$, there is a neighborhood $W$ of $p$ and a differentiable
+    function $f:W\rightarrow\mathbb{R}$ such that $df\neq0$ and $f$ is
+    constant on every trajectory of $w$ in $W$.
+\end{lemma}
+
+Such an $f$ is a \textbf{local first integral}.  It provides a coordinate
+transverse to the trajectories.
+
+\begin{definition}
+    A differentiable \textbf{field of directions} assigns to each $p\in U$ a
+    line through the origin of $T_pU$.  Locally it is represented by a
+    nowhere-zero vector field.  A regular curve tangent to the assigned line
+    at every point is an \textbf{integral curve}.
+\end{definition}
+
+The equation
+\[
+    a(x,y)\,dx+b(x,y)\,dy=0
+\]
+describes the direction spanned by $(b,-a)$.  The same definitions transfer
+to a regular surface by using local coordinates.
+
+\begin{definition}
+    A vector field on an open set $U\subset S$ assigns
+    $w(p)\in T_pS$ to every $p\in U$.  It is differentiable if in every local
+    parametrization it can be written
+    \[
+        w=a(u,v)x_u+b(u,v)x_v
+    \]
+    with differentiable coefficients $a,b$.
+\end{definition}
+
+\begin{theorem}[Coordinates adapted to two fields]
+    Let $w_1,w_2$ be differentiable vector fields on $U\subset S$ which are
+    linearly independent at $p$.  There is a parametrization of a neighborhood
+    of $p$ whose two families of coordinate curves are tangent to the
+    directions determined by $w_1$ and $w_2$.
+\end{theorem}
+
+\begin{proof}
+    Choose local first integrals $f_1,f_2$ of $w_1,w_2$.  The map
+    $q\mapsto(f_1(q),f_2(q))$ has nonsingular differential at $p$ and hence is
+    a local diffeomorphism.  Its inverse is the desired parametrization.
+\end{proof}
+
+Important consequences are the following.
+
+\begin{corollary}
+    Given two distinct differentiable fields of directions near $p$, there are
+    local coordinates whose coordinate curves are their integral curves.
+\end{corollary}
+
+\begin{corollary}
+    Every point of a regular surface has an orthogonal parametrization.
+\end{corollary}
+
+\begin{corollary}
+    Near a hyperbolic point there is a parametrization whose coordinate curves
+    are asymptotic curves.
+\end{corollary}
+
+\begin{corollary}
+    Near a nonumbilical point there is a parametrization whose coordinate
+    curves are lines of curvature.
+\end{corollary}
+
 \section{Ruled Surfaces and Minimal Surfaces}
-\section*{Appendix: Self-Adjoint Linear Maps and Quadratic Forms}
-\addcontentsline{toc}{section}{Appendix: Self-Adjoint Linear Maps and Quadratic Forms}
+
+\subsection{Ruled Surfaces}
+
+\begin{definition}
+    A one-parameter family of lines is described by a point $\alpha(t)$ and a
+    nonzero direction $w(t)$.  The associated \textbf{ruled surface} is
+    \[
+        x(t,v)=\alpha(t)+v w(t).
+    \]
+    The lines $v\mapsto x(t,v)$ are the \textbf{rulings}, and $\alpha$ is a
+    \textbf{directrix}.
+\end{definition}
+
+Cylinders, cones, tangent surfaces, the hyperbolic paraboloid, the helicoid,
+and the one-sheeted hyperboloid are ruled surfaces.  Singular points are
+allowed in this definition.
+
+Assume $|w|=1$ and $w'\neq0$.  The ruled surface is then called
+\textbf{noncylindrical}.  Its distinguished directrix
+\begin{equation}
+    \beta(t)=\alpha(t)-
+    \frac{\langle\alpha'(t),w'(t)\rangle}{|w'(t)|^2}w(t)
+    \label{eq:striction-line}
+\end{equation}
+is independent of the original choice of directrix and satisfies
+$\langle\beta',w'\rangle=0$.  It is the \textbf{line of striction}, and its
+points are the central points of the rulings.
+
+Writing $x(t,u)=\beta(t)+uw(t)$, define the \textbf{distribution parameter}
+\[
+    \lambda(t)=\frac{(\beta'(t),w(t),w'(t))}{|w'(t)|^2},
+\]
+where $(a,b,c)=\langle a\wedge b,c\rangle$.  Then
+\[
+    |x_t\wedge x_u|^2=(\lambda^2+u^2)|w'|^2.
+\]
+Thus singular points, if any, lie on the line of striction and occur where
+$\lambda=0$.
+
+At every regular point,
+\begin{equation}
+    K(t,u)=-\frac{\lambda(t)^2}{(\lambda(t)^2+u^2)^2}\leq0.
+    \label{eq:ruled-curvature}
+\end{equation}
+When $\lambda\neq0$, $|K|$ is maximal at the central point of each ruling.
+If $\theta$ is the angle between the normals at $x(t,u)$ and $x(t,0)$, then
+\[
+    \tan\theta=\frac{u}{|\lambda|}.
+\]
+
+\begin{definition}
+    A ruled surface $x(t,v)=\alpha(t)+vw(t)$ is \textbf{developable} if
+    \[
+        (w,w',\alpha')=0.
+    \]
+\end{definition}
+
+At its regular points a developable surface has $K=0$.  Away from exceptional
+accumulations of singularities, a developable surface is locally a piece of a
+cylinder, a cone, or a tangent surface.  For a noncylindrical developable,
+$\lambda=0$, so its line of striction is its singular locus.
+
+\subsection{Minimal Surfaces}
+
+\begin{definition}
+    A regular parametrized surface is \textbf{minimal} if its mean curvature
+    vanishes identically.
+\end{definition}
+
+Let $D$ be a bounded domain in the parameter plane and let $h$ be a
+differentiable function.  A normal variation is
+\[
+    x_t(u,v)=x(u,v)+t h(u,v)N(u,v).
+\]
+If $A(t)$ is the area of $x_t(D)$, the first variation of area is
+\begin{equation}
+    A'(0)=-2\iint_D hH\sqrt{EG-F^2}\,du\,dv.
+    \label{eq:first-variation-area}
+\end{equation}
+
+\begin{proposition}
+    A regular parametrized surface is minimal if and only if
+    $A'(0)=0$ for every bounded domain $D$ and every normal variation
+    supported in $D$.
+\end{proposition}
+
+Thus minimal surfaces are critical points of area, although a critical point
+need not always be an area minimum.  The \textbf{mean curvature vector}
+$\mathbf H=HN$ points in a direction in which area initially decreases.
+
+\begin{definition}
+    A parametrization $x(u,v)$ is \textbf{isothermal} if
+    \[
+        E=G=\lambda^2,
+        \qquad F=0.
+    \]
+\end{definition}
+
+\begin{proposition}
+    For an isothermal parametrization,
+    \[
+        x_{uu}+x_{vv}=2\lambda^2\mathbf H.
+    \]
+\end{proposition}
+
+\begin{corollary}
+    An isothermally parametrized surface
+    $x=(x^1,x^2,x^3)$ is minimal if and only if all three coordinate
+    functions are harmonic:
+    \[
+        \Delta x^i=x^i_{uu}+x^i_{vv}=0,
+        \qquad i=1,2,3.
+    \]
+\end{corollary}
+
+\begin{example}[Catenoid]
+    The parametrization
+    \[
+        x(u,v)=(a\cosh v\cos u,a\cosh v\sin u,av)
+    \]
+    satisfies $E=G=a^2\cosh^2v$, $F=0$, and
+    $x_{uu}+x_{vv}=0$.  Hence the catenoid is minimal.  Up to pieces of a
+    plane, it is the only minimal surface of revolution.
+\end{example}
+
+\begin{example}[Helicoid]
+    The parametrization
+    \[
+        x(u,v)=(a\sinh v\cos u,a\sinh v\sin u,au)
+    \]
+    is isothermal and harmonic, hence minimal.  Apart from the plane, the
+    helicoid is the only ruled minimal surface.
+\end{example}
+
+\begin{example}[Enneper surface]
+    Enneper's minimal surface is
+    \[
+        x(u,v)=\left(
+        u-\frac{u^3}{3}+uv^2,
+        v-\frac{v^3}{3}+vu^2,
+        u^2-v^2\right).
+    \]
+    It is a regular minimal parametrized surface with self-intersections.
+\end{example}
+
+Let $z=u+iv$ and, for a parametrized surface
+$x=(x^1,x^2,x^3)$, set
+\[
+    \varphi_j=(x^j)_u-i(x^j)_v,
+    \qquad j=1,2,3.
+\]
+Then
+\[
+    \varphi_1^2+\varphi_2^2+\varphi_3^2=E-G-2iF.
+\]
+Consequently, $x$ is isothermal if and only if this sum vanishes; under this
+condition, $x$ is minimal if and only if the functions $\varphi_j$ are
+holomorphic.  This is the starting point for the complex-analytic theory of
+minimal surfaces.
+
+\begin{theorem}[Osserman]
+    Let $S\subset\mathbb{R}^3$ be a regular minimal surface which is closed as
+    a subset of $\mathbb{R}^3$.  If $S$ is not a plane, then the image of its
+    Gauss map is dense in $\mathbb{S}^2$.
+\end{theorem}
+
+
+
 
 \chapter{The Intrinsic Geometry of Surfaces}
 
@@ -1340,13 +1918,5 @@ and
 
 \backmatter
 
-\chapter*{Bibliography and Comments}
-\addcontentsline{toc}{chapter}{Bibliography and Comments}
-
-\chapter*{Hints and Answers}
-\addcontentsline{toc}{chapter}{Hints and Answers}
-
-\chapter*{Index}
-\addcontentsline{toc}{chapter}{Index}
 
 \end{document}
